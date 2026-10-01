@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sensor y umbral · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;max-width:1500px;text-wrap:balance}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{text-wrap:balance;max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:220px;right:220px;bottom:150px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:12px 40px 14px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:28px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:54px;font-weight:800;line-height:1.15;margin:2px 0 4px}
+  #question .hint{font-size:28px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <radialGradient id="ledG"><stop offset="0" stop-color="#cf3f36" stop-opacity=".7"/><stop offset="1" stop-color="#cf3f36" stop-opacity="0"/></radialGradient>
+      <radialGradient id="eyeG"><stop offset="0" stop-color="#f5c518" stop-opacity=".9"/><stop offset="1" stop-color="#f5c518" stop-opacity="0"/></radialGradient>
+      <clipPath id="skyClip"><rect x="60" y="40" width="1800" height="190" rx="24"/></clipPath>
+    </defs>
+
+    <g id="world">
+      <!-- Cielo: del día a la noche -->
+      <g clip-path="url(#skyClip)">
+        <rect id="sky" x="60" y="40" width="1800" height="190"/>
+        <g id="stars" fill="#fff"></g>
+        <path id="moon" d="M0 -40A40 40 0 0 0 0 40A56 56 0 0 1 0 -40Z" fill="#f5c518" transform="translate(420 135)"/>
+        <g id="sun"></g>
+        <g id="cloud"><path d="M-130 44H130A48 48 0 0 0 112 -36A64 64 0 0 0 -4 -64A58 58 0 0 0 -100 -26A44 44 0 0 0 -130 44Z" fill="#fff" stroke="#c3c8d2" stroke-width="3"/></g>
+      </g>
+      <g id="warn">
+        <rect x="440" y="92" width="880" height="86" rx="20" fill="#f5c518" stroke="#df7619" stroke-width="4"/>
+        <path d="M482 155L508 109L534 155Z" fill="#1a1d24"/><rect x="506" y="125" width="5" height="17" rx="2" fill="#f5c518"/><circle cx="508.5" cy="148" r="3" fill="#f5c518"/>
+        <text x="914" y="136" text-anchor="middle" dominant-baseline="central" font-size="40" font-weight="800" fill="#1a1d24">Hay que ajustar el umbral probando</text>
+      </g>
+
+      <!-- Paneles -->
+      <g id="panels"></g>
+      <!-- Placa programable genérica -->
+      <g id="board">
+        <rect x="150" y="340" width="400" height="320" rx="34" fill="#1a1d24"/>
+        <g fill="#f5c518"><rect x="190" y="636" width="40" height="24" rx="4"/><rect x="260" y="636" width="40" height="24" rx="4"/><rect x="330" y="636" width="40" height="24" rx="4"/><rect x="400" y="636" width="40" height="24" rx="4"/><rect x="470" y="636" width="40" height="24" rx="4"/></g>
+        <circle id="eyeGlow" cx="350" cy="372" r="30" fill="url(#eyeG)"/>
+        <circle cx="350" cy="372" r="11" fill="#4a4f5c" stroke="#a9aebb" stroke-width="3"/>
+        <circle cx="200" cy="488" r="24" fill="#4a4f5c" stroke="#a9aebb" stroke-width="3"/><text x="200" y="534" text-anchor="middle" dominant-baseline="central" font-size="27" font-weight="800" fill="#fff">A</text>
+        <circle cx="500" cy="488" r="24" fill="#4a4f5c" stroke="#a9aebb" stroke-width="3"/><text x="500" y="534" text-anchor="middle" dominant-baseline="central" font-size="27" font-weight="800" fill="#fff">B</text>
+        <g id="leds"></g>
+      </g>
+      <text x="350" y="694" text-anchor="middle" dominant-baseline="central" font-size="27" font-weight="700" fill="#6b7180">sensor de luz ↑ arriba</text>
+
+      <!-- Barra del sensor -->
+      <g id="gauge">
+        <text id="readout" x="870" y="336" text-anchor="middle" dominant-baseline="central" font-size="34" font-weight="800" fill="#1a1d24"></text>
+        <rect x="760" y="380" width="70" height="300" rx="12" fill="#eceef2" stroke="#c3c8d2" stroke-width="3"/>
+        <rect id="barFill" x="763" width="64" rx="10" fill="#f5c518"/>
+        <g id="ticks" font-size="26" font-weight="700" fill="#6b7180"></g>
+        <path id="thLine" d="M746 0H844" stroke="#cf3f36" stroke-width="6" stroke-dasharray="12 8"/>
+        <text id="thLabel" x="852" y="0" dominant-baseline="central" font-size="28" font-weight="800" fill="#cf3f36"></text>
+      </g>
+
+      <!-- Programa -->
+      <g id="code"></g>
+      <g id="evalG">
+        <text x="1130" y="630" dominant-baseline="central" font-size="28" font-weight="700" fill="#6b7180">comprobación:</text>
+        <text id="evalT" x="1330" y="630" dominant-baseline="central" font-size="32" font-weight="800"></text>
+      </g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">El umbral es el número a partir del cual el programa decide.</div>
+  </div>
+  <div id="finalB" class="layer">
+    <div class="key">«Mide, compara y decide.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Sensor y umbral</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria · 5º y 6º</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(parent, x, y, s, attrs){
+    var a = { x: x, y: y, 'dominant-baseline': 'central' };
+    for (var k in attrs) a[k] = attrs[k];
+    var e = el('text', a, parent); e.textContent = s; return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 66;
+  var CHAPTERS = [
+    { t: 0,  titulo: 'Medir' },
+    { t: 12, titulo: 'Comparar' },
+    { t: 22, titulo: 'Se hace de noche' },
+    { t: 40, titulo: 'Un umbral mal puesto' },
+    { t: 54, titulo: 'Resumen' }
+  ];
+  var PAUSAS = [
+    { t: 22, pregunta: '¿Cuándo se encenderán las luces?' },
+    { t: 44.4, pregunta: '¿Qué pasará si pongo el umbral en 250?' }
+  ];
+  var SUBS = [
+    [0.4,  11.8, 'El sensor mide cuánta luz hay: 200.'],
+    [12.3, 21.8, 'El programa compara con el umbral: 50.'],
+    [31.0, 39.8, 'Al bajar de 50… ¡se encienden!'],
+    [46.2, 53.8, 'Si el umbral está mal, el programa falla.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function tr(x, y, s, r){ return 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')' + (r ? ' rotate(' + r.toFixed(2) + ')' : '') + (s !== undefined ? ' scale(' + Math.max(s, .001).toFixed(4) + ')' : ''); }
+  function measure(e){ try { return e.getComputedTextLength(); } catch (err) { return e.textContent.length * 15; } }
+
+  /* ================= Datos: nivel de luz y umbral en función del tiempo ================= */
+  var LIGHT = [[0, 0], [1.5, 0], [5, 200], [22.4, 200], [25.6, 120], [28.8, 80], [33.6, 40], [40.6, 40], [43.4, 200]];
+  function level(t){
+    if (t <= LIGHT[0][0]) return LIGHT[0][1];
+    for (var i = 1; i < LIGHT.length; i++) if (t <= LIGHT[i][0]) return lerp(LIGHT[i - 1][1], LIGHT[i][1], ease(seg(t, LIGHT[i - 1][0], LIGHT[i][0])));
+    return LIGHT[LIGHT.length - 1][1];
+  }
+  function umbral(t){ return lerp(50, 250, ease(seg(t, 44.6, 46))); }
+  var RUN0 = 14.6;                                   // el programa empieza a funcionar
+  function cond(t){ return level(t) < umbral(t); }
+  // Momentos en que la condición cambia (calculados una vez, de forma determinista)
+  var CHANGES = [];
+  (function(){ var prev = cond(RUN0); for (var t = RUN0; t <= DUR; t += .01) { var c = cond(t); if (c !== prev) { CHANGES.push(+t.toFixed(2)); prev = c; } } })();
+  function lastChange(t){ var lc = RUN0; CHANGES.forEach(function(c){ if (c <= t) lc = c; }); return lc; }
+
+  /* ================= Paneles ================= */
+  var panels = $('panels');
+  function panel(x, y, w, h, title){
+    el('rect', { x: x, y: y, width: w, height: h, rx: 22, fill: '#fff', stroke: '#d6d9e0', 'stroke-width': 3 }, panels);
+    el('path', { d: 'M' + x + ' ' + (y + 22) + 'Q' + x + ' ' + y + ' ' + (x + 22) + ' ' + y + 'H' + (x + w - 22) + 'Q' + (x + w) + ' ' + y + ' ' + (x + w) + ' ' + (y + 22) + 'V' + (y + 40) + 'H' + x + 'Z', fill: '#eceef2' }, panels);
+    txt(panels, x + 24, y + 21, title, { 'font-size': 28, 'font-weight': 700, fill: '#4a4f5c' });
+  }
+  panel(60, 260, 580, 460, 'Placa');
+  panel(680, 260, 380, 460, 'Sensor');
+  panel(1100, 260, 760, 460, 'Programa');
+
+  // Cielo
+  for (var s = 0; s < 22; s++) el('circle', { cx: 100 + ((s * 397) % 1720), cy: 60 + ((s * 131) % 150), r: s % 3 ? 2.5 : 3.5 }, $('stars'));
+  for (var sr = 0; sr < 8; sr++) { var sa = sr * Math.PI / 4; el('path', { d: 'M' + (Math.cos(sa) * 56).toFixed(1) + ' ' + (Math.sin(sa) * 56).toFixed(1) + 'L' + (Math.cos(sa) * 76).toFixed(1) + ' ' + (Math.sin(sa) * 76).toFixed(1), stroke: '#f5c518', 'stroke-width': 10, 'stroke-linecap': 'round' }, $('sun')); }
+  el('circle', { r: 46, fill: '#f5c518' }, $('sun'));
+
+  // Luces de la placa (5 × 5)
+  var LEDS = [];
+  for (var r = 0; r < 5; r++) for (var c = 0; c < 5; c++) {
+    var lx = 242 + c * 54, ly = 434 + r * 46;
+    var glow = el('circle', { cx: lx, cy: ly, r: 26, fill: 'url(#ledG)' }, $('leds'));
+    el('circle', { cx: lx, cy: ly, r: 15, fill: '#4a4f5c' }, $('leds'));
+    var on = el('circle', { cx: lx, cy: ly, r: 15, fill: '#cf3f36' }, $('leds'));
+    LEDS.push({ glow: glow, on: on, r: r });
+  }
+
+  // Barra: 0 abajo (y = 680), 255 arriba (y = 380)
+  function BY(v){ return 680 - v * 300 / 255; }
+  [0, 50, 100, 150, 200, 255].forEach(function(v){
+    el('path', { d: 'M748 ' + BY(v) + 'H760', stroke: '#a9aebb', 'stroke-width': 3 }, $('ticks'));
+    txt($('ticks'), 740, BY(v), String(v), { 'text-anchor': 'end' });
+  });
+
+  /* ================= Bloques ================= */
+  var code = $('code');
+  function row(parent, x, cy, parts, color){
+    var cx = x;
+    parts.forEach(function(p){
+      if (p.t !== undefined) { var e = txt(parent, cx, cy + 1, p.t, { 'font-size': 28, 'font-weight': 700, fill: color }); cx += measure(e) + 10; }
+      else if (p.num !== undefined) {
+        var r3 = el('rect', { x: cx, y: cy - 17, width: 10, height: 34, rx: 17, fill: '#fff' }, parent);
+        var e3 = txt(parent, cx, cy + 1, p.num, { 'text-anchor': 'middle', 'font-size': 27, 'font-weight': 800, fill: '#1a1d24' });
+        var w3 = Math.max(p.w || 44, measure(e3) + 24); r3.setAttribute('width', w3); e3.setAttribute('x', cx + w3 / 2); cx += w3 + 10;
+        if (p.ref) p.ref.t = e3;
+      } else if (p.rep !== undefined) {
+        var r4 = el('rect', { x: cx, y: cy - 18, width: 10, height: 36, rx: 18, fill: '#108394' }, parent);
+        var e4 = txt(parent, cx + 14, cy + 1, p.rep, { 'font-size': 27, 'font-weight': 700, fill: '#fff' });
+        var w4 = measure(e4) + 28; r4.setAttribute('width', w4); cx += w4 + 10;
+      } else if (p.hex) {
+        var hx = el('path', { fill: '#df7619', stroke: 'rgba(26,29,36,.3)', 'stroke-width': 2 }, parent);
+        var inner = el('g', {}, parent);
+        var w5 = row(inner, cx + 22, cy, p.hex, color) + 34;
+        hx.setAttribute('d', 'M' + cx + ' ' + cy + 'L' + (cx + 18) + ' ' + (cy - 22) + 'H' + (cx + w5 - 18) + 'L' + (cx + w5) + ' ' + cy + 'L' + (cx + w5 - 18) + ' ' + (cy + 22) + 'H' + (cx + 18) + 'Z');
+        cx += w5 + 10;
+      }
+    });
+    return cx - x;
+  }
+  function cmdPath(x, y, w, h){
+    return 'M' + (x + 10) + ' ' + y + 'H' + (x + 22) + 'l7 6H' + (x + 47) + 'l7 -6H' + (x + w - 10) + 'Q' + (x + w) + ' ' + y + ' ' + (x + w) + ' ' + (y + 10) +
+      'V' + (y + h - 10) + 'Q' + (x + w) + ' ' + (y + h) + ' ' + (x + w - 10) + ' ' + (y + h) + 'H' + (x + 54) + 'l-7 6H' + (x + 29) + 'l-7 -6H' + (x + 10) +
+      'Q' + x + ' ' + (y + h) + ' ' + x + ' ' + (y + h - 10) + 'V' + (y + 10) + 'Q' + x + ' ' + y + ' ' + (x + 10) + ' ' + y + 'Z';
+  }
+  // Bloque con brazos: secciones = [[alto cabecera, ancho cabecera], [alto hueco], …, [alto pie, ancho pie]]
+  function armsPath(x, y, rows){
+    var arm = 24, d = 'M' + (x + 10) + ' ' + y, yy = y;
+    rows.forEach(function(R, i){
+      if (R.gap) { d += 'H' + (x + arm) + 'V' + (yy + R.h); yy += R.h; return; }
+      d += 'H' + (x + R.w - 10) + 'Q' + (x + R.w) + ' ' + yy + ' ' + (x + R.w) + ' ' + (yy + 8) + 'V' + (yy + R.h - 8) + 'Q' + (x + R.w) + ' ' + (yy + R.h) + ' ' + (x + R.w - 10) + ' ' + (yy + R.h);
+      yy += R.h;
+    });
+    return d + 'H' + (x + 10) + 'Q' + x + ' ' + yy + ' ' + x + ' ' + (yy - 10) + 'V' + (y + 10) + 'Q' + x + ' ' + y + ' ' + (x + 10) + ' ' + y + 'Z';
+  }
+  var BX = 1130;
+  // por siempre { si <nivel de luz < 50> entonces { encender luces } si no { apagar luces } }
+  var gF = el('g', {}, code), gI = el('g', {}, code);
+  var fBody = el('path', { fill: '#df7619', stroke: 'rgba(26,29,36,.28)', 'stroke-width': 2 }, gF);
+  var fHl = el('path', { fill: 'none', stroke: '#f5c518', 'stroke-width': 6, 'stroke-linejoin': 'round' }, gF);
+  txt(gF, BX + 16, 352, 'por siempre', { 'font-size': 28, 'font-weight': 700, fill: '#1a1d24' });
+  var iBody = el('path', { fill: '#df7619', stroke: 'rgba(26,29,36,.28)', 'stroke-width': 2 }, gI);
+  var iHl = el('path', { fill: 'none', stroke: '#f5c518', 'stroke-width': 6, 'stroke-linejoin': 'round' }, gI);
+  var NUMREF = {};
+  var wHead = row(gI, BX + 24 + 16, 398, [{ t: 'si' }, { hex: [{ rep: 'nivel de luz' }, { t: '<' }, { num: '50', w: 64, ref: NUMREF }] }, { t: 'entonces' }], '#1a1d24') + 32;
+  txt(gI, BX + 24 + 16, 488, 'si no', { 'font-size': 28, 'font-weight': 700, fill: '#1a1d24' });
+  function cmd(y, label){
+    var g = el('g', {}, code);
+    var body = el('path', { fill: '#cf3f36', stroke: 'rgba(26,29,36,.28)', 'stroke-width': 2 }, g);
+    var hl = el('path', { fill: 'none', stroke: '#f5c518', 'stroke-width': 7, 'stroke-linejoin': 'round' }, g);
+    var w = row(g, BX + 48 + 14, y + 22, [{ t: label }], '#fff') + 28;
+    body.setAttribute('d', cmdPath(BX + 48, y, w, 44)); hl.setAttribute('d', cmdPath(BX + 48, y, w, 44));
+    return { g: g, hl: hl };
+  }
+  var ON = cmd(422, 'encender luces'), OFF = cmd(510, 'apagar luces');
+  var dI = armsPath(BX + 24, 374, [{ h: 48, w: wHead }, { gap: true, h: 44 }, { h: 44, w: 160 }, { gap: true, h: 44 }, { h: 20, w: 160 }]);
+  iBody.setAttribute('d', dI); iHl.setAttribute('d', dI);
+  var dF = armsPath(BX, 330, [{ h: 44, w: 220 }, { gap: true, h: 200 }, { h: 22, w: 200 }]);
+  fBody.setAttribute('d', dF); fHl.setAttribute('d', dF);
+
+  /* ================= Elementos ================= */
+  var world = $('world'), sky = $('sky'), stars = $('stars'), moon = $('moon'), sun = $('sun'), cloud = $('cloud'), warn = $('warn'),
+      barFill = $('barFill'), readout = $('readout'), thLine = $('thLine'), thLabel = $('thLabel'), eyeGlow = $('eyeGlow'),
+      evalG = $('evalG'), evalT = $('evalT'), finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null;
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+    world.setAttribute('opacity', 1 - seg(t, 54, 54.6));
+
+    // Cielo: nube 22,4-24,8 s; noche 24,8-30 s; vuelve el día 40,4-43 s
+    var night = ease(seg(t, 24.8, 30)) * (1 - ease(seg(t, 40.4, 43)));
+    var cloudIn = ease(seg(t, 22.4, 24.8)) * (1 - ease(seg(t, 40.4, 43)));
+    var d0 = [202, 227, 243], n0 = [42, 46, 55];
+    sky.setAttribute('fill', 'rgb(' + d0.map(function(v, i){ return Math.round(lerp(v, n0[i], night)); }).join(',') + ')');
+    stars.setAttribute('opacity', night.toFixed(3));
+    moon.setAttribute('opacity', seg(night, .6, 1).toFixed(3));
+    sun.setAttribute('transform', tr(1500, 135, 1, RM ? 0 : t * 10));
+    sun.setAttribute('opacity', (1 - night).toFixed(3));
+    cloud.setAttribute('transform', tr(lerp(1140, 1490, cloudIn), 140, 1));
+    cloud.setAttribute('opacity', (seg(t, 22.4, 23) * (1 - .6 * night) * (1 - seg(t, 42.4, 43))).toFixed(3));
+
+    // Sensor y barra
+    var v = level(t), th = umbral(t);
+    eyeGlow.setAttribute('opacity', (v / 200 * .9).toFixed(3));
+    barFill.setAttribute('y', BY(v).toFixed(1));
+    barFill.setAttribute('height', Math.max(0, 677 - BY(v)).toFixed(1));
+    readout.textContent = 'nivel de luz = ' + Math.round(v);
+    var thOp = seg(t, 13.6, 14.2);
+    thLine.setAttribute('transform', 'translate(0 ' + BY(th).toFixed(1) + ')');
+    thLine.setAttribute('opacity', thOp.toFixed(3));
+    thLabel.setAttribute('y', BY(th).toFixed(1));
+    thLabel.textContent = 'umbral = ' + Math.round(th);
+    thLabel.setAttribute('opacity', thOp.toFixed(3));
+
+    // Programa: aparece a los 12,4 s; funciona desde 14,6 s; ejecuta una rama u otra
+    code.setAttribute('opacity', seg(t, 12.4, 13.2).toFixed(3));
+    var running = t >= RUN0, c = cond(t);
+    var changed = CHANGES.some(function(x){ return x <= t; });
+    var since = t - lastChange(t), fade = changed ? seg(since, 0, .3) : 1;
+    var onAmt = running ? (c ? fade : 1 - fade) : 0;
+    fHl.setAttribute('opacity', running ? 1 : 0); iHl.setAttribute('opacity', running ? 1 : 0);
+    ON.hl.setAttribute('opacity', (running ? onAmt : 0).toFixed(3));
+    OFF.hl.setAttribute('opacity', (running ? 1 - onAmt : 0).toFixed(3));
+    if (NUMREF.t) NUMREF.t.textContent = String(Math.round(th));
+    evalG.setAttribute('opacity', running ? 1 : 0);
+    evalT.textContent = Math.round(v) + ' < ' + Math.round(th) + ' → ' + (c ? 'verdadero' : 'falso');
+    evalT.setAttribute('fill', c ? '#2a8f4f' : '#cf3f36');
+
+    // Luces: se encienden cuando la condición es verdadera (fila a fila, sin parpadeos)
+    LEDS.forEach(function(L){
+      var o;
+      if (!running) o = 0;
+      else if (!changed) o = c ? 1 : 0;
+      else { var p = seg(since, L.r * .06, L.r * .06 + .3); o = c ? p : 1 - p; }
+      L.on.setAttribute('opacity', o.toFixed(3)); L.glow.setAttribute('opacity', o.toFixed(3));
+    });
+
+    // Aviso del umbral mal puesto
+    var w = seg(t, 47, 47.5);
+    warn.setAttribute('opacity', w.toFixed(3));
+
+    // Textos finales
+    var fa = seg(t, 54.4, 55) * (1 - seg(t, 59.6, 60.1));
+    finalA.style.opacity = fa; finalA.style.transform = 'none';
+    var fb = seg(t, 60.1, 60.7);
+    finalB.style.opacity = fb; finalB.style.transform = 'none';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

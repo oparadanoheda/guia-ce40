@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evento · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;max-width:1500px;text-wrap:balance}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:120px;right:120px;bottom:150px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:22px 50px 26px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:32px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:60px;font-weight:800;line-height:1.15;margin:8px 0 10px}
+  #question .hint{font-size:32px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1a1d24" flood-opacity=".18"/>
+      </filter>
+      <!-- Robot de la guía (60 × 60, centro 30,30), para el icono final -->
+      <g id="robotArt"><ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>
+      <!-- Timbre (centro en la base de la campana) -->
+      <g id="bellShape">
+        <path d="M-46 0Q-44 -58 0 -64Q44 -58 46 0Z" fill="#f5c518" stroke="#df7619" stroke-width="5" stroke-linejoin="round"/>
+        <rect x="-54" y="-6" width="108" height="14" rx="7" fill="#df7619"/>
+        <circle cx="0" cy="16" r="10" fill="#1a1d24"/>
+        <ellipse cx="-16" cy="-34" rx="7" ry="14" fill="#fff" opacity=".35"/>
+      </g>
+      <!-- Bandera verde -->
+      <g id="flagShape">
+        <rect x="-58" y="-90" width="12" height="190" rx="6" fill="#1a1d24"/>
+        <path d="M-46 -84C-6 -104 26 -64 74 -82V8C26 26 -6 -14 -46 6Z" fill="#2a8f4f" stroke="#1a1d24" stroke-opacity=".25" stroke-width="4" stroke-linejoin="round"/>
+      </g>
+      <!-- Mano (para el aplauso) -->
+      <g id="hand" fill="#f2d39b" stroke="#df7619" stroke-width="4" stroke-linejoin="round">
+        <rect x="-27" y="-74" width="13" height="52" rx="6.5"/><rect x="-13" y="-82" width="13" height="60" rx="6.5"/>
+        <rect x="1" y="-78" width="13" height="56" rx="6.5"/><rect x="15" y="-68" width="12" height="46" rx="6"/>
+        <rect x="-30" y="-34" width="60" height="78" rx="24"/>
+        <rect x="18" y="-24" width="40" height="17" rx="8.5" transform="rotate(-38 22 -16)"/>
+      </g>
+      <path id="spark" d="M0 -14Q2 -2 14 0Q2 2 0 14Q-2 2 -14 0Q-2 -2 0 -14Z" fill="#f5c518" stroke="#df7619" stroke-width="2"/>
+    </defs>
+
+    <g id="cam">
+      <g id="world">
+        <!-- Parte 1: el cole -->
+        <g id="partA">
+          <rect x="0" y="620" width="1920" height="200" fill="#9ed97c"/>
+          <path d="M500 620H660L700 820H460Z" fill="#f2d39b"/>
+          <g transform="translate(1820 560)"><rect x="-12" y="0" width="24" height="70" rx="8" fill="#6b7180"/><circle cy="-30" r="80" fill="#2a8f4f"/><circle cx="-26" cy="-52" r="28" fill="#fff" opacity=".12"/></g>
+          <circle cx="1250" cy="760" r="26" fill="#cf3f36"/><path d="M1228 752Q1250 742 1272 752" fill="none" stroke="#fff" stroke-width="4" opacity=".6"/>
+          <!-- Edificio -->
+          <rect x="140" y="170" width="740" height="452" rx="10" fill="#e3e6ec" stroke="#c3c8d2" stroke-width="4"/>
+          <rect x="120" y="150" width="780" height="48" rx="14" fill="#cf3f36"/>
+          <g fill="#fff" stroke="#c3c8d2" stroke-width="6">
+            <rect x="190" y="250" width="120" height="110" rx="10"/><rect x="340" y="250" width="120" height="110" rx="10"/>
+            <rect x="710" y="250" width="120" height="110" rx="10"/><rect x="190" y="420" width="120" height="110" rx="10"/>
+            <rect x="760" y="420" width="70" height="110" rx="10"/>
+          </g>
+          <rect x="500" y="420" width="160" height="200" rx="10" fill="#4a4f5c"/>
+          <g id="kids"></g>
+          <g id="door"><rect x="500" y="420" width="160" height="200" rx="10" fill="#2c5bbf"/><circle cx="636" cy="525" r="8" fill="#f5c518"/></g>
+          <g id="bell" transform="translate(580 352)"><use href="#bellShape"/></g>
+          <g id="bellWaves" fill="none" stroke="#df7619" stroke-width="7" stroke-linecap="round"></g>
+        </g>
+        <g id="connector" fill="none" stroke="#a9aebb" stroke-width="6" stroke-dasharray="14 12" stroke-linecap="round">
+          <path id="connPath" d="M405 455C620 300 900 300 1112 372"/>
+        </g>
+        <!-- Parte 1: bloques CUANDO + acción -->
+        <g id="blocksB"></g>
+
+        <!-- Parte 2: tres robots, cada uno con su señal -->
+        <g id="partC">
+          <rect x="60" y="190" width="380" height="440" rx="40" fill="#eceef2"/>
+          <g id="waveRings" fill="none" stroke="#a9aebb" stroke-width="6"></g>
+          <g id="sigFlag" transform="translate(250 410)"><circle id="flagGlow" r="150" fill="#2a8f4f" opacity="0"/><g id="flagCloth"><use href="#flagShape"/></g></g>
+          <g id="sigKey" transform="translate(250 410)">
+            <rect x="-150" y="-36" width="300" height="104" rx="22" fill="#a9aebb"/>
+            <g id="keyTop"><rect id="keyFace" x="-150" y="-52" width="300" height="104" rx="22" fill="#fff" stroke="#a9aebb" stroke-width="4"/>
+              <text y="0" text-anchor="middle" dominant-baseline="central" font-size="46" font-weight="800" fill="#1a1d24">espacio</text></g>
+          </g>
+          <g id="sigClap" transform="translate(250 410)">
+            <g id="handL"><use href="#hand"/></g>
+            <g id="handR"><use href="#hand" transform="scale(-1 1)"/></g>
+            <g id="clapLines" fill="none" stroke="#df7619" stroke-width="7" stroke-linecap="round">
+              <path d="M-70 -90L-92 -122M0 -104V-142M70 -90L92 -122"/>
+            </g>
+          </g>
+          <g id="blocksC"></g>
+          <g id="robots"></g>
+          <g id="sparksC"></g>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">Un evento es la señal que hace empezar un programa.</div>
+  </div>
+  <div id="finalB" class="layer">
+    <svg width="170" height="170" viewBox="0 0 60 60" aria-hidden="true"><use href="#robotArt"/></svg>
+    <div class="key">«Cada programa espera su señal.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Evento</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 66;
+  var CHAPTERS = [
+    { t: 0,  titulo: 'En el cole' },
+    { t: 12, titulo: 'El bloque CUANDO' },
+    { t: 22, titulo: 'Cada uno con su señal' },
+    { t: 54, titulo: 'Qué es un evento' }
+  ];
+  var PAUSAS = [
+    { t: 30, pregunta: 'Si toco la bandera verde, ¿qué robot se moverá?' },
+    { t: 38, pregunta: 'Y si pulso la tecla espacio, ¿cuál se moverá?' }
+  ];
+  var SUBS = [
+    [0.4,  11.8, 'CUANDO suena el timbre, salimos al recreo.'],
+    [12.3, 21.8, 'En programación, esa señal se llama evento.'],
+    [22.3, 29.8, 'Cada robot espera su señal.'],
+    [32.6, 37.8, 'Bandera verde: solo se mueve el primero.'],
+    [40.6, 45.8, 'Tecla espacio: solo el segundo.'],
+    [46.3, 53.8, 'Un aplauso: solo el tercero.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function easeOutBack(p){ var c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); }
+  function win(t, a, b, f){ f = f || .15; return Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b)); }
+  function tr(x, y, s, r){ return 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')' + (r ? ' rotate(' + r.toFixed(2) + ')' : '') + (s !== undefined ? ' scale(' + Math.max(s, .001).toFixed(4) + ')' : ''); }
+
+  // Robot (con ojos que parpadean)
+  var ROBOT = '<ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/>' +
+    '<g class="eyes"><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/></g>' +
+    '<path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>';
+  function makeRobot(parent, s){
+    var g = el('g', {}, parent);
+    var inner = el('g', { transform: 'scale(' + s + ') translate(-30 -30)' }, g);
+    inner.innerHTML = ROBOT;
+    return { g: g, eyes: inner.querySelector('.eyes') };
+  }
+  function blink(t, off){
+    var bt = (t + off) % 3.9, b = bt < .18 ? Math.sin(Math.PI * bt / .18) : 0;
+    return 'translate(0 28) scale(1 ' + (1 - .9 * b).toFixed(3) + ') translate(0 -28)';
+  }
+
+  // Bloques de programación tipo Scratch: «CUANDO…» (con gorro) y acción (con muesca)
+  function hatD(w, h){
+    return 'M0 46C30 2 120 2 150 34H' + (w - 14) + 'Q' + w + ' 34 ' + w + ' 48V' + (h - 14) + 'Q' + w + ' ' + h + ' ' + (w - 14) + ' ' + h +
+      'H76l-10 12H38l-10 -12H14Q0 ' + h + ' 0 ' + (h - 14) + 'Z';
+  }
+  function cmdD(w, h){
+    return 'M14 0H28l10 12H66l10 -12H' + (w - 14) + 'Q' + w + ' 0 ' + w + ' 14V' + (h - 14) + 'Q' + w + ' ' + h + ' ' + (w - 14) + ' ' + h +
+      'H14Q0 ' + h + ' 0 ' + (h - 14) + 'V14Q0 0 14 0Z';
+  }
+  function makeBlock(parent, kind, w, h, lines, fill, color, fs){
+    var g = el('g', {}, parent);
+    var d = kind === 'hat' ? hatD(w, h) : cmdD(w, h);
+    var hl = el('path', { d: d, fill: 'none', stroke: '#df7619', 'stroke-width': 14, 'stroke-linejoin': 'round', opacity: 0 }, g);
+    el('path', { d: d, fill: fill, stroke: 'rgba(26,29,36,.25)', 'stroke-width': 3, filter: 'url(#sh)' }, g);
+    var top = kind === 'hat' ? 34 : 0, mid = (top + h) / 2 + 2;
+    lines.forEach(function(txt, i){
+      var tx = el('text', { x: w / 2, y: mid + (i - (lines.length - 1) / 2) * fs * 1.15, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': fs, 'font-weight': 800, fill: color }, g);
+      tx.textContent = txt;
+    });
+    return { g: g, hl: hl, w: w, h: h };
+  }
+
+  // Niños y niñas en silueta (origen en los pies). Variados: alturas, peinados, gorra, silla de ruedas.
+  function makeKid(parent, color, s, style){
+    var g = el('g', {}, parent), K = { g: g, s: s, style: style };
+    var b = el('g', { transform: 'scale(' + s + ')' }, g);
+    el('ellipse', { cx: 0, cy: 0, rx: 40, ry: 8, fill: 'rgba(0,0,0,.18)' }, b);
+    if (style === 'wheel') {
+      el('rect', { x: -24, y: -112, width: 44, height: 64, rx: 18, fill: color }, b);
+      el('rect', { x: -6, y: -60, width: 50, height: 20, rx: 10, fill: color }, b);
+      el('rect', { x: 28, y: -60, width: 18, height: 52, rx: 9, fill: color }, b);
+      el('circle', { cx: 0, cy: -138, r: 24, fill: color }, b);
+      el('path', { d: 'M-30 -40H40M40 -40L46 -10', fill: 'none', stroke: '#6b7180', 'stroke-width': 6, 'stroke-linecap': 'round' }, b);
+      K.wheel = el('g', { transform: 'translate(-8 -34)' }, b);
+      el('circle', { r: 32, fill: 'none', stroke: '#1a1d24', 'stroke-width': 7 }, K.wheel);
+      el('path', { d: 'M-30 0H30M0 -30V30M-21 -21L21 21M-21 21L21 -21', stroke: '#6b7180', 'stroke-width': 3 }, K.wheel);
+      el('circle', { cx: 48, cy: -8, r: 8, fill: '#1a1d24' }, b);
+    } else {
+      K.legL = el('rect', { x: -22, y: -62, width: 18, height: 62, rx: 9, fill: color }, b);
+      K.legR = el('rect', { x: 4, y: -62, width: 18, height: 62, rx: 9, fill: color }, b);
+      K.armL = el('rect', { x: -44, y: -120, width: 16, height: 60, rx: 8, fill: color }, b);
+      K.armR = el('rect', { x: 28, y: -120, width: 16, height: 60, rx: 8, fill: color }, b);
+      el('rect', { x: -32, y: -128, width: 64, height: 76, rx: 22, fill: color }, b);
+      el('circle', { cx: 0, cy: -156, r: 25, fill: color }, b);
+      if (style === 'pony') el('ellipse', { cx: 26, cy: -150, rx: 10, ry: 18, fill: color, transform: 'rotate(-25 26 -150)' }, b);
+      if (style === 'bun') el('circle', { cx: 0, cy: -184, r: 12, fill: color }, b);
+      if (style === 'cap') el('path', { d: 'M-26 -164Q0 -192 26 -164H40V-158H-26Z', fill: '#f5c518' }, b);
+    }
+    return K;
+  }
+
+  /* ================= Construcción ================= */
+  // Ondas del timbre
+  var BW = [];
+  [-1, 1].forEach(function(side){
+    for (var i = 0; i < 3; i++) BW.push({ side: side, i: i, el: el('path', {}, $('bellWaves')) });
+  });
+  function waveD(cx, cy, side, r){
+    var a0 = -50 * Math.PI / 180, a1 = 50 * Math.PI / 180;
+    var x0 = cx + side * Math.cos(a0) * r, y0 = cy + Math.sin(a0) * r, x1 = cx + side * Math.cos(a1) * r, y1 = cy + Math.sin(a1) * r;
+    return 'M' + x0.toFixed(1) + ' ' + y0.toFixed(1) + 'A' + r + ' ' + r + ' 0 0 ' + (side > 0 ? 1 : 0) + ' ' + x1.toFixed(1) + ' ' + y1.toFixed(1);
+  }
+
+  // Niños: salen por la puerta al patio
+  var KIDS = [
+    makeKid($('kids'), '#6c44b0', 1.0, 'pony'),
+    makeKid($('kids'), '#108394', 1.0, 'wheel'),
+    makeKid($('kids'), '#df7619', .92, 'cap'),
+    makeKid($('kids'), '#2a8f4f', 1.05, 'bun'),
+    makeKid($('kids'), '#cf3f36', .88, 'none')
+  ];
+  var KID_TARGET = [1620, 1460, 1300, 1140, 980];
+  var DOOR = { x: 580, y: 618 };
+  function KID_START(i){ return 5.2 + i * .9; }
+  function KID_DUR(i){ return (KID_TARGET[i] - DOOR.x) / 400; }
+
+  // Bloques de la parte 1
+  var HAT_B = makeBlock($('blocksB'), 'hat', 680, 150, ['CUANDO suena el timbre'], '#f5c518', '#1a1d24', 46);
+  var CMD_B = makeBlock($('blocksB'), 'cmd', 680, 110, ['salimos al recreo'], '#2c5bbf', '#fff', 46);
+  var BX = 1130, BY = 300;
+
+  // Parte 2: robots y sus bloques
+  var RX = [720, 1190, 1660], RY0 = 570, RY1 = 450;
+  var C_TEXT = [['CUANDO toco', 'la bandera verde'], ['CUANDO pulso', 'la tecla espacio'], ['CUANDO aplaudo']];
+  var HATS_C = C_TEXT.map(function(lines){ return makeBlock($('blocksC'), 'hat', 440, 176, lines, '#f5c518', '#1a1d24', 38); });
+  var ROBOTS = RX.map(function(){ return makeRobot($('robots'), 1.8); });
+  var SIG = [30.4, 38.4, 46.4];            // bandera verde, tecla espacio, aplauso
+  var RINGS = [0, 1].map(function(){ return el('circle', { cx: 440, cy: 410, r: 10 }, $('waveRings')); });
+  var SPARKS = RX.map(function(){ return [0,1,2,3,4,5].map(function(){ return el('use', { href: '#spark' }, $('sparksC')); }); });
+
+  /* ================= Elementos ================= */
+  var cam = $('cam'), world = $('world'), partA = $('partA'), partC = $('partC'), door = $('door'), bell = $('bell'),
+      connector = $('connector'), connPath = $('connPath'),
+      sigFlag = $('sigFlag'), flagGlow = $('flagGlow'), flagCloth = $('flagCloth'), sigKey = $('sigKey'), keyTop = $('keyTop'), keyFace = $('keyFace'),
+      sigClap = $('sigClap'), handL = $('handL'), handR = $('handR'), clapLines = $('clapLines'),
+      finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null;
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+
+    // Cámara: se acerca un poco al timbre cuando suena
+    var ax = 960, ay = 540, wx = 960, wy = 540, z = 1;
+    if (!RM) {
+      var p1 = ease(seg(t, .6, 2.2)) * (1 - ease(seg(t, 4.2, 5.6)));
+      ay = lerp(ay, 470, p1); wx = lerp(wx, 700, p1); wy = lerp(wy, 420, p1); z = lerp(z, 1.18, p1);
+    }
+    cam.setAttribute('transform', 'translate(' + ax + ' ' + ay + ') scale(' + z.toFixed(4) + ') translate(' + (-wx) + ' ' + (-wy) + ')');
+    world.setAttribute('opacity', 1 - seg(t, 54, 54.8));
+
+    /* ---- Parte 1: el cole ---- */
+    var shrink = ease(seg(t, 12, 13.2));
+    var aOut = seg(t, 21.3, 22);
+    partA.setAttribute('transform', 'translate(' + (40 * shrink).toFixed(1) + ' ' + (300 * shrink).toFixed(1) + ') scale(' + lerp(1, .55, shrink).toFixed(4) + ')');
+    partA.setAttribute('opacity', (1 - aOut).toFixed(3));
+
+    // Timbre: suena de 1,5 a 5 s y otra vez de 16,5 a 18,5 s
+    var ring = Math.max(win(t, 1.5, 5, .3), win(t, 16.5, 18.5, .3));
+    var swing = RM ? 0 : 14 * ring * Math.sin(2 * Math.PI * 2.5 * t);
+    bell.setAttribute('transform', 'translate(580 352) rotate(' + swing.toFixed(2) + ' 0 -64)');
+    BW.forEach(function(w){
+      var ph = RM ? (w.i + 1) / 3.2 : ((t * 1.25 + w.i / 3) % 1);
+      w.el.setAttribute('d', waveD(580, 322, w.side, 70 + 70 * ph));
+      w.el.setAttribute('opacity', (ring * (RM ? 1 : 1 - ph)).toFixed(3));
+    });
+    // Puerta que se abre
+    var dp = ease(seg(t, 4.6, 5.3));
+    door.setAttribute('transform', 'translate(500 0) scale(' + lerp(1, .14, dp).toFixed(4) + ' 1) translate(-500 0)');
+    // Niños saliendo al patio
+    KIDS.forEach(function(K, i){
+      var s0 = KID_START(i), p = seg(t, s0, s0 + KID_DUR(i)), e = ease(p);
+      var x = lerp(DOOR.x, KID_TARGET[i], e), y = lerp(DOOR.y, 720 - (i % 2) * 30, e);
+      var walking = p > 0 && p < 1;
+      var hop = RM ? 0 : -16 * Math.sin(Math.PI * seg(t, 10.6 + i * .1, 11.1 + i * .1));
+      K.g.setAttribute('transform', tr(x, y + hop, lerp(.85, 1, e)));
+      K.g.setAttribute('opacity', cl((t - s0) / .3).toFixed(3));
+      if (K.wheel) K.wheel.setAttribute('transform', 'translate(-8 -34) rotate(' + ((x - DOOR.x) * 1.6).toFixed(1) + ')');
+      else {
+        var sw = walking ? Math.sin((t - s0) * 2 * Math.PI * 1.8) : 0;
+        K.legL.setAttribute('transform', 'rotate(' + (22 * sw).toFixed(2) + ' -13 -60)');
+        K.legR.setAttribute('transform', 'rotate(' + (-22 * sw).toFixed(2) + ' 13 -60)');
+        K.armL.setAttribute('transform', 'rotate(' + (-16 * sw).toFixed(2) + ' -36 -116)');
+        K.armR.setAttribute('transform', 'rotate(' + (16 * sw).toFixed(2) + ' 36 -116)');
+      }
+    });
+
+    // Bloques: «CUANDO suena el timbre» + «salimos al recreo»
+    var hb = seg(t, 12.8, 13.6), cb = ease(seg(t, 14.4, 15.2));
+    var bOut = seg(t, 21.3, 22);
+    HAT_B.g.setAttribute('transform', tr(BX, BY - (RM ? 0 : 260 * (1 - easeOutBack(hb))), 1));
+    HAT_B.g.setAttribute('opacity', (cl(hb * 3) * (1 - bOut)).toFixed(3));
+    CMD_B.g.setAttribute('transform', tr(BX + 340 * (1 - cb), BY + 150, 1));
+    CMD_B.g.setAttribute('opacity', (cb * (1 - bOut)).toFixed(3));
+    HAT_B.hl.setAttribute('opacity', win(t, 17, 19.6, .3).toFixed(3));
+    CMD_B.hl.setAttribute('opacity', win(t, 18, 20.2, .3).toFixed(3));
+    var cp = ease(seg(t, 15.6, 16.4));
+    connector.setAttribute('opacity', (cp * (1 - bOut)).toFixed(3));
+
+    /* ---- Parte 2: cada robot espera su señal ---- */
+    partC.setAttribute('opacity', seg(t, 22, 22.5).toFixed(3));
+    var breath = RM ? 1 : 1 + .025 * Math.sin(t * 2 * Math.PI / 2.4);
+    ROBOTS.forEach(function(R, i){
+      var a = ease(seg(t, 22.4 + i * .5, 22.9 + i * .5));
+      var S = SIG[i];
+      var hop = RM ? 0 : -34 * Math.sin(Math.PI * seg(t, S + 1.9, S + 2.4));
+      var y = lerp(RY0, RY1, ease(seg(t, S + 2.5, S + 3.5)));
+      R.g.setAttribute('transform', tr(RX[i], y + hop, (RM ? 1 : lerp(.6, 1, a)) * breath));
+      R.g.setAttribute('opacity', a.toFixed(3));
+      R.eyes.setAttribute('transform', blink(t, 1.3 + i * 1.1));
+      var H = HATS_C[i], hp = seg(t, 23.8 + i * .6, 24.5 + i * .6);
+      H.g.setAttribute('transform', tr(RX[i] - 220, 110 - (RM ? 0 : 200 * (1 - easeOutBack(hp))), 1));
+      H.g.setAttribute('opacity', cl(hp * 3).toFixed(3));
+      H.hl.setAttribute('opacity', win(t, S + 1.4, S + 6.6, .3).toFixed(3));
+      var sp = seg(t, S + 3.5, S + 4.3);
+      SPARKS[i].forEach(function(s, k){
+        var ang = k * Math.PI / 3 - Math.PI / 2, d = 70 + 40 * ease(sp);
+        s.setAttribute('transform', tr(RX[i] + Math.cos(ang) * d, RY1 + Math.sin(ang) * d, 1));
+        s.setAttribute('opacity', (sp > 0 && sp < 1 ? 1 - sp * sp : 0).toFixed(3));
+      });
+    });
+
+    // Señales en el panel de la izquierda
+    function shown(i){ var end = i < 2 ? SIG[i + 1] - .4 : 53.8; return seg(t, SIG[i] - .2, SIG[i] + .3) * (1 - seg(t, end - .4, end)); }
+    sigFlag.setAttribute('opacity', shown(0).toFixed(3));
+    var f1 = win(t, SIG[0] + .5, SIG[0] + 4, .3);
+    flagGlow.setAttribute('opacity', (.22 * f1).toFixed(3));
+    flagCloth.setAttribute('transform', RM ? '' : 'translate(-46 0) scale(' + (1 + .06 * f1 * Math.sin(t * 2 * Math.PI * 1.2)).toFixed(4) + ' 1) translate(46 0)');
+    sigKey.setAttribute('opacity', shown(1).toFixed(3));
+    var press = win(t, SIG[1] + .5, SIG[1] + 1.2, .12);
+    keyTop.setAttribute('transform', 'translate(0 ' + (14 * press).toFixed(2) + ')');
+    keyFace.setAttribute('fill', press > .5 ? '#f5c518' : '#fff');
+    sigClap.setAttribute('opacity', shown(2).toFixed(3));
+    var clapT = seg(t, SIG[2] + .5, SIG[2] + 1.5);                 // dos palmadas en 1 s
+    var gap = clapT > 0 && clapT < 1 ? Math.abs(Math.cos(Math.PI * 2 * clapT)) : 1;
+    handL.setAttribute('transform', tr(-44 - 46 * gap, 20, 1.25, -14));
+    handR.setAttribute('transform', tr(44 + 46 * gap, 20, 1.25, 14));
+    clapLines.setAttribute('opacity', (clapT > 0 && clapT < 1 ? 1 - gap : 0).toFixed(3));
+
+    // La señal llega a todos los robots (ondas)
+    var ringOp = 0, ringR = 10;
+    for (var s = 0; s < 3; s++) {
+      var q = seg(t, SIG[s] + .7, SIG[s] + 1.9);
+      if (q > 0 && q < 1) { ringOp = 1 - q; ringR = 40 + 1500 * q; }
+    }
+    RINGS.forEach(function(r, k){
+      r.setAttribute('r', Math.max(10, ringR - k * 90).toFixed(1));
+      r.setAttribute('opacity', (ringOp * (k ? .5 : 1)).toFixed(3));
+    });
+
+    // Textos finales
+    var fa = seg(t, 54.4, 55.2) * (1 - seg(t, 59.6, 60.2));
+    finalA.style.opacity = fa;
+    finalA.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - seg(t, 54.4, 55.2))).toFixed(1) + 'px)';
+    var fb = seg(t, 60.2, 61);
+    finalB.style.opacity = fb;
+    finalB.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - fb)).toFixed(1) + 'px)';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S2 = SUBS[s2];
+      if (t >= S2[0] && t <= S2[1]) { sub = S2[2]; sop = Math.min(seg(t, S2[0], S2[0] + .25), 1 - seg(t, S2[1] - .25, S2[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

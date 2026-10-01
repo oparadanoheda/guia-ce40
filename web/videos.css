@@ -1,0 +1,18 @@
+/* Vídeos animados de conceptos */
+a.vlink{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font:600 .9em/1.3 var(--sans);padding:2px 9px 2px 5px;border-radius:5px;
+  border:1px solid var(--c,var(--ink));background:var(--sheet);color:var(--ink);margin:1px 0;vertical-align:baseline}
+a.vlink .i{width:1.15em;height:1.15em;color:var(--c,var(--ink))}
+a.vlink:hover{background:var(--tint)}
+.vid-gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.vid-tile{display:flex;flex-direction:column;border:1px solid var(--rule);border-radius:8px;overflow:hidden;text-decoration:none;background:var(--sheet);color:var(--ink)}
+.vid-tile:hover{border-color:var(--ink)}
+.vid-tile img{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#fbfbf8;border-bottom:1px solid var(--rule)}
+.vid-tile span{display:flex;flex-direction:column;gap:3px;padding:10px 12px 12px}
+.vid-tile b{font:650 1rem var(--sans)}
+.vid-tile small{font:600 .72rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.vid-frame{position:relative;width:100%;max-width:calc((100vh - 220px) * 16 / 9);min-width:min(100%,520px);aspect-ratio:16/9;margin:0 auto;
+  border-radius:10px;overflow:hidden;background:#fbfbf8;box-shadow:var(--shadow);border:1px solid var(--rule)}
+.vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vid-idea{font:600 1.25rem/1.35 var(--serif);text-align:center;margin:1.1em auto .4em;max-width:40em}
+.vid-tips{max-width:44em;margin:.4em auto 0;padding-left:1.2em;font:.92rem/1.5 var(--serif);color:var(--ink2)}
+.vid-page .rindex-chip{border-left:4px solid var(--c)}

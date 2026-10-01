@@ -14,6 +14,7 @@ from recursos_oficiales import LIBRARY, SA_LINKS, SESSION_RULES  # noqa: E402
 from catalogo import PROYECTABLES, EXTERNAS  # noqa: E402
 import materiales as MAT  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
+from videos import VIDEOS, BY_SESSION  # noqa: E402
 import json  # noqa: E402
 MAT_INDEX = {code: (title, courses, MAT.slug(code, title)) for code, title, courses, _ in MAT.MATERIALS}
 PJ_INDEX = {p[0]: p for p in PROYECTABLES}
@@ -69,6 +70,7 @@ ICON = {
     "ext": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 01-1 1H5a1 1 0 01-1-1V7a1 1 0 011-1h5"/></svg>',
 }
 
+PLAY_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5-5.5 3.5z"/></svg>'
 PJ_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>'
 RUBRIC = "rubrica"
 
@@ -382,7 +384,8 @@ def projection_data(c, s, quin):
     phases = ([("Tarjeta", 3), ("Misión", 7), ("Práctica", 25), ("Compartir", 5), ("Guardar", 5)] if quin else
               [("Arranque", 5), ("Misión", 7), ("Práctica", 23), ("Compartir", 5), ("Cierre", 5)])
     d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
-         "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools, "quincenal": quin, "phases": phases}
+         "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
+         "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases}
     return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
 
 
@@ -420,8 +423,12 @@ def render_session(c, s, prev, nxt, idx):
         main.append(f'<aside class="notes">{ICON["note"]}<div><h4>A tener en cuenta</h4><ul>{items}</ul></div></aside>')
 
     side = []
-    if s.get("proj") or s.get("mat") or s.get("sb3"):
+    vids = BY_SESSION.get(s["id"], [])
+    if s.get("proj") or s.get("mat") or s.get("sb3") or vids:
         use = ""
+        if vids:
+            use += f'<h5>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h5><p>' + "".join(
+                f'<a class="vlink" href="#v-{v[0]}">{PLAY_ICON}{E(v[2])}</a> ' for v in vids).strip() + '</p>'
         if s.get("proj"):
             use += f'<h5>Para proyectar</h5><p>{inline(s["proj"])}</p>'
         if s.get("mat"):
@@ -792,6 +799,7 @@ def build():
     pages.append(material_page())
     pages.append(projectables_page())
     pages.extend(tool_pages())
+    pages.extend(video_pages(courses))
     pages.append('<section class="page" id="buscar" hidden><div class="sheet"><p class="eyebrow">Buscador</p><h1>Resultados</h1><p class="lede" id="sr-sum"></p><ol class="slist sr" id="sr"></ol></div></section>')
 
     course_nav = "".join(f'<a href="#{c["id"]}" data-nav="{c["id"]}" style="--c:var(--{c["id"]})"><i></i><b>{c["num"]}</b><span>{E(c["name"])}</span></a>' for c in courses)
@@ -868,8 +876,11 @@ def projectables_page():
     ext = "".join(f'<a class="ext-app" href="{u}" target="_blank" rel="noopener"><b>{E(n)} ↗</b><span>{E(d)}</span><small>{E(c)}</small></a>' for n, u, c, d in EXTERNAS)
     return f'''<section class="page" id="proyectar" hidden><div class="sheet">
 <p class="eyebrow">Para proyectar</p><h1>Herramientas para la pizarra digital</h1>
-<p class="lede">Para usar con toda la clase en la pizarra. Cada sesión enlaza la suya con el reto ya cargado.</p>
+<p class="lede">Para usar con toda la clase en la pizarra. Cada sesión enlaza la suya con el reto ya cargado. Más abajo, los <a href="#videos">vídeos que explican conceptos</a>.</p>
 <div class="pj-gallery">{tiles}</div>
+<h2 class="h-sec" id="videos">Vídeos que explican conceptos</h2>
+<p class="small">Animaciones de uno a dos minutos, con subtítulos y sin sonido. Cada sesión enlaza el suyo.</p>
+<div class="vid-gallery">{video_tiles()}</div>
 <h2 class="h-sec">Otras aplicaciones recomendadas</h2>
 <p class="small">Se abren en otra pestaña. Gratuitas y sin cuentas de alumnado.</p>
 <div class="ext-apps">{ext}</div></div></section>'''
@@ -887,8 +898,36 @@ def tool_pages():
     return out
 
 
+def video_tiles():
+    return "".join(
+        f'<a class="vid-tile" href="#v-{vid}"><img src="videos/img/{vid}.jpg" alt="" loading="lazy" width="640" height="360">'
+        f'<span><small>{E(courses)}</small><b>{E(title)}</b></span></a>'
+        for vid, fname, title, courses, idea, t, sids in VIDEOS)
+
+
+def video_pages(courses):
+    names = {}
+    for c in courses:
+        for t in c["terms"]:
+            for s in t["sessions"]:
+                names[s["id"]] = (c["id"], f'{c["num"]} · S{s["num"]} · {s["title"]}')
+    out = []
+    for vid, fname, title, crs, idea, t, sids in VIDEOS:
+        chips = "".join(f'<a class="rindex-chip" href="#{sid}" style="--c:var(--{names[sid][0]})">{E(names[sid][1])}</a>' for sid in sids)
+        out.append(f'''<section class="page vid-page" id="v-{vid}" data-nav-key="proyectar" hidden><div class="sheet">
+<div class="pj-head"><div><p class="eyebrow">Vídeo · {E(crs)}</p><h1>{E(title)}</h1></div>
+<div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-vfull>Pantalla completa</button><a class="pj-btn" href="#videos">Todos los vídeos</a></div></div>
+<div class="vid-frame"><iframe data-src="videos/{fname}" title="Vídeo: {E(title)}" allow="fullscreen" allowfullscreen></iframe></div>
+<p class="vid-idea">{E(idea)}</p>
+<ul class="vid-tips"><li><b>Pausas para pensar:</b> actívalas en la barra del vídeo y se detiene en dos preguntas para la clase.</li>
+<li><b>Velocidad 0,75×</b> para los más pequeños. Teclado: espacio, ← → (5 s).</li><li>Sin sonido: la narración son los subtítulos.</li></ul>
+<h2 class="h-sec">Se usa en</h2><nav class="rindex" aria-label="Sesiones">{chips}</nav>
+</div></section>''')
+    return out
+
+
 HERE = Path(__file__).resolve().parent
-CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8")
+CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8")
 JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8")
 PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8")
 

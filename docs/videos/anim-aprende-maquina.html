@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo aprende una máquina · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;max-width:1500px;text-wrap:balance}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{text-wrap:balance;max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:110px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:220px;right:220px;bottom:150px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:12px 40px 14px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:28px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:54px;font-weight:800;line-height:1.15;margin:2px 0 4px}
+  #question .hint{font-size:28px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#1a1d24" flood-opacity=".14"/>
+      </filter>
+      <!-- Manzana (el color lo da currentColor) -->
+      <g id="apple">
+        <path d="M0 -14C-10 -22 -26 -16 -26 0C-26 16 -14 26 -6 26C-3 26 -2 24 0 24C2 24 3 26 6 26C14 26 26 16 26 0C26 -16 10 -22 0 -14Z" fill="currentColor" stroke="#1a1d24" stroke-opacity=".25" stroke-width="2"/>
+        <ellipse cx="-11" cy="-4" rx="5" ry="8" fill="#fff" opacity=".3"/>
+        <path d="M0 -14Q1 -22 4 -28" fill="none" stroke="#1a1d24" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M3 -20Q14 -30 22 -22Q12 -14 3 -20Z" fill="#2a8f4f"/>
+      </g>
+      <!-- Fresa -->
+      <g id="straw">
+        <path d="M0 30C-28 12 -30 -14 -16 -20C-8 -23 0 -18 0 -18C0 -18 8 -23 16 -20C30 -14 28 12 0 30Z" fill="#cf3f36" stroke="#1a1d24" stroke-opacity=".25" stroke-width="2"/>
+        <g fill="#f5c518"><ellipse cx="-12" cy="-6" rx="2" ry="3"/><ellipse cx="0" cy="-4" rx="2" ry="3"/><ellipse cx="12" cy="-6" rx="2" ry="3"/><ellipse cx="-8" cy="8" rx="2" ry="3"/><ellipse cx="8" cy="8" rx="2" ry="3"/><ellipse cx="0" cy="18" rx="2" ry="3"/></g>
+        <path d="M0 -18L-14 -28L-6 -20L-18 -18L-4 -16Z M0 -18L14 -28L6 -20L18 -18L4 -16Z M0 -18L0 -32" fill="#2a8f4f" stroke="#2a8f4f" stroke-width="3" stroke-linejoin="round"/>
+      </g>
+      <g id="okB"><circle r="15" fill="#2a8f4f"/><path d="M-7 0L-2 5L7 -5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></g>
+      <g id="koB"><circle r="15" fill="#cf3f36"/><path d="M-5 -5L5 5M5 -5L-5 5" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/></g>
+    </defs>
+
+    <g id="world">
+      <g id="panels"></g>
+      <!-- Memoria: archivador -->
+      <g id="cabinet">
+        <rect x="90" y="112" width="130" height="152" rx="12" fill="#6b7180"/>
+        <rect x="100" y="122" width="110" height="40" rx="6" fill="#c3c8d2"/><rect x="140" y="138" width="30" height="8" rx="4" fill="#1a1d24"/>
+        <g id="drawer"><rect x="100" y="168" width="110" height="40" rx="6" fill="#c3c8d2"/><rect x="140" y="184" width="30" height="8" rx="4" fill="#1a1d24"/></g>
+        <rect x="100" y="214" width="110" height="40" rx="6" fill="#c3c8d2"/><rect x="140" y="230" width="30" height="8" rx="4" fill="#1a1d24"/>
+      </g>
+      <text id="countT" x="254" y="136" dominant-baseline="central" font-size="30" font-weight="800" fill="#1a1d24"></text>
+      <g id="hist"></g>
+      <g id="cards"></g>
+      <g id="biasTag">
+        <rect x="120" y="606" width="580" height="64" rx="32" fill="#cf3f36"/>
+        <text x="410" y="639" text-anchor="middle" dominant-baseline="central" font-size="30" font-weight="800" fill="#fff">sesgo: todos los ejemplos son rojos</text>
+      </g>
+
+      <!-- Modelo -->
+      <g id="bubble">
+        <path d="M842 130H1258Q1278 130 1278 150V286Q1278 306 1258 306H1080L1050 340L1040 306H842Q822 306 822 286V150Q822 130 842 130Z" fill="#fff" stroke="#1a1d24" stroke-width="3" filter="url(#sh)"/>
+        <text x="846" y="160" dominant-baseline="central" font-size="27" font-weight="700" fill="#6b7180">regla aprendida</text>
+        <g id="rule1"><text x="1050" y="232" text-anchor="middle" dominant-baseline="central" font-size="38" font-weight="800" fill="#1a1d24">manzana = fruta roja</text></g>
+        <g id="rule2"><text x="1050" y="203" text-anchor="middle" dominant-baseline="central" font-size="32" font-weight="800" fill="#1a1d24">manzana = redonda,</text>
+          <text x="1050" y="241" text-anchor="middle" dominant-baseline="central" font-size="32" font-weight="800" fill="#1a1d24">con rabito,</text>
+          <text x="1050" y="279" text-anchor="middle" dominant-baseline="central" font-size="32" font-weight="800" fill="#1a1d24">de cualquier color</text></g>
+      </g>
+      <g id="robot"></g>
+      <g id="lupa">
+        <rect x="-6" y="18" width="12" height="46" rx="6" fill="#1a1d24" transform="rotate(-35)"/>
+        <circle r="30" fill="#4fa3d9" fill-opacity=".25" stroke="#108394" stroke-width="9"/>
+      </g>
+
+      <!-- Prueba -->
+      <g id="testCard">
+        <rect x="1470" y="130" width="260" height="210" rx="20" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
+        <text x="1490" y="154" dominant-baseline="central" font-size="26" font-weight="700" fill="#6b7180">¿qué es?</text>
+        <use id="testApple" href="#apple" color="#2a8f4f" transform="translate(1600 250) scale(2.4)"/>
+        <use id="testStraw" href="#straw" transform="translate(1600 250) scale(2.4)"/>
+      </g>
+      <text id="ansL" x="1370" y="398" dominant-baseline="central" font-size="27" font-weight="700" fill="#6b7180">respuesta del modelo</text>
+      <g id="ans">
+        <rect id="ansR" x="1370" y="420" width="460" height="70" rx="35" fill="#eceef2"/>
+        <text id="ansT" x="1600" y="456" text-anchor="middle" dominant-baseline="central" font-size="34" font-weight="800" fill="#1a1d24"></text>
+      </g>
+      <g id="verdict">
+        <use id="vOk" href="#okB" transform="translate(1400 548) scale(1.5)"/>
+        <use id="vKo" href="#koB" transform="translate(1400 548) scale(1.5)"/>
+        <text id="vT" x="1440" y="548" dominant-baseline="central" font-size="34" font-weight="800"></text>
+      </g>
+      <text id="scoreT" x="1370" y="660" dominant-baseline="central" font-size="34" font-weight="800" fill="#1a1d24"></text>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">Una máquina aprende de los ejemplos que le damos.</div>
+  </div>
+  <div id="finalB" class="layer">
+    <div class="key">«Si los datos fallan, la máquina falla.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Cómo aprende una máquina</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria · 5º y 6º</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(parent, x, y, s, attrs){
+    var a = { x: x, y: y, 'dominant-baseline': 'central' };
+    for (var k in attrs) a[k] = attrs[k];
+    var e = el('text', a, parent); e.textContent = s; return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 74;
+  var CHAPTERS = [
+    { t: 0,  titulo: 'Aprender con ejemplos' },
+    { t: 14, titulo: 'La regla equivocada' },
+    { t: 40, titulo: 'Ejemplos variados' },
+    { t: 62, titulo: 'Resumen' }
+  ];
+  var PAUSAS = [
+    { t: 20, pregunta: '¿Acertará con una manzana verde?' },
+    { t: 50, pregunta: '¿Y ahora acertará?' }
+  ];
+  var SUBS = [
+    [0.4,  13.8, 'Enseñamos a la máquina qué es una manzana.'],
+    [14.3, 19.8, 'La máquina saca una regla.'],
+    [23.8, 31.8, 'Se equivoca dos veces.'],
+    [32.3, 39.8, 'Todos los ejemplos eran rojos: eso es un sesgo.'],
+    [40.3, 49.8, 'Le damos ejemplos variados.'],
+    [53.4, 61.8, 'Ahora acierta.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function win(t, a, b, f){ f = f || .15; return Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b)); }
+  function tr(x, y, s, r){ return 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')' + (r ? ' rotate(' + r.toFixed(2) + ')' : '') + (s !== undefined ? ' scale(' + Math.max(s, .001).toFixed(4) + ')' : ''); }
+
+  /* ================= Paneles ================= */
+  var panels = $('panels');
+  function panel(x, y, w, h, title){
+    el('rect', { x: x, y: y, width: w, height: h, rx: 22, fill: '#fff', stroke: '#d6d9e0', 'stroke-width': 3 }, panels);
+    el('path', { d: 'M' + x + ' ' + (y + 22) + 'Q' + x + ' ' + y + ' ' + (x + 22) + ' ' + y + 'H' + (x + w - 22) + 'Q' + (x + w) + ' ' + y + ' ' + (x + w) + ' ' + (y + 22) + 'V' + (y + 40) + 'H' + x + 'Z', fill: '#eceef2' }, panels);
+    txt(panels, x + 24, y + 21, title, { 'font-size': 28, 'font-weight': 700, fill: '#4a4f5c' });
+  }
+  panel(60, 60, 700, 660, 'Ejemplos de entrenamiento (memoria)');
+  panel(800, 60, 500, 660, 'Modelo');
+  panel(1340, 60, 520, 660, 'Prueba');
+
+  /* ================= Ejemplos ================= */
+  var RED = '#cf3f36', GREEN = '#2a8f4f', YELLOW = '#f5c518';
+  var EX = [];
+  // 6 manzanas rojas (0-14 s) y luego 6 variadas (40-48 s)
+  for (var i = 0; i < 6; i++) EX.push({ c: RED, t: 1 + i * 1.9 });
+  [GREEN, YELLOW, RED, GREEN, YELLOW, RED].forEach(function(c, k){ EX.push({ c: c, t: 40.6 + k * 1.2 }); });
+  EX.forEach(function(E, i){
+    var col = i % 4, row = Math.floor(i / 4);
+    E.x = 86 + col * 166; E.y = 300 + row * 140;
+    E.g = el('g', {}, $('cards'));
+    el('rect', { x: 0, y: 0, width: 150, height: 124, rx: 14, fill: '#fff', stroke: '#d6d9e0', 'stroke-width': 3 }, E.g);
+    E.bias = el('rect', { x: -4, y: -4, width: 158, height: 132, rx: 17, fill: 'none', stroke: RED, 'stroke-width': 6 }, E.g);
+    el('use', { href: '#apple', color: E.c, transform: 'translate(75 52) scale(1.25)' }, E.g);
+    txt(E.g, 75, 104, 'manzana', { 'text-anchor': 'middle', 'font-size': 27, 'font-weight': 700, fill: '#1a1d24' });
+  });
+  function stored(t){ var n = 0; EX.forEach(function(E){ if (t >= E.t + .5) n++; }); return n; }
+  function countColor(t, c){ var n = 0; EX.forEach(function(E){ if (E.c === c && t >= E.t + .5) n++; }); return n; }
+
+  // Gráfico de colores de los ejemplos
+  var HIST = [[RED, 'rojas'], [GREEN, 'verdes'], [YELLOW, 'amarillas']].map(function(H, k){
+    var y = 186 + k * 34, g = el('g', {}, $('hist'));
+    txt(g, 254, y, H[1], { 'font-size': 27, 'font-weight': 700, fill: '#4a4f5c' });
+    var bar = el('rect', { x: 390, y: y - 11, width: 0, height: 22, rx: 6, fill: H[0], stroke: 'rgba(26,29,36,.25)', 'stroke-width': 1.5 }, g);
+    var n = txt(g, 400, y, '', { 'font-size': 27, 'font-weight': 800, fill: '#1a1d24' });
+    return { c: H[0], bar: bar, n: n };
+  });
+
+  /* ================= Modelo: robot sobrio con lupa ================= */
+  var ROBOT_B = '<ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.14)"/><rect x="6" y="18" width="8" height="24" rx="2" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="2" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="7" fill="#2c5bbf"/><rect x="17" y="24" width="26" height="6" rx="3" fill="#1a1d24"/><circle cx="37" cy="27" r="1.8" fill="#4fa3d9"/><rect x="17" y="38" width="26" height="2" rx="1" fill="#fff" opacity=".35"/><path d="M23 13L30 3L37 13Z" fill="#f5c518"/>';
+  var robotG = el('g', { transform: 'translate(1030 500)' }, $('robot'));
+  el('g', { transform: 'scale(2.6) translate(-30 -30)' }, robotG).innerHTML = ROBOT_B;
+
+  /* ================= Pruebas ================= */
+  // [inicio, fruta, respuesta del modelo, ¿correcta?]
+  var TESTS = [
+    { t: 20.6, f: 'apple', a: 'NO es una manzana', ok: false, end: 26 },
+    { t: 26.4, f: 'straw', a: 'SÍ es una manzana', ok: false, end: 40 },
+    { t: 50.6, f: 'apple', a: 'SÍ es una manzana', ok: true,  end: 56 },
+    { t: 56.4, f: 'straw', a: 'NO es una manzana', ok: true,  end: 62 }
+  ];
+  function curTest(t){ var cur = null; TESTS.forEach(function(T){ if (t >= T.t && t < T.end) cur = T; }); return cur; }
+
+  /* ================= Elementos ================= */
+  var world = $('world'), drawer = $('drawer'), countT = $('countT'), hist = $('hist'), biasTag = $('biasTag'),
+      bubble = $('bubble'), rule1 = $('rule1'), rule2 = $('rule2'), lupa = $('lupa'),
+      testCard = $('testCard'), testApple = $('testApple'), testStraw = $('testStraw'),
+      ans = $('ans'), ansL = $('ansL'), ansT = $('ansT'), verdict = $('verdict'), vOk = $('vOk'), vKo = $('vKo'), vT = $('vT'), scoreT = $('scoreT'),
+      finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null;
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+    world.setAttribute('opacity', 1 - seg(t, 62, 62.6));
+
+    // Ejemplos que entran en la memoria
+    var pull = 0;
+    EX.forEach(function(E){
+      var p = ease(seg(t, E.t, E.t + .5));
+      E.g.setAttribute('transform', 'translate(' + E.x + ' ' + E.y + ')' + (RM ? '' : ' translate(75 62) scale(' + lerp(.6, 1, p).toFixed(4) + ') translate(-75 -62)'));
+      E.g.setAttribute('opacity', p.toFixed(3));
+      E.g.style.display = p > 0 ? '' : 'none';
+      E.bias.setAttribute('opacity', (E.c === RED && E.t < 20 ? win(t, 32.4, 40.2, .3) : 0).toFixed(3));
+      pull = Math.max(pull, win(t, E.t, E.t + .7, .2));
+    });
+    drawer.setAttribute('transform', 'translate(' + (14 * pull).toFixed(1) + ' 0)');
+    var n = stored(t);
+    countT.textContent = 'ejemplos guardados: ' + n;
+    countT.setAttribute('opacity', seg(t, .8, 1.2).toFixed(3));
+    hist.setAttribute('opacity', seg(t, 32.4, 32.9).toFixed(3));
+    HIST.forEach(function(H){
+      var k = countColor(t, H.c), w = 36 * k;
+      H.bar.setAttribute('width', w); H.n.setAttribute('x', 400 + w); H.n.textContent = String(k);
+    });
+    biasTag.setAttribute('opacity', win(t, 33.2, 40.2, .3).toFixed(3));
+
+    // Regla aprendida
+    bubble.setAttribute('opacity', seg(t, 14.3, 14.9).toFixed(3));
+    var swap = seg(t, 47.8, 48.6);
+    rule1.setAttribute('opacity', (1 - swap).toFixed(3)); rule2.setAttribute('opacity', swap.toFixed(3));
+    // La lupa «examina» mientras aprende y mientras decide
+    var busy = Math.max(win(t, .8, 12, .4), win(t, 40.4, 48, .4), win(t, 21, 22.8, .2), win(t, 26.8, 28.6, .2), win(t, 51, 52.6, .2), win(t, 56.8, 58.6, .2));
+    var la = RM ? 0 : 10 * busy * Math.sin(t * 2 * Math.PI * .9);
+    lupa.setAttribute('transform', tr(1160, 560, 1, la));
+
+    // Prueba
+    var T = curTest(t);
+    testCard.setAttribute('opacity', T ? Math.min(seg(t, T.t, T.t + .4), 1 - seg(t, T.end - .4, T.end)).toFixed(3) : 0);
+    testApple.setAttribute('opacity', T && T.f === 'apple' ? 1 : 0);
+    testStraw.setAttribute('opacity', T && T.f === 'straw' ? 1 : 0);
+    var ao = T ? seg(t, T.t + 2, T.t + 2.4) * (1 - seg(t, T.end - .4, T.end)) : 0;
+    ans.setAttribute('opacity', ao.toFixed(3)); ansL.setAttribute('opacity', ao.toFixed(3));
+    if (T) ansT.textContent = T.a;
+    var vo = T ? seg(t, T.t + 2.8, T.t + 3.2) * (1 - seg(t, T.end - .4, T.end)) : 0;
+    verdict.setAttribute('opacity', vo.toFixed(3));
+    if (T) { vOk.style.display = T.ok ? '' : 'none'; vKo.style.display = T.ok ? 'none' : ''; vT.textContent = T.ok ? 'correcto' : 'incorrecto'; vT.setAttribute('fill', T.ok ? GREEN : RED); }
+    // Aciertos de cada ronda
+    var round = t >= 50 ? [TESTS[2], TESTS[3]] : [TESTS[0], TESTS[1]];
+    var done = 0, good = 0;
+    round.forEach(function(R){ if (t >= R.t + 3) { done++; if (R.ok) good++; } });
+    scoreT.textContent = 'aciertos: ' + good + ' de ' + done;
+    scoreT.setAttribute('fill', done && good === done ? GREEN : (done ? RED : '#1a1d24'));
+    scoreT.setAttribute('opacity', (done ? (t < 50 ? 1 - seg(t, 49.6, 50) : 1) : 0).toFixed(3));
+
+    // Textos finales
+    var fa = seg(t, 62.4, 63) * (1 - seg(t, 67.6, 68.1));
+    finalA.style.opacity = fa; finalA.style.transform = 'none';
+    var fb = seg(t, 68.1, 68.8);
+    finalB.style.opacity = fb; finalB.style.transform = 'none';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

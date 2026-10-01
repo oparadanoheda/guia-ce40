@@ -22,6 +22,25 @@
     }
     out.push(s1);
 
+    if (d.videos && d.videos.length) {
+      var sv = el('div', 'pz-slide');
+      sv.appendChild(el('span', 'pz-label', 'Vídeo'));
+      sv.appendChild(el('h2', 'pz-h2', d.videos.length === 1 ? d.videos[0][0] : 'Vemos los vídeos'));
+      var vg = el('div', 'pz-vids');
+      d.videos.forEach(function (v) {
+        var b = el('button', 'pz-vid');
+        b.type = 'button';
+        var im = el('img');
+        im.src = 'videos/img/' + v[1] + '.jpg';
+        im.alt = '';
+        b.appendChild(im);
+        b.appendChild(el('span', null, '▶  ' + v[0]));
+        b.addEventListener('click', function (e) { e.stopPropagation(); go('#v-' + v[1]); });
+        vg.appendChild(b);
+      });
+      sv.appendChild(vg);
+      out.push(sv);
+    }
     if (d.seg) {
       var s2 = el('div', 'pz-slide');
       s2.appendChild(el('span', 'pz-label', 'Minuto SEG · uso responsable'));

@@ -33,3 +33,10 @@ web/aplicar_rev.py
 web/quitar_emojis.py
 web/materiales_rev.py
 web/pj_bloques_nuevos.js
+
+# Animaciones recibidas, pendientes de revisar e integrar
+animaciones_nuevas/
+
+# Pruebas de grabación de los vídeos en MP4 (se decidió no usarlos)
+Animaciones/mp4/
+web/.edge-miniaturas/

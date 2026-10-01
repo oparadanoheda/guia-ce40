@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coordenadas · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;max-width:1500px;text-wrap:balance}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{text-wrap:balance;max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:220px;right:220px;bottom:150px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:12px 40px 14px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:28px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:54px;font-weight:800;line-height:1.15;margin:2px 0 4px}
+  #question .hint{font-size:28px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1a1d24" flood-opacity=".14"/>
+      </filter>
+      <g id="robotArt"><ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>
+      <g id="apple">
+        <path d="M0 -14C-10 -22 -26 -16 -26 0C-26 16 -14 26 -6 26C-3 26 -2 24 0 24C2 24 3 26 6 26C14 26 26 16 26 0C26 -16 10 -22 0 -14Z" fill="#cf3f36"/>
+        <ellipse cx="-11" cy="-4" rx="5" ry="8" fill="#fff" opacity=".3"/>
+        <path d="M0 -14Q1 -22 4 -28" fill="none" stroke="#1a1d24" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M3 -20Q14 -30 22 -22Q12 -14 3 -20Z" fill="#2a8f4f"/>
+      </g>
+      <path id="spark" d="M0 -14Q2 -2 14 0Q2 2 0 14Q-2 2 -14 0Q-2 -2 0 -14Z" fill="#f5c518" stroke="#df7619" stroke-width="2"/>
+      <clipPath id="stClip"><rect x="520" y="80" width="880" height="660" rx="14"/></clipPath>
+    </defs>
+
+    <g id="world">
+      <!-- Escenario 4:3: x de −200 a 200, y de −150 a 150 -->
+      <rect x="520" y="80" width="880" height="660" rx="14" fill="#fff" stroke="#c3c8d2" stroke-width="4" filter="url(#sh)"/>
+      <g clip-path="url(#stClip)">
+        <g id="grid" stroke="#eceef2" stroke-width="2"></g>
+        <g id="axes"></g>
+        <g id="measure" stroke-linecap="round"></g>
+        <g id="proj" fill="none" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"></g>
+      </g>
+      <!-- Fuera del recorte: así la manzana (en el borde, x = 200) y el robot se ven enteros -->
+      <use id="appleU" href="#apple"/>
+      <g id="sparks"></g>
+      <g id="robot"></g>
+      <g id="tags"></g>
+      <text id="note" x="960" y="772" text-anchor="middle" dominant-baseline="central" font-size="27" font-weight="600" fill="#6b7180">Simplificado: en Scratch, x va de −240 a 240 e y de −180 a 180.</text>
+
+      <!-- Panel de posición -->
+      <g id="readout">
+        <rect x="1440" y="140" width="420" height="300" rx="28" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
+        <text x="1470" y="186" dominant-baseline="central" font-size="30" font-weight="700" fill="#6b7180">posición del robot</text>
+        <rect id="rxBg" x="1460" y="222" width="380" height="94" rx="20" fill="#2c5bbf" opacity="0"/>
+        <rect id="ryBg" x="1460" y="326" width="380" height="94" rx="20" fill="#6c44b0" opacity="0"/>
+        <text id="rx" x="1490" y="270" dominant-baseline="central" font-size="66" font-weight="800" fill="#2c5bbf"></text>
+        <text id="ry" x="1490" y="374" dominant-baseline="central" font-size="66" font-weight="800" fill="#6c44b0"></text>
+      </g>
+      <!-- Ayudas a la izquierda -->
+      <g id="keyX">
+        <path d="M80 300H460" stroke="#2c5bbf" stroke-width="8" stroke-linecap="round"/>
+        <path d="M100 284L80 300L100 316M440 284L460 300L440 316" fill="none" stroke="#2c5bbf" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="270" y="254" text-anchor="middle" dominant-baseline="central" font-size="36" font-weight="800" fill="#2c5bbf">x: izquierda o derecha</text>
+        <text x="90" y="350" dominant-baseline="central" font-size="30" font-weight="700" fill="#2c5bbf">−</text>
+        <text x="450" y="350" text-anchor="end" dominant-baseline="central" font-size="30" font-weight="700" fill="#2c5bbf">+</text>
+      </g>
+      <g id="keyY">
+        <path d="M270 430V650" stroke="#6c44b0" stroke-width="8" stroke-linecap="round"/>
+        <path d="M254 450L270 430L286 450M254 630L270 650L286 630" fill="none" stroke="#6c44b0" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="300" y="440" dominant-baseline="central" font-size="30" font-weight="700" fill="#6c44b0">+</text>
+        <text x="300" y="640" dominant-baseline="central" font-size="30" font-weight="700" fill="#6c44b0">−</text>
+        <text x="270" y="694" text-anchor="middle" dominant-baseline="central" font-size="36" font-weight="800" fill="#6c44b0">y: arriba o abajo</text>
+      </g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big"><span style="color:#2c5bbf">x: izquierda o derecha</span><br><span style="color:#6c44b0">y: arriba o abajo.</span></div>
+  </div>
+  <div id="finalB" class="layer">
+    <svg width="170" height="170" viewBox="0 0 60 60" aria-hidden="true"><use href="#robotArt"/></svg>
+    <div class="key">«Dos números dicen dónde está.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Coordenadas</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(parent, x, y, s, attrs){
+    var a = { x: x, y: y, 'dominant-baseline': 'central' };
+    for (var k in attrs) a[k] = attrs[k];
+    var e = el('text', a, parent); e.textContent = s; return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 72;
+  var CHAPTERS = [
+    { t: 0,  titulo: 'El mapa' },
+    { t: 8,  titulo: 'La x' },
+    { t: 22, titulo: 'La y' },
+    { t: 34, titulo: 'Los dos números' },
+    { t: 48, titulo: 'El reto' },
+    { t: 60, titulo: 'Resumen' }
+  ];
+  var PAUSAS = [
+    { t: 34, pregunta: 'Si x = 100 e y = 100, ¿dónde estará el robot?' },
+    { t: 48, pregunta: '¿En qué coordenadas está la manzana?' }
+  ];
+  var SUBS = [
+    [0.4,  7.8,  'El escenario de Scratch es como un mapa.'],
+    [8.3,  21.8, 'La x dice izquierda o derecha. A la izquierda, negativos.'],
+    [22.3, 33.8, 'La y dice arriba o abajo.'],
+    [34.3, 47.8, 'Con dos números, (x, y), sabemos dónde está.'],
+    [53.0, 59.8, 'La manzana está en (200, −100).']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function win(t, a, b, f){ f = f || .15; return Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b)); }
+  function tr(x, y, s, r){ return 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')' + (r ? ' rotate(' + r.toFixed(2) + ')' : '') + (s !== undefined ? ' scale(' + Math.max(s, .001).toFixed(4) + ')' : ''); }
+  function num(v){ v = Math.round(v); return (v < 0 ? '−' : '') + Math.abs(v); }   // signo menos tipográfico
+
+  /* ================= Escenario ================= */
+  var K = 2.2;                                   // píxeles por unidad
+  function X(x){ return 960 + K * x; }
+  function Y(y){ return 410 - K * y; }
+  for (var gx = -200; gx <= 200; gx += 50) el('path', { d: 'M' + X(gx) + ' ' + Y(150) + 'V' + Y(-150) }, $('grid'));
+  for (var gy = -150; gy <= 150; gy += 50) el('path', { d: 'M' + X(-200) + ' ' + Y(gy) + 'H' + X(200) }, $('grid'));
+  var axes = $('axes');
+  el('path', { d: 'M' + X(-200) + ' ' + Y(0) + 'H' + X(200), stroke: '#2c5bbf', 'stroke-opacity': .55, 'stroke-width': 4 }, axes);
+  el('path', { d: 'M' + X(0) + ' ' + Y(150) + 'V' + Y(-150), stroke: '#6c44b0', 'stroke-opacity': .55, 'stroke-width': 4 }, axes);
+  [-200, -100, 100, 200].forEach(function(v){
+    el('path', { d: 'M' + X(v) + ' ' + (Y(0) - 10) + 'V' + (Y(0) + 10), stroke: '#2c5bbf', 'stroke-width': 4 }, axes);
+    txt(axes, X(v) + (v === 200 ? -26 : v === -200 ? 30 : 0), Y(0) + 32, num(v), { 'text-anchor': 'middle', 'font-size': 27, 'font-weight': 700, fill: '#2c5bbf' });
+  });
+  [-100, 100].forEach(function(v){
+    el('path', { d: 'M' + (X(0) - 10) + ' ' + Y(v) + 'H' + (X(0) + 10), stroke: '#6c44b0', 'stroke-width': 4 }, axes);
+    txt(axes, X(0) - 18, Y(v), num(v), { 'text-anchor': 'end', 'font-size': 27, 'font-weight': 700, fill: '#6c44b0' });
+  });
+  txt(axes, X(200) - 18, Y(0) - 26, 'x', { 'text-anchor': 'end', 'font-size': 34, 'font-weight': 800, fill: '#2c5bbf' });
+  txt(axes, X(0) + 22, Y(150) + 26, 'y', { 'font-size': 34, 'font-weight': 800, fill: '#6c44b0' });
+
+  // Medidas sobre los ejes y líneas discontinuas hasta los ejes
+  var mX = el('path', { stroke: '#2c5bbf', 'stroke-width': 12 }, $('measure'));
+  var mY = el('path', { stroke: '#6c44b0', 'stroke-width': 12 }, $('measure'));
+  var pV = el('path', { stroke: '#2c5bbf' }, $('proj'));     // vertical: hasta el eje x
+  var pH = el('path', { stroke: '#6c44b0' }, $('proj'));     // horizontal: hasta el eje y
+
+  // Robot (mira siempre arriba: en el escenario se desliza sin girar)
+  var robotG = el('g', {}, $('robot'));
+  var robotIn = el('g', { transform: 'scale(1.5) translate(-30 -30)' }, robotG);
+  robotIn.innerHTML = '<ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><g class="eyes"><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/></g><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>';
+  var eyes = robotIn.querySelector('.eyes');
+
+  // Recorrido del robot (en unidades del escenario)
+  var MOVES = [
+    [8.6, 10.6, [0, 0], [100, 0]], [12.4, 14.4, [100, 0], [0, 0]], [14.6, 16.8, [0, 0], [-100, 0]],
+    [22.4, 23.8, [-100, 0], [0, 0]], [24.2, 26.2, [0, 0], [0, 100]], [28.2, 30.6, [0, 100], [0, -100]],
+    [34.4, 36.6, [0, -100], [100, 100]], [40.8, 43.2, [100, 100], [-100, 50]],
+    [55.4, 57.4, [-100, 50], [200, -100]]
+  ];
+  function pos(t){
+    var p = [0, 0];
+    for (var i = 0; i < MOVES.length; i++) {
+      var m = MOVES[i];
+      if (t < m[0]) break;
+      var q = ease(seg(t, m[0], m[1]));
+      p = [lerp(m[2][0], m[3][0], q), lerp(m[2][1], m[3][1], q)];
+    }
+    return p;
+  }
+
+  // Etiquetas con las coordenadas
+  function makeTag(color){
+    var g = el('g', {}, $('tags'));
+    var r = el('rect', { x: 0, y: -26, width: 10, height: 52, rx: 26, fill: '#fff', stroke: color, 'stroke-width': 4, filter: 'url(#sh)' }, g);
+    var tx = txt(g, 0, 1, '', { 'text-anchor': 'middle', 'font-size': 34, 'font-weight': 800, fill: '#1a1d24' });
+    return { g: g, r: r, t: tx, last: null };
+  }
+  function setTag(T, s, x, y, op){
+    if (T.last !== s) { T.t.textContent = s; var w; try { w = T.t.getComputedTextLength() + 36; } catch (e) { w = s.length * 18 + 36; } T.r.setAttribute('x', -w / 2); T.r.setAttribute('width', w); T.last = s; }
+    T.g.setAttribute('transform', tr(x, y, 1)); T.g.setAttribute('opacity', op.toFixed(3));
+  }
+  var TAG_R = makeTag('#1a1d24'), TAG_A = makeTag('#cf3f36');
+  var SP = [0,1,2,3,4,5].map(function(){ return el('use', { href: '#spark' }, $('sparks')); });
+
+  /* ================= Elementos ================= */
+  var world = $('world'), appleU = $('appleU'), note = $('note'), keyX = $('keyX'), keyY = $('keyY'),
+      rx = $('rx'), ry = $('ry'), rxBg = $('rxBg'), ryBg = $('ryBg'), readout = $('readout'),
+      finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null;
+  var AP = [200, -100];
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+    world.setAttribute('opacity', 1 - seg(t, 60, 60.6));
+
+    // Robot
+    var P = pos(t), px = X(P[0]), py = Y(P[1]);
+    var br = RM ? 1 : 1 + .02 * Math.sin(t * 2 * Math.PI / 2.4);
+    robotG.setAttribute('transform', tr(px, py, br));
+    var bt = (t + 1.3) % 3.9, bl = bt < .18 ? Math.sin(Math.PI * bt / .18) : 0;
+    eyes.setAttribute('transform', 'translate(0 28) scale(1 ' + (1 - .9 * bl).toFixed(3) + ') translate(0 -28)');
+
+    // Panel de posición y ayudas
+    readout.setAttribute('opacity', seg(t, 2, 2.5).toFixed(3));
+    rx.textContent = 'x = ' + num(P[0]);
+    ry.textContent = 'y = ' + num(P[1]);
+    rxBg.setAttribute('opacity', (.1 * win(t, 8.4, 22, .3)).toFixed(3));
+    ryBg.setAttribute('opacity', (.1 * win(t, 22.2, 34, .3)).toFixed(3));
+    keyX.setAttribute('opacity', seg(t, 8.4, 8.9).toFixed(3));
+    keyY.setAttribute('opacity', seg(t, 22.2, 22.7).toFixed(3));
+    note.setAttribute('opacity', win(t, 1.5, 7.8, .3).toFixed(3));
+
+    // Medidas: tramo azul sobre el eje x (la x) y tramo morado sobre el eje y (la y)
+    var mx = win(t, 8.5, 21.8, .3), my = win(t, 24.1, 33.8, .3);
+    mX.setAttribute('d', 'M' + X(0) + ' ' + Y(0) + 'H' + px.toFixed(1)); mX.setAttribute('opacity', (Math.abs(P[0]) > 1 ? mx : 0).toFixed(3));
+    mY.setAttribute('d', 'M' + X(0) + ' ' + Y(0) + 'V' + py.toFixed(1)); mY.setAttribute('opacity', (Math.abs(P[1]) > 1 ? my : 0).toFixed(3));
+
+    // Líneas discontinuas hasta los ejes: en las paradas del robot y en la manzana
+    var stop1 = win(t, 36.8, 40.6, .4), stop2 = win(t, 43.4, 46, .4), aRev = seg(t, 53, 53.8) * (1 - seg(t, 57.2, 57.6));
+    var who = null, k = 0;
+    if (stop1 > 0) { who = [100, 100]; k = stop1; }
+    else if (stop2 > 0) { who = [-100, 50]; k = stop2; }
+    else if (aRev > 0) { who = AP; k = aRev; }
+    if (who) {
+      var wx = X(who[0]), wy = Y(who[1]);
+      pV.setAttribute('d', 'M' + wx + ' ' + wy + 'V' + Y(0)); pH.setAttribute('d', 'M' + wx + ' ' + wy + 'H' + X(0));
+      pV.setAttribute('opacity', k.toFixed(3)); pH.setAttribute('opacity', k.toFixed(3));
+    } else { pV.setAttribute('opacity', 0); pH.setAttribute('opacity', 0); }
+
+    // Etiqueta del robot: (0, 0) al principio; (x, y) en cada parada
+    var tagOp = 0, tagS = '';
+    var t0 = win(t, 1, 8.4, .3);
+    if (t0 > 0) { tagOp = t0; tagS = '(0, 0)'; }
+    else if (stop1 > 0) { tagOp = seg(t, 37.4, 37.8) * stop1; tagS = '(100, 100)'; }
+    else if (stop2 > 0) { tagOp = seg(t, 44, 44.4) * stop2; tagS = '(' + num(-100) + ', 50)'; }
+    setTag(TAG_R, tagS || ' ', px + 120, py - 50, tagOp);
+
+    // La manzana: aparece antes de la pausa; tras unos segundos, líneas y respuesta; el robot va a por ella
+    var ap = seg(t, 46.2, 46.8), eaten = seg(t, 57.2, 57.5);
+    var pulse = RM ? 1 : 1 + .05 * Math.sin(t * 2 * Math.PI / 1.6) * win(t, 47, 53, .3);
+    appleU.setAttribute('transform', tr(X(AP[0]), Y(AP[1]), 1.3 * (RM ? 1 : lerp(.6, 1, ease(ap))) * pulse * (1 - eaten)));
+    appleU.setAttribute('opacity', (ap * (1 - eaten)).toFixed(3));
+    var q = seg(t, 47.6, 48) * (1 - seg(t, 53.6, 54)), ans = seg(t, 54, 54.4) * (1 - seg(t, 59.6, 60));
+    setTag(TAG_A, q >= ans ? '(?, ?)' : '(200, ' + num(-100) + ')', X(AP[0]) - 120, Y(AP[1]) + 70, Math.max(q, ans));
+    var sp = seg(t, 57.3, 58.1);
+    SP.forEach(function(s, i){
+      var a = i * Math.PI / 3 - Math.PI / 2, d = 40 + 50 * ease(sp);
+      s.setAttribute('transform', tr(X(AP[0]) + Math.cos(a) * d, Y(AP[1]) + Math.sin(a) * d, 1));
+      s.setAttribute('opacity', (sp > 0 && sp < 1 ? 1 - sp * sp : 0).toFixed(3));
+    });
+
+    // Textos finales
+    var fa = seg(t, 60.4, 61) * (1 - seg(t, 65.6, 66.1));
+    finalA.style.opacity = fa; finalA.style.transform = 'none';
+    var fb = seg(t, 66.1, 66.8);
+    finalB.style.opacity = fb; finalB.style.transform = 'none';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

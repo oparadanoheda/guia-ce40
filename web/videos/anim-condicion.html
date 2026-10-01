@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Condición · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;max-width:1500px;text-wrap:balance}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:1330px;right:40px;top:150px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:22px 50px 26px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:32px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:56px;font-weight:800;line-height:1.15;margin:8px 0 10px}
+  #question .hint{font-size:32px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1a1d24" flood-opacity=".18"/>
+      </filter>
+      <!-- Robot de la guía (60 × 60, centro 30,30), para el icono final -->
+      <g id="robotArt"><ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>
+      <!-- Muñeco rojo (quieto) y muñeco verde (caminando), centrados en su luz -->
+      <g id="manStand">
+        <circle cx="0" cy="-30" r="9"/>
+        <rect x="-11" y="-19" width="22" height="30" rx="7"/>
+        <rect x="-17" y="-17" width="7" height="25" rx="3.5"/><rect x="10" y="-17" width="7" height="25" rx="3.5"/>
+        <rect x="-10" y="8" width="8" height="28" rx="4"/><rect x="2" y="8" width="8" height="28" rx="4"/>
+      </g>
+      <g id="manWalk">
+        <circle cx="3" cy="-30" r="9"/>
+        <path d="M-6 -18L9 -18L8 10L-5 10Z" stroke-linejoin="round" stroke-width="6" stroke="currentColor"/>
+        <path d="M-2 -14L-16 2M6 -14L16 -2" stroke="currentColor" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <path d="M-2 8L-14 34M5 8L16 32" stroke="currentColor" stroke-width="8" stroke-linecap="round" fill="none"/>
+      </g>
+      <!-- Coche (de lado, mira a la derecha; centro en 0,0) -->
+      <g id="carShape">
+        <path d="M-58 -16L-38 -52H40L66 -16Z" fill="currentColor" stroke="currentColor" stroke-width="6" stroke-linejoin="round"/>
+        <path d="M-32 -20L-22 -42H-2V-20ZM6 -20V-42H34L50 -20Z" fill="#eceef2"/>
+        <rect x="-112" y="-20" width="224" height="46" rx="18" fill="currentColor"/>
+        <rect x="96" y="-10" width="14" height="10" rx="4" fill="#f5c518"/>
+        <circle cx="-64" cy="28" r="20" fill="#1a1d24"/><circle cx="-64" cy="28" r="8" fill="#c3c8d2"/>
+        <circle cx="64" cy="28" r="20" fill="#1a1d24"/><circle cx="64" cy="28" r="8" fill="#c3c8d2"/>
+      </g>
+      <path id="spark" d="M0 -14Q2 -2 14 0Q2 2 0 14Q-2 2 -14 0Q-2 -2 0 -14Z" fill="#f5c518" stroke="#df7619" stroke-width="2"/>
+      <marker id="arrowG" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2a8f4f"/></marker>
+      <marker id="arrowR" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#cf3f36"/></marker>
+      <marker id="arrowY" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="3.4" markerHeight="3.4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#f5c518"/></marker>
+    </defs>
+
+    <g id="cam">
+      <g id="world">
+        <!-- Calle -->
+        <g id="street">
+          <g id="trees"></g>
+          <rect x="0" y="250" width="1920" height="120" fill="#e3e6ec"/>
+          <rect x="0" y="362" width="1920" height="12" fill="#c3c8d2"/>
+          <rect x="0" y="374" width="1920" height="266" fill="#6b7180"/>
+          <g fill="#fbfbf8" opacity=".85" id="lane"></g>
+          <g fill="#fbfbf8" id="zebra"></g>
+          <rect x="0" y="636" width="1920" height="12" fill="#c3c8d2"/>
+          <rect x="0" y="648" width="1920" height="170" fill="#e3e6ec"/>
+          <!-- Semáforo de peatones -->
+          <g id="light" transform="translate(1200 195)"></g>
+          <g id="cars"></g>
+          <g id="kid"></g>
+          <g id="sight" fill="none" stroke="#f5c518" stroke-width="8" stroke-linecap="round" stroke-dasharray="18 14"></g>
+          <g id="sparksK"></g>
+          <!-- Orden: primero miro, luego cruzo -->
+          <g id="check"></g>
+        </g>
+
+        <!-- Diagrama de la condición -->
+        <g id="diagram">
+          <g id="dDiamond">
+            <path d="M230 330L520 165L810 330L520 495Z" fill="#df7619" stroke="#df7619" stroke-width="10" stroke-linejoin="round" filter="url(#sh)"/>
+            <text x="520" y="303" text-anchor="middle" dominant-baseline="central" font-size="46" font-weight="800" fill="#1a1d24">¿El muñeco</text>
+            <text x="520" y="358" text-anchor="middle" dominant-baseline="central" font-size="46" font-weight="800" fill="#1a1d24">está en verde?</text>
+          </g>
+          <g id="dSi">
+            <path id="dSiArrow" d="M818 330H922" fill="none" stroke="#2a8f4f" stroke-width="9" stroke-linecap="round" marker-end="url(#arrowG)" pathLength="1" stroke-dasharray="1 1"/>
+            <text id="dSiLab" x="870" y="282" text-anchor="middle" dominant-baseline="central" font-size="50" font-weight="800" fill="#2a8f4f">SÍ</text>
+            <g id="dSiBox">
+              <rect x="950" y="255" width="380" height="150" rx="26" fill="#fff" stroke="#2a8f4f" stroke-width="6" filter="url(#sh)"/>
+              <text x="1140" y="307" text-anchor="middle" dominant-baseline="central" font-size="42" font-weight="800" fill="#1a1d24">Miro a los lados</text>
+              <text x="1140" y="356" text-anchor="middle" dominant-baseline="central" font-size="42" font-weight="800" fill="#1a1d24">y cruzo</text>
+            </g>
+          </g>
+          <g id="dNo">
+            <path id="dNoArrow" d="M520 503V592" fill="none" stroke="#cf3f36" stroke-width="9" stroke-linecap="round" marker-end="url(#arrowR)" pathLength="1" stroke-dasharray="1 1"/>
+            <text id="dNoLab" x="580" y="548" text-anchor="middle" dominant-baseline="central" font-size="50" font-weight="800" fill="#cf3f36">NO</text>
+            <g id="dNoBox">
+              <rect x="330" y="615" width="380" height="150" rx="26" fill="#fff" stroke="#cf3f36" stroke-width="6" filter="url(#sh)"/>
+              <text x="520" y="667" text-anchor="middle" dominant-baseline="central" font-size="42" font-weight="800" fill="#1a1d24">Espero en</text>
+              <text x="520" y="716" text-anchor="middle" dominant-baseline="central" font-size="42" font-weight="800" fill="#1a1d24">el bordillo</text>
+            </g>
+          </g>
+          <g id="miniLight"></g>
+        </g>
+      </g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">Una condición es una pregunta que decide qué hacer.</div>
+  </div>
+  <div id="finalB" class="layer">
+    <svg width="170" height="170" viewBox="0 0 60 60" aria-hidden="true"><use href="#robotArt"/></svg>
+    <div class="key">«Si se cumple… si no…»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Condición</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 70;
+  var CHAPTERS = [
+    { t: 0,  titulo: '¿Puedo cruzar?' },
+    { t: 8,  titulo: 'En rojo' },
+    { t: 22, titulo: 'En verde' },
+    { t: 40, titulo: 'El diagrama' },
+    { t: 58, titulo: 'Qué es una condición' }
+  ];
+  var PAUSAS = [
+    { t: 8,  pregunta: 'Si el muñeco está en rojo, ¿qué hago?' },
+    { t: 50, pregunta: '¿Qué camino del diagrama se sigue con el muñeco en rojo?' }
+  ];
+  var SUBS = [
+    [0.4,  7.8,  '¿Puedo cruzar? Depende del semáforo.'],
+    [11.0, 21.8, 'SI el muñeco está en rojo, ENTONCES espero.'],
+    [22.3, 39.8, 'SI está en verde, ENTONCES miro a los lados y cruzo.'],
+    [40.3, 49.8, 'Así se dibuja una condición.'],
+    [50.3, 57.8, 'La pregunta decide el camino.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function easeOut(p){ return 1 - (1 - p) * (1 - p); }
+  function easeOutBack(p){ var c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); }
+  function win(t, a, b, f){ f = f || .15; return Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b)); }
+  function tr(x, y, s, r){ return 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')' + (r ? ' rotate(' + r.toFixed(2) + ')' : '') + (s !== undefined ? ' scale(' + Math.max(s, .001).toFixed(4) + ')' : ''); }
+
+  /* ================= Construcción de la calle ================= */
+  // Árboles al fondo
+  [[640, 205], [1560, 200], [1780, 212]].forEach(function(p){
+    var g = el('g', { transform: 'translate(' + p[0] + ' ' + p[1] + ')' }, $('trees'));
+    el('rect', { x: -9, y: 0, width: 18, height: 60, rx: 6, fill: '#6b7180' }, g);
+    el('circle', { cx: 0, cy: -20, r: 58, fill: '#2a8f4f' }, g);
+    el('circle', { cx: -18, cy: -36, r: 22, fill: '#fff', opacity: .12 }, g);
+  });
+  // Línea discontinua del centro (sin pintar sobre el paso de cebra)
+  for (var lx = 20; lx < 1920; lx += 110) if (lx + 60 < 790 || lx > 1130) el('rect', { x: lx, y: 501, width: 60, height: 10, rx: 5 }, $('lane'));
+  // Paso de cebra: franjas paralelas al bordillo
+  for (var zy = 386; zy < 630; zy += 50) el('rect', { x: 800, y: zy, width: 320, height: 26, rx: 4 }, $('zebra'));
+
+  // Semáforo de peatones
+  function makeLight(parent){
+    el('rect', { x: -8, y: 120, width: 16, height: 48, fill: '#4a4f5c' }, parent);
+    el('rect', { x: -84, y: -134, width: 168, height: 268, rx: 28, fill: '#1a1d24', filter: 'url(#sh)' }, parent);
+    var L = {};
+    [['red', -64, '#manStand', '#cf3f36'], ['green', 64, '#manWalk', '#2a8f4f']].forEach(function(d){
+      var g = el('g', { transform: 'translate(0 ' + d[1] + ')' }, parent);
+      el('circle', { r: 54, fill: '#2a2e37' }, g);
+      var glow = el('circle', { r: 62, fill: d[3], opacity: 0 }, g);
+      el('circle', { r: 54, fill: '#2a2e37' }, g);
+      var off = el('use', { href: d[2], fill: '#4a4f5c', color: '#4a4f5c', transform: 'scale(1.25)' }, g);
+      var on = el('use', { href: d[2], fill: d[3], color: d[3], transform: 'scale(1.25)' }, g);
+      var ring = el('circle', { r: 54, fill: 'none', stroke: d[3], 'stroke-width': 5 }, g);
+      L[d[0]] = { glow: glow, on: on, ring: ring };
+    });
+    return L;
+  }
+  var LIGHT = makeLight($('light'));
+  var MINI = makeLight(el('g', { transform: 'translate(1600 500) scale(.75)' }, $('miniLight')));
+  function setLight(L, red, green, t, RM){
+    var pr = RM ? 1 : .8 + .2 * Math.sin(t * 2 * Math.PI / 2);
+    L.red.on.setAttribute('opacity', red.toFixed(3)); L.red.ring.setAttribute('opacity', red.toFixed(3));
+    L.red.glow.setAttribute('opacity', (.45 * red * pr).toFixed(3));
+    L.green.on.setAttribute('opacity', green.toFixed(3)); L.green.ring.setAttribute('opacity', green.toFixed(3));
+    L.green.glow.setAttribute('opacity', (.45 * green * pr).toFixed(3));
+  }
+
+  // Coches
+  function makeCar(color, flip){
+    var g = el('g', {}, $('cars'));
+    el('ellipse', { cx: 0, cy: 50, rx: 110, ry: 9, fill: 'rgba(0,0,0,.18)' }, g);
+    el('use', { href: '#carShape', color: color, transform: flip ? 'scale(-1 1)' : '' }, g);
+    return g;
+  }
+  var CARS = [
+    { g: makeCar('#108394', false), y: 575 },   // pasa con el muñeco en rojo (de izquierda a derecha)
+    { g: makeCar('#df7619', true),  y: 445 },   // pasa con el muñeco en rojo (de derecha a izquierda)
+    { g: makeCar('#108394', false), y: 575 },   // para antes del paso de cebra
+    { g: makeCar('#df7619', true),  y: 445 }    // para antes del paso de cebra
+  ];
+
+  // Niño o niña en silueta (origen en los pies)
+  var KID_COLOR = '#6c44b0';
+  var kid = $('kid');
+  el('ellipse', { cx: 0, cy: 0, rx: 46, ry: 9, fill: 'rgba(0,0,0,.2)' }, kid);
+  var legL = el('rect', { x: -27, y: -78, width: 23, height: 78, rx: 11.5, fill: KID_COLOR }, kid);
+  var legR = el('rect', { x: 4, y: -78, width: 23, height: 78, rx: 11.5, fill: KID_COLOR }, kid);
+  var armL = el('rect', { x: -54, y: -150, width: 20, height: 76, rx: 10, fill: KID_COLOR }, kid);
+  var armR = el('rect', { x: 34, y: -150, width: 20, height: 76, rx: 10, fill: KID_COLOR }, kid);
+  el('rect', { x: -40, y: -160, width: 80, height: 94, rx: 28, fill: KID_COLOR }, kid);
+  el('rect', { x: -28, y: -150, width: 56, height: 62, rx: 14, fill: '#df7619' }, kid);
+  el('rect', { x: -18, y: -140, width: 36, height: 12, rx: 6, fill: '#fff', opacity: .25 }, kid);
+  var head = el('circle', { cx: 0, cy: -194, r: 31, fill: KID_COLOR }, kid);
+  // Flechas de «mirar»
+  var sightL = el('path', { d: 'M-50 -194H-250', 'marker-end': 'url(#arrowY)' }, $('sight'));
+  var sightR = el('path', { d: 'M50 -194H250', 'marker-end': 'url(#arrowY)' }, $('sight'));
+  var SPK = [0,1,2,3,4,5].map(function(){ return el('use', { href: '#spark' }, $('sparksK')); });
+
+  // Lista: 1. Miro · 2. Cruzo
+  function makeItem(x, y, txt){
+    var g = el('g', { transform: 'translate(' + x + ' ' + y + ')' }, $('check'));
+    el('rect', { x: 0, y: -40, width: 330, height: 80, rx: 40, fill: '#fff', stroke: '#d6d9e0', 'stroke-width': 3, filter: 'url(#sh)' }, g);
+    el('circle', { cx: 42, cy: 0, r: 24, fill: '#fff', stroke: '#c3c8d2', 'stroke-width': 4 }, g);
+    var done = el('g', {}, g);
+    el('circle', { cx: 42, cy: 0, r: 24, fill: '#2a8f4f' }, done);
+    el('path', { d: 'M31 0l8 8l14-15', fill: 'none', stroke: '#fff', 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, done);
+    var tx = el('text', { x: 82, y: 2, 'dominant-baseline': 'central', 'font-size': 40, 'font-weight': 800, fill: '#1a1d24' }, g);
+    tx.textContent = txt;
+    return { g: g, done: done };
+  }
+  var ITEM1 = makeItem(160, 728, '1. Miro'), ITEM2 = makeItem(520, 728, '2. Cruzo');
+
+  /* ================= Elementos ================= */
+  var cam = $('cam'), world = $('world'), street = $('street'), diagram = $('diagram'),
+      dDiamond = $('dDiamond'), dSi = $('dSi'), dNo = $('dNo'), dSiArrow = $('dSiArrow'), dNoArrow = $('dNoArrow'),
+      dSiLab = $('dSiLab'), dNoLab = $('dNoLab'), dSiBox = $('dSiBox'), dNoBox = $('dNoBox'), miniLight = $('miniLight'),
+      finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null;
+  var KX = 960, KY0 = 770, KY1 = 345;     // pies: bordillo de este lado → acera de enfrente
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+
+    // Cámara: mira el semáforo al principio y se acerca al personaje cuando mira a los lados
+    var ax = 960, ay = 540, wx = 960, wy = 540, z = 1;
+    if (!RM) {
+      var p1 = ease(seg(t, 1.5, 4)) * (1 - ease(seg(t, 6, 7.6)));
+      ay = lerp(ay, 470, p1); wx = lerp(wx, 1080, p1); wy = lerp(wy, 430, p1); z = lerp(z, 1.12, p1);
+      var p2 = ease(seg(t, 24.2, 25.2)) * (1 - ease(seg(t, 28.9, 29.7)));
+      ay = lerp(ay, 470, p2); wx = lerp(wx, KX, p2); wy = lerp(wy, 600, p2); z = lerp(z, 1.15, p2);
+    }
+    cam.setAttribute('transform', 'translate(' + ax + ' ' + ay + ') scale(' + z.toFixed(4) + ') translate(' + (-wx) + ' ' + (-wy) + ')');
+    world.setAttribute('opacity', 1 - seg(t, 58, 58.8));
+    street.setAttribute('opacity', 1 - seg(t, 40, 40.7));
+
+    // Semáforo: apagado → rojo (8,4 s) → verde (22 s)
+    var red = seg(t, 8.4, 8.8) * (1 - seg(t, 21.6, 21.9));
+    var green = seg(t, 22, 22.4);
+    setLight(LIGHT, red, green, t, RM);
+
+    // Coches: dos pasan con el muñeco en rojo; dos paran antes del paso de cebra con el verde
+    var cx = [lerp(-300, 2220, seg(t, 11.5, 15)), lerp(2220, -300, seg(t, 16, 19.5)),
+              lerp(-300, 650, easeOut(seg(t, 22.4, 24))), lerp(2220, 1270, easeOut(seg(t, 22.6, 24.2)))];
+    var cv = [t > 11.5 && t < 15, t > 16 && t < 19.5, t > 22.4, t > 22.6];
+    CARS.forEach(function(c, i){
+      c.g.setAttribute('transform', tr(cx[i], c.y));
+      c.g.setAttribute('opacity', cv[i] ? 1 : 0);
+    });
+
+    // Personaje: espera; con verde mira a la izquierda, a la derecha y después cruza
+    var lookL = win(t, 24.8, 26.6, .35), lookR = win(t, 27, 28.8, .35);
+    head.setAttribute('cx', (-11 * lookL + 11 * lookR).toFixed(2));
+    var wp = seg(t, 29.6, 35.5), walking = wp > 0 && wp < 1;
+    var ky = lerp(KY0, KY1, ease(wp)), ks = lerp(1, .8, ease(wp));
+    var ph = (t - 29.6) * 2 * Math.PI * 1.6;
+    var sw = walking ? Math.sin(ph) : 0;
+    var bob = walking ? -4 * Math.abs(Math.sin(ph)) : 0;
+    var hop = RM ? 0 : -22 * Math.sin(Math.PI * seg(t, 35.8, 36.3));
+    var breath = RM ? 1 : 1 + .012 * Math.sin(t * 2 * Math.PI / 2.6);
+    kid.setAttribute('transform', tr(KX, ky + bob + hop, ks) + ' scale(1 ' + breath.toFixed(4) + ')');
+    legL.setAttribute('transform', 'rotate(' + (20 * sw).toFixed(2) + ' -15 -76)');
+    legR.setAttribute('transform', 'rotate(' + (-20 * sw).toFixed(2) + ' 15 -76)');
+    armL.setAttribute('transform', 'rotate(' + (-16 * sw).toFixed(2) + ' -44 -146)');
+    armR.setAttribute('transform', 'rotate(' + (16 * sw).toFixed(2) + ' 44 -146)');
+    $('sight').setAttribute('transform', tr(KX, KY0, 1));
+    sightL.setAttribute('opacity', lookL.toFixed(3));
+    sightR.setAttribute('opacity', lookR.toFixed(3));
+    var sp = seg(t, 35.8, 36.7);
+    SPK.forEach(function(s, k){
+      var a = k * Math.PI / 3 - Math.PI / 2, d = 110 + 50 * ease(sp);
+      s.setAttribute('transform', tr(KX + Math.cos(a) * d, KY1 - 85 + Math.sin(a) * d * .8, 1.1));
+      s.setAttribute('opacity', (sp > 0 && sp < 1 ? 1 - sp * sp : 0).toFixed(3));
+    });
+    // Lista del orden
+    ITEM1.g.setAttribute('opacity', seg(t, 24.6, 25).toFixed(3));
+    ITEM1.done.setAttribute('opacity', seg(t, 28.9, 29.2).toFixed(3));
+    ITEM2.g.setAttribute('opacity', seg(t, 29.2, 29.6).toFixed(3));
+    ITEM2.done.setAttribute('opacity', seg(t, 35.6, 35.9).toFixed(3));
+
+    // Diagrama
+    diagram.setAttribute('opacity', seg(t, 40.4, 40.8).toFixed(3));
+    var dp = seg(t, 40.6, 41.2);
+    dDiamond.setAttribute('transform', 'translate(520 330) scale(' + (RM ? 1 : lerp(.85, 1, ease(dp))).toFixed(4) + ') translate(-520 -330)');
+    dDiamond.setAttribute('opacity', dp.toFixed(3));
+    var sa = ease(seg(t, 42, 42.7)), na = ease(seg(t, 43.6, 44.3));
+    dSiArrow.setAttribute('stroke-dashoffset', (1 - sa).toFixed(4));
+    dSiArrow.setAttribute('opacity', sa > .02 ? 1 : 0);
+    dSiLab.setAttribute('opacity', seg(t, 42.4, 42.8).toFixed(3));
+    dSiBox.setAttribute('opacity', seg(t, 42.7, 43.2).toFixed(3));
+    dNoArrow.setAttribute('stroke-dashoffset', (1 - na).toFixed(4));
+    dNoArrow.setAttribute('opacity', na > .02 ? 1 : 0);
+    dNoLab.setAttribute('opacity', seg(t, 44, 44.4).toFixed(3));
+    dNoBox.setAttribute('opacity', seg(t, 44.3, 44.8).toFixed(3));
+    // En miniatura: con rojo se ilumina el NO; con verde, el SÍ
+    miniLight.setAttribute('opacity', seg(t, 50.2, 50.7).toFixed(3));
+    var mRed = win(t, 50.8, 53.8, .25), mGreen = win(t, 54.2, 57.6, .25);
+    setLight(MINI, mRed, mGreen, t, RM);
+    dNo.setAttribute('opacity', (1 - .65 * mGreen).toFixed(3));
+    dSi.setAttribute('opacity', (1 - .65 * mRed).toFixed(3));
+    dNoArrow.setAttribute('stroke-width', (9 + 7 * mRed).toFixed(2));
+    dSiArrow.setAttribute('stroke-width', (9 + 7 * mGreen).toFixed(2));
+    dNoBox.querySelector('rect').setAttribute('stroke-width', (6 + 6 * mRed).toFixed(2));
+    dSiBox.querySelector('rect').setAttribute('stroke-width', (6 + 6 * mGreen).toFixed(2));
+
+    // Textos finales
+    var fa = seg(t, 58.4, 59.2) * (1 - seg(t, 63.6, 64.2));
+    finalA.style.opacity = fa;
+    finalA.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - seg(t, 58.4, 59.2))).toFixed(1) + 'px)';
+    var fb = seg(t, 64.2, 65);
+    finalB.style.opacity = fb;
+    finalB.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - fb)).toFixed(1) + 'px)';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

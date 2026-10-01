@@ -62,6 +62,7 @@ Programación Mate 4.0 26-27/
 ├── 07_Guias_rapidas_herramientas.md Tale-Bot, True True, ScratchJr, Scratch, Makey Makey, micro:bit, Nezha, Tinkercad, Teachable Machine, QR
 ├── 08_Plantillas_y_material.md      Catálogo de M01-M25, archivos de Scratch y proyectables
 ├── LEEME_PROYECTO.md                Este documento
+├── Animaciones/                     Encargo de los vídeos (Prompts animaciones.md), informe de entrega y bandeja animaciones_nuevas/
 ├── Cómo subir la guía al aula virtual.txt
 ├── Guia_CE40_2026-27_web.zip        Paquete para distribuir (se regenera)
 ├── Material imprimible/             Copia de los PDF (y Scratch/ con los .sb3)
@@ -82,6 +83,9 @@ Programación Mate 4.0 26-27/
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
 | `proyectables.js`, `proyectables2.js`, `proyectables*.css` | Las 30 herramientas de la pizarra (21 + 9) |
+| `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
+| `videos/` | Los 17 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
+| `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
 | `recursos_oficiales.py` | Biblioteca de enlaces oficiales (EducaMadrid, Tale-Bot, True True, ART2BIT, Nezha, ALBOR, ARASAAC…) |
 | `datos_etapa.py` | Datos del «Mapa de la etapa»: herramientas por trimestre, progresión por bloques y productos |
@@ -147,6 +151,7 @@ python vocab_md.py             # solo si cambia vocabulario.py (reescribe «Pala
 python pictos.py               # solo si cambian los pictogramas (descarga y crea pictos_data.js)
 python materiales.py           # todos los PDF; o solo algunos: python materiales.py M04 M11
 python scratch_gen.py          # los 9 .sb3 (y copia en Material imprimible/Scratch)
+python videos_miniaturas.py    # solo si cambian los vídeos o el segundo de su miniatura en videos.py
 python build_web.py            # la web: programacion_CE40.html
 python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea el zip del aula virtual
 ```
@@ -172,6 +177,7 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 | Los .sb3 funcionan | En `web/pruebas_scratch/`: `npm install` (una vez) y `npm test`. Carga cada proyecto en scratch-vm, comprueba que tiene todos sus dibujos y sonidos, y ejecuta pruebas de comportamiento: soluciones que funcionan y bichos que fallan como se describe |
 | Aspecto de la web | `python capturas.py c1-s7 material etapa` crea imágenes en `picto/_hojas/cap_*.png` |
 | El zip | Descomprimir en una carpeta temporal y abrir `index.html` |
+| Vídeos nuevos o cambiados | Abrirlos con `?export=1` y llamar a `ANIM.seek(t)` en muchos instantes: sin errores de consola, barra oculta, mismo fotograma para el mismo `t`, recorridos y recuentos correctos. Ojo con los `id` repetidos (en el del sensor, un `id="bar"` del dibujo se comía la barra de controles) |
 
 ---
 
@@ -228,6 +234,14 @@ Detalle en `08_Plantillas_y_material.md`.
 - **IA y seguridad:** entrena a la máquina (solo 5º-6º) · verdad/bulo · contraseñas
 - **Utilidades:** temporizador · código secreto
 - **Juegos para la pizarra:** Bee-Bot (funciona como Tale-Bot) · hundir la flota · píxel art · laberinto de bloques · cartas binarias · Simón · balanza · magia de la paridad · ¿quién sale?
+
+**Vídeos de conceptos (17, en `web/videos/`):**
+- 13 conceptos: algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar, coordenadas, sensor y umbral, cómo aprende una máquina.
+- Evento, depurar, entrada y salida y optimizar tienen dos versiones: la de 1º-2º (robot personaje) y la `-superior` (aspecto de editor real) para los cursos que ya programan en pantalla.
+- De 45 a 76 s, con subtítulos y sin sonido. Reproductor propio: capítulos, velocidad 0,75×, pantalla completa y «Pausas para pensar» (dos preguntas por vídeo, apagadas por defecto).
+- Cada vídeo es un HTML autónomo (sin nada externo) que se dibuja con `render(t)`. Expone `window.ANIM` (`duration`, `seek`, `play`, `pause`, `chapters`, `pausas`); con `?export=1` oculta los controles, por si un día se quieren grabar en MP4 (fotograma a fotograma con `seek` y ffmpeg; se probó con el del bucle: 2,7 MB).
+- En la web: una página por vídeo (`#v-<id>`) dentro de «Para proyectar», con «Volver a la sesión»; enlace en la tarjeta «Para usar en esta sesión» de 46 sesiones, y una diapositiva «Vídeo» en el modo proyección. El reproductor se carga al entrar en la página y se descarga al salir.
+- Los hizo otra instancia de Claude con el encargo `Animaciones/Prompts animaciones.md`; el informe de entrega está en `Animaciones/ENTREGA para Claude.md`. Para uno nuevo: pedirlo con ese encargo, dejarlo en `Animaciones/animaciones_nuevas/`, revisarlo, copiarlo a `web/videos/` y añadirlo a `videos.py`.
 
 **Aplicaciones externas recomendadas:** Blockly Games, Quick Draw (5º-6º), AI for Oceans (5º-6º), Hora del Código, CS Unplugged.
 
@@ -294,6 +308,7 @@ Detalle en `08_Plantillas_y_material.md`.
       - guías de ScratchJr que aparecían en las sesiones desenchufadas de 2º T2 (los recursos se buscan en la sesión y en el texto del trimestre, sin sus «Nota:»).
 15. **Repositorio en GitHub:** el proyecto pasa a ser un repositorio Git publicado en GitHub, con la web en `docs/`. Sustituye a la subida manual de archivos y a la carpeta «Para subir a GitHub».
 12. **Botón «Volver a la sesión»:** al consultar una herramienta, guía o rúbrica desde una sesión, se vuelve al mismo punto. Se descartaron otras opciones: abrir las herramientas encima de la sesión (más riesgo, y solo resolvía las herramientas) y abrirlas en otra pestaña (recarga 2 MB y acumula pestañas en la pizarra).
+16. **Vídeos de conceptos:** 17 vídeos animados encargados a otra instancia de Claude, revisados fotograma a fotograma e integrados en la web (galería, una página por vídeo, enlaces en 46 sesiones y diapositiva en el modo proyección). En la revisión se arregló el del sensor (el medidor no se veía y la barra salía al grabar), la regla de «Cómo aprende una máquina» (era circular: ahora «redonda, con rabito, de cualquier color»), el texto final de coordenadas, un aviso que se salía de su recuadro y las marcas de capítulo del patrón. Se decidió no hacer MP4.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
@@ -346,6 +361,6 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
   - `history.back()` cuelga la captura con páginas `file://`: se simula con un cambio de `location.hash`.
   - La consola de Windows necesita `PYTHONIOENCODING=utf-8` para imprimir «←».
 - **Artifacts:**
-  - no admiten iframes, impresión ni descargas;
+  - no admiten iframes, impresión ni descargas (por eso los vídeos no se ven en la vista previa del artifact; sí en GitHub Pages y en el zip);
   - solo sirven tipos web (no .sb3 ni .zip);
   - los enlaces externos se abren en otra pestaña.

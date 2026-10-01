@@ -81,6 +81,12 @@
     if (origin && (isNavPage(page) || (isFicha(page) && page.id !== origin.id))) { origin = null; saveOrigin(); }
     currentPage = page;
     pages.forEach(function (p) { p.hidden = p !== page; });
+    // vídeos: el de la página visible se carga al entrar y se descarga al salir (así deja de reproducirse)
+    document.querySelectorAll('.vid-page iframe').forEach(function (f) {
+      var want = f.closest('section.page') === page ? f.getAttribute('data-src') : '';
+      if (want && f.getAttribute('src') !== want) f.setAttribute('src', want);
+      else if (!want && f.hasAttribute('src')) f.removeAttribute('src');
+    });
     var key = page.getAttribute('data-course') || page.getAttribute('data-nav-key') || page.id;
     navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('data-nav') === key); });
     var restored = restore(page);
@@ -109,6 +115,13 @@
 
   window.addEventListener('hashchange', function () { show(currentHash(), false); });
   show(currentHash(), true);
+
+  // Vídeos: pantalla completa del reproductor
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-vfull]'); if (!b) return;
+    var f = b.closest('section.page').querySelector('.vid-frame iframe');
+    if (f && f.requestFullscreen) f.requestFullscreen().catch(function () {});
+  });
 
   // Pestañas de propuestas
   document.querySelectorAll('.p-tabs').forEach(function (list) {

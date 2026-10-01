@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patrón · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;max-width:1500px;text-wrap:balance}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:160px;right:160px;top:36px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:22px 50px 26px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:32px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:64px;font-weight:800;line-height:1.15;margin:8px 0 10px}
+  #question .hint{font-size:32px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1a1d24" flood-opacity=".18"/>
+      </filter>
+      <!-- Robot de la guía (60 × 60, centro 30,30) -->
+      <g id="robotArt"><ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>
+      <g id="circ"><circle r="62" fill="#cf3f36" filter="url(#sh)"/><ellipse cx="-20" cy="-22" rx="14" ry="9" fill="#fff" opacity=".22" transform="rotate(-35 -20 -22)"/></g>
+      <g id="sq"><rect x="-60" y="-60" width="120" height="120" rx="18" fill="#2c5bbf" filter="url(#sh)"/><rect x="-46" y="-48" width="40" height="12" rx="6" fill="#fff" opacity=".2"/></g>
+      <g id="osq"><rect x="-38" y="-38" width="76" height="76" rx="12" fill="#df7619" stroke="#1a1d24" stroke-opacity=".25" stroke-width="2"/></g>
+      <g id="qbox">
+        <rect x="-62" y="-62" width="124" height="124" rx="20" fill="#fff" stroke="#a9aebb" stroke-width="5" stroke-dasharray="14 10"/>
+        <text y="4" text-anchor="middle" dominant-baseline="central" font-size="84" font-weight="800" fill="#6c44b0">?</text>
+      </g>
+      <path id="spark" d="M0 -14Q2 -2 14 0Q2 2 0 14Q-2 2 -14 0Q-2 -2 0 -14Z" fill="#f5c518" stroke="#df7619" stroke-width="2"/>
+    </defs>
+
+    <g id="cam">
+      <g id="world">
+        <!-- Parte 1: fila de figuras -->
+        <g id="partA">
+          <rect x="290" y="282" width="1340" height="196" rx="40" fill="#eceef2"/>
+          <g id="pairs"></g>
+          <g id="shapes"></g>
+          <g id="sparksA"></g>
+        </g>
+        <!-- Parte 2: patrón que crece -->
+        <g id="partB">
+          <g id="arcs" fill="none" stroke="#2a8f4f" stroke-width="6" stroke-linecap="round"></g>
+          <g id="figs"></g>
+          <g id="sparksB"></g>
+        </g>
+        <g id="robot"></g>
+      </g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">Un patrón es algo que se repite siguiendo una regla.</div>
+  </div>
+  <div id="finalB" class="layer">
+    <svg width="170" height="170" viewBox="0 0 60 60" aria-hidden="true"><use href="#robotArt"/></svg>
+    <div class="key">«Busca lo que se repite.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Patrón</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 54;
+  var CHAPTERS = [
+    { t: 0,  titulo: '¿Qué viene?' },
+    { t: 10, titulo: 'La regla' },
+    { t: 24, titulo: 'Patrones que crecen' },
+    { t: 40, titulo: 'Qué es un patrón' }
+  ];
+  var PAUSAS = [
+    { t: 10, pregunta: '¿Qué figura va en el hueco?' },
+    { t: 32, pregunta: '¿Cuántos cuadrados tendrá la figura 4?' }
+  ];
+  var SUBS = [
+    [0.4,  9.8,  'El robot coloca figuras. ¿Qué viene ahora?'],
+    [10.3, 17.8, 'La regla: rojo, azul, rojo, azul…'],
+    [18.3, 23.8, '¡Viene un cuadrado azul!'],
+    [24.3, 31.8, 'Hay patrones que crecen.'],
+    [36.2, 39.8, 'Cada vez, uno más: la figura 4 tiene 4.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function easeOutBack(p){ var c1 = 1.5, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); }
+  function tr(x, y, s, r){ return 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')' + (r ? ' rotate(' + r.toFixed(2) + ')' : '') + (s !== undefined ? ' scale(' + Math.max(s, .001).toFixed(4) + ')' : ''); }
+
+  // Robot (con ojos que parpadean)
+  var ROBOT = '<ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/>' +
+    '<g class="eyes"><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/></g>' +
+    '<path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>';
+  function makeRobot(parent, s){
+    var g = el('g', {}, parent);
+    var inner = el('g', { transform: 'scale(' + s + ') translate(-30 -30)' }, g);
+    inner.innerHTML = ROBOT;
+    return { g: g, eyes: inner.querySelector('.eyes') };
+  }
+  function blink(t, off){
+    var bt = (t + off) % 3.9, b = bt < .18 ? Math.sin(Math.PI * bt / .18) : 0;
+    return 'translate(0 28) scale(1 ' + (1 - .9 * b).toFixed(3) + ') translate(0 -28)';
+  }
+  function makeSparks(parent){ return [0,1,2,3,4,5].map(function(){ return el('use', { href: '#spark' }, parent); }); }
+  function drawSparks(list, x, y, p, r0){
+    list.forEach(function(s, k){
+      var a = k * Math.PI / 3 - Math.PI / 2, d = r0 + 60 * ease(p);
+      s.setAttribute('transform', tr(x + Math.cos(a) * d, y + Math.sin(a) * d, 1.1));
+      s.setAttribute('opacity', (p > 0 && p < 1 ? 1 - p * p : 0).toFixed(3));
+    });
+  }
+
+  /* ================= Parte 1: círculo rojo, cuadrado azul… ================= */
+  var ROW_Y = 380, ROB_Y = 590;
+  var KINDS = ['#circ', '#sq', '#circ', '#sq', '#circ'];
+  function UX(k){ return 435 + 210 * k; }                                   // en fila
+  var GXS = [385, 575, 865, 1055, 1345, 1535];                              // agrupadas en parejas
+  function PLACE(k){ return .8 + k * 1.35; }                                // el robot llega a la casilla k
+  var SHAPES = KINDS.map(function(href){ return el('use', { href: href }, $('shapes')); });
+  var QBOX = el('use', { href: '#qbox' }, $('shapes'));
+  var NEWSQ = el('use', { href: '#sq' }, $('shapes'));
+  var PAIRS = [0, 1, 2].map(function(p){
+    var cx = (GXS[2 * p] + GXS[2 * p + 1]) / 2;
+    return el('rect', { x: cx - 175, y: ROW_Y - 95, width: 350, height: 190, rx: 34, fill: '#6c44b0', 'fill-opacity': .08, stroke: '#6c44b0', 'stroke-width': 5 }, $('pairs'));
+  });
+  var SPA = makeSparks($('sparksA'));
+
+  /* ================= Parte 2: figuras de cuadraditos naranjas ================= */
+  var FX = [560, 860, 1160, 1460], BASE = 600;
+  function SQY(j){ return BASE - 38 - 84 * j; }                           // cuadradito j (0 = el de abajo)
+  function FIG_IN(k){ return 24.3 + k * .65; }                            // aparecen las figuras 1-3
+  function F4(j){ return 34.8 + j * .8; }                                 // cuadraditos de la figura 4
+  var FIGS = [0, 1, 2, 3].map(function(k){
+    var g = el('g', {}, $('figs'));
+    var sqs = [];
+    for (var j = 0; j <= k; j++) {
+      var u = el('g', {}, g);
+      el('use', { href: '#osq' }, u);
+      if (k === 3) { var n = el('text', { y: 2, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': 40, 'font-weight': 800, fill: '#fff' }, u); n.textContent = j + 1; }
+      sqs.push(u);
+    }
+    var lab = el('text', { x: FX[k], y: 652, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': 42, 'font-weight': 700, fill: '#1a1d24' }, g);
+    lab.textContent = 'figura ' + (k + 1);
+    return { g: g, sqs: sqs, lab: lab };
+  });
+  var Q4 = el('use', { href: '#qbox' }, $('figs'));
+  // Arcos «+1» entre figuras
+  var ARCS = [0, 1, 2].map(function(k){
+    var x0 = FX[k] + 18, y0 = SQY(k) - 58, x1 = FX[k + 1] - 18, y1 = SQY(k + 1) - 58;
+    var mx = (x0 + x1) / 2, my = Math.min(y0, y1) - 70;
+    var path = el('path', { d: 'M' + x0 + ' ' + y0 + 'Q' + mx + ' ' + my + ' ' + x1 + ' ' + y1, pathLength: 1, 'stroke-dasharray': '1 1' }, $('arcs'));
+    var head = el('path', { d: 'M-12 -10L2 0L-12 10', transform: 'translate(' + x1 + ' ' + y1 + ') rotate(' + (Math.atan2(y1 - my, x1 - mx) * 180 / Math.PI).toFixed(1) + ')' }, $('arcs'));
+    var lab = el('text', { x: mx, y: (y0 + y1) / 4 + my / 2 - 40, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': 46, 'font-weight': 800, fill: '#2a8f4f', stroke: 'none' }, $('arcs'));
+    lab.textContent = '+1';
+    return { path: path, head: head, lab: lab };
+  });
+  function ARC(k){ return 33.4 + k * .4; }
+  var SPB = makeSparks($('sparksB'));
+
+  var ROB = makeRobot($('robot'), 1.6);
+
+  /* ================= Elementos ================= */
+  var cam = $('cam'), world = $('world'), partA = $('partA'), partB = $('partB'),
+      finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null;
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+
+    // Cámara: acercamientos suaves al hueco y a la figura 4
+    var ax = 960, ay = 540, wx = 960, wy = 540, z = 1;
+    if (!RM) {
+      var p1 = ease(seg(t, 8.3, 9.6)) * (1 - ease(seg(t, 10.4, 11.4)));
+      ay = lerp(ay, 440, p1); wx = lerp(wx, 1100, p1); wy = lerp(wy, 420, p1); z = lerp(z, 1.1, p1);
+      var p2 = ease(seg(t, 30.4, 31.6)) * (1 - ease(seg(t, 32.6, 33.4)));
+      ay = lerp(ay, 440, p2); wx = lerp(wx, 1010, p2); wy = lerp(wy, 430, p2); z = lerp(z, 1.1, p2);
+    }
+    cam.setAttribute('transform', 'translate(' + ax + ' ' + ay + ') scale(' + z.toFixed(4) + ') translate(' + (-wx) + ' ' + (-wy) + ')');
+    world.setAttribute('opacity', 1 - seg(t, 40, 40.8));
+
+    /* ---- Parte 1 ---- */
+    var aOut = ease(seg(t, 23.2, 23.9));
+    partA.setAttribute('opacity', (1 - aOut).toFixed(3));
+    partA.setAttribute('transform', 'translate(0 ' + (RM ? 0 : -30 * aOut).toFixed(1) + ')');
+    var gp = ease(seg(t, 10.3, 11.2));                      // separación en parejas
+    function SX(k){ return lerp(UX(k), GXS[k], gp); }
+
+    // Robot: recorre la fila colocando figuras y se queda mirando el hueco
+    var rx = 260, rd = 90;
+    for (var k = 0; k < 6; k++) {
+      var m = PLACE(k), from = k === 0 ? 260 : UX(k - 1);
+      if (t >= m) rx = lerp(from, UX(k), ease(seg(t, m, m + .55)));
+    }
+    if (t >= PLACE(5)) rx = lerp(UX(4), SX(5), ease(seg(t, PLACE(5), PLACE(5) + .55)));
+    rd = lerp(90, 0, ease(seg(t, 8.4, 9)));
+    var hop = RM ? 0 : -18 * Math.sin(Math.PI * seg(t, 19.4, 19.9));
+    var ry = ROB_Y + hop, rop = 1 - seg(t, 23.2, 23.8);
+    // Parte 2: el robot mira las figuras desde la izquierda
+    if (t >= 23.8) {
+      rx = 250; ry = 520 + (RM ? 0 : -18 * Math.sin(Math.PI * seg(t, 37.6, 38.1))); rd = 90;
+      rop = seg(t, 24, 24.6);
+    }
+    var breath = RM ? 1 : 1 + .022 * Math.sin(t * 2 * Math.PI / 2.4);
+    ROB.g.setAttribute('transform', tr(rx, ry, breath, rd));
+    ROB.g.setAttribute('opacity', rop.toFixed(3));
+    ROB.eyes.setAttribute('transform', blink(t, 1.3));
+
+    // Figuras: salen del robot y suben a su sitio
+    SHAPES.forEach(function(s, k){
+      var p = ease(seg(t, PLACE(k) + .6, PLACE(k) + 1.2));
+      s.setAttribute('transform', tr(SX(k), lerp(ROB_Y - 40, ROW_Y, p), lerp(.45, 1, p)));
+      s.setAttribute('opacity', (t >= PLACE(k) + .6 ? cl(p * 3) : 0).toFixed(3));
+    });
+    // Hueco con «?»
+    var qin = ease(seg(t, PLACE(5) + .6, PLACE(5) + 1.1)), qout = seg(t, 18.4, 18.7);
+    var qbreath = RM ? 1 : 1 + .04 * Math.sin(t * 2 * Math.PI / 1.8);
+    QBOX.setAttribute('transform', tr(SX(5), ROW_Y, (RM ? 1 : lerp(.6, 1, qin)) * qbreath));
+    QBOX.setAttribute('opacity', (qin * (1 - qout)).toFixed(3));
+    // El cuadrado azul cae en el hueco con un pequeño salto
+    var fp = seg(t, 18.6, 19.4);
+    var fy = lerp(-120, ROW_Y, RM ? ease(fp) : easeOutBack(fp));
+    NEWSQ.setAttribute('transform', tr(SX(5), fy, 1));
+    NEWSQ.setAttribute('opacity', (t >= 18.6 ? cl(fp * 4) : 0).toFixed(3));
+    drawSparks(SPA, SX(5), ROW_Y, seg(t, 19.3, 20.2), 70);
+    // Recuadros de las parejas
+    PAIRS.forEach(function(r, p){ r.setAttribute('opacity', seg(t, 11.3 + p * .8, 11.8 + p * .8).toFixed(3)); });
+
+    /* ---- Parte 2 ---- */
+    partB.setAttribute('opacity', seg(t, 23.8, 24.3).toFixed(3));
+    FIGS.forEach(function(F, k){
+      F.sqs.forEach(function(u, j){
+        var t0 = k < 3 ? FIG_IN(k) + j * .15 : F4(j);
+        var p = seg(t, t0, t0 + .45);
+        var s = RM ? 1 : (p > 0 ? lerp(.3, 1, easeOutBack(p)) : .3);
+        u.setAttribute('transform', tr(FX[k], SQY(j), s));
+        u.setAttribute('opacity', cl(p * 2).toFixed(3));
+      });
+      F.lab.setAttribute('opacity', seg(t, k < 3 ? FIG_IN(k) : 26.4, (k < 3 ? FIG_IN(k) : 26.4) + .4).toFixed(3));
+    });
+    var q4in = ease(seg(t, 26.4, 26.9)), q4out = seg(t, 34.2, 34.7);
+    Q4.setAttribute('transform', tr(FX[3], SQY(0) - 4, (RM ? 1 : lerp(.6, 1, q4in) * (1 + .04 * Math.sin(t * 2 * Math.PI / 1.8)))));
+    Q4.setAttribute('opacity', (q4in * (1 - q4out)).toFixed(3));
+    ARCS.forEach(function(A, k){
+      var p = ease(seg(t, ARC(k), ARC(k) + .5));
+      A.path.setAttribute('stroke-dashoffset', (1 - p).toFixed(4));
+      A.path.setAttribute('opacity', p > 0 ? 1 : 0);
+      A.head.setAttribute('opacity', seg(t, ARC(k) + .4, ARC(k) + .55).toFixed(3));
+      A.lab.setAttribute('opacity', seg(t, ARC(k) + .3, ARC(k) + .6).toFixed(3));
+    });
+    drawSparks(SPB, FX[3], SQY(2), seg(t, 37.5, 38.4), 150);
+
+    // Textos finales
+    var fa = seg(t, 40.4, 41.2) * (1 - seg(t, 47.6, 48.2));
+    finalA.style.opacity = fa;
+    finalA.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - seg(t, 40.4, 41.2))).toFixed(1) + 'px)';
+    var fb = seg(t, 48.2, 49);
+    finalB.style.opacity = fb;
+    finalB.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - fb)).toFixed(1) + 'px)';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

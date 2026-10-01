@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bucle · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:84px;font-weight:800;line-height:1.15;text-wrap:balance}
+  #finalA .cmp{font-size:62px;font-weight:700;background:#eceef2;border-radius:30px;padding:18px 48px}
+  #finalA .cmp b{color:#2c5bbf}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:260px;right:260px;bottom:170px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:26px 50px 30px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:32px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{font-size:70px;font-weight:800;line-height:1.15;margin:10px 0 12px}
+  #question .hint{font-size:32px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#1a1d24" flood-opacity=".18"/>
+      </filter>
+      <!-- Robot de la guía (60 × 60, centro 30,30), para el icono final -->
+      <g id="robotArt"><ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>
+      <!-- Tarjeta AVANZA (130 × 130, centrada en 0,0) -->
+      <g id="cardA">
+        <rect x="-65" y="-65" width="130" height="130" rx="20" fill="#2c5bbf" filter="url(#sh)"/>
+        <g transform="scale(.8667)">
+          <path d="M0 44V-6" stroke="#fff" stroke-width="22" stroke-linecap="round" fill="none"/>
+          <path d="M-32 -4L0 -44L32 -4Z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+        </g>
+      </g>
+      <!-- Tarjeta GIRA A LA DERECHA (130 × 130, centrada en 0,0) -->
+      <g id="cardD">
+        <rect x="-65" y="-65" width="130" height="130" rx="20" fill="#2a8f4f" filter="url(#sh)"/>
+        <g transform="scale(.8667)">
+          <path d="M-30 46V4A26 26 0 0 1 -4 -22H8" stroke="#fff" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M4 -52L40 -22L4 8Z" fill="#fff" stroke="#fff" stroke-width="8" stroke-linejoin="round"/>
+        </g>
+      </g>
+    </defs>
+
+    <g id="cam">
+      <g id="world">
+        <!-- Isla 4 × 4 -->
+        <rect x="148" y="98" width="664" height="664" rx="56" fill="#4fa3d9"/>
+        <g id="waves" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"></g>
+        <rect x="194" y="144" width="572" height="572" rx="36" fill="#f2d39b"/>
+        <g id="grass"></g>
+        <rect id="guide" x="415" y="365" width="130" height="130" fill="none" stroke="#df7619" stroke-width="6"
+              stroke-dasharray="16 14" stroke-linecap="round"/>
+        <path id="trail1" fill="none" stroke="#df7619" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <path id="trail2" fill="none" stroke="#df7619" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        <g id="robot"><g transform="scale(1.75) translate(-30 -30)">
+          <ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/>
+          <g id="eyes"><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/></g>
+          <path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
+        </g></g>
+
+        <!-- Programa -->
+        <rect id="panel" x="940" y="240" width="860" height="430" rx="40" fill="#eceef2"/>
+        <g id="counter">
+          <rect x="1150" y="122" width="440" height="96" rx="48" fill="#fff" stroke="#d6d9e0" stroke-width="3" filter="url(#sh)"/>
+          <text id="counterT" x="1370" y="172" text-anchor="middle" dominant-baseline="central" font-size="60" font-weight="800" fill="#1a1d24"></text>
+        </g>
+        <g id="boxes"></g>
+        <g id="repite">
+          <rect id="repHl" x="-183" y="-143" width="366" height="286" rx="40" fill="none" stroke="#f5c518" stroke-width="10"/>
+          <rect x="-169" y="-129" width="338" height="258" rx="30" fill="#f39a2b" filter="url(#sh)"/>
+          <rect x="-151" y="-51" width="302" height="162" rx="20" fill="#fff" opacity=".4"/>
+          <text x="0" y="-86" text-anchor="middle" dominant-baseline="central" font-size="50" font-weight="800" fill="#1a1d24">REPITE ×4</text>
+        </g>
+        <g id="cards"></g>
+        <g id="vuelta">
+          <rect x="1190" y="684" width="360" height="80" rx="40" fill="#fff" stroke="#df7619" stroke-width="4"/>
+          <text id="vueltaT" x="1370" y="726" text-anchor="middle" dominant-baseline="central" font-size="46" font-weight="700" fill="#1a1d24"></text>
+        </g>
+        <g id="confetti"></g>
+      </g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">Un bucle repite varias veces lo mismo.</div>
+    <div class="cmp"><b>8</b> tarjetas → <b>3</b> tarjetas</div>
+  </div>
+  <div id="finalB" class="layer">
+    <svg width="170" height="170" viewBox="0 0 60 60" aria-hidden="true"><use href="#robotArt"/></svg>
+    <div class="key">«Menos tarjetas, mismo camino.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Bucle</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 76;
+  var CHAPTERS = [
+    { t: 0,  titulo: 'El cuadrado' },
+    { t: 8,  titulo: 'Sin bucle' },
+    { t: 30, titulo: 'Lo que se repite' },
+    { t: 42, titulo: 'Con bucle' },
+    { t: 64, titulo: 'Qué es un bucle' }
+  ];
+  var PAUSAS = [
+    { t: 30, pregunta: '¿Qué se repite en este programa?' },
+    { t: 50, pregunta: '¿Hará el mismo camino?' }
+  ];
+  var SUBS = [
+    [0.4,  7.8,  'El robot quiere dar una vuelta en cuadrado.'],
+    [8.3,  15.9, 'Sin bucle, necesita 8 tarjetas.'],
+    [16.3, 29.8, 'Funciona… pero son muchas tarjetas.'],
+    [32.4, 41.9, '“Avanza, gira” se repite 4 veces.'],
+    [42.3, 49.8, 'Con un bucle: REPITE 4 veces.'],
+    [59.0, 63.8, 'Hace exactamente lo mismo.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function easeOutBack(p){ var c1 = 1.3, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); }
+  function win(t, a, b, f){ f = f || .15; return Math.min(seg(t, a, a + f), 1 - seg(t, b - f, b)); }
+  function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var r = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    r = r + Math.imul(r ^ r >>> 7, 61 | r) ^ r; return ((r ^ r >>> 14) >>> 0) / 4294967296; }; }
+
+  /* ================= Tablero ================= */
+  var CELL = 130;
+  function CX(c){ return 155 + CELL * c; }   // centro de la columna c (1..4)
+  function CY(r){ return 105 + CELL * r; }   // centro de la fila r (1..4)
+  var grass = $('grass');
+  for (var r = 1; r <= 4; r++) for (var c = 1; c <= 4; c++)
+    el('rect', { x: 220 + (c - 1) * CELL, y: 170 + (r - 1) * CELL, width: CELL, height: CELL,
+      fill: (r + c) % 2 ? '#8fcf6e' : '#9ed97c', stroke: '#6fb24f', 'stroke-width': 2 }, grass);
+  var WAVES = [[260,121],[520,121],[700,121],[300,739],[600,739],[171,300],[171,560],[789,230],[789,480],[789,650]].map(function(p){
+    return { x: p[0], y: p[1], el: el('path', { d: 'M-16 0q8-7 16 0t16 0' }, $('waves')) };
+  });
+
+  /* ================= Programa del robot ================= */
+  // Salida: columna 2, fila 3, mirando hacia arriba.
+  var X0 = CX(2), Y0 = CY(3);
+  var SEQ = ['A','D','A','D','A','D','A','D'];      // AVANZA, GIRA A LA DERECHA… ×4
+  var T1 = 16.4, D1 = 1.6;                          // ejecución sin bucle
+  var T2 = 52.2, D2 = 1.3;                          // ejecución con REPITE ×4
+  var ACTS = [];
+  function buildRun(T, D, run, mv, tn){
+    SEQ.forEach(function(k, i){
+      var s = T + i * D + .1;
+      ACTS.push({ t0: s, t1: s + (k === 'A' ? mv : tn), type: k, run: run });
+    });
+  }
+  buildRun(T1, D1, 1, .9, .8);
+  buildRun(T2, D2, 2, .8, .7);
+  var DIRS = [[0,-1],[1,0],[0,1],[-1,0]];
+  function dirv(d){ return DIRS[((Math.round(d / 90) % 4) + 4) % 4]; }
+
+  // Estado del robot en el instante t
+  function pose(t){
+    var x = X0, y = Y0, d = 0;
+    for (var i = 0; i < ACTS.length; i++) {
+      var a = ACTS[i];
+      if (t <= a.t0) break;
+      var p = ease(seg(t, a.t0, a.t1));
+      if (a.type === 'A') {
+        var v = dirv(d), nx = x + v[0] * CELL, ny = y + v[1] * CELL;
+        if (p < 1) return { x: lerp(x, nx, p), y: lerp(y, ny, p), d: d };
+        x = nx; y = ny;
+      } else {
+        if (p < 1) return { x: x, y: y, d: d + 90 * p };
+        d += 90;
+      }
+    }
+    return { x: x, y: y, d: d };
+  }
+  // Rastro de una ejecución hasta el instante t
+  function trail(run, t){
+    var x = X0, y = Y0, d = 0, pts = [[x, y]];
+    for (var i = 0; i < ACTS.length; i++) {
+      var a = ACTS[i];
+      if (a.run !== run) continue;
+      if (t <= a.t0) break;
+      var p = ease(seg(t, a.t0, a.t1));
+      if (a.type === 'A') {
+        var v = dirv(d), nx = x + v[0] * CELL, ny = y + v[1] * CELL;
+        pts.push([lerp(x, nx, p), lerp(y, ny, p)]);
+        if (p < 1) break;
+        x = nx; y = ny;
+      } else {
+        if (p < 1) break;
+        d += 90;
+      }
+    }
+    return pts.length > 1 ? 'M' + pts.map(function(q){ return q[0].toFixed(1) + ' ' + q[1].toFixed(1); }).join('L') : '';
+  }
+
+  /* ================= Tarjetas ================= */
+  var PX = 1370;   // centro del panel del programa
+  function U(i){ return [PX - 222 + 148 * (i % 4), i < 4 ? 350 : 560]; }                        // fila de 8
+  function G(i){ var q = i >> 1, c = i & 1; return [PX - 241 + (q % 2) * 336 + c * 148, q < 2 ? 350 : 560]; }  // en parejas
+  function M(i){ return [PX + (i & 1 ? 74 : -74), 489]; }                                          // dentro de REPITE
+  function FALL(i){ return 8.6 + i * .8; }
+
+  var CARDS = SEQ.map(function(k, i){
+    var g = el('g', {}, $('cards'));
+    el('use', { href: k === 'A' ? '#cardA' : '#cardD' }, g);
+    var hl = el('rect', { x: -77, y: -77, width: 154, height: 154, rx: 28, fill: 'none', stroke: '#f5c518', 'stroke-width': 9 }, g);
+    return { g: g, hl: hl };
+  });
+  var BOXES = [0,1,2,3].map(function(q){
+    var a = G(2 * q), b = G(2 * q + 1);
+    var x = a[0] - 65 - 16, y = a[1] - 65 - 16, w = b[0] - a[0] + 130 + 32, h = 162;
+    var g = el('g', {}, $('boxes'));
+    el('rect', { x: x, y: y, width: w, height: h, rx: 28, fill: '#6c44b0', 'fill-opacity': .08, stroke: '#6c44b0', 'stroke-width': 5 }, g);
+    el('circle', { cx: x + 4, cy: y + 4, r: 26, fill: '#6c44b0', stroke: '#fff', 'stroke-width': 4 }, g);
+    var tx = el('text', { x: x + 4, y: y + 5, 'text-anchor': 'middle', 'dominant-baseline': 'central', 'font-size': 32, 'font-weight': 800, fill: '#fff' }, g);
+    tx.textContent = q + 1;
+    return g;
+  });
+  var REP = { x: PX, y: 455 };
+
+  /* ================= Confeti (semilla fija) ================= */
+  var CONF_T = 62.8, CONF_COLORS = ['#cf3f36','#df7619','#2a8f4f','#108394','#2c5bbf','#6c44b0','#f5c518'];
+  var R = rng(4242), CONF = [];
+  for (var n = 0; n < 40; n++) {
+    CONF.push({ el: el('rect', { x: -8, y: -5, width: 16, height: 10, rx: 2, fill: CONF_COLORS[n % 7] }, $('confetti')),
+      vx: lerp(-430, 430, R()), vy: lerp(-820, -380, R()), r0: R() * 360, spin: lerp(-540, 540, R()), delay: R() * .25 });
+  }
+
+  /* ================= Elementos ================= */
+  var cam = $('cam'), world = $('world'), robot = $('robot'), eyes = $('eyes'), guide = $('guide'),
+      trail1 = $('trail1'), trail2 = $('trail2'), panel = $('panel'), counter = $('counter'), counterT = $('counterT'),
+      repite = $('repite'), repHl = $('repHl'), vuelta = $('vuelta'), vueltaT = $('vueltaT'),
+      finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null, lastCounter = null, lastVuelta = null;
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches;
+
+    // Cámara: empieza cerca de la isla y se abre; acercamiento suave a las tarjetas en «Lo que se repite».
+    var ax = 960, ay = 540, wx = 960, wy = 540, z = 1;
+    if (!RM) {
+      var p0 = ease(seg(t, 7.4, 8.8));
+      ax = 960; ay = lerp(440, 540, p0); wx = lerp(480, 960, p0); wy = lerp(430, 540, p0); z = lerp(1.15, 1, p0);
+      var q0 = ease(seg(t, 30.4, 31.6)) * (1 - ease(seg(t, 40.6, 41.8)));
+      ay = lerp(ay, 500, q0); wx = lerp(wx, PX, q0); wy = lerp(wy, 450, q0); z = lerp(z, 1.12, q0);
+    }
+    cam.setAttribute('transform', 'translate(' + ax + ' ' + ay + ') scale(' + z + ') translate(' + (-wx) + ' ' + (-wy) + ')');
+    world.setAttribute('opacity', 1 - seg(t, 64, 64.8));
+
+    // Olas
+    WAVES.forEach(function(w, i){
+      var dx = RM ? 0 : 5 * Math.sin(t * 1.3 + i * 1.7);
+      w.el.setAttribute('transform', 'translate(' + (w.x + dx) + ' ' + w.y + ')');
+    });
+
+    // Cuadrado que quiere recorrer (línea discontinua)
+    guide.setAttribute('opacity', .75 * seg(t, 1.2, 2.4));
+
+    // Rastros
+    trail1.setAttribute('d', trail(1, t));
+    trail1.setAttribute('opacity', 1 - seg(t, 50.3, 51.1));
+    trail2.setAttribute('d', trail(2, t));
+
+    // Robot (respira y parpadea)
+    var P = pose(t);
+    var breath = RM ? 1 : 1 + .022 * Math.sin(t * 2 * Math.PI / 2.4);
+    robot.setAttribute('transform', 'translate(' + P.x.toFixed(2) + ' ' + P.y.toFixed(2) + ') rotate(' + P.d.toFixed(2) + ') scale(' + breath.toFixed(4) + ')');
+    var bt = (t + 1.3) % 3.9, blink = bt < .18 ? Math.sin(Math.PI * bt / .18) : 0;
+    eyes.setAttribute('transform', 'translate(0 28) scale(1 ' + (1 - .9 * blink).toFixed(3) + ') translate(0 -28)');
+
+    // Panel del programa
+    panel.setAttribute('opacity', seg(t, 8, 8.6));
+
+    // Tarjetas
+    CARDS.forEach(function(cd, i){
+      var f = FALL(i), op = 0, dy = 0;
+      if (t >= f) {
+        var pf = seg(t, f, f + .7);
+        op = cl(pf * 2.5);
+        dy = -220 * (1 - (RM ? ease(pf) : easeOutBack(pf)));
+      }
+      var pos = U(i);
+      var pg = ease(seg(t, 30.6, 31.8));
+      if (pg > 0) { var g = G(i); pos = [lerp(pos[0], g[0], pg), lerp(pos[1], g[1], pg)]; }
+      var pm = ease(seg(t, 42.4, 43.8));
+      if (pm > 0) { var g2 = G(i), m = M(i); pos = [lerp(g2[0], m[0], pm), lerp(g2[1], m[1], pm)]; }
+      if (i >= 2) op *= 1 - seg(t, 43.3, 43.9);
+      // Iluminación: ejecución sin bucle (cada tarjeta) y con bucle (solo las de dentro de REPITE)
+      var h = win(t, T1 + i * D1, T1 + (i + 1) * D1);
+      if (i < 2) for (var k = 0; k < 4; k++) {
+        var s = 2 * k + i;
+        h = Math.max(h, win(t, T2 + s * D2, T2 + (s + 1) * D2));
+      }
+      var sc = 1 + .06 * h;
+      cd.g.setAttribute('transform', 'translate(' + pos[0].toFixed(2) + ' ' + (pos[1] + dy).toFixed(2) + ') scale(' + sc.toFixed(4) + ')');
+      cd.g.setAttribute('opacity', op.toFixed(3));
+      cd.g.style.display = op > 0 ? '' : 'none';
+      cd.hl.setAttribute('opacity', h.toFixed(3));
+    });
+
+    // Recuadros de las parejas, numerados 1-4
+    BOXES.forEach(function(b, q){
+      b.setAttribute('opacity', (seg(t, 32 + q * 1.1, 32.5 + q * 1.1) * (1 - seg(t, 42.2, 42.7))).toFixed(3));
+    });
+
+    // Contador de tarjetas: cuenta las que han caído; luego pasa a 3
+    var landed = 0;
+    for (var i2 = 0; i2 < 8; i2++) if (t >= FALL(i2) + .55) landed++;
+    var nCount = t < 44.7 ? landed : 3;
+    var cOp = seg(t, FALL(0) + .4, FALL(0) + .7) * (t < 44.4 || t > 45 ? 1 : (t < 44.7 ? 1 - seg(t, 44.4, 44.7) : seg(t, 44.7, 45)));
+    counter.setAttribute('opacity', cOp.toFixed(3));
+    var ctxt = nCount + (nCount === 1 ? ' tarjeta' : ' tarjetas');
+    if (ctxt !== lastCounter) { counterT.textContent = ctxt; lastCounter = ctxt; }
+
+    // Tarjeta REPITE ×4
+    var pr = ease(seg(t, 43.5, 44.3));
+    var rs = RM ? 1 : lerp(.85, 1, pr);
+    repite.setAttribute('transform', 'translate(' + REP.x + ' ' + REP.y + ') scale(' + rs.toFixed(4) + ')');
+    repite.setAttribute('opacity', pr.toFixed(3));
+    var rh = win(t, T2 - .05, T2 + 8 * D2, .2), pulse = 0;
+    for (var k2 = 0; k2 < 4; k2++) pulse = Math.max(pulse, win(t, T2 + 2 * k2 * D2, T2 + 2 * k2 * D2 + .6, .3));
+    repHl.setAttribute('opacity', rh.toFixed(3));
+    repHl.setAttribute('stroke-width', (10 + 8 * pulse).toFixed(2));
+
+    // Contador de vueltas
+    vuelta.setAttribute('opacity', seg(t, 51.7, 52.2).toFixed(3));
+    var lap = Math.min(4, Math.max(1, Math.floor((t - T2) / (2 * D2)) + 1));
+    var vtxt = 'vuelta ' + lap + ' de 4';
+    if (vtxt !== lastVuelta) { vueltaT.textContent = vtxt; lastVuelta = vtxt; }
+
+    // Confeti al terminar con éxito (no con «reducir movimiento»)
+    var showConf = !RM && t > CONF_T && t < CONF_T + 2.4;
+    CONF.forEach(function(c){
+      var tau = t - CONF_T - c.delay;
+      if (!showConf || tau <= 0) { c.el.setAttribute('opacity', 0); return; }
+      var x = 480 + c.vx * tau, y = 300 + c.vy * tau + 620 * tau * tau;
+      c.el.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (c.r0 + c.spin * tau).toFixed(1) + ')');
+      c.el.setAttribute('opacity', (1 - seg(tau, 1.6, 2.1)).toFixed(3));
+    });
+
+    // Textos finales
+    var fa = seg(t, 64.4, 65.2) * (1 - seg(t, 69.5, 70.1));
+    finalA.style.opacity = fa;
+    finalA.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - seg(t, 64.4, 65.2))).toFixed(1) + 'px)';
+    var fb = seg(t, 70.1, 70.9);
+    finalB.style.opacity = fb;
+    finalB.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - fb)).toFixed(1) + 'px)';
+
+    // Subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false;
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>

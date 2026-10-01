@@ -18,6 +18,7 @@ Cómo abrirla
 - Los PDF del material imprimible están en la carpeta «materiales».
 - Los proyectos de Scratch están en «materiales/scratch». Se abren en Scratch con
   Archivo > Cargar desde tu ordenador.
+- Los vídeos de conceptos están en «videos» y se ven desde la guía (Para proyectar).
 - Sin internet funciona todo menos los enlaces a webs externas (EducaMadrid,
   Scratch online…); el tipo de letra cambia, pero el contenido es el mismo.
 
@@ -39,6 +40,7 @@ y proyectos de Scratch.
 - `index.html`: la guía completa (un solo archivo).
 - `materiales/`: material imprimible en PDF (M01-M27).
 - `materiales/scratch/`: proyectos de Scratch (.sb3).
+- `videos/`: vídeos animados de conceptos (HTML) y sus miniaturas.
 
 Pictogramas: Sergio Palao. Origen: ARASAAC (arasaac.org). Licencia: CC BY-NC-SA. Propiedad: Gobierno de Aragón.
 Uso educativo y no comercial.
@@ -58,6 +60,8 @@ def page(noindex=False):
 def files():
     out = [(p, f"materiales/{p.name}") for p in sorted((HERE / "materiales").glob("M*.pdf"))]
     out += [(p, f"materiales/scratch/{p.name}") for p in sorted((HERE / "materiales" / "scratch").glob("*.sb3"))]
+    out += [(p, f"videos/{p.name}") for p in sorted((HERE / "videos").glob("anim-*.html"))]
+    out += [(p, f"videos/img/{p.name}") for p in sorted((HERE / "videos" / "img").glob("*.jpg"))]
     return out
 
 
@@ -75,6 +79,7 @@ def make_github():
     if GH.exists():
         shutil.rmtree(GH)
     (GH / "materiales" / "scratch").mkdir(parents=True)
+    (GH / "videos" / "img").mkdir(parents=True)
     (GH / "index.html").write_text(page(noindex=True), encoding="utf-8")
     for src, arc in files():
         shutil.copyfile(src, GH / arc)

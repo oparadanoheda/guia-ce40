@@ -1,6 +1,6 @@
 # Guía didáctica · Código Escuela 4.0 · Primaria · 2026-2027
 
-Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, herramientas interactivas para la pizarra digital, material imprimible en PDF y proyectos de Scratch.
+Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, herramientas interactivas para la pizarra digital, vídeos animados que explican los conceptos, material imprimible en PDF y proyectos de Scratch.
 
 **La guía se consulta en la web de GitHub Pages de este repositorio:** https://oparadanoheda.github.io/guia-ce40/
 
@@ -10,7 +10,8 @@ Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el
 |---|---|
 | `docs/` | La web publicada (`index.html`, PDF y proyectos de Scratch). GitHub Pages la sirve desde aquí |
 | `00_General_CE40_26-27.md`, `1_primero.md` … `6_sexto.md`, `07_…`, `08_…` | Los textos de la guía: método, sesiones de cada curso, guías de herramientas y catálogo de material |
-| `web/` | Los programas que generan la web, los PDF y los archivos de Scratch |
+| `web/` | Los programas que generan la web, los PDF y los archivos de Scratch, y los vídeos de conceptos (`web/videos/`) |
+| `Animaciones/` | Encargo y guiones de los vídeos, e informe de entrega |
 | `LEEME_PROYECTO.md` | Documento del proyecto: decisiones, estructura, cómo se regenera, comprobaciones e historial |
 
 ## Regenerar la web
