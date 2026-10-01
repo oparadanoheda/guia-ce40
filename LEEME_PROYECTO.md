@@ -148,7 +148,7 @@ python pictos.py               # solo si cambian los pictogramas (descarga y cre
 python materiales.py           # todos los PDF; o solo algunos: python materiales.py M04 M11
 python scratch_gen.py          # los 9 .sb3 (y copia en Material imprimible/Scratch)
 python build_web.py            # la web: programacion_CE40.html
-python empaquetar.py           # el zip para distribuir y la carpeta «Para subir a GitHub»
+python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea el zip del aula virtual
 ```
 
 - **Orden** si cambia todo: pictos → materiales → scratch → web → zip. Si solo cambian los .md, basta con `build_web.py` y `empaquetar.py`.
@@ -189,9 +189,14 @@ python empaquetar.py           # el zip para distribuir y la carpeta «Para subi
 
   Pasos completos en `Cómo subir la guía al aula virtual.txt`. No está probado todavía en el aula virtual real.
 - **Carpeta compartida o USB:** descomprimir el zip y abrir `index.html`. Funciona sin internet, salvo los enlaces externos y las fuentes de Google, que se sustituyen por otras.
-- **GitHub Pages** (web pública con enlace propio): `empaquetar.py` genera también `Para subir a GitHub/guia-ce40/` (`index.html` con `noindex` para que no salga en buscadores, `README.md` y `materiales/`). Instrucciones paso a paso para alguien sin experiencia: `Para subir a GitHub/Cómo publicar la guía en GitHub Pages.md`. Es un servicio externo a EducaMadrid: consultarlo con el equipo directivo.
+- **GitHub Pages (sitio oficial de la guía):** https://oparadanoheda.github.io/guia-ce40/ · repositorio https://github.com/oparadanoheda/guia-ce40 (público).
+  - La carpeta del proyecto **es** el repositorio Git: textos, `web/` y la web publicada en `docs/` (Pages sirve la rama `main`, carpeta `/docs`).
+  - **Para publicar un cambio:** regenerar (`build_web.py` y `empaquetar.py`), revisar y luego `git add -A`, `git commit` y `git push`. La web se actualiza en 1-2 minutos.
+  - El `.gitignore` deja fuera los documentos de partida del centro (dotación, planificación y secuenciación 24-25, calendario, propuesta de secuenciación), `_version_anterior/`, `Material imprimible/`, el zip y los temporales.
+  - El `index.html` de `docs/` lleva `noindex` para que no salga en buscadores.
+  - Autor de los commits: `oparadanoheda` con correo `noreply` de GitHub, configurado solo en este repositorio. La credencial la guarda Git Credential Manager tras iniciar sesión en el navegador.
 - **Cabecera HTML:** `programacion_CE40.html` es un fragmento, porque el artifact añade su propio esqueleto. `empaquetar.py` le pone `<!doctype html>`, `charset` y `viewport` en el zip y en la copia para GitHub. Sin eso habría problemas de acentos, modo antiguo del navegador y vista diminuta en el móvil.
-- **Netlify** (alternativa): arrastrar la carpeta `Para subir a GitHub/guia-ce40` a app.netlify.com/drop.
+- **Netlify** (alternativa): arrastrar la carpeta `docs/` a app.netlify.com/drop.
 
 ---
 
@@ -287,6 +292,7 @@ Detalle en `08_Plantillas_y_material.md`.
       - enlaces «Guía paso a paso» y «Ver la rúbrica» rotos desde la renumeración (ahora las anclas son `g-<herramienta>` y `rubrica`, y un enlace a un desplegable lo abre);
       - listas de «Lo básico» que salían en una línea;
       - guías de ScratchJr que aparecían en las sesiones desenchufadas de 2º T2 (los recursos se buscan en la sesión y en el texto del trimestre, sin sus «Nota:»).
+15. **Repositorio en GitHub:** el proyecto pasa a ser un repositorio Git publicado en GitHub, con la web en `docs/`. Sustituye a la subida manual de archivos y a la carpeta «Para subir a GitHub».
 12. **Botón «Volver a la sesión»:** al consultar una herramienta, guía o rúbrica desde una sesión, se vuelve al mismo punto. Se descartaron otras opciones: abrir las herramientas encima de la sesión (más riesgo, y solo resolvía las herramientas) y abrirlas en otra pestaña (recarga 2 MB y acumula pestañas en la pizarra).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
