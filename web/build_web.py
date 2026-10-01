@@ -879,7 +879,7 @@ def projectables_page():
 <p class="lede">Para usar con toda la clase en la pizarra. Cada sesión enlaza la suya con el reto ya cargado. Más abajo, los <a href="#videos">vídeos que explican conceptos</a>.</p>
 <div class="pj-gallery">{tiles}</div>
 <h2 class="h-sec" id="videos">Vídeos que explican conceptos</h2>
-<p class="small">Animaciones de uno a dos minutos, con subtítulos y sin sonido. Cada sesión enlaza el suyo.</p>
+<p class="small">Animaciones de uno a dos minutos, con subtítulos y efectos de sonido opcionales. Cada sesión enlaza el suyo.</p>
 <div class="vid-gallery">{video_tiles()}</div>
 <h2 class="h-sec">Otras aplicaciones recomendadas</h2>
 <p class="small">Se abren en otra pestaña. Gratuitas y sin cuentas de alumnado.</p>
@@ -920,7 +920,7 @@ def video_pages(courses):
 <div class="vid-frame"><iframe data-src="videos/{fname}" title="Vídeo: {E(title)}" allow="fullscreen" allowfullscreen></iframe></div>
 <p class="vid-idea">{E(idea)}</p>
 <ul class="vid-tips"><li><b>Pausas para pensar:</b> actívalas en la barra del vídeo y se detiene en dos preguntas para la clase.</li>
-<li><b>Velocidad 0,75×</b> para los más pequeños. Teclado: espacio, ← → (5 s).</li><li>Sin sonido: la narración son los subtítulos.</li></ul>
+<li><b>Velocidad 0,75×</b> para los más pequeños. Teclado: espacio, ← → (5 s).</li><li><b>Sonido:</b> efectos suaves (pasos del robot, aciertos, el timbre…), sin voz ni música. Se activa en la barra del vídeo y el navegador lo recuerda. La narración son los subtítulos.</li></ul>
 <h2 class="h-sec">Se usa en</h2><nav class="rindex" aria-label="Sesiones">{chips}</nav>
 </div></section>''')
     return out

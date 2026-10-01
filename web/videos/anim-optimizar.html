@@ -67,10 +67,10 @@
   .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
   .seg .cb{height:64px;background:transparent;border-radius:14px}
   .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
-  #pz .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
-  #pz .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
-  #pz[aria-checked="true"] .sw{background:#2a8f4f}
-  #pz[aria-checked="true"] .sw::after{left:32px}
+  #pz .sw,#snd .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after,#snd .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw,#snd[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after,#snd[aria-checked="true"] .sw::after{left:32px}
   .hide{display:none!important}
 </style>
 </head>
@@ -144,6 +144,7 @@
         <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
         <button class="cb" data-rate="1" aria-pressed="true">1×</button>
       </div>
+      <button class="cb" id="snd" role="switch" aria-checked="false"><span class="sw"></span>Sonido</button>
       <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
       <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
         <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -190,6 +191,13 @@
     [27.0, 35.8, '“Avanza 3 veces y gira” se repite 3 veces.'],
     [36.3, 43.8, 'Lo juntamos con REPITE ×3.'],
     [56.0, 59.8, 'Mismo camino, 7 tarjetas menos.']
+  ];
+  // Efectos de sonido: [segundo, tipo] (o [segundo, 'timbre', duración]). Los tipos están en el bloque «Sonido».
+  var SONIDOS = [
+    [8.7, 'paso'], [9.94, 'paso'], [11.2, 'paso'], [12.42, 'giro'], [13.7, 'paso'], [14.94, 'paso'], [16.2, 'paso'],
+    [17.42, 'giro'], [18.7, 'paso'], [19.94, 'paso'], [21.2, 'paso'], [22.42, 'giro'], [23.3, 'bien'], [38.9, 'aparece'],
+    [46.9, 'paso'], [47.66, 'paso'], [48.4, 'paso'], [49.14, 'giro'], [49.9, 'paso'], [50.66, 'paso'], [51.4, 'paso'],
+    [52.14, 'giro'], [52.9, 'paso'], [53.66, 'paso'], [54.4, 'paso'], [55.14, 'giro'], [56.0, 'exito'], [66.12, 'clave']
   ];
 
   /* ================= Utilidades ================= */
@@ -487,6 +495,84 @@
   }
   addEventListener('resize', fit); fit();
 
+  /* ================= Sonido: efectos sintetizados (sin archivos, sin voz, sin música) ================= */
+  // Solo suena durante la reproducción, al pasar por cada instante de SONIDOS. Apagado por defecto;
+  // cada navegador recuerda la elección. Nunca suena con ?export=1.
+  var SND = (function(){
+    var KEY = 'ce40-videos-sonido', on = false, ctx = null, comp = null, out = null, noiseBuf = null;
+    try { on = localStorage.getItem(KEY) === '1'; } catch (e) { /* sin almacenamiento */ }
+    function bus(){ out = ctx.createGain(); out.gain.value = .55; out.connect(comp); }
+    function ac(){
+      if (!ctx) {
+        var C = window.AudioContext || window.webkitAudioContext;
+        if (!C) return null;
+        ctx = new C();
+        comp = ctx.createDynamicsCompressor(); comp.connect(ctx.destination);
+        bus();
+        noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+        var d = noiseBuf.getChannelData(0), s = 7;
+        for (var i = 0; i < d.length; i++) { s = (s * 16807) % 2147483647; d[i] = s / 1073741823.5 - 1; }
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    }
+    function env(g, t, a, peak, dur){
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    }
+    function tone(t, f0, f1, dur, type, peak){
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type; o.frequency.setValueAtTime(f0, t);
+      if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+      env(g, t, .008, peak, dur); o.connect(g); g.connect(out); o.start(t); o.stop(t + dur + .05);
+    }
+    function noise(t, dur, freq, q, peak, ftype){
+      var n = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      n.buffer = noiseBuf; f.type = ftype || 'bandpass'; f.frequency.value = freq; f.Q.value = q;
+      env(g, t, .004, peak, dur); n.connect(f); f.connect(g); g.connect(out); n.start(t); n.stop(t + dur + .05);
+    }
+    var KIT = {
+      paso:    function(t){ tone(t, 620, 420, .09, 'triangle', .22); },
+      giro:    function(t){ tone(t, 420, 760, .16, 'sine', .1); },
+      desliza: function(t){ tone(t, 330, 560, .28, 'sine', .08); },
+      aparece: function(t){ tone(t, 900, 1350, .07, 'sine', .07); },
+      clic:    function(t){ noise(t, .03, 2600, 1.2, .25); tone(t, 1400, 1400, .025, 'square', .03); },
+      bien:    function(t){ tone(t, 880, 880, .12, 'sine', .13); tone(t + .1, 1320, 1320, .22, 'sine', .13); },
+      punto:   function(t){ tone(t, 988, 988, .08, 'square', .045); tone(t + .08, 1319, 1319, .28, 'square', .045); },
+      mal:     function(t){ tone(t, 240, 120, .3, 'triangle', .2); },
+      duda:    function(t){ tone(t, 440, 440, .13, 'sine', .1); tone(t + .14, 560, 560, .2, 'sine', .1); },
+      exito:   function(t){ [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ tone(t + i * .09, f, f, .35, 'triangle', .1); }); },
+      clave:   function(t){ tone(t, 783.99, 783.99, 1.4, 'sine', .07); tone(t, 1174.66, 1174.66, 1.2, 'sine', .04); },
+      nota:    function(t){ tone(t, 261.63, 261.63, .6, 'triangle', .25); tone(t, 523.25, 523.25, .4, 'sine', .06); },
+      aplauso: function(t){ [0, .012, .03].forEach(function(d){ noise(t + d, .05, 1300, .9, .5); }); },
+      luz:     function(t){ tone(t, 520, 1040, .22, 'sine', .08); tone(t + .05, 780, 1560, .2, 'sine', .04); },
+      apaga:   function(t){ tone(t, 1040, 520, .22, 'sine', .07); },
+      pitido:  function(t){ tone(t, 1900, 1900, .05, 'square', .025); },
+      coche:   function(t){ noise(t, 1.4, 500, .7, .05, 'lowpass'); },
+      cae:     function(t){ tone(t, 140, 55, .25, 'sine', .3); noise(t, .08, 300, .8, .12, 'lowpass'); },
+      crack:   function(t){ noise(t, .12, 3200, 1.5, .12); },
+      timbre:  function(t, dur){
+        var g = ctx.createGain(), am = ctx.createGain(), lfo = ctx.createOscillator(), lg = ctx.createGain();
+        g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.035, t + .05);
+        g.gain.setValueAtTime(.035, t + dur - .25); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+        am.gain.value = .5; lg.gain.value = .5; lfo.frequency.value = 22;
+        lfo.connect(lg); lg.connect(am.gain); am.connect(g); g.connect(out);
+        [1450, 2150].forEach(function(f){ var o = ctx.createOscillator(); o.frequency.value = f; o.connect(am); o.start(t); o.stop(t + dur + .05); });
+        lfo.start(t); lfo.stop(t + dur + .05);
+      }
+    };
+    return {
+      get on(){ return on; },
+      set: function(v){ on = !!v; try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) { /* sin almacenamiento */ } if (on) ac(); else this.hush(); },
+      prime: function(){ if (on && !EXPORT) ac(); },
+      hush: function(){ if (!ctx || !out) return; out.gain.setTargetAtTime(.0001, ctx.currentTime, .03); bus(); },
+      // suena lo que hay entre a y b (solo avances normales de la reproducción, no saltos)
+      cross: function(a, b, r){
+        if (!on || EXPORT || !(b > a) || b - a > .3 || !ac()) return;
+        SONIDOS.forEach(function(c){ if (c[0] > a && c[0] <= b && KIT[c[1]]) KIT[c[1]](ctx.currentTime + .01, (c[2] || 2) / (r || 1)); });
+      }
+    };
+  })();
+
   /* ================= Reproductor ================= */
   var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
   var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
@@ -519,7 +605,7 @@
     $('chap').textContent = ch.titulo;
     $('track').setAttribute('aria-valuenow', Math.round(T));
   }
-  function setT(x){ T = cl(x, 0, DUR); render(T); ui(); }
+  function setT(x){ var a = T; T = cl(x, 0, DUR); render(T); ui(); if (playing) SND.cross(a, T, rate); }
 
   function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
   function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
@@ -527,11 +613,12 @@
   function play(){
     if (playing) return;
     if (T >= DUR - 1e-3) T = 0;
+    SND.prime();
     hideOverlays();
     playing = true; last = null; ui(); showBar();
     requestAnimationFrame(tick);
   }
-  function pause(){ playing = false; ui(); showBar(); }
+  function pause(){ playing = false; SND.hush(); ui(); showBar(); }
   function toggle(){ playing ? pause() : play(); }
   function tick(now){
     if (!playing) return;
@@ -585,7 +672,7 @@
     setT(cl((e.clientX - r.left) / r.width) * DUR);
   }
   track.addEventListener('pointerdown', function(e){
-    dragging = true; wasPlaying = playing; playing = false;
+    dragging = true; wasPlaying = playing; playing = false; SND.hush();
     hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
   });
   track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
@@ -615,6 +702,10 @@
     document.body.classList.toggle('pausas', pausasOn);
     if (!pausasOn) qBox.classList.add('hide');
   });
+  var sndB = $('snd');
+  function sndUI(){ sndB.setAttribute('aria-checked', SND.on); }
+  sndB.addEventListener('click', function(){ SND.set(!SND.on); sndUI(); });
+  sndUI();
   var root = document.documentElement, fsB = $('fs');
   fsB.addEventListener('click', function(){
     if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);

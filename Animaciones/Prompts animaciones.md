@@ -46,6 +46,10 @@ Se usarán de dos formas: como página interactiva dentro de la guía y converti
 - Teclado: espacio = reproducir/pausa; flechas izquierda y derecha = 5 segundos atrás o adelante; Inicio = volver a empezar.
 - Al terminar se queda en el último fotograma (la frase clave), con el botón de volver a ver.
 
+### Sonido (añadido después de la primera entrega)
+
+Los 17 vídeos entregados tienen efectos de sonido opcionales, añadidos en la integración: motor Web Audio común (bloque «Sonido: efectos sintetizados»), botón «Sonido» en la barra (apagado por defecto) y una lista `SONIDOS = [[segundo, 'tipo'], …]` junto a `SUBS`. Un vídeo nuevo debe incluir lo mismo: copia el bloque y el botón de `web/videos/anim-bucle.html` y escribe su lista con los tipos que ya existen (paso, giro, desliza, aparece, clic, bien, punto, mal, duda, exito, clave, nota, aplauso, luz, apaga, pitido, coche, cae, crack, timbre). Nada de voz ni música.
+
 ### Pausas para pensar
 
 - Cada guion marca 2 o 3 momentos con una pregunta. La pregunta se coloca justo antes de que se vea la respuesta, para que la clase la prediga.
