@@ -1,0 +1,7 @@
+{
+  "name": "pruebas-scratch-ce40",
+  "private": true,
+  "description": "Carga y ejecuta los .sb3 de la guía en scratch-vm para comprobar que funcionan.",
+  "scripts": { "test": "node test.js ../materiales/scratch" },
+  "dependencies": { "scratch-vm": "*", "scratch-storage": "*" }
+}

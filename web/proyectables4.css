@@ -1,0 +1,68 @@
+/* Ambientación y animaciones de todas las herramientas (ampliación del piloto del robot).
+   Se desactivan con el interruptor «Sin animaciones» (clase pj-still en <html>) y con «reducir movimiento» del sistema. */
+
+/* ---- comunes ---- */
+.pj-conf{animation:pjconf 1.1s ease-out forwards;transform-box:fill-box;transform-origin:center}
+.pj-pop{animation:pjpop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pjpop{0%{transform:scale(.6);opacity:.2}100%{transform:scale(1);opacity:1}}
+.pj-shakeel{animation:pjshakeel .4s linear}
+@keyframes pjshakeel{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+.pj-okflash{animation:pjokflash .7s ease-out}
+@keyframes pjokflash{0%{box-shadow:0 0 0 0 rgba(42,143,79,.6)}100%{box-shadow:0 0 0 18px rgba(42,143,79,0)}}
+.pj-burst{position:fixed;width:0;height:0;pointer-events:none;z-index:9998}
+.pj-burst i{position:absolute;left:-5px;top:-5px;width:10px;height:10px;border-radius:2px;animation:pjconf 1.2s ease-out forwards}
+.pj-status.pj-good,.pj-status.pj-bad{animation:pjpop .35s ease-out}
+.pj-still .pj-page *,.pj-still .pj-burst{animation:none!important;transition:none!important}
+
+/* ---- personajes en tablero (Bee-Bot y laberinto, como el robot) ---- */
+.pj-grid .pj-bot{transition:transform .5s cubic-bezier(.45,.05,.25,1)}
+.pj-grid .pj-bot-rot{transition:transform .42s ease-in-out}
+.pj-grid .pj-flag{transform-box:fill-box;transform-origin:left center;animation:pjflag 1.6s ease-in-out infinite}
+@keyframes pjflag{50%{transform:skewY(-8deg) scaleX(.9)}}
+#p-beebot .pj-two,#p-laberinto .pj-two{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+#p-beebot .pj-grid,#p-laberinto .pj-grid{max-width:640px;border-radius:18px;box-shadow:0 8px 24px rgba(20,40,80,.18)}
+
+/* ---- hundir la flota: mar ---- */
+.pj-fleet{background:#2f7fc1;padding:10px;border-radius:16px;box-shadow:0 8px 24px rgba(20,40,80,.2)}
+.pj-fleet>b{color:#e8f3ff}
+.pj-sea{background:#4fa3d9 radial-gradient(circle at 30% 30%,rgba(255,255,255,.25),transparent 55%);position:relative;overflow:hidden;transition:transform .12s}
+.pj-sea::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(170deg,transparent 0 10px,rgba(255,255,255,.12) 10px 12px);pointer-events:none}
+.pj-sea:hover{background-color:#68b4e3;transform:scale(1.04)}
+.pj-sea.water{background:#cfe6f7}
+.pj-sea.water::after{display:none}
+.pj-sea i.w{width:30%;height:30%;border:3px solid #4f86b8;background:transparent}
+.pj-sea.just.water i.w{animation:pjsplash .7s ease-out}
+@keyframes pjsplash{0%{transform:scale(.2);opacity:1;border-width:6px}100%{transform:scale(1);opacity:1;border-width:3px}}
+.pj-sea.hit{background:#ffb199}
+.pj-sea.just.hit,.pj-sea.just.sunk{animation:pjboom .55s ease-out}
+@keyframes pjboom{0%{box-shadow:inset 0 0 0 40px #ffd84a;transform:scale(1.15)}100%{box-shadow:inset 0 0 0 0 #ffd84a;transform:scale(1)}}
+.pj-sea.sunk{background:#4a5568}
+.pj-sea.sunk i.s{background:#c9ced8;box-shadow:0 3px 0 #2d3442}
+
+/* ---- semáforo: luz con resplandor ---- */
+.pj-plight.is-green .pic{filter:drop-shadow(0 0 18px rgba(80,220,120,.75))}
+.pj-plight.is-red .pic{filter:drop-shadow(0 0 18px rgba(240,80,70,.65))}
+.pj-plight{transition:border-color .2s}
+.pj-plight.is-green{border-color:#2a8f4f}.pj-plight.is-red{border-color:#cf3f36}
+
+/* ---- secuencias: se revisan una a una ---- */
+.pj-vign.pj-reveal{animation:pjpop .45s cubic-bezier(.3,1.6,.5,1) both;animation-delay:calc(var(--i) * 120ms)}
+.pj-vign.no.pj-reveal{animation-name:pjnoreveal}
+@keyframes pjnoreveal{0%{transform:scale(.9)}40%{transform:translateX(-6px)}70%{transform:translateX(6px)}100%{transform:none}}
+
+/* ---- circuito: la corriente circula y la bombilla brilla ---- */
+.pj-circ .pj-flow{animation:pjflow .6s linear infinite}
+@keyframes pjflow{to{stroke-dashoffset:-18}}
+.pj-circ .pj-halo{transform-box:fill-box;transform-origin:center;animation:pjhalo 1.4s ease-in-out infinite}
+@keyframes pjhalo{50%{transform:scale(1.15);opacity:.35}}
+
+/* ---- votaciones: las barras crecen ---- */
+.pj-bar{transition:height .45s cubic-bezier(.3,1.3,.5,1)}
+
+/* ---- temporizador: anillo de la fase ---- */
+.pj-clock .pj-ring{width:clamp(220px,30vw,340px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--ph,#2c5bbf) calc(var(--p,100) * 1%),var(--tint2,#eceff3) 0);transition:background .5s}
+.pj-clock .pj-ring>div{width:82%;aspect-ratio:1;border-radius:50%;background:var(--sheet,#fff);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.pj-clock .pj-ring b{font:700 clamp(3rem,8vw,6rem)/1 var(--sans);font-variant-numeric:tabular-nums}
+.pj-clock .pj-ring span{font:700 1.6rem var(--sans);color:var(--ph,#2c5bbf)}
+#p-laberinto .pj-grid{aspect-ratio:auto;height:auto}

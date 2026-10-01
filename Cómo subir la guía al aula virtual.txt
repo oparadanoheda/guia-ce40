@@ -1,0 +1,35 @@
+CÓMO SUBIR LA GUÍA AL AULA VIRTUAL DE EDUCAMADRID
+(archivo: Guia_CE40_2026-27_web.zip)
+
+ANTES
+- Hace falta un curso del aula virtual del centro donde esté matriculado el profesorado,
+  por ejemplo «Claustro · Código Escuela 4.0». Si no existe, lo crea quien administre el
+  aula virtual del centro (normalmente el coordinador o la coordinadora TIC).
+
+SUBIRLA (una sola vez, unos 5 minutos)
+1. Entra en el curso y pulsa «Modo de edición».
+2. En la sección que quieras: «Añadir una actividad o un recurso» > «Archivo».
+3. Nombre: «Guía Código Escuela 4.0 · 2026-27».
+4. En «Seleccionar archivos», arrastra el zip Guia_CE40_2026-27_web.zip.
+5. Haz clic sobre el zip (dentro de ese mismo cuadro) > «Descomprimir».
+   Aparecen index.html, LEEME.txt y la carpeta «materiales».
+6. Haz clic sobre index.html > «Establecer archivo principal» (queda en negrita).
+7. Puedes borrar el zip de ese cuadro (clic sobre él > «Borrar»); ya no hace falta.
+8. En «Apariencia» > «Mostrar», elige «Abrir».
+9. «Guardar cambios y mostrar».
+
+COMPROBARLO
+- Se abre la portada de la guía. Entra en una sesión y pulsa un PDF (M01, por ejemplo)
+  y, en 4º S7, un archivo SB3: deben abrirse o descargarse.
+- Si en lugar de verse la guía se descarga el archivo index.html, revisa el paso 8
+  («Abrir») o pregunta a la administración del aula virtual si se permite mostrar
+  archivos HTML.
+
+ACTUALIZARLA (cuando haya una versión nueva)
+- Edita el recurso, borra todo lo que hay en el cuadro de archivos, sube el zip nuevo
+  y repite los pasos 5 a 7.
+
+OTRAS FORMAS DE USARLA
+- Sin aula virtual: descomprime el zip en una carpeta compartida del centro o en un USB
+  y abre index.html con doble clic. Funciona también sin internet.
+- Para imprimir: los PDF están también en la carpeta «Material imprimible».

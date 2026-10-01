@@ -1,0 +1,56 @@
+/* Modo proyección de la sesión */
+.pz-open{display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;padding:.55rem 1rem;border-radius:.6rem;border:0;cursor:pointer;
+  background:var(--c);color:#fff;font:600 .95rem/1 'Instrument Sans',system-ui,sans-serif}
+.pz-open:hover{filter:brightness(1.08)}
+.pz-open svg{width:1.1em;height:1.1em}
+.pz{position:fixed;inset:0;z-index:9999;background:#fbfbf8;color:#1a1d24;display:flex;flex-direction:column;
+  font-family:'Instrument Sans',system-ui,sans-serif}
+.pz-top{display:flex;align-items:center;gap:1rem;padding:.8rem 1.4rem;border-top:.45rem solid var(--pz)}
+.pz-crumb{font:600 .95rem/1 'Instrument Sans',sans-serif;color:#5b6272;letter-spacing:.04em;text-transform:uppercase}
+.pz-dots{display:flex;gap:.45rem;margin:0 auto}
+.pz-dot{width:.8rem;height:.8rem;border-radius:50%;border:2px solid var(--pz);background:transparent;padding:0;cursor:pointer}
+.pz-dot.on{background:var(--pz)}
+.pz-x{border:0;background:#eceef2;color:#1a1d24;width:2.6rem;height:2.6rem;border-radius:50%;font-size:1.6rem;line-height:1;cursor:pointer}
+.pz-stage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:2vh 6vw;cursor:pointer;overflow:auto}
+.pz-slide{width:100%;max-width:1400px;display:flex;flex-direction:column;gap:3.2vh}
+.pz-eyebrow{margin:0;font:600 clamp(1rem,1.8vw,1.6rem)/1.2 'Instrument Sans',sans-serif;color:var(--pz);letter-spacing:.06em;text-transform:uppercase}
+.pz-title{margin:0;font:700 clamp(2.6rem,7vw,6.5rem)/1.02 'Instrument Sans',sans-serif;letter-spacing:-.02em}
+.pz-label{align-self:flex-start;font:700 clamp(.9rem,1.5vw,1.3rem)/1 'Instrument Sans',sans-serif;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;background:var(--pz);padding:.5em .9em;border-radius:.4em}
+.pz-obj{display:flex;flex-direction:column;gap:1.4vh;border-left:.5rem solid var(--pz);padding-left:1.6vw}
+.pz-obj p,.pz-big{margin:0;font:500 clamp(1.5rem,3.4vw,3.2rem)/1.25 'Literata',Georgia,serif}
+.pz-h2{margin:0;font:700 clamp(2rem,4.6vw,4.4rem)/1.08 'Instrument Sans',sans-serif}
+.pz-words{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:2vw}
+.pz-word{background:#fff;border:2px solid #e3e6ec;border-top:.5rem solid var(--pz);border-radius:1rem;padding:2.2vh 1.8vw}
+.pz-word b{display:block;font:700 clamp(1.8rem,3.6vw,3.4rem)/1.1 'Instrument Sans',sans-serif;margin-bottom:1vh}
+.pz-word p{margin:0;font:500 clamp(1.1rem,2vw,1.9rem)/1.3 'Literata',Georgia,serif;color:#343a46}
+.pz-key{margin:0;font:600 italic clamp(2.4rem,6vw,6rem)/1.12 'Literata',Georgia,serif;color:#1a1d24}
+.pz-key:before{content:'«';color:var(--pz)}.pz-key:after{content:'»';color:var(--pz)}
+.pz-key-sm{font-size:clamp(1.8rem,4vw,4rem)}
+.pz-keyslide{align-items:center;text-align:center}
+.pz-keyslide .pz-label{align-self:center}
+.pz-tools{display:flex;flex-wrap:wrap;gap:1.2vw}
+.pz-tool{border:0;border-radius:1rem;padding:1.4rem 2rem;background:var(--pz);color:#fff;cursor:pointer;
+  font:700 clamp(1.2rem,2.2vw,2.1rem)/1.15 'Instrument Sans',sans-serif}
+.pz-timer{background:#1a1d24}
+.pz-phases{display:flex;gap:.4rem;margin-top:2vh}
+.pz-phase{background:#eceef2;border-radius:.6rem;padding:1.4vh 1vw;min-width:0}
+.pz-phase b{display:block;font:700 clamp(.9rem,1.6vw,1.5rem)/1.1 'Instrument Sans',sans-serif}
+.pz-phase small{font:500 clamp(.8rem,1.2vw,1.1rem)/1 'Instrument Sans',sans-serif;color:#5b6272}
+.pz-sub{margin:0;font:500 clamp(1.2rem,2.2vw,2rem)/1.3 'Literata',Georgia,serif;color:#5b6272}
+.pz-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.8rem 1.4rem 1.1rem}
+.pz-nav button{border:2px solid var(--pz);background:#fff;color:#1a1d24;border-radius:.6rem;padding:.7rem 1.3rem;cursor:pointer;
+  font:600 1.05rem/1 'Instrument Sans',sans-serif}
+.pz-nav button:disabled{opacity:.3;cursor:default}
+.pz-hint{font:500 .9rem/1.2 'Instrument Sans',sans-serif;color:#8a92a3;text-align:center}
+@media (max-width:640px){.pz-hint{display:none}.pz-phases{flex-wrap:wrap}.pz-phase{flex:1 1 40%!important}}
+
+/* Botón «Volver a la sesión» */
+.back-pill{position:fixed;left:1rem;bottom:1rem;z-index:900;max-width:min(30rem,calc(100vw - 2rem));
+  display:block;padding:.75rem 1.1rem;border:0;border-radius:999px;cursor:pointer;text-align:left;
+  background:var(--c,#2c5bbf);color:#fff;font:600 .95rem/1.25 'Instrument Sans',system-ui,sans-serif;
+  box-shadow:0 6px 20px rgba(20,24,40,.25);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back-pill:hover{filter:brightness(1.08)}
+.back-pill[hidden],.back-inline[hidden]{display:none}
+.pj-btn.back-inline{background:#1a1d24;color:#fff;border:1px solid rgba(255,255,255,.25);text-decoration:none}
+@media print{.back-pill{display:none}}

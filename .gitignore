@@ -1,0 +1,35 @@
+# Documentos de partida del centro (no se publican)
+dotación.md
+planificación 24-25.md
+secuenciación 24-25.md
+Calendario días lectivos 26-27.md
+propuesta_secuenciacion_de_contenidos_primaria_e_infantil.md
+
+# Copias antiguas y paquetes generados
+_version_anterior/
+Para subir a GitHub/
+Material imprimible/
+Guia_CE40_2026-27_web.zip
+
+# Archivos temporales y de trabajo
+.claude/
+**/__pycache__/
+web/.edge-*/
+web/_*.html
+web/_*.pdf
+web/picto/_cache/
+web/picto/_hojas/
+web/materiales/src/
+web/pruebas_scratch/node_modules/
+web/pruebas_scratch/package-lock.json
+
+# Salidas de la web que ya están en docs/ (se regeneran)
+web/programacion_CE40.html
+web/materiales/
+
+# Scripts de un solo uso de revisiones pasadas
+web/aplicar_bloques.py
+web/aplicar_rev.py
+web/quitar_emojis.py
+web/materiales_rev.py
+web/pj_bloques_nuevos.js
