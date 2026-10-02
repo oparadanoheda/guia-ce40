@@ -155,7 +155,7 @@
       btn('Dos equipos', function () { teams = !teams; score = [0, 0]; draw(); }), btn('Nueva partida', place, 'go')]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [board]), h('div', { class: 'pj-col' }, [info, h('div', { class: 'pj-row' }, [inp, btn('Disparar', shootText, 'go')]), msg,
       h('p', { class: 'pj-info', html: 'Un alumno dice la casilla <b>primero la columna y después la fila</b> y la toca en la pizarra. En equipos: acertar da 1 punto, hundir un barco da 3, y el turno cambia al fallar.' })])]));
-    return { load: function (p) { if (p === 'grande') n = 8; if (p === 'xy') { mode = 'xy'; n = 8; } place(); } };
+    return { load: function (p) { n = p === 'grande' || p === 'xy' ? 8 : 5; mode = p === 'xy' ? 'xy' : 'letras'; place(); } };
   }
 
   /* ------------------------------------------------------------ Píxel art con código */

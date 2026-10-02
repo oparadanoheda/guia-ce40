@@ -310,6 +310,11 @@ Detalle en `08_Plantillas_y_material.md`.
 15. **Repositorio en GitHub:** el proyecto pasa a ser un repositorio Git publicado en GitHub, con la web en `docs/`. Sustituye a la subida manual de archivos y a la carpeta «Para subir a GitHub».
 12. **Botón «Volver a la sesión»:** al consultar una herramienta, guía o rúbrica desde una sesión, se vuelve al mismo punto. Se descartaron otras opciones: abrir las herramientas encima de la sesión (más riesgo, y solo resolvía las herramientas) y abrirlas en otra pestaña (recarga 2 MB y acumula pestañas en la pizarra).
 16. **Vídeos de conceptos:** 17 vídeos animados encargados a otra instancia de Claude, revisados fotograma a fotograma e integrados en la web (galería, una página por vídeo, enlaces en 46 sesiones y diapositiva en el modo proyección). En la revisión se arregló el del sensor (el medidor no se veía y la barra salía al grabar), la regla de «Cómo aprende una máquina» (era circular: ahora «redonda, con rabito, de cualquier color»), el texto final de coordenadas, un aviso que se salía de su recuadro y las marcas de capítulo del patrón. Se decidió no hacer MP4. Después se añadieron efectos de sonido opcionales en los 17.
+17. **Arreglos de herramientas tras la revisión del docente (2 de octubre):**
+    - **Votaciones y gráfico:** un solo selector arriba (Mascotas · Juegos · Frutas · Dado · Mis opciones); cada encuesta con su pregunta; gráfico de barras proporcional con escala (antes las barras no guardaban la proporción); «Mis opciones» con casillas (pregunta opcional y de 2 a 8 opciones, que el navegador recuerda); dado dibujado que rueda y enseña el resultado y las últimas 20 tiradas.
+    - **Sensor y umbral:** un solo selector (Luz · Temperatura). El botón «Luz» de arriba no hacía nada: al cargar sin variante no se volvía al modo luz.
+    - **Hundir la flota:** el mismo fallo al volver a «5 × 5» después de «Coordenadas (x, y)».
+    - **Todas las herramientas:** el botón de reto activo se marca en la fila de arriba.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

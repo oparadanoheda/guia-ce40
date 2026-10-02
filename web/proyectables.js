@@ -470,38 +470,176 @@
 
   /* ------------------------------------------------------------------ 8. Votaciones y gráfico */
   function toolVotes(root) {
-    var data = [], chart = h('div', { class: 'pj-chart' }), msg = h('p', { class: 'pj-status' }), mode = 'votos', controls = h('div', { class: 'pj-row' });
-    var PRE = { mascotas: ['Perro|perro', 'Gato|gato', 'Pez|pez', 'Pájaro|pajaro'], juegos: ['Pelota|jugar', 'Leer|leer', 'Cantar|cantar', 'Patinar|patinar'], fruta: ['Manzana|manzana_roja', 'Plátano|platano', 'Fresa|fresa', 'Naranja|naranja'] };
-    function setOptions(list) { data = list.map(function (n) { return { n: n, v: 0 }; }); prevH = []; draw(); }
-    var prevH = [];
-    function draw() {
-      chart.innerHTML = ''; var max = Math.max(5, Math.max.apply(null, data.map(function (d) { return d.v; }))), top = Math.max.apply(null, data.map(function (d) { return d.v; }));
-      var bars = [];
-      data.forEach(function (d, i) {
-        var col = h('div', { class: 'pj-barcol' + (d.v === top && top > 0 ? ' top' : '') });
-        var num = h('b', { text: d.v }); col.appendChild(num);
-        // la barra sale con la altura anterior y crece hasta la nueva (así se ve subir al votar)
-        var hNew = d.v / max * 100, bar = h('div', { class: 'pj-bar', style: 'height:' + (prevH[i] != null ? prevH[i] : 0) + '%' });
-        col.appendChild(bar); bars.push([bar, hNew, num, prevH[i] != null && prevH[i] !== hNew && hNew > prevH[i]]);
-        var parts = d.n.split('|'); col.appendChild(h('span', { html: (parts[1] ? pic(parts[1], 'sm') : '') + parts[0] }));
-        if (mode === 'votos') col.appendChild(h('div', { class: 'pj-row tight' }, [btn('+1', function () { d.v++; draw(); }, 'go'), btn('−1', function () { d.v = Math.max(0, d.v - 1); draw(); })]));
-        chart.appendChild(col);
+    // Encuestas con pregunta, opciones y gráfico de barras con escala; y el dado para estudiar frecuencias.
+    // Se elige arriba (Mascotas · Juegos · Frutas · Dado · Mis opciones).
+    var PRE = {
+      mascotas: { q: '¿Qué mascota te gusta más?', o: ['Perro|perro', 'Gato|gato', 'Pez|pez', 'Pájaro|pajaro'] },
+      juegos: { q: '¿Qué te gusta más hacer en el recreo?', o: ['Jugar a la pelota|jugar', 'Leer|leer', 'Cantar|cantar', 'Patinar|patinar'] },
+      fruta: { q: '¿Qué fruta te gusta más?', o: ['Manzana|manzana_roja', 'Plátano|platano', 'Fresa|fresa', 'Naranja|naranja'] }
+    };
+    var MINE_KEY = 'ce40-votos-mis-opciones';
+    var mine = { q: '', o: ['', '', ''] };
+    try { var sv = JSON.parse(localStorage.getItem(MINE_KEY) || 'null'); if (sv && sv.o && sv.o.length >= 2) mine = sv; } catch (e) { /* sin almacenamiento */ }
+
+    var data = [], mode = 'votos', cols = [], rolling = false, history = [];
+    var title = h('h3', { class: 'pj-vq' });
+    var setup = h('div', { class: 'pj-mine' });
+    var diceBox = h('div', { class: 'pj-dicebox' });
+    var controls = h('div', { class: 'pj-row' });
+    var yaxis = h('div', { class: 'pj-yax' }), grid = h('div', { class: 'pj-grid-lines' }), colsBox = h('div', { class: 'pj-bcols' }), xlab = h('div', { class: 'pj-xlab' });
+    var chart = h('div', { class: 'pj-chart2' }, [yaxis, h('div', { class: 'pj-plot' }, [grid, colsBox]), h('span'), xlab]);
+    var msg = h('p', { class: 'pj-status' });
+
+    function still() { return document.documentElement.classList.contains('pj-still') || matchMedia('(prefers-reduced-motion: reduce)').matches; }
+    function scale(top) {
+      // escala «redonda»: pasos de 1, 2, 5, 10, 20, 25, 50… con como mucho 6 rayas
+      var steps = [1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500], st = 1;
+      for (var i = 0; i < steps.length; i++) { st = steps[i]; if (Math.ceil(Math.max(top, 5) / st) <= 6) break; }
+      return { step: st, max: Math.max(5, Math.ceil(top / st) * st) };
+    }
+    function build(list) {
+      data = list.map(function (n) { return { n: n, v: 0 }; });
+      colsBox.innerHTML = ''; xlab.innerHTML = ''; cols = [];
+      data.forEach(function (d) {
+        var num = h('b', { class: 'pj-bnum', text: '0' }), bar = h('div', { class: 'pj-bar2' });
+        var col = h('div', { class: 'pj-bcol' }, [bar, num]);
+        colsBox.appendChild(col);
+        var parts = d.n.split('|'), lab = h('div', { class: 'pj-xl' }, [h('span', { html: (parts[1] ? pic(parts[1], 'sm') : '') + '<span>' + parts[0] + '</span>' })]);
+        if (mode === 'votos') lab.appendChild(h('div', { class: 'pj-row tight' }, [
+          btn('+1', function () { d.v++; draw(d); }, 'go'), btn('−1', function () { if (d.v) { d.v--; draw(); } })]));
+        xlab.appendChild(lab);
+        cols.push({ d: d, col: col, bar: bar, num: num });
       });
-      void chart.offsetWidth;
-      bars.forEach(function (b, i) { b[0].style.height = b[1] + '%'; prevH[i] = b[1]; if (b[3]) replay(b[2], 'pj-pop'); });
+      var n = data.length;
+      colsBox.style.gridTemplateColumns = xlab.style.gridTemplateColumns = 'repeat(' + n + ',minmax(0,1fr))';
+      draw();
+    }
+    function draw(changed) {
+      var top = Math.max.apply(null, data.map(function (d) { return d.v; })), sc = scale(top);
+      yaxis.innerHTML = ''; grid.innerHTML = '';
+      for (var v = 0; v <= sc.max; v += sc.step) {
+        var p = v / sc.max * 100;
+        yaxis.appendChild(h('span', { style: 'bottom:' + p + '%', text: v }));
+        grid.appendChild(h('i', { style: 'bottom:' + p + '%' }));
+      }
+      cols.forEach(function (c) {
+        var p = c.d.v / sc.max * 100;
+        c.bar.style.height = p + '%';
+        c.num.style.bottom = p + '%';
+        c.num.textContent = c.d.v;
+        c.col.classList.toggle('top', c.d.v === top && top > 0);
+        c.col.classList.toggle('zero', c.d.v === 0);
+        if (changed === c.d) replay(c.num, 'pj-pop');
+      });
       var total = data.reduce(function (a, d) { return a + d.v; }, 0);
       var modes = data.filter(function (d) { return d.v === top && top > 0; }).map(function (d) { return d.n.split('|')[0]; });
-      msg.textContent = 'Total: ' + total + (modes.length ? ' · Moda (la más repetida): ' + modes.join(', ') : '');
+      msg.textContent = (mode === 'dado' ? 'Tiradas: ' : 'Votos: ') + total +
+        (modes.length ? ' · Moda (' + (mode === 'dado' ? 'lo que más sale' : 'la más votada') + '): ' + modes.join(', ') : '');
     }
-    function dice() { mode = 'dado'; setOptions(['1', '2', '3', '4', '5', '6']); controls.innerHTML = ''; controls.appendChild(btn('Tirar el dado 1 vez', function () { data[rnd(6)].v++; draw(); }, 'go')); controls.appendChild(btn('Tirar 10 veces', function () { for (var i = 0; i < 10; i++) data[rnd(6)].v++; draw(); })); controls.appendChild(btn('Tirar 100 veces', function () { for (var i = 0; i < 100; i++) data[rnd(6)].v++; draw(); })); controls.appendChild(btn('Borrar', function () { dice(); })); }
-    function votes(key) {
-      mode = 'votos'; setOptions(PRE[key] || PRE.mascotas); controls.innerHTML = '';
-      Object.keys(PRE).forEach(function (k) { controls.appendChild(btn({ mascotas: 'Mascotas', juegos: 'Juegos', fruta: 'Fruta' }[k], function () { votes(k); })); });
-      var inp = h('input', { type: 'text', class: 'pj-input', placeholder: 'Opciones separadas por comas', 'aria-label': 'Opciones de la encuesta' });
-      controls.appendChild(inp); controls.appendChild(btn('Usar mis opciones', function () { var l = inp.value.split(',').map(function (s) { return s.trim(); }).filter(Boolean); if (l.length) setOptions(l.slice(0, 8)); }));
+
+    /* ---- dado ---- */
+    var PIPS = { 1: [[50, 50]], 2: [[28, 28], [72, 72]], 3: [[28, 28], [50, 50], [72, 72]], 4: [[28, 28], [72, 28], [28, 72], [72, 72]],
+      5: [[28, 28], [72, 28], [50, 50], [28, 72], [72, 72]], 6: [[28, 26], [28, 50], [28, 74], [72, 26], [72, 50], [72, 74]] };
+    function dieSVG(n) {
+      return '<svg viewBox="0 0 100 100" aria-hidden="true"><rect x="5" y="5" width="90" height="90" rx="18" fill="#fff" stroke="#1a1d24" stroke-width="4"/>' +
+        PIPS[n].map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="' + (n === 1 ? '#cf3f36' : '#1a1d24') + '"/>'; }).join('') + '</svg>';
     }
-    root.appendChild(controls); root.appendChild(chart); root.appendChild(msg);
-    return { load: function (p) { if (p === 'dado') dice(); else votes(p); } };
+    var bigDie = h('div', { class: 'pj-die', role: 'img', 'aria-label': 'Dado' }), dieTxt = h('p', { class: 'pj-dietxt' }), hist = h('div', { class: 'pj-hist' });
+    diceBox.appendChild(h('div', { class: 'pj-diecol' }, [bigDie, dieTxt]));
+    var dControls = h('div', { class: 'pj-row' });
+    diceBox.appendChild(h('div', { class: 'pj-histcol' }, [dControls, h('p', { class: 'pj-info', text: 'Últimas tiradas' }), hist]));
+    function showDie(n, label) { bigDie.innerHTML = dieSVG(n); bigDie.setAttribute('aria-label', 'Dado: ' + n); dieTxt.innerHTML = label || ''; }
+    function drawHist() { hist.innerHTML = history.slice(-20).map(function (n) { return '<span>' + dieSVG(n) + '</span>'; }).join(''); }
+    function roll(times) {
+      if (rolling) return;
+      var res = []; for (var i = 0; i < times; i++) res.push(rnd(6) + 1);
+      function land() {
+        rolling = false; bigDie.classList.remove('pj-rolling');
+        res.forEach(function (r) { data[r - 1].v++; });
+        history = history.concat(res); drawHist();
+        showDie(res[res.length - 1], times === 1 ? 'Ha salido un <b>' + res[0] + '</b>' : times + ' tiradas · la última, un <b>' + res[res.length - 1] + '</b>');
+        draw(times === 1 ? data[res[0] - 1] : null);
+      }
+      if (still()) { land(); return; }
+      rolling = true; bigDie.classList.add('pj-rolling'); dieTxt.textContent = '';
+      var k = 0, iv = setInterval(function () {
+        showDie(rnd(6) + 1); k++;
+        if (k >= 8) { clearInterval(iv); land(); }
+      }, 75);
+    }
+    function dice() {
+      mode = 'dado'; title.textContent = '¿Qué número sale más al tirar el dado?';
+      diceBox.hidden = false; setup.hidden = true; chart.hidden = false; history = []; drawHist();
+      build(['1', '2', '3', '4', '5', '6']);
+      showDie(6, 'Pulsa «Tirar el dado»');
+      controls.innerHTML = ''; dControls.innerHTML = '';
+      dControls.appendChild(btn('Tirar el dado', function () { roll(1); }, 'go'));
+      dControls.appendChild(btn('Tirar 10 veces', function () { roll(10); }));
+      dControls.appendChild(btn('Tirar 100 veces', function () { roll(100); }));
+      dControls.appendChild(btn('Empezar de cero', function () { dice(); }));
+    }
+
+    /* ---- encuestas ---- */
+    function poll(q, list) {
+      mode = 'votos'; title.textContent = q || '';
+      diceBox.hidden = true; setup.hidden = true; chart.hidden = false;
+      build(list);
+      controls.innerHTML = '';
+      controls.appendChild(btn('Votos a 0', function () { data.forEach(function (d) { d.v = 0; }); draw(); }));
+    }
+    function preset(key) {
+      poll(PRE[key].q, PRE[key].o);
+    }
+    function editMine() {
+      mode = 'votos'; title.textContent = 'Mis opciones';
+      diceBox.hidden = true; chart.hidden = true; setup.hidden = false; controls.innerHTML = ''; msg.textContent = '';
+      setup.innerHTML = '';
+      var qIn = h('input', { type: 'text', class: 'pj-input', value: mine.q, placeholder: 'Por ejemplo: ¿Cuál es tu deporte favorito?', 'aria-label': 'Pregunta' });
+      var list = h('ol', { class: 'pj-optlist' });
+      function addRow(val, focus) {
+        if (list.children.length >= 8) return;
+        var inp = h('input', { type: 'text', class: 'pj-input', value: val || '', maxlength: 24, placeholder: 'Opción ' + (list.children.length + 1), 'aria-label': 'Opción' });
+        inp.addEventListener('keydown', function (e) {
+          if (e.key !== 'Enter') return;
+          e.preventDefault();
+          var next = li.nextSibling;
+          if (next) next.querySelector('input').focus(); else if (inp.value.trim()) addRow('', true);
+        });
+        var del = btn('×', function () { if (list.children.length > 2) { list.removeChild(li); renumber(); } });
+        del.setAttribute('aria-label', 'Quitar esta opción');
+        var li = h('li', {}, [inp, del]);
+        list.appendChild(li); renumber();
+        if (focus) inp.focus();
+      }
+      function renumber() { Array.prototype.forEach.call(list.querySelectorAll('input'), function (x, i) { x.placeholder = 'Opción ' + (i + 1); }); }
+      mine.o.forEach(function (v) { addRow(v); });
+      var err = h('p', { class: 'pj-status' });
+      setup.appendChild(h('label', { class: 'pj-mlab', text: 'Pregunta (si quieres)' }));
+      setup.appendChild(qIn);
+      setup.appendChild(h('label', { class: 'pj-mlab', text: 'Opciones (de 2 a 8)' }));
+      setup.appendChild(list);
+      setup.appendChild(h('div', { class: 'pj-row' }, [
+        btn('+ Añadir opción', function () { addRow('', true); }),
+        btn('Empezar la votación', function () {
+          var opts = Array.prototype.map.call(list.querySelectorAll('input'), function (x) { return x.value.trim().replace(/\|/g, ''); });
+          var used = opts.filter(Boolean);
+          if (used.length < 2) { err.textContent = 'Escribe al menos dos opciones.'; return; }
+          mine = { q: qIn.value.trim(), o: opts.length >= 2 ? opts : used };
+          try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) { /* sin almacenamiento */ }
+          poll(mine.q, used);
+          controls.appendChild(btn('Cambiar las opciones', editMine));
+        }, 'go')]));
+      setup.appendChild(err);
+    }
+
+    setup.hidden = true; diceBox.hidden = true;
+    root.appendChild(title); root.appendChild(setup); root.appendChild(diceBox); root.appendChild(chart);
+    root.appendChild(h('div', { class: 'pj-vfoot' }, [msg, controls]));
+    return { load: function (p) {
+      if (p === 'dado') dice();
+      else if (p === 'mis') editMine();
+      else preset(PRE[p] ? p : 'mascotas');
+    } };
   }
 
   /* ------------------------------------------------------------------ 9. Diagramas de flujo paso a paso */
@@ -666,9 +804,10 @@
         '<p class="pj-status">Ahora: ' + val + unit + (L ? (cond ? ' es menor que ' : ' no es menor que ') : (cond ? ' es mayor que ' : ' no es mayor que ')) + thr + unit + ' → ' + (cond ? 'se cumple' : 'no se cumple') + '.</p>';
     }
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [out, meter]), h('div', { class: 'pj-col' }, [
-      h('div', { class: 'pj-row' }, [btn('Sensor de luz', function () { kind = 'luz'; val = 120; thr = 50; vIn.value = 120; tIn.value = 50; draw(); }), btn('Temperatura', function () { kind = 'temp'; val = 22; thr = 26; vIn.value = 22; tIn.value = 26; draw(); })]),
       h('label', { class: 'pj-chk' }, ['Lo que mide el sensor: ', vIn]), h('label', { class: 'pj-chk' }, ['Umbral: ', tIn]), code])]));
-    return { load: function (p) { if (p === 'temp') { kind = 'temp'; val = 22; thr = 26; vIn.value = 22; tIn.value = 26; } draw(); } };
+    // el modo se elige arriba (Luz · Temperatura); al cambiar, se ponen sus valores de partida
+    return { load: function (p) { if (p === 'temp') { kind = 'temp'; val = 22; thr = 26; } else { kind = 'luz'; val = 120; thr = 50; }
+      vIn.max = tIn.max = kind === 'luz' ? 255 : 40; vIn.value = val; tIn.value = thr; draw(); } };
   }
 
   /* ------------------------------------------------------------------ 16. Velocidad por tiempo (Nezha) */
@@ -841,6 +980,11 @@
       var stage = page.querySelector('.pj-stage-root');
       if (!mounted[id]) { mounted[id] = TOOLS[id](stage); }
       try { mounted[id].load(preset); } catch (e) { console.error(e); }
+      var chips = page.querySelectorAll('.rindex-chip');
+      Array.prototype.forEach.call(chips, function (c, i) {
+        var hp = c.getAttribute('href').split('.')[1] || '';
+        if ((preset ? hp === preset : i === 0)) c.setAttribute('aria-current', 'true'); else c.removeAttribute('aria-current');
+      });
     }
   };
   // «Sin animaciones»: se recuerda en este navegador

@@ -16,7 +16,7 @@ PROYECTABLES = [
      [("", "Clasificar"), ("secreta", "Regla secreta")]),
     ("animales", "🐾", "¿Qué animal soy?", "1º-3º", "El ordenador piensa uno de 8 animales y la clase lo descubre con 5 preguntas de sí o no.", [("", "Jugar")]),
     ("votaciones", "📊", "Votaciones y gráfico", "1º-6º", "Encuestas con gráfico de barras en directo y lanzador de dado para estudiar frecuencias.",
-     [("mascotas", "Mascotas"), ("juegos", "Juegos"), ("dado", "Dado")]),
+     [("mascotas", "Mascotas"), ("juegos", "Juegos"), ("fruta", "Frutas"), ("dado", "Dado"), ("mis", "Mis opciones")]),
     ("diagrama", "🔷", "Diagramas de flujo paso a paso", "3º-4º", "Recorre un diagrama de flujo paso a paso decidiendo en cada rombo.",
      [("calle", "Cruzar la calle"), ("planta", "Regar una planta"), ("par", "Par o impar"), ("adivina", "Adivina el número")]),
     ("poligonos", "⬡", "Polígonos", "3º-4º", "Cuántos lados, cuánto girar: el programa que dibuja cada polígono y el rosetón.",
