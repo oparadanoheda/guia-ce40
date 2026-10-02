@@ -15,6 +15,7 @@ from catalogo import PROYECTABLES, EXTERNAS  # noqa: E402
 import materiales as MAT  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
 from videos import VIDEOS, BY_SESSION  # noqa: E402
+from guias_proyectables import GUIAS  # noqa: E402
 import json  # noqa: E402
 MAT_INDEX = {code: (title, courses, MAT.slug(code, title)) for code, title, courses, _ in MAT.MATERIALS}
 PJ_INDEX = {p[0]: p for p in PROYECTABLES}
@@ -233,6 +234,9 @@ def parse_session(chunk):
                         (cur["md"] if cur else s["intro"]).append(txt)
                 continue
             (cur["md"] if cur else s["intro"]).append(bs)
+        elif bs.startswith("**Pistas y soluciones"):
+            s["sol"] = re.sub(r"^\*\*Pistas y soluciones[^*]*\*\*:?\s*", "", bs)
+            cur = None
         elif bs.startswith("**Opción más sencilla"):
             s["hard"].append(re.sub(r"^\*\*Opción más sencilla:?\*\*:?\s*", "", bs))
         elif bs.startswith("**Opción"):
@@ -401,6 +405,8 @@ def render_session(c, s, prev, nxt, idx):
     if s["intro"]:
         main.append(f'<div class="f-intro">{md(chr(10) + chr(10).join(s["intro"]))}</div>')
     main.append(render_sections(s))
+    if s.get("sol"):
+        main.append(more("Pistas y soluciones de los retos", '<p class="small">Para el docente: primero la pregunta, después la pista y solo al final la solución.</p>' + blocks(md(chr(10) + s["sol"])), did=s["id"] + "-sol"))
     if s.get("key"):
         main.append(f'<figure class="keyq"><blockquote>{inline(s["key"])}</blockquote><figcaption>Frase clave</figcaption></figure>')
     if s.get("fast") or s["hard"]:
@@ -594,6 +600,23 @@ def subsec(body, heading):
     """Texto de un apartado ### del documento general."""
     m = re.search(r"^### " + re.escape(heading) + r"[^\n]*\n(.*?)(?=^### |\Z)", body, flags=re.M | re.S)
     return m.group(1).strip() if m else ""
+
+
+# Bloques de programación en las soluciones: `texto` se pinta con el color de su categoría (MakeCode y Scratch)
+BLOCK_CATS = [("inp", ("al presionar", "al agitar", "nivel de luz", "temperatura", "nivel de sonido", "aceleración", "brújula")),
+              ("mat", ("elegir al azar", "número aleatorio")), ("mus", ("reproducir", "tocar nota", "tocar sonido")), ("rad", ("radio",)),
+              ("loo", ("repetir", "mientras", "por siempre")),
+              ("bas", ("al iniciar", "para siempre", "mostrar", "pausa", "borrar la pantalla", "esperar")),
+              ("log", ("si ", "verdadero", "falso", "y ", "o ", "no ")), ("var", ("establecer", "cambiar", "dar a", "sumar a", "fijar"))]
+
+
+def blocks(h):
+    def rep(m):
+        t = m.group(1)
+        low = html.unescape(t).lower()
+        cat = "log" if low in ("si", "y", "o", "no") else next((c for c, keys in BLOCK_CATS if low.startswith(keys)), "var" if " " not in low else "gen")
+        return f'<span class="mkb mk-{cat}">{t}</span>'
+    return re.sub(r"<code>([^<]+)</code>", rep, h)
 
 
 def more(title, body_html, did=None):
@@ -892,10 +915,28 @@ def tool_pages():
         chips = "".join(f'<a class="rindex-chip" href="#p-{pid}{("." + p) if p else ""}">{E(lbl)}</a>' for p, lbl in presets if len(presets) > 1)
         out.append(f'''<section class="page pj-page" id="p-{pid}" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · {E(courses)}</p><h1>{E(name)}</h1></div>
-<div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
+<div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a>{(f'<a class="pj-btn" href="#guia-{pid}">Guía para el docente</a>') if pid in GUIAS else ''}<button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
 {('<nav class="rindex" aria-label="Retos">' + chips + '</nav>') if chips else ''}
-<div class="pj-stage-root"></div></div></section>''')
+<div class="pj-stage-root"></div>{tool_guide(pid)}</div></section>''')
     return out
+
+
+def tool_guide(pid):
+    g = GUIAS.get(pid)
+    if not g:
+        return ""
+    body = f'<p class="g-idea">{inline(g["idea"])}</p>'
+    body += '<h4>Qué contar a la clase</h4><ol>' + "".join(f'<li>{inline(x)}</li>' for x in g["contar"]) + '</ol>'
+    qs = ""
+    for q, pistas, sol in g["preguntas"]:
+        qs += (f'<li><b>{inline(q)}</b><ul class="g-steps">' + "".join(f'<li><span class="g-tag">Pista</span> {inline(x)}</li>' for x in pistas)
+               + f'<li><details><summary>Ver la solución</summary>{md(sol)}</details></li></ul></li>')
+    body += f'<h4>Preguntas para pensar</h4><ol class="g-qs">{qs}</ol>'
+    if g.get("mates"):
+        body += f'<h4>Matemáticas</h4><p>{inline(g["mates"])}</p>'
+    if g.get("saber"):
+        body += '<h4>Para saber más</h4><ul>' + "".join(f'<li><a href="{u}" target="_blank" rel="noopener">{E(t)}</a></li>' for t, u in g["saber"]) + '</ul>'
+    return more("Guía para el docente: qué contar, preguntas y soluciones", body, did=f"guia-{pid}")
 
 
 def video_tiles():

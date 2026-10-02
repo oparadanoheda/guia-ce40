@@ -966,6 +966,7 @@
     islandSVG: islandSVG, ROBOT_BODY: ROBOT_BODY, svgConfetti: svgConfetti, burst: burst, setStatus: setStatus, replay: replay };
   window.Proyectables = {
     register: function (id, fn) { TOOLS[id] = fn; },
+    isMounted: function (id) { return !!mounted[id]; },
     open: function (id, preset) {
       var page = document.getElementById('p-' + id); if (!page || !TOOLS[id]) return;
       var stage = page.querySelector('.pj-stage-root');

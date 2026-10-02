@@ -87,7 +87,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 
 - **Qué aprenden:** recordar MakeCode y las normas del aula maker.
 - **Prepara antes:** makecode.microbit.org en los portátiles, placas con cable. Los retos escritos en la pizarra.
-- **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]] · [[P:binario.5|Cartas binarias]]
+- **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M18|Tarjeta «Dónde lo dejamos»]]
 - **Minuto SEG (5 minutos):** normas de baterías, cables y recogida. Tarjeta "Dónde lo dejamos".
 
@@ -96,6 +96,35 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 2. Contador: A suma, B resta, A+B pone a 0.
 3. Nivel de luz: **para siempre** → **mostrar número nivel de luz**. ¿Cuánto marca a oscuras?
 4. **Reto final:** juego de reflejos: **pausa** un tiempo al azar (**elegir al azar de 1000 a 5000**) → **mostrar icono** → el primero que pulsa su botón (A o B) gana.
+
+**Pistas y soluciones:**
+1. **Mensaje con el botón A**
+    - *Para pensar:* ¿qué pasa primero, pulsar el botón o ver el mensaje? Ese «al pulsar» es un **evento**: lo que hace empezar el programa.
+    - *Pista:* el bloque que empieza con «al presionar» está en **Entrada**.
+    - *Solución:* `al presionar el botón A` y dentro `mostrar cadena "Hola 6º"`. Si el texto no cabe, se desplaza por la pantalla.
+2. **Contador**
+    - *Para pensar:* entre una pulsación y otra, ¿dónde se guarda el número para que no se olvide?
+    - *Pista:* crea una **variable** `contador` en Variables. Hacen falta tres eventos: botón A, botón B y botón A+B.
+    - *Solución:*
+        - `al iniciar` → `establecer contador a 0` → `mostrar número contador`
+        - `al presionar el botón A` → `cambiar contador por 1` → `mostrar número contador`
+        - `al presionar el botón B` → `cambiar contador por -1` → `mostrar número contador`
+        - `al presionar el botón A+B` → `establecer contador a 0` → `mostrar número contador`
+    - *Error frecuente:* cambiar la variable y no volver a mostrarla. El número cambia, pero la pantalla sigue igual.
+3. **Nivel de luz**
+    - *Para pensar:* ¿cuántas veces hay que mirar la luz: una vez o todo el rato?
+    - *Pista:* `nivel de luz` es un bloque redondo de Entrada y va dentro del hueco de `mostrar número`.
+    - *Solución:* `para siempre` → `mostrar número (nivel de luz)`. Va de **0** (oscuridad) a **255** (mucha luz): a oscuras marca cerca de 0. En el simulador, la luz se cambia con el control que aparece sobre la placa al usar este bloque; en la placa real, tapándola con la mano.
+4. **Juego de reflejos**
+    - *Para pensar:* ¿qué pasa si alguien pulsa **antes** de que salga el icono? ¿Y si pulsan los dos? El programa tiene que saber si ya se puede pulsar.
+    - *Pista 1:* la espera al azar es `pausa (ms)` con `elegir al azar de 1000 a 5000` (Matemáticas) dentro de su hueco. 1000 ms = 1 segundo.
+    - *Pista 2:* una variable `listo` que vale `falso` mientras se espera y `verdadero` cuando sale el icono (los dos valores están en Lógica).
+    - *Solución:*
+        - `al iniciar` → `establecer listo a falso` → `pausa (ms)` con `elegir al azar de 1000 a 5000` → `mostrar icono` → `establecer listo a verdadero`
+        - `al presionar el botón A` → `si listo entonces` → `establecer listo a falso` → `mostrar cadena "A"`
+        - `al presionar el botón B` → igual, con `mostrar cadena "B"`
+        - El primero que pulsa pone `listo` a falso, así que el segundo ya no cuenta, y pulsar antes de tiempo no hace nada. Para otra ronda se reinicia la placa (botón de la parte de atrás, o el de reiniciar del simulador).
+    - *Si va rápido (marcador):* variables `victoriasA` y `victoriasB`, que suben dentro de su `si`. Como reiniciar la placa las pone a 0, la ronda nueva se empieza con `al agitar`, que repite los pasos del principio.
 
 - **Frase clave:** "Primero en el simulador, después en la placa."
 - **Si va rápido:** el reto 4 con marcador de victorias.

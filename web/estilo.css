@@ -350,3 +350,21 @@ details.more details.more{margin:8px 0;background:var(--tint)}
 details.rdev summary span{font-weight:500;color:var(--muted)}
 details.rdev summary span b{color:var(--ink);font-size:1.1rem}
 details.rdev[open]{border-left:5px solid var(--c)}
+
+/* Pistas y soluciones · guías de las herramientas */
+.mkb{display:inline-block;padding:1px 8px;border-radius:5px;color:#fff;font:600 .86em/1.5 var(--sans);margin:1px 0;white-space:nowrap}
+.mk-bas{background:#1e7ee0}.mk-inp{background:#c000c0}.mk-var{background:#d6283c}.mk-log{background:#008c8e}.mk-loo{background:#008f00}
+.mk-mat{background:#8a1fd0}.mk-mus{background:#d53424}.mk-rad{background:#d6007f}.mk-gen{background:#5b6272}
+.g-idea{font-size:1.05em}
+.g-qs>li{margin-bottom:.9em}
+.g-steps{list-style:none;padding-left:.2em;margin:.3em 0 0}
+.g-steps li{margin:.25em 0}
+.g-tag{display:inline-block;font:700 .7rem/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--sheet);background:var(--muted);padding:3px 6px;border-radius:4px;margin-right:.4em;vertical-align:.1em}
+.g-steps details{border:0;margin:.3em 0}
+.g-steps details summary{display:inline-flex;gap:.4em;cursor:pointer;font:600 .9rem var(--sans);color:var(--c5,#2c5bbf);list-style:none;padding:2px 0}
+.g-steps details summary::-webkit-details-marker{display:none}
+.g-steps details summary::before{content:'▸'}
+.g-steps details[open] summary::before{content:'▾'}
+.g-steps details p{margin:.3em 0 .2em;padding:.5em .8em;background:var(--tint);border-radius:6px}
+
+.g-steps details summary::after{content:none!important}

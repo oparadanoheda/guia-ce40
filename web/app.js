@@ -71,11 +71,13 @@
     var preset = null;
     if (id && id.indexOf('p-') === 0 && id.indexOf('.') > 0) { preset = id.slice(id.indexOf('.') + 1); id = id.slice(0, id.indexOf('.')); }
     var el = id ? document.getElementById(id) : null;
-    if (el && el.classList.contains('pj-page') && window.Proyectables) {
-      setTimeout(function () { window.Proyectables.open(id.slice(2), preset || ''); }, 0);
-    }
     if (el && el.tagName === 'DETAILS') el.open = true;  // un enlace a un desplegable lo abre
     var page = el && el.classList.contains('page') ? el : (el ? el.closest('section.page') : null);
+    // herramienta: se carga al entrar en ella; un enlace a algo de dentro (su guía) solo la carga si aún no lo estaba
+    if (page && page.classList.contains('pj-page') && window.Proyectables && (el === page || !window.Proyectables.isMounted(page.id.slice(2)))) {
+      var tid = page.id.slice(2), pre = el === page ? (preset || '') : '';
+      setTimeout(function () { window.Proyectables.open(tid, pre); }, 0);
+    }
     if (!page) { page = document.getElementById('inicio'); el = null; }
     leaving(currentPage, page);
     if (origin && (isNavPage(page) || (isFicha(page) && page.id !== origin.id))) { origin = null; saveOrigin(); }

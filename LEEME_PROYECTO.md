@@ -316,6 +316,11 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Hundir la flota:** el mismo fallo al volver a «5 × 5» después de «Coordenadas (x, y)».
     - **Todas las herramientas:** un solo selector, la fila de botones de arriba, que marca el reto abierto. Todas las opciones que solo estaban dentro subieron arriba: los 15 tableros del robot, AABB y ABCD en patrones, «Lavarse los dientes», tipo, color y tamaño en el clasificador, flecha, sí y no en los LED, casa y pez en píxel art, los 6 niveles del laberinto y 4 cartas binarias. Dentro solo quedan las acciones (ejecutar, comprobar, nueva partida…). Arreglado de paso: «Con bicho» después de «Que crece» no ponía bicho.
     - **Votaciones, pregunta abierta:** el título es una casilla vacía («Escribe aquí la pregunta, si quieres») para usar la misma encuesta en cualquier contexto.
+18. **Piloto de guías y soluciones (2 de octubre, 6º S1):**
+    - **6º S1:** fuera las cartas binarias, que no tenían relación con la sesión.
+    - **«Pistas y soluciones de los retos»** en la sesión: desplegable para el docente con, por reto, una pregunta para pensar, pistas y la solución. Los bloques entre comillas invertidas salen con el color de su categoría de MakeCode o Scratch (función `blocks` de `build_web.py`). En el .md: un párrafo `**Pistas y soluciones:**` seguido de la lista, sin líneas en blanco dentro (las sublistas, con 4 y 8 espacios). No sale en el modo proyección.
+    - **«Guía para el docente»** en la página de cada herramienta (botón arriba y desplegable debajo): qué es, qué contar a la clase, preguntas con pistas y solución oculta, matemáticas y para saber más. Fuente: `web/guias_proyectables.py`. Hecha la de las cartas binarias.
+    - Revisión: 24 enlaces a herramientas en sesiones que no dicen para qué se usan (lista en la conversación del 2 de octubre; se puede repetir con el script de la sección 6).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
