@@ -1,0 +1,73 @@
+
+/* Imprimir la ficha de una sesión: A4 limpio, sin menús ni botones; sale la propuesta elegida y las pistas, abiertas */
+.p-print{display:none}
+@media print{
+  @page{size:A4;margin:12mm 13mm 13mm}
+  :root:root:root{
+    --desk:#fff; --sheet:#fff; --ink:#1a1d24; --ink2:#3d4452; --muted:#5f677a; --rule:#d5dae3; --tint:#f3f4f7; --tint2:#eceff3;
+    --c1:#cf3f36; --c2:#df7619; --c3:#2a8f4f; --c4:#108394; --c5:#2c5bbf; --c6:#6c44b0;
+    --pc:#2f64c9; --rob:#d06d17; --ia:#8150cc; --seg:#1e8d5c; --ra:#c7426f;
+    --on-color:#fff; --shadow:none; color-scheme:light}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  html,body{background:#fff}
+  body{font-size:10pt;line-height:1.45}
+  .side,.topbar,.back-pill,.pager,.f-actions,.p-tabs,.pz,.card.res,.card.use .small{display:none!important}
+  .shell{display:block;min-height:0}
+  main{padding:0}
+  .sheet{box-shadow:none;border-radius:0;padding:0;max-width:none}
+  .ficha .sheet{overflow:visible}
+  p,li{max-width:none;orphans:3;widows:3}
+  a{color:inherit!important;text-decoration:none!important}
+  h1,h2,h3,h4,summary{break-after:avoid}
+  details::details-content{content-visibility:visible}
+
+  /* cabecera */
+  .f-head{margin:0 0 4mm;padding:0 0 3.5mm;border-top:2.2mm solid var(--c);border-bottom:.3mm solid var(--rule);gap:5mm}
+  .f-num{min-width:19mm;padding:2mm 3mm 2.5mm}
+  .f-num b{font-size:24pt}
+  .f-titles{padding-top:3mm}
+  .crumbs{font-size:8.5pt;margin:0 0 1mm}
+  .f-titles h1{font-size:18pt;margin:0 0 1.5mm}
+  .f-obj{font-size:11pt;margin:0 0 2mm}
+  .tag{font-size:7pt;padding:2px 5px}
+
+  /* lo que hay que preparar, arriba y en dos columnas */
+  .f-grid{display:flex;flex-direction:column;gap:0}
+  .f-side{order:-1;position:static;display:block;columns:2;column-gap:8mm;column-rule:.25mm solid var(--rule);
+    margin:0 0 4.5mm;padding:0 0 3mm;border-bottom:.3mm solid var(--rule)}
+  .card{break-inside:avoid;border-top:0;padding:0;margin:0 0 2.5mm;font-size:8.8pt;line-height:1.4}
+  .card h4{font-size:8.5pt;margin:0 0 1mm;color:var(--c)}
+  .card h4 svg.i{width:11pt;height:11pt}
+  .card.use h5{font-size:7pt;margin:1.5mm 0 .5mm}
+  .card.use h5:first-of-type{margin-top:0}
+  .card.use a.plink,.card.use a.mlink,.card.use a.vlink{display:inline-flex;gap:1.2mm;padding:.2mm 1.6mm .2mm 1mm;margin:0 .8mm .8mm 0;
+    border:.25mm solid var(--rule);border-radius:1mm;font:600 8.6pt/1.3 var(--sans);vertical-align:baseline}
+  .card.use a svg,.card.use a .i{width:9pt;height:9pt}
+  .card.use a.mlink b{font-size:6.8pt;padding:0 1mm}
+
+  /* la actividad */
+  .f-main>*+*{margin-top:4.5mm}
+  .f-intro{font-size:10pt}
+  .props:not(.single)>.p-h{display:none}
+  .p-h{font-size:8pt;margin:0 0 1.5mm}
+  .p-print{display:block;font:650 12pt/1.25 var(--sans);margin:0 0 .6mm;color:var(--ink)}
+  .p-print-o{font:8.5pt/1.35 var(--sans);color:var(--muted);margin:0 0 2.5mm}
+  .p-body,.props.single .p-body{border:0;border-left:1mm solid var(--c);border-radius:0;padding:.5mm 0 .5mm 4.5mm}
+  .p-body li{break-inside:avoid}
+  details.more{border:0;border-radius:0;margin:5mm 0 0}
+  details.more summary{padding:0;margin:0 0 1mm;font:650 11pt var(--sans)}
+  details.more summary::after{display:none}
+  details.more .more-body{padding:0;border:0}
+  details.more .more-body>.small:first-child{margin-top:0}
+  .keyq{break-inside:avoid;background:none;border-left:1mm solid var(--c);border-radius:0;padding:1mm 0 1mm 11mm}
+  .keyq::before{font-size:30pt;left:2mm;top:-1mm}
+  .keyq blockquote{font-size:13pt}
+  .keyq figcaption{font-size:7pt;margin-top:1mm}
+  .mini{font-size:8pt;margin:0 0 1.5mm}
+  .div-grid{grid-template-columns:1fr 1fr;gap:4mm}
+  .div-box{break-inside:avoid;padding:2.5mm 3.5mm;font-size:9.2pt}
+  .eval,.notes{break-inside:avoid;padding:2.5mm 4mm;font-size:9.2pt;border-radius:1.5mm}
+  .eval{background:none;color:var(--ink);border:.35mm solid var(--c);border-left-width:1.2mm}
+  .eval h4{color:var(--c)}
+  .notes{background:none;border:.35mm solid var(--rule)}
+}

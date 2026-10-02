@@ -341,11 +341,13 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 ---
 
 26. **Archivos de MakeCode y proyección visual (2 de octubre de 2026):** 24 proyectos .mkcd para 5º y 6º (`makecode_gen.py`; los bloques los genera el propio MakeCode con `makecode_bloques.py` y se guardan en `makecode_bloques/`), con las extensiones oficiales del Nezha (pxt-nezha v1.3.9 y PlanetX v1.5.33). En el coche del kit los motores van en espejo (recto: M1 positivo y M2 negativo). En MakeCode España la variable se fija con «fijar … a …». En la proyección de 1º y 2º, pictogramas en cada paso (`pictos_mision.py`) y botón «Leer» con la voz del sistema.
+27. **Retos del trimestre, M28 (2 de octubre de 2026):** una hoja de 4 retos por curso y trimestre al estilo Bebras, con las soluciones y lo que evalúa cada reto (criterio 4.1 o 4.2). La genera `retos_trimestre.py` (24 páginas); `comprueba()` simula los programas de los retos para que la solución escrita sea la correcta. En 1º y 2º no hace falta leer: el docente lee el reto y se responde rodeando.
+28. **Imprimir la ficha (2 de octubre de 2026):** botón «Imprimir» junto a «Proyectar la sesión». Los estilos están en `web/imprimir.css` (va el último en el CSS de la web): A4 sin menús ni botones, lo que hay que preparar arriba en dos columnas, la propuesta que esté elegida en las pestañas (con su título y el nombre de las demás) y las pistas y soluciones abiertas (`app.js` las abre en `beforeprint` y las cierra después). Las sesiones cortas caben en una hoja; las de 5º y 6º con soluciones, en dos.
 
 ## 11. Pendiente e ideas
 
 **Mejoras del estudio de referentes que aún no se han hecho** (propuestas, por orden de impacto):
-- **Evaluación con evidencias:** una prueba breve por trimestre y curso al estilo Bebras (con dibujos en 1º-2º), con soluciones y ligada a los criterios 4.1 y 4.2. Añadir Dr. Scratch para los proyectos de 3º a 5º (gratuito y sin cuentas).
+- **Evaluación con evidencias:** la prueba Bebras ya está (M28). Falta valorar Dr. Scratch para los proyectos de 3º a 5º (gratuito y sin cuentas).
 - **Eventos:**
   - EU Code Week en octubre (en 2025 fue del 11 al 26), que encaja con la S1-S2 de cada curso;
   - Bebras en noviembre y diciembre (en 2025, del 10 de noviembre al 19 de diciembre), como sesiones de reserva.

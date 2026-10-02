@@ -147,6 +147,21 @@
     });
   });
 
+  // Imprimir la ficha: sale la propuesta elegida y, abiertas, las pistas y soluciones
+  var printOpened = [];
+  window.addEventListener('beforeprint', function () {
+    printOpened = [];
+    if (!isFicha(currentPage)) return;
+    currentPage.querySelectorAll('details:not([open])').forEach(function (d) { d.open = true; printOpened.push(d); });
+  });
+  window.addEventListener('afterprint', function () {
+    printOpened.forEach(function (d) { d.open = false; });
+    printOpened = [];
+  });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest && e.target.closest('.pr-open')) window.print();
+  });
+
   // Buscador de sesiones
   var q = document.getElementById('q');
   var list = document.getElementById('sr');

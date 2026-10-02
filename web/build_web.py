@@ -366,6 +366,8 @@ def render_sections(s):
         name = f' <span>· {E(sec["name"])}</span>' if sec["name"] else ""
         return (f'<div class="props single"><h3 class="p-h">{head}{name}</h3>'
                 f'<div class="p-body">{md(chr(10).join(p for p in sec["md"]))}</div></div>')
+    def short(sec):
+        return ("la principal" if sec["kind"] == "dev" else sec["label"].replace("Opción ", "")) + (f' «{sec["name"]}»' if sec["name"] else "")
     tabs, panels = [], []
     for i, sec in enumerate(secs):
         letter = sec["label"].replace("Opción ", "") if sec["kind"] == "opt" else "★"
@@ -373,8 +375,12 @@ def render_sections(s):
         pid = f'{s["id"]}-p{i}'
         tabs.append(f'<button type="button" role="tab" id="{pid}-t" aria-controls="{pid}" aria-selected="{str(i == 0).lower()}" tabindex="{0 if i == 0 else -1}">'
                     f'<span class="p-letter">{E(letter)}</span><span class="p-tl"><small>{E(label)}</small>{E(sec["name"] or "")}</span></button>')
+        others = [short(x) for j, x in enumerate(secs) if j != i]
+        others = ", ".join(others[:-1]) + " y " + others[-1] if len(others) > 1 else others[0]
+        printed = (f'<h3 class="p-print">{E(label)}{" · " + E(sec["name"]) if sec["name"] else ""}</h3>'
+                   f'<p class="p-print p-print-o">Otras propuestas en la guía: {E(others)}.</p>')
         panels.append(f'<div class="p-body" role="tabpanel" id="{pid}" aria-labelledby="{pid}-t"{"" if i == 0 else " hidden"}>'
-                      f'{md(chr(10) + chr(10).join(sec["md"]))}</div>')
+                      f'{printed}{md(chr(10) + chr(10).join(sec["md"]))}</div>')
     return (f'<div class="props"><h3 class="p-h">Propuestas de actividad <span>· elige una</span></h3>'
             f'<div class="p-tabs" role="tablist" aria-label="Propuestas de actividad">{"".join(tabs)}</div>{"".join(panels)}</div>')
 
@@ -576,7 +582,7 @@ def render_session(c, s, prev, nxt, idx):
   <div class="f-num" aria-hidden="true"><small>Sesión</small><b>{s["num"]}</b></div>
   <div class="f-titles"><p class="crumbs">{crumbs}<span>/</span>Sesión {idx} de {total}</p>
   <h1>{E(s["title"])}</h1>{obj}<div class="tags">{tags}</div>
-  <button type="button" class="pz-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M10 7l5 3-5 3z"/></svg>Proyectar la sesión</button></div>
+  <div class="f-actions"><button type="button" class="pz-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M10 7l5 3-5 3z"/></svg>Proyectar la sesión</button><button type="button" class="pr-open" title="Imprime la ficha con la propuesta que tengas elegida y las pistas y soluciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>Imprimir</button></div></div>
 </header>
 <script type="application/json" class="pz-data">{projection_data(c, s, quin, prev)}</script>
 
@@ -689,7 +695,7 @@ def home(courses, secs):
 <div class="ucards">
 <div><b>Elige una propuesta</b><p>Cada sesión tiene un objetivo y 2 o 3 formas de trabajarlo. Con una basta.</p></div>
 <div><b>El material está hecho</b><p>Fichas en PDF, herramientas para la pizarra y archivos de Scratch. No hay que fabricar nada.</p></div>
-<div><b>Proyecta la sesión</b><p>El botón «Proyectar la sesión» muestra a la clase el reto, las palabras nuevas y la herramienta.</p></div>
+<div><b>Proyecta o imprime</b><p>«Proyectar la sesión» muestra a la clase el reto, las palabras nuevas y la herramienta. «Imprimir» saca la ficha en un A4 con la propuesta elegida.</p></div>
 <div><b>Es orientativo</b><p>Si algo falla o el grupo va a otro ritmo, pasa a la opción con fichas o usa una sesión de reserva.</p></div>
 </div>
 <h2 class="h-sec">Así es una ficha de sesión</h2>
@@ -1099,7 +1105,7 @@ def video_pages(courses):
 
 
 HERE = Path(__file__).resolve().parent
-CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8")
+CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
 JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8")
 PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8")
 
