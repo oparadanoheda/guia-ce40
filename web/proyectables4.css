@@ -105,6 +105,27 @@
 .pj-histcol .pj-info{margin:14px 0 6px}
 .pj-hist{display:flex;flex-wrap:wrap;gap:6px}
 .pj-hist span{width:38px;height:38px}
+/* dado de la clase */
+.pj-classbox{display:flex;flex-direction:column;gap:12px;margin:4px 0 6px}
+.pj-classbox[hidden],.pj-cbox[hidden],.pj-cwait[hidden],.pj-eq[hidden]{display:none}
+.pj-dentryrow{align-items:flex-end;gap:12px}
+.pj-dentry{display:flex;gap:10px;flex-wrap:wrap}
+.pj-dfield{display:flex;flex-direction:column;align-items:center;gap:6px}
+.pj-face{display:block;width:44px;height:44px}
+.pj-face svg{display:block;width:100%;height:100%}
+.pj-dnum{width:5.4rem;text-align:center;font-size:1.3rem}
+.pj-cmp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin-top:6px}
+.pj-cbox{min-width:0;display:flex;flex-direction:column;gap:6px}
+.pj-ccap{margin:0;font:600 1.2rem/1.3 var(--sans)}
+.pj-ccap small{font-weight:500;color:var(--muted)}
+.pj-cwait{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px;border:2px dashed var(--rule);border-radius:12px;padding:24px;min-height:min(30vh,260px)}
+.pj-chart2.pj-small{grid-template-rows:min(30vh,260px) auto;margin:10px 0 4px}
+.pj-chart2.pj-small .pj-xl{padding-top:6px}
+.pj-chart2.pj-small .pj-face{width:38px;height:38px}
+.pj-eq{position:absolute;left:0;right:0;height:0;border-top:3px dashed var(--ink);pointer-events:none;z-index:1;transition:bottom .45s cubic-bezier(.3,1.2,.5,1)}
+.pj-small .pj-bnum{z-index:2;width:max-content;margin:0 auto 6px;padding:0 6px;border-radius:6px;background:var(--sheet)}
+.pj-eqkey{display:inline-block;width:2.4em;border-top:3px dashed var(--ink);vertical-align:middle;margin-right:.5em}
+@media (max-width:760px){.pj-cmp{grid-template-columns:minmax(0,1fr)}}
 .pj-rolling{animation:pjroll .6s linear infinite}
 @keyframes pjroll{0%{transform:rotate(0) translateY(0)}25%{transform:rotate(90deg) translateY(-14px)}50%{transform:rotate(180deg) translateY(0)}75%{transform:rotate(270deg) translateY(-10px)}100%{transform:rotate(360deg) translateY(0)}}
 .pj-still .pj-bar2,.pj-still .pj-bnum{transition:none}

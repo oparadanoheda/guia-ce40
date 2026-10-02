@@ -157,7 +157,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 
 - **Qué aprenden:** usar el sensor de movimiento (acelerómetro) y los números al azar.
 - **Prepara antes:** el ejemplo hecho en tu ordenador.
-- **Para proyectar:** [[P:votaciones.dado|Dado: frecuencias]] · [[P:quiensale|¿Quién sale?]]
+- **Para proyectar:** [[P:votaciones.clase|Dado de la clase]] · [[P:quiensale|¿Quién sale?]]
 - **Material listo:** [[M:M25|Frecuencias del dado]] (hoja 2) · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S3-dado.mkcd|El dado · solución]] · [[S:5-S3-contador-de-pasos.mkcd|Contador de pasos · solución]]
 - **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
@@ -167,7 +167,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 2. En el simulador se agita con el botón "SHAKE" (o moviendo el ratón rápido sobre la placa).
 3. Mejora: que antes de enseñar el número salga una animación (dos o tres iconos seguidos).
 4. Pásalo a la placa y a jugar.
-5. **Mini investigación:** tirad el dado 30 veces y apuntadlo en M25. Después, en el proyectable del dado, tirad 100 veces: ¿sale todo más o menos igual?
+5. **Mini investigación:** tirad vuestro dado 30 veces y apuntadlo en M25. Cada pareja dicta sus resultados en el proyectable «Dado de la clase» y se comparan con 1000 tiradas del ordenador: ¿vuestros dados son justos? ¿Sale todo más o menos igual?
 
 **Opción B · El contador de pasos**
 Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar número pasos**. **al presionarse el botón A** → **fijar pasos a 0**. Se pega la placa (con su portapilas) al tobillo y se camina 20 pasos: ¿cuenta bien?
@@ -177,7 +177,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Solución:* `si agitar` → `mostrar ícono` (cuadrado pequeño) → `mostrar ícono` (cuadrado) → `mostrar número (escoger al azar de 1 a 6)`.
     - *Error frecuente:* `escoger al azar de 0 a 6`: a veces sale 0, que no está en un dado.
 2. **¿Sale todo igual?** (mini investigación)
-    - *Solución:* cada número tiene la misma probabilidad (1 de 6). En 30 tiradas cada uno sale unas 5 veces, pero con tan pocas tiradas es normal que haya diferencias grandes; con 100 tiradas se igualan más.
+    - *Solución:* cada número tiene la misma probabilidad (1 de 6). En 30 tiradas cada uno sale unas 5 veces, pero con tan pocas tiradas es normal que haya diferencias grandes. Con las de toda la clase se igualan más, y con las 1000 del ordenador, mucho más (unas 167 veces cada número).
 3. **Un dado que no repite el número anterior** (si va rápido)
     - *Pista:* hace falta recordar el número anterior en una variable y volver a tirar mientras salga el mismo.
     - *Solución:* `si agitar` → `fijar nuevo a (escoger al azar de 1 a 6)` → `mientras nuevo = anterior` → `fijar nuevo a (escoger al azar de 1 a 6)`; después, `fijar anterior a nuevo` → `mostrar número nuevo`.

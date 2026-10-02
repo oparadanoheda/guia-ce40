@@ -561,7 +561,7 @@
     }
     function dice() {
       mode = 'dado'; title.value = ''; title.hidden = false;
-      diceBox.hidden = false; setup.hidden = true; chart.hidden = false; history = []; drawHist();
+      diceBox.hidden = false; setup.hidden = true; chart.hidden = false; classBox.hidden = true; history = []; drawHist();
       build(['1', '2', '3', '4', '5', '6']);
       showDie(6, 'Pulsa «Tirar el dado»');
       controls.innerHTML = ''; dControls.innerHTML = '';
@@ -569,12 +569,115 @@
       dControls.appendChild(btn('Tirar 10 veces', function () { roll(10); }));
       dControls.appendChild(btn('Tirar 100 veces', function () { roll(100); }));
       dControls.appendChild(btn('Empezar de cero', function () { dice(); }));
+      controls.appendChild(btn('Dado de la clase', classDice));
+    }
+
+    /* ---- dado de la clase: las tiradas con dados de verdad, frente a 1000 del ordenador ---- */
+    var classBox = h('div', { class: 'pj-classbox' });
+    var ours = [0, 0, 0, 0, 0, 0], added = [], sim = null;
+    function fairTxt(total) { var f = total / 6; return f === Math.round(f) ? String(f) : 'unas ' + Math.round(f); }
+    function faces(v, x) {
+      var f = []; v.forEach(function (n, i) { if (n === x) f.push(i + 1); });
+      return f.length > 1 ? 'el ' + f.slice(0, -1).join(', el ') + ' y el ' + f[f.length - 1] : 'el ' + f[0];
+    }
+    function readout(v) {
+      var top = Math.max.apply(null, v), low = Math.min.apply(null, v);
+      if (top === low) return 'Todos los números han salido igual: ' + top + ' veces.';
+      return 'Lo que más sale: ' + faces(v, top) + ' (' + top + '). Lo que menos: ' + faces(v, low) + ' (' + low + ').';
+    }
+    function barChart() {
+      var yax = h('div', { class: 'pj-yax' }), lines = h('div', { class: 'pj-grid-lines' }), bars = h('div', { class: 'pj-bcols' }), xl = h('div', { class: 'pj-xlab' });
+      var eq = h('div', { class: 'pj-eq' });
+      var cap = h('p', { class: 'pj-ccap' }), note = h('p', { class: 'pj-info' });
+      var cols = [];
+      for (var i = 1; i <= 6; i++) {
+        var num = h('b', { class: 'pj-bnum', text: '0' }), bar = h('div', { class: 'pj-bar2' }), col = h('div', { class: 'pj-bcol zero' }, [bar, num]);
+        bars.appendChild(col);
+        xl.appendChild(h('div', { class: 'pj-xl' }, [h('span', { class: 'pj-face', role: 'img', 'aria-label': String(i), html: dieSVG(i) })]));
+        cols.push({ col: col, bar: bar, num: num });
+      }
+      bars.style.gridTemplateColumns = xl.style.gridTemplateColumns = 'repeat(6,minmax(0,1fr))';
+      var el = h('div', { class: 'pj-cbox' }, [cap, h('div', { class: 'pj-chart2 pj-small' }, [yax, h('div', { class: 'pj-plot' }, [lines, bars, eq]), h('span'), xl]), note]);
+      return { el: el, cap: cap, note: note, set: function (v) {
+        var total = v.reduce(function (a, b) { return a + b; }, 0), fair = total / 6;
+        var top = Math.max.apply(null, v), sc = scale(Math.max(top, fair * 2));
+        yax.innerHTML = ''; lines.innerHTML = '';
+        for (var y = 0; y <= sc.max; y += sc.step) {
+          yax.appendChild(h('span', { style: 'bottom:' + (y / sc.max * 100) + '%', text: y }));
+          lines.appendChild(h('i', { style: 'bottom:' + (y / sc.max * 100) + '%' }));
+        }
+        cols.forEach(function (c, k) {
+          var p = v[k] / sc.max * 100;
+          c.bar.style.height = p + '%'; c.num.style.bottom = p + '%'; c.num.textContent = v[k];
+          c.col.classList.toggle('top', v[k] === top && top > 0); c.col.classList.toggle('zero', v[k] === 0);
+        });
+        eq.hidden = !total;
+        eq.style.bottom = (fair / sc.max * 100) + '%';
+        note.innerHTML = total ? '<span class="pj-eqkey" aria-hidden="true"></span>Si salieran igual: <b>' + fairTxt(total) + '</b> de cada número. ' + readout(v) : '';
+      } };
+    }
+    var left = barChart(), right = barChart();
+    var inputs = [], entry = h('div', { class: 'pj-dentry' });
+    for (var fc = 1; fc <= 6; fc++) {
+      var inp = h('input', { type: 'number', min: '0', max: '9999', step: '1', inputmode: 'numeric', class: 'pj-input pj-dnum', 'aria-label': 'Veces que ha salido el ' + fc });
+      inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addRolls(); } });
+      inputs.push(inp);
+      entry.appendChild(h('label', { class: 'pj-dfield' }, [h('span', { class: 'pj-face', html: dieSVG(fc) }), inp]));
+    }
+    var undoBtn = btn('Deshacer lo último', function () {
+      var last = added.pop(); if (!last) return;
+      last.forEach(function (n, i) { ours[i] -= n; });
+      sim = null; updateClass();
+    });
+    var again = btn('Tirar otras 1000', simulate);
+    var wait = h('div', { class: 'pj-cwait' }, [
+      h('p', { class: 'pj-ccap', html: '¿Y con <b>1000</b> tiradas?' }),
+      h('p', { class: 'pj-info', text: 'Cuando tengáis vuestras tiradas, el ordenador tira el dado 1000 veces para comparar.' }),
+      btn('Comparar con 1000 tiradas del ordenador', simulate, 'go')]);
+    right.el.appendChild(h('div', { class: 'pj-row' }, [again]));
+    classBox.appendChild(h('p', { class: 'pj-info', html: 'Escribid cuántas veces ha salido cada número (las tiradas de una pareja o el total de la clase) y pulsad <b>Añadir</b>.' }));
+    classBox.appendChild(h('div', { class: 'pj-row pj-dentryrow' }, [entry, btn('Añadir', addRolls, 'go'), undoBtn]));
+    classBox.appendChild(h('div', { class: 'pj-cmp' }, [left.el, h('div', { class: 'pj-cbox' }, [wait, right.el])]));
+    function addRolls() {
+      var v = inputs.map(function (x) { var n = Math.floor(Number(x.value)); return isFinite(n) && n > 0 ? n : 0; });
+      if (!v.some(Boolean)) { msg.textContent = 'Escribe cuántas veces ha salido cada número.'; inputs[0].focus(); return; }
+      v.forEach(function (n, i) { ours[i] += n; });
+      added.push(v); sim = null;
+      inputs.forEach(function (x) { x.value = ''; });
+      inputs[0].focus();
+      updateClass();
+    }
+    function simulate() {
+      if (!ours.some(Boolean)) { msg.textContent = 'Primero añadid vuestras tiradas.'; return; }
+      sim = [0, 0, 0, 0, 0, 0];
+      for (var i = 0; i < 1000; i++) sim[rnd(6)]++;
+      updateClass();
+    }
+    function updateClass() {
+      var total = ours.reduce(function (a, b) { return a + b; }, 0);
+      left.cap.innerHTML = 'Nuestras tiradas: <b>' + total + '</b>' + (added.length > 1 ? ' <small>(' + added.length + ' grupos)</small>' : '');
+      left.set(ours);
+      undoBtn.disabled = !added.length;
+      wait.hidden = !!sim; right.el.hidden = !sim;
+      if (sim) { right.cap.innerHTML = 'El ordenador: <b>1000</b> tiradas'; right.set(sim); }
+      msg.textContent = !total ? '' : sim ? '¿En cuál se acercan más las barras a la línea «Si salieran igual»?' :
+        'Si el dado es justo, cada número sale más o menos 1 de cada 6 veces: con ' + total + ' tiradas, ' + fairTxt(total) + ' veces cada uno.';
+    }
+    function classDice() {
+      mode = 'clase'; title.value = ''; title.hidden = false;
+      diceBox.hidden = true; setup.hidden = true; chart.hidden = true; classBox.hidden = false;
+      ours = [0, 0, 0, 0, 0, 0]; added = []; sim = null;
+      inputs.forEach(function (x) { x.value = ''; });
+      updateClass();
+      controls.innerHTML = '';
+      controls.appendChild(btn('Empezar de cero', classDice));
+      controls.appendChild(btn('Tirar en la pizarra', dice));
     }
 
     /* ---- encuestas ---- */
     function poll(q, list, isMine) {
       mode = 'votos'; title.value = q || ''; title.hidden = false;
-      diceBox.hidden = true; setup.hidden = true; chart.hidden = false;
+      diceBox.hidden = true; setup.hidden = true; chart.hidden = false; classBox.hidden = true;
       build(list);
       if (isMine) mode = 'mine';
       controls.innerHTML = '';
@@ -585,7 +688,7 @@
     }
     function editMine() {
       mode = 'votos'; title.hidden = true;
-      diceBox.hidden = true; chart.hidden = true; setup.hidden = false; controls.innerHTML = ''; msg.textContent = '';
+      diceBox.hidden = true; chart.hidden = true; classBox.hidden = true; setup.hidden = false; controls.innerHTML = ''; msg.textContent = '';
       setup.innerHTML = '';
       var qIn = h('input', { type: 'text', class: 'pj-input', value: mine.q, placeholder: 'Por ejemplo: ¿Cuál es tu deporte favorito?', 'aria-label': 'Pregunta' });
       var list = h('ol', { class: 'pj-optlist' });
@@ -625,11 +728,12 @@
       setup.appendChild(err);
     }
 
-    setup.hidden = true; diceBox.hidden = true;
-    root.appendChild(title); root.appendChild(setup); root.appendChild(diceBox); root.appendChild(chart);
+    setup.hidden = true; diceBox.hidden = true; classBox.hidden = true;
+    root.appendChild(title); root.appendChild(setup); root.appendChild(diceBox); root.appendChild(classBox); root.appendChild(chart);
     root.appendChild(h('div', { class: 'pj-vfoot' }, [msg, controls]));
     return { load: function (p) {
       if (p === 'dado') dice();
+      else if (p === 'clase') classDice();
       else if (p === 'mis') editMine();
       else preset(PRE[p] ? p : 'mascotas');
     } };

@@ -53,7 +53,7 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | Semáforo de peatones: si… entonces | 2º-4º | Reglas SI… ENTONCES y SI… SI NO con el semáforo de peatones (muñeco rojo y verde). |
 | Clasificador y regla secreta | 1º-3º | Clasificar por atributos y adivinar la regla de la máquina. |
 | ¿Qué animal soy? | 1º-3º | Árbol de preguntas de sí o no. |
-| Votaciones y gráfico | 1º-6º | Encuestas con gráfico de barras en directo y frecuencias del dado. |
+| Votaciones y gráfico | 1º-6º | Encuestas con gráfico de barras en directo, frecuencias del dado y el dado de la clase (tiradas de verdad frente a 1000 del ordenador). |
 | Diagramas de flujo paso a paso | 3º-4º | Recorrer diagramas decidiendo en cada rombo. |
 | Polígonos | 3º-4º | Lados, giro (360 ÷ lados), programa y rosetón. |
 | Variables | 3º-6º | Cajas con nombre y los bloques que las cambian. |

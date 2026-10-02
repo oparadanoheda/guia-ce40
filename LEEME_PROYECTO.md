@@ -21,6 +21,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 | Paquete para el aula virtual o una carpeta compartida | `Guia_CE40_2026-27_web.zip` (4,3 MB) |
 | Instrucciones para subirlo al aula virtual | `Cómo subir la guía al aula virtual.txt` |
 | PDF para imprimir | `Material imprimible/` (y `Material imprimible/Scratch/`) |
+| Presentación para la reunión del profesorado de Matemáticas | https://claude.ai/artifact/6ZeVqrRinvxkcZ2twnCtzD (14 diapositivas con notas). Es privada: para enseñarla a otros hay que compartirla desde su menú Share |
 
 ---
 
@@ -343,6 +344,8 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 26. **Archivos de MakeCode y proyección visual (2 de octubre de 2026):** 24 proyectos .mkcd para 5º y 6º (`makecode_gen.py`; los bloques los genera el propio MakeCode con `makecode_bloques.py` y se guardan en `makecode_bloques/`), con las extensiones oficiales del Nezha (pxt-nezha v1.3.9 y PlanetX v1.5.33). En el coche del kit los motores van en espejo (recto: M1 positivo y M2 negativo). En MakeCode España la variable se fija con «fijar … a …». En la proyección de 1º y 2º, pictogramas en cada paso (`pictos_mision.py`) y botón «Leer» con la voz del sistema.
 27. **Retos del trimestre, M28 (2 de octubre de 2026):** una hoja de 4 retos por curso y trimestre al estilo Bebras, con las soluciones y lo que evalúa cada reto (criterio 4.1 o 4.2). La genera `retos_trimestre.py` (24 páginas); `comprueba()` simula los programas de los retos para que la solución escrita sea la correcta. En 1º y 2º no hace falta leer: el docente lee el reto y se responde rodeando.
 28. **Imprimir la ficha (2 de octubre de 2026):** botón «Imprimir» junto a «Proyectar la sesión». Los estilos están en `web/imprimir.css` (va el último en el CSS de la web): A4 sin menús ni botones, lo que hay que preparar arriba en dos columnas, la propuesta que esté elegida en las pestañas (con su título y el nombre de las demás) y las pistas y soluciones abiertas (`app.js` las abre en `beforeprint` y las cierra después). Las sesiones cortas caben en una hoja; las de 5º y 6º con soluciones, en dos.
+29. **Presentación para la reunión de Matemáticas (2 de octubre de 2026):** 14 diapositivas con notas para quien presenta. Mensaje: es una base común de qué se trabaja en cada curso, no un guion obligatorio; el material está hecho para que cualquiera pueda darlo; es un borrador y hay que revisarlo entre todos. Incluye el recorrido de 1º a 6º, el bloque de cada trimestre, la sesión de 45 minutos, la evaluación, lo común y lo que decide cada docente, qué revisar y los supuestos que hay que comprobar en el centro. La diapositiva «Qué mirar y cómo avisar» tiene un hueco entre corchetes para poner por dónde se avisan los fallos.
+30. **Dado de la clase (2 de octubre de 2026):** en «Votaciones y gráfico», preset `votaciones.clase`. Se escriben las tiradas de cada pareja (o los totales de la pizarra) con **Añadir** y se comparan con 1000 tiradas del ordenador. Los dos gráficos llevan la línea «Si salieran igual» (total entre 6), con una escala que la deja a media altura para que se puedan comparar. Se usa en 3º S7 (opción B) y en 5º S3 (mini investigación con el dado de la micro:bit).
 
 ## 11. Pendiente e ideas
 
@@ -354,7 +357,7 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
   
   Hay que confirmar las fechas de 2026.
 - **Familias:** una carta por trimestre con qué se ha aprendido y un reto desenchufado para casa.
-- **Arranque del profesorado:** presentación al claustro (unas 10 diapositivas) y «tu primera sesión en 10 minutos».
+- **Arranque del profesorado:** la presentación para el equipo de Matemáticas ya está (ver la tabla del apartado 1). Falta, si se quiere, una hoja de «tu primera sesión en 10 minutos».
 - **Seguimiento en la web:** marcar las sesiones hechas por grupo, guardado en el propio navegador.
 
 **Revisado y que se deja como está (decisión del 1 de octubre de 2026)**

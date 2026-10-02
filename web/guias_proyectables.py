@@ -196,11 +196,12 @@ GUIAS = {
         "mates": "Clasificar con atributos, mitades y dobles (8, 4, 2, 1) y la búsqueda eficiente.",
     },
     "votaciones": {
-        "idea": "Encuestas con gráfico de barras en directo y con escala, y un **dado** para estudiar frecuencias. La pregunta se escribe arriba y en **Mis opciones** se ponen las opciones de cada clase.",
+        "idea": "Encuestas con gráfico de barras en directo y con escala, un **dado** para estudiar frecuencias y el **dado de la clase**, que compara las tiradas con dados de verdad con 1000 tiradas del ordenador. La pregunta se escribe arriba y en **Mis opciones** se ponen las opciones de cada clase.",
         "contar": [
             "Escribir la pregunta (o dejarla en blanco) y votar con +1.",
             "Leer el gráfico: ¿qué barra es la más alta (la **moda**)? ¿Cuántos votos hay en total? ¿Cuántos más tiene la primera que la segunda?",
             "Dado: predecir antes de tirar y comparar 10 tiradas con 100.",
+            "Dado de la clase: cada pareja dicta cuántas veces le ha salido cada número (o se escriben los totales de la pizarra) y se pulsa **Añadir**. Después, **Comparar con 1000 tiradas del ordenador**: ¿en cuál se acercan más las barras a la línea «Si salieran igual»?",
         ],
         "preguntas": [
             ("Si tiramos el dado 100 veces, ¿qué número saldrá más?",
@@ -209,6 +210,9 @@ GUIAS = {
             ("Si en 10 tiradas sale mucho el 6, ¿el dado está trucado?",
              ["Repite las 10 tiradas varias veces.", "¿Pasa lo mismo con 100?"],
              "No necesariamente. Con **pocas tiradas** hay mucha casualidad; con muchas, las barras se parecen más entre sí."),
+            ("Con los dados de la clase, un número ha salido bastante más que otro. ¿Nuestros dados están trucados?",
+             ["¿Cuántas tiradas habéis hecho? ¿Y el ordenador?", "En las 1000 del ordenador, ¿las barras se separan tanto de la línea?"],
+             "Seguramente no. Con unos cientos de tiradas es normal que un número salga bastante más que otro. Con **1000**, cada número sale **unas 167 veces** y las barras quedan mucho más cerca de la línea. Para sospechar de un dado hacen falta muchas tiradas."),
         ],
         "mates": "Estadística: recogida de datos, gráfico de barras, escala, moda, total y diferencias. Probabilidad: suceso seguro, posible e imposible, y frecuencia.",
     },

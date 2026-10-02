@@ -207,7 +207,7 @@ Cada pareja resuelve un mapa de M07, le mete 2 bichos y se lo pasa a otra pareja
 
 - **Qué aprenden:** los datos se recogen, se ordenan en una tabla y se representan en un gráfico para contestar una pregunta.
 - **Prepara antes:** M25 hoja 1 (una por pareja). Un dado por pareja si haces la opción B.
-- **Para proyectar:** [[P:votaciones.mascotas|Votaciones y gráfico]] · [[P:votaciones.dado|Frecuencias del dado]]
+- **Para proyectar:** [[P:votaciones.mascotas|Votaciones y gráfico]] · [[P:votaciones.clase|Dado de la clase]]
 - **Material listo:** [[M:M25|Registro de una encuesta]] (hoja 1) · [[M:M25|Frecuencias del dado]] (hoja 2)
 - **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
@@ -219,7 +219,7 @@ Cada pareja resuelve un mapa de M07, le mete 2 bichos y se lo pasa a otra pareja
 **Opción B · ¿Sale más el 6?**
 1. Pregunta: «Si tiramos un dado muchas veces, ¿sale más algún número?». Cada pareja apunta su predicción.
 2. Cada pareja tira 20 veces y anota en M25 hoja 2. Después se suman los resultados de toda la clase en una tabla en la pizarra.
-3. Comparad la predicción con el resultado y con el proyectable del dado («Tirar 100 veces»). Con muchas tiradas, todos los números salen más o menos igual.
+3. Escribid los totales en el proyectable «Dado de la clase» y comparadlos con la predicción. Después pulsad «Comparar con 1000 tiradas del ordenador»: con muchas tiradas, todos los números salen más o menos igual.
 
 **Opción C · Los datos deciden**
 Usad la encuesta para decidir algo real de la clase (el tema de la misión final de la S8). Así se ve para qué sirven los datos.
