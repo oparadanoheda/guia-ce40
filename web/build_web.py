@@ -379,7 +379,34 @@ def plain(text):
     return re.sub(r"[*`]", "", text).strip()
 
 
-def projection_data(c, s, quin):
+def pz_text(text):
+    """Markdown de la ficha → HTML corto para proyectar: sin enlaces (los botones de herramientas van aparte)."""
+    t = re.sub(r"\[\[[PMS]:[^|\]]+\|([^\]]+)\]\]", r"**\1**", text or "")
+    t = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", t)
+    t = E(t)
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
+    t = re.sub(r"\*([^*\n]+)\*", r"<i>\1</i>", t)
+    t = re.sub(r"`([^`]+)`", r"<b>\1</b>", t)
+    return t.strip()
+
+
+def pz_steps(text):
+    """Pasos de una propuesta: cada elemento de la lista (o cada párrafo) es un paso; las sublistas se unen a su paso."""
+    steps = []
+    for chunk in re.split(r"\n\s*\n", (text or "").strip()):
+        lines = chunk.split("\n")
+        if not any(re.match(r"(\d+\.|-)\s", l) for l in lines):
+            steps.append(" ".join(l.strip() for l in lines))
+            continue
+        for l in lines:
+            if re.match(r"(\d+\.|-)\s", l):
+                steps.append(re.sub(r"^(\d+\.|-)\s+", "", l).strip())
+            elif steps and l.strip():
+                steps[-1] += " · " + re.sub(r"^(\d+\.|-)\s+", "", l.strip())
+    return [pz_text(x) for x in steps if x.strip()]
+
+
+def projection_data(c, s, quin, prev=None):
     seg = s.get("seg", "")
     quotes = re.findall(r"[\"“]([^\"”]{8,})[\"”]", seg)
     # la frase y su pregunta; si el texto es largo (minutos ampliados), solo las frases entre comillas
@@ -388,9 +415,23 @@ def projection_data(c, s, quin):
     words = [(w, d) for w, d, sn in VOCAB.get(int(c["id"][1]), []) if sn == f'S{s["num"]}']
     phases = ([("Tarjeta", 3), ("Misión", 7), ("Práctica", 25), ("Compartir", 5), ("Guardar", 5)] if quin else
               [("Arranque", 5), ("Misión", 7), ("Práctica", 23), ("Compartir", 5), ("Cierre", 5)])
+    # la misión: los retos (si la sesión los trae fuera de las propuestas) y los pasos de cada propuesta
+    retos, intro = [], []
+    for chunk in s["intro"]:
+        m = re.match(r"\*\*(Retos[^*]*?):?\*\*:?\s*(.*)", chunk, re.S)
+        if m:
+            retos.append({"label": "Retos", "name": cap(m.group(1).replace("Retos", "").strip(" ()")), "steps": pz_steps(m.group(2))})
+        else:
+            intro.append(chunk)
+    props = [{"label": "Desarrollo" if sec["kind"] == "dev" else sec["label"].replace("Opción", "Propuesta"), "name": sec["name"] or "",
+              "steps": pz_steps("\n\n".join(sec["md"]))} for sec in s["sections"]]
+    if not props and intro and not retos:
+        props = [{"label": "Desarrollo", "name": "", "steps": pz_steps("\n\n".join(intro))}]
     d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
          "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
-         "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases}
+         "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
+         "missions": retos + props, "fast": pz_text(cap(s.get("fast", ""))),
+         "prev": {"title": prev["title"], "key": plain(prev.get("key", "")), "num": prev["num"]} if prev else None}
     return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
 
 
@@ -472,7 +513,7 @@ def render_session(c, s, prev, nxt, idx):
   <h1>{E(s["title"])}</h1>{obj}<div class="tags">{tags}</div>
   <button type="button" class="pz-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M10 7l5 3-5 3z"/></svg>Proyectar la sesión</button></div>
 </header>
-<script type="application/json" class="pz-data">{projection_data(c, s, quin)}</script>
+<script type="application/json" class="pz-data">{projection_data(c, s, quin, prev)}</script>
 
 <div class="f-grid"><div class="f-main">{"".join(main)}</div><aside class="f-side">{"".join(side)}</aside></div>
 {pager}

@@ -11,7 +11,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
 - **27 materiales imprimibles** en PDF (M01-M27, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables), **9 proyectos de Scratch** (.sb3) y una web que lo reúne todo.
-- Cada ficha de sesión tiene un botón **«Proyectar la sesión»**: vista para la clase a pantalla completa (portada, minuto de uso responsable, palabras nuevas, frase clave, herramientas y cierre).
+- Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
 
@@ -327,6 +327,7 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Errores de contenido encontrados al hacerlas:** el cazabichos 3 decía tener 2 bichos pero se arreglaba con 1 cambio (nuevo programa con 2 bichos de verdad); el circuito encendía la bombilla con el plátano y la mano (ahora «conduce muy poco»: no enciende una bombilla, sí sirve con Makey Makey); «Entrena a la máquina» tenía la regla circular «fruta con forma de manzana».
 21. **Pistas y soluciones en las sesiones de programar (3º a 6º, 44 sesiones):** para cada reto, una pregunta para pensar, pistas y la solución con los bloques en sus colores (Scratch en 3º y 4º; MakeCode en 5º y 6º, salvo que el título diga Scratch), más los errores frecuentes. Se insertan con el script de un solo uso `poner_soluciones.py` (en la carpeta temporal de la sesión), justo antes de la «Frase clave».
 22. **Sesiones desenchufadas:** sus retos se resuelven con las herramientas (soluciones en la «Guía para el docente» de cada una) o con el material impreso (soluciones en cada PDF). Solo se añadieron pistas y soluciones en 1º S12 y 2º S7 (cuadrado y rectángulo con REPITE), que no tenían respuesta en ningún sitio. De paso se corrigió la escalera del robot: tenía 5 escalones y 1º S12 la pedía con «REPITE ×3»; ahora es de 3 escalones en un tablero de 5 × 5, como la de «Bucles».
+23. **Proyección de la sesión rehecha:** barra de fases arriba (sin cronómetro), una o varias diapositivas por fase, la misión paso a paso (cada pulsación resalta el siguiente paso) y los retos cuando la sesión los trae (como en 6º S1). El temporizador ya no aparece en la proyección. Los datos salen de `projection_data` (`pz_steps` y `pz_text` en `build_web.py`).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
