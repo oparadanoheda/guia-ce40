@@ -121,7 +121,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 1. Abre el proyectable. Las viñetas salen desordenadas.
 2. Pregunta: "¿Podemos secarnos antes de lavarnos?". Que lo razonen.
 3. Un alumno toca dos viñetas para cambiarlas de sitio. La clase ayuda. Al final, "Comprobar".
-4. Repite con otra rutina del desplegable (ponerse los zapatos, plantar una semilla).
+4. Repite con otra rutina de los botones de arriba (ponerse los zapatos, plantar una semilla).
 
 **Opción B · Ordenamos en la mesa**
 1. Cada grupo recibe una fila de viñetas de M10 recortada y mezclada.

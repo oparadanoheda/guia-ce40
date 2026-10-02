@@ -407,6 +407,28 @@ def pz_steps(text):
     return [pz_text(x) for x in steps if x.strip()]
 
 
+# Qué se usa en cada sesión semanal (1º a 4º), para el cierre de la proyección. Lo que no aparece es de papel.
+USO_SESION = {
+    "c1": {"robot": {7, 8, 11, 12, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24}},
+    "c2": {"robot": {6, 7, 11, 18, 19, 20, 21}, "tablet": {22, 23, 24}},
+    "c3": {"robot": {4}, "scratch": set(range(9, 17)), "makey": {17, 18, 20, 21, 22, 23, 24}},
+    "c4": {"scratch": {1, 2, 4, 5, 6, 7, 8, 10, 11, 12, 13, 14, 15, 16}, "makey": {17, 19, 20, 21, 22, 23, 24}},
+}
+CIERRE = {
+    "robot": ["Sello en el pasaporte", "Tarjetas contadas y en su caja", "Robots apagados y a cargar"],
+    "tablet": ["Sello en el pasaporte", "El proyecto se queda guardado en la tablet", "Tablets a cargar"],
+    "scratch": ["Sello en el pasaporte", "Guardamos el proyecto con el nombre de la pareja", "Portátiles cerrados y a cargar"],
+    "makey": ["Sello en el pasaporte", "Guardamos el proyecto con el nombre del grupo", "Kit de Makey Makey completo en su caja"],
+    "papel": ["Sello en el pasaporte", "Cada cosa a su caja: tarjetas, fichas y material"],
+}
+
+
+def close_list(c, s):
+    """Cierre de la sesión en la pizarra: lo que se guarda y se recoge según lo que se ha usado ese día."""
+    uso = next((k for k, nums in USO_SESION.get(c["id"], {}).items() if s["num"] in nums), "papel")
+    return CIERRE[uso]
+
+
 def projection_data(c, s, quin, prev=None):
     seg = s.get("seg", "")
     quotes = re.findall(r"[\"“]([^\"”]{8,})[\"”]", seg)
@@ -441,6 +463,7 @@ def projection_data(c, s, quin, prev=None):
          "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
          "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
          "missions": retos + props, "fast": pz_text(mc["extra"] if "extra" in mc else cap(s.get("fast", ""))),
+         "close": None if quin else close_list(c, s),
          "prev": {"title": prev["title"], "key": plain(prev.get("key", "")), "num": prev["num"]} if prev else None}
     return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
 
@@ -655,16 +678,16 @@ def subsec(body, heading):
 
 
 # Bloques de programación en las soluciones: `texto` se pinta con el color de su categoría (MakeCode y Scratch)
-BLOCK_CATS = [("rad", ("al recibir radio",)), ("fun", ("llamar a", "función")),
-              ("inp", ("al presionar", "al agitar", "nivel de luz", "temperatura", "nivel de sonido", "aceleración", "brújula", "dirección de la brújula", "al detectar")),
-              ("mat", ("elegir al azar", "número aleatorio")), ("mus", ("reproducir", "tocar nota", "tocar sonido")), ("rad", ("radio",)),
+BLOCK_CATS = [("rad", ("al recibir radio",)), ("fun", ("llamada", "llamar a", "función")),
+              ("inp", ("al presionar", "al pulsar el logotipo", "si agitar", "al agitar", "nivel de luz", "temperatura", "nivel de sonido", "aceleración", "brújula", "dirección de la brújula", "al detectar")),
+              ("mat", ("escoger al azar", "elegir al azar", "número aleatorio")), ("mus", ("reproduce", "reproducir", "tocar nota", "tocar sonido")), ("rad", ("radio",)),
               ("loo", ("repetir", "mientras", "por siempre")),
               ("bas", ("al iniciar", "para siempre", "mostrar", "pausa", "borrar la pantalla", "esperar")),
               ("log", ("si ", "verdadero", "falso", "y ", "o ", "no ")), ("var", ("establecer", "cambiar", "dar a", "sumar a", "fijar"))]
 
 
 SCRATCH_CATS = [("sc-eve", ("al hacer clic", "al presionar tecla", "al presionar la tecla", "al recibir", "enviar", "al comenzar como clon")),
-                ("sc-mov", ("mover", "girar", "ir a", "cambiar x", "cambiar y", "fijar x", "fijar y", "deslizar", "rebotar", "apuntar", "posición x", "posición y")),
+                ("sc-mov", ("mover", "girar", "ir a", "sumar a x", "sumar a y", "dar a x", "dar a y", "cambiar x", "cambiar y", "deslizar", "si toca un borde", "rebotar", "apuntar", "posición x", "posición y")),
                 ("sc-apa", ("decir", "pensar", "cambiar disfraz", "siguiente disfraz", "cambiar fondo", "mostrar", "esconder", "cambiar tamaño", "fijar tamaño")),
                 ("sc-son", ("tocar sonido", "iniciar sonido", "detener todos los sonidos", "tocar nota")),
                 ("sc-myb", ("definir",)),
@@ -672,7 +695,7 @@ SCRATCH_CATS = [("sc-eve", ("al hacer clic", "al presionar tecla", "al presionar
                 ("sc-sen", ("¿tocando", "tocando", "preguntar", "respuesta", "¿tecla", "cronómetro", "reiniciar cronómetro")),
                 ("sc-ope", ("número aleatorio", "unir", "letra")),
                 ("sc-var", ("dar a", "sumar a", "mostrar variable", "esconder variable")),
-                ("sc-pen", ("bajar lápiz", "subir lápiz", "borrar todo", "fijar color del lápiz", "sellar"))]
+                ("sc-pen", ("bajar lápiz", "subir lápiz", "borrar todo", "fijar color de lápiz", "sellar"))]
 
 
 def blocks(h, flavor="makecode"):

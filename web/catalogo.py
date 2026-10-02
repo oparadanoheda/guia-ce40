@@ -14,7 +14,7 @@ PROYECTABLES = [
      [("", "SI… ENTONCES"), ("sino", "SI… SI NO")]),
     ("clasificador", "🗂️", "Clasificador y regla secreta", "1º-3º", "Clasificar objetos por color, tipo o tamaño, y adivinar la regla secreta de la máquina.",
      [("", "Por tipo"), ("color", "Por color"), ("tam", "Por tamaño"), ("secreta", "Regla secreta")]),
-    ("animales", "🐾", "¿Qué animal soy?", "1º-3º", "El ordenador piensa uno de 8 animales y la clase lo descubre con 5 preguntas de sí o no.", [("", "Jugar")]),
+    ("animales", "🐾", "¿Qué animal soy?", "1º-3º", "El ordenador piensa uno de 8 animales y la clase lo descubre eligiendo entre 5 preguntas de sí o no.", [("", "Jugar")]),
     ("votaciones", "📊", "Votaciones y gráfico", "1º-6º", "Encuestas con gráfico de barras en directo y lanzador de dado para estudiar frecuencias.",
      [("mascotas", "Mascotas"), ("juegos", "Juegos"), ("fruta", "Frutas"), ("dado", "Dado"), ("mis", "Mis opciones")]),
     ("diagrama", "🔷", "Diagramas de flujo paso a paso", "3º-4º", "Recorre un diagrama de flujo paso a paso decidiendo en cada rombo.",
@@ -51,7 +51,7 @@ EXTERNAS = [
     ("Blockly Games", "https://blockly.games/?lang=es", "3º-6º", "Juegos de Google en español y sin registro: laberinto, pájaro, tortuga. Muy buenos para hacerlos en la pizarra con toda la clase."),
     ("Quick, Draw!", "https://quickdraw.withgoogle.com/", "5º-6º", "Una IA intenta adivinar lo que dibujáis en 20 segundos. Salen alumnos a dibujar en la pizarra. Ideal para hablar de cómo aprende una IA."),
     ("AI for Oceans (Code.org)", "https://code.org/oceans", "5º-6º", "Entrenar una IA para separar peces de basura: datos de entrenamiento y sesgo. Se puede hacer en la pizarra, en español."),
-    ("Hora del Código", "https://code.org/learn", "3º-6º", "Tutoriales de una hora con personajes conocidos, en español."),
+    ("Hora del Código: laberinto clásico", "https://studio.code.org/hoc/1", "3º-6º", "20 niveles de laberinto con bloques, en español y sin cuenta. Se puede hacer en la pizarra con toda la clase."),
     ("CS Unplugged", "https://csunplugged.org/es/", "1º-6º", "Actividades de informática sin ordenador, con guía para el docente."),
     ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "3º-6º", "Entrenar un modelo de IA con la cámara (demostración del docente, sin caras)."),
 ]

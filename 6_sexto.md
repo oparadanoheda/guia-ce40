@@ -92,24 +92,24 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Minuto de uso responsable (5 minutos):** normas de baterías, cables y recogida. Tarjeta "Dónde lo dejamos".
 
 **Retos (cada pareja llega hasta donde pueda, en el simulador):**
-1. Un mensaje con el botón A (**al presionar el botón A** → **mostrar cadena "Hola 6º"**).
+1. Un mensaje con el botón A (**al presionarse el botón A** → **mostrar cadena "Hola 6º"**).
 2. Contador: A suma, B resta, A+B pone a 0.
 3. Nivel de luz: **para siempre** → **mostrar número nivel de luz**. ¿Cuánto marca a oscuras?
-4. **Reto final:** juego de reflejos: **pausa** un tiempo al azar (**elegir al azar de 1000 a 5000**) → **mostrar icono** → el primero que pulsa su botón (A o B) gana.
+4. **Reto final:** juego de reflejos: **pausa** un tiempo al azar (**escoger al azar de 1000 a 5000**) → **mostrar ícono** → el primero que pulsa su botón (A o B) gana.
 
 **Pistas y soluciones:**
 1. **Mensaje con el botón A**
     - *Para pensar:* ¿qué pasa primero, pulsar el botón o ver el mensaje? Ese «al pulsar» es un **evento**: lo que hace empezar el programa.
-    - *Pista:* el bloque que empieza con «al presionar» está en **Entrada**.
-    - *Solución:* `al presionar el botón A` y dentro `mostrar cadena "Hola 6º"`. Si el texto no cabe, se desplaza por la pantalla.
+    - *Pista:* el bloque que empieza con «al presionarse» está en **Entrada**.
+    - *Solución:* `al presionarse el botón A` y dentro `mostrar cadena "Hola 6º"`. Si el texto no cabe, se desplaza por la pantalla.
 2. **Contador**
     - *Para pensar:* entre una pulsación y otra, ¿dónde se guarda el número para que no se olvide?
     - *Pista:* crea una **variable** `contador` en Variables. Hacen falta tres eventos: botón A, botón B y botón A+B.
     - *Solución:*
         - `al iniciar` → `establecer contador a 0` → `mostrar número contador`
-        - `al presionar el botón A` → `cambiar contador por 1` → `mostrar número contador`
-        - `al presionar el botón B` → `cambiar contador por -1` → `mostrar número contador`
-        - `al presionar el botón A+B` → `establecer contador a 0` → `mostrar número contador`
+        - `al presionarse el botón A` → `cambiar contador por 1` → `mostrar número contador`
+        - `al presionarse el botón B` → `cambiar contador por -1` → `mostrar número contador`
+        - `al presionarse el botón A+B` → `establecer contador a 0` → `mostrar número contador`
     - *Error frecuente:* cambiar la variable y no volver a mostrarla. El número cambia, pero la pantalla sigue igual.
 3. **Nivel de luz**
     - *Para pensar:* ¿cuántas veces hay que mirar la luz: una vez o todo el rato?
@@ -117,14 +117,14 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
     - *Solución:* `para siempre` → `mostrar número (nivel de luz)`. Va de **0** (oscuridad) a **255** (mucha luz): a oscuras marca cerca de 0. En el simulador, la luz se cambia con el control que aparece sobre la placa al usar este bloque; en la placa real, tapándola con la mano.
 4. **Juego de reflejos**
     - *Para pensar:* ¿qué pasa si alguien pulsa **antes** de que salga el icono? ¿Y si pulsan los dos? El programa tiene que saber si ya se puede pulsar.
-    - *Pista 1:* la espera al azar es `pausa (ms)` con `elegir al azar de 1000 a 5000` (Matemáticas) dentro de su hueco. 1000 ms = 1 segundo.
+    - *Pista 1:* la espera al azar es `pausa (ms)` con `escoger al azar de 1000 a 5000` (Matemática) dentro de su hueco. 1000 ms = 1 segundo.
     - *Pista 2:* una variable `listo` que vale `falso` mientras se espera y `verdadero` cuando sale el icono (los dos valores están en Lógica).
     - *Solución:*
-        - `al iniciar` → `establecer listo a falso` → `pausa (ms)` con `elegir al azar de 1000 a 5000` → `mostrar icono` → `establecer listo a verdadero`
-        - `al presionar el botón A` → `si listo entonces` → `establecer listo a falso` → `mostrar cadena "A"`
-        - `al presionar el botón B` → igual, con `mostrar cadena "B"`
+        - `al iniciar` → `establecer listo a falso` → `pausa (ms)` con `escoger al azar de 1000 a 5000` → `mostrar ícono` → `establecer listo a verdadero`
+        - `al presionarse el botón A` → `si listo entonces` → `establecer listo a falso` → `mostrar cadena "A"`
+        - `al presionarse el botón B` → igual, con `mostrar cadena "B"`
         - El primero que pulsa pone `listo` a falso, así que el segundo ya no cuenta, y pulsar antes de tiempo no hace nada. Para otra ronda se reinicia la placa (botón de la parte de atrás, o el de reiniciar del simulador).
-    - *Si va rápido (marcador):* variables `victoriasA` y `victoriasB`, que suben dentro de su `si`. Como reiniciar la placa las pone a 0, la ronda nueva se empieza con `al agitar`, que repite los pasos del principio.
+    - *Si va rápido (marcador):* variables `victoriasA` y `victoriasB`, que suben dentro de su `si`. Como reiniciar la placa las pone a 0, la ronda nueva se empieza con `si agitar`, que repite los pasos del principio.
 
 - **Frase clave:** "Primero en el simulador, después en la placa."
 - **Si va rápido:** el reto 4 con marcador de victorias.
@@ -143,12 +143,12 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 **Opción A · Mascota virtual (recomendada)**
 1. Variable *hambre* (empieza en 5).
 2. Eventos:
-   - **al presionar el botón A** (comer) → **cambiar hambre por -1** → **mostrar icono 😊**
-   - **al presionar el botón B** (preguntar cómo está) → **mostrar número hambre**
-   - **al agitar** (jugar) → **mostrar icono** que baila → **cambiar hambre por 1**
-   - **al presionar el logo** (solo micro:bit V2) o **al presionar A+B** → **reproducir melodía**
-3. **para siempre** → **pausa 10000 ms** → **cambiar hambre por 1** (el tiempo le da hambre).
-4. **si (hambre > 8) entonces mostrar icono 😢**.
+   - **al presionarse el botón A** (comer) → **cambiar hambre por -1** → **mostrar ícono 😊**
+   - **al presionarse el botón B** (preguntar cómo está) → **mostrar número hambre**
+   - **si agitar** (jugar) → **mostrar ícono** (gracioso) → **cambiar hambre por 1**
+   - **al pulsar el logotipo** (solo micro:bit V2) o **al presionarse el botón A+B** → **reproduce secuencia melodía**
+3. **para siempre** → **pausa (ms) 10000** → **cambiar hambre por 1** (el tiempo le da hambre).
+4. **si (hambre > 8) entonces mostrar ícono 😢**.
 
 **Opción B · Mando multifunción**
 Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra una flecha o un icono distinto. Después juegan en parejas a "Simón dice" con la placa.
@@ -157,12 +157,12 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 1. **La mascota virtual**
     - *Para pensar:* el `si hambre > 8` tiene que comprobarse una y otra vez. ¿Dónde lo ponemos?
     - *Pista:* dentro del mismo `para siempre` que le da hambre con el tiempo.
-    - *Solución:* `al iniciar` → `establecer hambre a 5`. `para siempre` → `pausa (ms) 10000` → `cambiar hambre por 1` → `si hambre > 8 entonces` → `mostrar icono` (triste). Los eventos A, B, agitar y logo, como en los pasos.
-    - *Error frecuente:* que el hambre baje de 0 si se le da de comer muchas veces. Arreglo: `al presionar el botón A` → `si hambre > 0 entonces` → `cambiar hambre por -1`.
+    - *Solución:* `al iniciar` → `establecer hambre a 5`. `para siempre` → `pausa (ms) 10000` → `cambiar hambre por 1` → `si hambre > 8 entonces` → `mostrar ícono` (triste). Los eventos A, B, agitar y logo, como en los pasos.
+    - *Error frecuente:* que el hambre baje de 0 si se le da de comer muchas veces. Arreglo: `al presionarse el botón A` → `si hambre > 0 entonces` → `cambiar hambre por -1`.
 2. **Mando multifunción** (opción B)
-    - *Pista:* inclinar no tiene un bloque propio: está en el desplegable de `al agitar`, donde se elige «inclinar a la izquierda» o «inclinar a la derecha».
+    - *Pista:* inclinar no tiene un bloque propio: está en el desplegable de `si agitar`, donde se elige «inclinación hacia la izquierda» o «inclinación hacia la derecha».
 3. **Dos estados: hambre y sueño** (si va rápido)
-    - *Solución:* una segunda variable `sueño` que sube en el mismo `para siempre` y baja con otro evento (por ejemplo, `al presionar el botón A+B` → `establecer sueño a 0` → `mostrar icono` dormido). Un `si sueño > 8 entonces` le pone cara de cansancio.
+    - *Solución:* una segunda variable `sueño` que sube en el mismo `para siempre` y baja con otro evento (por ejemplo, `al presionarse el botón A+B` → `establecer sueño a 0` → `mostrar ícono` dormido). Un `si sueño > 8 entonces` le pone cara de cansancio.
 
 - **Frase clave:** "Muchos eventos, un solo programa."
 - **Si va rápido:** que la mascota tenga dos estados (hambre y sueño).
@@ -178,7 +178,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
-1. Programa: **al presionar el botón A** → **mostrar número temperatura (°C)**; **al presionar el botón B** → **mostrar número nivel de luz**.
+1. Programa: **al presionarse el botón A** → **mostrar número temperatura (°C)**; **al presionarse el botón B** → **mostrar número nivel de luz**.
 2. Cada equipo mide en 3 lugares asignados del colegio (aula, pasillo, ventana, patio si es posible). Anotan temperatura y luz.
 3. **Opción A · Hoja de cálculo:** de vuelta al aula, cada equipo dicta sus datos y tú los metes en la hoja de cálculo del display. Calculáis la **media** (función PROMEDIO) y hacéis un gráfico de barras.
    **Opción B · A mano:** tabla y gráfico de barras en papel cuadriculado; la media se calcula con calculadora.
@@ -217,14 +217,14 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
 
 **Pasos:**
-1. Programa básico: **al presionar el botón A** → motores M1 y M2 a velocidad 50 → **pausa 1000 ms** → parar.
+1. Programa básico: **al presionarse el botón A** → motores M1 y M2 a velocidad 50 → **pausa (ms) 1000** → parar.
 2. Miden cuánto avanza en 1 s. Pregunta: "¿Y en 2 s? ¿Y a velocidad 100?". Lo comprueban.
 3. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad).
 4. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con **repetir 4**).
 
 **Pistas y soluciones:**
 1. **¿Y en 2 s? ¿Y a velocidad 100?**
-    - *Solución:* en 2 s avanza unas **el doble** que en 1 s. A velocidad 100 avanza más que a 50, pero **no siempre el doble exacto**: el rozamiento y el arranque cuentan. Por eso se mide.
+    - *Solución:* en 2 s avanza más o menos **el doble** que en 1 s. A velocidad 100 avanza más que a 50, pero **no siempre el doble exacto**: el rozamiento y el arranque cuentan. Por eso se mide.
 2. **El cuadrado de 50 cm**
     - *Para pensar:* hacen falta dos tiempos: el de avanzar 50 cm y el de girar 90°. ¿Cómo los averiguamos?
     - *Pista:* avanzar: tiempo = 50 ÷ (cm que avanza en 1 s). Girar: un motor a 50 y el otro a −50, y se prueba la pausa hasta que gire un cuarto de vuelta.
@@ -263,7 +263,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
     - *Solución:* `para siempre` → `si` (distancia del sensor) `< 10` `entonces` → parar; `si no` → avanzar. La distancia se lee con el bloque del sensor de ultrasonidos de la extensión.
     - *Seguir una línea:* depende de cómo estén colocados los sensores de línea. Primero se mira qué valor da cada sensor sobre la cinta negra y sobre el suelo; después, la regla es «si se sale por un lado, girar hacia el otro».
 3. **Tres eventos, tres comportamientos** (opción C)
-    - *Solución:* `al presionar el botón A` → motores hacia delante. `al presionar el botón B` → parar. `al presionar el botón A+B` → un motor a 50 y el otro a −50.
+    - *Solución:* `al presionarse el botón A` → motores hacia delante. `al presionarse el botón B` → parar. `al presionarse el botón A+B` → un motor a 50 y el otro a −50.
 
 - **Frase clave:** "El sensor decide, el motor actúa."
 - **Si va rápido:** combinar mecanismo y sensor.
@@ -281,7 +281,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 **Pasos:**
 1. **Optimizar (15 minutos):** entre todos, el programa largo se mejora:
    - Lo repetido, en un **repetir**.
-   - Un trozo que se usa varias veces, en una **función** (categoría Funciones → Crear una función, por ejemplo *girar_derecha*). Una función es como un bloque propio.
+   - Un trozo que se usa varias veces, en una **función** (categoría Funciones, dentro de Avanzado → Crear una función, por ejemplo *girar_derecha*). Una función es como un bloque propio.
    - Borrar lo que sobra y dar nombres claros.
    - Contar bloques antes y después.
 2. **Plan del proyecto individual (20 minutos):** cada pareja elige un proyecto con **al menos un sensor y dos eventos**:
@@ -294,12 +294,12 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 **Pistas y soluciones:**
 1. **Optimizar con una función**
     - *Para pensar:* si el giro está copiado cuatro veces y hay que cambiar su tiempo, ¿cuántos sitios hay que tocar?
-    - *Solución:* Funciones → Crear una función `girar_derecha` con los bloques del giro dentro; donde estaba el trozo se pone `llamar a girar_derecha`. Se cambia una vez y vale para todas.
+    - *Solución:* Funciones → Crear una función `girar_derecha` con los bloques del giro dentro; donde estaba el trozo se pone `llamada girar_derecha`. Se cambia una vez y vale para todas.
 2. **Una función con un número de entrada** (si va rápido)
     - *Solución:* al crear la función, se le añade un parámetro numérico, por ejemplo `avanzar (segundos)`: motores en marcha → `pausa (ms) (segundos × 1000)` → parar. Se usa como `avanzar 2` o `avanzar 3`.
 3. **Pistas para los proyectos**
     - *Alarma con código A, A, B:* como en 5º (S5): una variable `paso` cuenta los botones acertados y B solo desactiva si `paso = 2`.
-    - *Coche teledirigido por radio:* mando: `al presionar el botón A` → `radio enviar número 1`; robot: `al recibir radio receivedNumber` → `si receivedNumber = 1 entonces` avanzar. Las dos placas, en el mismo grupo de radio.
+    - *Coche teledirigido por radio:* mando: `al presionarse el botón A` → `radio enviar número 1`; robot: `al recibir radio receivedNumber` → `si receivedNumber = 1 entonces` avanzar. Las dos placas, en el mismo grupo de radio.
     - *Contador de personas:* lo más fiable es un botón que pulsa quien entra; con el sensor de luz, contar cuando el nivel baja (alguien pasa por delante) exige ajustar bien el umbral.
 
 - **Frase clave:** "Un buen programa es corto, claro y fácil de cambiar."
@@ -390,10 +390,10 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 
 **Pistas y soluciones:**
 1. **Pistas para programar cada idea**
-    - *Timbre que se ilumina:* dos placas por radio. En la puerta: `al presionar el botón A` → `radio enviar número 1`. Dentro: `al recibir radio receivedNumber` → `mostrar icono` (todas las luces) varias veces seguidas.
+    - *Timbre que se ilumina:* dos placas por radio. En la puerta: `al presionarse el botón A` → `radio enviar número 1`. Dentro: `al recibir radio receivedNumber` → `mostrar ícono` (todas las luces) varias veces seguidas.
     - *Aviso de luces encendidas en un aula vacía:* `para siempre` → `si nivel de luz > umbral` (luces encendidas) y `nivel de sonido < umbral` (nadie hablando, placa V2) → aviso. Los dos umbrales se ajustan midiendo en el aula.
-    - *Semáforo de ruido:* `para siempre` → `si nivel de sonido > 150 entonces` → icono rojo; `si no, si nivel de sonido > 90 entonces` → icono amarillo; `si no` → icono verde. Los números se ajustan en el comedor de verdad.
-    - *Contador de botellas:* variable `botellas`; `al presionar el botón A` → `cambiar botellas por 1` → `mostrar número botellas`. Con el sensor de luz se puede contar cuando una botella tapa la placa al pasar.
+    - *Semáforo de ruido:* `para siempre` → `si nivel de sonido > 150 entonces` → `mostrar ícono` (triste); `si no, si nivel de sonido > 90 entonces` → `mostrar ícono` (meh, la cara seria); `si no` → `mostrar ícono` (feliz). Las luces de la placa son todas rojas: el «semáforo» se hace con tres caras. Los números se ajustan en el comedor de verdad.
+    - *Contador de botellas:* variable `botellas`; `al presionarse el botón A` → `cambiar botellas por 1` → `mostrar número botellas`. Con el sensor de luz se puede contar cuando una botella tapa la placa al pasar.
     - *Robot de reparto:* medir cuánto avanza en 1 segundo y calcular el tiempo para cada distancia (tiempo = distancia ÷ velocidad), como en la S4.
 2. **Calcular el coste o el material** (si va rápido)
     - *Pista:* una tabla con cada pieza, cuántas hacen falta y su precio; el total es la suma de cantidad × precio.
@@ -442,64 +442,88 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 
 ## Sesiones opcionales (si hay fechas extra)
 
-### S13 · Proyecto de servicio: sesión extra (la primera que se debe usar)
+### S13 · Proyecto de servicio: sesión extra (la primera que se debe usar) `PC` `ROB`
 
-- **Material listo:** [[M:M17|Ficha de prueba]]
+- **Qué aprenden:** programar el prototipo, probarlo con usuarios reales y mejorarlo con lo que digan.
+- **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M18|Dónde lo dejamos]]
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-Entre la S11 y la S12: programar, probarlo con usuarios reales (otra clase, conserjería, comedor) y mejorarlo.
+**Pasos:**
+1. Se coloca entre la S11 y la S12. Cada equipo lee su tarjeta «Dónde lo dejamos» (3 minutos).
+2. Terminar de programar el prototipo (15 minutos).
+3. Probarlo con usuarios reales (otra clase, conserjería, comedor) y apuntar en la ficha de prueba lo que dicen (15 minutos).
+4. Mejorarlo con lo que han dicho, guardar y recoger (7 minutos).
 
+- **Frase clave:** "Quien lo usa nos dice cómo mejorarlo."
 - **Si va rápido:** una mejora propuesta por los usuarios.
 - **Si cuesta:** terminar lo imprescindible para que funcione.
 - **Mates:** recoger datos de las pruebas con usuarios en una tabla.
 
 ### S14 · Red de micro:bits `ROB` `PC`
 
+- **Qué aprenden:** comunicar dos placas por radio y entender por qué cada equipo necesita su propio grupo.
 - **Para proyectar:** [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
-Dos placas se comunican por radio: **radio establecer grupo** (cada equipo un número distinto, del 1 al 255) → **al presionar el botón A** → **radio enviar número 1**; en la otra: **al recibir radio número** → **mostrar icono**. Retos: timbre a distancia, termómetro remoto, o mando por radio para el Nezha (inclinar la placa mando). Privacidad: si otro equipo usa tu grupo, recibe tus mensajes.
+**Pasos:**
+1. Dos placas se comunican por radio: **radio establecer grupo** (cada equipo un número distinto, del 1 al 255) → **al presionarse el botón A** → **radio enviar número 1**; en la otra: **al recibir radio receivedNumber** → **mostrar ícono**.
+2. Retos: timbre a distancia, termómetro remoto, o mando por radio para el Nezha (inclinar la placa mando).
+3. Privacidad: si otro equipo usa tu grupo, recibe tus mensajes.
 
 **Pistas y soluciones:**
 1. **Timbre a distancia**
     - *Pista:* las dos placas tienen que estar en el mismo grupo; cada equipo, un número distinto.
-    - *Solución:* en las dos: `al iniciar` → `radio establecer grupo 23` (el número del equipo). La que llama: `al presionar el botón A` → `radio enviar número 1`. La que recibe: `al recibir radio receivedNumber` → `mostrar icono` y `reproducir tono`.
+    - *Solución:* en las dos: `al iniciar` → `radio establecer grupo 23` (el número del equipo). La que llama: `al presionarse el botón A` → `radio enviar número 1`. La que recibe: `al recibir radio receivedNumber` → `mostrar ícono` y `reproduce secuencia tono`.
 2. **Mando por radio para el Nezha**
     - *Para pensar:* ¿cómo sabe la placa mando hacia dónde está inclinada?
     - *Solución:* mando: `para siempre` → `si aceleración (mg) x > 300 entonces` → `radio enviar número 2` (derecha); `si no, si aceleración (mg) x < -300 entonces` → `radio enviar número 3` (izquierda); `si no` → `radio enviar número 1` (recto). Robot: `al recibir radio receivedNumber` → según el número, mueve los motores. El 300 se ajusta probando.
 3. **Termómetro remoto** (si va rápido)
     - *Solución:* la que mide: `para siempre` → `radio enviar número (temperatura (°C))` → `pausa (ms) 60000`. La que recibe: `al recibir radio receivedNumber` → `mostrar número receivedNumber`.
 
+- **Frase clave:** "Si compartes grupo, compartes mensajes."
 - **Si va rápido:** un termómetro remoto que envía la temperatura cada minuto.
 - **Si cuesta:** un timbre a distancia con un icono.
 - **Mates:** codificar mensajes con números; comparar valores recibidos.
 
-### S15 · Tinkercad II
+### S15 · Tinkercad II `RA`
 
+- **Qué aprenden:** diseñar en 3D con bloques de código (Codeblocks) o una pieza que encaje en el prototipo.
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
 - **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
 
-Diseñar con **Codeblocks** (formas creadas con bloques de código, en la propia web de Tinkercad) o diseñar una pieza que encaje en el prototipo del proyecto de servicio.
+**Pasos:**
+1. Cada pareja elige: **Codeblocks** (formas creadas con bloques de código, en la propia web de Tinkercad) o una pieza que encaje en el prototipo del proyecto de servicio.
+2. Con Codeblocks: una forma, moverla y repetirla con un bucle. Con la pieza: medir el prototipo con regla y diseñarla con esas medidas en milímetros.
+3. Captura de pantalla del diseño.
 
+- **Frase clave:** "Un bucle también construye formas."
 - **Si va rápido:** una pieza con Codeblocks usando un bucle (fila de cilindros).
 - **Si cuesta:** diseñar la pieza del prototipo con medidas dadas.
 - **Mates:** medidas en milímetros, cuerpos geométricos y, con Codeblocks, repeticiones y coordenadas.
 
 ### S16 · A elegir
 
+- **Qué aprenden:** hacer una situación de ART2BIT, enseñar a 4º lo aprendido o resolver retos de lógica en la pizarra.
 - **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] (juegos de lógica para una sesión a elegir)
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-- **ART2BIT:** una de sus situaciones oficiales, si el centro lo tiene montado.
-- **Enseño a 4º:** cada pareja enseña su proyecto de micro:bit a una pareja de 4º.
+**Opción A · ART2BIT**
+Una de sus situaciones oficiales, si el centro lo tiene montado.
+
+**Opción B · Enseño a 4º**
+Cada pareja enseña su proyecto de micro:bit a una pareja de 4º: primero se lo explica y después le deja probarlo.
+
+**Opción C · Retos de lógica en la pizarra**
+Toda la clase con las cartas binarias y la balanza: ¿qué número forman estas cartas? ¿Con cuántas comparaciones se ordenan 8 cajas?
+
+- **Frase clave:** "Lo que aprendo, lo puedo enseñar."
 - **Si va rápido:** enseñar a 4º un reto de ampliación.
 - **Si cuesta:** enseñar el proyecto más sencillo del curso.
 - **Mates:** explicar un algoritmo con números y medidas a otro curso.
+- **Aplicaciones para la pizarra en sesiones extra:** [[P:paridad|Magia de la paridad]] · [[P:balanza.8|Ordenar con la balanza]] · [[P:flota.xy|Hundir la flota con coordenadas]] · [Blockly Games](https://blockly.games/?lang=es).
 
 ---
-
-**Aplicaciones para la pizarra en sesiones extra:** [[P:paridad|Magia de la paridad]] · [[P:balanza.8|Ordenar con la balanza]] · [[P:flota.xy|Hundir la flota con coordenadas]] · [Blockly Games](https://blockly.games/?lang=es).
 
 ## Atención a la diversidad en 6º
 

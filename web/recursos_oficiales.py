@@ -188,7 +188,7 @@ LIBRARY = [
                 ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "3º-6º"),
             ]),
             ("Sesiones de reserva", [
-                ("Hora del Código (code.org)", "https://code.org/learn", "Todos"),
+                ("Hora del Código: laberinto clásico", "https://studio.code.org/hoc/1", "3º-6º"),
                 ("CS Unplugged en español", "https://csunplugged.org/es/", "Todos"),
                 ("Pictogramas ARASAAC", "https://arasaac.org/", "1º-2º"),
             ]),

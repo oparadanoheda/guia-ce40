@@ -255,7 +255,7 @@ Sirven para cualquier curso y no necesitan preparación especial:
 
 - **Torneo de cazabichos:** fichas M08 del nivel del curso o el proyectable del robot en la cuadrícula, modo cazabichos.
 - **Misiones eXe oficiales (Retos en 45'):** misiones interactivas de Código Escuela 4.0 pensadas para una sesión (ver Recursos oficiales).
-- **Hora del Código (code.org/learn):** tutoriales de una hora en español (de 3º en adelante).
+- **[Hora del Código: laberinto clásico](https://studio.code.org/hoc/1):** 20 niveles con bloques, en español y sin cuenta (de 3º en adelante).
 - **CS Unplugged (csunplugged.org/es):** actividades desenchufadas gratuitas con guía para el docente.
 - **Reto libre:** el alumnado inventa un reto con el material del trimestre.
 - **Enseño a otro curso:** una pareja enseña su proyecto a un curso inferior.

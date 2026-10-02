@@ -43,7 +43,7 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 |---|---|---|
 | **bucle anidado** | Un bucle dentro de otro bucle, como en el rosetón. | S2 |
 | **número aleatorio** | Un número al azar que elige el ordenador. | S5 |
-| **resto (mod)** | Lo que sobra al dividir. Si el resto entre 2 es 0, el número es par. | S5 |
+| **resto (módulo)** | Lo que sobra al dividir. Si el resto entre 2 es 0, el número es par. | S5 |
 | **coordenadas (x, y)** | Dos números que dicen dónde está algo en el escenario. | S10 |
 | **¿tocando…?** | Pregunta de Scratch que comprueba si dos objetos se tocan. | S11 |
 | **mensaje** | Aviso que un objeto envía y otros reciben para empezar a hacer algo. | S13 |
@@ -97,7 +97,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 1. **Arregla el juego: los 3 bichos del archivo**
     - *Para pensar:* probad el juego entero y apuntad qué falla antes de tocar ningún bloque.
     - *Pista:* uno está en el movimiento, otro en un bloque que nunca se ejecuta y otro en un bucle que se acaba demasiado pronto.
-    - *Solución:* (1) con la flecha derecha el gato va hacia la izquierda: el bloque dice `mover -10 pasos` y debe ser `mover 10 pasos`; (2) un sonido está suelto, sin evento encima: hay que engancharlo debajo de un evento; (3) el juego se para enseguida: hay un `repetir 3` donde debe haber `por siempre`.
+    - *Solución:* (1) con la flecha derecha Robi va hacia la izquierda: el bloque dice `mover -10 pasos` y debe ser `mover 10 pasos`; (2) un sonido está suelto, sin evento encima: hay que engancharlo debajo de un evento; (3) el juego se para enseguida: hay un `repetir 3` donde debe haber `por siempre`.
 2. **Reto relámpago** (opción B)
     - *Solución:* (1) `al hacer clic en 🏴` → `decir ¡Hola! durante 2 segundos`; (2) `al presionar tecla flecha derecha` → `mover 10 pasos` y `al presionar tecla flecha izquierda` → `mover -10 pasos`; (3) `al hacer clic en este objeto` → `sumar a puntos 1`, con `dar a puntos el valor 0` en la bandera.
 
@@ -115,9 +115,9 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 
 **Pasos:**
 1. Proyecta "Polígonos". Mueve la barra de lados y completad en la pizarra la tabla: lados → giro. Que descubran que **giro = 360 ÷ lados**.
-2. En Scratch: extensión **Lápiz** → **borrar todo** → **bajar lápiz** → **repetir 4** [**mover 80 pasos**, **girar 90 grados**].
+2. En Scratch: extensión **Lápiz** → **borrar todo** → **bajar lápiz** → **repetir 4** [**mover 80 pasos**, **girar ↻ 90 grados**].
 3. Cambian a triángulo y hexágono con la tabla.
-4. Proyecta "Rosetón": el cuadrado dentro de un **repetir 12** con **girar 30 grados**. Lo copian en Scratch.
+4. Proyecta "Rosetón": el cuadrado dentro de un **repetir 12** con **girar ↻ 30 grados**. Lo copian en Scratch.
 
 **Opción más sencilla:** solo polígonos, cambiando el color del lápiz.
 
@@ -203,7 +203,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 4. Mejora: dentro del **si no**, otro **si (respuesta > secreto) entonces decir Es más pequeño / si no decir Es más grande**.
 5. Mejora final: repetirlo **hasta que respuesta = secreto**.
 
-**Opción más sencilla:** "par o impar": el ordenador pregunta un número y responde con **si ((respuesta mod 2) = 0) entonces decir Par / si no decir Impar**. *mod* es el resto de dividir.
+**Opción más sencilla:** "par o impar": el ordenador pregunta un número y responde con **si ((respuesta módulo 2) = 0) entonces decir Par / si no decir Impar**. *Módulo* es el resto de dividir.
 
 **Pistas y soluciones:**
 1. **Adivina el número con pistas**
@@ -213,9 +213,9 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
     - *Repetir hasta acertar:* `preguntar` y los dos `si` van dentro de `repetir hasta que respuesta = secreto`. El archivo de solución lo tiene completo.
     - *Estrategia para jugar:* empezar por la mitad (10) y seguir partiendo por la mitad; con números del 1 al 20 bastan 5 intentos.
 2. **Contar los intentos** (si va rápido)
-    - *Solución:* variable `intentos`: `dar a intentos el valor 0` al empezar y `sumar a intentos 1` después de cada `preguntar`. Al acertar: `decir (unir Lo has conseguido en intentos)`.
+    - *Solución:* variable `intentos`: `dar a intentos el valor 0` al empezar y `sumar a intentos 1` después de cada `preguntar`. Al acertar: `decir (unir "Intentos: " intentos)` (con un espacio después de los dos puntos).
 3. **Par o impar** (opción más sencilla)
-    - *Solución:* `preguntar Dime un número y esperar` → `si (respuesta mod 2) = 0 entonces` → `decir Par`; `si no` → `decir Impar`. Un número es par si al dividirlo entre 2 el resto es 0.
+    - *Solución:* `preguntar Dime un número y esperar` → `si (respuesta módulo 2) = 0 entonces` → `decir Par`; `si no` → `decir Impar`. Un número es par si al dividirlo entre 2 el resto es 0.
 
 - **Frase clave:** "El ordenador decide con condiciones."
 - **Si va rápido:** que cuente cuántos intentos se han necesitado.
@@ -335,18 +335,18 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 **Pasos:**
 1. Elegir fondo y personaje según el diseño.
-2. Cuatro eventos: **al presionar tecla flecha derecha** → **cambiar x en 10** (izquierda −10; arriba y abajo con **cambiar y en 10** y −10).
+2. Cuatro eventos: **al presionar tecla flecha derecha** → **sumar a x 10** (izquierda −10; arriba y abajo con **sumar a y 10** y −10).
 3. **al hacer clic en 🏴** → **ir a x: 0 y: 0** → **fijar tamaño al 50 %**.
-4. Que no se salga: **por siempre** [**rebotar si toca un borde**].
+4. Que no se salga: **por siempre** [**si toca un borde, rebotar**].
 
 **Opción más sencilla:** solo derecha e izquierda (juego de atrapar cosas que caen).
 
 **Pistas y soluciones:**
 1. **Personaje que no se sale**
     - *Para pensar:* ¿por qué no basta con que las flechas funcionen?
-    - *Solución:* cuatro eventos de tecla (`cambiar x en 10`, `cambiar x en -10`, `cambiar y en 10`, `cambiar y en -10`) y, aparte, `al hacer clic en 🏴` → `ir a x: 0 y: 0` → `fijar tamaño al 50 %` → `por siempre` → `rebotar si toca un borde`. Todos los programas funcionan a la vez.
+    - *Solución:* cuatro eventos de tecla (`sumar a x 10`, `sumar a x -10`, `sumar a y 10`, `sumar a y -10`) y, aparte, `al hacer clic en 🏴` → `ir a x: 0 y: 0` → `fijar tamaño al 50 %` → `por siempre` → `si toca un borde, rebotar`. Todos los programas funcionan a la vez.
 2. **Cambiar de disfraz al moverse** (si va rápido)
-    - *Solución:* añadir `siguiente disfraz` debajo de cada `cambiar x en …` de las flechas.
+    - *Solución:* añadir `siguiente disfraz` debajo de cada `sumar a x …` de las flechas.
 
 - **Frase clave:** "Varios eventos pueden funcionar a la vez."
 - **Si va rápido:** que el personaje cambie de disfraz al moverse.
@@ -361,15 +361,15 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Minuto de uso responsable:** "Al ordenador, manos limpias y nada de comida ni bebida cerca." ¿Qué podría pasar si se derrama agua sobre el teclado?
 
 **Pasos:**
-1. Objeto "premio": **al hacer clic en 🏴** → **por siempre** [**si ¿tocando [personaje]? entonces** → **tocar sonido** → **ir a posición aleatoria**].
-2. Objeto "enemigo" que se mueve solo: **por siempre** [**mover 5 pasos**, **rebotar si toca un borde**].
+1. Objeto "premio": **al hacer clic en 🏴** → **por siempre** [**si ¿tocando [personaje]? entonces** → **iniciar sonido** → **ir a posición aleatoria**].
+2. Objeto "enemigo" que se mueve solo: **por siempre** [**mover 5 pasos**, **si toca un borde, rebotar**].
 3. Si el enemigo toca al personaje: **si ¿tocando [personaje]? entonces** → **decir ¡Ay!** → **esperar 1 segundos**.
 
 **Pistas y soluciones:**
 1. **Premio y enemigo**
     - *Para pensar:* ¿quién comprueba si se tocan, el personaje o el premio? ¿Importa?
     - *Pista:* da igual dónde esté el `si ¿tocando…?`, pero tiene que estar dentro de un `por siempre`.
-    - *Solución:* premio: `al hacer clic en 🏴` → `por siempre` → `si ¿tocando Personaje? entonces` → `iniciar sonido` → `ir a posición aleatoria`. Enemigo: `al hacer clic en 🏴` → `por siempre` → `mover 5 pasos` → `rebotar si toca un borde` → `si ¿tocando Personaje? entonces` → `decir ¡Ay! durante 1 segundos`.
+    - *Solución:* premio: `al hacer clic en 🏴` → `por siempre` → `si ¿tocando Personaje? entonces` → `iniciar sonido` → `ir a posición aleatoria`. Enemigo: `al hacer clic en 🏴` → `por siempre` → `mover 5 pasos` → `si toca un borde, rebotar` → `si ¿tocando Personaje? entonces` → `decir ¡Ay! durante 1 segundos`.
 2. **Dos enemigos con velocidades distintas** (si va rápido)
     - *Solución:* duplicar el enemigo (clic derecho → duplicar) y cambiar `mover 5 pasos` por `mover 8 pasos` en la copia.
 
@@ -414,7 +414,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Minuto de uso responsable:** "Espalda recta y pies en el suelo cuando uso el ordenador." ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
-1. Al llegar a 5 puntos: **enviar mensaje nivel 2** (crear el mensaje nuevo).
+1. Al llegar a 5 puntos: **enviar nivel 2** (en el desplegable del bloque, «Nuevo mensaje» y se llama *nivel 2*).
 2. En el escenario: **al recibir nivel 2** → **cambiar fondo a…**.
 3. En el enemigo: **al recibir nivel 2** → más rápido (**mover 10 pasos** en vez de 5).
 
@@ -424,7 +424,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 1. **Mensajes y niveles**
     - *Para pensar:* si el mensaje se envía dentro de un `por siempre` mientras puntos vale 5, ¿cuántas veces se envía?
     - *Pista:* el enemigo ya tiene un `por siempre` con `mover 5 pasos`. Para que vaya más rápido, es mejor que la velocidad sea una **variable**.
-    - *Solución:* variable `velocidad`. Enemigo: `al hacer clic en 🏴` → `dar a velocidad el valor 5` → `por siempre` → `mover velocidad pasos` → `rebotar si toca un borde`. Premio, al sumar el punto: `si puntos = 5 entonces` → `enviar nivel 2`. Escenario: `al recibir nivel 2` → `cambiar fondo a` (el del nivel 2). Enemigo: `al recibir nivel 2` → `dar a velocidad el valor 10`.
+    - *Solución:* variable `velocidad`. Enemigo: `al hacer clic en 🏴` → `dar a velocidad el valor 5` → `por siempre` → `mover velocidad pasos` → `si toca un borde, rebotar`. Premio, al sumar el punto: `si puntos = 5 entonces` → `enviar nivel 2`. Escenario: `al recibir nivel 2` → `cambiar fondo a` (el del nivel 2). Enemigo: `al recibir nivel 2` → `dar a velocidad el valor 10`.
     - *Error frecuente:* poner `al recibir nivel 2` → `por siempre` → `mover 10 pasos`: el programa nuevo se suma al viejo y el enemigo corre 15 pasos de golpe.
 2. **Tercer nivel** (si va rápido)
     - *Solución:* lo mismo con `si puntos = 10 entonces` → `enviar nivel 3`, otro fondo y `dar a velocidad el valor 15`.
@@ -572,7 +572,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
     - *Solución:* en cada pregunta: `dar a correcta el valor 2` (por ejemplo). Botón 1: `al presionar tecla flecha izquierda` → `si correcta = 1 entonces` → `sumar a puntos 1`; `si no` → `decir Inténtalo otra vez durante 2 segundos`. Igual con los otros botones y su número.
     - *Error frecuente:* probar todo a la vez. Primero cada botón con el teclado, después con el mando y al final el juego entero.
 2. **Contar el tiempo** (si va rápido)
-    - *Solución:* `reiniciar cronómetro` al empezar y, al terminar, `decir (unir Has tardado cronómetro)`. El cronómetro está en Sensores y cuenta segundos.
+    - *Solución:* `reiniciar cronómetro` al empezar y, al terminar, `decir (unir "Segundos: " (redondear cronómetro))`. El cronómetro está en Sensores y cuenta segundos con decimales; `redondear` los quita.
 
 - **Frase clave:** "Pruebo cada parte y luego el todo."
 - **Si va rápido:** que el juego cuente el tiempo que tarda el jugador.
@@ -599,7 +599,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
     - *Solución:* el trozo copiado 4 veces seguidas va dentro de `repetir 4`. Si el trozo se usa en sitios distintos, mejor un bloque propio: Mis bloques → Crear un bloque → `definir celebrar` con el trozo dentro, y donde estaba el trozo se pone `celebrar`. Al cambiarlo una vez, cambia en todas partes.
 2. **Bloque propio con número de entrada** (si va rápido)
     - *Pista:* al crear el bloque, «Añadir una entrada (número o texto)» y llamarla `altura`.
-    - *Solución:* `definir saltar (altura)` → `cambiar y en altura` → `esperar 0.3 segundos` → `cambiar y en (0 - altura)`. Se usa como `saltar 50` o `saltar 100`.
+    - *Solución:* `definir saltar (altura)` → `sumar a y altura` → `esperar 0.3 segundos` → `sumar a y (0 - altura)`. Se usa como `saltar 50` o `saltar 100`.
 
 - **Frase clave:** "Un buen programa lo entiende cualquiera."
 - **Si va rápido:** un bloque propio con un número de entrada (por ejemplo, *saltar (altura)*).
@@ -629,7 +629,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 **Pasos:**
 1. Presentación de cada grupo (3 minutos): qué enseña el juego, cómo funciona, un bicho que arreglaron y qué optimizaron.
-2. **Huella digital (minuto ampliado):** "¿Por qué no hacemos fotos de caras?". lo que se sube a internet se queda y lo pueden ver personas que no conocemos. Las redes sociales tienen una edad mínima legal por algo.
+2. **Huella digital (minuto ampliado):** "¿Por qué no hacemos fotos de caras?". Lo que se sube a internet se queda y lo pueden ver personas que no conocemos. Las redes sociales tienen una edad mínima legal por algo.
 
 - **Frase clave:** "Lo que subo a internet se queda."
 - **Si va rápido:** explicar con datos: cuántos bloques antes y después de optimizar.
@@ -673,7 +673,7 @@ Ver el apartado 6 del documento general. En 4º, además:
 
 ## Sesiones de reserva sugeridas
 
-- T1: repaso de Scratch (S10 y S13 de 3º) · Hora del Código (code.org/learn).
+- T1: repaso de Scratch (S10 y S13 de 3º) · [Hora del Código: laberinto clásico](https://studio.code.org/hoc/1).
 - T2: recuperación del videojuego · [[P:coordenadas|reto de coordenadas]].
 - T3: otra situación oficial de Clic and Play · Enseñamos a 3º.
 - Aplicaciones para la pizarra: [[P:binario.5|Cartas binarias]] · [[P:paridad|Magia de la paridad]] · [[P:flota.grande|Hundir la flota 8 × 8]] · [Blockly Games](https://blockly.games/?lang=es).

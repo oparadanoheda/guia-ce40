@@ -288,7 +288,9 @@ MISION = {
                "extra": "Que el robot esquive el obstáculo en lugar de pararse."},
     "c5-s15": {"D": ["Diseñamos en 3D un objeto útil: un soporte para lápices, un portanombres…", "Medimos el objeto real con la regla y usamos esas medidas."],
                "extra": "Un objeto con dos piezas que encajen."},
-    "c5-s16": {"D": ["Hoy elegimos: dos placas que se mandan mensajes por radio, o enseñamos nuestro invento a 3º."],
+    "c5-s16": {"A": ["Dos placas que se mandan mensajes por radio.", "Cada equipo, su número de grupo: si otro lo usa, ¡lee nuestros mensajes!", "Reto: pulsar A en una placa y que salga un número en la otra."],
+               "B": ["Hoy hacemos una de las situaciones de ART2BIT."],
+               "C": ["Hoy somos profes: enseñamos nuestro invento a una pareja de 3º.", "Primero se lo explicamos; después lo prueban ellos."],
                "extra": "Un termómetro a distancia: una placa mide y la otra enseña la temperatura."},
     # ---------------------------------------------------------------- 6º
     "c6-s1": {"extra": "El reto 4 con un marcador de victorias."},
@@ -324,6 +326,8 @@ MISION = {
                "extra": "Un termómetro que envíe la temperatura cada minuto."},
     "c6-s15": {"D": ["Diseñamos con bloques de código en Tinkercad, o una pieza que encaje en otra."],
                "extra": "Una fila de cilindros con un bucle."},
-    "c6-s16": {"D": ["Hoy elegimos: un reto de la pizarra o enseñamos un proyecto a 4º."],
+    "c6-s16": {"A": ["Hoy hacemos una de las situaciones de ART2BIT."],
+               "B": ["Hoy somos profes: enseñamos un proyecto de micro:bit a una pareja de 4º.", "Primero se lo explicamos; después lo prueban ellos."],
+               "C": ["Retos de lógica en la pizarra: cartas binarias y ordenar con la balanza.", "¿Con cuántas comparaciones se ordenan 8 cajas?"],
                "extra": "Enseñad a 4º un reto de ampliación."},
 }

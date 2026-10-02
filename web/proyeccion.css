@@ -64,7 +64,7 @@
 /* Barra de fases de la sesión (arriba) */
 .pz-top{gap:1.2rem;padding:.7rem 1.2rem;border-top:0;background:#fff;box-shadow:0 1px 0 #e3e6ec}
 .pz-bar{flex:1;display:flex;gap:.35rem;min-width:0}
-.pz-seg{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;min-width:0;padding:.55rem .8rem .7rem;border:0;border-radius:.7rem;
+.pz-seg{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;min-width:max-content;padding:.55rem .8rem .7rem;border:0;border-radius:.7rem;
   background:#eceef2;color:#5b6272;cursor:pointer;text-align:left;overflow:hidden}
 .pz-seg b{font:700 clamp(.85rem,1.3vw,1.25rem)/1.1 'Instrument Sans',sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .pz-seg small{font:500 clamp(.7rem,.95vw,.9rem)/1 'Instrument Sans',sans-serif;opacity:.8}
@@ -108,7 +108,7 @@
 .pz-qs li,.pz-check li{display:flex;gap:1vw;align-items:baseline;font:500 clamp(1.4rem,2.8vw,2.7rem)/1.25 'Literata',Georgia,serif}
 .pz-qs li::before{content:'?';flex:none;color:var(--pz);font:700 1em 'Instrument Sans',sans-serif}
 .pz-check li::before{content:'☐';flex:none;color:var(--pz)}
-@media (max-width:640px){.pz-seg small,.pz-segdots{display:none}.pz-seg{padding:.45rem .5rem}}
+@media (max-width:640px){.pz-seg small,.pz-segdots{display:none}.pz-seg{padding:.45rem .5rem;min-width:0}.pz-seg b{display:none}.pz-seg.on{flex:6 1 auto!important}.pz-seg.on b{display:block}.pz-top{gap:.5rem;padding:.6rem .7rem}.pz-crumb{display:none}.pz-resbtn{padding:.55rem .6rem}}
 .pz-stage{align-items:flex-start}
 .pz-slide{margin:auto 0}
 .pz-retos{grid-template-columns:repeat(2,minmax(0,1fr))}

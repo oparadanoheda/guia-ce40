@@ -97,11 +97,11 @@ def m01():
     pages = []
     uso = ("<b>Cómo usarlo:</b> imprime un juego por grupo (la primera hoja, dos veces) en cartulina o papel grueso y plastifícalo si puedes. "
            "Recorta por la línea de puntos. Sirven para el robot humano, los caminos en cuadrícula y como guía para programar True True.")
-    pages.append(page("M01", "Tarjetas de flechas", "1º, 2º y 3º", "1º S1, S4, S9 · 2º S1, S4 · 3º S1, S3", uso,
+    pages.append(page("M01", "Tarjetas de flechas", "1º, 2º y 3º", "1º S1, S4, S8, S9, S14 · 2º S1, S4, S6", uso,
                       cards([arrow_card("F")] * 6, 2, 3), "c1", "Hoja 1 de 3"))
-    pages.append(page("M01", "Tarjetas de flechas", "1º, 2º y 3º", "1º S1, S4, S9 · 2º S1, S4 · 3º S1, S3", uso,
+    pages.append(page("M01", "Tarjetas de flechas", "1º, 2º y 3º", "1º S1, S4, S8, S9, S14 · 2º S1, S4, S6", uso,
                       cards([arrow_card("R")] * 3 + [arrow_card("L")] * 3, 2, 3), "c1", "Hoja 2 de 3"))
-    pages.append(page("M01", "Tarjetas de flechas", "1º, 2º y 3º", "1º S1, S4, S9 · 2º S1, S4 · 3º S1, S3", uso,
+    pages.append(page("M01", "Tarjetas de flechas", "1º, 2º y 3º", "1º S1, S4, S8, S9, S14 · 2º S1, S4, S6", uso,
                       cards([repeat_card(2), repeat_card(3), repeat_card(4), arrow_card("B"),
                              '<div style="width:52mm;height:52mm;border-radius:7mm;background:#e0443a;display:flex;align-items:center;justify-content:center;color:#fff;font:700 26pt Bahnschrift">FIN</div><div class="lbl">FIN DEL PROGRAMA</div>',
                              '<div style="width:52mm;height:52mm;border-radius:7mm;border:3px dashed #9aa1ad"></div><div class="lbl">TARJETA LIBRE</div><div class="sub">Para inventar una orden nueva</div>'], 2, 3), "c1", "Hoja 3 de 3"))
@@ -164,8 +164,8 @@ def m07():
     cardsh = [map_card(i, m) for i, m in enumerate(MAPS)]
     sols = [map_card(i, m, True, 44) for i, m in enumerate(MAPS)]
     grid = lambda xs: f'<div class="two" style="flex:1">{"".join(xs)}</div>'
-    return [page("M07", "Mapas del tesoro", "1º y 2º", "1º S4, S8 · 2º S1", uso, grid(cardsh[:4]), "c1", "Mapas 1 a 4"),
-            page("M07", "Mapas del tesoro", "1º y 2º", "1º S4, S8 · 2º S1", uso, grid(cardsh[4:]), "c1", "Mapas 5 y 6"),
+    return [page("M07", "Mapas del tesoro", "1º, 2º y 3º", "1º S4, S6, S8 · 2º S5 · 3º S6", uso, grid(cardsh[:4]), "c1", "Mapas 1 a 4"),
+            page("M07", "Mapas del tesoro", "1º, 2º y 3º", "1º S4, S6, S8 · 2º S5 · 3º S6", uso, grid(cardsh[4:]), "c1", "Mapas 5 y 6"),
             page("M07", "Mapas del tesoro · soluciones", "1º y 2º", "Para el docente", "Solución más corta de cada mapa. Hay otras soluciones válidas si el robot llega al tesoro sin chocar.", f'<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;flex:1">{"".join(sols)}</div>', "c1", "Soluciones")]
 
 
@@ -245,7 +245,7 @@ def m09():
     rows2 = "".join(f'<div style="display:flex;align-items:center;gap:4mm;padding:2.5mm 0;border-bottom:1px solid #dfe3ea"><b style="width:14mm">{i + 1}</b>{pattern_row(u, 10, 0, b)}</div>' for i, (u, b) in enumerate(bugs))
     sol = "Soluciones hoja 2: el bicho está en la posición " + " · ".join(f"{i + 1}) {b + 1}ª" for i, (_, b) in enumerate(bugs)) + ". Patrón que crece: la figura 5 tiene 5 cuadrados."
     return [page("M09", "Patrones: continúa la serie", "1º y 2º", "1º S5 · 2º S3", uso, rows1, "c1", "Hoja 1 de 2"),
-            page("M09", "Patrones: busca el bicho", "1º y 2º", "1º S6 · 2º S3, S5", uso, rows2 + f'<div class="sol">{sol}</div>', "c1", "Hoja 2 de 2")]
+            page("M09", "Patrones: busca el bicho", "2º y 3º", "2º S3 · 3º S1", uso, rows2 + f'<div class="sol">{sol}</div>', "c1", "Hoja 2 de 2")]
 
 
 
@@ -375,7 +375,7 @@ def m16():
 <tr><th>Sensor que usa</th><td>☐ botones ☐ movimiento ☐ luz ☐ temperatura ☐ sonido ☐ otro: ______</td></tr><tr><th>¿Qué hace cuando el sensor detecta algo?</th><td style="height:20mm"></td></tr>
 <tr><th>Umbral (número a partir del cual reacciona)</th><td></td></tr><tr><th>Programa (dibuja los bloques)</th><td style="height:70mm"></td></tr><tr><th>¿Cómo lo probamos?</th><td style="height:18mm"></td></tr></table>'''
     uso = "<b>Cómo usarlo:</b> fichas de planificación. Se rellenan al principio del proyecto y se guardan en la carpeta del equipo para la siguiente sesión."
-    return [page("M16", "Hoja de plan en 3 cuadros", "1º, 2º y 3º", "1º S15 · 2º S14 · 3º S15", uso, plan3, "c4", "1 de 5"),
+    return [page("M16", "Hoja de plan en 3 cuadros", "1º y 2º", "1º S15", uso, plan3, "c4", "1 de 5"),
             page("M16", "Hoja de proyecto en equipo · 1º y 2º", "1º y 2º", "1º S17 · 2º S17", uso, team12, "c4", "2 de 5"),
             page("M16", "Hoja de proyecto en equipo · 3º a 6º", "3º a 6º", "3º S19 · 4º S18 · 5º S11 · 6º S10", uso, team36, "c4", "3 de 5"),
             page("M16", "Hoja de diseño de juego", "3º y 4º", "3º S15 · 4º S9", uso, game, "c4", "4 de 5"),
@@ -421,14 +421,14 @@ def sblock(cat, text, hat=False, c=False):
 
 def m20():
     rows = [("Eventos", [sblock("eve", "al hacer clic en " + FLAG, True), sblock("eve", "al presionar tecla [espacio]", True), sblock("eve", "al hacer clic en este objeto", True), sblock("eve", "enviar [mensaje1]"), sblock("eve", "al recibir [mensaje1]", True)], "3º S9 · 4º S10, S13"),
-            ("Movimiento", [sblock("mov", "mover (10) pasos"), sblock("mov", "girar ↻ (15) grados"), sblock("mov", "ir a x: (0) y: (0)"), sblock("mov", "cambiar x en (10)"), sblock("mov", "cambiar y en (10)"), sblock("mov", "ir a posición aleatoria"), sblock("mov", "rebotar si toca un borde")], "3º S10 · 4º S10"),
+            ("Movimiento", [sblock("mov", "mover (10) pasos"), sblock("mov", "girar ↻ (15) grados"), sblock("mov", "ir a x: (0) y: (0)"), sblock("mov", "sumar a x (10)"), sblock("mov", "sumar a y (10)"), sblock("mov", "ir a posición aleatoria"), sblock("mov", "si toca un borde, rebotar")], "3º S10 · 4º S10"),
             ("Apariencia", [sblock("apa", "decir [¡Hola!] durante (2) segundos"), sblock("apa", "siguiente disfraz"), sblock("apa", "cambiar fondo a [fondo1]"), sblock("apa", "fijar tamaño al (100) %"), sblock("apa", "mostrar"), sblock("apa", "esconder")], "3º S9, S12"),
-            ("Sonido", [sblock("son", "tocar sonido [Miau]"), sblock("son", "tocar sonido [Miau] hasta que termine")], "3º S12"),
+            ("Sonido", [sblock("son", "iniciar sonido [Miau]"), sblock("son", "tocar sonido [Miau] hasta que termine")], "3º S12"),
             ("Control", [sblock("con", "esperar (1) segundos"), sblock("con", "repetir (10)", c=True), sblock("con", "por siempre", c=True), sblock("con", "si ⟨ ⟩ entonces", c=True), sblock("con", "si ⟨ ⟩ entonces · si no", c=True), sblock("con", "repetir hasta que ⟨ ⟩", c=True), sblock("con", "detener [todos]")], "3º S11, S14 · 4º S2, S5"),
             ("Sensores", [sblock("sen", "¿tocando [objeto]?"), sblock("sen", "preguntar [¿…?] y esperar"), sblock("sen", "respuesta")], "3º S14 · 4º S5, S6"),
-            ("Operadores", [sblock("ope", "número aleatorio entre (1) y (10)"), sblock("ope", "( ) = ( )"), sblock("ope", "( ) > ( )"), sblock("ope", "( ) * ( )"), sblock("ope", "unir [ ] [ ]"), sblock("ope", "( ) mod ( )")], "4º S5, S6"),
+            ("Operadores", [sblock("ope", "número aleatorio entre (1) y (10)"), sblock("ope", "( ) = ( )"), sblock("ope", "( ) > ( )"), sblock("ope", "( ) * ( )"), sblock("ope", "unir [ ] [ ]"), sblock("ope", "( ) módulo ( )")], "4º S5, S6"),
             ("Variables", [sblock("var", "dar a [puntos] el valor (0)"), sblock("var", "sumar a [puntos] (1)")], "3º S13 · 4º S4, S12"),
-            ("Lápiz (extensión)", [sblock("pen", "borrar todo"), sblock("pen", "bajar lápiz"), sblock("pen", "subir lápiz"), sblock("pen", "fijar color del lápiz a ●")], "3º S11 · 4º S2")]
+            ("Lápiz (extensión)", [sblock("pen", "borrar todo"), sblock("pen", "bajar lápiz"), sblock("pen", "subir lápiz"), sblock("pen", "fijar color de lápiz a ●")], "3º S11 · 4º S2")]
     cats = ["eve", "mov", "apa", "son", "con", "sen", "ope", "var", "pen"]
     body = "".join(f'<div style="display:grid;grid-template-columns:27mm 1fr 27mm;gap:3mm;align-items:start;padding:1.4mm 0;border-bottom:1px solid #dfe3ea"><b style="font:700 10.5pt Bahnschrift;color:{"#b38600" if cats[i] == "eve" else SCR[cats[i]]}">{n}</b><div style="display:flex;flex-wrap:wrap;gap:1.5mm;align-items:flex-start">{"".join(bs)}</div><span class="small">{s}</span></div>' for i, (n, bs, s) in enumerate(rows))
     uso = ("<b>Cómo usarlo:</b> los bloques de Scratch que se usan en la guía, con sus colores y en español. Imprime uno por pareja o proyéctalo. "
@@ -441,15 +441,15 @@ MC = {"bas": "#1E90FF", "inp": "#D400D4", "mus": "#E63022", "led": "#5C2D91", "r
 
 def m21():
     mb = lambda cat, t: f'<div style="background:{MC[cat]};color:#fff;border-radius:4px;padding:5px 10px;font:600 10pt Segoe UI;display:inline-block">{t}</div>'
-    rows = [("Básico", "bas", ["al iniciar", "para siempre", "mostrar número ( )", "mostrar cadena \"Hola\"", "mostrar icono ♥", "borrar la pantalla", "pausa (ms) (100)"], "5º S2 · 6º S1"),
-            ("Entrada", "inp", ["al presionar el botón A", "al agitar", "nivel de luz", "temperatura (°C)", "nivel de sonido", "al presionar el logo (V2)"], "5º S3, S4, S5 · 6º S2, S3"),
-            ("Música", "mus", ["reproducir tono (Do) durante (1) compás", "reproducir melodía"], "5º S5"),
+    rows = [("Básico", "bas", ["al iniciar", "para siempre", "mostrar número ( )", "mostrar cadena \"Hola\"", "mostrar ícono ♥", "mostrar LEDs", "borrar la pantalla", "pausa (ms) (100)"], "5º S2 · 6º S1"),
+            ("Entrada", "inp", ["al presionarse el botón A", "si agitar", "nivel de luz", "temperatura (°C)", "nivel de sonido", "al pulsar el logotipo (V2)"], "5º S3, S4, S5 · 6º S2, S3"),
+            ("Música", "mus", ["reproduce secuencia tono (Do medio) durante (1 pulso)", "reproduce secuencia melodía"], "5º S5"),
             ("Bucles", "loo", ["repetir (4) veces", "mientras ⟨ ⟩"], "6º S4"),
             ("Lógica", "log", ["si ⟨ ⟩ entonces", "si ⟨ ⟩ entonces · si no", "( ) < ( )", "( ) = ( )", "verdadero / falso"], "5º S4, S5 · 6º S2"),
             ("Variables", "var", ["establecer [contador] a (0)", "cambiar [contador] por (1)"], "5º S2, S3 · 6º S2"),
-            ("Matemáticas", "mat", ["elegir al azar de (1) a (6)"], "5º S3"),
-            ("Radio", "rad", ["radio establecer grupo (7)", "radio enviar número (1)", "al recibir radio número"], "5º S16 · 6º S14"),
-            ("Funciones", "fun", ["crear una función", "llamar a [girar_derecha]"], "6º S6")]
+            ("Matemática", "mat", ["escoger al azar de (1) a (6)"], "5º S3"),
+            ("Radio", "rad", ["radio establecer grupo (7)", "radio enviar número (1)", "al recibir radio (receivedNumber)"], "5º S16 · 6º S14"),
+            ("Funciones (en Avanzado)", "fun", ["Crear una función…", "función [girar_derecha]", "llamada [girar_derecha]"], "6º S6")]
     body = "".join(f'<div style="display:grid;grid-template-columns:28mm 1fr 30mm;gap:3mm;padding:2mm 0;border-bottom:1px solid #dfe3ea"><b style="font:700 11pt Bahnschrift;color:{MC[c]}">{n}</b><div style="display:flex;flex-wrap:wrap;gap:2mm">{"".join(mb(c, t) for t in bs)}</div><span class="small">{s}</span></div>' for n, c, bs, s in rows)
     body += '''<div class="box" style="font-size:10pt"><b>Pasar el programa a la placa:</b> 1) Conecta la micro:bit con el cable USB. 2) Pulsa <b>Descargar</b>. 3) Copia el archivo <b>.hex</b> a la unidad <b>MICROBIT</b> (como un pendrive). La luz trasera parpadea y el programa arranca.
 <br><b>Nezha:</b> Extensiones → buscar «nezha». Motores en M1-M4, velocidad de −100 a 100 (negativo = sentido contrario).</div>'''
@@ -497,11 +497,11 @@ def m25():
         + "".join(f'<text x="30" y="{274 - i*25}" font-size="11" text-anchor="end" font-family="Segoe UI">{i}</text>' for i in range(11)) + "</svg>"
     enc = f'''<div class="box"><b>Pregunta de la encuesta:</b> ______________________________________________</div>
 <table><tr><th>Opción</th><th>Recuento (palotes)</th><th>Total</th></tr>{"<tr><td style='height:10mm'></td><td></td><td></td></tr>" * 5}</table><b>Gráfico de barras</b>{grid}<div class="box">La opción más votada (moda) es: ____________</div>'''
-    dado = '<table><tr><th>Número del dado</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr><tr><td>Recuento (palotes)</td>' + "<td style='height:22mm'></td>" * 6 + '</tr><tr><td>Total</td>' + "<td></td>" * 6 + f'</tr></table><p>Tiramos el dado electrónico <b>30 veces</b>. ¿Sale todo más o menos igual? ______________</p><b>Gráfico</b>{grid}'
+    dado = '<table><tr><th>Número del dado</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr><tr><td>Recuento (palotes)</td>' + "<td style='height:22mm'></td>" * 6 + '</tr><tr><td>Total</td>' + "<td></td>" * 6 + f'</tr></table><p>Tiramos el dado ______ veces (3º: 20 veces con un dado de verdad · 5º: 30 veces con el dado electrónico). ¿Sale todo más o menos igual? ______________</p><b>Gráfico</b>{grid}'
     med = '<table><tr><th>Lugar del colegio</th><th>Temperatura (°C)</th><th>Nivel de luz (0-255)</th><th>Hora</th></tr>' + "<tr><td style='height:11mm'></td><td></td><td></td><td></td></tr>" * 6 + '</table><div class="two"><div class="box">Media de temperatura: ______<br><span class="small">Suma de todas ÷ número de lugares</span></div><div class="box">Lugar con más luz: ______<br>Lugar más cálido: ______</div></div><div class="box">¿Por qué crees que ocurre?<div class="line"></div><div class="line"></div></div>'
-    uso = "<b>Cómo usarlo:</b> hojas de registro de datos. Hoja 1: encuesta y gráfico de barras (3º, 4º). Hoja 2: frecuencias del dado electrónico (5º). Hoja 3: medidas con sensores (5º, 6º)."
-    return [page("M25", "Registro de una encuesta", "3º y 4º", "3º S7 · 4º S8, S16", uso, enc, "c4", "1 de 3"),
-            page("M25", "Frecuencias del dado electrónico", "5º", "5º S3", uso, dado, "c5", "2 de 3"),
+    uso = "<b>Cómo usarlo:</b> hojas de registro de datos. Hoja 1: encuesta y gráfico de barras (3º, 4º). Hoja 2: frecuencias del dado (3º con un dado de verdad; 5º con el dado electrónico). Hoja 3: medidas con sensores (5º, 6º)."
+    return [page("M25", "Registro de una encuesta", "3º y 4º", "3º S7 · 4º S8", uso, enc, "c4", "1 de 3"),
+            page("M25", "Frecuencias del dado", "3º y 5º", "3º S7 · 5º S3", uso, dado, "c5", "2 de 3"),
             page("M25", "Medimos el colegio con sensores", "5º y 6º", "5º S4 · 6º S3", uso, med, "c6", "3 de 3")]
 
 
@@ -556,7 +556,7 @@ def m02():
     uso = ("<b>Cómo usarlo:</b> una hoja por grupo. Con estas tarjetas se escriben coreografías y rutinas: se colocan en fila, "
            "se añade delante una tarjeta REPITE (M01) y otro grupo las ejecuta leyendo las tarjetas.")
     items = [pimg(p, 40) + f'<div class="lbl">{t}</div>' for p, t in MOVES2]
-    return [page("M02", "Tarjetas de movimientos", "1º y 2º", "1º S2, S9 · 2º S4, S10", uso, cards(items, 2, 3) + credit_line(), "c1")]
+    return [page("M02", "Tarjetas de movimientos", "1º y 2º", "1º S9 · 2º S10", uso, cards(items, 2, 3) + credit_line(), "c1")]
 
 
 # ------------------------------------------------------------------ M03 bloques de papel
@@ -580,10 +580,10 @@ def m03():
           block2(SJ["evento"], "CUANDO APLAUDO", glyph("clap", dk), "hat", dk), block2(SJ["evento"], "CUANDO SUENA", glyph("bell", dk), "hat", dk),
           block2(SJ["evento"], "EMPIEZA", glyph("flag", dk), "hat", dk), block2(SJ["evento"], "ENVÍA MENSAJE", glyph("mail", dk), "normal", dk),
           block2(SJ["mov"], "AVANZA", ar("F")), block2(SJ["apar"], "DI «……»", glyph("bubble")), block2(SJ["fin"], "FIN", "", "end")]
-    ses = "1º S10 a S16 y proyecto · 2º S10, S14, S17 a S21"
+    ses = "1º S10 a S15 y S19 · 2º S10, S18, S22, S23"
     return [page("M03", "Bloques de papel: movimiento", "1º y 2º", ses, uso, cards(p1, 3, 3), "c1", "Hoja 1 de 3"),
             page("M03", "Bloques de papel: apariencia y control", "1º y 2º", ses, uso, cards(p2, 3, 3), "c1", "Hoja 2 de 3"),
-            page("M03", "Bloques de papel: eventos (2º)", "2º", "2º S10, S11, S14", uso, cards(p3, 3, 3), "c2", "Hoja 3 de 3")]
+            page("M03", "Bloques de papel: eventos (2º)", "2º", "2º S10, S23", uso, cards(p3, 3, 3), "c2", "Hoja 3 de 3")]
 
 
 # ------------------------------------------------------------------ M04 SI / ENTONCES / SI NO
@@ -609,7 +609,7 @@ def m04():
         items = []
         for a, at, b, bt, c, ct in rules:
             items += [_cell("SI", "#2a8f4f", a, at), _cell("ENTONCES", "#2c5bbf", b, bt), _cell("SI NO", "#cf3f36", c, ct)]
-        pages.append(page("M04", "Tarjetas SI · ENTONCES · SI NO", "2º, 3º y 4º", "2º S9, S11, S14 · 3º S5 · 4º S3", uso,
+        pages.append(page("M04", "Tarjetas SI · ENTONCES · SI NO", "2º y 3º", "2º S9, S11, S13, S14 · 3º S5", uso,
                           cards(items, 3, 3) + credit_line(), "c2", f"Hoja {h + 1} de 2"))
     return pages
 
@@ -639,8 +639,8 @@ def m06():
     g = grid_svg(5, None, "N", (4, 0), [], cell=60, coords=True, goal_icon="")
     board = f'<div style="flex:1;display:flex;align-items:center;justify-content:center"><div style="width:180mm">{g}</div></div>'
     toks = [pimg(p, 26) + f'<div class="lbl" style="font-size:11pt">{t}</div>' for p, t in TOKENS2]
-    return [page("M06", "Tablero de cuadrícula 5 × 5", "1º, 2º y 3º", "1º S4, S6, S9 · 2º S1, S4 · 3º S1", uso, board, "c1", "Hoja 1 de 2"),
-            page("M06", "Fichas para el tablero", "1º, 2º y 3º", "1º S4, S6, S9 · 2º S1, S4 · 3º S1", uso, cards(toks, 3, 4) + credit_line(), "c1", "Hoja 2 de 2")]
+    return [page("M06", "Tablero de cuadrícula 5 × 5", "1º, 2º y 3º", "1º S4, S8, S10, S11, S13, S14, S17, S18 · 2º S1, S4, S6, S11, S17, S18 · 3º S3, S4", uso, board, "c1", "Hoja 1 de 2"),
+            page("M06", "Fichas para el tablero", "1º, 2º y 3º", "1º S4, S8, S10, S11, S13, S14, S17, S18 · 2º S1, S4, S6, S11, S17, S18 · 3º S3, S4", uso, cards(toks, 3, 4) + credit_line(), "c1", "Hoja 2 de 2")]
 
 
 # ------------------------------------------------------------------ M10 secuencias
@@ -709,9 +709,9 @@ def m11():
             labels.append(f'<text x="{x}" y="{y + dy}" font-size="11.5" font-weight="600" fill="#1a1d24" text-anchor="middle">{ln}</text>')
     g.append("</g>" + "".join(labels) + "</svg>")
     sol = "<b>Para ir más lejos:</b> por detrás, inventad otro árbol que empiece por otra pregunta. ¿Os hacen falta más preguntas o menos?"
-    return [page("M11", "¿Qué animal soy? Tarjetas", "2º (también 1º y 3º)", "2º S12, S13 · 1º S14", uso,
+    return [page("M11", "¿Qué animal soy? Tarjetas", "2º", "2º S12", uso,
                  cards(an, 4, 2) + f'<h2>Preguntas de ayuda (recortar)</h2><div class="three">{qs}</div>' + credit_line(), "c2", "Hoja 1 de 2"),
-            page("M11", "¿Qué animal soy? Árbol de preguntas", "2º (también 1º y 3º)", "2º S12", uso,
+            page("M11", "¿Qué animal soy? Árbol de preguntas", "2º", "2º S12", uso,
                  f'<div style="flex:1;display:flex;align-items:center">{"".join(g)}</div><p class="small" style="margin:0">{sol}</p>', "c2", "Hoja 2 de 2")]
 
 
@@ -769,7 +769,7 @@ def m17():
            '<div><b>Error encontrado</b> (qué pasa y cuándo):</div><div class="line"></div><div><b>Lo que más nos ha gustado:</b></div><div class="line"></div>'
            '<div><b>Otra cosa que nos ha gustado:</b></div><div class="line"></div><div><b>Una idea para mejorar:</b></div><div class="line"></div></div>')
     return [page("M17", "Ficha de prueba · 1º y 2º", "1º y 2º", "1º S21 · 2º S15, S20", uso, cards([c12] * 4, 2, 2), "c4", "1 de 2"),
-            page("M17", "Ficha de prueba y playtesting · 3º a 6º", "3º a 6º", "3º S16, S22 · 4º S7, S14, S22 · 5º S13 · 6º S13", uso, cards([c36] * 4, 2, 2), "c4", "2 de 2")]
+            page("M17", "Ficha de prueba y playtesting · 3º a 6º", "3º a 6º", "3º S16, S22 · 4º S7, S14, S15, S22 · 5º S7, S13 · 6º S7, S13", uso, cards([c36] * 4, 2, 2), "c4", "2 de 2")]
 
 
 def m18():
@@ -808,7 +808,7 @@ def m23():
     sol2 = "".join(f"<p style='margin:1mm 0'><b>{i + 1}. {E(v)}.</b> {E(p)}</p>" for i, (_, v, p) in enumerate(NEWS))
     uso1 = "<b>Cómo usarlo:</b> tarjetas para votar (verde: puede pasar de verdad; rojo: es inventado) o para proyectar. Se comenta por qué algo no puede pasar. Es la base para distinguir imágenes reales de imágenes inventadas."
     uso2 = "<b>Cómo usarlo:</b> una hoja por equipo, o proyectar una a una. Cada equipo decide y explica sus pistas. Después se leen las pistas de la hoja de soluciones."
-    return [page("M23", "¿Puede pasar de verdad?", "1º y 2º", "1º S14 · 2º S13", uso1, cards(fan, 2, 4) + f'<div class="sol">{sol1}</div>' + credit_line(), "c1", "1º y 2º"),
+    return [page("M23", "¿Puede pasar de verdad?", "1º y 2º", "Sesión de reserva (1º, 2º trimestre)", uso1, cards(fan, 2, 4) + f'<div class="sol">{sol1}</div>' + credit_line(), "c1", "1º y 2º"),
             page("M23", "¿Verdad, bulo o IA?", "5º y 6º", "5º S9 · 6º S8", uso2, cards(news, 2, 4), "c5", "5º y 6º"),
             page("M23", "¿Verdad, bulo o IA? · soluciones y pistas", "5º y 6º", "Para el docente", "Pistas para comentar después de votar.", f'<div class="sol" style="font-size:10.5pt">{sol2}</div>', "c5", "Soluciones")]
 
@@ -979,23 +979,28 @@ def m27():
 
 MATERIALS = [
     ("M01", "Tarjetas de flechas", "1º-3º", m01), ("M02", "Tarjetas de movimientos", "1º-2º", m02),
-    ("M03", "Bloques de papel tipo ScratchJr", "1º-2º", m03), ("M04", "Tarjetas SI · ENTONCES · SI NO", "2º-4º", m04),
+    ("M03", "Bloques de papel tipo ScratchJr", "1º-2º", m03), ("M04", "Tarjetas SI · ENTONCES · SI NO", "2º-3º", m04),
     ("M05", "Tarjetas de rol", "1º-6º", m05), ("M06", "Tablero de cuadrícula y fichas", "1º-3º", m06),
-    ("M07", "Mapas del tesoro", "1º-2º", m07), ("M08", "Cazabichos por niveles", "1º-3º", m08),
-    ("M09", "Patrones", "1º-2º", m09), ("M10", "Secuencias para ordenar", "1º-2º", m10),
+    ("M07", "Mapas del tesoro", "1º-3º", m07), ("M08", "Cazabichos por niveles", "1º-3º", m08),
+    ("M09", "Patrones", "1º-3º", m09), ("M10", "Secuencias para ordenar", "1º-2º", m10),
     ("M11", "¿Qué animal soy?", "2º", m11), ("M12", "Diagramas de flujo", "3º-4º", m12),
     ("M13", "Tableros de juego con condiciones", "2º-3º", m13), ("M14", "Misión final del trimestre", "2º-3º", m14),
     ("M15", "Pasaporte del programador", "1º-6º", m15), ("M16", "Fichas de planificación", "1º-6º", m16),
     ("M17", "Fichas de prueba y playtesting", "1º-6º", m17), ("M18", "Tarjeta «Dónde lo dejamos»", "5º-6º", m18),
     ("M19", "Rúbrica y autoevaluación", "1º-6º", m19), ("M20", "Chuleta de bloques de Scratch", "3º-5º", m20),
     ("M21", "Chuleta de bloques de MakeCode", "5º-6º", m21), ("M22", "Plantilla de mando Makey Makey", "3º-4º", m22),
-    ("M23", "¿Real o fantasía? · ¿Verdad, bulo o IA?", "1º-2º · 5º-6º", m23), ("M24", "Casos de IA y redes para debatir", "5º-6º", m24),
+    ("M23", "¿Puede pasar de verdad? · ¿Verdad, bulo o IA?", "1º-2º · 5º-6º", m23), ("M24", "Casos de IA y redes para debatir", "5º-6º", m24),
     ("M25", "Hojas de registro de datos", "3º-6º", m25),
     ("M26", "Pósteres de conceptos", "1º-6º", m26), ("M27", "Palabras del curso", "1º-6º", m27),
 ]
 
 
+SLUG_FIJO = {"M23": "M23-real-o-fantasia-verdad-bulo-o-ia"}  # el nombre del PDF no cambia aunque cambie el título
+
+
 def slug(code, title):
+    if code in SLUG_FIJO:
+        return SLUG_FIJO[code]
     import unicodedata
     t = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
     t = "".join(ch if ch.isalnum() else "-" for ch in t).strip("-").lower()

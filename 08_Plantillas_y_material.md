@@ -15,12 +15,12 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | M01 | Tarjetas de flechas | 1º-3º | Avanza, gira a la derecha, gira a la izquierda, retrocede, REPITE ×2/×3/×4, FIN y tarjeta libre. Tamaño grande, para usar en la mesa o enseñar a la clase. |
 | M02 | Tarjetas de movimientos | 1º-2º | Salta, aplaude, gira sobre ti, agáchate, brazos arriba, pisa fuerte. Para bailes y rutinas con REPITE. |
 | M03 | Bloques de papel tipo ScratchJr | 1º-2º | Bloques con forma de puzle y los colores de ScratchJr: movimiento, apariencia, control y eventos (hoja 3). |
-| M04 | Tarjetas SI · ENTONCES · SI NO | 2º-4º | Seis reglas completas con pictogramas, en tres colores. |
+| M04 | Tarjetas SI · ENTONCES · SI NO | 2º-3º | Seis reglas completas con pictogramas, en tres colores. |
 | M05 | Tarjetas de rol | 1º-6º | Piloto, copiloto, responsable de material y portavoz. |
 | M06 | Tablero de cuadrícula y fichas | 1º-3º | Tablero 5 × 5 de mesa y fichas recortables (robot, salida, tesoro, rocas, casa, cole, correos, contenedor, semáforo…). |
-| M07 | Mapas del tesoro | 1º-2º | Seis mapas de dificultad creciente para escribir el programa, con hoja de soluciones. |
+| M07 | Mapas del tesoro | 1º-3º | Seis mapas de dificultad creciente para escribir el programa, con hoja de soluciones. |
 | M08 | Cazabichos por niveles | 1º-3º | Programas con 1, 2 o 3 errores para encontrar y corregir, con soluciones. |
-| M09 | Patrones | 1º-2º | Patrones para continuar, patrón que crece y patrones con bicho, con soluciones. |
+| M09 | Patrones | 1º-3º | Patrones para continuar, patrón que crece y patrones con bicho, con soluciones. |
 | M10 | Secuencias para ordenar | 1º-2º | Seis rutinas en viñetas (lavarse las manos, plantar una semilla, cruzar la calle…). |
 | M11 | ¿Qué animal soy? | 2º | Ocho tarjetas de animales, preguntas de ayuda y árbol de preguntas guiado, con solución. |
 | M12 | Diagramas de flujo | 3º-4º | Formas recortables, ejemplo resuelto (cruzar la calle) y diagrama para completar. |
@@ -36,7 +36,7 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | M22 | Plantilla de mando Makey Makey | 3º-4º | Plantilla para pegar en cartón y cubrir con aluminio, y registro de «¿qué conduce?». |
 | M23 | ¿Puede pasar de verdad? · ¿Verdad, bulo o IA? | 1º-2º (sesión de reserva) · 5º-6º | Tarjetas para votar, con soluciones y pistas. La parte de IA es solo para 5º y 6º. |
 | M24 | Casos de IA y redes para debatir | 5º-6º | Cuatro casos con preguntas guiadas. |
-| M25 | Hojas de registro de datos | 3º-6º | Encuesta con gráfico, frecuencias del dado y medidas con sensores. |
+| M25 | Hojas de registro de datos | 3º-6º | Encuesta con gráfico, frecuencias del dado (3º y 5º) y medidas con sensores. |
 | M26 | Pósteres de conceptos | 1º-6º | Diez pósteres para el aula (algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar) con ejemplo y cómo se ve en cada ciclo, e índice de cuándo colgarlos. |
 | M27 | Palabras del curso | 1º-6º | Una hoja por curso con el vocabulario nuevo, qué significa y en qué sesión aparece. |
 
@@ -75,6 +75,6 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | Magia de la paridad | 4º-6º | El truco de magia que adivina la carta girada: detección de errores. |
 | ¿Quién sale? y marcador | 1º-6º | Sorteo sin repetir para salir a la pizarra y puntos por equipos. |
 
-**Otras aplicaciones recomendadas** (se abren en otra pestaña; gratuitas y sin cuentas de alumnado): [Blockly Games](https://blockly.games/?lang=es) (laberinto, pájaro, tortuga; 3º-6º) · [Quick, Draw!](https://quickdraw.withgoogle.com/) (una IA adivina dibujos; 5º-6º) · [AI for Oceans](https://code.org/oceans) (entrenar una IA; 5º-6º) · [Hora del Código](https://code.org/learn) · [CS Unplugged](https://csunplugged.org/es/).
+**Otras aplicaciones recomendadas** (se abren en otra pestaña; gratuitas y sin cuentas de alumnado): [Blockly Games](https://blockly.games/?lang=es) (laberinto, pájaro, tortuga; 3º-6º) · [Quick, Draw!](https://quickdraw.withgoogle.com/) (una IA adivina dibujos; 5º-6º) · [AI for Oceans](https://code.org/oceans) (entrenar una IA; 5º-6º) · [Hora del Código: laberinto clásico](https://studio.code.org/hoc/1) · [CS Unplugged](https://csunplugged.org/es/).
 
 **Cómo se usan:** en la web, abre la sección Para proyectar o pulsa el enlace de la ficha de sesión. El botón **Pantalla completa** amplía la herramienta para la pizarra. Funcionan con el dedo o con el ratón y no necesitan instalar nada ni crear cuentas.

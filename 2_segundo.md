@@ -385,7 +385,7 @@ Con las 8 tarjetas de animales y el árbol de M11 (las preguntas ya vienen escri
 
 - **Qué aprenden:** probar el proyecto, encontrar "bichos" en las reglas y arreglarlos.
 - **Material listo:** [[M:M17|Ficha de prueba · 1º y 2º]] · [[M:M19|Rúbrica]]
-- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
+- **Minuto de uso responsable:** "Cada cosa a su caja." ¿Qué pasa si el próximo día falta el dado o una ficha del juego?
 
 **Pasos:**
 1. Terminar el tablero (10 minutos).
@@ -550,7 +550,7 @@ Fondo de granja. Cada animal, al tocarlo, se mueve y dice algo con el bocadillo.
 
 - **Qué aprenden:** crear una pequeña animación propia y cerrar el curso.
 - **Material listo:** [[M:M15|Pasaporte]]
-- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día la tablet no tiene batería?
 
 **Pasos:**
 1. 20 minutos: por parejas, una animación con bandera verde, un movimiento, un repetir y un personaje que reacciona al tocarlo.

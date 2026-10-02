@@ -212,14 +212,14 @@ Cada pareja resuelve un mapa de M07, le mete 2 bichos y se lo pasa a otra pareja
 - **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
 **Opción A · Encuesta y gráfico**
-1. Proyecta las votaciones con «Mascotas» (o escribe tus opciones: juego del recreo, fruta favorita).
+1. Proyecta las votaciones con «Mascotas» (o escribe las vuestras en «Mis opciones»: juego del recreo, fruta favorita).
 2. Cada alumno vota; un voluntario pulsa +1. El gráfico crece solo.
-3. En M25, copian la tabla de recuento y dibujan el gráfico de barras. ¿Cuál es la moda? ¿Cuántos votos hay en total?
+3. En M25, copian la tabla de recuento y dibujan el gráfico de barras. ¿Qué es lo más votado (la moda)? ¿Cuántos votos hay en total?
 
 **Opción B · ¿Sale más el 6?**
 1. Pregunta: «Si tiramos un dado muchas veces, ¿sale más algún número?». Cada pareja apunta su predicción.
-2. Cada pareja tira 20 veces y anota en M25 hoja 2. Después se suman en el proyectable del dado.
-3. Comparad la predicción con el resultado. Con muchas tiradas, todos los números salen más o menos igual.
+2. Cada pareja tira 20 veces y anota en M25 hoja 2. Después se suman los resultados de toda la clase en una tabla en la pizarra.
+3. Comparad la predicción con el resultado y con el proyectable del dado («Tirar 100 veces»). Con muchas tiradas, todos los números salen más o menos igual.
 
 **Opción C · Los datos deciden**
 Usad la encuesta para decidir algo real de la clase (el tema de la misión final de la S8). Así se ve para qué sirven los datos.
@@ -296,13 +296,13 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 1. **al hacer clic en 🏴** → **mover 10 pasos**. Pulsa varias veces. Cambia 10 por 50.
 2. Con teclas: **al presionar tecla flecha derecha** → **mover 10 pasos**; flecha izquierda → **mover -10 pasos**.
 3. Proyecta "Coordenadas": al mover al gato, la x cambia. Enseña que arriba y abajo es la y.
-4. Reto: que el gato se mueva también arriba y abajo con **cambiar y en 10** y **cambiar y en -10**.
+4. Reto: que el gato se mueva también arriba y abajo con **sumar a y 10** y **sumar a y -10**.
 
 **Pistas y soluciones:**
 1. **Arriba y abajo**
     - *Para pensar:* si la x es izquierda y derecha, ¿qué número cambia al subir?
     - *Pista:* hace falta un evento por tecla: cuatro programas pequeños, uno por flecha.
-    - *Solución:* `al presionar tecla flecha arriba` → `cambiar y en 10`. `al presionar tecla flecha abajo` → `cambiar y en -10`.
+    - *Solución:* `al presionar tecla flecha arriba` → `sumar a y 10`. `al presionar tecla flecha abajo` → `sumar a y -10`.
     - *Error frecuente:* poner las cuatro teclas debajo de un solo evento. Cada tecla necesita su propio `al presionar tecla`.
 2. **Empezar en el centro** (si va rápido)
     - *Solución:* `al hacer clic en 🏴` → `ir a x: 0 y: 0`. Con la bandera, el gato vuelve siempre al centro.
@@ -322,11 +322,11 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 **Opción A · El gato baila**
 1. **al hacer clic en 🏴** → **repetir 10** → dentro: **siguiente disfraz** y **esperar 0.2 segundos**. ¡El gato camina!
 2. Añadid **mover 10 pasos** dentro del repetir.
-3. Reto: que baile con **girar 15 grados** y **tocar sonido Miau**.
+3. Reto: que baile con **girar ↻ 15 grados** y **iniciar sonido Miau**.
 
 **Opción B · Figuras con el lápiz**
 1. Proyecta "Polígonos": se ve el programa exacto que dibuja cada figura.
-2. En Scratch: extensión **Lápiz** → **borrar todo** → **bajar lápiz** → **repetir 4** [**mover 100 pasos**, **girar 90 grados**].
+2. En Scratch: extensión **Lápiz** → **borrar todo** → **bajar lápiz** → **repetir 4** [**mover 100 pasos**, **girar ↻ 90 grados**].
 3. Reto: triángulo (giro 120) o hexágono (6 veces, giro 60).
 
 - **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
@@ -386,7 +386,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 **Pasos:**
 1. Proyecta "Variables": dos cajas, *puntos* y *vidas*. Pulsa +1, −1 y "poner a 0". Mirad cómo aparece cada bloque. "La caja se llama siempre igual; lo que tiene dentro cambia".
 2. En Scratch: Variables → **Crear una variable** → *puntos*.
-3. **al hacer clic en 🏴** → **dar a puntos el valor 0**; **al hacer clic en este objeto** → **sumar a puntos 1** → **tocar sonido Miau**.
+3. **al hacer clic en 🏴** → **dar a puntos el valor 0**; **al hacer clic en este objeto** → **sumar a puntos 1** → **iniciar sonido Miau**.
 4. Prueban: cada clic en el gato, un punto. ¿Qué pasa al pulsar la bandera?
 
 **Pistas y soluciones:**
@@ -420,7 +420,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 1. **El juego de atrapar**
     - *Para pensar:* ¿cuántas veces tiene que mirar la manzana si la está tocando el personaje? ¿Una o todo el rato?
     - *Pista:* el `si ¿tocando…? entonces` tiene que ir dentro de un `por siempre`.
-    - *Solución:* en la manzana: `al hacer clic en 🏴` → `dar a puntos el valor 0` → `por siempre` → `si ¿tocando Gato? entonces` → `sumar a puntos 1` → `ir a posición aleatoria`. En el archivo de solución está completo.
+    - *Solución:* en la manzana: `al hacer clic en 🏴` → `dar a puntos el valor 0` → `por siempre` → `si ¿tocando [personaje]? entonces` → `sumar a puntos 1` → `ir a posición aleatoria`. En el desplegable de `¿tocando…?` se elige el personaje por su nombre. El archivo de solución, con el personaje Robi, está completo.
     - *Errores frecuentes:* el `si` fuera del `por siempre` (solo mira una vez, al empezar); `dar a puntos el valor 0` dentro del `por siempre` (el marcador se borra todo el rato); en `¿tocando…?` elegir otro objeto o el puntero del ratón.
 2. **La manzana se mueve sola** (si va rápido)
     - *Pista:* si el movimiento va en el mismo `por siempre` que la comprobación, la manzana no mira mientras se desliza.
@@ -522,7 +522,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 - **Minuto de uso responsable:** "Los cables se sacan desde el enchufe, no tirando del cable." ¿Qué le puede pasar al cable si tiramos de él?
 
 **Pasos:**
-1. En Scratch: **al presionar tecla espacio** → **tocar sonido Miau**.
+1. En Scratch: **al presionar tecla espacio** → **iniciar sonido Miau**.
 2. Conectan un objeto conductor a ESPACIO. ¡Maúlla!
 3. Añaden **al presionar tecla flecha arriba** → otro sonido, conectado a otro objeto.
 4. Reto: un piano de 4 notas (flechas y espacio) con la extensión **Música**.
@@ -531,7 +531,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 1. **Piano de 4 notas**
     - *Para pensar:* el Makey Makey solo «pulsa teclas». ¿Cuántos eventos hacen falta para 4 notas?
     - *Pista:* uno por tecla. Las notas están en la extensión Música: Do = 60, Re = 62, Mi = 64, Fa = 65.
-    - *Solución:* `al presionar tecla espacio` → `tocar nota 60 durante 0.5 pulsos`. `al presionar tecla flecha arriba` → nota 62. `al presionar tecla flecha derecha` → nota 64. `al presionar tecla flecha izquierda` → nota 65.
+    - *Solución:* `al presionar tecla espacio` → `tocar nota 60 durante 0.5 tiempos`. `al presionar tecla flecha arriba` → nota 62. `al presionar tecla flecha derecha` → nota 64. `al presionar tecla flecha izquierda` → nota 65.
     - *Error frecuente:* que no suene nada: falta la pinza en EARTH o el alumno no la está tocando.
 2. **Una melodía conocida** (si va rápido)
     - *Solución:* el principio de «Cumpleaños feliz» se toca solo con esas cuatro notas: Do, Do, Re, Do, Fa, Mi.
@@ -674,6 +674,6 @@ Ver el apartado 6 del documento general. En 3º, además:
 ## Sesiones de reserva sugeridas
 
 - T1: M08 nivel 2 que no se haya hecho · [[P:cifrado|Código secreto]].
-- T2: Hora del Código (code.org/learn) · recuperación del proyecto de Scratch.
+- T2: [Hora del Código: laberinto clásico](https://studio.code.org/hoc/1) · recuperación del proyecto de Scratch.
 - T3: Otra situación oficial de Clic and Play · Enseñamos a 2º.
 - Aplicaciones para la pizarra: [[P:pixelart.libre|Píxel art: pintar y ver el código]] · [[P:binario.3|Cartas binarias]] · [[P:balanza.4|Ordenar con la balanza]] · [Blockly Games](https://blockly.games/?lang=es).

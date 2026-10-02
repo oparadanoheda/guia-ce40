@@ -2,7 +2,7 @@
 
 **Regla de oro para todas:** si algo técnico no se arregla en 3 minutos, se pasa al plan B desenchufado de la ficha. La sesión nunca se pierde.
 
-**Sobre los nombres de los bloques:** en las fichas aparecen en español tal como salen en cada programa. Según la versión, alguno puede cambiar un poco (por ejemplo "sumar a puntos 1" o "cambiar puntos por 1"). Si no lo encuentras, búscalo por su **color** (cada categoría tiene el suyo) o por la lupa de búsqueda.
+**Sobre los nombres de los bloques:** en las fichas aparecen tal como salen con el programa en español de España (en Scratch, el idioma «Español»; en MakeCode, «Español (España)»). Con el español de Latinoamérica alguno cambia un poco (por ejemplo, en Scratch «sumar a puntos 1» se lee «cambiar puntos en 1»). Si no lo encuentras, búscalo por su **color** (cada categoría tiene el suyo) o con la lupa de búsqueda.
 
 | Herramienta | Cursos | Página |
 |---|---|---|
@@ -117,7 +117,7 @@
 - Un bucle no para: es un **por siempre**; se para con el círculo rojo.
 - Se ha perdido el trabajo: por eso se guarda **en los últimos 5 minutos de cada sesión**, sin excepción.
 
-**Para aprender más:** tutoriales dentro de Scratch (botón "Tutoriales"), y la Hora del Código (code.org/learn).
+**Para aprender más:** tutoriales dentro de Scratch (botón "Tutoriales"), y el [laberinto clásico de la Hora del Código](https://studio.code.org/hoc/1).
 
 ---
 
@@ -151,7 +151,8 @@
 3. Comprueba que hay portapilas y pilas para las actividades lejos del ordenador.
 
 **Lo básico:**
-- Bloques por categorías: **Básico** (mostrar número, icono, cadena; al iniciar; para siempre; pausa), **Entrada** (botones, al agitar, nivel de luz, temperatura, nivel de sonido), **Música**, **LED**, **Radio**, **Bucles**, **Lógica** (si… entonces… si no, comparaciones), **Variables**, **Matemáticas** (elegir al azar), **Funciones**.
+- Bloques por categorías: **Básico** (mostrar número, ícono, cadena; al iniciar; para siempre; pausa), **Entrada** (al presionarse el botón, si agitar, nivel de luz, temperatura, nivel de sonido), **Música**, **LED**, **Radio**, **Bucles**, **Lógica** (si… entonces… si no, comparaciones), **Variables**, **Matemática** (escoger al azar) y, en **Avanzado**, **Funciones**.
+- **Nombres de los bloques:** la guía los escribe como salen en MakeCode en español de España. Dos despistan: el de agitar se lee **si agitar** (es un evento, como **al presionarse el botón A**; en su desplegable están también inclinar, logotipo hacia arriba…) y el número al azar es **escoger al azar de 1 a 6**.
 - **Simulador** a la izquierda: se pulsan los botones con el ratón; con "SHAKE" se agita; el círculo amarillo cambia la luz y el termómetro la temperatura.
 - **Guardar:** el proyecto se guarda solo en el navegador de ese ordenador (en "Mis proyectos"). Para llevarlo a otro, se descarga el `.hex` o se comparte con el botón **Compartir** (crea un enlace).
 

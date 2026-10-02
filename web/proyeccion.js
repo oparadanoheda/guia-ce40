@@ -149,7 +149,7 @@
     if (d.key) z.el.appendChild(el('blockquote', 'pz-key pz-key-sm', d.key));
     var ck = el('ul', 'pz-check');
     (Q ? ['Guardamos el archivo con el nombre del equipo', 'Kit completo en su caja', 'Rellenamos la tarjeta «Dónde lo dejamos»']
-       : ['Sello en el pasaporte', 'Guardamos el trabajo', 'Recogemos y ponemos a cargar']).forEach(function (t) { ck.appendChild(el('li', null, t)); });
+       : (d.close || ['Sello en el pasaporte', 'Guardamos el trabajo', 'Recogemos el material'])).forEach(function (t) { ck.appendChild(el('li', null, t)); });
     z.el.appendChild(ck);
     out.push(z);
     return out;
