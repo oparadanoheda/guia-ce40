@@ -114,3 +114,11 @@
 .pz-retos{grid-template-columns:repeat(2,minmax(0,1fr))}
 .pz-retos li{font-size:clamp(1rem,1.7vw,1.7rem)}
 @media (max-width:900px){.pz-retos{grid-template-columns:1fr}}
+.pz-res{position:relative;flex:none}
+.pz-resbtn{border:2px solid var(--pz);background:#fff;color:#1a1d24;border-radius:.7rem;padding:.7rem 1rem;cursor:pointer;font:700 clamp(.85rem,1.2vw,1.1rem)/1 'Instrument Sans',sans-serif}
+.pz-resbtn[aria-expanded="true"]{background:var(--pz);color:#fff}
+.pz-reslist{position:absolute;right:0;top:calc(100% + .4rem);z-index:2;min-width:16rem;max-width:80vw;display:flex;flex-direction:column;gap:.3rem;padding:.5rem;
+  background:#fff;border:1px solid #e3e6ec;border-radius:.8rem;box-shadow:0 12px 30px rgba(20,24,40,.18)}
+.pz-reslist[hidden]{display:none}
+.pz-reslist button{border:0;background:#f3f4f7;color:#1a1d24;border-radius:.5rem;padding:.7rem .9rem;text-align:left;cursor:pointer;font:600 1rem/1.2 'Instrument Sans',sans-serif}
+.pz-reslist button:hover{background:color-mix(in srgb,var(--pz) 18%,#fff)}

@@ -644,6 +644,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 - **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
 
 **Opción A · Museo en el aula:** media clase presenta y la otra visita; después se cambia.
+
 **Opción B · Enseñamos a 2º:** cada grupo recibe a una pareja de 2º y le deja tocar su pieza.
 
 - **Frase clave:** "Lo que aprendo, lo puedo enseñar."

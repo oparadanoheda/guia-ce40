@@ -16,6 +16,7 @@ import materiales as MAT  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
 from videos import VIDEOS, BY_SESSION  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
+from mision_clase import MISION  # noqa: E402
 import json  # noqa: E402
 MAT_INDEX = {code: (title, courses, MAT.slug(code, title)) for code, title, courses, _ in MAT.MATERIALS}
 PJ_INDEX = {p[0]: p for p in PROYECTABLES}
@@ -427,10 +428,19 @@ def projection_data(c, s, quin, prev=None):
               "steps": pz_steps("\n\n".join(sec["md"]))} for sec in s["sections"]]
     if not props and intro and not retos:
         props = [{"label": "Desarrollo", "name": "", "steps": pz_steps("\n\n".join(intro))}]
+    # en la pizarra, la misión contada para la clase (mision_clase.py); la ficha queda para el docente
+    mc = MISION.get(s["id"], {})
+    if mc.get("retos"):
+        retos = [{"label": "Retos", "name": "", "steps": [pz_text(x) for x in mc["retos"]]}]
+    retos = [r for r in retos if r["steps"]]
+    for pr in props:
+        key = "D" if pr["label"] == "Desarrollo" else pr["label"][-1]
+        if key in mc:
+            pr["steps"] = [pz_text(x) for x in mc[key]]
     d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
          "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
          "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
-         "missions": retos + props, "fast": pz_text(cap(s.get("fast", ""))),
+         "missions": retos + props, "fast": pz_text(mc["extra"] if "extra" in mc else cap(s.get("fast", ""))),
          "prev": {"title": prev["title"], "key": plain(prev.get("key", "")), "num": prev["num"]} if prev else None}
     return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
 

@@ -183,7 +183,7 @@
     S.el.appendChild(h2); S.el.appendChild(ol);
     function fill() {
       var P = props[Math.min(propSel, props.length - 1)];
-      h2.textContent = P.name || 'Paso a paso';
+      h2.textContent = P.name || 'Nuestra misión de hoy';
       ol.innerHTML = '';
       P.steps.forEach(function (t) { ol.appendChild(html('li', null, t)); });
       S.steps = P.steps.length; S.step = 0;
@@ -196,6 +196,7 @@
 
   function render() {
     var S = slides[cur], stage = box.querySelector('.pz-stage');
+    var rl = box.querySelector('.pz-reslist'); if (rl) { rl.hidden = true; box.querySelector('.pz-resbtn').setAttribute('aria-expanded', 'false'); }
     stage.innerHTML = '';
     stage.appendChild(S.el);
     if (S.list) Array.prototype.forEach.call(S.list.children, function (li, i) {
@@ -276,6 +277,16 @@
       bar.appendChild(seg);
     });
     top.appendChild(bar);
+    // Recursos de la sesión siempre a mano: vídeos y herramientas
+    var res = (data.videos || []).map(function (v) { return ['▶ ' + v[0], '#v-' + v[1]]; })
+      .concat(data.tools.filter(function (t) { return t[1].indexOf('temporizador') !== 0; }).map(function (t) { return [t[0], '#p-' + t[1]]; }));
+    if (res.length) {
+      var rw = el('div', 'pz-res'), rb = el('button', 'pz-resbtn', 'Recursos'), rl = el('div', 'pz-reslist');
+      rb.type = 'button'; rb.setAttribute('aria-expanded', 'false'); rl.hidden = true;
+      rb.addEventListener('click', function () { rl.hidden = !rl.hidden; rb.setAttribute('aria-expanded', String(!rl.hidden)); });
+      res.forEach(function (r) { var b = el('button', null, r[0]); b.type = 'button'; b.addEventListener('click', function () { go(r[1]); }); rl.appendChild(b); });
+      rw.appendChild(rb); rw.appendChild(rl); top.appendChild(rw);
+    }
     var x = el('button', 'pz-x', '×');
     x.type = 'button';
     x.setAttribute('aria-label', 'Salir (Esc)');

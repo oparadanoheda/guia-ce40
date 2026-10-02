@@ -644,6 +644,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Minuto de uso responsable:** "Cuento el material antes de guardarlo." ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
 **Opción A · En el aula:** los grupos juegan a los juegos de los demás.
+
 **Opción B · Con 2º:** una pareja de 2º visita a cada grupo y juega.
 
 - **Frase clave:** "Lo que aprendo, lo puedo enseñar."
