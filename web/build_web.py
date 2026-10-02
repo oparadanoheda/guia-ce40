@@ -929,10 +929,11 @@ def tool_guide(pid):
     body = f'<p class="g-idea">{inline(g["idea"])}</p>'
     body += '<h4>Qué contar a la clase</h4><ol>' + "".join(f'<li>{inline(x)}</li>' for x in g["contar"]) + '</ol>'
     qs = ""
-    for q, pistas, sol in g["preguntas"]:
+    for q, pistas, sol in g.get("preguntas", []):
         qs += (f'<li><b>{inline(q)}</b><ul class="g-steps">' + "".join(f'<li><span class="g-tag">Pista</span> {inline(x)}</li>' for x in pistas)
                + f'<li><details><summary>Ver la solución</summary>{md(sol)}</details></li></ul></li>')
-    body += f'<h4>Preguntas para pensar</h4><ol class="g-qs">{qs}</ol>'
+    if qs:
+        body += f'<h4>Preguntas para pensar</h4><ol class="g-qs">{qs}</ol>'
     if g.get("mates"):
         body += f'<h4>Matemáticas</h4><p>{inline(g["mates"])}</p>'
     if g.get("saber"):

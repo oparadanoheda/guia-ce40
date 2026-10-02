@@ -162,7 +162,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 
 - **Qué aprenden:** recoger datos con un sensor, organizarlos en una tabla u hoja de cálculo y sacar conclusiones.
 - **Prepara antes:** portapilas con pilas para las placas. Un programa sencillo de medida. Hoja de registro. Para la opción A, una hoja de cálculo (LibreOffice Calc o la hoja de cálculo de EducaMadrid) abierta en el display.
-- **Para proyectar:** [[P:votaciones|Votaciones y gráfico]] (para meter los datos) · [[P:umbral.temp|Sensor y umbral]]
+- **Para proyectar:** [[P:umbral.temp|Sensor y umbral]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
@@ -233,7 +233,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 
 - **Qué aprenden:** mejorar un programa con bucles, funciones y nombres claros, y planificar un proyecto individual.
 - **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
-- **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]]
+- **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?)
 - **Material listo:** [[M:M16|Plan de mi invento]]
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
@@ -387,7 +387,7 @@ Entre la S11 y la S12: programar, probarlo con usuarios reales (otra clase, cons
 
 ### S14 · Red de micro:bits `ROB` `PC`
 
-- **Para proyectar:** [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]]
+- **Para proyectar:** [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
@@ -410,7 +410,7 @@ Diseñar con **Codeblocks** (formas creadas con bloques de código, en la propia
 
 ### S16 · A elegir
 
-- **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]]
+- **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] (juegos de lógica para una sesión a elegir)
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 - **ART2BIT:** una de sus situaciones oficiales, si el centro lo tiene montado.

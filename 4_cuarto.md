@@ -80,7 +80,7 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 
 - **Qué aprenden:** recordar Scratch y el trabajo en parejas. Para ti: ver el nivel.
 - **Prepara antes:** copia en la carpeta de la clase el archivo «Arregla el juego» (enlazado en la ficha). Tiene 3 bichos: (1) con la flecha derecha, Robi va a la izquierda (**mover -10 pasos**; debería ser 10); (2) un bloque de sonido suelto, sin evento encima, que nunca suena; (3) un **repetir 3** donde debería ir **por siempre**: la animación se para enseguida.
-- **Para proyectar:** [[P:contrasenas|Contraseñas seguras]]
+- **Para proyectar:** [[P:contrasenas|Contraseñas seguras]] (para el minuto de uso responsable)
 - **Material listo:** [[M:M20|Chuleta de bloques de Scratch]]
 - **Minuto de uso responsable (5 minutos):** con el proyectable, el juego "¿cuál es más segura?". Trabajamos sin cuenta y guardamos en el ordenador.
 - **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
@@ -122,7 +122,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 ### S3 · Si… entonces… si no: diagramas de decisión `PC`
 
 - **Qué aprenden:** las condiciones de dos caminos y cómo se dibujan en un diagrama de flujo.
-- **Para proyectar:** [[P:diagrama.par|Diagrama · par o impar]] y [[P:diagrama.adivina|adivina el número]] · [[P:laberinto.6|Laberinto · si… si no]]
+- **Para proyectar:** [[P:diagrama.par|Diagrama · par o impar]] y [[P:diagrama.adivina|adivina el número]] · [[P:laberinto.6|Laberinto · si… si no]] (las dos ramas de la condición, en pantalla)
 - **Material listo:** [[M:M12|Diagramas de flujo]]
 - **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
@@ -159,7 +159,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 ### S5 · Adivina el número `PC`
 
 - **Qué aprenden:** usar **número aleatorio**, **preguntar** y **si… entonces… si no** para dar pistas.
-- **Para proyectar:** [[P:diagrama.adivina|Diagrama · adivina el número]] · [[P:balanza.6|Ordenar con la balanza]]
+- **Para proyectar:** [[P:diagrama.adivina|Diagrama · adivina el número]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S5-adivina-el-numero-solucion.sb3|Adivina el número · solución (con pistas y repetir hasta acertar)]]
 - **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
@@ -223,7 +223,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S8 · Muestra de juegos de mates `PC`
 
 - **Qué aprenden:** terminar el juego de las tablas, jugar con los de otras parejas y votar.
-- **Para proyectar:** [[P:votaciones|Votaciones y gráfico]]
+- **Para proyectar:** [[P:votaciones.mis|Votaciones y gráfico]] (con «Mis opciones»: los nombres de los juegos)
 - **Material listo:** [[M:M19|Rúbrica]] · [[M:M25|Registro de encuesta]]
 - **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 
@@ -378,7 +378,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S16 · Feria de videojuegos `PC`
 
 - **Qué aprenden:** presentar el videojuego, jugar a los de otros y recibir su opinión.
-- **Para proyectar:** [[P:votaciones|Votaciones y gráfico]]
+- **Para proyectar:** [[P:votaciones.mis|Votaciones y gráfico]] (con «Mis opciones», para votar el videojuego favorito)
 - **Material listo:** [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 

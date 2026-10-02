@@ -322,6 +322,9 @@ Detalle en `08_Plantillas_y_material.md`.
     - **«Guía para el docente»** en la página de cada herramienta (botón arriba y desplegable debajo): qué es, qué contar a la clase, preguntas con pistas y solución oculta, matemáticas y para saber más. Fuente: `web/guias_proyectables.py`. Hecha la de las cartas binarias.
     - Revisión: 24 enlaces a herramientas en sesiones que no dicen para qué se usan (lista en la conversación del 2 de octubre; se puede repetir con el script de la sección 6).
 19. **«Minuto de uso responsable»** (antes «Minuto SEG», un nombre que no se entendía): las 128 sesiones traen el suyo, una frase del banco y su pregunta, elegida a mano según lo que se hace ese día y sin repetir tema en sesiones seguidas (107 nuevas; las 21 que ya existían se mantienen). El banco de «El método» gana 7 frases. En el modo proyección va justo después de la portada.
+20. **Guías para el docente en las 30 herramientas** (`web/guias_proyectables.py`): qué es, qué contar, preguntas con pistas y solución oculta, matemáticas y, donde existe, un enlace a CS Unplugged en español. Las soluciones del robot y del laberinto se calcularon con un simulador que copia las reglas de las herramientas.
+    - **Enlaces sin explicar:** de los 23 enlaces a herramientas que las sesiones no explicaban, 5 se quitaron por no tener relación y los demás llevan su «para qué». Las votaciones de proyectos de la clase abren «Mis opciones».
+    - **Errores de contenido encontrados al hacerlas:** el cazabichos 3 decía tener 2 bichos pero se arreglaba con 1 cambio (nuevo programa con 2 bichos de verdad); el circuito encendía la bombilla con el plátano y la mano (ahora «conduce muy poco»: no enciende una bombilla, sí sirve con Makey Makey); «Entrena a la máquina» tenía la regla circular «fruta con forma de manzana».
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

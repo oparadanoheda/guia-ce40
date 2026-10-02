@@ -114,7 +114,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 
 - **Qué aprenden:** qué es una placa programable, sus partes (pantalla de 25 luces, botones A y B, sensores) y cómo se programa con bloques.
 - **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
-- **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]]
+- **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
@@ -344,7 +344,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 ### S12 · Mejoramos y presentamos (Feria del Código) `PC` `RA`
 
 - **Qué aprenden:** optimizar el programa y presentar el proyecto.
-- **Para proyectar:** [[P:votaciones|Votaciones]] (opcional)
+- **Para proyectar:** [[P:votaciones.mis|Votaciones]] (opcional, para votar el proyecto favorito de la feria)
 - **Material listo:** [[M:M19|Rúbrica y autoevaluación]] · [[M:M15|Pasaporte]]
 - **Minuto de uso responsable:** "Un seudónimo me protege. Mi foto es mía." ¿Qué seudónimo usarías en un juego en línea?
 - **Pasos:**
@@ -397,7 +397,7 @@ Después de la S10. Diseñar un soporte para lápices, un portanombres o una pie
 
 ### S16 · A elegir
 
-- **Para proyectar:** [[P:paridad|Magia de la paridad]]
+- **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
 - **Minuto de uso responsable:** "Las redes sociales tienen edad mínima por algo." ¿Por qué creéis que existe una edad mínima?
 
 - **Radio:** dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar número**, **al recibir radio**). Cada equipo, un número de grupo distinto. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.

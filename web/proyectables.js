@@ -97,7 +97,7 @@
     grande: { n: 7, start: [0, 6], dir: 'N', goal: [6, 0], rocks: [[2, 5], [2, 4], [4, 2], [5, 2], [3, 0]] },
     bicho1: { n: 5, start: [2, 4], dir: 'N', goal: [2, 1], rocks: [], prog: 'FFR' , info: 'Este programa tiene 1 bicho. Tócalo para cambiarlo.' },
     bicho2: { n: 5, start: [0, 4], dir: 'N', goal: [2, 2], rocks: [], prog: 'FFLFF', info: 'Este programa tiene 1 bicho. Tócalo para cambiarlo.' },
-    bicho3: { n: 5, start: [4, 4], dir: 'N', goal: [2, 1], rocks: [[4, 1]], prog: 'FFRFFRF', info: 'Este programa tiene 2 bichos.' },
+    bicho3: { n: 5, start: [4, 4], dir: 'N', goal: [2, 1], rocks: [[4, 1]], prog: 'FFRFFLF', info: 'Este programa tiene 2 bichos.' },
     bicho4: { n: 5, start: [0, 4], dir: 'N', goal: [3, 1], rocks: [[0, 1], [2, 3]], prog: 'FFRFRFRF', info: 'Este programa tiene 2 bichos.' },
     escalera: { n: 6, start: [0, 5], dir: 'N', goal: [5, 0], rocks: [], trail: true, info: 'Programa la escalera usando REPITE: avanza, gira, avanza, gira…' },
     cuadrado: { n: 6, start: [1, 4], dir: 'N', goal: null, rocks: [], trail: true, info: 'Dibuja un cuadrado de 3 casillas de lado. ¿Cuántas veces se repite «avanza 3, gira»?' },
@@ -735,8 +735,8 @@
   }
 
   /* ------------------------------------------------------------------ 13. ¿Conduce la electricidad? */
-  var OBJS = [['platano', 'Plátano', 1], ['papel', 'Papel', 0], ['cuchara', 'Cuchara de metal', 1], ['lapiz', 'Mina de lápiz (grafito)', 1], ['regla', 'Regla de plástico', 0], ['madera', 'Madera', 0],
-    ['goma', 'Goma de borrar', 0], ['aluminio', 'Papel de aluminio', 1], ['moneda', 'Moneda', 1], ['mano', 'Una mano', 1], ['guante', 'Guante de lana', 0], ['llave', 'Llave', 1]];
+  var OBJS = [['platano', 'Plátano', 2], ['papel', 'Papel', 0], ['cuchara', 'Cuchara de metal', 1], ['lapiz', 'Mina de lápiz (grafito)', 1], ['regla', 'Regla de plástico', 0], ['madera', 'Madera', 0],
+    ['goma', 'Goma de borrar', 0], ['aluminio', 'Papel de aluminio', 1], ['moneda', 'Moneda', 1], ['mano', 'Una mano', 2], ['guante', 'Guante de lana', 0], ['llave', 'Llave', 1]];
   function toolCircuit(root) {
     var cur = null, svg = document.createElementNS(NS, 'svg'), tbl = h('table', { class: 'pj-table' }), msg = h('p', { class: 'pj-status' }), res = {};
     svg.setAttribute('viewBox', '0 0 420 270'); svg.setAttribute('class', 'pj-circ');
@@ -751,11 +751,11 @@
         '<rect x="232" y="156" width="76" height="76" rx="10" fill="var(--pj-cell)" stroke="var(--pj-line)" stroke-width="3" stroke-dasharray="6 5"/>' + img +
         '<text x="270" y="256" text-anchor="middle" font-size="13" fill="var(--pj-muted)">hueco del circuito</text>';
     }
-    function drawTable() { var k = Object.keys(res); tbl.innerHTML = k.length ? '<tr><th>Objeto</th><th>¿Conduce?</th></tr>' + k.map(function (n) { return '<tr><td>' + n + '</td><td><b class="' + (res[n] ? 'yes' : 'no') + '">' + (res[n] ? 'Sí' : 'No') + '</b></td></tr>'; }).join('') : ''; }
+    function drawTable() { var k = Object.keys(res); tbl.innerHTML = k.length ? '<tr><th>Objeto</th><th>¿Conduce?</th></tr>' + k.map(function (n) { return '<tr><td>' + n + '</td><td><b class="' + (res[n] === 1 ? 'yes' : 'no') + '">' + (res[n] === 1 ? 'Sí' : res[n] === 2 ? 'Muy poco' : 'No') + '</b></td></tr>'; }).join('') : ''; }
     var pick = h('div', { class: 'pj-pool' });
     OBJS.forEach(function (o) { pick.appendChild(h('button', { type: 'button', class: 'pj-item pic', title: o[1], html: pic(o[0]) + '<small>' + o[1] + '</small>', onclick: function () { cur = o; draw(false); msg.textContent = o[1] + ': ¿se encenderá la bombilla? Votad y después pulsad «Probar».'; } })); });
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, msg]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Elige un objeto' }), pick,
-      btn('Probar el circuito', function () { if (!cur) { msg.textContent = 'Primero elige un objeto.'; return; } draw(!!cur[2]); res[cur[1]] = cur[2]; drawTable(); msg.textContent = cur[2] ? '¡Se enciende! ' + cur[1] + ': conduce la electricidad.' : 'No se enciende. ' + cur[1] + ': no conduce la electricidad.'; }, 'go'), tbl])]));
+      btn('Probar el circuito', function () { if (!cur) { msg.textContent = 'Primero elige un objeto.'; return; } draw(cur[2] === 1); res[cur[1]] = cur[2]; drawTable(); msg.textContent = cur[2] === 1 ? '¡Se enciende! ' + cur[1] + ': conduce la electricidad.' : cur[2] === 2 ? 'No se enciende. ' + cur[1] + ': conduce muy poco, no lo bastante para una bombilla. Con Makey Makey, que nota corrientes muy pequeñas, sí sirve como tecla.' : 'No se enciende. ' + cur[1] + ': no conduce la electricidad.'; }, 'go'), tbl])]));
     root.appendChild(credit());
     return { load: function () { draw(false); drawTable(); } };
   }
@@ -835,7 +835,7 @@
       var apples = train.filter(function (t) { return t[1] === 'manzana'; });
       var colors = apples.map(function (t) { return t[2]; }).filter(function (c, i, a) { return a.indexOf(c) === i; });
       rule = !apples.length ? '' : colors.length === 1 ? 'color:' + colors[0] : 'forma';
-      learned.innerHTML = !rule ? 'Todavía no ha aprendido nada.' : rule === 'forma' ? 'La máquina ha aprendido: <b>«manzana = fruta con forma de manzana, de cualquier color»</b>.' : 'La máquina ha aprendido: <b>«manzana = fruta de color ' + colors[0] + '»</b>.';
+      learned.innerHTML = !rule ? 'Todavía no ha aprendido nada.' : rule === 'forma' ? 'La máquina ha aprendido: <b>«manzana = fruta redonda, con rabito, de cualquier color»</b>.' : 'La máquina ha aprendido: <b>«manzana = fruta de color ' + colors[0] + '»</b>.';
     }
     function predict(it) { if (!rule) return null; return rule === 'forma' ? it[1] === 'manzana' : it[2] === rule.split(':')[1]; }
     function drawTrain() { trainEl.innerHTML = train.length ? train.map(function (t) { return '<span class="' + (t[1] === 'manzana' ? 'yes' : 'no') + '">' + pic(t[0]) + '<small>' + (t[1] === 'manzana' ? 'es manzana' : 'no es manzana') + '</small></span>'; }).join('') : '<em>Sin ejemplos todavía</em>'; }

@@ -185,7 +185,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 
 - **Qué aprenden:** un patrón es algo que se repite siempre igual; por eso se puede adivinar lo que viene después.
 - **Prepara antes:** imprimir M09 hoja 1 (una por alumno).
-- **Para proyectar:** [[P:patrones.ab|Patrones · AB]] y [[P:patrones.aab|AAB]] · [[P:pixelart.flecha|Píxel art · flecha]]
+- **Para proyectar:** [[P:patrones.ab|Patrones · AB]] y [[P:patrones.aab|AAB]]
 - **Material listo:** [[M:M09|Patrones]] (hoja 1) · [[M:M26|Póster «Patrón»]]
 - **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
@@ -294,7 +294,7 @@ Pon en el tapete tres fichas numeradas (1, 2 y 3) de dificultad creciente. Cada 
 
 - **Qué aprenden:** cuando algo se repite, se puede decir una sola vez con "repite".
 - **Prepara antes:** tarjetas M02 y las tarjetas REPITE de M01.
-- **Para proyectar:** [[P:bucles.palmadas|Bucles: programa largo o corto · palmadas]] y [[P:bucles.baile|el baile]] · [[P:simon|Simón]]
+- **Para proyectar:** [[P:bucles.palmadas|Bucles: programa largo o corto · palmadas]] y [[P:bucles.baile|el baile]]
 - **Material listo:** [[M:M02|Tarjetas de movimientos]] · [[M:M01|Tarjetas REPITE]] (hoja 3) · [[M:M26|Póster «Bucle»]]
 - **Minuto de uso responsable:** "Mi contraseña es como mi cepillo de dientes: no se presta." ¿Qué otras cosas son solo mías y no se prestan?
 
@@ -387,7 +387,7 @@ El robot recorre un cuadrado de 2 casillas de lado. ¿Cuántas veces se repite "
 
 - **Qué aprenden:** una animación es una secuencia de movimientos que, seguidos, cuentan algo.
 - **Prepara antes:** fichas M06 (casa, árbol y cole) recortadas.
-- **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (con "Dibujar el rastro" activado) · [[P:pixelart.corazon|Píxel art]]
+- **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (con "Dibujar el rastro" activado)
 - **Material listo:** [[M:M03|Bloques de papel]] · [[M:M06|Fichas del tablero]]
 - **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
@@ -534,7 +534,7 @@ Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe
 ### S20 · Menos tarjetas, mismo camino (optimizar) `PC` `ROB`
 
 - **Qué aprenden:** optimizar: conseguir lo mismo con menos instrucciones, usando repetir.
-- **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] y [[P:cuadricula.escalera|la escalera]]
+- **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] y [[P:cuadricula.escalera|la escalera]] (programarla con REPITE y contar las tarjetas que se ahorran)
 - **Material listo:** [[M:M26|Póster «Optimizar»]]
 - **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 

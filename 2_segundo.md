@@ -141,7 +141,7 @@ Cada alumno hace la hoja 1 de M09 (incluido el patrón que crece). Se corrige pr
 ### S4 · Bucles sin pantalla `PC`
 
 - **Qué aprenden:** usar "repite" para escribir programas más cortos.
-- **Para proyectar:** [[P:bucles.escalera|Bucles: la escalera]] y [[P:cuadricula.cuadrado|Reto: el cuadrado]] · [[P:laberinto.3|Laberinto · nivel 3]]
+- **Para proyectar:** [[P:bucles.escalera|Bucles: la escalera]] y [[P:cuadricula.cuadrado|Reto: el cuadrado]] · [[P:laberinto.3|Laberinto · nivel 3]] (el mismo «repetir», ahora en pantalla y con toda la clase)
 - **Material listo:** [[M:M01|Tarjetas de flechas y REPITE]] · [[M:M06|Tablero]] · [[M:M26|Póster «Bucle»]]
 - **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
@@ -251,7 +251,7 @@ Cuatro retos seguidos en la pizarra, por equipos que se turnan: [[P:patrones.aab
 
 - **Qué aprenden:** una condición es una regla del tipo "si pasa esto, entonces hago aquello".
 - **Prepara antes:** M04 recortado (una hoja por grupo).
-- **Para proyectar:** [[P:semaforo|Semáforo de peatones: si… entonces]] · [[P:laberinto.1|Laberinto de bloques]]
+- **Para proyectar:** [[P:semaforo|Semáforo de peatones: si… entonces]]
 - **Material listo:** [[M:M04|Tarjetas SI · ENTONCES · SI NO]] · [[M:M26|Póster «Condición»]]
 - **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
@@ -292,7 +292,7 @@ Cada grupo monta un programa con un bloque de evento y dos acciones de M02. Lo l
 
 - **Qué aprenden:** en un recorrido, se decide qué hace el robot según lo que se encuentra ("si el muñeco del semáforo está en rojo, entonces espera").
 - **Prepara antes:** robots, tapete y la ficha del semáforo de M06.
-- **Para proyectar:** [[P:semaforo.sino|Semáforo · modo SI… SI NO]] · [[P:laberinto.5|Laberinto · «si hay camino»]]
+- **Para proyectar:** [[P:semaforo.sino|Semáforo · modo SI… SI NO]] · [[P:laberinto.5|Laberinto · «si hay camino»]] (si va rápido: el programa decide solo por dónde seguir)
 - **Material listo:** [[M:M06|Fichas del tablero]] (semáforo) · [[M:M04|Tarjetas SI]]
 - **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
@@ -391,7 +391,7 @@ Con las 8 tarjetas de animales y el árbol de M11 (las preguntas ya vienen escri
 ### S16 · Feria de juegos de mesa `PC`
 
 - **Qué aprenden:** enseñar su proyecto y jugar con el de otros.
-- **Para proyectar:** [[P:votaciones.juegos|Votaciones y gráfico]] (para votar el juego favorito) · [[P:quiensale|¿Quién sale? y marcador]]
+- **Para proyectar:** [[P:votaciones.mis|Votaciones y gráfico]] (con «Mis opciones», para votar el juego de mesa favorito) · [[P:quiensale|¿Quién sale? y marcador]] (para elegir el orden de presentación)
 - **Minuto de uso responsable:** "Lo que subo a internet se queda." Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
 **Opción A · Feria**

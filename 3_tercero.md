@@ -79,7 +79,7 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S1 · Reto de entrada `PC` `SEG`
 
 - **Qué aprenden:** recordar lo que saben y conocer las normas del curso. Para ti: ver el nivel del grupo.
-- **Para proyectar:** [[P:cuadricula.mapa5|Mapa 5]], [[P:patrones.bicho|patrón con bicho]] y [[P:cuadricula.bicho3|cazabichos 3]] · [[P:flota|Hundir la flota]]
+- **Para proyectar:** [[P:cuadricula.mapa5|Mapa 5]], [[P:patrones.bicho|patrón con bicho]] y [[P:cuadricula.bicho3|cazabichos 3]] · [[P:flota|Hundir la flota]] (si sobra tiempo: coordenadas jugando, toda la clase)
 - **Material listo:** [[M:M08|Cazabichos]] (nivel 2) · [[M:M09|Patrones]] (hoja 2) · [[M:M05|Tarjetas de rol]]
 - **Minuto de uso responsable:** normas del aula de código y presentación de los roles.
 
@@ -123,7 +123,7 @@ Cada pareja hace una hoja de M08 nivel 2 y la hoja 2 de M09. Mientras, tú pasas
 ### S3 · Bucles y figuras `PC`
 
 - **Qué aprenden:** con "repite N veces: avanza, gira" se dibujan figuras.
-- **Para proyectar:** [[P:cuadricula.cuadrado|Reto: el cuadrado]] y [[P:poligonos|Polígonos]] · [[P:laberinto.3|Laberinto · repetir]]
+- **Para proyectar:** [[P:cuadricula.cuadrado|Reto: el cuadrado]] y [[P:poligonos|Polígonos]] · [[P:laberinto.3|Laberinto · repetir]] (si sobra tiempo: «repetir» en pantalla, toda la clase)
 - **Material listo:** [[M:M06|Tablero de cuadrícula]] (hoja 1, como papel cuadriculado)
 - **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
 
@@ -165,7 +165,7 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 
 - **Qué aprenden:** una condición tiene dos caminos: si se cumple, hago una cosa; si no, hago otra.
 - **Prepara antes:** M13 hoja 1 (una por grupo), un dado y una ficha por alumno (valen tapones).
-- **Para proyectar:** [[P:semaforo.sino|Semáforo · SI… SI NO]] y [[P:diagrama.par|Diagrama · par o impar]] · [[P:laberinto.5|Laberinto · si hay camino]]
+- **Para proyectar:** [[P:semaforo.sino|Semáforo · SI… SI NO]] y [[P:diagrama.par|Diagrama · par o impar]] · [[P:laberinto.5|Laberinto · si hay camino]] (el programa decide solo: si hay camino, avanza; si no, gira)
 - **Material listo:** [[M:M13|La oca de las condiciones]] · [[M:M04|Tarjetas SI · ENTONCES · SI NO]] · [[M:M26|Póster «Condición»]]
 - **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 
@@ -400,7 +400,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 ### S16 · Terminamos, depuramos y mostramos `PC`
 
 - **Qué aprenden:** terminar, probar el proyecto de otra pareja y mejorar el propio.
-- **Para proyectar:** [[P:votaciones.juegos|Votaciones]] (opcional)
+- **Para proyectar:** [[P:votaciones.mis|Votaciones]] (opcional, para votar el proyecto favorito)
 - **Material listo:** [[M:M17|Ficha de prueba y playtesting]] · [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 
