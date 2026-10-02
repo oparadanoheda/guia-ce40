@@ -314,7 +314,8 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Votaciones y gráfico:** un solo selector arriba (Mascotas · Juegos · Frutas · Dado · Mis opciones); cada encuesta con su pregunta; gráfico de barras proporcional con escala (antes las barras no guardaban la proporción); «Mis opciones» con casillas (pregunta opcional y de 2 a 8 opciones, que el navegador recuerda); dado dibujado que rueda y enseña el resultado y las últimas 20 tiradas.
     - **Sensor y umbral:** un solo selector (Luz · Temperatura). El botón «Luz» de arriba no hacía nada: al cargar sin variante no se volvía al modo luz.
     - **Hundir la flota:** el mismo fallo al volver a «5 × 5» después de «Coordenadas (x, y)».
-    - **Todas las herramientas:** el botón de reto activo se marca en la fila de arriba.
+    - **Todas las herramientas:** un solo selector, la fila de botones de arriba, que marca el reto abierto. Todas las opciones que solo estaban dentro subieron arriba: los 15 tableros del robot, AABB y ABCD en patrones, «Lavarse los dientes», tipo, color y tamaño en el clasificador, flecha, sí y no en los LED, casa y pez en píxel art, los 6 niveles del laberinto y 4 cartas binarias. Dentro solo quedan las acciones (ejecutar, comprobar, nueva partida…). Arreglado de paso: «Con bicho» después de «Que crece» no ponía bicho.
+    - **Votaciones, pregunta abierta:** el título es una casilla vacía («Escribe aquí la pregunta, si quieres») para usar la misma encuesta en cualquier contexto.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
@@ -335,7 +336,6 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 
 **Revisado y que se deja como está (decisión del 1 de octubre de 2026)**
 - La frase de objetivo bajo cada sesión en la lista del curso.
-- Los retos de las herramientas, que aparecen como botones arriba y como desplegable dentro.
 - Las aclaraciones pequeñas de algunas tarjetas de las herramientas (por ejemplo, «Las siguientes tarjetas van dentro»).
 
 **Otros pendientes**

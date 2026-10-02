@@ -115,14 +115,8 @@
       h('option', { value: '', text: 'Tocar casilla: nada' }), h('option', { value: 'rock', text: 'Tocar casilla: poner o quitar roca' }),
       h('option', { value: 'goal', text: 'Tocar casilla: mover el tesoro' }), h('option', { value: 'start', text: 'Tocar casilla: mover robot' })]);
     var palette = h('div', { class: 'pj-palette' });
-    var mapSel = h('select', { class: 'pj-sel', 'aria-label': 'Elegir reto', onchange: function () { load(mapSel.value); } },
-      Object.keys(MAPS).map(function (k) { return h('option', { value: k, text: presetName(k) }); }));
-    function presetName(k) {
-      return { libre: 'Tablero libre 5×5', grande: 'Tablero grande 7×7', escalera: 'Reto: la escalera', cuadrado: 'Reto: el cuadrado', absoluto: 'Modo fácil (flechas de dirección)' }[k] ||
-        (k.indexOf('mapa') === 0 ? 'Mapa del tesoro ' + k.slice(4) + ' (M07)' : 'Cazabichos ' + k.slice(5));
-    }
     function load(k) {
-      var m = MAPS[k] || MAPS.libre; mapSel.value = MAPS[k] ? k : 'libre';
+      var m = MAPS[k] || MAPS.libre;
       st = { n: m.n, start: m.start.slice(), dir: m.dir, goal: m.goal ? m.goal.slice() : null, rocks: m.rocks.map(function (r) { return r.slice(); }),
         trail: !!m.trail, mode: m.mode || 'rel', prog: [], open: null };
       if (m.prog) st.prog = m.prog.split('').map(function (c) { return { t: c }; });
@@ -251,7 +245,7 @@
     var trailChk = h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { st.trail = e.target.checked; draw(false); } }), ' Dibujar el rastro']);
     root.appendChild(h('div', { class: 'pj-two' }, [
       h('div', { class: 'pj-col' }, [svg, status]),
-      h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [mapSel]), info, h('h4', { text: 'Tarjetas' }), palette,
+      h('div', { class: 'pj-col' }, [info, h('h4', { text: 'Tarjetas' }), palette,
         h('h4', { text: 'Programa' }), progEl,
         h('div', { class: 'pj-row' }, [btn('▶ Ejecutar', run, 'go'), btn('Paso a paso', step), btn('↺ Volver a la salida', reset), btn('Borrar programa', function () { st.prog = []; st.open = null; renderProg(); reset(); })]),
         h('div', { class: 'pj-row' }, [editSel, trailChk])])]));
@@ -265,7 +259,6 @@
   function shapeSVG(p) { return '<svg viewBox="0 0 60 60" fill="' + PC[p[1]] + '">' + SH[p[0]] + '</svg>'; }
   function toolPatterns(root) {
     var row = h('div', { class: 'pj-pattern' }), msg = h('p', { class: 'pj-status' }), mode = 'seguir', kind = 'ab';
-    var sel = h('select', { class: 'pj-sel', onchange: function () { kind = sel.value; draw(); } }, Object.keys(PATS).map(function (k) { return h('option', { value: k, text: 'Patrón ' + k.toUpperCase() }); }).concat([h('option', { value: 'crece', text: 'Patrón que crece' })]));
     function draw() {
       row.innerHTML = ''; setStatus(msg, '', '');
       if (kind === 'crece') {
@@ -299,9 +292,9 @@
       }
       msg.textContent = mode === 'bicho' ? 'Una figura rompe el patrón. Tócala.' : 'Toca las casillas con «?» para comprobar lo que viene después.';
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [sel, btn('Continuar el patrón', function () { mode = 'seguir'; draw(); }), btn('Buscar el bicho', function () { mode = 'bicho'; draw(); }), btn('Otro', draw)]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Otro', draw)]));
     root.appendChild(row); root.appendChild(msg);
-    return { load: function (p) { if (p === 'bicho') mode = 'bicho'; else if (p) { kind = p; } sel.value = kind; draw(); } };
+    return { load: function (p) { if (p === 'bicho') { mode = 'bicho'; if (!PATS[kind]) kind = 'ab'; } else { mode = 'seguir'; kind = PATS[p] || p === 'crece' ? p : 'ab'; } draw(); } };
   }
 
   /* ------------------------------------------------------------------ 3. Ordena la secuencia */
@@ -318,8 +311,7 @@
   var ROUT_ALIAS = { sandwich: 'tostada', salir: 'zapatos', manos7: 'manos6' };
   function toolSequence(root) {
     var key = 'manos', order = [], picked = -1, row = h('div', { class: 'pj-seq' }), msg = h('p', { class: 'pj-status' });
-    var sel = h('select', { class: 'pj-sel', onchange: function () { load(sel.value); } }, Object.keys(ROUT).map(function (k) { return h('option', { value: k, text: ROUT[k][0] }); }));
-    function load(k) { k = ROUT_ALIAS[k] || k; key = ROUT[k] ? k : 'manos'; sel.value = key; var n = ROUT[key][1].length; do { order = shuffle(Array.from({ length: n }, function (_, i) { return i; })); } while (order.every(function (v, i) { return v === i; })); picked = -1; draw(); setStatus(msg, '', 'Toca una viñeta y después otra para cambiarlas de sitio.'); }
+    function load(k) { k = ROUT_ALIAS[k] || k; key = ROUT[k] ? k : 'manos'; var n = ROUT[key][1].length; do { order = shuffle(Array.from({ length: n }, function (_, i) { return i; })); } while (order.every(function (v, i) { return v === i; })); picked = -1; draw(); setStatus(msg, '', 'Toca una viñeta y después otra para cambiarlas de sitio.'); }
     function draw(check) {
       row.innerHTML = ''; row.style.gridTemplateColumns = 'repeat(' + order.length + ', minmax(0, 1fr))';
       order.forEach(function (v, i) {
@@ -332,7 +324,7 @@
         row.appendChild(b);
       });
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [sel, btn('Comprobar', function () {
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', function () {
       draw(true); var ok = order.every(function (v, i) { return v === i; });
       if (ok) { setStatus(msg, 'good', '¡Secuencia correcta! Leedla en voz alta: «primero…, después…, luego…, por último…».'); setTimeout(function () { burst(row); }, order.length * 120); }
       else setStatus(msg, 'bad', 'Las viñetas marcadas en rojo no están en su sitio. ¿Qué tiene que pasar antes?');
@@ -351,7 +343,6 @@
   function tok(t) { return t[0] === 'a' ? '<span class="tk">' + arrowSVG(t[1]) + '</span>' : '<span class="tk">' + pic(t[1]) + '<small>' + t[2] + '</small></span>'; }
   function toolLoops(root) {
     var key = 'palmadas', n = 4, box = h('div', { class: 'pj-loops' });
-    var sel = h('select', { class: 'pj-sel', onchange: function () { key = sel.value; n = LOOPS[key].n; draw(); } }, Object.keys(LOOPS).map(function (k) { return h('option', { value: k, text: LOOPS[k].t }); }));
     var range = h('input', { type: 'range', min: 2, max: 6, value: 4, class: 'pj-range', 'aria-label': 'Número de repeticiones', oninput: function () { n = +range.value; draw(); } });
     function draw() {
       range.value = n; var L = LOOPS[key], long = [];
@@ -360,9 +351,9 @@
         '<div class="pj-lvs">=</div><div class="pj-lcol"><h4>Programa con bucle</h4><div class="pj-lrep"><b>REPITE ' + n + ' VECES</b><div class="pj-ltoks">' + L.body.map(tok).join('') + '</div></div><p class="pj-big"><b>' + (L.body.length + 1) + '</b> tarjetas</p></div>' +
         '<p class="pj-status" style="grid-column:1/-1">Los dos programas hacen exactamente lo mismo. Con el bucle se ahorran ' + (long.length - L.body.length - 1) + ' tarjetas: ' + n + ' veces ' + L.body.length + ' = ' + long.length + '.</p>';
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [sel, h('label', { class: 'pj-chk' }, ['Repeticiones: ', range])]));
+    root.appendChild(h('div', { class: 'pj-row' }, [h('label', { class: 'pj-chk' }, ['Repeticiones: ', range])]));
     root.appendChild(box); root.appendChild(credit());
-    return { load: function (p) { if (LOOPS[p]) { key = p; n = LOOPS[p].n; sel.value = p; } draw(); } };
+    return { load: function (p) { if (LOOPS[p]) { key = p; n = LOOPS[p].n; } draw(); } };
   }
 
   /* ------------------------------------------------------------------ 5. Semáforo de peatones: si… entonces */
@@ -382,7 +373,7 @@
     light.addEventListener('click', function () { green = !green; draw(); replay(light, 'pj-pop'); });
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [light, h('p', { class: 'pj-info', text: 'Toca el semáforo para cambiar la luz.' })]),
       h('div', { class: 'pj-col' }, [rule, h('div', { class: 'pj-row' }, [btn('Ver respuesta', function () { draw(true); }, 'go'), btn('Luz al azar', function () { green = rnd(2) === 1; draw(); }),
-        btn('Cambiar a SI… SI NO', function (e) { siNo = !siNo; e.target.textContent = siNo ? 'Cambiar a dos reglas SI' : 'Cambiar a SI… SI NO'; draw(); })]), ans])]));
+      ]), ans])]));
     root.appendChild(credit());
     return { load: function (p) { siNo = p === 'sino'; draw(); } };
   }
@@ -400,7 +391,7 @@
   function toolSort(root) {
     var crit = 'tipo', secret = null, guesses = 0, board = h('div', { class: 'pj-sortboard' }), msg = h('p', { class: 'pj-status' }), pool = h('div', { class: 'pj-pool' });
     function sortDraw() {
-      secret = null; board.innerHTML = ''; pool.innerHTML = '';
+      secret = null; secRow.hidden = true; board.innerHTML = ''; pool.innerHTML = '';
       var C = CRIT[crit], idx = C[1];
       Object.keys(C[2]).forEach(function (g) {
         var b = h('div', { class: 'pj-bin' }, [h('h4', { text: C[2][g] })]);
@@ -422,7 +413,7 @@
       msg.textContent = 'Toca un objeto y después la caja donde va.';
     }
     function secretDraw() {
-      secret = SECRETS[rnd(SECRETS.length)]; guesses = 0; board.innerHTML = ''; pool.innerHTML = '';
+      secret = SECRETS[rnd(SECRETS.length)]; secRow.hidden = false; guesses = 0; board.innerHTML = ''; pool.innerHTML = '';
       var yes = h('div', { class: 'pj-bin yes' }, [h('h4', { text: 'SÍ cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
       var no = h('div', { class: 'pj-bin no' }, [h('h4', { text: 'NO cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
       board.appendChild(yes); board.appendChild(no);
@@ -433,10 +424,9 @@
       });
       msg.textContent = 'La máquina tiene una regla secreta. Tocad objetos y mirad a qué caja los manda. ¿Cuál es la regla?';
     }
-    var sel = h('select', { class: 'pj-sel', onchange: function () { crit = sel.value; sortDraw(); } }, Object.keys(CRIT).map(function (k) { return h('option', { value: k, text: CRIT[k][0] }); }));
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Clasificar', sortDraw), sel, btn('Regla secreta', secretDraw, 'go'), btn('Desvelar la regla', function () { if (secret) msg.textContent = 'La regla era: «' + secret[2] + '». Así aprende una máquina: mirando muchos ejemplos ya clasificados.'; })]));
+    var secRow; root.appendChild(secRow = h('div', { class: 'pj-row' }, [btn('Otra regla secreta', secretDraw, 'go'), btn('Desvelar la regla', function () { if (secret) msg.textContent = 'La regla era: «' + secret[2] + '». Así aprende una máquina: mirando muchos ejemplos ya clasificados.'; })]));
     root.appendChild(pool); root.appendChild(board); root.appendChild(msg); root.appendChild(credit());
-    return { load: function (p) { if (p === 'secreta') secretDraw(); else { if (CRIT[p]) { crit = p; sel.value = p; } sortDraw(); } } };
+    return { load: function (p) { if (p === 'secreta') secretDraw(); else { crit = CRIT[p] ? p : 'tipo'; sortDraw(); } } };
   }
 
   /* ------------------------------------------------------------------ 7. ¿Qué animal soy? */
@@ -473,16 +463,18 @@
     // Encuestas con pregunta, opciones y gráfico de barras con escala; y el dado para estudiar frecuencias.
     // Se elige arriba (Mascotas · Juegos · Frutas · Dado · Mis opciones).
     var PRE = {
-      mascotas: { q: '¿Qué mascota te gusta más?', o: ['Perro|perro', 'Gato|gato', 'Pez|pez', 'Pájaro|pajaro'] },
-      juegos: { q: '¿Qué te gusta más hacer en el recreo?', o: ['Jugar a la pelota|jugar', 'Leer|leer', 'Cantar|cantar', 'Patinar|patinar'] },
-      fruta: { q: '¿Qué fruta te gusta más?', o: ['Manzana|manzana_roja', 'Plátano|platano', 'Fresa|fresa', 'Naranja|naranja'] }
+      mascotas: ['Perro|perro', 'Gato|gato', 'Pez|pez', 'Pájaro|pajaro'],
+      juegos: ['Jugar a la pelota|jugar', 'Leer|leer', 'Cantar|cantar', 'Patinar|patinar'],
+      fruta: ['Manzana|manzana_roja', 'Plátano|platano', 'Fresa|fresa', 'Naranja|naranja']
     };
     var MINE_KEY = 'ce40-votos-mis-opciones';
     var mine = { q: '', o: ['', '', ''] };
     try { var sv = JSON.parse(localStorage.getItem(MINE_KEY) || 'null'); if (sv && sv.o && sv.o.length >= 2) mine = sv; } catch (e) { /* sin almacenamiento */ }
 
     var data = [], mode = 'votos', cols = [], rolling = false, history = [];
-    var title = h('h3', { class: 'pj-vq' });
+    // la pregunta queda abierta: la escribe el docente (o no) según el contexto
+    var title = h('input', { type: 'text', class: 'pj-vq', placeholder: 'Escribe aquí la pregunta (si quieres)', 'aria-label': 'Pregunta de la votación', maxlength: 90 });
+    title.addEventListener('input', function () { if (mode === 'mine') { mine.q = title.value; try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) { /* sin almacenamiento */ } } });
     var setup = h('div', { class: 'pj-mine' });
     var diceBox = h('div', { class: 'pj-dicebox' });
     var controls = h('div', { class: 'pj-row' });
@@ -568,7 +560,7 @@
       }, 75);
     }
     function dice() {
-      mode = 'dado'; title.textContent = '¿Qué número sale más al tirar el dado?';
+      mode = 'dado'; title.value = ''; title.hidden = false;
       diceBox.hidden = false; setup.hidden = true; chart.hidden = false; history = []; drawHist();
       build(['1', '2', '3', '4', '5', '6']);
       showDie(6, 'Pulsa «Tirar el dado»');
@@ -580,18 +572,19 @@
     }
 
     /* ---- encuestas ---- */
-    function poll(q, list) {
-      mode = 'votos'; title.textContent = q || '';
+    function poll(q, list, isMine) {
+      mode = 'votos'; title.value = q || ''; title.hidden = false;
       diceBox.hidden = true; setup.hidden = true; chart.hidden = false;
       build(list);
+      if (isMine) mode = 'mine';
       controls.innerHTML = '';
       controls.appendChild(btn('Votos a 0', function () { data.forEach(function (d) { d.v = 0; }); draw(); }));
     }
     function preset(key) {
-      poll(PRE[key].q, PRE[key].o);
+      poll('', PRE[key]);
     }
     function editMine() {
-      mode = 'votos'; title.textContent = 'Mis opciones';
+      mode = 'votos'; title.hidden = true;
       diceBox.hidden = true; chart.hidden = true; setup.hidden = false; controls.innerHTML = ''; msg.textContent = '';
       setup.innerHTML = '';
       var qIn = h('input', { type: 'text', class: 'pj-input', value: mine.q, placeholder: 'Por ejemplo: ¿Cuál es tu deporte favorito?', 'aria-label': 'Pregunta' });
@@ -626,7 +619,7 @@
           if (used.length < 2) { err.textContent = 'Escribe al menos dos opciones.'; return; }
           mine = { q: qIn.value.trim(), o: opts.length >= 2 ? opts : used };
           try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) { /* sin almacenamiento */ }
-          poll(mine.q, used);
+          poll(mine.q, used, true);
           controls.appendChild(btn('Cambiar las opciones', editMine));
         }, 'go')]));
       setup.appendChild(err);
@@ -651,7 +644,6 @@
   };
   function toolFlow(root) {
     var key = 'calle', at = 0, box = h('div', { class: 'pj-flow' }), ctr = h('div', { class: 'pj-row' }), msg = h('p', { class: 'pj-status' });
-    var sel = h('select', { class: 'pj-sel', onchange: function () { key = sel.value; at = 0; draw(); } }, Object.keys(FLOWS).map(function (k) { return h('option', { value: k, text: FLOWS[k].t }); }));
     function draw() {
       var F = FLOWS[key]; box.innerHTML = '';
       F.steps.forEach(function (s, i) {
@@ -664,9 +656,9 @@
       else ctr.appendChild(btn('Empezar otra vez', function () { at = 0; msg.textContent = ''; draw(); }, 'go'));
       if (s[0] !== 'd' && !(F.noLabel && at === F.steps[2])) {}
     }
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [box]), h('div', { class: 'pj-col' }, [sel,
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [box]), h('div', { class: 'pj-col' }, [
       h('p', { class: 'pj-info', html: '<b>Óvalo</b>: empezar o terminar · <b>Rectángulo</b>: hacer algo · <b>Rombo</b>: pregunta de sí o no' }), ctr, msg])]));
-    return { load: function (p) { if (FLOWS[p]) key = p; sel.value = key; at = 0; draw(); } };
+    return { load: function (p) { key = FLOWS[p] ? p : 'calle'; at = 0; draw(); } };
   }
 
   /* ------------------------------------------------------------------ 10. Polígonos con la tortuga */
@@ -693,7 +685,7 @@
     }
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [svg]), h('div', { class: 'pj-col' }, [
       h('label', { class: 'pj-chk' }, ['Lados: ', nIn]), h('label', { class: 'pj-chk' }, ['Longitud: ', lIn]),
-      h('div', { class: 'pj-row' }, [btn('Triángulo', function () { n = 3; nIn.value = 3; draw(); }), btn('Cuadrado', function () { n = 4; nIn.value = 4; draw(); }), btn('Hexágono', function () { n = 6; nIn.value = 6; draw(); }), btn('Rosetón', function () { rose = !rose; draw(); })]),
+      h('div', { class: 'pj-row' }, [btn('Triángulo', function () { n = 3; nIn.value = 3; draw(); }), btn('Cuadrado', function () { n = 4; nIn.value = 4; draw(); }), btn('Hexágono', function () { n = 6; nIn.value = 6; draw(); })]),
       code, tbl])]));
     return { load: function (p) { rose = p === 'roseton'; if (p === 'triangulo') n = 3; nIn.value = n; draw(); } };
   }
@@ -782,7 +774,7 @@
       });
     }
     var icons = h('div', { class: 'pj-row' });
-    Object.keys(ICONS).forEach(function (k) { icons.appendChild(btn({ corazon: 'Corazón', sonrisa: 'Sonrisa', flecha: 'Flecha', si: 'Sí', no: 'No', vacio: 'Borrar' }[k], function () { on = ICONS[k].split('').map(Number); draw(); })); });
+    icons.appendChild(btn('Apagar todas', function () { on = ICONS.vacio.split('').map(Number); draw(); }));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [h('div', { class: 'pj-mb' }, [h('span', { class: 'pj-mbbtn', text: 'A' }), grid, h('span', { class: 'pj-mbbtn', text: 'B' })])]),
       h('div', { class: 'pj-col' }, [icons, info, h('p', { class: 'pj-info', text: 'La pantalla es una cuadrícula de 5 × 5 luces. La x va de 0 a 4 hacia la derecha y la y de 0 a 4 hacia abajo. Toca las luces para dibujar.' }),
         btn('Contar luces encendidas', function () { info.innerHTML = 'Luces encendidas: <b>' + on.reduce(function (a, b) { return a + b; }, 0) + '</b> de 25'; }, 'go')])]));
@@ -897,7 +889,6 @@
       opts.innerHTML = ''; D.opts.forEach(function (o, k) { opts.appendChild(btn(o, function () { msg.innerHTML = (k === c[2] ? '<b class="yes">¡Correcto!</b> ' : '<b class="no">No.</b> Es «' + D.opts[c[2]] + '». ') + c[3]; })); });
       opts.appendChild(btn('Siguiente →', function () { i = (i + 1) % D.cards.length; draw(); }, 'go'));
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('¿Puede pasar de verdad? (1º-2º)', function () { deck = 'fantasia'; i = 0; draw(); }), btn('¿Verdad, bulo o IA? (5º-6º)', function () { deck = 'bulos'; i = 0; draw(); })]));
     root.appendChild(card); root.appendChild(opts); root.appendChild(msg); root.appendChild(credit());
     return { load: function (p) { if (DECKS[p]) deck = p; i = 0; draw(); } };
   }
@@ -943,8 +934,8 @@
     function toggle() { if (run) { clearInterval(run); run = null; } else run = setInterval(function () { left = Math.max(0, left - 1); draw(); if (!left) { clearInterval(run); run = null; } }, 1000); }
     root.appendChild(big); root.appendChild(phases);
     root.appendChild(h('div', { class: 'pj-row' }, [btn('Empezar / pausar', toggle, 'go'), btn('Siguiente fase', function () { var P = PH[kind], acc = 0, used = 45 * 60 - left; for (var i = 0; i < P.length; i++) { acc += P[i][1] * 60; if (acc > used) { left = 45 * 60 - acc; break; } } draw(); }), btn('Reiniciar', function () { left = 45 * 60; draw(); }),
-      btn('Sesión semanal', function () { kind = 'semanal'; left = 2700; draw(); }), btn('Sesión quincenal', function () { kind = 'quincenal'; left = 2700; draw(); })]));
-    return { load: function (p) { if (PH[p]) kind = p; draw(); } };
+      ]));
+    return { load: function (p) { kind = PH[p] ? p : 'semanal'; left = 2700; draw(); } };
   }
 
   /* ------------------------------------------------------------------ 21. Código secreto */

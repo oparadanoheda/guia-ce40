@@ -89,12 +89,11 @@
       h('span'), btn(glyph('F'), function () { press('F'); }, 'arrow'), h('span'),
       btn(turn('L'), function () { press('L'); }, 'arrow'), btn('GO', go, 'goBee'), btn(turn('R'), function () { press('R'); }, 'arrow'),
       btn('<b>II</b>', function () { press('P'); }, 'small'), btn(glyph('B'), function () { press('B'); }, 'arrow'), btn('<b>X</b>', function () { if (!busy) { mem = []; reset(); msg.textContent = 'Memoria borrada.'; } }, 'small')]);
-    var sel = h('select', { class: 'pj-sel', onchange: function () { mat = sel.value; target = null; mem = []; layers = null; reset(); } }, Object.keys(BEE_MATS).map(function (k) { return h('option', { value: k, text: BEE_MATS[k].t }); }));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, msg]),
-      h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [sel, btn('Nuevo reto', newTarget, 'go')]), h('div', { class: 'pj-beebody' }, [pad]), count,
+      h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [btn('Nuevo reto', newTarget, 'go')]), h('div', { class: 'pj-beebody' }, [pad]), count,
         h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { showMem = e.target.checked; draw(); } }), ' Ver la memoria (para el docente)']), memEl,
         h('p', { class: 'pj-info', text: 'Flecha arriba: avanza una casilla · flecha abajo: retrocede · flechas curvas: gira sin moverse · II: pausa · X: borra la memoria · GO: ejecuta. Como el robot real, las órdenes se suman a las anteriores hasta que se borra la memoria.' })])]));
-    return { load: function (p) { if (BEE_MATS[p]) { mat = p; sel.value = p; } mem = []; target = null; layers = null; reset(); P.setStatus(msg, '', ''); } };
+    return { load: function (p) { mat = BEE_MATS[p] ? p : 'numeros'; mem = []; target = null; layers = null; reset(); P.setStatus(msg, '', ''); } };
   }
 
   /* ------------------------------------------------------------ Hundir la flota */
@@ -150,9 +149,7 @@
       inp.value = '';
     }
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') shootText(); });
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Pequeño 5 × 5', function () { n = 5; place(); }), btn('Grande 8 × 8', function () { n = 8; place(); }),
-      btn('Letra y número (B3)', function () { mode = 'letras'; draw(); }), btn('Coordenadas (x, y)', function () { mode = 'xy'; draw(); }),
-      btn('Dos equipos', function () { teams = !teams; score = [0, 0]; draw(); }), btn('Nueva partida', place, 'go')]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Dos equipos', function () { teams = !teams; score = [0, 0]; draw(); }), btn('Nueva partida', place, 'go')]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [board]), h('div', { class: 'pj-col' }, [info, h('div', { class: 'pj-row' }, [inp, btn('Disparar', shootText, 'go')]), msg,
       h('p', { class: 'pj-info', html: 'Un alumno dice la casilla <b>primero la columna y después la fila</b> y la toca en la pizarra. En equipos: acertar da 1 punto, hundir un barco da 3, y el turno cambia al fallar.' })])]));
     return { load: function (p) { n = p === 'grande' || p === 'xy' ? 8 : 5; mode = p === 'xy' ? 'xy' : 'letras'; place(); } };
@@ -182,12 +179,10 @@
       pal.innerHTML = ''; PAL.forEach(function (c, i) { pal.appendChild(h('button', { type: 'button', class: 'pj-swatch' + (i === color ? ' on' : ''), style: 'background:' + c, title: PALN[i], 'aria-label': PALN[i], onclick: function () { color = i; draw(); } })); });
     }
     function check() { var S = PIX[key], bad = 0; board.querySelectorAll('.pj-px').forEach(function (b, i) { var n = S[0].length, y = Math.floor(i / n), x = i % n; var ok = grid[y][x] === +S[y][x]; b.classList.toggle('bad', !ok); if (!ok) bad++; }); msg.textContent = bad ? 'Hay ' + bad + ' cuadrados distintos al código (marcados). ¿Dónde está el bicho?' : '¡Dibujo correcto!'; }
-    var sel = h('select', { class: 'pj-sel', onchange: function () { load(sel.value); } }, Object.keys(PIX).map(function (k) { return h('option', { value: k, text: { corazon: 'Corazón', casa: 'Casa', robot: 'Robot', pez: 'Pez', flecha: 'Flecha (5 × 5, 1º)' }[k] }); }));
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Dibujo secreto', function () { mode = 'secreto'; load(key); }, 'go'), btn('Pintar y ver el código', function () { mode = 'libre'; load(key); }), sel,
-      btn('Comprobar', check), btn('Ver solución', function () { grid = PIX[key].map(function (r) { return r.split('').map(Number); }); draw(); })]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', check), btn('Ver solución', function () { grid = PIX[key].map(function (r) { return r.split('').map(Number); }); draw(); })]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [pal, board]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Código de cada fila' }), code, msg,
       h('p', { class: 'pj-info', text: 'Así guarda un ordenador una imagen: como números. «3 blancos, 4 rojos, 3 blancos» ocupa menos que decir el color de cada cuadrado uno a uno.' })])]));
-    return { load: function (p) { if (p === 'libre') mode = 'libre'; else { mode = 'secreto'; if (PIX[p]) { key = p; sel.value = p; } } load(key); } };
+    return { load: function (p) { if (p === 'libre') mode = 'libre'; else { mode = 'secreto'; if (PIX[p]) key = p; } load(key); } };
   }
 
   /* ------------------------------------------------------------ Laberinto de bloques */
@@ -284,7 +279,6 @@
       else P.setStatus(msg, 'bad', fail ? '¡Choque contra un árbol! Revisa el programa paso a paso.' : 'No ha llegado a la meta. ¿Qué falta?');
     }
     LEVELS.forEach(function (_, i) { lvRow.appendChild(btn(String(i + 1), function () { load(i); })); });
-    root.appendChild(h('div', { class: 'pj-row' }, [h('b', { text: 'Nivel:' }), lvRow]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, tip, msg]),
       h('div', { class: 'pj-col' }, [h('h4', { text: 'Bloques' }), pal, h('h4', { text: 'Programa (toca dentro de un bloque naranja para meter bloques)' }), progEl,
         h('div', { class: 'pj-row' }, [btn('▶ Ejecutar', run, 'go'), btn('↺ Volver a empezar', function () { reset(); msg.textContent = ''; }), btn('Borrar programa', function () { prog = []; target = null; renderProg(); reset(); })])])]));
@@ -307,8 +301,7 @@
       if (goal !== null) msg.textContent = sum === goal ? '¡Correcto! ' + goal + ' = ' + on.map(function (x) { return x ? 1 : 0; }).join('') : 'Reto: forma el número ' + goal + '.';
     }
     function setK(x) { k = x; on = new Array(k).fill(false); goal = null; msg.textContent = ''; draw(); }
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('3 cartas', function () { setK(3); }), btn('4 cartas', function () { setK(4); }), btn('5 cartas', function () { setK(5); }),
-      btn('Reto: forma un número', function () { goal = 1 + rnd(Math.pow(2, k) - 1); on = new Array(k).fill(false); draw(); }, 'go'),
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Reto: forma un número', function () { goal = 1 + rnd(Math.pow(2, k) - 1); on = new Array(k).fill(false); draw(); }, 'go'),
       btn('Contar +1', function () { var V = vals(), sum = V.reduce(function (a, v, i) { return a + (on[i] ? v : 0); }, 0) + 1; if (sum >= Math.pow(2, k)) sum = 0; on = V.map(function (v) { if (sum >= v) { sum -= v; return true; } return false; }); goal = null; draw(); }),
       btn('Todas boca abajo', function () { on = new Array(k).fill(false); draw(); })]));
     root.appendChild(cards); root.appendChild(out); root.appendChild(msg);
@@ -358,7 +351,7 @@
     }
     function swap() { if (sel.length !== 2) { msg.textContent = 'Elige dos cajas para cambiarlas de sitio.'; return; } var t = order[sel[0]]; order[sel[0]] = order[sel[1]]; order[sel[1]] = t; sel = []; draw(); }
     function check() { var ok = order.every(function (b, i) { return i === 0 || w[order[i - 1]] < w[b]; }); revealed = true; draw(); msg.textContent = ok ? '¡Ordenadas de la más ligera a la más pesada con ' + cmp + ' comparaciones! ¿Se podría con menos?' : 'Todavía no están en orden. Mirad los pesos.'; }
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('4 cajas', function () { start(4); }), btn('6 cajas', function () { start(6); }), btn('8 cajas', function () { start(8); }), btn('Nueva partida', function () { start(); }, 'go')]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Nueva partida', function () { start(); }, 'go')]));
     root.appendChild(row); root.appendChild(h('div', { class: 'pj-row' }, [btn('Comparar en la balanza', compare, 'go'), btn('Cambiar de sitio', swap), btn('Comprobar el orden', check)]));
     root.appendChild(scale); root.appendChild(msg);
     root.appendChild(h('p', { class: 'pj-info', text: 'Objetivo: ordenar las cajas de la más ligera (izquierda) a la más pesada (derecha) usando la balanza el menor número de veces. Una estrategia: buscar la más ligera, ponerla la primera y repetir con las demás. Eso es un algoritmo de ordenación.' }));

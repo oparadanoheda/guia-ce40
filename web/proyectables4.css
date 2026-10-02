@@ -69,7 +69,10 @@
 
 /* ---- votaciones: gráfico de barras con escala, «Mis opciones» y dado ---- */
 .rindex-chip[aria-current]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
-.pj-vq{font:700 clamp(1.3rem,2.4vw,2rem)/1.2 var(--sans);margin:4px 0 14px;min-height:1.2em}
+.pj-vq{display:block;width:100%;font:700 clamp(1.3rem,2.4vw,2rem)/1.2 var(--sans);margin:4px 0 6px;padding:4px 0;border:0;border-bottom:2px dashed transparent;background:transparent;color:var(--ink)}
+.pj-vq::placeholder{color:var(--muted);opacity:.55;font-weight:500}
+.pj-vq:hover,.pj-vq:focus{border-bottom-color:var(--rule);outline:none}
+.pj-vq[hidden]{display:none}
 .pj-chart2{display:grid;grid-template-columns:auto 1fr;grid-template-rows:min(38vh,340px) auto;column-gap:10px;margin:22px 0 10px}
 .pj-chart2[hidden],.pj-mine[hidden],.pj-dicebox[hidden]{display:none}
 .pj-vfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}

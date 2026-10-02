@@ -799,7 +799,10 @@ svg.glyph{width:100%;height:100%;display:block}
 
 /* ---- votaciones: gráfico de barras con escala, «Mis opciones» y dado ---- */
 .rindex-chip[aria-current]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
-.pj-vq{font:700 clamp(1.3rem,2.4vw,2rem)/1.2 var(--sans);margin:4px 0 14px;min-height:1.2em}
+.pj-vq{display:block;width:100%;font:700 clamp(1.3rem,2.4vw,2rem)/1.2 var(--sans);margin:4px 0 6px;padding:4px 0;border:0;border-bottom:2px dashed transparent;background:transparent;color:var(--ink)}
+.pj-vq::placeholder{color:var(--muted);opacity:.55;font-weight:500}
+.pj-vq:hover,.pj-vq:focus{border-bottom-color:var(--rule);outline:none}
+.pj-vq[hidden]{display:none}
 .pj-chart2{display:grid;grid-template-columns:auto 1fr;grid-template-rows:min(38vh,340px) auto;column-gap:10px;margin:22px 0 10px}
 .pj-chart2[hidden],.pj-mine[hidden],.pj-dicebox[hidden]{display:none}
 .pj-vfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
@@ -4844,15 +4847,15 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 <div class="ext-apps"><a class="ext-app" href="https://blockly.games/?lang=es" target="_blank" rel="noopener"><b>Blockly Games ↗</b><span>Juegos de Google en español y sin registro: laberinto, pájaro, tortuga. Muy buenos para hacerlos en la pizarra con toda la clase.</span><small>3º-6º</small></a><a class="ext-app" href="https://quickdraw.withgoogle.com/" target="_blank" rel="noopener"><b>Quick, Draw! ↗</b><span>Una IA intenta adivinar lo que dibujáis en 20 segundos. Salen alumnos a dibujar en la pizarra. Ideal para hablar de cómo aprende una IA.</span><small>5º-6º</small></a><a class="ext-app" href="https://code.org/oceans" target="_blank" rel="noopener"><b>AI for Oceans (Code.org) ↗</b><span>Entrenar una IA para separar peces de basura: datos de entrenamiento y sesgo. Se puede hacer en la pizarra, en español.</span><small>5º-6º</small></a><a class="ext-app" href="https://code.org/learn" target="_blank" rel="noopener"><b>Hora del Código ↗</b><span>Tutoriales de una hora con personajes conocidos, en español.</span><small>3º-6º</small></a><a class="ext-app" href="https://csunplugged.org/es/" target="_blank" rel="noopener"><b>CS Unplugged ↗</b><span>Actividades de informática sin ordenador, con guía para el docente.</span><small>1º-6º</small></a><a class="ext-app" href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener"><b>Teachable Machine ↗</b><span>Entrenar un modelo de IA con la cámara (demostración del docente, sin caras).</span><small>3º-6º</small></a></div></div></section><section class="page pj-page" id="p-cuadricula" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>Robot en la cuadrícula</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-cuadricula.mapa1">Mapa 1</a><a class="rindex-chip" href="#p-cuadricula.mapa3">Mapa 3</a><a class="rindex-chip" href="#p-cuadricula.mapa5">Mapa 5</a><a class="rindex-chip" href="#p-cuadricula.bicho1">Cazabichos 1</a><a class="rindex-chip" href="#p-cuadricula.bicho3">Cazabichos 3</a><a class="rindex-chip" href="#p-cuadricula.escalera">La escalera</a><a class="rindex-chip" href="#p-cuadricula.cuadrado">El cuadrado</a><a class="rindex-chip" href="#p-cuadricula.absoluto">Modo fácil</a><a class="rindex-chip" href="#p-cuadricula.grande">Tablero 7×7</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-cuadricula.mapa1">Mapa 1</a><a class="rindex-chip" href="#p-cuadricula.mapa2">Mapa 2</a><a class="rindex-chip" href="#p-cuadricula.mapa3">Mapa 3</a><a class="rindex-chip" href="#p-cuadricula.mapa4">Mapa 4</a><a class="rindex-chip" href="#p-cuadricula.mapa5">Mapa 5</a><a class="rindex-chip" href="#p-cuadricula.mapa6">Mapa 6</a><a class="rindex-chip" href="#p-cuadricula.bicho1">Cazabichos 1</a><a class="rindex-chip" href="#p-cuadricula.bicho2">Cazabichos 2</a><a class="rindex-chip" href="#p-cuadricula.bicho3">Cazabichos 3</a><a class="rindex-chip" href="#p-cuadricula.bicho4">Cazabichos 4</a><a class="rindex-chip" href="#p-cuadricula.escalera">La escalera</a><a class="rindex-chip" href="#p-cuadricula.cuadrado">El cuadrado</a><a class="rindex-chip" href="#p-cuadricula.absoluto">Modo fácil</a><a class="rindex-chip" href="#p-cuadricula.libre">Tablero libre</a><a class="rindex-chip" href="#p-cuadricula.grande">Tablero 7×7</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-secuencias" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-2º</p><h1>Ordena la secuencia</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-secuencias.manos">Lavarse las manos</a><a class="rindex-chip" href="#p-secuencias.zapatos">Ponerse los zapatos</a><a class="rindex-chip" href="#p-secuencias.tostada">Hacer una tostada</a><a class="rindex-chip" href="#p-secuencias.semilla">Plantar una semilla</a><a class="rindex-chip" href="#p-secuencias.calle">Cruzar la calle</a><a class="rindex-chip" href="#p-secuencias.manos6">Lavarse las manos en 6 pasos</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-secuencias.manos">Lavarse las manos</a><a class="rindex-chip" href="#p-secuencias.dientes">Lavarse los dientes</a><a class="rindex-chip" href="#p-secuencias.zapatos">Ponerse los zapatos</a><a class="rindex-chip" href="#p-secuencias.tostada">Hacer una tostada</a><a class="rindex-chip" href="#p-secuencias.semilla">Plantar una semilla</a><a class="rindex-chip" href="#p-secuencias.calle">Cruzar la calle</a><a class="rindex-chip" href="#p-secuencias.manos6">Lavarse las manos en 6 pasos</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-patrones" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>Patrones</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-patrones.ab">AB</a><a class="rindex-chip" href="#p-patrones.aab">AAB</a><a class="rindex-chip" href="#p-patrones.abc">ABC</a><a class="rindex-chip" href="#p-patrones.crece">Que crece</a><a class="rindex-chip" href="#p-patrones.bicho">Con bicho</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-patrones.ab">AB</a><a class="rindex-chip" href="#p-patrones.aab">AAB</a><a class="rindex-chip" href="#p-patrones.abb">ABB</a><a class="rindex-chip" href="#p-patrones.aabb">AABB</a><a class="rindex-chip" href="#p-patrones.abc">ABC</a><a class="rindex-chip" href="#p-patrones.abcd">ABCD</a><a class="rindex-chip" href="#p-patrones.crece">Que crece</a><a class="rindex-chip" href="#p-patrones.bicho">Con bicho</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-bucles" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-4º</p><h1>Bucles: largo o corto</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
@@ -4864,7 +4867,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-clasificador" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>Clasificador y regla secreta</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-clasificador">Clasificar</a><a class="rindex-chip" href="#p-clasificador.secreta">Regla secreta</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-clasificador">Por tipo</a><a class="rindex-chip" href="#p-clasificador.color">Por color</a><a class="rindex-chip" href="#p-clasificador.tam">Por tamaño</a><a class="rindex-chip" href="#p-clasificador.secreta">Regla secreta</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-animales" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>¿Qué animal soy?</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
@@ -4896,7 +4899,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-leds" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 5º-6º</p><h1>Matriz de LED de la micro:bit</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-leds.corazon">Corazón</a><a class="rindex-chip" href="#p-leds.sonrisa">Sonrisa</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-leds.corazon">Corazón</a><a class="rindex-chip" href="#p-leds.sonrisa">Sonrisa</a><a class="rindex-chip" href="#p-leds.flecha">Flecha</a><a class="rindex-chip" href="#p-leds.si">Sí</a><a class="rindex-chip" href="#p-leds.no">No</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-umbral" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 5º-6º</p><h1>Sensor y umbral</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
@@ -4932,19 +4935,19 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-flota" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-6º</p><h1>Hundir la flota</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-flota">5 × 5</a><a class="rindex-chip" href="#p-flota.grande">8 × 8</a><a class="rindex-chip" href="#p-flota.xy">Coordenadas (x, y)</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-flota">5 × 5 · letra y número</a><a class="rindex-chip" href="#p-flota.grande">8 × 8 · letra y número</a><a class="rindex-chip" href="#p-flota.xy">8 × 8 · coordenadas (x, y)</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-pixelart" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-4º</p><h1>Píxel art con código</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-pixelart.flecha">Flecha 5 × 5</a><a class="rindex-chip" href="#p-pixelart.corazon">Corazón</a><a class="rindex-chip" href="#p-pixelart.robot">Robot</a><a class="rindex-chip" href="#p-pixelart.libre">Pintar y ver el código</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-pixelart.flecha">Flecha 5 × 5</a><a class="rindex-chip" href="#p-pixelart.corazon">Corazón</a><a class="rindex-chip" href="#p-pixelart.casa">Casa</a><a class="rindex-chip" href="#p-pixelart.robot">Robot</a><a class="rindex-chip" href="#p-pixelart.pez">Pez</a><a class="rindex-chip" href="#p-pixelart.libre">Pintar y ver el código</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-laberinto" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 2º-6º</p><h1>Laberinto de bloques</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-laberinto.1">Nivel 1</a><a class="rindex-chip" href="#p-laberinto.3">Nivel 3 · repetir</a><a class="rindex-chip" href="#p-laberinto.5">Nivel 5 · si</a><a class="rindex-chip" href="#p-laberinto.6">Nivel 6 · si… si no</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-laberinto.1">Nivel 1</a><a class="rindex-chip" href="#p-laberinto.2">Nivel 2 · girar</a><a class="rindex-chip" href="#p-laberinto.3">Nivel 3 · repetir</a><a class="rindex-chip" href="#p-laberinto.4">Nivel 4 · escalera</a><a class="rindex-chip" href="#p-laberinto.5">Nivel 5 · si</a><a class="rindex-chip" href="#p-laberinto.6">Nivel 6 · si… si no</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-binario" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 3º-6º</p><h1>Cartas binarias</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-binario.3">3 cartas</a><a class="rindex-chip" href="#p-binario.5">5 cartas</a></nav>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-binario.3">3 cartas</a><a class="rindex-chip" href="#p-binario.4">4 cartas</a><a class="rindex-chip" href="#p-binario.5">5 cartas</a></nav>
 <div class="pj-stage-root"></div></div></section><section class="page pj-page" id="p-simon" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>Simón: secuencias</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
@@ -5216,14 +5219,8 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       h('option', { value: '', text: 'Tocar casilla: nada' }), h('option', { value: 'rock', text: 'Tocar casilla: poner o quitar roca' }),
       h('option', { value: 'goal', text: 'Tocar casilla: mover el tesoro' }), h('option', { value: 'start', text: 'Tocar casilla: mover robot' })]);
     var palette = h('div', { class: 'pj-palette' });
-    var mapSel = h('select', { class: 'pj-sel', 'aria-label': 'Elegir reto', onchange: function () { load(mapSel.value); } },
-      Object.keys(MAPS).map(function (k) { return h('option', { value: k, text: presetName(k) }); }));
-    function presetName(k) {
-      return { libre: 'Tablero libre 5×5', grande: 'Tablero grande 7×7', escalera: 'Reto: la escalera', cuadrado: 'Reto: el cuadrado', absoluto: 'Modo fácil (flechas de dirección)' }[k] ||
-        (k.indexOf('mapa') === 0 ? 'Mapa del tesoro ' + k.slice(4) + ' (M07)' : 'Cazabichos ' + k.slice(5));
-    }
     function load(k) {
-      var m = MAPS[k] || MAPS.libre; mapSel.value = MAPS[k] ? k : 'libre';
+      var m = MAPS[k] || MAPS.libre;
       st = { n: m.n, start: m.start.slice(), dir: m.dir, goal: m.goal ? m.goal.slice() : null, rocks: m.rocks.map(function (r) { return r.slice(); }),
         trail: !!m.trail, mode: m.mode || 'rel', prog: [], open: null };
       if (m.prog) st.prog = m.prog.split('').map(function (c) { return { t: c }; });
@@ -5352,7 +5349,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     var trailChk = h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { st.trail = e.target.checked; draw(false); } }), ' Dibujar el rastro']);
     root.appendChild(h('div', { class: 'pj-two' }, [
       h('div', { class: 'pj-col' }, [svg, status]),
-      h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [mapSel]), info, h('h4', { text: 'Tarjetas' }), palette,
+      h('div', { class: 'pj-col' }, [info, h('h4', { text: 'Tarjetas' }), palette,
         h('h4', { text: 'Programa' }), progEl,
         h('div', { class: 'pj-row' }, [btn('▶ Ejecutar', run, 'go'), btn('Paso a paso', step), btn('↺ Volver a la salida', reset), btn('Borrar programa', function () { st.prog = []; st.open = null; renderProg(); reset(); })]),
         h('div', { class: 'pj-row' }, [editSel, trailChk])])]));
@@ -5366,7 +5363,6 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
   function shapeSVG(p) { return '<svg viewBox="0 0 60 60" fill="' + PC[p[1]] + '">' + SH[p[0]] + '</svg>'; }
   function toolPatterns(root) {
     var row = h('div', { class: 'pj-pattern' }), msg = h('p', { class: 'pj-status' }), mode = 'seguir', kind = 'ab';
-    var sel = h('select', { class: 'pj-sel', onchange: function () { kind = sel.value; draw(); } }, Object.keys(PATS).map(function (k) { return h('option', { value: k, text: 'Patrón ' + k.toUpperCase() }); }).concat([h('option', { value: 'crece', text: 'Patrón que crece' })]));
     function draw() {
       row.innerHTML = ''; setStatus(msg, '', '');
       if (kind === 'crece') {
@@ -5400,9 +5396,9 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       }
       msg.textContent = mode === 'bicho' ? 'Una figura rompe el patrón. Tócala.' : 'Toca las casillas con «?» para comprobar lo que viene después.';
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [sel, btn('Continuar el patrón', function () { mode = 'seguir'; draw(); }), btn('Buscar el bicho', function () { mode = 'bicho'; draw(); }), btn('Otro', draw)]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Otro', draw)]));
     root.appendChild(row); root.appendChild(msg);
-    return { load: function (p) { if (p === 'bicho') mode = 'bicho'; else if (p) { kind = p; } sel.value = kind; draw(); } };
+    return { load: function (p) { if (p === 'bicho') { mode = 'bicho'; if (!PATS[kind]) kind = 'ab'; } else { mode = 'seguir'; kind = PATS[p] || p === 'crece' ? p : 'ab'; } draw(); } };
   }
 
   /* ------------------------------------------------------------------ 3. Ordena la secuencia */
@@ -5419,8 +5415,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
   var ROUT_ALIAS = { sandwich: 'tostada', salir: 'zapatos', manos7: 'manos6' };
   function toolSequence(root) {
     var key = 'manos', order = [], picked = -1, row = h('div', { class: 'pj-seq' }), msg = h('p', { class: 'pj-status' });
-    var sel = h('select', { class: 'pj-sel', onchange: function () { load(sel.value); } }, Object.keys(ROUT).map(function (k) { return h('option', { value: k, text: ROUT[k][0] }); }));
-    function load(k) { k = ROUT_ALIAS[k] || k; key = ROUT[k] ? k : 'manos'; sel.value = key; var n = ROUT[key][1].length; do { order = shuffle(Array.from({ length: n }, function (_, i) { return i; })); } while (order.every(function (v, i) { return v === i; })); picked = -1; draw(); setStatus(msg, '', 'Toca una viñeta y después otra para cambiarlas de sitio.'); }
+    function load(k) { k = ROUT_ALIAS[k] || k; key = ROUT[k] ? k : 'manos'; var n = ROUT[key][1].length; do { order = shuffle(Array.from({ length: n }, function (_, i) { return i; })); } while (order.every(function (v, i) { return v === i; })); picked = -1; draw(); setStatus(msg, '', 'Toca una viñeta y después otra para cambiarlas de sitio.'); }
     function draw(check) {
       row.innerHTML = ''; row.style.gridTemplateColumns = 'repeat(' + order.length + ', minmax(0, 1fr))';
       order.forEach(function (v, i) {
@@ -5433,7 +5428,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
         row.appendChild(b);
       });
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [sel, btn('Comprobar', function () {
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', function () {
       draw(true); var ok = order.every(function (v, i) { return v === i; });
       if (ok) { setStatus(msg, 'good', '¡Secuencia correcta! Leedla en voz alta: «primero…, después…, luego…, por último…».'); setTimeout(function () { burst(row); }, order.length * 120); }
       else setStatus(msg, 'bad', 'Las viñetas marcadas en rojo no están en su sitio. ¿Qué tiene que pasar antes?');
@@ -5452,7 +5447,6 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
   function tok(t) { return t[0] === 'a' ? '<span class="tk">' + arrowSVG(t[1]) + '</span>' : '<span class="tk">' + pic(t[1]) + '<small>' + t[2] + '</small></span>'; }
   function toolLoops(root) {
     var key = 'palmadas', n = 4, box = h('div', { class: 'pj-loops' });
-    var sel = h('select', { class: 'pj-sel', onchange: function () { key = sel.value; n = LOOPS[key].n; draw(); } }, Object.keys(LOOPS).map(function (k) { return h('option', { value: k, text: LOOPS[k].t }); }));
     var range = h('input', { type: 'range', min: 2, max: 6, value: 4, class: 'pj-range', 'aria-label': 'Número de repeticiones', oninput: function () { n = +range.value; draw(); } });
     function draw() {
       range.value = n; var L = LOOPS[key], long = [];
@@ -5461,9 +5455,9 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
         '<div class="pj-lvs">=</div><div class="pj-lcol"><h4>Programa con bucle</h4><div class="pj-lrep"><b>REPITE ' + n + ' VECES</b><div class="pj-ltoks">' + L.body.map(tok).join('') + '</div></div><p class="pj-big"><b>' + (L.body.length + 1) + '</b> tarjetas</p></div>' +
         '<p class="pj-status" style="grid-column:1/-1">Los dos programas hacen exactamente lo mismo. Con el bucle se ahorran ' + (long.length - L.body.length - 1) + ' tarjetas: ' + n + ' veces ' + L.body.length + ' = ' + long.length + '.</p>';
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [sel, h('label', { class: 'pj-chk' }, ['Repeticiones: ', range])]));
+    root.appendChild(h('div', { class: 'pj-row' }, [h('label', { class: 'pj-chk' }, ['Repeticiones: ', range])]));
     root.appendChild(box); root.appendChild(credit());
-    return { load: function (p) { if (LOOPS[p]) { key = p; n = LOOPS[p].n; sel.value = p; } draw(); } };
+    return { load: function (p) { if (LOOPS[p]) { key = p; n = LOOPS[p].n; } draw(); } };
   }
 
   /* ------------------------------------------------------------------ 5. Semáforo de peatones: si… entonces */
@@ -5483,7 +5477,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     light.addEventListener('click', function () { green = !green; draw(); replay(light, 'pj-pop'); });
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [light, h('p', { class: 'pj-info', text: 'Toca el semáforo para cambiar la luz.' })]),
       h('div', { class: 'pj-col' }, [rule, h('div', { class: 'pj-row' }, [btn('Ver respuesta', function () { draw(true); }, 'go'), btn('Luz al azar', function () { green = rnd(2) === 1; draw(); }),
-        btn('Cambiar a SI… SI NO', function (e) { siNo = !siNo; e.target.textContent = siNo ? 'Cambiar a dos reglas SI' : 'Cambiar a SI… SI NO'; draw(); })]), ans])]));
+      ]), ans])]));
     root.appendChild(credit());
     return { load: function (p) { siNo = p === 'sino'; draw(); } };
   }
@@ -5501,7 +5495,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
   function toolSort(root) {
     var crit = 'tipo', secret = null, guesses = 0, board = h('div', { class: 'pj-sortboard' }), msg = h('p', { class: 'pj-status' }), pool = h('div', { class: 'pj-pool' });
     function sortDraw() {
-      secret = null; board.innerHTML = ''; pool.innerHTML = '';
+      secret = null; secRow.hidden = true; board.innerHTML = ''; pool.innerHTML = '';
       var C = CRIT[crit], idx = C[1];
       Object.keys(C[2]).forEach(function (g) {
         var b = h('div', { class: 'pj-bin' }, [h('h4', { text: C[2][g] })]);
@@ -5523,7 +5517,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       msg.textContent = 'Toca un objeto y después la caja donde va.';
     }
     function secretDraw() {
-      secret = SECRETS[rnd(SECRETS.length)]; guesses = 0; board.innerHTML = ''; pool.innerHTML = '';
+      secret = SECRETS[rnd(SECRETS.length)]; secRow.hidden = false; guesses = 0; board.innerHTML = ''; pool.innerHTML = '';
       var yes = h('div', { class: 'pj-bin yes' }, [h('h4', { text: 'SÍ cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
       var no = h('div', { class: 'pj-bin no' }, [h('h4', { text: 'NO cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
       board.appendChild(yes); board.appendChild(no);
@@ -5534,10 +5528,9 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       });
       msg.textContent = 'La máquina tiene una regla secreta. Tocad objetos y mirad a qué caja los manda. ¿Cuál es la regla?';
     }
-    var sel = h('select', { class: 'pj-sel', onchange: function () { crit = sel.value; sortDraw(); } }, Object.keys(CRIT).map(function (k) { return h('option', { value: k, text: CRIT[k][0] }); }));
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Clasificar', sortDraw), sel, btn('Regla secreta', secretDraw, 'go'), btn('Desvelar la regla', function () { if (secret) msg.textContent = 'La regla era: «' + secret[2] + '». Así aprende una máquina: mirando muchos ejemplos ya clasificados.'; })]));
+    var secRow; root.appendChild(secRow = h('div', { class: 'pj-row' }, [btn('Otra regla secreta', secretDraw, 'go'), btn('Desvelar la regla', function () { if (secret) msg.textContent = 'La regla era: «' + secret[2] + '». Así aprende una máquina: mirando muchos ejemplos ya clasificados.'; })]));
     root.appendChild(pool); root.appendChild(board); root.appendChild(msg); root.appendChild(credit());
-    return { load: function (p) { if (p === 'secreta') secretDraw(); else { if (CRIT[p]) { crit = p; sel.value = p; } sortDraw(); } } };
+    return { load: function (p) { if (p === 'secreta') secretDraw(); else { crit = CRIT[p] ? p : 'tipo'; sortDraw(); } } };
   }
 
   /* ------------------------------------------------------------------ 7. ¿Qué animal soy? */
@@ -5574,16 +5567,18 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     // Encuestas con pregunta, opciones y gráfico de barras con escala; y el dado para estudiar frecuencias.
     // Se elige arriba (Mascotas · Juegos · Frutas · Dado · Mis opciones).
     var PRE = {
-      mascotas: { q: '¿Qué mascota te gusta más?', o: ['Perro|perro', 'Gato|gato', 'Pez|pez', 'Pájaro|pajaro'] },
-      juegos: { q: '¿Qué te gusta más hacer en el recreo?', o: ['Jugar a la pelota|jugar', 'Leer|leer', 'Cantar|cantar', 'Patinar|patinar'] },
-      fruta: { q: '¿Qué fruta te gusta más?', o: ['Manzana|manzana_roja', 'Plátano|platano', 'Fresa|fresa', 'Naranja|naranja'] }
+      mascotas: ['Perro|perro', 'Gato|gato', 'Pez|pez', 'Pájaro|pajaro'],
+      juegos: ['Jugar a la pelota|jugar', 'Leer|leer', 'Cantar|cantar', 'Patinar|patinar'],
+      fruta: ['Manzana|manzana_roja', 'Plátano|platano', 'Fresa|fresa', 'Naranja|naranja']
     };
     var MINE_KEY = 'ce40-votos-mis-opciones';
     var mine = { q: '', o: ['', '', ''] };
     try { var sv = JSON.parse(localStorage.getItem(MINE_KEY) || 'null'); if (sv && sv.o && sv.o.length >= 2) mine = sv; } catch (e) { /* sin almacenamiento */ }
 
     var data = [], mode = 'votos', cols = [], rolling = false, history = [];
-    var title = h('h3', { class: 'pj-vq' });
+    // la pregunta queda abierta: la escribe el docente (o no) según el contexto
+    var title = h('input', { type: 'text', class: 'pj-vq', placeholder: 'Escribe aquí la pregunta (si quieres)', 'aria-label': 'Pregunta de la votación', maxlength: 90 });
+    title.addEventListener('input', function () { if (mode === 'mine') { mine.q = title.value; try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) { /* sin almacenamiento */ } } });
     var setup = h('div', { class: 'pj-mine' });
     var diceBox = h('div', { class: 'pj-dicebox' });
     var controls = h('div', { class: 'pj-row' });
@@ -5669,7 +5664,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       }, 75);
     }
     function dice() {
-      mode = 'dado'; title.textContent = '¿Qué número sale más al tirar el dado?';
+      mode = 'dado'; title.value = ''; title.hidden = false;
       diceBox.hidden = false; setup.hidden = true; chart.hidden = false; history = []; drawHist();
       build(['1', '2', '3', '4', '5', '6']);
       showDie(6, 'Pulsa «Tirar el dado»');
@@ -5681,18 +5676,19 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     }
 
     /* ---- encuestas ---- */
-    function poll(q, list) {
-      mode = 'votos'; title.textContent = q || '';
+    function poll(q, list, isMine) {
+      mode = 'votos'; title.value = q || ''; title.hidden = false;
       diceBox.hidden = true; setup.hidden = true; chart.hidden = false;
       build(list);
+      if (isMine) mode = 'mine';
       controls.innerHTML = '';
       controls.appendChild(btn('Votos a 0', function () { data.forEach(function (d) { d.v = 0; }); draw(); }));
     }
     function preset(key) {
-      poll(PRE[key].q, PRE[key].o);
+      poll('', PRE[key]);
     }
     function editMine() {
-      mode = 'votos'; title.textContent = 'Mis opciones';
+      mode = 'votos'; title.hidden = true;
       diceBox.hidden = true; chart.hidden = true; setup.hidden = false; controls.innerHTML = ''; msg.textContent = '';
       setup.innerHTML = '';
       var qIn = h('input', { type: 'text', class: 'pj-input', value: mine.q, placeholder: 'Por ejemplo: ¿Cuál es tu deporte favorito?', 'aria-label': 'Pregunta' });
@@ -5727,7 +5723,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
           if (used.length < 2) { err.textContent = 'Escribe al menos dos opciones.'; return; }
           mine = { q: qIn.value.trim(), o: opts.length >= 2 ? opts : used };
           try { localStorage.setItem(MINE_KEY, JSON.stringify(mine)); } catch (e) { /* sin almacenamiento */ }
-          poll(mine.q, used);
+          poll(mine.q, used, true);
           controls.appendChild(btn('Cambiar las opciones', editMine));
         }, 'go')]));
       setup.appendChild(err);
@@ -5752,7 +5748,6 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
   };
   function toolFlow(root) {
     var key = 'calle', at = 0, box = h('div', { class: 'pj-flow' }), ctr = h('div', { class: 'pj-row' }), msg = h('p', { class: 'pj-status' });
-    var sel = h('select', { class: 'pj-sel', onchange: function () { key = sel.value; at = 0; draw(); } }, Object.keys(FLOWS).map(function (k) { return h('option', { value: k, text: FLOWS[k].t }); }));
     function draw() {
       var F = FLOWS[key]; box.innerHTML = '';
       F.steps.forEach(function (s, i) {
@@ -5765,9 +5760,9 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       else ctr.appendChild(btn('Empezar otra vez', function () { at = 0; msg.textContent = ''; draw(); }, 'go'));
       if (s[0] !== 'd' && !(F.noLabel && at === F.steps[2])) {}
     }
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [box]), h('div', { class: 'pj-col' }, [sel,
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [box]), h('div', { class: 'pj-col' }, [
       h('p', { class: 'pj-info', html: '<b>Óvalo</b>: empezar o terminar · <b>Rectángulo</b>: hacer algo · <b>Rombo</b>: pregunta de sí o no' }), ctr, msg])]));
-    return { load: function (p) { if (FLOWS[p]) key = p; sel.value = key; at = 0; draw(); } };
+    return { load: function (p) { key = FLOWS[p] ? p : 'calle'; at = 0; draw(); } };
   }
 
   /* ------------------------------------------------------------------ 10. Polígonos con la tortuga */
@@ -5794,7 +5789,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     }
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [svg]), h('div', { class: 'pj-col' }, [
       h('label', { class: 'pj-chk' }, ['Lados: ', nIn]), h('label', { class: 'pj-chk' }, ['Longitud: ', lIn]),
-      h('div', { class: 'pj-row' }, [btn('Triángulo', function () { n = 3; nIn.value = 3; draw(); }), btn('Cuadrado', function () { n = 4; nIn.value = 4; draw(); }), btn('Hexágono', function () { n = 6; nIn.value = 6; draw(); }), btn('Rosetón', function () { rose = !rose; draw(); })]),
+      h('div', { class: 'pj-row' }, [btn('Triángulo', function () { n = 3; nIn.value = 3; draw(); }), btn('Cuadrado', function () { n = 4; nIn.value = 4; draw(); }), btn('Hexágono', function () { n = 6; nIn.value = 6; draw(); })]),
       code, tbl])]));
     return { load: function (p) { rose = p === 'roseton'; if (p === 'triangulo') n = 3; nIn.value = n; draw(); } };
   }
@@ -5883,7 +5878,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       });
     }
     var icons = h('div', { class: 'pj-row' });
-    Object.keys(ICONS).forEach(function (k) { icons.appendChild(btn({ corazon: 'Corazón', sonrisa: 'Sonrisa', flecha: 'Flecha', si: 'Sí', no: 'No', vacio: 'Borrar' }[k], function () { on = ICONS[k].split('').map(Number); draw(); })); });
+    icons.appendChild(btn('Apagar todas', function () { on = ICONS.vacio.split('').map(Number); draw(); }));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [h('div', { class: 'pj-mb' }, [h('span', { class: 'pj-mbbtn', text: 'A' }), grid, h('span', { class: 'pj-mbbtn', text: 'B' })])]),
       h('div', { class: 'pj-col' }, [icons, info, h('p', { class: 'pj-info', text: 'La pantalla es una cuadrícula de 5 × 5 luces. La x va de 0 a 4 hacia la derecha y la y de 0 a 4 hacia abajo. Toca las luces para dibujar.' }),
         btn('Contar luces encendidas', function () { info.innerHTML = 'Luces encendidas: <b>' + on.reduce(function (a, b) { return a + b; }, 0) + '</b> de 25'; }, 'go')])]));
@@ -5998,7 +5993,6 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       opts.innerHTML = ''; D.opts.forEach(function (o, k) { opts.appendChild(btn(o, function () { msg.innerHTML = (k === c[2] ? '<b class="yes">¡Correcto!</b> ' : '<b class="no">No.</b> Es «' + D.opts[c[2]] + '». ') + c[3]; })); });
       opts.appendChild(btn('Siguiente →', function () { i = (i + 1) % D.cards.length; draw(); }, 'go'));
     }
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('¿Puede pasar de verdad? (1º-2º)', function () { deck = 'fantasia'; i = 0; draw(); }), btn('¿Verdad, bulo o IA? (5º-6º)', function () { deck = 'bulos'; i = 0; draw(); })]));
     root.appendChild(card); root.appendChild(opts); root.appendChild(msg); root.appendChild(credit());
     return { load: function (p) { if (DECKS[p]) deck = p; i = 0; draw(); } };
   }
@@ -6044,8 +6038,8 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     function toggle() { if (run) { clearInterval(run); run = null; } else run = setInterval(function () { left = Math.max(0, left - 1); draw(); if (!left) { clearInterval(run); run = null; } }, 1000); }
     root.appendChild(big); root.appendChild(phases);
     root.appendChild(h('div', { class: 'pj-row' }, [btn('Empezar / pausar', toggle, 'go'), btn('Siguiente fase', function () { var P = PH[kind], acc = 0, used = 45 * 60 - left; for (var i = 0; i < P.length; i++) { acc += P[i][1] * 60; if (acc > used) { left = 45 * 60 - acc; break; } } draw(); }), btn('Reiniciar', function () { left = 45 * 60; draw(); }),
-      btn('Sesión semanal', function () { kind = 'semanal'; left = 2700; draw(); }), btn('Sesión quincenal', function () { kind = 'quincenal'; left = 2700; draw(); })]));
-    return { load: function (p) { if (PH[p]) kind = p; draw(); } };
+      ]));
+    return { load: function (p) { kind = PH[p] ? p : 'semanal'; left = 2700; draw(); } };
   }
 
   /* ------------------------------------------------------------------ 21. Código secreto */
@@ -6198,12 +6192,11 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       h('span'), btn(glyph('F'), function () { press('F'); }, 'arrow'), h('span'),
       btn(turn('L'), function () { press('L'); }, 'arrow'), btn('GO', go, 'goBee'), btn(turn('R'), function () { press('R'); }, 'arrow'),
       btn('<b>II</b>', function () { press('P'); }, 'small'), btn(glyph('B'), function () { press('B'); }, 'arrow'), btn('<b>X</b>', function () { if (!busy) { mem = []; reset(); msg.textContent = 'Memoria borrada.'; } }, 'small')]);
-    var sel = h('select', { class: 'pj-sel', onchange: function () { mat = sel.value; target = null; mem = []; layers = null; reset(); } }, Object.keys(BEE_MATS).map(function (k) { return h('option', { value: k, text: BEE_MATS[k].t }); }));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, msg]),
-      h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [sel, btn('Nuevo reto', newTarget, 'go')]), h('div', { class: 'pj-beebody' }, [pad]), count,
+      h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [btn('Nuevo reto', newTarget, 'go')]), h('div', { class: 'pj-beebody' }, [pad]), count,
         h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { showMem = e.target.checked; draw(); } }), ' Ver la memoria (para el docente)']), memEl,
         h('p', { class: 'pj-info', text: 'Flecha arriba: avanza una casilla · flecha abajo: retrocede · flechas curvas: gira sin moverse · II: pausa · X: borra la memoria · GO: ejecuta. Como el robot real, las órdenes se suman a las anteriores hasta que se borra la memoria.' })])]));
-    return { load: function (p) { if (BEE_MATS[p]) { mat = p; sel.value = p; } mem = []; target = null; layers = null; reset(); P.setStatus(msg, '', ''); } };
+    return { load: function (p) { mat = BEE_MATS[p] ? p : 'numeros'; mem = []; target = null; layers = null; reset(); P.setStatus(msg, '', ''); } };
   }
 
   /* ------------------------------------------------------------ Hundir la flota */
@@ -6259,9 +6252,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       inp.value = '';
     }
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') shootText(); });
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Pequeño 5 × 5', function () { n = 5; place(); }), btn('Grande 8 × 8', function () { n = 8; place(); }),
-      btn('Letra y número (B3)', function () { mode = 'letras'; draw(); }), btn('Coordenadas (x, y)', function () { mode = 'xy'; draw(); }),
-      btn('Dos equipos', function () { teams = !teams; score = [0, 0]; draw(); }), btn('Nueva partida', place, 'go')]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Dos equipos', function () { teams = !teams; score = [0, 0]; draw(); }), btn('Nueva partida', place, 'go')]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [board]), h('div', { class: 'pj-col' }, [info, h('div', { class: 'pj-row' }, [inp, btn('Disparar', shootText, 'go')]), msg,
       h('p', { class: 'pj-info', html: 'Un alumno dice la casilla <b>primero la columna y después la fila</b> y la toca en la pizarra. En equipos: acertar da 1 punto, hundir un barco da 3, y el turno cambia al fallar.' })])]));
     return { load: function (p) { n = p === 'grande' || p === 'xy' ? 8 : 5; mode = p === 'xy' ? 'xy' : 'letras'; place(); } };
@@ -6291,12 +6282,10 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       pal.innerHTML = ''; PAL.forEach(function (c, i) { pal.appendChild(h('button', { type: 'button', class: 'pj-swatch' + (i === color ? ' on' : ''), style: 'background:' + c, title: PALN[i], 'aria-label': PALN[i], onclick: function () { color = i; draw(); } })); });
     }
     function check() { var S = PIX[key], bad = 0; board.querySelectorAll('.pj-px').forEach(function (b, i) { var n = S[0].length, y = Math.floor(i / n), x = i % n; var ok = grid[y][x] === +S[y][x]; b.classList.toggle('bad', !ok); if (!ok) bad++; }); msg.textContent = bad ? 'Hay ' + bad + ' cuadrados distintos al código (marcados). ¿Dónde está el bicho?' : '¡Dibujo correcto!'; }
-    var sel = h('select', { class: 'pj-sel', onchange: function () { load(sel.value); } }, Object.keys(PIX).map(function (k) { return h('option', { value: k, text: { corazon: 'Corazón', casa: 'Casa', robot: 'Robot', pez: 'Pez', flecha: 'Flecha (5 × 5, 1º)' }[k] }); }));
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Dibujo secreto', function () { mode = 'secreto'; load(key); }, 'go'), btn('Pintar y ver el código', function () { mode = 'libre'; load(key); }), sel,
-      btn('Comprobar', check), btn('Ver solución', function () { grid = PIX[key].map(function (r) { return r.split('').map(Number); }); draw(); })]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', check), btn('Ver solución', function () { grid = PIX[key].map(function (r) { return r.split('').map(Number); }); draw(); })]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [pal, board]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Código de cada fila' }), code, msg,
       h('p', { class: 'pj-info', text: 'Así guarda un ordenador una imagen: como números. «3 blancos, 4 rojos, 3 blancos» ocupa menos que decir el color de cada cuadrado uno a uno.' })])]));
-    return { load: function (p) { if (p === 'libre') mode = 'libre'; else { mode = 'secreto'; if (PIX[p]) { key = p; sel.value = p; } } load(key); } };
+    return { load: function (p) { if (p === 'libre') mode = 'libre'; else { mode = 'secreto'; if (PIX[p]) key = p; } load(key); } };
   }
 
   /* ------------------------------------------------------------ Laberinto de bloques */
@@ -6393,7 +6382,6 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       else P.setStatus(msg, 'bad', fail ? '¡Choque contra un árbol! Revisa el programa paso a paso.' : 'No ha llegado a la meta. ¿Qué falta?');
     }
     LEVELS.forEach(function (_, i) { lvRow.appendChild(btn(String(i + 1), function () { load(i); })); });
-    root.appendChild(h('div', { class: 'pj-row' }, [h('b', { text: 'Nivel:' }), lvRow]));
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, tip, msg]),
       h('div', { class: 'pj-col' }, [h('h4', { text: 'Bloques' }), pal, h('h4', { text: 'Programa (toca dentro de un bloque naranja para meter bloques)' }), progEl,
         h('div', { class: 'pj-row' }, [btn('▶ Ejecutar', run, 'go'), btn('↺ Volver a empezar', function () { reset(); msg.textContent = ''; }), btn('Borrar programa', function () { prog = []; target = null; renderProg(); reset(); })])])]));
@@ -6416,8 +6404,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
       if (goal !== null) msg.textContent = sum === goal ? '¡Correcto! ' + goal + ' = ' + on.map(function (x) { return x ? 1 : 0; }).join('') : 'Reto: forma el número ' + goal + '.';
     }
     function setK(x) { k = x; on = new Array(k).fill(false); goal = null; msg.textContent = ''; draw(); }
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('3 cartas', function () { setK(3); }), btn('4 cartas', function () { setK(4); }), btn('5 cartas', function () { setK(5); }),
-      btn('Reto: forma un número', function () { goal = 1 + rnd(Math.pow(2, k) - 1); on = new Array(k).fill(false); draw(); }, 'go'),
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Reto: forma un número', function () { goal = 1 + rnd(Math.pow(2, k) - 1); on = new Array(k).fill(false); draw(); }, 'go'),
       btn('Contar +1', function () { var V = vals(), sum = V.reduce(function (a, v, i) { return a + (on[i] ? v : 0); }, 0) + 1; if (sum >= Math.pow(2, k)) sum = 0; on = V.map(function (v) { if (sum >= v) { sum -= v; return true; } return false; }); goal = null; draw(); }),
       btn('Todas boca abajo', function () { on = new Array(k).fill(false); draw(); })]));
     root.appendChild(cards); root.appendChild(out); root.appendChild(msg);
@@ -6467,7 +6454,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     }
     function swap() { if (sel.length !== 2) { msg.textContent = 'Elige dos cajas para cambiarlas de sitio.'; return; } var t = order[sel[0]]; order[sel[0]] = order[sel[1]]; order[sel[1]] = t; sel = []; draw(); }
     function check() { var ok = order.every(function (b, i) { return i === 0 || w[order[i - 1]] < w[b]; }); revealed = true; draw(); msg.textContent = ok ? '¡Ordenadas de la más ligera a la más pesada con ' + cmp + ' comparaciones! ¿Se podría con menos?' : 'Todavía no están en orden. Mirad los pesos.'; }
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('4 cajas', function () { start(4); }), btn('6 cajas', function () { start(6); }), btn('8 cajas', function () { start(8); }), btn('Nueva partida', function () { start(); }, 'go')]));
+    root.appendChild(h('div', { class: 'pj-row' }, [btn('Nueva partida', function () { start(); }, 'go')]));
     root.appendChild(row); root.appendChild(h('div', { class: 'pj-row' }, [btn('Comparar en la balanza', compare, 'go'), btn('Cambiar de sitio', swap), btn('Comprobar el orden', check)]));
     root.appendChild(scale); root.appendChild(msg);
     root.appendChild(h('p', { class: 'pj-info', text: 'Objetivo: ordenar las cajas de la más ligera (izquierda) a la más pesada (derecha) usando la balanza el menor número de veces. Una estrategia: buscar la más ligera, ponerla la primera y repetir con las demás. Eso es un algoritmo de ordenación.' }));
