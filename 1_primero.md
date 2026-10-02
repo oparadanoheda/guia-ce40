@@ -91,7 +91,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** un objeto cualquiera como "tesoro" (un estuche, un peluche) y las tarjetas de flechas.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula · tablero libre]] · [[P:beebot.cuadricula|Bee-Bot interactivo]]
 - **Material listo:** [[M:M01|Tarjetas de flechas]] (un juego para el docente) · [[M:M05|Tarjetas de rol]]
-- **Minuto SEG:** las 3 normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
+- **Minuto de uso responsable:** las 3 normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
 
 **Opción A · El profe es el robot (toda la clase)**
 1. Di con voz de robot: "Soy un robot. Solo entiendo tres órdenes: avanza, gira a la derecha y gira a la izquierda". Enseña las tres tarjetas de M01.
@@ -115,6 +115,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** nada (opción A) o la ficha M10 recortada (opción B).
 - **Para proyectar:** [[P:secuencias.manos|Ordena la secuencia · lavarse las manos]] · [[P:simon|Simón: secuencias]]
 - **Material listo:** [[M:M10|Secuencias para ordenar]] (una hoja para dos grupos) · [[M:M26|Póster «Algoritmo»]]
+- **Minuto de uso responsable:** "Las tarjetas no se doblan ni se pintan." ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
 **Opción A · Ordenamos en la pizarra**
 1. Abre el proyectable. Las viñetas salen desordenadas.
@@ -138,6 +139,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** nada (opción A) o la hoja 2 de M10 recortada (opción B).
 - **Para proyectar:** [[P:secuencias.tostada|Ordena la secuencia · hacer una tostada]]
 - **Material listo:** [[M:M10|Secuencias para ordenar]] (hoja 2) · [[M:M26|Póster «Descomponer»]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Opción A · La tostada de la pizarra**
 1. Pregunta: "¿Cómo se hace una tostada?". Apunta en la pizarra lo que digan, tal cual.
@@ -161,6 +163,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** imprimir M07 (una hoja por pareja).
 - **Para proyectar:** [[P:cuadricula.mapa1|Robot en la cuadrícula · mapa 1]] y [[P:cuadricula.mapa2|mapa 2]] · [[P:beebot.numeros|Bee-Bot · camino numérico]]
 - **Material listo:** [[M:M07|Mapas del tesoro]] · [[M:M06|Tablero de cuadrícula y fichas]] (opcional)
+- **Minuto de uso responsable:** "Las tarjetas no se doblan ni se pintan." ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
 **Opción A · Primero en la pizarra, después en papel**
 1. Proyecta el mapa 1. Entre todos, escribid el programa tocando las tarjetas y ejecutadlo.
@@ -184,6 +187,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** imprimir M09 hoja 1 (una por alumno).
 - **Para proyectar:** [[P:patrones.ab|Patrones · AB]] y [[P:patrones.aab|AAB]] · [[P:pixelart.flecha|Píxel art · flecha]]
 - **Material listo:** [[M:M09|Patrones]] (hoja 1) · [[M:M26|Póster «Patrón»]]
+- **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
 **Opción A · Patrones con el cuerpo y en la pizarra**
 1. De pie: "palmada, palmada, pie" tres veces. ¿Qué viene ahora? Inventan otro.
@@ -206,6 +210,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** imprimir M08 nivel 1 (una hoja por pareja, con las soluciones dobladas hacia atrás).
 - **Para proyectar:** [[P:cuadricula.bicho1|Cazabichos en la cuadrícula]] y [[P:patrones.bicho|Patrón con bicho]]
 - **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 1) · [[M:M26|Póster «Depurar»]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Opción A · Bichos en la pizarra**
 1. Proyecta el cazabichos 1 y pulsa "Ejecutar": el robot no llega.
@@ -229,7 +234,7 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 - **Prepara antes:** los Tale-Bot prestados por Infantil, cargados, y su tapete. Imprime en A3 las normas de uso para Primaria (web oficial, apartado Infantil). Si puedes, mira el vídeo *Primeros pasos con Tale-Bot*.
 - **Para proyectar:** [[P:beebot.cuadricula|Bee-Bot interactivo]] (funciona igual que Tale-Bot: flechas, memoria y GO)
 - **Material listo:** normas de uso y tarjetas de roles oficiales (ver Recursos oficiales) · [[M:M05|Tarjetas de rol]] · [[M:M01|Tarjetas de flechas]] · [[M:M26|Póster «Entrada y salida»]]
-- **Minuto SEG:** leer juntos las normas: dos manos, el robot va en el suelo o en el tapete, nunca se lanza y se apaga al terminar.
+- **Minuto de uso responsable:** leer juntos las normas: dos manos, el robot va en el suelo o en el tapete, nunca se lanza y se apaga al terminar.
 
 **Opción A · Presentación guiada (recomendada)**
 1. Pregunta quién conoce a Tale-Bot de Infantil. Deja que lo cuenten.
@@ -259,6 +264,7 @@ Una sesión de *Formas con Tale-Bot* o de *Explorando el espacio con Tale-Bot* (
 - **Prepara antes:** Tale-Bot cargados y su tapete (el lado de cuadrícula en blanco). Tarjetas de flechas M01 por grupo y fichas de M06 (tesoro y rocas).
 - **Para proyectar:** [[P:cuadricula.mapa1|Robot en la cuadrícula · mapa 1]] (para ensayar antes) · [[P:beebot.numeros|Bee-Bot · camino numérico]]
 - **Material listo:** [[M:M01|Tarjetas de flechas]] · [[M:M06|Fichas del tablero]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Opción A · Primero las tarjetas, después los botones**
 1. Coloca la ficha del tesoro en el tapete a 2 casillas del robot. El grupo pone en la mesa las tarjetas de flechas del camino (una tarjeta = un botón).
@@ -290,6 +296,7 @@ Pon en el tapete tres fichas numeradas (1, 2 y 3) de dificultad creciente. Cada 
 - **Prepara antes:** tarjetas M02 y las tarjetas REPITE de M01.
 - **Para proyectar:** [[P:bucles.palmadas|Bucles: programa largo o corto · palmadas]] y [[P:bucles.baile|el baile]] · [[P:simon|Simón]]
 - **Material listo:** [[M:M02|Tarjetas de movimientos]] · [[M:M01|Tarjetas REPITE]] (hoja 3) · [[M:M26|Póster «Bucle»]]
+- **Minuto de uso responsable:** "Mi contraseña es como mi cepillo de dientes: no se presta." ¿Qué otras cosas son solo mías y no se prestan?
 
 **Opción A · Largo o corto, en la pizarra**
 1. Proyecta "palmadas": a la izquierda, 4 tarjetas de palmada; a la derecha, "REPITE ×4" con una sola palmada.
@@ -313,6 +320,7 @@ Pon en el tapete tres fichas numeradas (1, 2 y 3) de dificultad creciente. Cada 
 - **Prepara antes:** un juego de M03 por grupo y otro para la pizarra (con imanes o celo).
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (para ejecutar los programas de papel)
 - **Material listo:** [[M:M03|Bloques de papel]] (hoja 1) · [[M:M06|Tablero y fichas]]
+- **Minuto de uso responsable:** "Las tarjetas no se doblan ni se pintan." ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
 **Opción A · El tren de bloques**
 1. En la pizarra, monta: EMPIEZA → avanza → avanza → gira derecha → avanza → FIN. "Los bloques van enganchados, como los vagones de un tren".
@@ -334,7 +342,7 @@ Los grupos emparejan las tarjetas de flechas M01 con los bloques M03 que hacen l
 - **Prepara antes:** True True cargados, sus tarjetas y el tapete. M03. Normas de uso de True True en A3.
 - **Para proyectar:** [[P:cuadricula.mapa3|Robot en la cuadrícula · mapa 3]] · [[P:beebot.letras|Bee-Bot · abecedario]]
 - **Material listo:** [[M:M03|Bloques de papel]] · [[M:M06|Fichas del tablero]]
-- **Minuto SEG:** normas de True True: dos manos, nunca en el borde de la mesa, se apaga al terminar.
+- **Minuto de uso responsable:** normas de True True: dos manos, nunca en el borde de la mesa, se apaga al terminar.
 
 **Opción A · Presentación y primer programa**
 1. (10 minutos) Presenta a True True: "Es otro robot. No tiene botones: lee tarjetas". Enseña las partes, dónde se meten las tarjetas y dónde se carga. Compáralo con Tale-Bot: "¿Qué es igual? ¿Qué cambia?".
@@ -358,6 +366,7 @@ Tras la presentación, tres fichas numeradas en el tapete (recta, L y U). Cada g
 - **Prepara antes:** robots, tarjetas (comprueba en el manual si hay tarjeta de repetir) y tapete.
 - **Para proyectar:** [[P:cuadricula.escalera|Reto: la escalera]] y [[P:bucles.escalera|Bucles: la escalera]]
 - **Material listo:** [[M:M03|Bloques de papel]] (bloque REPITE)
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Opción A · La escalera en la pizarra y en el robot**
 1. Proyecta el reto de la escalera. Programadlo primero sin REPITE y contad las tarjetas.
@@ -380,6 +389,7 @@ El robot recorre un cuadrado de 2 casillas de lado. ¿Cuántas veces se repite "
 - **Prepara antes:** fichas M06 (casa, árbol y cole) recortadas.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (con "Dibujar el rastro" activado) · [[P:pixelart.corazon|Píxel art]]
 - **Material listo:** [[M:M03|Bloques de papel]] · [[M:M06|Fichas del tablero]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Opción A · Historia en la pizarra**
 1. Cuenta: "El robot sale de casa, va al árbol, da una vuelta y vuelve". En el proyectable, coloca una roca como "árbol" (menú "Tocar casilla").
@@ -400,6 +410,7 @@ Cada grupo coloca la casa, el árbol y el cole en su tablero M06, escribe con bl
 - **Prepara antes:** dos o tres Tale-Bot y los True True, cada uno en su zona con su tapete. Tarjetas de flechas M01 y fichas de M06.
 - **Para proyectar:** [[P:beebot.granja|Bee-Bot · la granja]] · [[P:cuadricula.mapa3|Robot en la cuadrícula · mapa 3]]
 - **Material listo:** [[M:M01|Tarjetas de flechas]] · [[M:M06|Fichas del tablero]]
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
 **Opción A · Dos estaciones**
 1. Cada grupo escribe su programa con tarjetas de flechas M01 para llegar a un tesoro a 3 casillas con un giro.
@@ -421,6 +432,7 @@ Cada grupo coloca la casa, el árbol y el cole en su tablero M06, escribe con bl
 - **Qué aprenden:** planificar y crear una animación corta con movimiento y repetición.
 - **Prepara antes:** robots, M03 y la hoja de plan M16 (hoja 1).
 - **Material listo:** [[M:M16|Hoja de plan en 3 cuadros]] · [[M:M03|Bloques de papel]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Opción A · Espectáculo del robot**
 1. 10 minutos: por grupos, dibujan en la hoja de plan qué hará el robot (empieza, pasa, termina).
@@ -444,6 +456,7 @@ Si no hay robots suficientes, cada grupo escribe su programa con bloques de pape
 - **Qué aprenden:** enseñar lo que han hecho y arreglar errores en programas de bloques.
 - **Para proyectar:** [[P:cuadricula.bicho2|Cazabichos 2]]
 - **Material listo:** [[M:M08|Cazabichos]] (nivel 1, si no se usó)
+- **Minuto de uso responsable:** "Lo que subo a internet se queda." Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
 **Opción A · Muestra de espectáculos**
 1. Cada grupo presenta su espectáculo (2 minutos). La clase dice una cosa que le ha gustado.
@@ -471,7 +484,7 @@ Cada grupo ejecuta el programa de papel de otro grupo. Si sale distinto de lo qu
 - **Qué aprenden:** planificar un proyecto en equipo: qué queremos hacer y quién hace qué.
 - **Prepara antes:** hoja de proyecto M16 (hoja 2) por grupo y fichas M06 recortadas.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 1º y 2º]] · [[M:M06|Fichas del tablero]]
-- **Minuto SEG:** repaso de las normas del robot.
+- **Minuto de uso responsable:** repaso de las normas del robot.
 
 **Pasos:**
 1. Cuenta dos misiones de ejemplo: "El robot lleva la carta a correos", "El robot lleva la basura al contenedor".
@@ -487,6 +500,7 @@ Cada grupo ejecuta el programa de papel de otro grupo. Si sale distinto de lo qu
 
 - **Qué aprenden:** colocar el escenario del proyecto y probar una primera ruta.
 - **Material listo:** [[M:M06|Fichas del tablero]]
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Opción A · En el tapete del robot**
 1. Cada grupo coloca sus fichas en las casillas del tapete según su hoja.
@@ -505,6 +519,7 @@ Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe
 - **Qué aprenden:** programar la misión completa y probarla.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (para ensayar la ruta) · [[P:beebot.granja|Bee-Bot · granja]]
 - **Material listo:** [[M:M03|Bloques de papel]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Pasos:**
 1. Escriben la ruta con bloques de papel y la revisan con el dedo sobre el tapete.
@@ -521,6 +536,7 @@ Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe
 - **Qué aprenden:** optimizar: conseguir lo mismo con menos instrucciones, usando repetir.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] y [[P:cuadricula.escalera|la escalera]]
 - **Material listo:** [[M:M26|Póster «Optimizar»]]
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
 **Opción A · Reto del programa más corto**
 1. Proyecta un programa largo y su versión con REPITE. ¿Cuántas tarjetas se ahorran?
@@ -538,6 +554,7 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 
 - **Qué aprenden:** probar el proyecto de otro equipo y ayudar a mejorarlo.
 - **Material listo:** [[M:M17|Ficha de prueba · 1º y 2º]]
+- **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
 **Pasos:**
 1. Cada grupo deja su misión montada y su programa al lado.
@@ -553,7 +570,7 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 
 - **Qué aprenden:** preparar la explicación de su misión. Una foto o un vídeo es una representación, no la realidad.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (para reconstruir en grande el recorrido de cada grupo)
-- **Minuto SEG:** "Una foto de un compañero solo se hace si quiere, y nunca se sube sin permiso".
+- **Minuto de uso responsable:** "Una foto de un compañero solo se hace si quiere, y nunca se sube sin permiso".
 
 **Pasos:**
 1. Cada grupo ensaya con la frase: "Nuestra misión es… El robot sale de… Usamos … tarjetas".
@@ -569,6 +586,7 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 
 - **Qué aprenden:** explicar a la clase lo que ha hecho el equipo.
 - **Material listo:** [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Lo que subo a internet se queda." Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
 **Pasos:**
 1. Cada grupo presenta (3 minutos): la misión, cómo la programaron y un bicho que encontraron.
@@ -585,6 +603,7 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 
 - **Qué aprenden:** valorar lo aprendido durante el curso.
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
 **Opción A · En clase**
 Se repiten las misiones favoritas y se entrega el pasaporte completo.

@@ -916,7 +916,7 @@
 
   /* ------------------------------------------------------------------ 20. Temporizador de sesión */
   function toolTimer(root) {
-    var PH = { semanal: [['Arranque', 5, 'Pregunta de repaso y Minuto SEG'], ['Misión', 7, 'Reto y demostración'], ['Práctica', 23, 'Trabajo en parejas o grupos. Cambio de rol a mitad'], ['Compartir', 5, 'Un grupo enseña su solución o su error'], ['Cierre', 5, 'Frase clave, sello y recogida']],
+    var PH = { semanal: [['Arranque', 5, 'Pregunta de repaso y minuto de uso responsable'], ['Misión', 7, 'Reto y demostración'], ['Práctica', 23, 'Trabajo en parejas o grupos. Cambio de rol a mitad'], ['Compartir', 5, 'Un grupo enseña su solución o su error'], ['Cierre', 5, 'Frase clave, sello y recogida']],
       quincenal: [['Tarjeta', 3, 'Leer «Dónde lo dejamos»'], ['Misión', 7, 'Reto y demostración'], ['Práctica', 25, 'Trabajo en equipos'], ['Compartir', 5, 'Un equipo enseña su avance'], ['Guardar', 5, 'Guardar archivo, recoger kit, rellenar tarjeta']] };
     var kind = 'semanal', left = 45 * 60, run = null, big = h('div', { class: 'pj-clock' }), phases = h('div', { class: 'pj-phases' });
     function draw() {

@@ -81,7 +81,7 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 - **Qué aprenden:** recordar lo que saben y conocer las normas del curso. Para ti: ver el nivel del grupo.
 - **Para proyectar:** [[P:cuadricula.mapa5|Mapa 5]], [[P:patrones.bicho|patrón con bicho]] y [[P:cuadricula.bicho3|cazabichos 3]] · [[P:flota|Hundir la flota]]
 - **Material listo:** [[M:M08|Cazabichos]] (nivel 2) · [[M:M09|Patrones]] (hoja 2) · [[M:M05|Tarjetas de rol]]
-- **Minuto SEG:** normas del aula de código y presentación de los roles.
+- **Minuto de uso responsable:** normas del aula de código y presentación de los roles.
 
 **Opción A · Tres retos en la pizarra (toda la clase)**
 1. Mapa 5: la clase escribe el programa antes de ejecutar.
@@ -103,6 +103,7 @@ Cada pareja hace una hoja de M08 nivel 2 y la hoja 2 de M09. Mientras, tú pasas
 - **Prepara antes:** M12 hojas 1 y 3 (una por grupo).
 - **Para proyectar:** [[P:diagrama.calle|Diagrama de flujo · cruzar la calle]]
 - **Material listo:** [[M:M12|Diagramas de flujo]]
+- **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
 **Opción A · Recorremos el diagrama en la pizarra**
 1. Proyecta "cruzar la calle". Explica las tres formas.
@@ -124,6 +125,7 @@ Cada pareja hace una hoja de M08 nivel 2 y la hoja 2 de M09. Mientras, tú pasas
 - **Qué aprenden:** con "repite N veces: avanza, gira" se dibujan figuras.
 - **Para proyectar:** [[P:cuadricula.cuadrado|Reto: el cuadrado]] y [[P:poligonos|Polígonos]] · [[P:laberinto.3|Laberinto · repetir]]
 - **Material listo:** [[M:M06|Tablero de cuadrícula]] (hoja 1, como papel cuadriculado)
+- **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
 
 **Opción A · Del cuadrado al polígono**
 1. En el reto del cuadrado, programad "REPITE ×4: avanza, avanza, avanza, gira" con el rastro activado.
@@ -144,6 +146,7 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 - **Prepara antes:** robots cargados, tarjetas y tapete. Si no conocen el robot, dedica los 10 primeros minutos a normas y partes.
 - **Para proyectar:** [[P:cuadricula.grande|Tablero grande 7×7]] (para ensayar el recorrido)
 - **Material listo:** [[M:M06|Fichas del tablero]]
+- **Minuto de uso responsable:** "Los cables se sacan desde el enchufe, no tirando del cable." ¿Qué le puede pasar al cable si tiramos de él?
 
 **Opción A · Situación oficial**
 *Operaciones y polígonos con True True*: el robot recorre polígonos y resuelve operaciones.
@@ -164,6 +167,7 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 - **Prepara antes:** M13 hoja 1 (una por grupo), un dado y una ficha por alumno (valen tapones).
 - **Para proyectar:** [[P:semaforo.sino|Semáforo · SI… SI NO]] y [[P:diagrama.par|Diagrama · par o impar]] · [[P:laberinto.5|Laberinto · si hay camino]]
 - **Material listo:** [[M:M13|La oca de las condiciones]] · [[M:M04|Tarjetas SI · ENTONCES · SI NO]] · [[M:M26|Póster «Condición»]]
+- **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 
 **Opción A · La oca de las condiciones**
 1. Juega un turno en la pizarra con la regla de la casilla 3: "SI sacas par, avanza 2. SI NO, quédate".
@@ -184,6 +188,7 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 - **Prepara antes:** M08 nivel 3 (una por pareja, soluciones dobladas).
 - **Para proyectar:** [[P:cuadricula.bicho4|Cazabichos 4]] · [[P:laberinto.6|Laberinto · nivel 6]]
 - **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 3)
+- **Minuto de uso responsable:** "Cuento el material antes de guardarlo." ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
 **Opción A · Ficha por parejas**
 1. Enseña el método en la pizarra con el cazabichos 4: "Paso a paso" y parar en el primer error.
@@ -204,6 +209,7 @@ Cada pareja resuelve un mapa de M07, le mete 2 bichos y se lo pasa a otra pareja
 - **Prepara antes:** M25 hoja 1 (una por pareja). Un dado por pareja si haces la opción B.
 - **Para proyectar:** [[P:votaciones.mascotas|Votaciones y gráfico]] · [[P:votaciones.dado|Frecuencias del dado]]
 - **Material listo:** [[M:M25|Registro de una encuesta]] (hoja 1) · [[M:M25|Frecuencias del dado]] (hoja 2)
+- **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
 **Opción A · Encuesta y gráfico**
 1. Proyecta las votaciones con «Mascotas» (o escribe tus opciones: juego del recreo, fruta favorita).
@@ -227,6 +233,7 @@ Usad la encuesta para decidir algo real de la clase (el tema de la misión final
 
 - **Qué aprenden:** aplicar todo el trimestre en equipo.
 - **Material listo:** [[M:M14|Misión final del trimestre]] (ficha de 3º) · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Los cables se sacan desde el enchufe, no tirando del cable." ¿Qué le puede pasar al cable si tiramos de él?
 
 **Opción A · Ficha de misión (grupos)**
 Cuatro pruebas (diagrama, bucle, condición y bicho) que dan un código secreto. Soluciones en la última hoja.
@@ -259,7 +266,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** cuidar su privacidad en internet y conocer las partes de Scratch.
 - **Para proyectar:** [[P:contrasenas|Contraseñas seguras]]
 - **Material listo:** [[M:M20|Chuleta de bloques de Scratch]] · [[M:M26|Póster «Evento»]]
-- **Minuto SEG (10 minutos, con el proyectable):** "¿Para qué sirve una contraseña?". Proyecta el juego "¿cuál es más segura?" y comentad los pares. Datos que nunca escribimos en internet: nombre completo, dirección, teléfono, colegio, fotos. Hoy trabajamos sin cuenta y sin publicar.
+- **Minuto de uso responsable (10 minutos, con el proyectable):** "¿Para qué sirve una contraseña?". Proyecta el juego "¿cuál es más segura?" y comentad los pares. Datos que nunca escribimos en internet: nombre completo, dirección, teléfono, colegio, fotos. Hoy trabajamos sin cuenta y sin publicar.
 
 **Pasos en Scratch:**
 1. En la pizarra, enseña las 4 zonas: escenario, objetos, bloques (por colores) y zona de programar.
@@ -277,6 +284,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** mover un personaje con bloques y con el teclado (eventos).
 - **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:flota|Hundir la flota]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Minuto de uso responsable:** "Cada 20 minutos miro algo lejano 20 segundos." ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos (ejemplo en la pizarra):**
 1. **al hacer clic en 🏴** → **mover 10 pasos**. Pulsa varias veces. Cambia 10 por 50.
@@ -294,6 +302,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** el bloque **repetir** hace varias veces lo que tiene dentro; **por siempre** no para nunca.
 - **Para proyectar:** [[P:poligonos|Polígonos]] (para la opción B) · [[P:laberinto.4|Laberinto · escalera]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Minuto de uso responsable:** "Al ordenador, manos limpias y nada de comida ni bebida cerca." ¿Qué podría pasar si se derrama agua sobre el teclado?
 
 **Opción A · El gato baila**
 1. **al hacer clic en 🏴** → **repetir 10** → dentro: **siguiente disfraz** y **esperar 0.2 segundos**. ¡El gato camina!
@@ -316,6 +325,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** dar vida a una escena con disfraces, diálogos, sonidos y dos personajes.
 - **Para proyectar:** [[P:pixelart.robot|Píxel art: los disfraces son dibujos hechos de píxeles]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
 
 **Pasos:**
 1. Añadir un segundo objeto (botón del gato con +, "Elige un objeto").
@@ -334,6 +344,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** una variable es una caja con nombre que guarda un número que puede cambiar.
 - **Para proyectar:** [[P:variables|Variables]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
+- **Minuto de uso responsable:** "Espalda recta y pies en el suelo cuando uso el ordenador." ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
 1. Proyecta "Variables": dos cajas, *puntos* y *vidas*. Pulsa +1, −1 y "poner a 0". Mirad cómo aparece cada bloque. "La caja se llama siempre igual; lo que tiene dentro cambia".
@@ -351,6 +362,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** usar una condición para sumar puntos: "si toca la manzana, entonces suma un punto".
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:3-S14-juego-de-atrapar-solucion.sb3|Juego de atrapar · solución]]
+- **Minuto de uso responsable:** "Guardo mi proyecto con un nombre que sepa encontrar." ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
 **Pasos:**
 1. Un personaje con flechas (lo de la S10) y un objeto "Apple" (manzana).
@@ -368,6 +380,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 
 - **Qué aprenden:** planificar y crear un proyecto propio con lo aprendido.
 - **Material listo:** [[M:M16|Hoja de diseño de juego]] · [[M:M20|Chuleta de Scratch]]
+- **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
 **Elige el tipo de proyecto (o que elija cada pareja):**
 - **Juego de atrapar** (ampliando la S14): otros personajes, otro fondo y un final.
@@ -389,6 +402,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** terminar, probar el proyecto de otra pareja y mejorar el propio.
 - **Para proyectar:** [[P:votaciones.juegos|Votaciones]] (opcional)
 - **Material listo:** [[M:M17|Ficha de prueba y playtesting]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 
 **Pasos:**
 1. 15 minutos: terminar el proyecto.
@@ -420,7 +434,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Prepara antes:** un kit por grupo, un portátil por grupo, M22 hoja 2 (registro) y los objetos de la lista.
 - **Para proyectar:** [[P:circuito|¿Conduce la electricidad?]]
 - **Material listo:** [[M:M22|Registro «¿qué conduce?»]] (hoja 2) · [[M:M26|Póster «Entrada y salida»]]
-- **Minuto SEG:** nunca se enchufa nada a la corriente de la pared, el agua lejos del ordenador, las pinzas se abren con cuidado.
+- **Minuto de uso responsable:** nunca se enchufa nada a la corriente de la pared, el agua lejos del ordenador, las pinzas se abren con cuidado.
 
 **Opción A · Primero en la pizarra, después con el kit**
 1. Proyecta el circuito. Elige un objeto, la clase vota si encenderá la bombilla y pulsa "Probar".
@@ -439,6 +453,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** el Makey Makey funciona como un teclado: cada toque es una tecla que Scratch detecta.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Minuto de uso responsable:** "Los cables se sacan desde el enchufe, no tirando del cable." ¿Qué le puede pasar al cable si tiramos de él?
 
 **Pasos:**
 1. En Scratch: **al presionar tecla espacio** → **tocar sonido Miau**.
@@ -455,6 +470,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** planificar un proyecto en equipo: idea, material, programa y reparto de tareas.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · situaciones oficiales de Clic and Play (Recursos oficiales)
+- **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?
 
 **Pasos:**
 1. Enseña 2 ideas: una situación oficial (con su programa ya hecho) y una pieza propia.
@@ -471,6 +487,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 - **Qué aprenden:** fabricar el mando con la plantilla y materiales conductores.
 - **Prepara antes:** M22 hoja 1 (una por grupo), cartón, papel de aluminio y celo.
 - **Material listo:** [[M:M22|Plantilla de mando Makey Makey]]
+- **Minuto de uso responsable:** "Cuento el material antes de guardarlo." ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
 **Pasos:**
 1. Pegan la plantilla en un cartón y cubren cada botón con aluminio, dejando una tira hasta el borde para la pinza. Los botones no se tocan entre sí.
@@ -486,6 +503,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** programar cada botón de la pieza, añadir un contador y probarla con otro grupo.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Minuto de uso responsable:** "Cada 20 minutos miro algo lejano 20 segundos." ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos:**
 1. Cada botón, un evento: **al presionar tecla…** → lo que tenga que pasar (decir, sonido, cambiar fondo).
@@ -501,6 +519,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** mejorar el programa para que sea más corto y más claro, sin errores.
 - **Material listo:** [[M:M17|Ficha de prueba y playtesting]] · [[M:M26|Póster «Optimizar»]]
+- **Minuto de uso responsable:** "Guardo mi proyecto con un nombre que sepa encontrar." ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
 **Pasos:**
 1. En la pizarra, un programa con bloques repetidos. Entre todos lo mejoran: juntar lo repetido en un **repetir**, borrar bloques sueltos, ordenar (clic derecho → **Ordenar bloques**).
@@ -516,6 +535,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** presentar la pieza del museo y explicar un error que arreglaron.
 - **Material listo:** [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." ¿Por qué hay que pedir permiso antes de hacer una foto?
 
 **Pasos:**
 1. Cada grupo presenta su pieza (3 minutos): qué es, cómo funciona, qué bicho encontraron y cómo lo arreglaron.
@@ -531,6 +551,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** compartir el museo con otros y valorar lo aprendido en el curso.
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
+- **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
 
 **Opción A · Museo en el aula:** media clase presenta y la otra visita; después se cambia.
 **Opción B · Enseñamos a 2º:** cada grupo recibe a una pareja de 2º y le deja tocar su pieza.

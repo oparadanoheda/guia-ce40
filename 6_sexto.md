@@ -89,7 +89,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Prepara antes:** makecode.microbit.org en los portátiles, placas con cable. Los retos escritos en la pizarra.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M18|Tarjeta «Dónde lo dejamos»]]
-- **Minuto SEG (5 minutos):** normas de baterías, cables y recogida. Tarjeta "Dónde lo dejamos".
+- **Minuto de uso responsable (5 minutos):** normas de baterías, cables y recogida. Tarjeta "Dónde lo dejamos".
 
 **Retos (cada pareja llega hasta donde pueda, en el simulador):**
 1. Un mensaje con el botón A (**al presionar el botón A** → **mostrar cadena "Hola 6º"**).
@@ -138,6 +138,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Prepara antes:** tu ejemplo hecho.
 - **Para proyectar:** [[P:variables|Variables]] y [[P:leds.sonrisa|Matriz de LED]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
+- **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · Mascota virtual (recomendada)**
 1. Variable *hambre* (empieza en 5).
@@ -163,6 +164,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Prepara antes:** portapilas con pilas para las placas. Un programa sencillo de medida. Hoja de registro. Para la opción A, una hoja de cálculo (LibreOffice Calc o la hoja de cálculo de EducaMadrid) abierta en el display.
 - **Para proyectar:** [[P:votaciones|Votaciones y gráfico]] (para meter los datos) · [[P:umbral.temp|Sensor y umbral]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
 1. Programa: **al presionar el botón A** → **mostrar número temperatura (°C)**; **al presionar el botón B** → **mostrar número nivel de luz**.
@@ -192,7 +194,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Prepara antes:** robots, cinta métrica, una línea de salida y una meta en el suelo (vale una regla o una tira de cinta).
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
-- **Minuto SEG:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
+- **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
 
 **Pasos:**
 1. Programa básico: **al presionar el botón A** → motores M1 y M2 a velocidad 50 → **pausa 1000 ms** → parar.
@@ -211,6 +213,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Prepara antes:** según la opción. Comprueba antes qué sensores y piezas trae el kit.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** situaciones oficiales de Nezha con manual de montaje y programa .hex (Recursos oficiales)
+- **Minuto de uso responsable:** "El robot se prueba en el suelo y se apaga antes de tocar la placa." ¿Por qué en el suelo y no en la mesa?
 
 **Opción A · Situación oficial con mecanismos**
 *Molinos de viento* o *Vehículos y aceleración* con Kit Nezha Inventor (4º a 6º). Construyen el montaje con las instrucciones y programan el motor. Pregunta: "¿Qué pasa con la velocidad si cambio el tamaño del engranaje?".
@@ -232,6 +235,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]]
 - **Material listo:** [[M:M16|Plan de mi invento]]
+- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Pasos:**
 1. **Optimizar (15 minutos):** entre todos, el programa largo se mejora:
@@ -255,6 +259,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 
 - **Qué aprenden:** construir y probar un proyecto propio con al menos un sensor y dos eventos.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 - **Pasos:**
   1. Tarjeta y plan (3 minutos).
   2. Programar en el simulador (15 minutos).
@@ -278,6 +283,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Prepara antes:** imprimir M24 (los 4 casos ya escritos, uno por equipo).
 - **Para proyectar:** [[P:sesgo|Entrena a la máquina]] y [[P:verdad.bulos|¿Verdad, bulo o IA?]]
 - **Material listo:** [[M:M24|Casos para debatir]] · [[M:M23|¿Verdad, bulo o IA?]]
+- **Minuto de uso responsable:** "Las redes sociales tienen edad mínima por algo." ¿Por qué creéis que existe una edad mínima?
 
 **Opción A · Debate por casos (recomendada)**
 1. 7 minutos: ¿dónde hay IA en vuestra vida? (recomendaciones, asistentes de voz, filtros de fotos, traductores). ¿Qué es la IA generativa? (la que crea textos o imágenes nuevas a partir de muchos ejemplos).
@@ -298,6 +304,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 - **Qué aprenden:** diseñar en 3D un objeto que resuelva un problema, con medidas reales.
 - **Prepara antes:** como en 5º, decide el modo de trabajo (cuentas de clase con alias autorizadas, o el docente diseña en el display y los equipos dictan). Reglas y objetos del aula para medir. Guía en `07`.
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño con medidas)
+- **Minuto de uso responsable:** "Pantalla a la altura de los ojos y a un brazo de distancia." ¿Está bien colocada tu pantalla ahora?
 
 **Pasos:**
 1. Repaso en el display (5 minutos): mover, medir, levantar, girar, hueco y agrupar.
@@ -316,6 +323,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 - **Qué aprenden:** detectar una necesidad real del colegio y planificar una solución en equipo.
 - **Prepara antes:** hoja de proyecto en equipo (M16): problema, a quién ayuda, idea, materiales, tareas, quién hace qué.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
+- **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
 1. 7 minutos: ejemplos de necesidades del colegio: accesibilidad (un timbre para una persona que no oye bien que se ilumine), ahorro (aviso de luces encendidas en un aula vacía), convivencia (semáforo de ruido en el comedor), medio ambiente (contador de botellas recicladas), orden (robot Nezha que reparte material en el aula de infantil).
@@ -331,6 +339,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 
 - **Qué aprenden:** construir y programar en equipo el prototipo del proyecto de servicio.
 - **Material listo:** [[M:M18|Dónde lo dejamos]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 - **Pasos:**
   1. Tarjeta y plan (3 minutos).
   2. Construir y programar (30 minutos). Cada miembro con su tarea.
@@ -348,6 +357,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 - **Qué aprenden:** presentar el proyecto a la comunidad, crear sus propios códigos QR y dejar su experiencia por escrito.
 - **Prepara antes:** fotos o vídeos (sin caras) de cada proyecto ya subidos al espacio del centro en EducaMadrid. Guía de QR en `07`.
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
+- **Minuto de uso responsable:** "Un seudónimo me protege. Mi foto es mía." ¿Qué seudónimo usarías en un juego en línea?
 
 **Pasos:**
 1. **QR (10 minutos):** cada equipo genera **su propio QR** con el enlace a su vídeo, en un generador de QR sin registro (o con la opción de QR del propio espacio de EducaMadrid), lo prueba con la tablet y lo imprime.
@@ -367,6 +377,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 ### S13 · Proyecto de servicio: sesión extra (la primera que se debe usar)
 
 - **Material listo:** [[M:M17|Ficha de prueba]]
+- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 Entre la S11 y la S12: programar, probarlo con usuarios reales (otra clase, conserjería, comedor) y mejorarlo.
 
@@ -378,6 +389,7 @@ Entre la S11 y la S12: programar, probarlo con usuarios reales (otra clase, cons
 
 - **Para proyectar:** [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
+- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 Dos placas se comunican por radio: **radio establecer grupo** (cada equipo un número distinto, del 1 al 255) → **al presionar el botón A** → **radio enviar número 1**; en la otra: **al recibir radio número** → **mostrar icono**. Retos: timbre a distancia, termómetro remoto, o mando por radio para el Nezha (inclinar la placa mando). Privacidad: si otro equipo usa tu grupo, recibe tus mensajes.
 
@@ -388,6 +400,7 @@ Dos placas se comunican por radio: **radio establecer grupo** (cada equipo un n�
 ### S15 · Tinkercad II
 
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
+- **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
 
 Diseñar con **Codeblocks** (formas creadas con bloques de código, en la propia web de Tinkercad) o diseñar una pieza que encaje en el prototipo del proyecto de servicio.
 
@@ -398,6 +411,7 @@ Diseñar con **Codeblocks** (formas creadas con bloques de código, en la propia
 ### S16 · A elegir
 
 - **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]]
+- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 - **ART2BIT:** una de sus situaciones oficiales, si el centro lo tiene montado.
 - **Enseño a 4º:** cada pareja enseña su proyecto de micro:bit a una pareja de 4º.

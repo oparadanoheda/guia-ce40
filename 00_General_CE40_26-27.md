@@ -54,7 +54,7 @@ Cada sesión lleva etiquetas: **PC** pensamiento computacional · **ROB** robót
 - **Primer ciclo (1º y 2º) sin pantallas:** todo se trabaja desenchufado y con robots de suelo: **Tale-Bot**, que se programa con botones (el alumnado lo conoce de Infantil), y **True True**, que se programa con tarjetas. La "programación por bloques" se hace con **bloques de papel** idénticos a los de ScratchJr. La tablet solo aparece en las tres últimas sesiones de 2º (S22 a S24) como iniciación a ScratchJr.
 - **ROB**: Tale-Bot (1º, primer trimestre, orientativo; después, como apoyo en 1º y 2º), True True (1º a 3º), Makey Makey (3º y 4º), micro:bit y Nezha (5º y 6º).
 - **IA**: **solo en 5º y 6º** (decisión del centro), con el proyectable «Entrena a la máquina», Teachable Machine en demostración del docente y los casos para debatir (M24). De 1º a 4º no hay sesiones de inteligencia artificial; sí se trabaja lo que la prepara (clasificar, árboles de preguntas, recoger y organizar datos) como pensamiento computacional y estadística.
-- **SEG**: no es un bloque aparte. Es un **"Minuto SEG"** al principio de cada sesión (ver apartado 5) y alguna sesión específica.
+- **SEG**: no es un bloque aparte. Es un **«Minuto de uso responsable»** al principio de cada sesión (ver apartado 5) y alguna sesión específica.
 - **RA**: códigos QR en todos los cursos (feria de fin de curso) y diseño 3D con Tinkercad en 5º y 6º.
 
 ---
@@ -115,7 +115,7 @@ La estructura es siempre la misma. Al alumnado le da seguridad y al docente le q
 
 | Min | Fase | Qué hace el docente |
 |---|---|---|
-| 0-5 | **Arranque** | Recordar la sesión anterior con una pregunta ("¿Qué era un bucle?"). **Minuto SEG** (ver abajo). Repartir roles. |
+| 0-5 | **Arranque** | Recordar la sesión anterior con una pregunta ("¿Qué era un bucle?"). **Minuto de uso responsable** (ver abajo). Repartir roles. |
 | 5-12 | **Misión** | Contar el reto con una historia corta y hacer una demostración (en el display, en el suelo o con el robot). Decir la **frase clave**. |
 | 12-35 | **Práctica** | El alumnado trabaja en parejas o grupos. Tú circulas y preguntas; no resuelves. A mitad (min. 23 aprox.) se cambian los roles. |
 | 35-40 | **Compartir** | Un grupo enseña su solución o **su error más interesante**. |
@@ -140,18 +140,18 @@ Con estas tres preguntas se trabaja depuración y optimización sin necesidad de
 
 Las parejas se cambian el rol a mitad de práctica. En grupos, el rol cambia cada sesión. Las **tarjetas de rol** (M05) se dejan en cada mesa. El proyectable **Temporizador de sesión** muestra en la pizarra la fase y el tiempo que queda.
 
-### Minuto SEG (uso responsable y seguridad)
+### Minuto de uso responsable
 
-Un minuto al principio de la sesión. Se elige una frase del banco y se comenta en una pregunta. Poco a poco el alumnado las dice solo.
+Un minuto al principio de cada sesión para una norma de uso responsable y seguridad: se dice la frase y se comenta con su pregunta. **Cada sesión trae ya la suya**, elegida según lo que se hace ese día (cuidado del material con los robots, pantallas con el ordenador, privacidad e información con internet o IA, huella digital en las presentaciones, recogida al construir). Las frases se repiten a propósito: poco a poco el alumnado las dice solo. Este es el banco completo, por si se quiere cambiar alguna.
 
 | Tema | 1º y 2º | 3º y 4º | 5º y 6º |
 |---|---|---|---|
-| Cuidado del material | "El robot se coge con dos manos." | "Los cables se sacan desde el enchufe, no tirando del cable." | "Las pilas y baterías no se tocan con metal ni se mojan." |
-| Postura y pantallas | "Espalda en la silla, pantalla a un brazo de distancia." | "Cada 20 minutos miro algo lejano 20 segundos." | "Si me duelen los ojos o la cabeza, lo digo." |
+| Cuidado del material | "El robot se coge con dos manos." · "Las tarjetas no se doblan ni se pintan." · "Espero mi turno y ayudo sin quitar." | "Los cables se sacan desde el enchufe, no tirando del cable." · "Al ordenador, manos limpias y nada de comida ni bebida cerca." | "Las pilas y baterías no se tocan con metal ni se mojan." · "El robot se prueba en el suelo y se apaga antes de tocar la placa." |
+| Postura y pantallas | "Espalda en la silla, pantalla a un brazo de distancia." | "Cada 20 minutos miro algo lejano 20 segundos." · "Espalda recta y pies en el suelo cuando uso el ordenador." | "Si me duelen los ojos o la cabeza, lo digo." · "Pantalla a la altura de los ojos y a un brazo de distancia." |
 | Contraseñas y privacidad | "Mi contraseña es como mi cepillo de dientes: no se presta." | "No escribo mi nombre completo ni mi dirección en internet." | "Un seudónimo me protege. Mi foto es mía." |
 | Contenido adecuado | "Si veo algo que no me gusta, aviso a un adulto." | "No todo lo que sale en una pantalla es verdad." | "Antes de creer algo, lo contrasto en otra fuente." |
 | Huella digital | "Lo que subo a internet se queda." | "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." | "Las redes sociales tienen edad mínima por algo." |
-| Recogida | "Cada cosa a su caja y a cargar." | "Cuento el material antes de guardarlo." | "Guardo el archivo con el nombre del equipo antes de cerrar." |
+| Recogida | "Cada cosa a su caja y a cargar." | "Cuento el material antes de guardarlo." · "Guardo mi proyecto con un nombre que sepa encontrar." | "Guardo el archivo con el nombre del equipo antes de cerrar." |
 
 ---
 

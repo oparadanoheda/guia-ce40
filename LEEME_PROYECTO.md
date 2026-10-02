@@ -11,7 +11,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
 - **27 materiales imprimibles** en PDF (M01-M27, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables), **9 proyectos de Scratch** (.sb3) y una web que lo reúne todo.
-- Cada ficha de sesión tiene un botón **«Proyectar la sesión»**: vista para la clase a pantalla completa (portada, Minuto SEG, palabras nuevas, frase clave, herramientas y cierre).
+- Cada ficha de sesión tiene un botón **«Proyectar la sesión»**: vista para la clase a pantalla completa (portada, minuto de uso responsable, palabras nuevas, frase clave, herramientas y cierre).
 
 **Dónde está cada cosa para el profesorado:**
 
@@ -113,7 +113,7 @@ Programación Mate 4.0 26-27/
 - **Para proyectar:** [[P:beebot.cuadricula|Bee-Bot interactivo]]
 - **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M01|Tarjetas de flechas]]
 - **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
-- **Minuto SEG:** norma de uso responsable.
+- **Minuto de uso responsable:** "frase del banco" y su pregunta (todas las sesiones lo llevan).
 
 **Opción A · Nombre de la opción**
 1. Paso…
@@ -321,6 +321,7 @@ Detalle en `08_Plantillas_y_material.md`.
     - **«Pistas y soluciones de los retos»** en la sesión: desplegable para el docente con, por reto, una pregunta para pensar, pistas y la solución. Los bloques entre comillas invertidas salen con el color de su categoría de MakeCode o Scratch (función `blocks` de `build_web.py`). En el .md: un párrafo `**Pistas y soluciones:**` seguido de la lista, sin líneas en blanco dentro (las sublistas, con 4 y 8 espacios). No sale en el modo proyección.
     - **«Guía para el docente»** en la página de cada herramienta (botón arriba y desplegable debajo): qué es, qué contar a la clase, preguntas con pistas y solución oculta, matemáticas y para saber más. Fuente: `web/guias_proyectables.py`. Hecha la de las cartas binarias.
     - Revisión: 24 enlaces a herramientas en sesiones que no dicen para qué se usan (lista en la conversación del 2 de octubre; se puede repetir con el script de la sección 6).
+19. **«Minuto de uso responsable»** (antes «Minuto SEG», un nombre que no se entendía): las 128 sesiones traen el suyo, una frase del banco y su pregunta, elegida a mano según lo que se hace ese día y sin repetir tema en sesiones seguidas (107 nuevas; las 21 que ya existían se mantienen). El banco de «El método» gana 7 frases. En el modo proyección va justo después de la portada.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

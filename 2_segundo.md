@@ -81,7 +81,7 @@ Vocabulario de programación nuevo en 2º (las palabras de cursos anteriores se 
 - **Prepara antes:** tablero M06 y tarjetas M01 por grupo.
 - **Para proyectar:** [[P:cuadricula.mapa4|Robot en la cuadrícula · mapa 4]] · [[P:beebot.numeros|Bee-Bot · camino numérico]]
 - **Material listo:** [[M:M06|Tablero y fichas]] · [[M:M01|Tarjetas de flechas]] · [[M:M05|Tarjetas de rol]]
-- **Minuto SEG:** normas del aula de código (cuidar el material, esperar turno, ayudar sin quitar).
+- **Minuto de uso responsable:** normas del aula de código (cuidar el material, esperar turno, ayudar sin quitar).
 
 **Opción A · Reto en la pizarra**
 1. Proyecta el mapa 4 (con rocas). Pregunta: "¿Qué órdenes entiende el robot?".
@@ -103,6 +103,7 @@ Vocabulario de programación nuevo en 2º (las palabras de cursos anteriores se 
 - **Prepara antes:** M10 recortado (opción B).
 - **Para proyectar:** [[P:secuencias.manos6|Ordena la secuencia · lavarse las manos en 6 pasos]] · [[P:simon|Simón: secuencias]]
 - **Material listo:** [[M:M10|Secuencias para ordenar]] · [[M:M26|Póster «Algoritmo»]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Opción A · Seis pasos en la pizarra**
 1. Proyecta "lavarse las manos (6 pasos)". Entre todos, ordenad los pasos.
@@ -123,6 +124,7 @@ Vocabulario de programación nuevo en 2º (las palabras de cursos anteriores se 
 - **Qué aprenden:** continuar y crear patrones de tres o cuatro elementos y descubrir patrones que crecen.
 - **Para proyectar:** [[P:patrones.abc|Patrones · ABC]] y [[P:patrones.crece|patrón que crece]]
 - **Material listo:** [[M:M09|Patrones]] · [[M:M26|Póster «Patrón»]]
+- **Minuto de uso responsable:** "Las tarjetas no se doblan ni se pintan." ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
 **Opción A · De repetir a crecer, en la pizarra**
 1. Patrones ABC y AABB en el proyectable: la clase dice qué va en cada "?".
@@ -141,6 +143,7 @@ Cada alumno hace la hoja 1 de M09 (incluido el patrón que crece). Se corrige pr
 - **Qué aprenden:** usar "repite" para escribir programas más cortos.
 - **Para proyectar:** [[P:bucles.escalera|Bucles: la escalera]] y [[P:cuadricula.cuadrado|Reto: el cuadrado]] · [[P:laberinto.3|Laberinto · nivel 3]]
 - **Material listo:** [[M:M01|Tarjetas de flechas y REPITE]] · [[M:M06|Tablero]] · [[M:M26|Póster «Bucle»]]
+- **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
 **Opción A · Largo contra corto, en la pizarra**
 1. Proyecta "la escalera": programa largo y programa con REPITE. ¿Hacen lo mismo?
@@ -160,6 +163,7 @@ Cada grupo escribe con tarjetas M01 un cuadrado usando la tarjeta REPITE y otro 
 - **Prepara antes:** M08 nivel 2, una hoja por pareja, con las soluciones dobladas.
 - **Para proyectar:** [[P:cuadricula.bicho3|Cazabichos 3]] y [[P:cuadricula.bicho4|Cazabichos 4]]
 - **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 2)
+- **Minuto de uso responsable:** "Mi contraseña es como mi cepillo de dientes: no se presta." ¿Qué otras cosas son solo mías y no se prestan?
 
 **Opción A · Bichos en la pizarra**
 Proyecta el cazabichos 3. Pulsad "Paso a paso" y parad cuando el robot se equivoque. Un alumno toca la tarjeta mala para cambiarla. Después, el 4.
@@ -178,7 +182,7 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 - **Prepara antes:** robots cargados, tarjetas y tapete. Tarjetas de roles oficiales.
 - **Para proyectar:** [[P:cuadricula.mapa5|Robot en la cuadrícula · mapa 5]] (para ensayar antes del robot)
 - **Material listo:** [[M:M01|Tarjetas de flechas]] · [[M:M06|Fichas del tablero]] · normas de uso y tarjetas de roles oficiales (ver Recursos oficiales)
-- **Minuto SEG:** normas del robot.
+- **Minuto de uso responsable:** normas del robot.
 
 **Opción A · Retos de calentamiento**
 1. Repaso de normas y partes. "¿Qué entra y qué sale?".
@@ -197,6 +201,7 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 
 - **Qué aprenden:** usar la repetición con el robot para recorrer figuras.
 - **Para proyectar:** [[P:cuadricula.cuadrado|Reto: el cuadrado]] (ensayo) · [[P:beebot.cuadricula|Bee-Bot]]
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Opción A · Recorre la figura**
 1. Ensayad el cuadrado en la pizarra.
@@ -216,6 +221,7 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 - **Qué aprenden:** aplicar todo el trimestre para superar un reto en equipo.
 - **Prepara antes:** M14 (ficha de 2º), una por grupo.
 - **Material listo:** [[M:M14|Misión final del trimestre]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
 **Opción A · Ficha de misión (grupos)**
 1. Cada grupo resuelve las 4 pruebas de la ficha (patrón, camino, bucle y bicho). Cada prueba da un número.
@@ -247,6 +253,7 @@ Cuatro retos seguidos en la pizarra, por equipos que se turnan: [[P:patrones.aab
 - **Prepara antes:** M04 recortado (una hoja por grupo).
 - **Para proyectar:** [[P:semaforo|Semáforo de peatones: si… entonces]] · [[P:laberinto.1|Laberinto de bloques]]
 - **Material listo:** [[M:M04|Tarjetas SI · ENTONCES · SI NO]] · [[M:M26|Póster «Condición»]]
+- **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
 **Opción A · El semáforo de la pizarra**
 1. Proyecta el semáforo de peatones con sus dos reglas: SI el muñeco está en rojo, ENTONCES espero en el bordillo; SI está en verde, ENTONCES miro a los dos lados y cruzo.
@@ -266,6 +273,7 @@ Por grupos, emparejan cada tarjeta SI (verde) con su ENTONCES (azul). Después i
 - **Qué aprenden:** un evento es la señal que hace que un programa empiece.
 - **Prepara antes:** la hoja 3 de M03 (bloques de evento) recortada: un juego para la pizarra y uno por grupo.
 - **Material listo:** [[M:M03|Bloques de papel]] (hoja 3: eventos) · [[M:M02|Tarjetas de movimientos]] · [[M:M26|Póster «Evento»]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Opción A · La clase programable**
 1. Pega en la pizarra: CUANDO APLAUDO → tarjeta "brazos arriba" (M02). Aplaude: la clase lo hace.
@@ -286,6 +294,7 @@ Cada grupo monta un programa con un bloque de evento y dos acciones de M02. Lo l
 - **Prepara antes:** robots, tapete y la ficha del semáforo de M06.
 - **Para proyectar:** [[P:semaforo.sino|Semáforo · modo SI… SI NO]] · [[P:laberinto.5|Laberinto · «si hay camino»]]
 - **Material listo:** [[M:M06|Fichas del tablero]] (semáforo) · [[M:M04|Tarjetas SI]]
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Opción A · Educación vial (situación oficial)**
 1. En el tapete hay una calle con un paso de cebra y la ficha del semáforo de peatones. Antes de programar, dices "muñeco rojo" o "muñeco verde".
@@ -306,6 +315,7 @@ Con el proyectable en modo SI… SI NO: la clase decide qué hace el robot con c
 - **Prepara antes:** M11 por grupo (tarjetas y árbol).
 - **Para proyectar:** [[P:animales|¿Qué animal soy?]]
 - **Material listo:** [[M:M11|¿Qué animal soy?]]
+- **Minuto de uso responsable:** "Mi contraseña es como mi cepillo de dientes: no se presta." ¿Qué otras cosas son solo mías y no se prestan?
 
 **Opción A · El ordenador piensa un animal**
 1. Proyecta el juego: el ordenador ha elegido un animal en secreto.
@@ -326,6 +336,7 @@ Con las 8 tarjetas de animales y el árbol de M11 (las preguntas ya vienen escri
 - **Prepara antes:** nada para la opción A. Para la opción B, dos folios o dos aros en el suelo como «cajas» y objetos del aula (lápices, gomas, bloques de colores).
 - **Para proyectar:** [[P:clasificador|Clasificador]] y [[P:clasificador.secreta|Clasificador · regla secreta]]
 - **Material listo:** [[M:M04|Tarjetas SI · ENTONCES · SI NO]] (para escribir la regla)
+- **Minuto de uso responsable:** "Las tarjetas no se doblan ni se pintan." ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
 **Opción A · La máquina de la regla secreta (pizarra)**
 1. Abre el clasificador en modo normal y clasificad juntos por color: «SI es rojo, ENTONCES a esta caja; SI NO, a la otra».
@@ -347,6 +358,7 @@ Con las 8 tarjetas de animales y el árbol de M11 (las preguntas ya vienen escri
 - **Qué aprenden:** planificar un proyecto propio que usa condiciones.
 - **Prepara antes:** M13 hoja 2 (una por alumno), dados y fichas (valen tapones o gomas).
 - **Material listo:** [[M:M13|Tablero para crear mi juego]] · [[M:M04|Tarjetas SI · ENTONCES]] (como ideas)
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Pasos:**
 1. Enseña un ejemplo con las casillas de regla: "SI caes en la 4, ENTONCES avanzas 2".
@@ -362,6 +374,7 @@ Con las 8 tarjetas de animales y el árbol de M11 (las preguntas ya vienen escri
 
 - **Qué aprenden:** probar el proyecto, encontrar "bichos" en las reglas y arreglarlos.
 - **Material listo:** [[M:M17|Ficha de prueba · 1º y 2º]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
 **Pasos:**
 1. Terminar el tablero (10 minutos).
@@ -379,6 +392,7 @@ Con las 8 tarjetas de animales y el árbol de M11 (las preguntas ya vienen escri
 
 - **Qué aprenden:** enseñar su proyecto y jugar con el de otros.
 - **Para proyectar:** [[P:votaciones.juegos|Votaciones y gráfico]] (para votar el juego favorito) · [[P:quiensale|¿Quién sale? y marcador]]
+- **Minuto de uso responsable:** "Lo que subo a internet se queda." Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
 **Opción A · Feria**
 Media clase deja su juego en la mesa y explica las reglas; la otra mitad juega. Después se cambia. Al final, votación en el gráfico de la pizarra.
@@ -406,7 +420,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 
 - **Qué aprenden:** planificar en equipo: qué vamos a hacer, qué necesitamos y quién hace qué.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 1º y 2º]] · [[M:M06|Fichas del tablero]]
-- **Minuto SEG:** normas del robot.
+- **Minuto de uso responsable:** normas del robot.
 
 **Pasos:**
 1. Presenta el proyecto elegido con la situación oficial.
@@ -421,6 +435,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 
 - **Qué aprenden:** colocar el escenario y programar la primera ruta.
 - **Material listo:** [[M:M03|Bloques de papel]] · [[M:M06|Fichas]]
+- **Minuto de uso responsable:** "El robot se coge con dos manos." ¿Por qué con dos manos y no con una?
 
 **Pasos:**
 1. 10 minutos: colocan las fichas en el tapete según su hoja.
@@ -437,6 +452,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 - **Qué aprenden:** hacer lo mismo con menos instrucciones, con repeticiones y quitando lo que sobra.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]]
 - **Material listo:** [[M:M26|Póster «Optimizar»]]
+- **Minuto de uso responsable:** "Si veo algo que no me gusta, aviso a un adulto." ¿A qué adultos puedo avisar en el cole y en casa?
 
 **Pasos:**
 1. Proyecta un programa largo y su versión con REPITE.
@@ -452,6 +468,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 
 - **Qué aprenden:** probar el proyecto de otro equipo, arreglar el propio y preparar la presentación.
 - **Material listo:** [[M:M17|Ficha de prueba · 1º y 2º]]
+- **Minuto de uso responsable:** "Espero mi turno y ayudo sin quitar." ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
 **Pasos:**
 1. Cada grupo prueba el proyecto de otro y rellena la ficha de caritas (15 minutos).
@@ -467,6 +484,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 
 - **Qué aprenden:** presentar el proyecto del equipo y explicar cómo se programó.
 - **Material listo:** [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Lo que subo a internet se queda." Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
 **Pasos:**
 1. Cada grupo presenta 3 minutos y hace una demostración con el robot.
@@ -483,7 +501,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 - **Qué aprenden:** usar la tablet con cuidado y descubrir que ScratchJr tiene los mismos bloques que ya conocen en papel.
 - **Prepara antes:** ScratchJr instalado en las tablets (gratis) y tablets cargadas. Guía de ScratchJr en Herramientas paso a paso. Los bloques de papel a mano.
 - **Material listo:** [[M:M03|Bloques de papel]] (para comparar)
-- **Minuto SEG:** normas de la tablet: dos manos, en la mesa, sin comida, espalda en la silla, no se hacen fotos a compañeros.
+- **Minuto de uso responsable:** normas de la tablet: dos manos, en la mesa, sin comida, espalda en la silla, no se hacen fotos a compañeros.
 
 **Pasos:**
 1. En la pizarra, abre ScratchJr y pulsa +. Enseña los bloques y pregunta: "¿Os suena?". Pon al lado la bandera de papel.
@@ -503,6 +521,7 @@ En parejas: cada uno juega al del otro y dice dos cosas que le gustan y una idea
 
 - **Qué aprenden:** usar el bloque de repetir y el evento "al tocar" en la pantalla.
 - **Material listo:** [[M:M03|Bloques de papel]] (hoja 3: el bloque CUANDO TOCO, para comparar con la pantalla)
+- **Minuto de uso responsable:** "Espalda en la silla, pantalla a un brazo de distancia." ¿Cómo sé que estoy a un brazo de distancia?
 
 **Opción A · Personajes que reaccionan**
 1. Recuerda el bloque de papel CUANDO TOCO. En la pantalla es la mano amarilla.
@@ -520,6 +539,7 @@ Fondo de granja. Cada animal, al tocarlo, se mueve y dice algo con el bocadillo.
 
 - **Qué aprenden:** crear una pequeña animación propia y cerrar el curso.
 - **Material listo:** [[M:M15|Pasaporte]]
+- **Minuto de uso responsable:** "Cada cosa a su caja y a cargar." ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
 **Pasos:**
 1. 20 minutos: por parejas, una animación con bandera verde, un movimiento, un repetir y un personaje que reacciona al tocarlo.

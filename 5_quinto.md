@@ -92,7 +92,7 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 - **Prepara antes:** portátiles con Scratch. Retos escritos en la pizarra.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]] · [[P:laberinto.6|Laberinto de bloques]]
 - **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M18|Tarjeta «Dónde lo dejamos»]] · [[M:M20|Chuleta de Scratch]]
-- **Minuto SEG (7 minutos):** normas del aula maker: los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo; tarjeta "Dónde lo dejamos".
+- **Minuto de uso responsable (7 minutos):** normas del aula maker: los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo; tarjeta "Dónde lo dejamos".
 - **Archivo de Scratch:** [[S:5-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
 
 **Opción A · Reto relámpago (recomendada)**
@@ -116,6 +116,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
 - **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
+- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
 1. Enseña una placa de verdad: "Es un ordenador diminuto. Tiene 25 luces, 2 botones, y sensores: sabe si se mueve, cuánta luz hay y qué temperatura hace".
@@ -137,6 +138,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Prepara antes:** el ejemplo hecho en tu ordenador.
 - **Para proyectar:** [[P:votaciones.dado|Dado: frecuencias]] · [[P:quiensale|¿Quién sale?]]
 - **Material listo:** [[M:M25|Frecuencias del dado]] (hoja 2) · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · El dado (recomendada)**
 1. **al agitar** → **mostrar número (elegir al azar de 1 a 6)**.
@@ -166,6 +168,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** ejemplo en el display. Hoja de registro de datos.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]] y [[P:umbral.temp|temperatura]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M21|Chuleta de MakeCode]]
+- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Opción A · La lamparita de noche**
 1. **para siempre** → **si (nivel de luz < 50) entonces** → **mostrar icono** (una luna o todas las luces) / **si no** → **borrar la pantalla**.
@@ -188,6 +191,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** estuches o cajitas, portapilas. La micro:bit V2 tiene altavoz; si no, se usa solo la pantalla.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
+- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
 1. Pregunta: "¿Cómo sabría la placa que alguien ha cogido tu estuche?". Porque se mueve.
@@ -222,7 +226,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
    - Brújula que señala el norte.
    Rellenan: qué problema resuelve, qué sensor usa, qué hace, dibujo del programa.
 
-- **Minuto SEG:** si buscan ideas en internet, solo en las webs que indica el docente (makecode.microbit.org, microbit.org/es-es/projects).
+- **Minuto de uso responsable:** si buscan ideas en internet, solo en las webs que indica el docente (makecode.microbit.org, microbit.org/es-es/projects).
 - **Frase clave:** "Un invento empieza con un problema bien elegido."
 - **Si va rápido:** que cada pareja fabrique un bicho para otra.
 - **Si cuesta:** solo dos de los tres programas con bicho.
@@ -232,6 +236,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** construir y probar un invento propio.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
+- **Minuto de uso responsable:** "Pantalla a la altura de los ojos y a un brazo de distancia." ¿Está bien colocada tu pantalla ahora?
 - **Pasos:**
   1. Leer la tarjeta y el plan (3 minutos).
   2. Programar en el simulador (15 minutos).
@@ -255,7 +260,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar "nezha"). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
-- **Minuto SEG:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.
+- **Minuto de uso responsable:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.
 
 **Pasos:**
 1. Enseña cómo se encaja la micro:bit en la placa de expansión y a qué conectores van los motores (M1, M2…).
@@ -276,6 +281,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** nada: el juego y los ejemplos ya están preparados en el proyectable y en M23.
 - **Para proyectar:** [[P:sesgo|Entrena a la máquina]] y [[P:verdad.bulos|¿Verdad, bulo o IA?]]
 - **Material listo:** [[M:M23|¿Verdad, bulo o IA?]] (hojas 2 y 3) · [[M:M24|Casos para debatir]]
+- **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
 1. **Demostración (12 minutos):** proyecta "Entrena a la máquina", entrenada solo con manzanas rojas. Probad la manzana verde y la fresa: ¿acierta? Debate: "¿De quién es la culpa, de la máquina o de los datos?". Si te animas, se puede hacer también con Teachable Machine y la cámara (ver Herramientas paso a paso).
@@ -294,6 +300,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** moverse en un programa de diseño 3D, combinar formas y usar medidas.
 - **Prepara antes:** decide el modo de trabajo según lo que permita el centro:
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño antes)
+- **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
   - **Con clase de Tinkercad** (cuentas de clase con alias creadas por el docente, si el equipo directivo y el delegado de protección de datos lo autorizan): cada pareja entra con su alias.
   - **Sin cuentas:** el docente diseña en el display y los equipos dictan por turnos; cada equipo dibuja antes su diseño en papel isométrico o cuadriculado con medidas.
 - Guía de Tinkercad en `07_Guias_rapidas_herramientas.md`.
@@ -313,6 +320,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** trabajar en equipo para resolver un problema real con lo aprendido.
 - **Prepara antes:** hoja de proyecto en equipo (M16), el material del curso, cartón y cinta.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · [[M:M18|Dónde lo dejamos]]
+- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Retos propuestos (muy acotados: un sensor y una acción):**
 
@@ -338,6 +346,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** optimizar el programa y presentar el proyecto.
 - **Para proyectar:** [[P:votaciones|Votaciones]] (opcional)
 - **Material listo:** [[M:M19|Rúbrica y autoevaluación]] · [[M:M15|Pasaporte]]
+- **Minuto de uso responsable:** "Un seudónimo me protege. Mi foto es mía." ¿Qué seudónimo usarías en un juego en línea?
 - **Pasos:**
   1. **Optimizar (10 minutos):** cada equipo revisa su programa con tres preguntas: ¿hay bloques repetidos que pueden ir en un bucle? ¿hay bloques que no hacen nada? ¿los nombres de las variables se entienden?
   2. **Presentar (25 minutos):** feria en el aula o con otros cursos. Cada equipo: problema, solución, cómo funciona, qué mejorarían. QR en la mesa con un vídeo o fotos (sin caras), preparado por el docente o por los propios alumnos si hay tiempo (ver guía de QR).
@@ -355,6 +364,7 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 ### S13 · Proyecto: sesión extra (la primera que se debe usar)
 
 - **Material listo:** [[M:M17|Ficha de prueba]]
+- **Minuto de uso responsable:** "Pantalla a la altura de los ojos y a un brazo de distancia." ¿Está bien colocada tu pantalla ahora?
 
 Se coloca entre la S11 y la S12. Tarjeta "Dónde lo dejamos" → programar y probar → pruebas con otro equipo (cazabichos cruzado).
 
@@ -366,6 +376,7 @@ Se coloca entre la S11 y la S12. Tarjeta "Dónde lo dejamos" → programar y pro
 
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
+- **Minuto de uso responsable:** "El robot se prueba en el suelo y se apaga antes de tocar la placa." ¿Por qué en el suelo y no en la mesa?
 
 Después de la S8. Según los sensores del kit: que el robot pare ante un obstáculo (**si distancia < 10 cm entonces parar**) o que siga una línea negra de cinta aislante. **Sin sensor:** que arranque y pare con los botones A y B, o con una palmada (micrófono de la V2: **al detectar sonido fuerte**).
 
@@ -376,6 +387,7 @@ Después de la S8. Según los sensores del kit: que el robot pare ante un obstá
 ### S15 · Tinkercad II: un objeto útil `RA`
 
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el objeto con sus medidas)
+- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 Después de la S10. Diseñar un soporte para lápices, un portanombres o una pieza para el proyecto en equipo, con medidas tomadas con regla de un objeto real.
 
@@ -386,6 +398,7 @@ Después de la S10. Diseñar un soporte para lápices, un portanombres o una pie
 ### S16 · A elegir
 
 - **Para proyectar:** [[P:paridad|Magia de la paridad]]
+- **Minuto de uso responsable:** "Las redes sociales tienen edad mínima por algo." ¿Por qué creéis que existe una edad mínima?
 
 - **Radio:** dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar número**, **al recibir radio**). Cada equipo, un número de grupo distinto. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.
 - **ART2BIT:** una de sus situaciones oficiales, si el centro lo tiene montado.

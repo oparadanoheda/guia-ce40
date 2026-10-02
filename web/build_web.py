@@ -138,7 +138,7 @@ def inline(text):
 # ---------------------------------------------------------------- parsing
 
 
-META = ("Para proyectar", "Material listo", "Archivo de Scratch", "Qué aprenden", "Prepara antes", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
+META = ("Para proyectar", "Material listo", "Archivo de Scratch", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
         "Opción más sencilla", "Mates", "Producto", "Autoevaluación", "Pasos", "Opción ", "Cierre",
         "Para ti", "Aviso", "Sin caras", "Si hay", "Si coincide", "Si el grupo", "Si algún", "Solo sonidos",
         "Minuto")
@@ -190,9 +190,9 @@ def parse_session(chunk):
             s["obj"] = text
         elif L.startswith("Prepara antes"):
             s["prep"] = text
-        elif L.startswith("Minuto SEG"):
+        elif L.startswith("Minuto de uso responsable") or L.startswith("Minuto SEG"):
             s["seg"] = text
-            extra = L[len("Minuto SEG"):].strip()
+            extra = L[len("Minuto de uso responsable" if L.startswith("Minuto de uso") else "Minuto SEG"):].strip()
             if extra:
                 s["seg_extra"] = extra.strip("() ")
         elif L.startswith("Frase clave"):
@@ -382,7 +382,8 @@ def plain(text):
 def projection_data(c, s, quin):
     seg = s.get("seg", "")
     quotes = re.findall(r"[\"“]([^\"”]{8,})[\"”]", seg)
-    seg_txt = cap(" ".join(q.strip() for q in quotes) if quotes else plain(seg))
+    # la frase y su pregunta; si el texto es largo (minutos ampliados), solo las frases entre comillas
+    seg_txt = cap(" ".join(q.strip() for q in quotes) if quotes and len(plain(seg)) > 140 else plain(seg))
     tools = [(label, ref) for ref, label in re.findall(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", s.get("proj", ""))]
     words = [(w, d) for w, d, sn in VOCAB.get(int(c["id"][1]), []) if sn == f'S{s["num"]}']
     phases = ([("Tarjeta", 3), ("Misión", 7), ("Práctica", 25), ("Compartir", 5), ("Guardar", 5)] if quin else
@@ -447,7 +448,7 @@ def render_session(c, s, prev, nxt, idx):
         side.append(f'<div class="card"><h4>{ICON["note"]} Antes de la sesión</h4>{md(cap(s["prep"]))}</div>')
     if s.get("seg"):
         extra = f' <small>({E(s["seg_extra"])})</small>' if s.get("seg_extra") else ""
-        side.append(f'<div class="card"><h4>{ICON["shield"]} Minuto SEG{extra}</h4>{md(cap(s["seg"]))}</div>')
+        side.append(f'<div class="card"><h4>{ICON["shield"]} Minuto de uso responsable{extra}</h4>{md(cap(s["seg"]))}</div>')
     if s.get("math"):
         side.append(f'<div class="card"><h4>{ICON["ruler"]} Matemáticas</h4>{md(cap(s["math"]))}</div>')
     res = session_resources(s)
@@ -626,7 +627,7 @@ def more(title, body_html, did=None):
 
 def method_page(secs):
     s5 = secs[5][1]
-    phases = [("Arranque", "5", "Una pregunta para recordar, el Minuto SEG y los roles."),
+    phases = [("Arranque", "5", "Una pregunta para recordar, el minuto de uso responsable y los roles."),
               ("Misión", "7", "El reto, con una demostración y la frase clave."),
               ("Práctica", "23", "En parejas o grupos. A mitad se cambian los roles."),
               ("Compartir", "5", "Un grupo enseña su solución o su mejor error."),
@@ -642,7 +643,7 @@ def method_page(secs):
     jk = "".join(f"<li>{E(j)}</li>" for j in joker)
     details = "".join([
         more("Rúbrica completa y autoevaluación", md(secs[9][1]), "rubrica"),
-        more("Minuto SEG: banco de frases", md(subsec(s5, "Minuto SEG"))),
+        more("Minuto de uso responsable: banco de frases", md(subsec(s5, "Minuto de uso responsable"))),
         more("Atención a la diversidad: qué recurso usar en cada caso", md(secs[6][1])),
         more("Recursos de motivación (pasaporte, cazabichos, hilo conductor)", md(secs[7][1])),
         more("Material de cada curso y qué comprobar antes de empezar", md(secs[8][1])),
