@@ -2,7 +2,7 @@
 
 Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar plantillas propias ni fabricar nada. Hay dos tipos:
 
-- **Material imprimible (M01 a M27):** fichas y tarjetas en PDF, listas para fotocopiar. Están en la carpeta `Material imprimible` y en la sección Material imprimible de la web. Cada PDF indica en la cabecera para qué cursos y sesiones es y cómo usarlo, y trae las soluciones cuando hace falta.
+- **Material imprimible (M01 a M28):** fichas y tarjetas en PDF, listas para fotocopiar. Están en la carpeta `Material imprimible` y en la sección Material imprimible de la web. Cada PDF indica en la cabecera para qué cursos y sesiones es y cómo usarlo, y trae las soluciones cuando hace falta.
 - **Archivos de Scratch (SB3):** nueve proyectos ya hechos para 3º, 4º y 5º: los de «Arregla el juego» y el torneo de bichos (con errores a propósito) y soluciones de referencia (juego de atrapar, adivina el número, juego de las tablas y videojuego completo). Están en la sección Material imprimible de la web y en la carpeta `Material imprimible/Scratch`, y cada sesión que los usa los enlaza. Se abren en Scratch con *Archivo › Cargar desde tu ordenador*.
 - **Archivos de MakeCode (MKCD):** 24 proyectos para 5º y 6º, de micro:bit y del Nezha: soluciones de referencia de cada reto y tres programas con bicho (5º S6). Se abren en makecode.microbit.org con *Importar › Importar archivo* (o arrastrándolos al editor) y salen ya en bloques. Los del Nezha traen las extensiones que usa el kit (Nezha y PlanetX). Están en la sección Material imprimible de la web y en la carpeta `Material imprimible/MakeCode`.
 - **Proyectables (P):** herramientas interactivas para la pizarra digital, dentro de la web. Se usan tocando la pantalla y cada sesión enlaza el reto que necesita ya cargado.
@@ -40,6 +40,7 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | M25 | Hojas de registro de datos | 3º-6º | Encuesta con gráfico, frecuencias del dado (3º y 5º) y medidas con sensores. |
 | M26 | Pósteres de conceptos | 1º-6º | Diez pósteres para el aula (algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar) con ejemplo y cómo se ve en cada ciclo, e índice de cuándo colgarlos. |
 | M27 | Palabras del curso | 1º-6º | Una hoja por curso con el vocabulario nuevo, qué significa y en qué sesión aparece. |
+| M28 | Retos del trimestre | 1º-6º | Una hoja de 4 retos por curso y trimestre, al estilo Bebras (sin lectura en 1º y 2º), y las soluciones de cada curso con lo que evalúa cada reto. |
 
 ## Proyectables para la pizarra digital
 

@@ -977,6 +977,12 @@ def m27():
     return pages
 
 
+def m28():
+    """Retos del trimestre: una hoja por curso y trimestre y sus soluciones (retos_trimestre.py)."""
+    from retos_trimestre import paginas
+    return paginas()
+
+
 MATERIALS = [
     ("M01", "Tarjetas de flechas", "1º-3º", m01), ("M02", "Tarjetas de movimientos", "1º-2º", m02),
     ("M03", "Bloques de papel tipo ScratchJr", "1º-2º", m03), ("M04", "Tarjetas SI · ENTONCES · SI NO", "2º-3º", m04),
@@ -992,6 +998,7 @@ MATERIALS = [
     ("M23", "¿Puede pasar de verdad? · ¿Verdad, bulo o IA?", "1º-2º · 5º-6º", m23), ("M24", "Casos de IA y redes para debatir", "5º-6º", m24),
     ("M25", "Hojas de registro de datos", "3º-6º", m25),
     ("M26", "Pósteres de conceptos", "1º-6º", m26), ("M27", "Palabras del curso", "1º-6º", m27),
+    ("M28", "Retos del trimestre", "1º-6º", lambda: m28()),
 ]
 
 

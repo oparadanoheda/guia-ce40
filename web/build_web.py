@@ -525,7 +525,8 @@ def render_session(c, s, prev, nxt, idx):
             body += f'<p><strong>{E(s["product"][0])}:</strong> {inline(s["product"][1])}</p>'
         if s.get("self"):
             body += f'<p>{inline(s["self"])}</p>'
-        body += f'<p class="small"><a href="#{RUBRIC}">Ver la rúbrica y los niveles de logro</a></p>'
+        m28 = f' · <a href="materiales/{MAT_INDEX["M28"][2]}.pdf" target="_blank" rel="noopener">Retos del trimestre (M28)</a>' if "M28" in MAT_INDEX else ""
+        body += f'<p class="small"><a href="#{RUBRIC}">Ver la rúbrica y los niveles de logro</a>{m28}</p>'
         main.append(f'<aside class="eval">{ICON["flag"]}<div><h4>Evaluación del trimestre</h4>{body}</div></aside>')
     if s["notes"]:
         items = "".join(f'<li>{"<strong>" + E(l) + ":</strong> " if l else ""}{inline(cap(tx))}</li>' for l, tx in s["notes"])

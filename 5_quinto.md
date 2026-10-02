@@ -554,4 +554,5 @@ Ver el apartado 6 del documento general. En 5º, además:
 
 - **Pasaporte:** un sello por sesión.
 - **Rúbrica** (en S3, S7 y S12): (1) resuelve el reto y explica su programa; (2) depura; (3) colabora y respeta los roles; (4) usa el material con cuidado y de forma segura.
+- **Retos del trimestre** ([[M:M28|M28]]): una hoja individual de 4 retos al final de cada trimestre (S3, S7 y S12 o una sesión opcional). No es un examen: es una evidencia más para la rúbrica.
 - **Autoevaluación** con una frase al cierre de cada trimestre.

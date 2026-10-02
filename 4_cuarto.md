@@ -669,6 +669,7 @@ Ver el apartado 6 del documento general. En 4º, además:
 
 - **Pasaporte:** un sello por sesión (M15).
 - **Rúbrica** (en S8, S16 y S23) con el registro M19: usa variables y condiciones · diseña y planifica · depura y mejora · colabora y cuida el material.
+- **Retos del trimestre** ([[M:M28|M28]]): una hoja individual de 4 retos al final de cada trimestre (S8, S16 y S23 o una sesión de reserva). No es un examen: es una evidencia más para la rúbrica.
 - **Autoevaluación** con una frase al final de cada trimestre.
 
 ## Sesiones de reserva sugeridas

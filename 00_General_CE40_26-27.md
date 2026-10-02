@@ -229,7 +229,7 @@ La organización del aula y los apoyos de cada alumno o alumna los decide cada d
 
 ## 9. Evaluación (sencilla y compartida)
 
-Sin exámenes. Tres fuentes:
+Sin exámenes. Cuatro fuentes:
 
 1. **Pasaporte del programador:** un sello por sesión.
 2. **Observación con rúbrica de 4 criterios**, marcada **una vez por trimestre** en la sesión de producto final (indicada en cada curso). Registro y niveles en el material M19.
@@ -242,6 +242,7 @@ Sin exámenes. Tres fuentes:
 | **Cuida** el material y usa los dispositivos con seguridad | Necesita recordatorios | Cumple las normas | Recuerda las normas a los demás |
 
 3. **Autoevaluación** al final de cada trimestre: caritas en 1º y 2º, una frase ("Aprendí… / Me costó…") de 3º en adelante. Las caritas sirven en cualquier curso para el alumnado que lo necesite.
+4. **Retos del trimestre** (material M28): una hoja individual con 4 retos al estilo Bebras por curso y trimestre, de 15 a 20 minutos. No es un examen: es una evidencia individual del pensamiento computacional para la rúbrica. En 1º y 2º el docente lee los retos en voz alta y se responde rodeando. La última hoja de cada curso trae las soluciones y lo que evalúa cada reto (criterio 4.1 o 4.2).
 
 Para el alumnado con necesidades específicas, ver el apartado 6.
 

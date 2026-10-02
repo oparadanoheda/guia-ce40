@@ -643,6 +643,7 @@ Ver el apartado 6 del documento general. En 1º, además:
 
 - **Pasaporte:** un sello por sesión (M15).
 - **Rúbrica** (en S8, S15 y S23) con el registro M19: da y sigue instrucciones en orden · encuentra un error y lo arregla · respeta turnos y roles · cuida el robot y el material.
+- **Retos del trimestre** ([[M:M28|M28]]): una hoja individual de 4 retos al final de cada trimestre (S8, S15 y S23 o una sesión de reserva). No es un examen: es una evidencia más para la rúbrica.
 - **Autoevaluación** con caritas al final de cada trimestre.
 
 ## Sesiones de reserva sugeridas
