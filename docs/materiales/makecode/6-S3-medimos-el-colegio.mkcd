@@ -1,0 +1,8 @@
+{
+ "meta": {
+  "cloudId": "pxt/microbit",
+  "editor": "blocksprj",
+  "name": "6\u00ba S3 \u00b7 Medimos temperatura y luz"
+ },
+ "source": "{\"pxt.json\": \"{\\n    \\\"name\\\": \\\"6\u00ba S3 \u00b7 Medimos temperatura y luz\\\",\\n    \\\"description\\\": \\\"Gu\u00eda C\u00f3digo Escuela 4.0 \u00b7 6\u00ba S3\\\",\\n    \\\"dependencies\\\": {\\n        \\\"core\\\": \\\"*\\\",\\n        \\\"radio\\\": \\\"*\\\",\\n        \\\"microphone\\\": \\\"*\\\"\\n    },\\n    \\\"files\\\": [\\n        \\\"main.blocks\\\",\\n        \\\"main.ts\\\",\\n        \\\"README.md\\\"\\n    ],\\n    \\\"preferredEditor\\\": \\\"blocksprj\\\"\\n}\", \"main.blocks\": \"<xml xmlns=\\\"https://developers.google.com/blockly/xml\\\"><variables></variables><block type=\\\"device_button_event\\\" x=\\\"20\\\" y=\\\"20\\\"><field name=\\\"NAME\\\">Button.A</field><statement name=\\\"HANDLER\\\"><block type=\\\"device_show_number\\\"><value name=\\\"number\\\"><block type=\\\"device_temperature\\\"></block></value></block></statement></block><block type=\\\"device_button_event\\\" x=\\\"398\\\" y=\\\"20\\\"><field name=\\\"NAME\\\">Button.B</field><statement name=\\\"HANDLER\\\"><block type=\\\"device_show_number\\\"><value name=\\\"number\\\"><block type=\\\"device_get_light_level\\\"></block></value></block></statement></block></xml>\", \"main.ts\": \"input.onButtonPressed(Button.A, function () {\\n    basic.showNumber(input.temperature())\\n})\\ninput.onButtonPressed(Button.B, function () {\\n    basic.showNumber(input.lightLevel())\\n})\\n\", \"README.md\": \"# 6\u00ba S3 \u00b7 Medimos temperatura y luz\\n\\nGu\u00eda did\u00e1ctica C\u00f3digo Escuela 4.0 \u00b7 6\u00ba S3. Programa de referencia para el docente.\\n\"}"
+}

@@ -340,6 +340,8 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 
 ---
 
+26. **Archivos de MakeCode y proyección visual (2 de octubre de 2026):** 24 proyectos .mkcd para 5º y 6º (`makecode_gen.py`; los bloques los genera el propio MakeCode con `makecode_bloques.py` y se guardan en `makecode_bloques/`), con las extensiones oficiales del Nezha (pxt-nezha v1.3.9 y PlanetX v1.5.33). En el coche del kit los motores van en espejo (recto: M1 positivo y M2 negativo). En MakeCode España la variable se fija con «fijar … a …». En la proyección de 1º y 2º, pictogramas en cada paso (`pictos_mision.py`) y botón «Leer» con la voz del sistema.
+
 ## 11. Pendiente e ideas
 
 **Mejoras del estudio de referentes que aún no se han hecho** (propuestas, por orden de impacto):

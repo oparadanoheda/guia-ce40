@@ -18,6 +18,45 @@
     return e;
   }
   function html(tag, cls, h) { var e = el(tag, cls); e.innerHTML = h; return e; }
+  function textOf(h) { var t = document.createElement('div'); t.innerHTML = h || ''; return t.textContent; }
+
+  // 1º y 2º: pictogramas de ARASAAC (window.PICTO) o iconos de la guía (window.PZ_ICON) junto a cada paso
+  function pics(names) {
+    if (!names || !names.length) return null;
+    var w = el('span', 'pz-pics');
+    names.forEach(function (n) {
+      var src = (window.PZ_ICON && window.PZ_ICON[n]) || (window.PICTO && window.PICTO[n]);
+      if (!src) return;
+      var im = el('img'); im.src = src; im.alt = ''; w.appendChild(im);
+    });
+    return w.children.length ? w : null;
+  }
+  function stepItem(t, names) {
+    var li = el('li'), p = pics(names);
+    if (p) li.appendChild(p);
+    li.appendChild(html('span', 'pz-txt', t));
+    return li;
+  }
+
+  // Leer en voz alta (1º y 2º): la voz del sistema en español, sin internet
+  function voz() {
+    var vs = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+    return vs.filter(function (v) { return /^es[-_]ES/i.test(v.lang); })[0] || vs.filter(function (v) { return /^es/i.test(v.lang); })[0] || null;
+  }
+  function callar() { try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) { /* sin voz */ } }
+  function leer() {
+    if (!window.speechSynthesis || !slides[cur]) return;
+    var S = slides[cur], t;
+    if (S.list && S.steps) {
+      var li = S.list.children[S.step];
+      t = li ? (li.querySelector('.pz-txt') || li).textContent : '';
+    } else t = S.say || S.el.innerText;
+    callar();
+    var u = new SpeechSynthesisUtterance(String(t).replace(/\s+/g, ' ').trim());
+    u.lang = 'es-ES'; u.rate = 0.9;
+    var v = voz(); if (v) u.voice = v;
+    window.speechSynthesis.speak(u);
+  }
   function slide(phase, kind) { var s = el('div', 'pz-slide' + (kind ? ' pz-' + kind : '')); return { phase: phase, el: s, steps: 0, step: 0 }; }
   function head(S, label, title) {
     S.el.appendChild(el('span', 'pz-label', label));
@@ -37,6 +76,7 @@
       o.appendChild(el('p', null, d.obj));
       a.el.appendChild(o);
     }
+    a.say = d.title + '. ' + (d.obj ? 'Hoy aprendemos: ' + d.obj : '');
     out.push(a);
 
     if (d.prev) {
@@ -44,12 +84,14 @@
       head(r, Q ? 'Tarjeta «Dónde lo dejamos»' : 'Recordamos', Q ? 'Leemos la tarjeta y seguimos donde lo dejamos' : '¿Qué aprendimos la sesión pasada?');
       if (d.prev.key) r.el.appendChild(el('blockquote', 'pz-key pz-key-sm', d.prev.key));
       r.el.appendChild(el('p', 'pz-sub', 'Sesión ' + d.prev.num + ' · ' + d.prev.title));
+      r.say = (Q ? 'Leemos la tarjeta.' : 'Recordamos.') + ' ' + (d.prev.key || '');
       out.push(r);
     }
     if (d.seg) {
       var m = slide(0);
       head(m, 'Minuto de uso responsable');
       m.el.appendChild(el('p', 'pz-big', d.seg));
+      m.say = d.seg;
       out.push(m);
     }
     var ro = slide(0);
@@ -64,6 +106,7 @@
     });
     ro.el.appendChild(rg);
     ro.el.appendChild(el('p', 'pz-sub', 'En parejas: piloto y copiloto. En grupos de 3 o 4, también material y portavoz.'));
+    ro.say = 'Cada uno con su rol. ' + ROLES.map(function (x) { return x[0] + ': ' + x[1]; }).join(' ');
     out.push(ro);
 
     /* ---- Misión ---- */
@@ -98,12 +141,13 @@
     }
     var retos = d.missions.filter(function (x) { return x.label === 'Retos'; });
     var props = d.missions.filter(function (x) { return x.label !== 'Retos'; });
-    retos.forEach(function (R) { out.push(stepsSlide('Retos', R.name || 'Los retos de hoy', R.steps, true)); });
+    retos.forEach(function (R) { out.push(stepsSlide('Retos', R.name || 'Los retos de hoy', R.steps, true, R.pics)); });
     if (props.length) out.push(missionSlide(props));
     if (d.key) {
       var k = slide(1, 'keyslide');
       head(k, 'Frase clave');
       k.el.appendChild(el('blockquote', 'pz-key', d.key));
+      k.say = 'Frase clave: ' + d.key;
       out.push(k);
     }
 
@@ -125,14 +169,18 @@
     }
     if (d.fast) {
       var f = el('div', 'pz-extra');
+      var fp = pics(d.fastPics);
+      if (fp) f.appendChild(fp);
       f.appendChild(el('span', null, '¿Habéis terminado? Reto extra'));
       f.appendChild(html('p', null, d.fast));
       p.el.appendChild(f);
     }
+    p.say = 'Manos a la obra.' + (d.fast ? ' ¿Habéis terminado? Reto extra: ' + textOf(d.fast) : '');
     out.push(p);
     var cr = slide(2, 'keyslide');
     head(cr, 'A mitad de la práctica', 'Cambio de roles');
     cr.el.appendChild(el('p', 'pz-big', 'El piloto pasa a copiloto y el copiloto, a piloto.'));
+    cr.say = 'Cambio de roles. El piloto pasa a copiloto y el copiloto, a piloto.';
     out.push(cr);
 
     /* ---- Compartir ---- */
@@ -141,6 +189,7 @@
     var ul = el('ul', 'pz-qs');
     TRES.forEach(function (q) { ul.appendChild(el('li', null, q)); });
     c.el.appendChild(ul);
+    c.say = 'Un grupo enseña su solución o su error más interesante. ' + TRES.join(' ');
     out.push(c);
 
     /* ---- Cierre (o Guardar en 5º y 6º) ---- */
@@ -151,16 +200,17 @@
     (Q ? ['Guardamos el archivo con el nombre del equipo', 'Kit completo en su caja', 'Rellenamos la tarjeta «Dónde lo dejamos»']
        : (d.close || ['Sello en el pasaporte', 'Guardamos el trabajo', 'Recogemos el material'])).forEach(function (t) { ck.appendChild(el('li', null, t)); });
     z.el.appendChild(ck);
+    z.say = '¿Qué hemos aprendido hoy? ' + (d.key || '') + ' ' + Array.prototype.map.call(ck.children, function (li) { return li.textContent; }).join('. ');
     out.push(z);
     return out;
   }
 
   // Lista de pasos que se recorren uno a uno con las flechas (el paso actual, resaltado)
-  function stepsSlide(label, title, steps, cards) {
+  function stepsSlide(label, title, steps, cards, pz) {
     var S = slide(1, cards ? 'retoslide' : null);
     head(S, label, title);
     var ol = el('ol', cards ? 'pz-retos' : 'pz-steps');
-    steps.forEach(function (t) { ol.appendChild(html('li', null, t)); });
+    steps.forEach(function (t, i) { ol.appendChild(stepItem(t, pz && pz[i])); });
     S.el.appendChild(ol);
     S.steps = steps.length; S.list = ol;
     return S;
@@ -185,7 +235,7 @@
       var P = props[Math.min(propSel, props.length - 1)];
       h2.textContent = P.name || 'Nuestra misión de hoy';
       ol.innerHTML = '';
-      P.steps.forEach(function (t) { ol.appendChild(html('li', null, t)); });
+      P.steps.forEach(function (t, i) { ol.appendChild(stepItem(t, P.pics && P.pics[i])); });
       S.steps = P.steps.length; S.step = 0;
       if (tabs) Array.prototype.forEach.call(tabs.children, function (b, i) { b.classList.toggle('on', i === propSel); });
     }
@@ -196,6 +246,7 @@
 
   function render() {
     var S = slides[cur], stage = box.querySelector('.pz-stage');
+    callar();
     var rl = box.querySelector('.pz-reslist'); if (rl) { rl.hidden = true; box.querySelector('.pz-resbtn').setAttribute('aria-expanded', 'false'); }
     stage.innerHTML = '';
     stage.appendChild(S.el);
@@ -230,6 +281,7 @@
 
   function close() {
     if (!box) return;
+    callar();
     document.removeEventListener('keydown', onKey);
     box.remove();
     box = null;
@@ -246,6 +298,7 @@
     if (e.key === 'Escape') { close(); e.preventDefault(); }
     else if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { move(1); e.preventDefault(); }
     else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { move(-1); e.preventDefault(); }
+    else if ((e.key === 'l' || e.key === 'L') && data && data.visual) { leer(); e.preventDefault(); }
   }
 
   function open(section, start) {
@@ -258,7 +311,7 @@
     Array.prototype.forEach.call(tabs, function (t, i) { if (t.getAttribute('aria-selected') === 'true') propSel = i; });
     slides = build(data);
     cur = Math.max(0, Math.min(slides.length - 1, start || 0));
-    box = el('div', 'pz');
+    box = el('div', 'pz' + (data.visual ? ' pz-visual' : ''));
     box.style.setProperty('--pz', (getComputedStyle(section).getPropertyValue('--c') || '').trim() || '#2c5bbf');
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', 'Proyectar la sesión');
@@ -303,7 +356,15 @@
     var nav = el('div', 'pz-nav');
     var p = el('button', 'pz-prev', '‹ Anterior'); p.type = 'button'; p.addEventListener('click', function () { move(-1); });
     var n = el('button', 'pz-next', 'Siguiente ›'); n.type = 'button'; n.addEventListener('click', function () { move(1); });
-    nav.appendChild(p); nav.appendChild(el('span', 'pz-hint', 'Flechas del teclado o toca la pantalla · toca una fase para saltar a ella · Esc para salir')); nav.appendChild(n);
+    nav.appendChild(p);
+    if (data.visual && window.speechSynthesis) {
+      var sp = html('button', 'pz-say', '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9z" fill="currentColor"/><path d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Leer');
+      sp.type = 'button'; sp.setAttribute('aria-label', 'Leer en voz alta (tecla L)');
+      sp.addEventListener('click', leer);
+      nav.appendChild(sp);
+    }
+    nav.appendChild(el('span', 'pz-hint', 'Flechas del teclado o toca la pantalla · toca una fase para saltar a ella · ' + (data.visual ? 'L para leer · ' : '') + 'Esc para salir'));
+    nav.appendChild(n);
     box.appendChild(nav);
     document.body.appendChild(box);
     document.addEventListener('keydown', onKey);

@@ -13,10 +13,12 @@ from datos_etapa import TOOLS, TOOL_NOTES, STRANDS, PRODUCTS, LEVEL_NAMES  # noq
 from recursos_oficiales import LIBRARY, SA_LINKS, SESSION_RULES  # noqa: E402
 from catalogo import PROYECTABLES, EXTERNAS  # noqa: E402
 import materiales as MAT  # noqa: E402
+import makecode_gen as MK  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
 from videos import VIDEOS, BY_SESSION  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
 from mision_clase import MISION  # noqa: E402
+from pictos_mision import pictos_paso  # noqa: E402
 import json  # noqa: E402
 MAT_INDEX = {code: (title, courses, MAT.slug(code, title)) for code, title, courses, _ in MAT.MATERIALS}
 PJ_INDEX = {p[0]: p for p in PROYECTABLES}
@@ -101,6 +103,8 @@ def links(h):
     h = re.sub(r"\[\[M:(M\d\d)\|([^\]]+)\]\]", mt, h)
     h = re.sub(r"\[\[S:([\w.-]+\.sb3)\|([^\]]+)\]\]",
                lambda m: f'<a class="mlink" href="materiales/scratch/{m.group(1)}" download><b>SB3</b>{m.group(2)}</a>', h)
+    h = re.sub(r"\[\[S:([\w.-]+\.mkcd)\|([^\]]+)\]\]",
+               lambda m: f'<a class="mlink" href="materiales/makecode/{m.group(1)}" download><b>MKCD</b>{m.group(2)}</a>', h)
     return h
 
 
@@ -139,7 +143,7 @@ def inline(text):
 # ---------------------------------------------------------------- parsing
 
 
-META = ("Para proyectar", "Material listo", "Archivo de Scratch", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
+META = ("Para proyectar", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
         "Opción más sencilla", "Mates", "Producto", "Autoevaluación", "Pasos", "Opción ", "Cierre",
         "Para ti", "Aviso", "Sin caras", "Si hay", "Si coincide", "Si el grupo", "Si algún", "Solo sonidos",
         "Minuto")
@@ -210,6 +214,8 @@ def parse_session(chunk):
             s["mat"] = text
         elif L.startswith("Archivo de Scratch"):
             s["sb3"] = text
+        elif L.startswith("Archivo de MakeCode"):
+            s["mkcd"] = text
         elif L.startswith("Producto"):
             s["product"] = (L, text)
         elif L.startswith("Autoevaluación"):
@@ -423,6 +429,22 @@ CIERRE = {
 }
 
 
+def pz_icons():
+    """Iconos de la guía para la proyección de 1º y 2º (como data URI): tarjeta de flecha, REPITE y bloque de papel."""
+    from urllib.parse import quote
+    from svgkit import arrow_svg, SJ
+    tarjeta = arrow_svg("F", 100, "#2c5bbf").replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ', 1)
+    repite = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="2" y="2" width="96" height="96" rx="14" fill="%s"/>'
+              '<text x="50" y="40" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#fff" text-anchor="middle">REPITE</text>'
+              '<text x="50" y="80" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#fff" text-anchor="middle">×3</text></svg>') % SJ["ctrl"]
+    bloque = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100"><path d="M10 14 Q10 8 16 8 L98 8 Q104 8 104 14 L104 38 '
+              'Q114 38 114 50 Q114 62 104 62 L104 86 Q104 92 98 92 L16 92 Q10 92 10 86 L10 62 Q20 62 20 50 Q20 38 10 38 Z" '
+              'fill="%s" stroke="rgba(0,0,0,.25)" stroke-width="3"/><path d="M57 74V30M42 45L57 28L72 45" stroke="#fff" '
+              'stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>') % SJ["mov"]
+    uri = lambda svg: "data:image/svg+xml;charset=utf-8," + quote(svg)
+    return {"tarjeta": uri(tarjeta), "repite": uri(repite), "bloque": uri(bloque)}
+
+
 def close_list(c, s):
     """Cierre de la sesión en la pizarra: lo que se guarda y se recoge según lo que se ha usado ese día."""
     uso = next((k for k, nums in USO_SESION.get(c["id"], {}).items() if s["num"] in nums), "papel")
@@ -459,10 +481,16 @@ def projection_data(c, s, quin, prev=None):
         key = "D" if pr["label"] == "Desarrollo" else pr["label"][-1]
         if key in mc:
             pr["steps"] = [pz_text(x) for x in mc[key]]
+    fast = pz_text(mc["extra"] if "extra" in mc else cap(s.get("fast", "")))
+    visual = c["id"] in ("c1", "c2")
+    if visual:
+        for m in retos + props:
+            m["pics"] = [pictos_paso(plain(re.sub(r"<[^>]+>", "", x))) for x in m["steps"]]
     d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
          "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
          "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
-         "missions": retos + props, "fast": pz_text(mc["extra"] if "extra" in mc else cap(s.get("fast", ""))),
+         "missions": retos + props, "fast": fast,
+         "visual": visual, "fastPics": pictos_paso(plain(re.sub(r"<[^>]+>", "", fast))) if visual else [],
          "close": None if quin else close_list(c, s),
          "prev": {"title": prev["title"], "key": plain(prev.get("key", "")), "num": prev["num"]} if prev else None}
     return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
@@ -505,7 +533,7 @@ def render_session(c, s, prev, nxt, idx):
 
     side = []
     vids = BY_SESSION.get(s["id"], [])
-    if s.get("proj") or s.get("mat") or s.get("sb3") or vids:
+    if s.get("proj") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids:
         use = ""
         if vids:
             use += f'<h5>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h5><p>' + "".join(
@@ -516,6 +544,9 @@ def render_session(c, s, prev, nxt, idx):
             use += f'<h5>Material listo para imprimir</h5><p>{inline(s["mat"])}</p>'
         if s.get("sb3"):
             use += f'<h5>Archivos de Scratch</h5><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Cargar desde tu ordenador.</p>'
+        if s.get("mkcd"):
+            use += (f'<h5>Archivos de MakeCode</h5><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
+                    f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
         use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
         side.append(f'<div class="card use"><h4>{ICON["prep"]} Para usar en esta sesión</h4>{use}</div>')
     if s.get("prep"):
@@ -937,7 +968,7 @@ def build():
 <style>{CSS}</style>
 <div class="topbar"><button type="button" class="menu-btn" aria-controls="side" aria-expanded="false">{ICON["menu"]}<span>Índice</span></button><a href="#inicio" class="tb-title">Código Escuela 4.0 · Guía didáctica</a></div>
 <div class="shell">{side}<main id="main">{"".join(pages)}</main></div>
-<script>{PJS}</script>
+<script>{PJS};window.PZ_ICON={json.dumps(pz_icons())};</script>
 <script>{JS}</script>'''
     OUT.write_text(page, encoding="utf-8")
     (OUT.parent / "_preview.html").write_text('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' + page, encoding="utf-8")
@@ -971,6 +1002,9 @@ def material_page():
                      f'<span class="mat-code">{code}</span><span><b>{E(title)}</b><small>{E(courses)} · {n} {"página" if n == 1 else "páginas"} · PDF</small></span></a>')
     sb3 = [f'<a class="mat-tile" style="--c:var(--{c})" href="materiales/scratch/{f}" download>'
            f'<span class="mat-code">SB3</span><span><b>{E(t)}</b><small>{E(w)} · Scratch</small></span></a>' for f, t, w, c in SB3]
+    mk = [f'<a class="mat-tile" style="--c:var(--c{n[0]})" href="materiales/makecode/{n}.mkcd" download>'
+          f'<span class="mat-code">MKCD</span><span><b>{E(t.split(" · ", 1)[1])}</b><small>{E(w)} · MakeCode</small></span></a>'
+          for n, t, w, _, _ in MK.PROYECTOS]
     text = (ROOT / "08_Plantillas_y_material.md").read_text(encoding="utf-8").split("\n", 1)[1]
     intro = text.split("## Material imprimible")[0]
     return f'''<section class="page" id="material" hidden><div class="sheet">
@@ -980,6 +1014,9 @@ def material_page():
 <h2 style="margin-top:2.2rem">Archivos de Scratch</h2>
 <p class="small">Se abren en Scratch con <b>Archivo › Cargar desde tu ordenador</b>. Los de «bichos» tienen errores a propósito.</p>
 <div class="mat-gallery">{"".join(sb3)}</div>
+<h2 style="margin-top:2.2rem">Archivos de MakeCode (micro:bit y Nezha)</h2>
+<p class="small">Se abren en <a href="https://makecode.microbit.org/" target="_blank" rel="noopener">makecode.microbit.org</a> con <b>Importar › Importar archivo</b> o arrastrándolos al editor, y salen ya en bloques. Desde ahí, <b>Descargar</b> para pasarlos a la placa. Los del Nezha traen las extensiones del kit. Los de «bicho» tienen un error a propósito.</p>
+<div class="mat-gallery">{"".join(mk)}</div>
 {more("Consejos para organizar el material", md(intro, "m-"))}
 </div></section>'''
 

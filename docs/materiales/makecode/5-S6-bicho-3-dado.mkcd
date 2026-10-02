@@ -1,0 +1,8 @@
+{
+ "meta": {
+  "cloudId": "pxt/microbit",
+  "editor": "blocksprj",
+  "name": "5\u00ba S6 \u00b7 Bicho 3: el dado"
+ },
+ "source": "{\"pxt.json\": \"{\\n    \\\"name\\\": \\\"5\u00ba S6 \u00b7 Bicho 3: el dado\\\",\\n    \\\"description\\\": \\\"Gu\u00eda C\u00f3digo Escuela 4.0 \u00b7 5\u00ba S6\\\",\\n    \\\"dependencies\\\": {\\n        \\\"core\\\": \\\"*\\\",\\n        \\\"radio\\\": \\\"*\\\",\\n        \\\"microphone\\\": \\\"*\\\"\\n    },\\n    \\\"files\\\": [\\n        \\\"main.blocks\\\",\\n        \\\"main.ts\\\",\\n        \\\"README.md\\\"\\n    ],\\n    \\\"preferredEditor\\\": \\\"blocksprj\\\"\\n}\", \"main.blocks\": \"<xml xmlns=\\\"https://developers.google.com/blockly/xml\\\"><variables></variables><block type=\\\"device_gesture_event\\\" x=\\\"20\\\" y=\\\"20\\\"><field name=\\\"NAME\\\">Gesture.Shake</field><statement name=\\\"HANDLER\\\"><block type=\\\"device_show_number\\\"><value name=\\\"number\\\"><block type=\\\"device_random\\\"><value name=\\\"min\\\"><shadow type=\\\"math_number\\\"><field name=\\\"NUM\\\">0</field></shadow></value><value name=\\\"limit\\\"><shadow type=\\\"math_number\\\"><field name=\\\"NUM\\\">6</field></shadow></value></block></value></block></statement></block></xml>\", \"main.ts\": \"input.onGesture(Gesture.Shake, function () {\\n    basic.showNumber(randint(0, 6))\\n})\\n\", \"README.md\": \"# 5\u00ba S6 \u00b7 Bicho 3: el dado\\n\\nGu\u00eda did\u00e1ctica C\u00f3digo Escuela 4.0 \u00b7 5\u00ba S6. Programa de referencia para el docente.\\n\"}"
+}

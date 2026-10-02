@@ -39,6 +39,11 @@ P = {
     "guante": 8353, "llave": 8153, "moneda": 4783, "mano": 2928, "vaso_agua": 4768,
     # roles
     "rol_piloto": 2712, "rol_copiloto": 2474, "rol_material": 32663, "rol_portavoz": 32290,
+    # proyección de 1º y 2º: un pictograma junto a cada paso de la misión (pictos_mision.py)
+    "camino": 38917, "pizarra": 30512, "grupo": 38444, "pareja": 7062, "contar": 2714, "escribir": 2380, "dibujar": 8088,
+    "ordenar": 2872, "bicho": 7134, "pregunta": 7217, "senalar": 6612, "bailar": 35747, "tablet": 29151, "votar": 6631,
+    "juego_mesa": 9810, "explicar": 8579, "arreglar": 6910, "borrar": 2286, "mapa_tesoro": 8625, "caja": 7054,
+    "escalera": 2379, "cuadrado": 4616, "abeja": 24823, "campana": 5938, "pensar": 38796, "idea": 6531, "arbol_preguntas": 38143,
 }
 
 

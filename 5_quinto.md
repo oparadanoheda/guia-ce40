@@ -16,7 +16,7 @@ En quince días se olvida casi todo. Tres reglas:
 
 **Material del curso:** M21 chuleta de MakeCode (una por pareja), M18 tarjeta "Dónde lo dejamos", M16 fichas de proyecto, M25 registro de datos, M23 y M24 para IA y redes, M19 rúbrica y M15 pasaporte.
 
-**Cómo dar micro:bit sin saber micro:bit:** todo se hace primero en el **simulador** de MakeCode (la placa dibujada en la pantalla, a la izquierda), que funciona sin conectar nada. Solo al final se pasa a la placa de verdad. Lee la guía en `07_Guias_rapidas_herramientas.md` (15 minutos) y haz tú los ejemplos de la S2 y la S3 una vez antes de clase.
+**Cómo dar micro:bit sin saber micro:bit:** todo se hace primero en el **simulador** de MakeCode (la placa dibujada en la pantalla, a la izquierda), que funciona sin conectar nada. Solo al final se pasa a la placa de verdad. Lee la guía en `07_Guias_rapidas_herramientas.md` (15 minutos) y haz tú los ejemplos de la S2 y la S3 una vez antes de clase. Las sesiones de programar traen su **archivo de MakeCode** con la solución: se abre con *Importar › Importar archivo* y sale ya en bloques.
 
 ## Qué tienen que conseguir este curso
 
@@ -126,6 +126,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
 - **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
+- **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
@@ -158,6 +159,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Prepara antes:** el ejemplo hecho en tu ordenador.
 - **Para proyectar:** [[P:votaciones.dado|Dado: frecuencias]] · [[P:quiensale|¿Quién sale?]]
 - **Material listo:** [[M:M25|Frecuencias del dado]] (hoja 2) · [[M:M19|Rúbrica]]
+- **Archivo de MakeCode:** [[S:5-S3-dado.mkcd|El dado · solución]] · [[S:5-S3-contador-de-pasos.mkcd|Contador de pasos · solución]]
 - **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · El dado (recomendada)**
@@ -168,7 +170,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 5. **Mini investigación:** tirad el dado 30 veces y apuntadlo en M25. Después, en el proyectable del dado, tirad 100 veces: ¿sale todo más o menos igual?
 
 **Opción B · El contador de pasos**
-Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar número pasos**. **al presionarse el botón A** → **establecer pasos a 0**. Se pega la placa (con su portapilas) al tobillo y se camina 20 pasos: ¿cuenta bien?
+Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar número pasos**. **al presionarse el botón A** → **fijar pasos a 0**. Se pega la placa (con su portapilas) al tobillo y se camina 20 pasos: ¿cuenta bien?
 
 **Pistas y soluciones:**
 1. **El dado con animación**
@@ -178,7 +180,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Solución:* cada número tiene la misma probabilidad (1 de 6). En 30 tiradas cada uno sale unas 5 veces, pero con tan pocas tiradas es normal que haya diferencias grandes; con 100 tiradas se igualan más.
 3. **Un dado que no repite el número anterior** (si va rápido)
     - *Pista:* hace falta recordar el número anterior en una variable y volver a tirar mientras salga el mismo.
-    - *Solución:* `si agitar` → `establecer nuevo a (escoger al azar de 1 a 6)` → `mientras nuevo = anterior` → `establecer nuevo a (escoger al azar de 1 a 6)`; después, `establecer anterior a nuevo` → `mostrar número nuevo`.
+    - *Solución:* `si agitar` → `fijar nuevo a (escoger al azar de 1 a 6)` → `mientras nuevo = anterior` → `fijar nuevo a (escoger al azar de 1 a 6)`; después, `fijar anterior a nuevo` → `mostrar número nuevo`.
 4. **El contador de pasos** (opción B)
     - *Para pensar:* ¿cuenta bien? ¿Por qué a veces cuenta de más o de menos?
     - *Solución:* `si agitar` detecta sacudidas, no pasos exactos: según cómo se mueva el pie, cuenta de más o de menos. Es un buen ejemplo de que un sensor mide, pero no siempre lo que queremos.
@@ -201,6 +203,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** ejemplo en el display. Hoja de registro de datos.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]] y [[P:umbral.temp|temperatura]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M21|Chuleta de MakeCode]]
+- **Archivo de MakeCode:** [[S:5-S4-lamparita.mkcd|Lamparita de noche · solución]]
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Opción A · La lamparita de noche**
@@ -232,12 +235,13 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** estuches o cajitas, portapilas. La micro:bit V2 tiene altavoz; si no, se usa solo la pantalla.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
+- **Archivo de MakeCode:** [[S:5-S5-alarma-del-estuche.mkcd|Alarma del estuche · solución]]
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
 1. Pregunta: "¿Cómo sabría la placa que alguien ha cogido tu estuche?". Porque se mueve.
 2. **si agitar** → **mostrar ícono ✗** → **reproduce secuencia tono Do medio durante 1 pulso** (o una melodía de la categoría Música).
-3. Activar y desactivar: variable *activada*. **al presionarse el botón A** → **establecer activada a 1** → **mostrar ícono ✓**. **al presionarse el botón B** → **establecer activada a 0**. Y en la alarma: **si (activada = 1) entonces** sonar.
+3. Activar y desactivar: variable *activada*. **al presionarse el botón A** → **fijar activada a 1** → **mostrar ícono ✓**. **al presionarse el botón B** → **fijar activada a 0**. Y en la alarma: **si (activada = 1) entonces** sonar.
 4. Meten la placa con su portapilas en el estuche y lo prueban.
 
 **Opción B (más sencilla):** solo el paso 2, sin activar y desactivar.
@@ -245,10 +249,10 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 **Pistas y soluciones:**
 1. **Alarma que se activa y se desactiva**
     - *Para pensar:* si la alarma suena siempre que se mueve, ¿cómo la llevamos sin que suene?
-    - *Solución:* `al presionarse el botón A` → `establecer activada a 1` → `mostrar ícono` (sí). `al presionarse el botón B` → `establecer activada a 0` → `borrar la pantalla`. `si agitar` → `si activada = 1 entonces` → `mostrar ícono` (no) → `reproduce secuencia tono Do medio durante 1 pulso`.
+    - *Solución:* `al presionarse el botón A` → `fijar activada a 1` → `mostrar ícono` (sí). `al presionarse el botón B` → `fijar activada a 0` → `borrar la pantalla`. `si agitar` → `si activada = 1 entonces` → `mostrar ícono` (no) → `reproduce secuencia tono Do medio durante 1 pulso`.
 2. **Desactivar con un código A, A, B** (si va rápido)
     - *Pista:* una variable `paso` cuenta cuántas partes del código se han acertado.
-    - *Solución:* `al presionarse el botón A` → `si paso < 2 entonces` → `cambiar paso por 1`. `al presionarse el botón B` → `si paso = 2 entonces` → `establecer activada a 0` → `mostrar ícono` (sí); y siempre, `establecer paso a 0`. En esta versión, el botón A ya no activa la alarma: se activa al iniciar con `establecer activada a 1`.
+    - *Solución:* `al presionarse el botón A` → `si paso < 2 entonces` → `cambiar paso por 1`. `al presionarse el botón B` → `si paso = 2 entonces` → `fijar activada a 0` → `mostrar ícono` (sí); y siempre, `fijar paso a 0`. En esta versión, el botón A ya no activa la alarma: se activa al iniciar con `fijar activada a 1`.
 
 - **Frase clave:** "Un invento útil escucha al mundo y responde."
 - **Si va rápido:** que la alarma se desactive con un código (A, A, B).
@@ -258,14 +262,15 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 ### S6 · Cazabichos y plan de mi invento `PC` `SEG`
 
 - **Qué aprenden:** depurar programas con sensores y planificar un invento propio.
-- **Prepara antes:** nada. Los tres programas con bicho se construyen en directo en la pizarra.
+- **Prepara antes:** nada. Los tres programas con bicho están en los archivos de MakeCode (o se construyen en directo en la pizarra).
 - **Material listo:** [[M:M16|Plan de mi invento]] · [[M:M21|Chuleta de MakeCode]]
+- **Archivo de MakeCode:** [[S:5-S6-bicho-1-lamparita.mkcd|Bicho 1: la lamparita]] · [[S:5-S6-bicho-2-contador.mkcd|Bicho 2: el contador]] · [[S:5-S6-bicho-3-dado.mkcd|Bicho 3: el dado]]
 - **Minuto de uso responsable:** si buscan ideas en internet, solo en las webs que indica el docente (makecode.microbit.org, microbit.org/es-es/projects).
 
 **Pasos:**
-1. **Cazabichos (15 minutos):** construye en la pizarra, uno a uno, estos programas con un bicho cada uno. Las parejas los copian en su simulador y los arreglan:
+1. **Cazabichos (15 minutos):** abre en la pizarra, uno a uno, estos programas con un bicho cada uno (o constrúyelos en directo). Las parejas los copian en su simulador y los arreglan:
    - La lamparita de la S4 con **nivel de luz > 50** en vez de **< 50** (se enciende de día).
-   - El contador de la S2 sin **establecer contador a 0** al iniciar.
+   - El contador de la S2 sin **mostrar número contador** después de sumar (el número cambia, pero la pantalla no).
    - El dado de la S3 con **escoger al azar de 0 a 6** (a veces sale 0).
    Puesta en común: ¿cómo los encontrasteis? (probar, leer el programa en voz alta, cambiar una cosa cada vez).
 2. **Plan del invento (20 minutos):** cada pareja elige un invento con **un sensor y una respuesta**:
@@ -278,7 +283,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 **Pistas y soluciones:**
 1. **Cazabichos**
-    - *Solución:* lamparita: `nivel de luz > 50` tiene que ser `nivel de luz < 50`. Contador: falta `establecer contador a 0` en `al iniciar`. Dado: `escoger al azar de 0 a 6` tiene que ser de 1 a 6.
+    - *Solución:* lamparita: `nivel de luz > 50` tiene que ser `nivel de luz < 50`. Contador: después de `cambiar contador por 1` falta `mostrar número contador`; el número sube, pero la pantalla no se entera. Dado: `escoger al azar de 0 a 6` tiene que ser de 1 a 6.
     - *Método:* probar, leer el programa en voz alta y cambiar una sola cosa cada vez.
 
 - **Frase clave:** "Un invento empieza con un problema bien elegido."
@@ -290,6 +295,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** construir y probar un invento propio.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
+- **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Detector de ruido · solución (V2)]]
 - **Minuto de uso responsable:** "Pantalla a la altura de los ojos y a un brazo de distancia." ¿Está bien colocada tu pantalla ahora?
 - **Pasos:**
   1. Leer la tarjeta y el plan (3 minutos).
@@ -324,14 +330,15 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar "nezha"). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
+- **Archivo de MakeCode:** [[S:5-S8-nezha-avanza.mkcd|El Nezha avanza 1 segundo · solución]]
 - **Minuto de uso responsable:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.
 
 **Pasos:**
 1. Enseña cómo se encaja la micro:bit en la placa de expansión y a qué conectores van los motores (M1, M2…).
-2. Programa: **al presionarse el botón A** → motor M1 a velocidad 50 y motor M2 a velocidad 50 → **pausa (ms) 1000** → parar motores.
+2. Programa: **al presionarse el botón A** → motor M1 a velocidad 50 y motor M2 a velocidad −50 → **pausa (ms) 1000** → parar motores. En el coche del kit los dos motores van en espejo: para ir recto, uno en positivo y el otro en negativo. Los bloques de la extensión salen en inglés (**Set motor M1 speed to 50 %**, **Stop all motors**).
 3. Prueban: ¿cuánto avanza en 1 segundo? Lo miden con la cinta métrica.
 4. Reto: llegar exactamente a una línea a 1 metro. Tienen que ajustar el tiempo.
-5. Reto extra: un giro (un motor hacia delante y otro hacia atrás, o uno parado).
+5. Reto extra: un giro (los dos motores con el mismo signo, o uno parado).
 
 **Pistas y soluciones:**
 1. **¿Cuánto avanza en 1 segundo?**
@@ -340,14 +347,14 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Pista:* si en 1 segundo avanza 25 cm, ¿cuántos segundos hacen falta para 100 cm?
     - *Solución:* tiempo = 100 ÷ (cm en 1 segundo). Con 25 cm/s: 4 segundos → `pausa (ms) 4000`. Después se prueba y se ajusta: al arrancar y frenar no avanza exactamente igual.
 3. **Un giro**
-    - *Solución:* un motor hacia delante y el otro hacia atrás (velocidad 50 y −50) gira sobre sí mismo; con un motor parado gira más abierto. El ángulo se ajusta cambiando el tiempo de la pausa.
+    - *Solución:* con los dos motores a 50 (el mismo signo, por estar en espejo), una rueda va hacia delante y la otra hacia atrás, y el coche gira sobre sí mismo; con un motor parado gira más abierto. El ángulo se ajusta cambiando el tiempo de la pausa.
 4. **Llegar a 1,5 metros** (si va rápido)
     - *Solución:* con 25 cm/s: 150 ÷ 25 = 6 segundos → `pausa (ms) 6000`.
 
 - **Frase clave:** "Velocidad por tiempo: así sé cuánto avanza."
 - **Si va rápido:** llegar a 1,5 m calculando el tiempo a partir de la medida de 1 m.
 - **Si cuesta:** solo medir cuánto avanza en 1 segundo y en 2 segundos.
-- **Si algún motor gira al revés:** poner su velocidad en negativo.
+- **Si el coche gira en vez de ir recto:** cambiar el signo de la velocidad de M2 (depende de cómo se haya montado).
 - **Mates:** medida, tiempo, velocidad, proporcionalidad (el doble de tiempo, el doble de distancia).
 
 ### S9 · IA, sesgos y bulos `IA` `SEG`
@@ -392,6 +399,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** trabajar en equipo para resolver un problema real con lo aprendido.
 - **Prepara antes:** hoja de proyecto en equipo (M16), el material del curso, cartón y cinta.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · [[M:M18|Dónde lo dejamos]]
+- **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Biblioteca silenciosa · solución (V2)]]
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Retos propuestos (muy acotados: un sensor y una acción):**
@@ -464,6 +472,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** hacer que el robot reaccione a lo que mide un sensor: parar ante un obstáculo o seguir una línea.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
+- **Archivo de MakeCode:** [[S:5-S14-nezha-para-ante-obstaculo.mkcd|El Nezha para ante un obstáculo · solución]]
 - **Minuto de uso responsable:** "El robot se prueba en el suelo y se apaga antes de tocar la placa." ¿Por qué en el suelo y no en la mesa?
 
 **Pasos:**
@@ -474,9 +483,9 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 **Pistas y soluciones:**
 1. **Parar ante un obstáculo**
     - *Para pensar:* ¿cada cuánto hay que mirar la distancia?
-    - *Solución:* `para siempre` → `si` (distancia del sensor de ultrasonidos) `< 10` `entonces` → parar los motores; `si no` → motores hacia delante. La distancia se lee con el bloque del sensor en la extensión de Nezha.
+    - *Solución:* `para siempre` → `si` (distancia del sensor de ultrasonidos) `< 10` `entonces` → parar los motores; `si no` → motores hacia delante. La distancia se lee con el bloque **Ultrasonic sensor J1 distance cm** de la extensión PlanetX (categoría Sensor), con el sensor en el puerto J1.
 2. **Esquivar en lugar de pararse** (si va rápido)
-    - *Solución:* dentro del `si`: un motor hacia delante y otro hacia atrás durante una pausa corta (por ejemplo, `pausa (ms) 500`) para girar, y luego seguir. El tiempo de giro se ajusta probando.
+    - *Solución:* dentro del `si`: los dos motores con el mismo signo (una rueda hacia delante y otra hacia atrás) durante una pausa corta (por ejemplo, `pausa (ms) 500`) para girar, y luego seguir. El tiempo de giro se ajusta probando.
 3. **Sin sensor**
     - *Solución:* `al presionarse el botón A` → motores en marcha; `al presionarse el botón B` → parar. Con una placa V2, también `al detectar el sonido alto` → parar.
 
@@ -505,6 +514,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** comunicar dos placas por radio, hacer una situación de ART2BIT o enseñar a 3º lo aprendido.
 - **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
+- **Archivo de MakeCode:** [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
 - **Minuto de uso responsable:** "Las redes sociales tienen edad mínima por algo." ¿Por qué creéis que existe una edad mínima?
 
 **Opción A · Radio entre dos placas**

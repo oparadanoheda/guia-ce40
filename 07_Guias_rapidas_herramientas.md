@@ -155,6 +155,7 @@
 - **Nombres de los bloques:** la guía los escribe como salen en MakeCode en español de España. Dos despistan: el de agitar se lee **si agitar** (es un evento, como **al presionarse el botón A**; en su desplegable están también inclinar, logotipo hacia arriba…) y el número al azar es **escoger al azar de 1 a 6**.
 - **Simulador** a la izquierda: se pulsan los botones con el ratón; con "SHAKE" se agita; el círculo amarillo cambia la luz y el termómetro la temperatura.
 - **Guardar:** el proyecto se guarda solo en el navegador de ese ordenador (en "Mis proyectos"). Para llevarlo a otro, se descarga el `.hex` o se comparte con el botón **Compartir** (crea un enlace).
+- **Archivos de la guía (.mkcd):** cada sesión de programar trae la solución. Se abre con **Importar › Importar archivo** (o arrastrando el archivo al editor) y sale ya en bloques; desde ahí, **Descargar** para pasarlo a la placa.
 
 **Si algo falla:**
 - La placa no aparece: cambia el cable (algunos solo cargan) o el puerto USB.
@@ -181,12 +182,13 @@
 **Lo básico:**
 - La micro:bit se encaja en la placa de expansión con las luces hacia fuera.
 - Los motores se conectan a los puertos **M1, M2, M3, M4**; los sensores, a los puertos de sensores (J1, J2…).
-- Bloque de motor: puerto + velocidad (de −100 a 100). Velocidad negativa = sentido contrario.
+- Bloque de motor: puerto + velocidad (de −100 a 100). Velocidad negativa = sentido contrario. Los bloques de las extensiones salen en inglés: **Set motor M1 speed to 50 %**, **Stop motor M1**, **Stop all motors**; y el sensor de distancia (PlanetX, categoría Sensor), **Ultrasonic sensor J1 distance cm**.
+- **En el coche del kit, los dos motores van en espejo:** para ir recto, M1 en positivo y M2 en negativo (por ejemplo, 50 y −50); con el mismo signo (50 y 50), el coche gira sobre sí mismo. Las situaciones oficiales lo programan así.
 - Para medir distancias: velocidad fija y cambiar el tiempo (**pausa**).
 
 **Si algo falla:**
 - No se mueve: batería de la placa de expansión, interruptor, o el motor está en otro puerto del que dice el programa.
-- Gira en círculo en vez de ir recto: un motor va al revés (cambia el signo de su velocidad) o a distinta velocidad.
+- Gira en círculo en vez de ir recto: los dos motores tienen el mismo signo (en el coche, uno va en positivo y el otro en negativo) o van a distinta velocidad.
 - El sensor no responde: comprueba el puerto y que esté añadida la extensión PlanetX.
 
 ---

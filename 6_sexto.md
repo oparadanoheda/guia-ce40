@@ -16,7 +16,7 @@ Igual que en 5º:
 
 **Material del curso:** M21 chuleta de MakeCode (una por pareja), M18 tarjeta "Dónde lo dejamos", M16 fichas de proyecto, M25 registro de datos, M23 y M24 para IA y redes, M19 rúbrica y M15 pasaporte.
 
-**Si no dominas micro:bit:** lee la guía en `07_Guias_rapidas_herramientas.md` y haz tú el ejemplo de la ficha antes de clase (unos 10 minutos). Todo se prueba primero en el simulador. En 6º muchos alumnos saben más que tú en algún momento: aprovéchalo nombrando "expertos" que ayudan a otros equipos.
+**Si no dominas micro:bit:** lee la guía en `07_Guias_rapidas_herramientas.md` y haz tú el ejemplo de la ficha antes de clase (unos 10 minutos). Las sesiones de programar traen su **archivo de MakeCode** con la solución: se abre con *Importar › Importar archivo* y sale ya en bloques. Todo se prueba primero en el simulador. En 6º muchos alumnos saben más que tú en algún momento: aprovéchalo nombrando "expertos" que ayudan a otros equipos.
 
 ## Qué tienen que conseguir este curso
 
@@ -89,6 +89,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Prepara antes:** makecode.microbit.org en los portátiles, placas con cable. Los retos escritos en la pizarra.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M18|Tarjeta «Dónde lo dejamos»]]
+- **Archivo de MakeCode:** [[S:6-S1-contador.mkcd|Reto 2: contador]] · [[S:6-S1-juego-de-reflejos.mkcd|Reto 4: juego de reflejos]]
 - **Minuto de uso responsable (5 minutos):** normas de baterías, cables y recogida. Tarjeta "Dónde lo dejamos".
 
 **Retos (cada pareja llega hasta donde pueda, en el simulador):**
@@ -106,10 +107,10 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
     - *Para pensar:* entre una pulsación y otra, ¿dónde se guarda el número para que no se olvide?
     - *Pista:* crea una **variable** `contador` en Variables. Hacen falta tres eventos: botón A, botón B y botón A+B.
     - *Solución:*
-        - `al iniciar` → `establecer contador a 0` → `mostrar número contador`
+        - `al iniciar` → `fijar contador a 0` → `mostrar número contador`
         - `al presionarse el botón A` → `cambiar contador por 1` → `mostrar número contador`
         - `al presionarse el botón B` → `cambiar contador por -1` → `mostrar número contador`
-        - `al presionarse el botón A+B` → `establecer contador a 0` → `mostrar número contador`
+        - `al presionarse el botón A+B` → `fijar contador a 0` → `mostrar número contador`
     - *Error frecuente:* cambiar la variable y no volver a mostrarla. El número cambia, pero la pantalla sigue igual.
 3. **Nivel de luz**
     - *Para pensar:* ¿cuántas veces hay que mirar la luz: una vez o todo el rato?
@@ -120,8 +121,8 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
     - *Pista 1:* la espera al azar es `pausa (ms)` con `escoger al azar de 1000 a 5000` (Matemática) dentro de su hueco. 1000 ms = 1 segundo.
     - *Pista 2:* una variable `listo` que vale `falso` mientras se espera y `verdadero` cuando sale el icono (los dos valores están en Lógica).
     - *Solución:*
-        - `al iniciar` → `establecer listo a falso` → `pausa (ms)` con `escoger al azar de 1000 a 5000` → `mostrar ícono` → `establecer listo a verdadero`
-        - `al presionarse el botón A` → `si listo entonces` → `establecer listo a falso` → `mostrar cadena "A"`
+        - `al iniciar` → `fijar listo a falso` → `pausa (ms)` con `escoger al azar de 1000 a 5000` → `mostrar ícono` → `fijar listo a verdadero`
+        - `al presionarse el botón A` → `si listo entonces` → `fijar listo a falso` → `mostrar cadena "A"`
         - `al presionarse el botón B` → igual, con `mostrar cadena "B"`
         - El primero que pulsa pone `listo` a falso, así que el segundo ya no cuenta, y pulsar antes de tiempo no hace nada. Para otra ronda se reinicia la placa (botón de la parte de atrás, o el de reiniciar del simulador).
     - *Si va rápido (marcador):* variables `victoriasA` y `victoriasB`, que suben dentro de su `si`. Como reiniciar la placa las pone a 0, la ronda nueva se empieza con `si agitar`, que repite los pasos del principio.
@@ -138,6 +139,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Prepara antes:** tu ejemplo hecho.
 - **Para proyectar:** [[P:variables|Variables]] y [[P:leds.sonrisa|Matriz de LED]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
+- **Archivo de MakeCode:** [[S:6-S2-mascota-virtual.mkcd|La mascota virtual · solución]]
 - **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · Mascota virtual (recomendada)**
@@ -157,12 +159,12 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 1. **La mascota virtual**
     - *Para pensar:* el `si hambre > 8` tiene que comprobarse una y otra vez. ¿Dónde lo ponemos?
     - *Pista:* dentro del mismo `para siempre` que le da hambre con el tiempo.
-    - *Solución:* `al iniciar` → `establecer hambre a 5`. `para siempre` → `pausa (ms) 10000` → `cambiar hambre por 1` → `si hambre > 8 entonces` → `mostrar ícono` (triste). Los eventos A, B, agitar y logo, como en los pasos.
+    - *Solución:* `al iniciar` → `fijar hambre a 5`. `para siempre` → `pausa (ms) 10000` → `cambiar hambre por 1` → `si hambre > 8 entonces` → `mostrar ícono` (triste). Los eventos A, B, agitar y logo, como en los pasos.
     - *Error frecuente:* que el hambre baje de 0 si se le da de comer muchas veces. Arreglo: `al presionarse el botón A` → `si hambre > 0 entonces` → `cambiar hambre por -1`.
 2. **Mando multifunción** (opción B)
     - *Pista:* inclinar no tiene un bloque propio: está en el desplegable de `si agitar`, donde se elige «inclinación hacia la izquierda» o «inclinación hacia la derecha».
 3. **Dos estados: hambre y sueño** (si va rápido)
-    - *Solución:* una segunda variable `sueño` que sube en el mismo `para siempre` y baja con otro evento (por ejemplo, `al presionarse el botón A+B` → `establecer sueño a 0` → `mostrar ícono` dormido). Un `si sueño > 8 entonces` le pone cara de cansancio.
+    - *Solución:* una segunda variable `sueño` que sube en el mismo `para siempre` y baja con otro evento (por ejemplo, `al presionarse el botón A+B` → `fijar sueño a 0` → `mostrar ícono` dormido). Un `si sueño > 8 entonces` le pone cara de cansancio.
 
 - **Frase clave:** "Muchos eventos, un solo programa."
 - **Si va rápido:** que la mascota tenga dos estados (hambre y sueño).
@@ -175,6 +177,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Prepara antes:** portapilas con pilas para las placas. Un programa sencillo de medida. Hoja de registro. Para la opción A, una hoja de cálculo (LibreOffice Calc o la hoja de cálculo de EducaMadrid) abierta en el display.
 - **Para proyectar:** [[P:umbral.temp|Sensor y umbral]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M19|Rúbrica]]
+- **Archivo de MakeCode:** [[S:6-S3-medimos-el-colegio.mkcd|Medidor de temperatura y luz]]
 - **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
@@ -214,12 +217,13 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Prepara antes:** robots, cinta métrica, una línea de salida y una meta en el suelo (vale una regla o una tira de cinta).
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
+- **Archivo de MakeCode:** [[S:6-S4-nezha-cuadrado.mkcd|El cuadrado · solución]]
 - **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
 
 **Pasos:**
-1. Programa básico: **al presionarse el botón A** → motores M1 y M2 a velocidad 50 → **pausa (ms) 1000** → parar.
+1. Programa básico: **al presionarse el botón A** → M1 a velocidad 50 y M2 a velocidad −50 → **pausa (ms) 1000** → parar. Los bloques de la extensión salen en inglés (**Set motor M1 speed to 50 %**, **Stop all motors**).
 2. Miden cuánto avanza en 1 s. Pregunta: "¿Y en 2 s? ¿Y a velocidad 100?". Lo comprueban.
-3. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad).
+3. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad). Por eso, para ir recto, M2 va en negativo: está montado en espejo respecto a M1.
 4. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con **repetir 4**).
 
 **Pistas y soluciones:**
@@ -227,8 +231,8 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
     - *Solución:* en 2 s avanza más o menos **el doble** que en 1 s. A velocidad 100 avanza más que a 50, pero **no siempre el doble exacto**: el rozamiento y el arranque cuentan. Por eso se mide.
 2. **El cuadrado de 50 cm**
     - *Para pensar:* hacen falta dos tiempos: el de avanzar 50 cm y el de girar 90°. ¿Cómo los averiguamos?
-    - *Pista:* avanzar: tiempo = 50 ÷ (cm que avanza en 1 s). Girar: un motor a 50 y el otro a −50, y se prueba la pausa hasta que gire un cuarto de vuelta.
-    - *Solución:* `repetir 4` → motores hacia delante → `pausa (ms)` (tiempo de 50 cm) → un motor a 50 y el otro a −50 → `pausa (ms)` (tiempo de 90°) → parar. Con 25 cm/s, avanzar 50 cm son 2000 ms.
+    - *Pista:* avanzar: tiempo = 50 ÷ (cm que avanza en 1 s). Girar: los dos motores con el mismo signo (50 y 50), y se prueba la pausa hasta que gire un cuarto de vuelta.
+    - *Solución:* `repetir 4` → M1 a 50 y M2 a −50 → `pausa (ms)` (tiempo de 50 cm) → M1 y M2 a 50 → `pausa (ms)` (tiempo de 90°); al terminar, parar. Con 25 cm/s, avanzar 50 cm son 2000 ms.
 3. **El triángulo equilátero** (si va rápido)
     - *Pista:* como con la tortuga de Scratch: al terminar ha dado una vuelta entera.
     - *Solución:* `repetir 3` y girar **120°** cada vez (360 ÷ 3). Si 90° eran, por ejemplo, 600 ms, 120° serán unos 800 ms (600 × 4 ÷ 3); después se ajusta probando.
@@ -244,6 +248,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Prepara antes:** según la opción. Comprueba antes qué sensores y piezas trae el kit.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** situaciones oficiales de Nezha con manual de montaje y programa .hex (Recursos oficiales)
+- **Archivo de MakeCode:** [[S:6-S5-nezha-para-ante-obstaculo.mkcd|Parar ante un obstáculo]] · [[S:6-S5-tres-eventos.mkcd|Tres eventos]]
 - **Minuto de uso responsable:** "El robot se prueba en el suelo y se apaga antes de tocar la placa." ¿Por qué en el suelo y no en la mesa?
 
 **Opción A · Situación oficial con mecanismos**
@@ -260,10 +265,10 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
     - *Para pensar:* si el engranaje del motor tiene 10 dientes y el otro tiene 20, ¿cuántas vueltas da el segundo cuando el del motor da 2?
     - *Solución:* **una**. Si el engranaje movido es más grande, gira más despacio (pero con más fuerza); si es más pequeño, gira más deprisa.
 2. **Parar ante un obstáculo** (opción B)
-    - *Solución:* `para siempre` → `si` (distancia del sensor) `< 10` `entonces` → parar; `si no` → avanzar. La distancia se lee con el bloque del sensor de ultrasonidos de la extensión.
+    - *Solución:* `para siempre` → `si` (distancia del sensor) `< 10` `entonces` → parar; `si no` → avanzar. La distancia se lee con el bloque **Ultrasonic sensor J1 distance cm** de la extensión PlanetX (categoría Sensor).
     - *Seguir una línea:* depende de cómo estén colocados los sensores de línea. Primero se mira qué valor da cada sensor sobre la cinta negra y sobre el suelo; después, la regla es «si se sale por un lado, girar hacia el otro».
 3. **Tres eventos, tres comportamientos** (opción C)
-    - *Solución:* `al presionarse el botón A` → motores hacia delante. `al presionarse el botón B` → parar. `al presionarse el botón A+B` → un motor a 50 y el otro a −50.
+    - *Solución:* `al presionarse el botón A` → motores hacia delante. `al presionarse el botón B` → parar. `al presionarse el botón A+B` → M1 y M2 a 50, con el mismo signo: el coche gira sobre sí mismo.
 
 - **Frase clave:** "El sensor decide, el motor actúa."
 - **Si va rápido:** combinar mecanismo y sensor.
@@ -276,6 +281,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?)
 - **Material listo:** [[M:M16|Plan de mi invento]]
+- **Archivo de MakeCode:** [[S:6-S6-cuadrado-con-funciones.mkcd|El cuadrado con funciones · solución]]
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Pasos:**
@@ -381,6 +387,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 - **Qué aprenden:** detectar una necesidad real del colegio y planificar una solución en equipo.
 - **Prepara antes:** hoja de proyecto en equipo (M16): problema, a quién ayuda, idea, materiales, tareas, quién hace qué.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
+- **Archivo de MakeCode:** [[S:6-S10-semaforo-de-ruido.mkcd|Semáforo de ruido (V2)]]
 - **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
@@ -464,6 +471,7 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 - **Qué aprenden:** comunicar dos placas por radio y entender por qué cada equipo necesita su propio grupo.
 - **Para proyectar:** [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
+- **Archivo de MakeCode:** [[S:6-S14-timbre-a-distancia.mkcd|Timbre a distancia]] · [[S:6-S14-mando-por-radio.mkcd|Mando por radio]] · [[S:6-S14-robot-por-radio.mkcd|Robot que obedece al mando]]
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**

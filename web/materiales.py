@@ -446,13 +446,13 @@ def m21():
             ("Música", "mus", ["reproduce secuencia tono (Do medio) durante (1 pulso)", "reproduce secuencia melodía"], "5º S5"),
             ("Bucles", "loo", ["repetir (4) veces", "mientras ⟨ ⟩"], "6º S4"),
             ("Lógica", "log", ["si ⟨ ⟩ entonces", "si ⟨ ⟩ entonces · si no", "( ) < ( )", "( ) = ( )", "verdadero / falso"], "5º S4, S5 · 6º S2"),
-            ("Variables", "var", ["establecer [contador] a (0)", "cambiar [contador] por (1)"], "5º S2, S3 · 6º S2"),
+            ("Variables", "var", ["fijar [contador] a (0)", "cambiar [contador] por (1)"], "5º S2, S3 · 6º S2"),
             ("Matemática", "mat", ["escoger al azar de (1) a (6)"], "5º S3"),
             ("Radio", "rad", ["radio establecer grupo (7)", "radio enviar número (1)", "al recibir radio (receivedNumber)"], "5º S16 · 6º S14"),
             ("Funciones (en Avanzado)", "fun", ["Crear una función…", "función [girar_derecha]", "llamada [girar_derecha]"], "6º S6")]
     body = "".join(f'<div style="display:grid;grid-template-columns:28mm 1fr 30mm;gap:3mm;padding:2mm 0;border-bottom:1px solid #dfe3ea"><b style="font:700 11pt Bahnschrift;color:{MC[c]}">{n}</b><div style="display:flex;flex-wrap:wrap;gap:2mm">{"".join(mb(c, t) for t in bs)}</div><span class="small">{s}</span></div>' for n, c, bs, s in rows)
     body += '''<div class="box" style="font-size:10pt"><b>Pasar el programa a la placa:</b> 1) Conecta la micro:bit con el cable USB. 2) Pulsa <b>Descargar</b>. 3) Copia el archivo <b>.hex</b> a la unidad <b>MICROBIT</b> (como un pendrive). La luz trasera parpadea y el programa arranca.
-<br><b>Nezha:</b> Extensiones → buscar «nezha». Motores en M1-M4, velocidad de −100 a 100 (negativo = sentido contrario).</div>'''
+<br><b>Nezha:</b> Extensiones → buscar «nezha» (y «planetx» para los sensores). Motores en M1-M4, velocidad de −100 a 100 (negativo = sentido contrario). En el coche, para ir recto, M1 en positivo y M2 en negativo. Sus bloques salen en inglés: <b>Set motor M1 speed to 50 %</b>, <b>Stop all motors</b>, <b>Ultrasonic sensor J1 distance cm</b>.</div>'''
     uso = "<b>Cómo usarlo:</b> los bloques de MakeCode para micro:bit que se usan en la guía, con sus colores. Uno por pareja o proyectado. Primero siempre en el simulador."
     return [page("M21", "Chuleta de bloques de MakeCode", "5º y 6º", "Todas las sesiones de micro:bit y Nezha", uso, body, "c5")]
 
