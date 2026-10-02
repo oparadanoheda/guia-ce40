@@ -86,7 +86,7 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 - **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
 
 **Opción A · Arregla el juego**
-1. Enseña a abrir el archivo (*Archivo > Cargar desde tu ordenador*).
+1. Enseña a abrir el archivo (*Archivo > Load from your computer* (esa opción sale en inglés en Scratch)).
 2. Las parejas lo prueban, encuentran los bichos y los arreglan.
 3. Puesta en común: "¿Cómo lo encontrasteis?".
 
@@ -318,7 +318,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 2. Cada pareja rellena la hoja de diseño y dibuja la pantalla.
 3. Dos parejas se cuentan su diseño y se dan una idea.
 
-**Ideas para quien no sepa qué hacer:** el astronauta que recoge estrellas y esquiva meteoritos · el gato que come peces y esquiva perros · el reciclaje: recoger botellas y evitar la basura.
+**Ideas para quien no sepa qué hacer:** el robot que recoge manzanas y esquiva meteoritos (tiene plantilla de Scratch para la S10) · el astronauta que recoge estrellas y esquiva meteoritos · el gato que come peces y esquiva perros · el reciclaje: recoger botellas y evitar la basura.
 
 - **Frase clave:** "Un juego se diseña antes de programarse."
 - **Si va rápido:** añadir un segundo nivel al diseño.
@@ -330,7 +330,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Qué aprenden:** mover un personaje con las flechas y hacer que no se salga (varios eventos a la vez).
 - **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:flota.xy|Hundir la flota · coordenadas (x, y)]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
-- **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+- **Archivo de Scratch:** [[S:4-S10-videojuego-plantilla.sb3|Plantilla de inicio: dibujos y fondos, sin programar]] · [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Minuto de uso responsable:** "Cada 20 minutos miro algo lejano 20 segundos." ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos:**
@@ -350,7 +350,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Frase clave:** "Varios eventos pueden funcionar a la vez."
 - **Si va rápido:** que el personaje cambie de disfraz al moverse.
-- **Si cuesta:** la opción más sencilla: solo derecha e izquierda.
+- **Si cuesta:** la opción más sencilla: solo derecha e izquierda. O partir de la plantilla de inicio, que ya trae los dibujos.
 - **Mates:** coordenadas, números negativos.
 
 ### S11 · Cosas que atrapar y cosas que esquivar `PC`

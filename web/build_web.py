@@ -550,7 +550,7 @@ def render_session(c, s, prev, nxt, idx):
         if s.get("mat"):
             use += f'<h5>Material listo para imprimir</h5><p>{inline(s["mat"])}</p>'
         if s.get("sb3"):
-            use += f'<h5>Archivos de Scratch</h5><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Cargar desde tu ordenador.</p>'
+            use += f'<h5>Archivos de Scratch</h5><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Load from your computer (esa opción sale en inglés).</p>'
         if s.get("mkcd"):
             use += (f'<h5>Archivos de MakeCode</h5><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
                     f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
@@ -984,13 +984,19 @@ def build():
 
 
 SB3 = [
+    ("3-S11-baile-solucion.sb3", "El baile · solución", "3º S11", "c3"),
+    ("3-S11-figuras-solucion.sb3", "Figuras con el lápiz · solución", "3º S11", "c3"),
+    ("3-S12-dialogo-solucion.sb3", "Diálogo de dos personajes · solución", "3º S12", "c3"),
+    ("3-S13-variables-solucion.sb3", "Puntos con cada clic · solución", "3º S13", "c3"),
     ("3-S14-juego-de-atrapar-solucion.sb3", "Juego de atrapar · solución", "3º S14", "c3"),
+    ("3-S21-museo-plantilla.sb3", "Plantilla del museo · 4 botones y un contador", "3º S20 y S21", "c3"),
     ("4-S1-arregla-el-juego-3-bichos.sb3", "Arregla el juego · 3 bichos", "4º S1", "c4"),
     ("4-S5-adivina-el-numero-solucion.sb3", "Adivina el número · solución", "4º S5", "c4"),
     ("4-S6-juego-de-las-tablas-solucion.sb3", "Juego de las tablas · solución", "4º S6", "c4"),
     ("4-S7-torneo-bicho-1-la-variable.sb3", "Torneo de bichos 1 · la variable", "4º S7", "c4"),
     ("4-S7-torneo-bicho-2-la-condicion.sb3", "Torneo de bichos 2 · la condición", "4º S7", "c4"),
     ("4-S7-torneo-bicho-3-el-repetir.sb3", "Torneo de bichos 3 · el repetir", "4º S7", "c4"),
+    ("4-S10-videojuego-plantilla.sb3", "Videojuego · plantilla de inicio", "4º S10", "c4"),
     ("4-S13-videojuego-completo-solucion.sb3", "Videojuego completo · solución", "4º S10 a S13", "c4"),
     ("5-S1-arregla-el-juego-3-bichos.sb3", "Arregla el juego · 3 bichos", "5º S1", "c5"),
 ]
@@ -1019,7 +1025,7 @@ def material_page():
 <p class="lede">Cada PDF indica en su cabecera los cursos, las sesiones y cómo usarlo, y trae las soluciones.</p>
 <div class="mat-gallery">{"".join(tiles)}</div>
 <h2 style="margin-top:2.2rem">Archivos de Scratch</h2>
-<p class="small">Se abren en Scratch con <b>Archivo › Cargar desde tu ordenador</b>. Los de «bichos» tienen errores a propósito.</p>
+<p class="small">Se abren en Scratch con <b>Archivo › Load from your computer</b> (esa opción sale en inglés). Los de «bichos» tienen errores a propósito; las plantillas traen los dibujos y unas notas, sin programar.</p>
 <div class="mat-gallery">{"".join(sb3)}</div>
 <h2 style="margin-top:2.2rem">Archivos de MakeCode (micro:bit y Nezha)</h2>
 <p class="small">Se abren en <a href="https://makecode.microbit.org/" target="_blank" rel="noopener">makecode.microbit.org</a> con <b>Importar › Importar archivo</b> o arrastrándolos al editor, y salen ya en bloques. Desde ahí, <b>Descargar</b> para pasarlos a la placa. Los del Nezha traen las extensiones del kit. Los de «bicho» tienen un error a propósito.</p>

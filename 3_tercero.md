@@ -317,6 +317,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** el bloque **repetir** hace varias veces lo que tiene dentro; **por siempre** no para nunca.
 - **Para proyectar:** [[P:poligonos|Polígonos]] (para la opción B) · [[P:laberinto.4|Laberinto · escalera]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Archivo de Scratch:** [[S:3-S11-baile-solucion.sb3|El baile · solución]] · [[S:3-S11-figuras-solucion.sb3|Figuras con el lápiz · solución (teclas 3, 4 y 6)]]
 - **Minuto de uso responsable:** "Al ordenador, manos limpias y nada de comida ni bebida cerca." ¿Qué podría pasar si se derrama agua sobre el teclado?
 
 **Opción A · El gato baila**
@@ -353,6 +354,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** dar vida a una escena con disfraces, diálogos, sonidos y dos personajes.
 - **Para proyectar:** [[P:pixelart.robot|Píxel art: los disfraces son dibujos hechos de píxeles]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Archivo de Scratch:** [[S:3-S12-dialogo-solucion.sb3|Diálogo de dos personajes · solución]]
 - **Minuto de uso responsable:** "No escribo mi nombre completo ni mi dirección en internet." ¿Qué datos míos no escribo nunca en internet?
 
 **Pasos:**
@@ -381,6 +383,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 - **Qué aprenden:** una variable es una caja con nombre que guarda un número que puede cambiar.
 - **Para proyectar:** [[P:variables|Variables]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
+- **Archivo de Scratch:** [[S:3-S13-variables-solucion.sb3|Puntos con cada clic · solución]]
 - **Minuto de uso responsable:** "Espalda recta y pies en el suelo cuando uso el ordenador." ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
@@ -562,11 +565,12 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 - **Qué aprenden:** fabricar el mando con la plantilla y materiales conductores.
 - **Prepara antes:** M22 hoja 1 (una por grupo), cartón, papel de aluminio y celo.
 - **Material listo:** [[M:M22|Plantilla de mando Makey Makey]]
+- **Archivo de Scratch:** [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
 - **Minuto de uso responsable:** "Cuento el material antes de guardarlo." ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
 **Pasos:**
 1. Pegan la plantilla en un cartón y cubren cada botón con aluminio, dejando una tira hasta el borde para la pinza. Los botones no se tocan entre sí.
-2. Mientras, los programadores empiezan el programa (o abren el de la situación oficial).
+2. Mientras, los programadores empiezan el programa: abren la plantilla del museo (camino propio) o el programa de la situación oficial.
 3. Últimos 10 minutos: primera prueba de conexión.
 
 - **Frase clave:** "Cada botón necesita su camino y su tierra."
@@ -578,6 +582,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Qué aprenden:** programar cada botón de la pieza, añadir un contador y probarla con otro grupo.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Archivo de Scratch:** [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
 - **Minuto de uso responsable:** "Cada 20 minutos miro algo lejano 20 segundos." ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos:**
@@ -596,7 +601,7 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 
 - **Frase clave:** "Pruebo cada botón por separado."
 - **Si va rápido:** que el contador reste al fallar.
-- **Si cuesta:** un botón y su evento, sin contador.
+- **Si cuesta:** un botón y su evento, sin contador; o la plantilla del museo, que ya trae los botones y el contador: solo hay que cambiar los textos.
 - **Mates:** sumar, verificar.
 
 ### S22 · Optimizamos y cazabichos cruzado `PC`

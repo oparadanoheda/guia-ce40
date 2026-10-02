@@ -94,7 +94,7 @@ const check = (file, what, ok, info = '') => results.push(`${ok ? 'OK  ' : 'FALL
             for (let i = 0; i < 40 && vm.runtime.threads.length; i++) await sleep(200);
             check(f, 'da pista y termina al acertar', said.some(t => t.startsWith('Es más')) && said.includes('¡Acertaste!') && n === 2, `preguntas=${n}; dijo: ${[...new Set(said)].join(' | ')}`);
         }
-        if (f.includes('videojuego')) {
+        if (f.includes('videojuego-completo')) {
             vm.greenFlag(); await sleep(400);
             const e = sprite(vm, 'Meteorito'); const e0 = [e.x, e.y]; await sleep(300);
             check(f, 'inicio: puntos 0, vidas 3 y el meteorito se mueve', stageVar(vm, 'puntos') == 0 && stageVar(vm, 'vidas') == 3 && (e.x !== e0[0] || e.y !== e0[1]));
@@ -104,6 +104,55 @@ const check = (file, what, ok, info = '') => results.push(`${ok ? 'OK  ' : 'FALL
             const r = sprite(vm, 'Robi'); vm.runtime.getTargetForStage();
             Object.values(st.variables).find(v => v.name === 'vidas').value = 0; await sleep(300);
             check(f, 'con 0 vidas el juego se detiene', vm.runtime.threads.length === 0 || stageVar(vm, 'vidas') == 0);
+        }
+        if (f.includes('3-S11-baile')) {
+            const r = sprite(vm, 'Robi'); const c0 = r.currentCostume;
+            vm.greenFlag(); await sleep(3200);
+            check(f, '10 pasos de baile: gira 150 grados y se mueve', Math.round(r.direction) === -120 && (Math.round(r.x) !== 0 || Math.round(r.y) !== 0),
+                  `dirección ${Math.round(r.direction)}, posición (${Math.round(r.x)}, ${Math.round(r.y)}), disfraz ${c0} -> ${r.currentCostume}`);
+        }
+        if (f.includes('3-S11-figuras')) {
+            const s = sprite(vm, 'Lapiz'); const out = [];
+            for (const k of ['3', '4', '6']) {
+                await key(vm, k); await sleep(400);
+                out.push(`${k}: (${Math.round(s.x)}, ${Math.round(s.y)}) dir ${Math.round(s.direction)}`);
+                if (Math.abs(s.x + 50) > 1 || Math.abs(s.y - 80) > 1 || Math.round(s.direction) !== 90) { check(f, 'figuras cerradas', false, out.join(' · ')); break; }
+            }
+            if (out.length === 3) check(f, 'triángulo, cuadrado y hexágono se cierran y acaba mirando a la derecha', true, out.join(' · '));
+        }
+        if (f.includes('3-S12-dialogo')) {
+            const said = [];
+            vm.runtime.on('SAY', (t, type, text) => { if (text) said.push(`${t.getName()}: ${text}`); });
+            vm.greenFlag(); await sleep(8600);
+            const st = vm.runtime.getTargetForStage();
+            const want = ['Robi: ¡Hola!', 'Tina: ¡Hola! ¿Qué tal?', 'Robi: ¡Muy bien!', 'Tina: ¡Hasta luego!'];
+            const order = said.filter((x, i) => said.indexOf(x) === i);
+            check(f, 'hablan por turnos, sin pisarse', JSON.stringify(order) === JSON.stringify(want), order.join(' | '));
+            check(f, 'el fondo cambia a mitad del diálogo', st.getCostumes()[st.currentCostume].name === 'fondo2');
+        }
+        if (f.includes('3-S13-variables')) {
+            vm.greenFlag(); await sleep(150); click(vm, 'Robi'); await sleep(100); click(vm, 'Robi'); await sleep(100);
+            const a = stageVar(vm, 'puntos');
+            vm.greenFlag(); await sleep(150);
+            check(f, 'cada clic suma 1 y la bandera vuelve a 0', a == 2 && stageVar(vm, 'puntos') == 0, `puntos ${a} -> ${stageVar(vm, 'puntos')}`);
+        }
+        if (f.includes('museo-plantilla')) {
+            const said = [];
+            vm.runtime.on('SAY', (t, type, text) => { if (text) said.push(text); });
+            vm.greenFlag(); await sleep(200);
+            for (const k of [' ', 'ArrowUp', 'ArrowRight', 'ArrowLeft']) await key(vm, k);
+            await sleep(2400);
+            check(f, '4 botones: cada uno habla y suma un toque', stageVar(vm, 'toques') == 4 && [1, 2, 3, 4].every(n => said.some(t => t.startsWith(`Botón ${n}`))),
+                  `toques=${stageVar(vm, 'toques')}`);
+            Object.values(vm.runtime.getTargetForStage().variables).find(v => v.name === 'toques').value = 10; await sleep(300);
+            check(f, 'al llegar a 10 toques dice el final', said.some(t => t.startsWith('¡Ya van 10 toques!')));
+        }
+        if (f.includes('videojuego-plantilla')) {
+            let blocks = 0, comments = 0;
+            vm.runtime.targets.forEach(t => { blocks += Object.keys(t.blocks._blocks).length; comments += Object.keys(t.comments || {}).length; });
+            const names = ['Robi', 'Manzana', 'Meteorito'].every(n => sprite(vm, n));
+            check(f, 'plantilla: personajes y fondos, sin bloques y con notas', names && blocks === 0 && comments === 4 && vm.runtime.getTargetForStage().getCostumes().length === 2,
+                  `bloques=${blocks}, notas=${comments}`);
         }
         vm.stopAll(); vm.quit && vm.quit();
     }

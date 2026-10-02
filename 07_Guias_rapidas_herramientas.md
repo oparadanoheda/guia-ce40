@@ -106,7 +106,7 @@
 - **Escenario** arriba a la derecha; **objetos** debajo (el botón del gato con + añade más); **fondos** abajo a la derecha; **bloques** a la izquierda por categorías de colores; **zona de programar** en medio.
 - Categorías que más se usan: **Movimiento** (azul), **Apariencia** (morado), **Sonido** (rosa), **Eventos** (amarillo), **Control** (naranja: repetir, por siempre, si… entonces, esperar), **Sensores** (azul claro: ¿tocando…?, preguntar), **Operadores** (verde: números al azar, +, =, >), **Variables** (naranja oscuro).
 - Extensiones (botón azul de abajo a la izquierda): **Lápiz**, **Música**, **Makey Makey**.
-- **Guardar:** *Archivo > Guardar en tu ordenador*. **Abrir:** *Archivo > Cargar desde tu ordenador*.
+- **Guardar:** *Archivo > Guardar en tu ordenador*. **Abrir:** *Archivo > Load from your computer* (esa opción sale en inglés en Scratch).
 - Botón **bandera verde** para empezar y **círculo rojo** para parar.
 - Clic derecho en la zona de programar → **Ordenar bloques** (para la optimización).
 

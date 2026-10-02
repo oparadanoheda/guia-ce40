@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **27 materiales imprimibles** en PDF (M01-M27, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables), **9 proyectos de Scratch** (.sb3) y una web que lo reúne todo.
+- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -93,7 +93,7 @@ Programación Mate 4.0 26-27/
 | `materiales.py` | Genera los 25 PDF (HTML → PDF con Edge sin interfaz) |
 | `svgkit.py` | Dibujos SVG de los materiales (cuadrículas, flechas, bloques, diagramas) |
 | `pictos.py` | Diccionario nombre → id de ARASAAC; descarga los pictogramas a `picto/` y crea `pictos_data.js` (base64 para la web) |
-| `scratch_gen.py` | Genera los 9 proyectos .sb3 (dibujos y sonido propios) |
+| `scratch_gen.py` | Genera los 15 proyectos .sb3 (dibujos y sonido propios; las notas amarillas son comentarios de Scratch y los programas se colocan según su alto para que no se pisen) |
 | `empaquetar.py` | Crea `../Guia_CE40_2026-27_web.zip` |
 | `revisar_pdfs.py` | Comprueba que ningún PDF se sale de la página |
 | `pruebas_scratch/` | Pruebas de los .sb3 en el motor oficial de Scratch (Node) |
@@ -151,7 +151,7 @@ Desde `web/` (Python 3 con `markdown`, `pypdf` y `PyMuPDF`; Edge instalado en la
 python vocab_md.py             # solo si cambia vocabulario.py (reescribe «Palabras del curso» en los .md)
 python pictos.py               # solo si cambian los pictogramas (descarga y crea pictos_data.js)
 python materiales.py           # todos los PDF; o solo algunos: python materiales.py M04 M11
-python scratch_gen.py          # los 9 .sb3 (y copia en Material imprimible/Scratch)
+python scratch_gen.py          # los 15 .sb3 (y copia en Material imprimible/Scratch)
 python videos_miniaturas.py    # solo si cambian los vídeos o el segundo de su miniatura en videos.py
 python build_web.py            # la web: programacion_CE40.html
 python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea el zip del aula virtual
@@ -225,8 +225,9 @@ Detalle en `08_Plantillas_y_material.md`.
   - 4º S1 «Arregla el juego»: mover −10 con la flecha derecha, sonido suelto sin evento, repetir 3 en vez de por siempre.
   - 4º S7 torneo: la variable no vuelve a 0 / la condición al revés / un cuadrado con repetir 3.
   - 5º S1 «Arregla el juego»: puntos no se ponen a 0, «si puntos < 10» dice que has ganado, repetir 2 en vez de por siempre.
-- **Soluciones:** 3º S14 juego de atrapar · 4º S5 adivina el número · 4º S6 juego de las tablas · 4º S10-S13 videojuego completo (flechas, premio, meteorito, puntos, vidas, final y nivel 2 con mensaje).
-- **Personajes propios:** Robi (robot), manzana y meteorito. Se abren con *Archivo › Cargar desde tu ordenador*.
+- **Soluciones:** 3º S11 el baile y las figuras con el lápiz (teclas 3, 4 y 6) · 3º S12 diálogo de dos personajes con cambio de fondo · 3º S13 puntos con cada clic · 3º S14 juego de atrapar · 4º S5 adivina el número · 4º S6 juego de las tablas · 4º S10-S13 videojuego completo (flechas, premio, meteorito, puntos, vidas, final y nivel 2 con mensaje).
+- **Plantillas** (dibujos y notas, sin programar o con los textos por cambiar): 4º S10 videojuego (Robi, manzana, meteorito y dos fondos) · 3º S20-S21 pieza del museo (4 botones con las teclas del Makey Makey, contador *toques* y final a los 10).
+- **Personajes propios:** Robi (robot), Tina (robot naranja), manzana y meteorito. Se abren con *Archivo › Load from your computer*: esa opción del menú no está traducida en el Scratch en español (las demás sí).
 
 **Proyectables (30):**
 - **Robot y secuencias:** robot en la cuadrícula · ordena la secuencia · patrones · bucles · semáforo de peatones · clasificador · ¿qué animal soy? · votaciones y gráfico · diagramas de flujo
@@ -346,6 +347,7 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 28. **Imprimir la ficha (2 de octubre de 2026):** botón «Imprimir» junto a «Proyectar la sesión». Los estilos están en `web/imprimir.css` (va el último en el CSS de la web): A4 sin menús ni botones, lo que hay que preparar arriba en dos columnas, la propuesta que esté elegida en las pestañas (con su título y el nombre de las demás) y las pistas y soluciones abiertas (`app.js` las abre en `beforeprint` y las cierra después). Las sesiones cortas caben en una hoja; las de 5º y 6º con soluciones, en dos.
 29. **Presentación para la reunión de Matemáticas (2 de octubre de 2026):** 14 diapositivas con notas para quien presenta. Mensaje: es una base común de qué se trabaja en cada curso, no un guion obligatorio; el material está hecho para que cualquiera pueda darlo; es un borrador y hay que revisarlo entre todos. Incluye el recorrido de 1º a 6º, el bloque de cada trimestre, la sesión de 45 minutos, la evaluación, lo común y lo que decide cada docente, qué revisar y los supuestos que hay que comprobar en el centro. La diapositiva «Qué mirar y cómo avisar» tiene un hueco entre corchetes para poner por dónde se avisan los fallos.
 30. **Dado de la clase (2 de octubre de 2026):** en «Votaciones y gráfico», preset `votaciones.clase`. Se escriben las tiradas de cada pareja (o los totales de la pizarra) con **Añadir** y se comparan con 1000 tiradas del ordenador. Los dos gráficos llevan la línea «Si salieran igual» (total entre 6), con una escala que la deja a media altura para que se puedan comparar. Se usa en 3º S7 (opción B) y en 5º S3 (mini investigación con el dado de la micro:bit).
+31. **Más archivos de Scratch (2 de octubre de 2026):** soluciones de 3º S11 (baile; figuras con el lápiz), S12 (diálogo) y S13 (variables), y plantillas del videojuego de 4º (S10) y de la pieza del museo de 3º (S20-S21). Pruebas de comportamiento nuevas en `pruebas_scratch/test.js` (37 comprobaciones, todas bien). Los 15 archivos se han abierto en el editor de scratch.mit.edu (en español) y se ven bien. Al hacerlo se vio que la opción para abrir un archivo sale en inglés («Load from your computer»): corregido en la guía, la web, el LEEME del zip y las sesiones.
 
 ## 11. Pendiente e ideas
 
@@ -367,10 +369,8 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 **Otros pendientes**
 
 - **Probar el zip en el aula virtual real** de EducaMadrid (que Moodle muestre `index.html` y que los PDF y .sb3 se abran).
-- **Abrir un .sb3 en el editor de Scratch** para ver que los bloques se muestran bien (ya están probados en el motor, no en el editor visual).
 - **Revisar con el equipo de ciclo** la asignación de sesiones a los criterios y contenidos del Decreto 61/2022.
 - **Plantilla imprimible de línea de salida y meta** para el Nezha (5º S8, 6º S4), que ahora dice «una regla o una tira de cinta». Y valorar si los mandos de Makey Makey (cartón, aluminio, celo) necesitan alguna ayuda más.
-- **Posibles .sb3 nuevos:** plantillas de inicio del videojuego de 4º o del museo de Makey Makey de 3º; soluciones de 3º S11-S13.
 - Borrar los scripts de un solo uso de `web/` si ya no se necesitan.
 - **Quick, Draw!** (5º S9) no carga desde la red donde se hizo la revisión: la conexión se corta al cifrar, como hacen los filtros de red. La web funciona; hay que probarla desde la red del centro. Si está bloqueada, la alternativa es AI for Oceans.
 

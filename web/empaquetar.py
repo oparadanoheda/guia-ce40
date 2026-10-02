@@ -17,7 +17,7 @@ Cómo abrirla
   (mejor con Chrome, Edge o Firefox).
 - Los PDF del material imprimible están en la carpeta «materiales».
 - Los proyectos de Scratch están en «materiales/scratch». Se abren en Scratch con
-  Archivo > Cargar desde tu ordenador.
+  Archivo > Load from your computer (esa opción sale en inglés).
 - Los proyectos de MakeCode (micro:bit y Nezha) están en «materiales/makecode». Se abren
   en makecode.microbit.org con Importar > Importar archivo, o arrastrándolos al editor.
 - Los vídeos de conceptos están en «videos» y se ven desde la guía (Para proyectar).

@@ -22,9 +22,10 @@ SVG = {
     "lapiz": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6" fill="#e07a1f" stroke="#1a1d24" stroke-width="2"/></svg>',
     "fondo1": '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360"><rect width="480" height="360" fill="#eaf3fb"/><rect y="300" width="480" height="60" fill="#cfe6c8"/></svg>',
     "fondo2": '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360"><rect width="480" height="360" fill="#1d2440"/><circle cx="60" cy="50" r="2" fill="#fff"/><circle cx="200" cy="90" r="2" fill="#fff"/><circle cx="330" cy="40" r="2" fill="#fff"/><circle cx="420" cy="120" r="2" fill="#fff"/><circle cx="120" cy="160" r="2" fill="#fff"/><rect y="300" width="480" height="60" fill="#3b3f5c"/></svg>',
+    "tina1": '<svg xmlns="http://www.w3.org/2000/svg" width="80" height="96" viewBox="0 0 80 96"><line x1="28" y1="7" x2="32" y2="18" stroke="#1a1d24" stroke-width="4"/><line x1="52" y1="7" x2="48" y2="18" stroke="#1a1d24" stroke-width="4"/><circle cx="27" cy="6" r="5" fill="#cf3f36"/><circle cx="53" cy="6" r="5" fill="#cf3f36"/><rect x="10" y="16" width="60" height="46" rx="22" fill="#e07a1f" stroke="#1a1d24" stroke-width="3"/><circle cx="28" cy="38" r="7" fill="#fff"/><circle cx="52" cy="38" r="7" fill="#fff"/><circle cx="29" cy="39" r="3" fill="#1a1d24"/><circle cx="53" cy="39" r="3" fill="#1a1d24"/><path d="M30 50q10 7 20 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/><rect x="22" y="64" width="36" height="22" rx="10" fill="#e07a1f" stroke="#1a1d24" stroke-width="3"/><rect x="24" y="86" width="10" height="8" rx="2" fill="#1a1d24"/><rect x="46" y="86" width="10" height="8" rx="2" fill="#1a1d24"/></svg>',
     "blanco": '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360" viewBox="0 0 480 360"><rect width="480" height="360" fill="#ffffff"/></svg>',
 }
-CENTER = {"robi1": (40, 50), "robi2": (40, 50), "manzana": (28, 32), "meteorito": (30, 30), "lapiz": (12, 12),
+CENTER = {"robi1": (40, 50), "robi2": (40, 50), "tina1": (40, 50), "manzana": (28, 32), "meteorito": (30, 30), "lapiz": (12, 12),
           "fondo1": (240, 180), "fondo2": (240, 180), "blanco": (240, 180)}
 
 
@@ -46,8 +47,8 @@ def md5(b):
 
 # ------------------------------------------------------------------ constructor de bloques
 class Sprite:
-    def __init__(self, name, costumes, x=0, y=0, size=100, stage=False, sound=False, visible=True):
-        self.name, self.stage = name, stage
+    def __init__(self, name, costumes, x=0, y=0, size=100, stage=False, sound=False, visible=True, rotation="don't rotate"):
+        self.name, self.stage, self.rotation = name, stage, rotation
         self.costumes, self.x, self.y, self.size, self.visible = costumes, x, y, size, visible
         self.sound = sound
         self.blocks = {}
@@ -55,6 +56,13 @@ class Sprite:
         self.variables = {}
         self.broadcasts = {}
         self.scripts = 0
+        self.next_y = 40
+        self.comments = {}
+
+    # nota amarilla en el área de programación (comentario de Scratch sin bloque)
+    def comment(self, text, x, y, w=300, h=150):
+        self.comments[f"{self.name[:3]}c{len(self.comments) + 1}"] = {"blockId": None, "x": x, "y": y, "width": w, "height": h,
+                                                                     "minimized": False, "text": text}
 
     def _id(self):
         self.n += 1
@@ -75,11 +83,31 @@ class Sprite:
             self.blocks[c]["parent"] = a
         return ids[0]
 
+    # alto aproximado de una pila en el área de programación (unidades del editor), para que los programas no se pisen
+    def _height(self, bid):
+        h = 0
+        while bid:
+            b = self.blocks[bid]
+            op = b["opcode"]
+            if op.startswith("event_when"):
+                h += 80
+            elif op in ("control_repeat", "control_forever", "control_if", "control_repeat_until"):
+                h += 56 + self._height(b["inputs"]["SUBSTACK"][1]) + 32
+            elif op == "control_if_else":
+                h += 56 + self._height(b["inputs"]["SUBSTACK"][1]) + 40 + self._height(b["inputs"]["SUBSTACK2"][1]) + 32
+            else:
+                h += 56 if any(isinstance(v[1], str) for v in b["inputs"].values()) else 48
+            bid = b["next"]
+        return h
+
     def script(self, ids, x=None, y=None):
         first = self.link(ids)
         self.blocks[first]["topLevel"] = True
         self.blocks[first]["x"] = 40 if x is None else x
-        self.blocks[first]["y"] = 40 + self.scripts * 170 if y is None else y
+        if y is None:
+            y = self.next_y
+            self.next_y += self._height(first) + 40
+        self.blocks[first]["y"] = y
         self.scripts += 1
         return first
 
@@ -165,13 +193,13 @@ class P:
                 sounds.append({"name": "pop", "assetId": h, "dataFormat": "wav", "format": "", "rate": rate, "sampleCount": n, "md5ext": h + ".wav"})
             sp.finish()
             t = {"isStage": sp.stage, "name": sp.name, "variables": sp.variables, "lists": {}, "broadcasts": sp.broadcasts,
-                 "blocks": sp.blocks, "comments": {}, "currentCostume": 0, "costumes": costumes, "sounds": sounds,
+                 "blocks": sp.blocks, "comments": sp.comments, "currentCostume": 0, "costumes": costumes, "sounds": sounds,
                  "volume": 100, "layerOrder": layer}
             if sp.stage:
                 t.update({"tempo": 60, "videoTransparency": 50, "videoState": "on", "textToSpeechLanguage": None})
             else:
                 t.update({"visible": sp.visible, "x": sp.x, "y": sp.y, "size": sp.size, "direction": 90, "draggable": False,
-                          "rotationStyle": "don't rotate"})
+                          "rotationStyle": sp.rotation})
             return t
 
         project = {"targets": [target(self.stage, 0)] + [target(s, i + 1) for i, s in enumerate(self.sprites)],
@@ -272,6 +300,31 @@ def play(s):
 def backdrop(s, name):
     menu = s.b("looks_backdrops", fields={"BACKDROP": [name, None]}, shadow=True)
     return s.b("looks_switchbackdropto", inputs={"BACKDROP": [1, menu]})
+
+
+def gotoxy(s, x, y):
+    return s.b("motion_gotoxy", inputs={"X": num(x), "Y": num(y)})
+
+
+def point(s, d):
+    return s.b("motion_pointindirection", inputs={"DIRECTION": [1, [8, str(d)]]})
+
+
+def move(s, steps):
+    return s.b("motion_movesteps", inputs={"STEPS": num(steps)})
+
+
+def turn_right(s, deg):
+    return s.b("motion_turnright", inputs={"DEGREES": num(deg)})
+
+
+def play_until_done(s):
+    menu = s.b("sound_sounds_menu", fields={"SOUND_MENU": ["pop", None]}, shadow=True)
+    return s.b("sound_playuntildone", inputs={"SOUND_MENU": [1, menu]})
+
+
+def wait_until(s, cond):
+    return s.b("control_wait_until", inputs={"CONDITION": [2, cond]})
 
 
 def arrows(s, step=10):
@@ -406,8 +459,92 @@ def p4_videojuego():
     p.save(OUT / "4-S13-videojuego-completo-solucion.sb3")
 
 
+def p3_s11_baile():
+    """3º S11 opción A: el baile con repetir (solución)."""
+    p = P()
+    r = p.sprite("Robi", ["robi1", "robi2"], sound=True, rotation="all around")
+    r.script([flag(r), repeat(r, 10, [r.b("looks_nextcostume"), move(r, 10), turn_right(r, 15), wait(r, 0.2)]), play_until_done(r)])
+    r.comment("En vuestro proyecto es el gato y su sonido Miau; aquí Robi usa su sonido «pop». "
+              "Para que el baile empiece siempre en el mismo sitio, se puede añadir al principio «ir a x: 0 y: 0» y «apuntar en dirección 90».", 400, 40)
+    p.save(OUT / "3-S11-baile-solucion.sb3")
+
+
+def p3_s11_figuras():
+    """3º S11 opción B: cuadrado, triángulo y hexágono con el lápiz (solución)."""
+    p = P(("blanco",))
+    p.extensions = ["pen"]
+    s = p.sprite("Lapiz", ["lapiz"], x=-50, y=80)
+    s.script([flag(s), s.b("pen_clear"), say(s, "Pulsa 3, 4 o 6", 2)])
+    for n in (3, 4, 6):
+        s.script([key(s, str(n)), s.b("pen_clear"), s.b("pen_penUp"), gotoxy(s, -50, 80), point(s, 90), s.b("pen_penDown"),
+                  repeat(s, n, [move(s, 100), turn_right(s, 360 // n)]), s.b("pen_penUp")])
+    s.comment("Cada tecla dibuja una figura: 3 el triángulo, 4 el cuadrado y 6 el hexágono. "
+              "El giro es siempre 360 entre el número de lados: 120, 90 y 60 grados.", 420, 40)
+    p.save(OUT / "3-S11-figuras-solucion.sb3")
+
+
+def p3_s12_dialogo():
+    """3º S12: diálogo de dos personajes sin que hablen a la vez, con cambio de fondo (solución)."""
+    p = P(("fondo1", "fondo2"))
+    st = p.stage
+    st.script([flag(st), backdrop(st, "fondo1"), wait(st, 4), backdrop(st, "fondo2")])
+    st.comment("Si va rápido: el fondo cambia a mitad del diálogo, a los 4 segundos.", 480, 40)
+    r = p.sprite("Robi", ["robi1", "robi2"], x=-110, y=-50)
+    r.script([flag(r), say(r, "¡Hola!", 2), wait(r, 2), say(r, "¡Muy bien!", 2)])
+    r.comment("Robi habla en los segundos 0 y 4. Mientras habla Tina, espera.", 480, 40)
+    t = p.sprite("Tina", ["tina1"], x=110, y=-50)
+    t.script([flag(t), wait(t, 2), say(t, "¡Hola! ¿Qué tal?", 2), wait(t, 2), say(t, "¡Hasta luego!", 2)])
+    t.comment("Tina empieza esperando 2 segundos, lo que dura la primera frase de Robi. Así no se pisan.", 480, 40)
+    p.save(OUT / "3-S12-dialogo-solucion.sb3")
+
+
+def p3_s13_variables():
+    """3º S13: una variable que cuenta los clics (solución)."""
+    p = P()
+    p.var("puntos")
+    r = p.sprite("Robi", ["robi1", "robi2"], sound=True)
+    r.script([flag(r), p.set(r, "puntos", 0)])
+    r.script([r.b("event_whenthisspriteclicked"), p.change(r, "puntos", 1), play(r)])
+    r.comment("Si va rápido: añade «ir a posición aleatoria» debajo de «iniciar sonido». Ya es un juego: hay que perseguir a Robi con el ratón.", 400, 40)
+    p.save(OUT / "3-S13-variables-solucion.sb3")
+
+
+def p3_museo_plantilla():
+    """3º S20-S21: plantilla de la pieza del museo: 4 botones (teclas del Makey Makey), un contador y un final."""
+    p = P()
+    p.var("toques")
+    r = p.sprite("Robi", ["robi1", "robi2"], sound=True, x=0, y=-40)
+    r.script([flag(r), p.set(r, "toques", 0), say(r, "¡Toca un botón!", 2)])
+    for k, n in (("space", 1), ("up arrow", 2), ("right arrow", 3), ("left arrow", 4)):
+        r.script([key(r, k), say(r, f"Botón {n}: cambiad este texto", 2), p.change(r, "toques", 1), play(r)])
+    r.script([flag(r), wait_until(r, eq(r, rep_input(p.vrep(r, "toques")), num(10))), say(r, "¡Ya van 10 toques! Gracias por visitar nuestra pieza.", 3)])
+    r.comment("Cada botón del mando es una tecla: espacio y las flechas arriba, derecha e izquierda. "
+              "Cambiad el texto de cada «decir» por lo que tiene que contar vuestra pieza (por ejemplo, el nombre del monumento) y, si queréis, el sonido.", 600, 40, 300, 170)
+    r.comment("Probad cada botón primero con el teclado del ordenador. Si funciona con la tecla y no con el mando, el bicho está en el mando: "
+              "una pinza suelta, el aluminio roto o nadie tocando EARTH.", 600, 240, 300, 170)
+    p.save(OUT / "3-S21-museo-plantilla.sb3")
+
+
+def p4_videojuego_plantilla():
+    """4º S10: plantilla de inicio del videojuego: fondos y personajes listos, sin programar, con una nota de qué va en cada sesión."""
+    p = P(("fondo1", "fondo2"))
+    p.stage.comment("Plantilla de inicio: el robot que recoge manzanas y esquiva meteoritos. Los dibujos ya están; el programa lo hacéis vosotros, una pieza en cada sesión. "
+                    "S12: crea las variables puntos y vidas. S13: el segundo fondo es para el nivel 2.", 40, 40, 360, 190)
+    r = p.sprite("Robi", ["robi1", "robi2"], x=0, y=0)
+    r.comment("S10 · Personaje. Cuatro eventos de tecla: flecha derecha → «sumar a x 10»; izquierda, -10; arriba y abajo, con «sumar a y». "
+              "Con la bandera: «ir a x: 0 y: 0», «fijar tamaño al 50 %» y, por siempre, «si toca un borde, rebotar».", 40, 40, 360, 190)
+    m = p.sprite("Manzana", ["manzana"], x=150, y=100, sound=True)
+    m.comment("S11 · Premio. Con la bandera, por siempre: «si ¿tocando Robi? entonces» → «iniciar sonido» → «ir a posición aleatoria». "
+              "S12: dentro del si, «sumar a puntos 1».", 40, 40, 360, 170)
+    e = p.sprite("Meteorito", ["meteorito"], x=-150, y=80)
+    e.comment("S11 · Enemigo. Con la bandera, por siempre: «mover 5 pasos» y «si toca un borde, rebotar». "
+              "Si ¿tocando Robi? entonces → «decir ¡Ay! durante 1 segundos». S12: dentro del si, «sumar a vidas -1».", 40, 40, 360, 190)
+    p.save(OUT / "4-S10-videojuego-plantilla.sb3")
+
+
 PROJECTS = [p4_s1_bichos, p_clics_bicho_variable, lambda: p_tablas("rama"), p_poligono_bicho, lambda: p_tablas(),
-            p5_s1_bichos, p3_s14_atrapar, p4_s5_adivina, p4_videojuego]
+            p5_s1_bichos, p3_s14_atrapar, p4_s5_adivina, p4_videojuego,
+            p3_s11_baile, p3_s11_figuras, p3_s12_dialogo, p3_s13_variables, p3_museo_plantilla, p4_videojuego_plantilla]
 
 if __name__ == "__main__":
     for f in PROJECTS:
