@@ -368,3 +368,6 @@ details.rdev[open]{border-left:5px solid var(--c)}
 .g-steps details p{margin:.3em 0 .2em;padding:.5em .8em;background:var(--tint);border-radius:6px}
 
 .g-steps details summary::after{content:none!important}
+.sc-eve{background:#c88b00}.sc-mov{background:#3d7fe0}.sc-apa{background:#8a5ce6}.sc-son{background:#b54fb5}.sc-con{background:#d98500}
+.sc-sen{background:#3a9bc4}.sc-ope{background:#3f9f3f}.sc-var{background:#e06b00}.sc-pen{background:#0c9e75}
+.mk-fun{background:#3455db}.sc-myb{background:#e0506e}

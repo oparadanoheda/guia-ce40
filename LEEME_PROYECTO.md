@@ -325,6 +325,7 @@ Detalle en `08_Plantillas_y_material.md`.
 20. **Guías para el docente en las 30 herramientas** (`web/guias_proyectables.py`): qué es, qué contar, preguntas con pistas y solución oculta, matemáticas y, donde existe, un enlace a CS Unplugged en español. Las soluciones del robot y del laberinto se calcularon con un simulador que copia las reglas de las herramientas.
     - **Enlaces sin explicar:** de los 23 enlaces a herramientas que las sesiones no explicaban, 5 se quitaron por no tener relación y los demás llevan su «para qué». Las votaciones de proyectos de la clase abren «Mis opciones».
     - **Errores de contenido encontrados al hacerlas:** el cazabichos 3 decía tener 2 bichos pero se arreglaba con 1 cambio (nuevo programa con 2 bichos de verdad); el circuito encendía la bombilla con el plátano y la mano (ahora «conduce muy poco»: no enciende una bombilla, sí sirve con Makey Makey); «Entrena a la máquina» tenía la regla circular «fruta con forma de manzana».
+21. **Pistas y soluciones en las sesiones de programar (3º a 6º, 44 sesiones):** para cada reto, una pregunta para pensar, pistas y la solución con los bloques en sus colores (Scratch en 3º y 4º; MakeCode en 5º y 6º, salvo que el título diga Scratch), más los errores frecuentes. Se insertan con el script de un solo uso `poner_soluciones.py` (en la carpeta temporal de la sesión), justo antes de la «Frase clave».
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

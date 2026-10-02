@@ -104,6 +104,16 @@ Tres niveles en la pizarra. Cada pareja llega hasta donde pueda:
 **Opción B · Arregla el juego**
 El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pone a 0 al pulsar la bandera; **si puntos < 10** dice «¡Has ganado!» (está al revés: debería ser **puntos = 10**); y la animación usa **repetir 2** en lugar de **por siempre**.
 
+**Pistas y soluciones:**
+1. **Reto relámpago (en Scratch)**
+    - *Nivel 1 · bucle:* `al hacer clic en 🏴` → `por siempre` → `girar ↻ 15 grados` → `siguiente disfraz` → `esperar 0.2 segundos`.
+    - *Nivel 2 · variable:* `al hacer clic en 🏴` → `dar a puntos el valor 0`; `al hacer clic en este objeto` → `sumar a puntos 1`.
+    - *Nivel 3 · condición:* debajo del `sumar a puntos 1`: `si puntos = 10 entonces` → `decir ¡Has ganado! durante 2 segundos`.
+    - *Si va rápido (si… si no):* `si puntos = 10 entonces` → `decir ¡Has ganado!`; `si no` → `decir (unir Te faltan (10 - puntos))`.
+2. **Arregla el juego** (opción B)
+    - *Pista:* probad el juego con la bandera dos veces seguidas y jugad hasta el final.
+    - *Solución:* `dar a puntos el valor 0` debajo de la bandera; `si puntos = 10 entonces` en lugar de `si puntos < 10`; `por siempre` en lugar de `repetir 2`.
+
 - **Frase clave:** "Bucle, variable y condición: las tres herramientas del programador."
 - **Si va rápido:** el nivel 3 con un si… si no.
 - **Si cuesta:** solo el nivel 1, copiado de la pizarra.
@@ -127,6 +137,16 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 6. Reto con variable: un contador. Crear variable *contador*; **al presionar el botón A** → **cambiar contador por 1** → **mostrar número contador**.
 7. **Últimos 10 minutos, a la placa de verdad:** conectar con el cable, pulsar **Descargar** y copiar el archivo `.hex` a la unidad **MICROBIT** (o emparejar la placa si el navegador lo permite). Ver la guía.
 
+**Pistas y soluciones:**
+1. **El corazón que late**
+    - *Para pensar:* ¿qué tiene que pasar una y otra vez?
+    - *Solución:* `para siempre` → `mostrar icono` (corazón) → `mostrar icono` (corazón pequeño). Si late demasiado deprisa, una `pausa (ms) 500` entre los dos.
+2. **El contador**
+    - *Solución:* `al presionar el botón A` → `cambiar contador por 1` → `mostrar número contador`.
+3. **Que baje con B y no pase de 0** (si va rápido)
+    - *Pista:* antes de restar hay que preguntar si queda algo que restar.
+    - *Solución:* `al presionar el botón B` → `si contador > 0 entonces` → `cambiar contador por -1`; después, `mostrar número contador`.
+
 - **Frase clave:** "Primero en el simulador, después en la placa."
 - **Si va rápido:** que el contador baje con el botón B y no pase de 0.
 - **Si cuesta:** llegar hasta el paso 4 (botones A y B) y pasar eso a la placa.
@@ -149,6 +169,19 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 
 **Opción B · El contador de pasos**
 Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar número pasos**. **al presionar el botón A** → **establecer pasos a 0**. Se pega la placa (con su portapilas) al tobillo y se camina 20 pasos: ¿cuenta bien?
+
+**Pistas y soluciones:**
+1. **El dado con animación**
+    - *Solución:* `al agitar` → `mostrar icono` (cuadrado pequeño) → `mostrar icono` (cuadrado grande) → `mostrar número (elegir al azar de 1 a 6)`.
+    - *Error frecuente:* `elegir al azar de 0 a 6`: a veces sale 0, que no está en un dado.
+2. **¿Sale todo igual?** (mini investigación)
+    - *Solución:* cada número tiene la misma probabilidad (1 de 6). En 30 tiradas cada uno sale unas 5 veces, pero con tan pocas tiradas es normal que haya diferencias grandes; con 100 tiradas se igualan más.
+3. **Un dado que no repite el número anterior** (si va rápido)
+    - *Pista:* hace falta recordar el número anterior en una variable y volver a tirar mientras salga el mismo.
+    - *Solución:* `al agitar` → `establecer nuevo a (elegir al azar de 1 a 6)` → `mientras nuevo = anterior` → `establecer nuevo a (elegir al azar de 1 a 6)`; después, `establecer anterior a nuevo` → `mostrar número nuevo`.
+4. **El contador de pasos** (opción B)
+    - *Para pensar:* ¿cuenta bien? ¿Por qué a veces cuenta de más o de menos?
+    - *Solución:* `al agitar` detecta sacudidas, no pasos exactos: según cómo se mueva el pie, cuenta de más o de menos. Es un buen ejemplo de que un sensor mide, pero no siempre lo que queremos.
 
 - **Frase clave:** "Un sensor es el sentido de la máquina."
 - **Si va rápido:** un dado que no repite el número anterior.
@@ -180,6 +213,14 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 2. Miden en el aula, en la ventana y en el pasillo. Anotan en la hoja.
 3. Gráfico de barras en la pizarra. Aviso: la placa mide la temperatura de su chip; sirve para comparar sitios, no como termómetro exacto.
 
+**Pistas y soluciones:**
+1. **La lamparita de noche**
+    - *Para pensar:* ¿por qué hace falta el `si no`?
+    - *Solución:* `para siempre` → `si nivel de luz < 50 entonces` → `mostrar icono` (luna o todo encendido); `si no` → `borrar la pantalla`. Sin el `si no`, la luz se quedaría encendida para siempre después de la primera vez.
+    - *Ajustar el umbral:* medid primero con `mostrar número (nivel de luz)` con la placa tapada y destapada, y elegid un número entre los dos.
+2. **La barra que crece con la luz** (si va rápido)
+    - *Solución:* dentro de `para siempre`, el bloque de gráfico de barras de la categoría LED con `nivel de luz` y como máximo 255: cuanta más luz, más luces encendidas.
+
 - **Frase clave:** "El sensor mide; el programa decide."
 - **Si va rápido:** que las luces de la pantalla formen una barra que crece con la luz (gráfico de barras de la categoría LED).
 - **Si cuesta:** la opción B, solo midiendo y anotando.
@@ -200,6 +241,14 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 4. Meten la placa con su portapilas en el estuche y lo prueban.
 
 **Opción B (más sencilla):** solo el paso 2, sin activar y desactivar.
+
+**Pistas y soluciones:**
+1. **Alarma que se activa y se desactiva**
+    - *Para pensar:* si la alarma suena siempre que se mueve, ¿cómo la llevamos sin que suene?
+    - *Solución:* `al presionar el botón A` → `establecer activada a 1` → `mostrar icono` (sí). `al presionar el botón B` → `establecer activada a 0` → `borrar la pantalla`. `al agitar` → `si activada = 1 entonces` → `mostrar icono` (no) → `reproducir tono Do durante 1 compás`.
+2. **Desactivar con un código A, A, B** (si va rápido)
+    - *Pista:* una variable `paso` cuenta cuántas partes del código se han acertado.
+    - *Solución:* `al presionar el botón A` → `si paso < 2 entonces` → `cambiar paso por 1`. `al presionar el botón B` → `si paso = 2 entonces` → `establecer activada a 0` → `mostrar icono` (sí); y siempre, `establecer paso a 0`. En esta versión, el botón A ya no activa la alarma: se activa al iniciar con `establecer activada a 1`.
 
 - **Frase clave:** "Un invento útil escucha al mundo y responde."
 - **Si va rápido:** que la alarma se desactive con un código (A, A, B).
@@ -227,6 +276,12 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
    Rellenan: qué problema resuelve, qué sensor usa, qué hace, dibujo del programa.
 
 - **Minuto de uso responsable:** si buscan ideas en internet, solo en las webs que indica el docente (makecode.microbit.org, microbit.org/es-es/projects).
+
+**Pistas y soluciones:**
+1. **Cazabichos**
+    - *Solución:* lamparita: `nivel de luz > 50` tiene que ser `nivel de luz < 50`. Contador: falta `establecer contador a 0` en `al iniciar`. Dado: `elegir al azar de 0 a 6` tiene que ser de 1 a 6.
+    - *Método:* probar, leer el programa en voz alta y cambiar una sola cosa cada vez.
+
 - **Frase clave:** "Un invento empieza con un problema bien elegido."
 - **Si va rápido:** que cada pareja fabrique un bicho para otra.
 - **Si cuesta:** solo dos de los tres programas con bicho.
@@ -246,6 +301,16 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Si cuesta:** un invento con un sensor y un solo icono de respuesta.
 - **Producto de T2:** invento individual con un sensor. **Rúbrica del trimestre.**
 - **Mates:** medida y verificación.
+
+**Pistas y soluciones:**
+1. **Pistas para cada invento**
+    - *Detector de ruido:* `para siempre` → `si nivel de sonido > 128 entonces` → `mostrar icono` (cara triste); `si no` → `borrar la pantalla`. El micrófono solo lo tienen las placas **V2** (tienen un agujerito junto al logo).
+    - *Recordatorio de beber agua:* `para siempre` → `pausa (ms) 1200000` (20 minutos) → `reproducir melodía`. Para probarlo, primero con 10000 (10 segundos).
+    - *Termómetro que avisa:* `para siempre` → `si temperatura (°C) < 18 entonces` → `mostrar icono` (aviso).
+    - *Juego de reflejos:* como el reto 4 de la S1 de 6º: espera al azar, icono y gana quien pulsa primero.
+    - *Brújula:* `dirección de la brújula (°)` da de 0 a 359; el norte está cerca de 0. La primera vez la placa pide calibrar: hay que inclinarla hasta encender todas las luces.
+    - *Error frecuente al pasar a la placa:* el umbral que iba bien en el simulador no sirve en la clase: hay que medir y ajustarlo.
+
 - **Frase clave:** "Si funciona en la mesa, pruébalo en la realidad."
 
 ---
@@ -268,6 +333,17 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 3. Prueban: ¿cuánto avanza en 1 segundo? Lo miden con la cinta métrica.
 4. Reto: llegar exactamente a una línea a 1 metro. Tienen que ajustar el tiempo.
 5. Reto extra: un giro (un motor hacia delante y otro hacia atrás, o uno parado).
+
+**Pistas y soluciones:**
+1. **¿Cuánto avanza en 1 segundo?**
+    - *Solución:* depende de cada robot y del suelo; por eso se mide. Si en 1 segundo avanza, por ejemplo, 25 cm, en 2 segundos avanzará unos 50 cm.
+2. **Llegar a 1 metro**
+    - *Pista:* si en 1 segundo avanza 25 cm, ¿cuántos segundos hacen falta para 100 cm?
+    - *Solución:* tiempo = 100 ÷ (cm en 1 segundo). Con 25 cm/s: 4 segundos → `pausa (ms) 4000`. Después se prueba y se ajusta: al arrancar y frenar no avanza exactamente igual.
+3. **Un giro**
+    - *Solución:* un motor hacia delante y el otro hacia atrás (velocidad 50 y −50) gira sobre sí mismo; con un motor parado gira más abierto. El ángulo se ajusta cambiando el tiempo de la pausa.
+4. **Llegar a 1,5 metros** (si va rápido)
+    - *Solución:* con 25 cm/s: 150 ÷ 25 = 6 segundos → `pausa (ms) 6000`.
 
 - **Frase clave:** "Velocidad por tiempo: así sé cuánto avanza."
 - **Si va rápido:** llegar a 1,5 m calculando el tiempo a partir de la medida de 1 m.
@@ -337,6 +413,16 @@ Variable *pasos*; **al agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Si hay sesiones opcionales:** esta sesión se dedica al plan y la construcción, y la **S13** a programar y probar.
 - **Mates:** resolución de problemas, medida.
+
+**Pistas y soluciones:**
+1. **Pistas para cada reto**
+    - *Biblioteca silenciosa:* `para siempre` → `si nivel de sonido > 128 entonces` → `mostrar icono` (cara triste); `si no` → `borrar la pantalla`. Necesita una placa **V2** (tiene micrófono). El 128 se ajusta midiendo en la biblioteca de verdad.
+    - *Semáforo de la fuente o del baño:* `al presionar el botón A` → `mostrar icono` (no) = ocupado; `al presionar el botón B` → `mostrar icono` (sí) = libre. Con sensor de luz, el umbral decide si la puerta está abierta o cerrada.
+    - *Robot de reparto:* se mide cuánto avanza en 1 segundo y se calcula el tiempo para la distancia entre mesas, como en la S8 (tiempo = distancia ÷ velocidad).
+    - *Aviso de ventilación:* `para siempre` → `si temperatura (°C) > 26 entonces` → `mostrar icono` y `reproducir tono`. Recordad que la placa mide la temperatura de su chip: sirve para notar subidas, no como termómetro exacto.
+2. **Un registro de datos** (si va rápido)
+    - *Solución:* lo más sencillo es apuntar a mano la medida cada 5 minutos en la hoja M25 y hacer un gráfico. Con placas V2 también se puede usar la extensión de registro de datos de MakeCode.
+
 - **Frase clave:** "Un sensor, una acción, un problema resuelto."
 - **Si va rápido:** añadir un segundo sensor o un registro de datos.
 - **Si cuesta:** el reto de la biblioteca silenciosa con un solo icono.
@@ -380,6 +466,15 @@ Se coloca entre la S11 y la S12. Tarjeta "Dónde lo dejamos" → programar y pro
 
 Después de la S8. Según los sensores del kit: que el robot pare ante un obstáculo (**si distancia < 10 cm entonces parar**) o que siga una línea negra de cinta aislante. **Sin sensor:** que arranque y pare con los botones A y B, o con una palmada (micrófono de la V2: **al detectar sonido fuerte**).
 
+**Pistas y soluciones:**
+1. **Parar ante un obstáculo**
+    - *Para pensar:* ¿cada cuánto hay que mirar la distancia?
+    - *Solución:* `para siempre` → `si` (distancia del sensor de ultrasonidos) `< 10` `entonces` → parar los motores; `si no` → motores hacia delante. La distancia se lee con el bloque del sensor en la extensión de Nezha.
+2. **Esquivar en lugar de pararse** (si va rápido)
+    - *Solución:* dentro del `si`: un motor hacia delante y otro hacia atrás durante una pausa corta (por ejemplo, `pausa (ms) 500`) para girar, y luego seguir. El tiempo de giro se ajusta probando.
+3. **Sin sensor**
+    - *Solución:* `al presionar el botón A` → motores en marcha; `al presionar el botón B` → parar. Con una placa V2, también `al detectar sonido fuerte` → parar.
+
 - **Si va rápido:** que el robot esquive el obstáculo en lugar de pararse.
 - **Si cuesta:** la versión sin sensor, con los botones A y B.
 - **Mates:** distancias en centímetros, comparación con un umbral («distancia < 10»).
@@ -403,6 +498,14 @@ Después de la S10. Diseñar un soporte para lápices, un portanombres o una pie
 - **Radio:** dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar número**, **al recibir radio**). Cada equipo, un número de grupo distinto. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.
 - **ART2BIT:** una de sus situaciones oficiales, si el centro lo tiene montado.
 - **Enseño a 3º:** cada pareja enseña su invento a una pareja de 3º.
+
+**Pistas y soluciones:**
+1. **Radio entre dos placas**
+    - *Pista:* las dos placas tienen que estar en el **mismo grupo**.
+    - *Solución:* en las dos: `al iniciar` → `radio establecer grupo 7`. Placa que envía: `al presionar el botón A` → `radio enviar número 1`. Placa que recibe: `al recibir radio receivedNumber` → `mostrar número receivedNumber`.
+2. **Termómetro remoto** (si va rápido)
+    - *Solución:* la placa que mide: `para siempre` → `radio enviar número (temperatura (°C))` → `pausa (ms) 60000`. La que recibe enseña el número igual que antes.
+
 - **Si va rápido:** combinar radio y sensores (termómetro remoto).
 - **Si cuesta:** la radio con un solo número y un icono.
 - **Mates:** codificar mensajes con números; tiempos y distancias de comunicación.

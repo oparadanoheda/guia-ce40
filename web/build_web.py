@@ -407,7 +407,7 @@ def render_session(c, s, prev, nxt, idx):
         main.append(f'<div class="f-intro">{md(chr(10) + chr(10).join(s["intro"]))}</div>')
     main.append(render_sections(s))
     if s.get("sol"):
-        main.append(more("Pistas y soluciones de los retos", '<p class="small">Para el docente: primero la pregunta, después la pista y solo al final la solución.</p>' + blocks(md(chr(10) + s["sol"])), did=s["id"] + "-sol"))
+        main.append(more("Pistas y soluciones de los retos", '<p class="small">Para el docente: primero la pregunta, después la pista y solo al final la solución.</p>' + blocks(md(chr(10) + s["sol"]), "scratch" if "scratch" in s["title"].lower() or c["id"] in ("c1", "c2", "c3", "c4") else "makecode"), did=s["id"] + "-sol"))
     if s.get("key"):
         main.append(f'<figure class="keyq"><blockquote>{inline(s["key"])}</blockquote><figcaption>Frase clave</figcaption></figure>')
     if s.get("fast") or s["hard"]:
@@ -604,17 +604,34 @@ def subsec(body, heading):
 
 
 # Bloques de programación en las soluciones: `texto` se pinta con el color de su categoría (MakeCode y Scratch)
-BLOCK_CATS = [("inp", ("al presionar", "al agitar", "nivel de luz", "temperatura", "nivel de sonido", "aceleración", "brújula")),
+BLOCK_CATS = [("rad", ("al recibir radio",)), ("fun", ("llamar a", "función")),
+              ("inp", ("al presionar", "al agitar", "nivel de luz", "temperatura", "nivel de sonido", "aceleración", "brújula", "dirección de la brújula", "al detectar")),
               ("mat", ("elegir al azar", "número aleatorio")), ("mus", ("reproducir", "tocar nota", "tocar sonido")), ("rad", ("radio",)),
               ("loo", ("repetir", "mientras", "por siempre")),
               ("bas", ("al iniciar", "para siempre", "mostrar", "pausa", "borrar la pantalla", "esperar")),
               ("log", ("si ", "verdadero", "falso", "y ", "o ", "no ")), ("var", ("establecer", "cambiar", "dar a", "sumar a", "fijar"))]
 
 
-def blocks(h):
+SCRATCH_CATS = [("sc-eve", ("al hacer clic", "al presionar tecla", "al presionar la tecla", "al recibir", "enviar", "al comenzar como clon")),
+                ("sc-mov", ("mover", "girar", "ir a", "cambiar x", "cambiar y", "fijar x", "fijar y", "deslizar", "rebotar", "apuntar", "posición x", "posición y")),
+                ("sc-apa", ("decir", "pensar", "cambiar disfraz", "siguiente disfraz", "cambiar fondo", "mostrar", "esconder", "cambiar tamaño", "fijar tamaño")),
+                ("sc-son", ("tocar sonido", "iniciar sonido", "detener todos los sonidos", "tocar nota")),
+                ("sc-myb", ("definir",)),
+                ("sc-con", ("esperar", "repetir", "por siempre", "si ", "detener", "crear clon", "eliminar este clon")),
+                ("sc-sen", ("¿tocando", "tocando", "preguntar", "respuesta", "¿tecla", "cronómetro", "reiniciar cronómetro")),
+                ("sc-ope", ("número aleatorio", "unir", "letra")),
+                ("sc-var", ("dar a", "sumar a", "mostrar variable", "esconder variable")),
+                ("sc-pen", ("bajar lápiz", "subir lápiz", "borrar todo", "fijar color del lápiz", "sellar"))]
+
+
+def blocks(h, flavor="makecode"):
+    """`texto` → bloque con el color de su categoría: MakeCode (micro:bit) o Scratch."""
     def rep(m):
         t = m.group(1)
         low = html.unescape(t).lower()
+        if flavor == "scratch":
+            cat = "sc-con" if low == "si" else next((c for c, keys in SCRATCH_CATS if low.startswith(keys)), "sc-var" if " " not in low else "mk-gen")
+            return f'<span class="mkb {cat}">{t}</span>'
         cat = "log" if low in ("si", "y", "o", "no") else next((c for c, keys in BLOCK_CATS if low.startswith(keys)), "var" if " " not in low else "gen")
         return f'<span class="mkb mk-{cat}">{t}</span>'
     return re.sub(r"<code>([^<]+)</code>", rep, h)

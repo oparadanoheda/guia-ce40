@@ -93,6 +93,14 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 **Opción B · Reto relámpago (sin preparar archivo)**
 Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con las flechas; (3) cuenta puntos al hacer clic en él.
 
+**Pistas y soluciones:**
+1. **Arregla el juego: los 3 bichos del archivo**
+    - *Para pensar:* probad el juego entero y apuntad qué falla antes de tocar ningún bloque.
+    - *Pista:* uno está en el movimiento, otro en un bloque que nunca se ejecuta y otro en un bucle que se acaba demasiado pronto.
+    - *Solución:* (1) con la flecha derecha el gato va hacia la izquierda: el bloque dice `mover -10 pasos` y debe ser `mover 10 pasos`; (2) un sonido está suelto, sin evento encima: hay que engancharlo debajo de un evento; (3) el juego se para enseguida: hay un `repetir 3` donde debe haber `por siempre`.
+2. **Reto relámpago** (opción B)
+    - *Solución:* (1) `al hacer clic en 🏴` → `decir ¡Hola! durante 2 segundos`; (2) `al presionar tecla flecha derecha` → `mover 10 pasos` y `al presionar tecla flecha izquierda` → `mover -10 pasos`; (3) `al hacer clic en este objeto` → `sumar a puntos 1`, con `dar a puntos el valor 0` en la bandera.
+
 - **Frase clave:** "Un bicho encontrado es un bicho aprendido."
 - **Si va rápido:** añadir al juego una mejora propia después de arreglarlo.
 - **Si cuesta:** la opción B, con los tres retos en la pizarra.
@@ -114,6 +122,17 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 **Opción más sencilla:** solo polígonos, cambiando el color del lápiz.
 
 - **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
+
+**Pistas y soluciones:**
+1. **Tabla de giros**
+    - *Solución:* triángulo 120°, cuadrado 90°, pentágono 72°, hexágono 60°, octógono 45°. Siempre giro = 360 ÷ lados.
+2. **Rosetón**
+    - *Para pensar:* el rosetón es un cuadrado repetido. ¿Cuánto hay que girar entre un cuadrado y el siguiente para dar la vuelta completa con 12?
+    - *Solución:* `repetir 12` con dentro `repetir 4` (`mover 80 pasos`, `girar ↻ 90 grados`) y después `girar ↻ 30 grados`. 12 × 30° = 360°.
+3. **Rosetón de hexágonos** (si va rápido)
+    - *Solución:* `repetir 12` con dentro `repetir 6` (`mover 50 pasos`, `girar ↻ 60 grados`) y `girar ↻ 30 grados`. Vale cualquier pareja que dé 360: 6 × 60, 10 × 36, 12 × 30…
+    - *Error frecuente:* poner el `girar ↻ 30 grados` dentro del repetir de dentro: sale un polígono torcido en lugar de un rosetón.
+
 - **Frase clave:** "Un bucle dentro de otro multiplica."
 - **Si va rápido:** un rosetón con hexágonos: ¿cuántas veces hay que repetir y cuánto girar?
 - **Si cuesta:** la opción más sencilla: solo polígonos, con la tabla de giros en la pizarra.
@@ -133,6 +152,12 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 **Opción B · Construimos un diagrama**
 Por grupos, con las formas recortables de M12, construyen el diagrama de "adivina el número" y otro grupo lo juega siguiéndolo.
 
+**Pistas y soluciones:**
+1. **Diagrama «¿es múltiplo de 5?»** (si va rápido)
+    - *Para pensar:* ¿cómo sabemos, sin dividir, si un número es múltiplo de 5?
+    - *Pista:* fijaos en la última cifra de 5, 10, 15, 20, 25…
+    - *Solución:* óvalo «Empieza» → rectángulo «Pienso un número» → rombo «¿Termina en 0 o en 5?» → SÍ: «Es múltiplo de 5»; NO: «No es múltiplo de 5» → óvalo «Termina».
+
 - **Frase clave:** "Si… entonces… si no: siempre hay un camino."
 - **Si va rápido:** un diagrama nuevo: «¿es múltiplo de 5?».
 - **Si cuesta:** recorrer solo el diagrama «par o impar» en la pizarra.
@@ -150,6 +175,13 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 2. En Scratch, crear *puntos* y *vidas*.
 3. **al hacer clic en 🏴** → **dar a puntos el valor 0** → **dar a vidas el valor 3**; **al hacer clic en este objeto** → **sumar a puntos 1** → **ir a posición aleatoria**; **al presionar tecla espacio** → **sumar a vidas -1**.
 4. Pregunta: "¿Qué pasa si no pongo *dar a puntos el valor 0* al principio?". Que lo prueben.
+
+**Pistas y soluciones:**
+1. **¿Qué pasa si no pongo «dar a puntos el valor 0»?**
+    - *Solución:* los puntos de la partida anterior se quedan: el juego empieza con los que había. Por eso toda variable se pone a su valor de salida con la bandera.
+2. **La variable tiempo** (si va rápido)
+    - *Pista:* tiene que bajar de 1 en 1 cada segundo y parar en 0.
+    - *Solución:* `al hacer clic en 🏴` → `dar a tiempo el valor 30` → `repetir hasta que tiempo = 0` con dentro `esperar 1 segundos` y `sumar a tiempo -1`; después, `decir ¡Se acabó el tiempo! durante 2 segundos` y `detener todos`.
 
 - **Frase clave:** "Una variable guarda un dato que cambia."
 - **Si va rápido:** una tercera variable (*tiempo*) que baja de 1 en 1.
@@ -173,6 +205,18 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 
 **Opción más sencilla:** "par o impar": el ordenador pregunta un número y responde con **si ((respuesta mod 2) = 0) entonces decir Par / si no decir Impar**. *mod* es el resto de dividir.
 
+**Pistas y soluciones:**
+1. **Adivina el número con pistas**
+    - *Para pensar:* si el número es 13 y digo 8, ¿qué pista me tiene que dar?
+    - *Pista:* la segunda pregunta va **dentro del si no**, porque solo hace falta cuando no se ha acertado.
+    - *Solución:* `si respuesta = secreto entonces` → `decir ¡Acertaste! durante 2 segundos`; `si no` → `si respuesta > secreto entonces` → `decir Es más pequeño durante 2 segundos`; `si no` → `decir Es más grande durante 2 segundos`.
+    - *Repetir hasta acertar:* `preguntar` y los dos `si` van dentro de `repetir hasta que respuesta = secreto`. El archivo de solución lo tiene completo.
+    - *Estrategia para jugar:* empezar por la mitad (10) y seguir partiendo por la mitad; con números del 1 al 20 bastan 5 intentos.
+2. **Contar los intentos** (si va rápido)
+    - *Solución:* variable `intentos`: `dar a intentos el valor 0` al empezar y `sumar a intentos 1` después de cada `preguntar`. Al acertar: `decir (unir Lo has conseguido en intentos)`.
+3. **Par o impar** (opción más sencilla)
+    - *Solución:* `preguntar Dime un número y esperar` → `si (respuesta mod 2) = 0 entonces` → `decir Par`; `si no` → `decir Impar`. Un número es par si al dividirlo entre 2 el resto es 0.
+
 - **Frase clave:** "El ordenador decide con condiciones."
 - **Si va rápido:** que cuente cuántos intentos se han necesitado.
 - **Si cuesta:** la opción más sencilla (par o impar).
@@ -195,6 +239,15 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 
 **Opción más sencilla:** siempre la misma tabla (**dar a a el valor 7**) y sin el bloque **unir**.
 
+**Pistas y soluciones:**
+1. **El juego de las tablas**
+    - *Para pensar:* ¿por qué hacen falta dos variables, `a` y `b`, y no basta con una?
+    - *Pista:* el resultado correcto no se guarda: se calcula al comparar, con `a * b`.
+    - *Solución:* la de los pasos; el archivo de solución está completo. Ojo con el `unir`: hay que dejar un espacio a cada lado de la x (" x ") para que la pregunta se lea bien.
+    - *Error frecuente:* poner `dar a puntos el valor 0` dentro del `repetir 10`: los puntos se borran en cada pregunta.
+2. **Hasta el 12 y con fallos** (si va rápido)
+    - *Solución:* `número aleatorio entre 1 y 12` para `a` y `b`. Para los fallos, una variable `fallos` a 0 al empezar y `sumar a fallos 1` dentro del `si no`.
+
 - **Frase clave:** "Mi juego me ayuda a aprender."
 - **Si va rápido:** tablas mezcladas con números hasta el 12, o que cuente los fallos.
 - **Si cuesta:** la opción más sencilla: siempre la misma tabla.
@@ -214,6 +267,13 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 
 **Opción B · Torneo de bichos**
 Los tres archivos del torneo (en la ficha), cada uno con un error típico: la variable no vuelve a 0, la condición está al revés y el cuadrado no se cierra por un número mal en el **repetir**. Gana la pareja que los arregla antes.
+
+**Pistas y soluciones:**
+1. **Torneo de bichos**
+    - *Para pensar:* antes de cambiar nada, jugad y decid en voz alta «quería que pasara… y pasa…».
+    - *Solución:* **bicho 1:** los puntos no vuelven a 0 al empezar → añadir `dar a puntos el valor 0` debajo de la bandera. **Bicho 2:** suma puntos al fallar → lo que está dentro del `si` y lo del `si no` están cambiados de sitio. **Bicho 3:** el cuadrado queda abierto → `repetir 3` tiene que ser `repetir 4`.
+2. **Fabricar un bicho para otra pareja** (si va rápido)
+    - *Pista:* un buen bicho cambia **un solo** bloque o número y hace que el juego falle de forma que se note.
 
 - **Frase clave:** "¿Qué quería que pasara y qué pasa?"
 - **Si va rápido:** fabricar un bicho para otra pareja.
@@ -281,6 +341,13 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 **Opción más sencilla:** solo derecha e izquierda (juego de atrapar cosas que caen).
 
+**Pistas y soluciones:**
+1. **Personaje que no se sale**
+    - *Para pensar:* ¿por qué no basta con que las flechas funcionen?
+    - *Solución:* cuatro eventos de tecla (`cambiar x en 10`, `cambiar x en -10`, `cambiar y en 10`, `cambiar y en -10`) y, aparte, `al hacer clic en 🏴` → `ir a x: 0 y: 0` → `fijar tamaño al 50 %` → `por siempre` → `rebotar si toca un borde`. Todos los programas funcionan a la vez.
+2. **Cambiar de disfraz al moverse** (si va rápido)
+    - *Solución:* añadir `siguiente disfraz` debajo de cada `cambiar x en …` de las flechas.
+
 - **Frase clave:** "Varios eventos pueden funcionar a la vez."
 - **Si va rápido:** que el personaje cambie de disfraz al moverse.
 - **Si cuesta:** la opción más sencilla: solo derecha e izquierda.
@@ -297,6 +364,14 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 1. Objeto "premio": **al hacer clic en 🏴** → **por siempre** [**si ¿tocando [personaje]? entonces** → **tocar sonido** → **ir a posición aleatoria**].
 2. Objeto "enemigo" que se mueve solo: **por siempre** [**mover 5 pasos**, **rebotar si toca un borde**].
 3. Si el enemigo toca al personaje: **si ¿tocando [personaje]? entonces** → **decir ¡Ay!** → **esperar 1 segundos**.
+
+**Pistas y soluciones:**
+1. **Premio y enemigo**
+    - *Para pensar:* ¿quién comprueba si se tocan, el personaje o el premio? ¿Importa?
+    - *Pista:* da igual dónde esté el `si ¿tocando…?`, pero tiene que estar dentro de un `por siempre`.
+    - *Solución:* premio: `al hacer clic en 🏴` → `por siempre` → `si ¿tocando Personaje? entonces` → `iniciar sonido` → `ir a posición aleatoria`. Enemigo: `al hacer clic en 🏴` → `por siempre` → `mover 5 pasos` → `rebotar si toca un borde` → `si ¿tocando Personaje? entonces` → `decir ¡Ay! durante 1 segundos`.
+2. **Dos enemigos con velocidades distintas** (si va rápido)
+    - *Solución:* duplicar el enemigo (clic derecho → duplicar) y cambiar `mover 5 pasos` por `mover 8 pasos` en la copia.
 
 - **Frase clave:** "SI toca, ENTONCES pasa algo."
 - **Si va rápido:** dos enemigos con velocidades distintas.
@@ -317,6 +392,15 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 3. En el enemigo, dentro del **si**: **sumar a vidas -1**.
 4. Final: **por siempre** [**si (vidas = 0) entonces** → **decir Has perdido** → **detener todos**] y otro **si (puntos = 10) entonces** → **decir ¡Has ganado!** → **detener todos**.
 
+**Pistas y soluciones:**
+1. **Puntos, vidas y final**
+    - *Para pensar:* si el enemigo sigue tocando al personaje, ¿cuántas vidas se pierden?
+    - *Pista:* mientras se tocan, el `si` se cumple muchas veces por segundo.
+    - *Solución:* en el enemigo, dentro del `si ¿tocando Personaje? entonces`: `sumar a vidas -1` → `ir a posición aleatoria` (o `esperar 1 segundos`). En el escenario: `al hacer clic en 🏴` → `por siempre` → `si vidas = 0 entonces` (`decir Has perdido`, `detener todos`) y `si puntos = 10 entonces` (`decir ¡Has ganado!`, `detener todos`).
+    - *Error frecuente:* quitar `ir a posición aleatoria` o el `esperar`: se pierden las 3 vidas de golpe.
+2. **Un premio que vale más** (si va rápido)
+    - *Solución:* un segundo premio de otro color con `sumar a puntos 3` dentro de su `si`.
+
 - **Frase clave:** "Las variables cuentan; las condiciones deciden."
 - **Si va rápido:** que el premio valga más puntos si es de otro color.
 - **Si cuesta:** solo los puntos y un final al llegar a 10.
@@ -335,6 +419,15 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 3. En el enemigo: **al recibir nivel 2** → más rápido (**mover 10 pasos** en vez de 5).
 
 **Opción más sencilla:** solo cambiar de fondo al llegar a 5 puntos, sin mensajes.
+
+**Pistas y soluciones:**
+1. **Mensajes y niveles**
+    - *Para pensar:* si el mensaje se envía dentro de un `por siempre` mientras puntos vale 5, ¿cuántas veces se envía?
+    - *Pista:* el enemigo ya tiene un `por siempre` con `mover 5 pasos`. Para que vaya más rápido, es mejor que la velocidad sea una **variable**.
+    - *Solución:* variable `velocidad`. Enemigo: `al hacer clic en 🏴` → `dar a velocidad el valor 5` → `por siempre` → `mover velocidad pasos` → `rebotar si toca un borde`. Premio, al sumar el punto: `si puntos = 5 entonces` → `enviar nivel 2`. Escenario: `al recibir nivel 2` → `cambiar fondo a` (el del nivel 2). Enemigo: `al recibir nivel 2` → `dar a velocidad el valor 10`.
+    - *Error frecuente:* poner `al recibir nivel 2` → `por siempre` → `mover 10 pasos`: el programa nuevo se suma al viejo y el enemigo corre 15 pasos de golpe.
+2. **Tercer nivel** (si va rápido)
+    - *Solución:* lo mismo con `si puntos = 10 entonces` → `enviar nivel 3`, otro fondo y `dar a velocidad el valor 15`.
 
 - **Frase clave:** "Un mensaje es un evento que se envía."
 - **Si va rápido:** un tercer nivel con otro fondo y otra velocidad.
@@ -369,6 +462,12 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 2. **Arreglar (20 minutos):** programan. Si no encuentran el bicho, usan las tres preguntas: «¿Qué quería que pasara? ¿Qué pasa? ¿En qué bloque empieza a fallar?».
 3. **Comprobar (5 minutos):** otra pareja prueba solo el arreglo y dice si funciona.
 4. **Navegación segura (minuto ampliado, 10 minutos):** Tres normas: no todo lo que sale en internet es verdad; antes de creerlo, lo busco en otra fuente fiable; si algo me incomoda, cierro y aviso a un adulto. Ejemplo: buscar juntos en el display un dato de mates (la altura de la torre más alta de Madrid) en dos webs y comprobar si coincide.
+
+**Pistas y soluciones:**
+1. **Pantalla de instrucciones** (si va rápido)
+    - *Para pensar:* ¿cómo hacemos que el juego no empiece hasta que el jugador haya leído las instrucciones?
+    - *Pista:* un fondo nuevo con las instrucciones y un mensaje para empezar.
+    - *Solución:* escenario: `al hacer clic en 🏴` → `cambiar fondo a instrucciones` → `esperar hasta que ¿tecla espacio presionada?` → `cambiar fondo a juego` → `enviar empezar`. En los objetos, sus programas empiezan con `al recibir empezar` en lugar de con la bandera.
 
 - **Frase clave:** "Primero arreglo, después mejoro."
 - **Si va rápido:** añadir un nivel o una pantalla de instrucciones.
@@ -466,6 +565,15 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 2. La variable y la condición: en un quiz, **si (respuesta correcta) entonces sumar a puntos 1 / si no decir Inténtalo otra vez**.
 3. Probar cada botón por separado y después el juego entero.
 
+**Pistas y soluciones:**
+1. **Botones y quiz**
+    - *Para pensar:* el mando solo pulsa teclas. ¿Cómo sabe el juego qué botón es la respuesta buena?
+    - *Pista:* una variable `correcta` guarda la tecla buena de cada pregunta (1, 2 o 3); cada botón compara su número con ella.
+    - *Solución:* en cada pregunta: `dar a correcta el valor 2` (por ejemplo). Botón 1: `al presionar tecla flecha izquierda` → `si correcta = 1 entonces` → `sumar a puntos 1`; `si no` → `decir Inténtalo otra vez durante 2 segundos`. Igual con los otros botones y su número.
+    - *Error frecuente:* probar todo a la vez. Primero cada botón con el teclado, después con el mando y al final el juego entero.
+2. **Contar el tiempo** (si va rápido)
+    - *Solución:* `reiniciar cronómetro` al empezar y, al terminar, `decir (unir Has tardado cronómetro)`. El cronómetro está en Sensores y cuenta segundos.
+
 - **Frase clave:** "Pruebo cada parte y luego el todo."
 - **Si va rápido:** que el juego cuente el tiempo que tarda el jugador.
 - **Si cuesta:** dos botones y la variable de puntos, sin condición.
@@ -484,6 +592,14 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 3. Cada grupo cuenta sus bloques antes y después.
 
 **Opción más sencilla:** solo repetir, borrar lo que sobra y ordenar (sin bloques propios).
+
+**Pistas y soluciones:**
+1. **Optimizar con repetir o con un bloque propio**
+    - *Para pensar:* si hay que cambiar algo del trozo repetido, ¿cuántos sitios hay que tocar antes y después de optimizar?
+    - *Solución:* el trozo copiado 4 veces seguidas va dentro de `repetir 4`. Si el trozo se usa en sitios distintos, mejor un bloque propio: Mis bloques → Crear un bloque → `definir celebrar` con el trozo dentro, y donde estaba el trozo se pone `celebrar`. Al cambiarlo una vez, cambia en todas partes.
+2. **Bloque propio con número de entrada** (si va rápido)
+    - *Pista:* al crear el bloque, «Añadir una entrada (número o texto)» y llamarla `altura`.
+    - *Solución:* `definir saltar (altura)` → `cambiar y en altura` → `esperar 0.3 segundos` → `cambiar y en (0 - altura)`. Se usa como `saltar 50` o `saltar 100`.
 
 - **Frase clave:** "Un buen programa lo entiende cualquiera."
 - **Si va rápido:** un bloque propio con un número de entrada (por ejemplo, *saltar (altura)*).

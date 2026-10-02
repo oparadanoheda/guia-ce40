@@ -274,6 +274,12 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 3. Las parejas lo copian y cambian el texto.
 4. Guardar: *Archivo > Guardar en tu ordenador*, con el nombre de la pareja.
 
+**Pistas y soluciones:**
+1. **Dos frases y cambio de disfraz** (si va rápido)
+    - *Para pensar:* ¿cómo hacemos que hable dos veces seguidas sin que se pisen las frases?
+    - *Pista:* los bloques se ejecutan de arriba abajo; `decir … durante 2 segundos` espera a terminar antes del siguiente.
+    - *Solución:* `al hacer clic en 🏴` → `decir ¡Hola! durante 2 segundos` → `siguiente disfraz` → `decir Soy el gato de 3º durante 2 segundos`.
+
 - **Frase clave:** "Mi contraseña y mis datos son míos."
 - **Si va rápido:** que el gato diga dos frases seguidas y cambie de disfraz.
 - **Si cuesta:** copiar exactamente el programa de la pizarra; tener la chuleta M20 a mano.
@@ -291,6 +297,15 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 2. Con teclas: **al presionar tecla flecha derecha** → **mover 10 pasos**; flecha izquierda → **mover -10 pasos**.
 3. Proyecta "Coordenadas": al mover al gato, la x cambia. Enseña que arriba y abajo es la y.
 4. Reto: que el gato se mueva también arriba y abajo con **cambiar y en 10** y **cambiar y en -10**.
+
+**Pistas y soluciones:**
+1. **Arriba y abajo**
+    - *Para pensar:* si la x es izquierda y derecha, ¿qué número cambia al subir?
+    - *Pista:* hace falta un evento por tecla: cuatro programas pequeños, uno por flecha.
+    - *Solución:* `al presionar tecla flecha arriba` → `cambiar y en 10`. `al presionar tecla flecha abajo` → `cambiar y en -10`.
+    - *Error frecuente:* poner las cuatro teclas debajo de un solo evento. Cada tecla necesita su propio `al presionar tecla`.
+2. **Empezar en el centro** (si va rápido)
+    - *Solución:* `al hacer clic en 🏴` → `ir a x: 0 y: 0`. Con la bandera, el gato vuelve siempre al centro.
 
 - **Frase clave:** "Cada evento empieza su propio programa."
 - **Si va rápido:** que el gato empiece en el centro: **ir a x: 0 y: 0**.
@@ -315,6 +330,19 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 3. Reto: triángulo (giro 120) o hexágono (6 veces, giro 60).
 
 - **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
+
+**Pistas y soluciones:**
+1. **El baile con giro y sonido** (opción A)
+    - *Para pensar:* ¿qué bloques van dentro del `repetir` y cuáles fuera?
+    - *Pista:* todo lo que tiene que pasar en cada paso de baile va dentro.
+    - *Solución:* `al hacer clic en 🏴` → `repetir 10` con dentro `siguiente disfraz`, `mover 10 pasos`, `girar ↻ 15 grados` y `esperar 0.2 segundos`; después del repetir, `tocar sonido Miau hasta que termine`.
+    - *Error frecuente:* poner `tocar sonido Miau hasta que termine` dentro del repetir: el baile va a trompicones porque espera a que acabe cada maullido. Dentro, mejor `iniciar sonido Miau`.
+2. **Triángulo y hexágono** (opción B)
+    - *Para pensar:* al acabar la figura, el gato ha dado una vuelta completa: ¿cuántos grados son?
+    - *Pista:* reparte 360 entre el número de lados.
+    - *Solución:* triángulo: `repetir 3` (`mover 100 pasos`, `girar ↻ 120 grados`). Hexágono: `repetir 6` (`mover 100 pasos`, `girar ↻ 60 grados`).
+    - *Error frecuente:* girar 60 en el triángulo. 60° es el ángulo de dentro del triángulo; el gato tiene que girar 120°.
+
 - **Frase clave:** "Repetir hace el programa más corto."
 - **Si va rápido:** el hexágono (6 veces, giro 60) o una escalera con el lápiz.
 - **Si cuesta:** solo el cuadrado con el lápiz, con la tabla de giros en la pizarra.
@@ -334,6 +362,15 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 4. Explica que el **esperar** sirve para que no hablen a la vez.
 5. Las parejas hacen un diálogo de 4 frases, con fondo y un sonido de la biblioteca.
 
+**Pistas y soluciones:**
+1. **Diálogo sin que hablen a la vez**
+    - *Para pensar:* si los dos empiezan con la bandera, ¿cómo sabe el segundo cuándo le toca?
+    - *Pista:* el segundo personaje espera lo mismo que dura la frase del primero.
+    - *Solución:* personaje 1: `al hacer clic en 🏴` → `decir ¡Hola! durante 2 segundos` → `esperar 2 segundos` → `decir ¡Muy bien! durante 2 segundos`. Personaje 2: `al hacer clic en 🏴` → `esperar 2 segundos` → `decir ¡Hola! ¿Qué tal? durante 2 segundos` → `esperar 2 segundos` → `decir ¡Hasta luego! durante 2 segundos`.
+    - *Error frecuente:* que los tiempos no cuadren (uno habla 2 segundos y el otro espera 1): se pisan. Se arregla sumando los segundos de cada uno.
+2. **Cambio de fondo en mitad del diálogo** (si va rápido)
+    - *Solución:* en el escenario: `al hacer clic en 🏴` → `cambiar fondo a` (el primero) → `esperar 4 segundos` → `cambiar fondo a` (el segundo).
+
 - **Frase clave:** "El orden y el tiempo cuentan la historia."
 - **Si va rápido:** un tercer personaje o un cambio de fondo en mitad del diálogo.
 - **Si cuesta:** un diálogo de dos frases, una por personaje.
@@ -351,6 +388,14 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 2. En Scratch: Variables → **Crear una variable** → *puntos*.
 3. **al hacer clic en 🏴** → **dar a puntos el valor 0**; **al hacer clic en este objeto** → **sumar a puntos 1** → **tocar sonido Miau**.
 4. Prueban: cada clic en el gato, un punto. ¿Qué pasa al pulsar la bandera?
+
+**Pistas y soluciones:**
+1. **¿Qué pasa al pulsar la bandera?**
+    - *Para pensar:* ¿qué bloque se ejecuta con la bandera?
+    - *Solución:* `dar a puntos el valor 0`: el marcador vuelve a 0. Por eso ese bloque va con la bandera y no con el clic en el gato; si fuera con el clic, nunca pasaría de 1.
+2. **El gato cambia de sitio** (si va rápido)
+    - *Pista:* el bloque está en Movimiento.
+    - *Solución:* `al hacer clic en este objeto` → `sumar a puntos 1` → `ir a posición aleatoria`. Ya es un juego: hay que perseguirlo con el ratón.
 
 - **Frase clave:** "Una variable es una caja con nombre."
 - **Si va rápido:** que el gato cambie de sitio al hacer clic (**ir a posición aleatoria**): ya es un juego.
@@ -370,6 +415,18 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 3. El bloque **si… entonces** es el rombo del diagrama de flujo de la S2.
 
 **Opción más sencilla:** el juego de clics de la S13 con **si puntos = 10 entonces decir ¡Has ganado!**.
+
+**Pistas y soluciones:**
+1. **El juego de atrapar**
+    - *Para pensar:* ¿cuántas veces tiene que mirar la manzana si la está tocando el personaje? ¿Una o todo el rato?
+    - *Pista:* el `si ¿tocando…? entonces` tiene que ir dentro de un `por siempre`.
+    - *Solución:* en la manzana: `al hacer clic en 🏴` → `dar a puntos el valor 0` → `por siempre` → `si ¿tocando Gato? entonces` → `sumar a puntos 1` → `ir a posición aleatoria`. En el archivo de solución está completo.
+    - *Errores frecuentes:* el `si` fuera del `por siempre` (solo mira una vez, al empezar); `dar a puntos el valor 0` dentro del `por siempre` (el marcador se borra todo el rato); en `¿tocando…?` elegir otro objeto o el puntero del ratón.
+2. **La manzana se mueve sola** (si va rápido)
+    - *Pista:* si el movimiento va en el mismo `por siempre` que la comprobación, la manzana no mira mientras se desliza.
+    - *Solución:* un segundo programa en la manzana: `al hacer clic en 🏴` → `por siempre` → `deslizar en 1 segs a posición aleatoria`.
+3. **Opción más sencilla: ¡Has ganado!**
+    - *Solución:* en el gato del juego de clics: `al hacer clic en este objeto` → `sumar a puntos 1` → `si puntos = 10 entonces` → `decir ¡Has ganado! durante 2 segundos`.
 
 - **Frase clave:** "SI toca, ENTONCES suma."
 - **Si va rápido:** que la manzana se mueva sola (**deslizar en 1 segs a posición aleatoria**).
@@ -391,6 +448,15 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 1. 10 minutos: rellenan la hoja de diseño (M16).
 2. 25 minutos: programan. Tú circulas con las tres preguntas.
 3. Guardar.
+
+**Pistas y soluciones:**
+1. **Preguntas de tablas**
+    - *Para pensar:* ¿dónde guarda Scratch lo que escribe el jugador?
+    - *Pista:* en el bloque redondo `respuesta` (Sensores), que se compara con el resultado correcto.
+    - *Solución:* `al hacer clic en 🏴` → `dar a puntos el valor 0` → `preguntar ¿Cuánto es 3 × 4? y esperar` → `si respuesta = 12 entonces` → `sumar a puntos 1` y `decir ¡Bien! durante 2 segundos`; `si no` → `decir Es 12 durante 2 segundos`. Para más preguntas, se repite el bloque con otras tablas.
+    - *Si va rápido (preguntas al azar):* dos variables, `a` y `b`, con `número aleatorio entre 1 y 10`; se pregunta con `unir` y se compara `respuesta` con `a * b`.
+2. **Animación con marcador**
+    - *Solución:* parte de la S13: `al hacer clic en este objeto` → `sumar a puntos 1` → `siguiente disfraz` → `si puntos = 5 entonces` → `decir ¡Me has tocado 5 veces! durante 2 segundos`.
 
 - **Frase clave:** "Primero el plan, después los bloques."
 - **Si va rápido:** añadir un segundo nivel o un contador de fallos.
@@ -461,6 +527,15 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 3. Añaden **al presionar tecla flecha arriba** → otro sonido, conectado a otro objeto.
 4. Reto: un piano de 4 notas (flechas y espacio) con la extensión **Música**.
 
+**Pistas y soluciones:**
+1. **Piano de 4 notas**
+    - *Para pensar:* el Makey Makey solo «pulsa teclas». ¿Cuántos eventos hacen falta para 4 notas?
+    - *Pista:* uno por tecla. Las notas están en la extensión Música: Do = 60, Re = 62, Mi = 64, Fa = 65.
+    - *Solución:* `al presionar tecla espacio` → `tocar nota 60 durante 0.5 pulsos`. `al presionar tecla flecha arriba` → nota 62. `al presionar tecla flecha derecha` → nota 64. `al presionar tecla flecha izquierda` → nota 65.
+    - *Error frecuente:* que no suene nada: falta la pinza en EARTH o el alumno no la está tocando.
+2. **Una melodía conocida** (si va rápido)
+    - *Solución:* el principio de «Cumpleaños feliz» se toca solo con esas cuatro notas: Do, Do, Re, Do, Fa, Mi.
+
 - **Frase clave:** "Para el ordenador, el aluminio es una tecla."
 - **Si va rápido:** tocar una melodía conocida con las 4 notas.
 - **Si cuesta:** solo espacio y flecha arriba, dos sonidos.
@@ -510,6 +585,15 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 2. El contador: variable *toques* o *aciertos* con **sumar a … 1**.
 3. Probar con otro grupo y apuntar los bichos.
 
+**Pistas y soluciones:**
+1. **Cada botón, un evento**
+    - *Pista:* probad primero el botón con el teclado del ordenador; si funciona con la tecla y no con el mando, el bicho está en el mando (pinza suelta, aluminio roto, sin tierra).
+    - *Solución (ejemplo de mapa):* `al presionar tecla flecha arriba` → `decir El Retiro durante 2 segundos` → `sumar a toques 1`. Un bloque igual por cada botón, con su tecla.
+2. **El contador que resta al fallar** (si va rápido)
+    - *Para pensar:* ¿cómo sabe el programa si el botón pulsado es el correcto?
+    - *Pista:* una variable `pregunta` guarda qué botón toca; cada botón compara con un `si … entonces · si no`.
+    - *Solución:* en el botón del Retiro: `al presionar tecla flecha arriba` → `si pregunta = 1 entonces` → `sumar a aciertos 1`; `si no` → `sumar a aciertos -1`.
+
 - **Frase clave:** "Pruebo cada botón por separado."
 - **Si va rápido:** que el contador reste al fallar.
 - **Si cuesta:** un botón y su evento, sin contador.
@@ -525,6 +609,12 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 1. En la pizarra, un programa con bloques repetidos. Entre todos lo mejoran: juntar lo repetido en un **repetir**, borrar bloques sueltos, ordenar (clic derecho → **Ordenar bloques**).
 2. Cada grupo hace lo mismo con el suyo: ¿cuántos bloques antes? ¿Y después?
 3. Cazabichos cruzado: otro grupo prueba la pieza y rellena la ficha.
+
+**Pistas y soluciones:**
+1. **Optimizar el programa**
+    - *Para pensar:* ¿qué bloques aparecen varias veces seguidas, iguales?
+    - *Pista:* lo que se repite seguido va dentro de un `repetir`; los bloques sueltos, que no cuelgan de ningún evento, no se ejecutan nunca y se pueden borrar.
+    - *Solución (ejemplo):* `mover 10 pasos` + `esperar 0.5 segundos` copiados 4 veces (8 bloques) se quedan en `repetir 4` con esos dos dentro (3 bloques). Antes de dar por bueno el cambio, se prueba que hace lo mismo.
 
 - **Frase clave:** "Un buen programa lo entiende cualquiera."
 - **Si va rápido:** reducir el programa al menor número de bloques de la clase.

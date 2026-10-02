@@ -153,6 +153,17 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 **Opción B · Mando multifunción**
 Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra una flecha o un icono distinto. Después juegan en parejas a "Simón dice" con la placa.
 
+**Pistas y soluciones:**
+1. **La mascota virtual**
+    - *Para pensar:* el `si hambre > 8` tiene que comprobarse una y otra vez. ¿Dónde lo ponemos?
+    - *Pista:* dentro del mismo `para siempre` que le da hambre con el tiempo.
+    - *Solución:* `al iniciar` → `establecer hambre a 5`. `para siempre` → `pausa (ms) 10000` → `cambiar hambre por 1` → `si hambre > 8 entonces` → `mostrar icono` (triste). Los eventos A, B, agitar y logo, como en los pasos.
+    - *Error frecuente:* que el hambre baje de 0 si se le da de comer muchas veces. Arreglo: `al presionar el botón A` → `si hambre > 0 entonces` → `cambiar hambre por -1`.
+2. **Mando multifunción** (opción B)
+    - *Pista:* inclinar no tiene un bloque propio: está en el desplegable de `al agitar`, donde se elige «inclinar a la izquierda» o «inclinar a la derecha».
+3. **Dos estados: hambre y sueño** (si va rápido)
+    - *Solución:* una segunda variable `sueño` que sube en el mismo `para siempre` y baja con otro evento (por ejemplo, `al presionar el botón A+B` → `establecer sueño a 0` → `mostrar icono` dormido). Un `si sueño > 8 entonces` le pone cara de cansancio.
+
 - **Frase clave:** "Muchos eventos, un solo programa."
 - **Si va rápido:** que la mascota tenga dos estados (hambre y sueño).
 - **Si cuesta:** la opción B.
@@ -174,6 +185,15 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 4. Conclusiones: ¿dónde hace más calor? ¿dónde hay más luz? ¿por qué?
 
 - **Aviso:** la temperatura es la del chip de la placa: sirve para comparar sitios, no como valor exacto.
+
+**Pistas y soluciones:**
+1. **Conclusiones con los datos**
+    - *Para pensar:* si un sitio da 3 grados más, ¿hace más calor allí o puede ser otra cosa?
+    - *Pista:* la placa mide la temperatura de su chip; si alguien la ha tenido en la mano o al sol, sube.
+    - *Solución:* las conclusiones dependen de vuestros datos. En la hoja de cálculo: media con `=PROMEDIO(B2:B10)`; máximo con `=MAX(…)` y mínimo con `=MIN(…)`. Se comparan sitios con la **misma placa** y en las **mismas condiciones**.
+2. **Media, máximo y mínimo** (si va rápido)
+    - *Solución:* la media es la suma dividida entre el número de medidas; el máximo y el mínimo dicen cuánto cambian los datos. Si la media está muy lejos del máximo, hay algún sitio muy distinto de los demás.
+
 - **Frase clave:** "Los datos responden preguntas."
 - **Si va rápido:** comparar la media con el valor máximo y el mínimo.
 - **Si cuesta:** la opción B, con la media calculada entre todos.
@@ -202,6 +222,17 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 3. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad).
 4. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con **repetir 4**).
 
+**Pistas y soluciones:**
+1. **¿Y en 2 s? ¿Y a velocidad 100?**
+    - *Solución:* en 2 s avanza unas **el doble** que en 1 s. A velocidad 100 avanza más que a 50, pero **no siempre el doble exacto**: el rozamiento y el arranque cuentan. Por eso se mide.
+2. **El cuadrado de 50 cm**
+    - *Para pensar:* hacen falta dos tiempos: el de avanzar 50 cm y el de girar 90°. ¿Cómo los averiguamos?
+    - *Pista:* avanzar: tiempo = 50 ÷ (cm que avanza en 1 s). Girar: un motor a 50 y el otro a −50, y se prueba la pausa hasta que gire un cuarto de vuelta.
+    - *Solución:* `repetir 4` → motores hacia delante → `pausa (ms)` (tiempo de 50 cm) → un motor a 50 y el otro a −50 → `pausa (ms)` (tiempo de 90°) → parar. Con 25 cm/s, avanzar 50 cm son 2000 ms.
+3. **El triángulo equilátero** (si va rápido)
+    - *Pista:* como con la tortuga de Scratch: al terminar ha dado una vuelta entera.
+    - *Solución:* `repetir 3` y girar **120°** cada vez (360 ÷ 3). Si 90° eran, por ejemplo, 600 ms, 120° serán unos 800 ms (600 × 4 ÷ 3); después se ajusta probando.
+
 - **Frase clave:** "Si cambio el signo, cambio el sentido."
 - **Si va rápido:** un triángulo equilátero: ¿cuánto hay que girar?
 - **Si cuesta:** solo medir el avance en 1 y 2 segundos.
@@ -223,6 +254,16 @@ Según el kit: parar ante un obstáculo (sensor de ultrasonidos: **si distancia 
 
 **Opción C · Sin sensores disponibles**
 El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportamientos.
+
+**Pistas y soluciones:**
+1. **Engranajes** (opción A)
+    - *Para pensar:* si el engranaje del motor tiene 10 dientes y el otro tiene 20, ¿cuántas vueltas da el segundo cuando el del motor da 2?
+    - *Solución:* **una**. Si el engranaje movido es más grande, gira más despacio (pero con más fuerza); si es más pequeño, gira más deprisa.
+2. **Parar ante un obstáculo** (opción B)
+    - *Solución:* `para siempre` → `si` (distancia del sensor) `< 10` `entonces` → parar; `si no` → avanzar. La distancia se lee con el bloque del sensor de ultrasonidos de la extensión.
+    - *Seguir una línea:* depende de cómo estén colocados los sensores de línea. Primero se mira qué valor da cada sensor sobre la cinta negra y sobre el suelo; después, la regla es «si se sale por un lado, girar hacia el otro».
+3. **Tres eventos, tres comportamientos** (opción C)
+    - *Solución:* `al presionar el botón A` → motores hacia delante. `al presionar el botón B` → parar. `al presionar el botón A+B` → un motor a 50 y el otro a −50.
 
 - **Frase clave:** "El sensor decide, el motor actúa."
 - **Si va rápido:** combinar mecanismo y sensor.
@@ -250,6 +291,17 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
    - Contador de personas que entran en clase.
    - Recordatorio para ventilar o beber agua.
 
+**Pistas y soluciones:**
+1. **Optimizar con una función**
+    - *Para pensar:* si el giro está copiado cuatro veces y hay que cambiar su tiempo, ¿cuántos sitios hay que tocar?
+    - *Solución:* Funciones → Crear una función `girar_derecha` con los bloques del giro dentro; donde estaba el trozo se pone `llamar a girar_derecha`. Se cambia una vez y vale para todas.
+2. **Una función con un número de entrada** (si va rápido)
+    - *Solución:* al crear la función, se le añade un parámetro numérico, por ejemplo `avanzar (segundos)`: motores en marcha → `pausa (ms) (segundos × 1000)` → parar. Se usa como `avanzar 2` o `avanzar 3`.
+3. **Pistas para los proyectos**
+    - *Alarma con código A, A, B:* como en 5º (S5): una variable `paso` cuenta los botones acertados y B solo desactiva si `paso = 2`.
+    - *Coche teledirigido por radio:* mando: `al presionar el botón A` → `radio enviar número 1`; robot: `al recibir radio receivedNumber` → `si receivedNumber = 1 entonces` avanzar. Las dos placas, en el mismo grupo de radio.
+    - *Contador de personas:* lo más fiable es un botón que pulsa quien entra; con el sensor de luz, contar cuando el nivel baja (alguien pasa por delante) exige ajustar bien el umbral.
+
 - **Frase clave:** "Un buen programa es corto, claro y fácil de cambiar."
 - **Si va rápido:** una función con un número de entrada.
 - **Si cuesta:** optimizar solo con repetir y planificar un proyecto de la lista.
@@ -267,6 +319,12 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
   4. Revisión de optimización rápida con las tres preguntas (¿repetido?, ¿sobra algo?, ¿nombres claros?) y enseñar a otra pareja.
 - **Producto de T2:** proyecto individual. **Rúbrica del trimestre.**
 - **Mates:** verificación, medida.
+
+**Pistas y soluciones:**
+1. **Antes de pasar a la placa**
+    - *Pista:* probad cada evento por separado en el simulador; si algo falla en la placa y no en el simulador, mirad pilas, cables y el umbral de los sensores.
+    - *Las tres preguntas de optimización:* ¿hay algo repetido que pueda ir en un `repetir` o en una función? ¿sobra algún bloque? ¿se entienden los nombres de las variables?
+
 - **Frase clave:** "Si funciona en la mesa, pruébalo en la realidad."
 - **Si va rápido:** añadir un tercer evento.
 - **Si cuesta:** un sensor y un evento.
@@ -330,6 +388,16 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 2. 25 minutos: cada equipo elige y rellena la hoja. **Regla de oro:** un sensor, una acción, y que se pueda construir en una o dos sesiones.
 3. 5 minutos: el docente aprueba el plan (o lo simplifica).
 
+**Pistas y soluciones:**
+1. **Pistas para programar cada idea**
+    - *Timbre que se ilumina:* dos placas por radio. En la puerta: `al presionar el botón A` → `radio enviar número 1`. Dentro: `al recibir radio receivedNumber` → `mostrar icono` (todas las luces) varias veces seguidas.
+    - *Aviso de luces encendidas en un aula vacía:* `para siempre` → `si nivel de luz > umbral` (luces encendidas) y `nivel de sonido < umbral` (nadie hablando, placa V2) → aviso. Los dos umbrales se ajustan midiendo en el aula.
+    - *Semáforo de ruido:* `para siempre` → `si nivel de sonido > 150 entonces` → icono rojo; `si no, si nivel de sonido > 90 entonces` → icono amarillo; `si no` → icono verde. Los números se ajustan en el comedor de verdad.
+    - *Contador de botellas:* variable `botellas`; `al presionar el botón A` → `cambiar botellas por 1` → `mostrar número botellas`. Con el sensor de luz se puede contar cuando una botella tapa la placa al pasar.
+    - *Robot de reparto:* medir cuánto avanza en 1 segundo y calcular el tiempo para cada distancia (tiempo = distancia ÷ velocidad), como en la S4.
+2. **Calcular el coste o el material** (si va rápido)
+    - *Pista:* una tabla con cada pieza, cuántas hacen falta y su precio; el total es la suma de cantidad × precio.
+
 - **Frase clave:** "La tecnología sirve para ayudar a las personas."
 - **Si va rápido:** calcular el coste o la cantidad de material del prototipo.
 - **Si cuesta:** elegir entre dos necesidades ya definidas.
@@ -392,6 +460,16 @@ Entre la S11 y la S12: programar, probarlo con usuarios reales (otra clase, cons
 - **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
 
 Dos placas se comunican por radio: **radio establecer grupo** (cada equipo un número distinto, del 1 al 255) → **al presionar el botón A** → **radio enviar número 1**; en la otra: **al recibir radio número** → **mostrar icono**. Retos: timbre a distancia, termómetro remoto, o mando por radio para el Nezha (inclinar la placa mando). Privacidad: si otro equipo usa tu grupo, recibe tus mensajes.
+
+**Pistas y soluciones:**
+1. **Timbre a distancia**
+    - *Pista:* las dos placas tienen que estar en el mismo grupo; cada equipo, un número distinto.
+    - *Solución:* en las dos: `al iniciar` → `radio establecer grupo 23` (el número del equipo). La que llama: `al presionar el botón A` → `radio enviar número 1`. La que recibe: `al recibir radio receivedNumber` → `mostrar icono` y `reproducir tono`.
+2. **Mando por radio para el Nezha**
+    - *Para pensar:* ¿cómo sabe la placa mando hacia dónde está inclinada?
+    - *Solución:* mando: `para siempre` → `si aceleración (mg) x > 300 entonces` → `radio enviar número 2` (derecha); `si no, si aceleración (mg) x < -300 entonces` → `radio enviar número 3` (izquierda); `si no` → `radio enviar número 1` (recto). Robot: `al recibir radio receivedNumber` → según el número, mueve los motores. El 300 se ajusta probando.
+3. **Termómetro remoto** (si va rápido)
+    - *Solución:* la que mide: `para siempre` → `radio enviar número (temperatura (°C))` → `pausa (ms) 60000`. La que recibe: `al recibir radio receivedNumber` → `mostrar número receivedNumber`.
 
 - **Si va rápido:** un termómetro remoto que envía la temperatura cada minuto.
 - **Si cuesta:** un timbre a distancia con un icono.
