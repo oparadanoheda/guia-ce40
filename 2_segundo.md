@@ -211,6 +211,17 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 **Opción B · Situación oficial**
 *Explorando figuras geométricas con True True*.
 
+**Pistas y soluciones:**
+1. **El cuadrado de 2 casillas de lado**
+    - *Para pensar:* ¿cuántos lados tiene un cuadrado? ¿Qué hace el robot en cada lado?
+    - *Pista:* en cada lado: avanza, avanza y gira. Los cuatro giros, siempre hacia el mismo lado.
+    - *Solución:* **4 veces**. Sin repetir son 12 tarjetas (8 avanza y 4 gira); con **REPITE ×4** (avanza, avanza, gira a la derecha), 4 tarjetas.
+    - *Error frecuente:* girar unas veces a la derecha y otras a la izquierda: el robot no vuelve al inicio.
+2. **El rectángulo de 2 × 3**
+    - *Para pensar:* ¿todos los lados son iguales? ¿Qué trozo se repite entonces?
+    - *Pista:* un lado corto y uno largo forman la mitad del camino.
+    - *Solución:* **REPITE ×2** (avanza, avanza, gira a la derecha, avanza, avanza, avanza, gira a la derecha): 8 tarjetas en lugar de 14.
+
 - **Frase clave:** "Una figura es un camino que vuelve al inicio."
 - **Si va rápido:** el rectángulo de 2 × 3 con REPITE.
 - **Si cuesta:** el cuadrado primero en la pizarra, y en el robot sin REPITE.

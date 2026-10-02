@@ -99,7 +99,7 @@
     bicho2: { n: 5, start: [0, 4], dir: 'N', goal: [2, 2], rocks: [], prog: 'FFLFF', info: 'Este programa tiene 1 bicho. Tócalo para cambiarlo.' },
     bicho3: { n: 5, start: [4, 4], dir: 'N', goal: [2, 1], rocks: [[4, 1]], prog: 'FFRFFLF', info: 'Este programa tiene 2 bichos.' },
     bicho4: { n: 5, start: [0, 4], dir: 'N', goal: [3, 1], rocks: [[0, 1], [2, 3]], prog: 'FFRFRFRF', info: 'Este programa tiene 2 bichos.' },
-    escalera: { n: 6, start: [0, 5], dir: 'N', goal: [5, 0], rocks: [], trail: true, info: 'Programa la escalera usando REPITE: avanza, gira, avanza, gira…' },
+    escalera: { n: 5, start: [0, 4], dir: 'N', goal: [3, 1], rocks: [], trail: true, info: 'Programa la escalera usando REPITE: avanza, gira, avanza, gira…' },
     cuadrado: { n: 6, start: [1, 4], dir: 'N', goal: null, rocks: [], trail: true, info: 'Dibuja un cuadrado de 3 casillas de lado. ¿Cuántas veces se repite «avanza 3, gira»?' },
     absoluto: { n: 5, start: [0, 4], dir: 'N', goal: [4, 0], rocks: [[2, 2], [3, 3]], mode: 'abs', info: 'Modo fácil: flechas de dirección (arriba, abajo, izquierda, derecha). El robot no gira.' }
   };

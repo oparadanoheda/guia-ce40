@@ -63,7 +63,7 @@ GUIAS = {
              "- **Cazabichos 3 (2 bichos):** la 3 tiene que ser **gira a la izquierda** y la 6, **gira a la derecha**.\n- **Cazabichos 4 (2 bichos):** la 5 tiene que ser **avanza** y la 7, **gira a la izquierda**."),
             ("La escalera: ¿cómo se programa con REPITE?",
              ["¿Qué trozo se repite en cada escalón?", "Un escalón es: avanza, gira a la derecha, avanza, gira a la izquierda."],
-             "**REPITE ×4** (avanza, gira a la derecha, avanza, gira a la izquierda) y después **avanza, gira a la derecha, avanza**: 8 tarjetas en lugar de 19."),
+             "**REPITE ×3** (avanza, gira a la derecha, avanza, gira a la izquierda): 5 tarjetas en lugar de 11. Es la misma escalera de 3 escalones que la de «Bucles: largo o corto»."),
             ("El cuadrado de 3 casillas de lado: ¿cuántas veces se repite «avanza 3, gira»?",
              ["Un cuadrado tiene 4 lados iguales.", "Cada lado: avanza, avanza, avanza y gira."],
              "**REPITE ×4** (avanza, avanza, avanza, gira a la derecha): 5 tarjetas en lugar de 16. El robot vuelve a la casilla de salida."),
