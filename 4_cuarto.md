@@ -368,7 +368,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 **Pistas y soluciones:**
 1. **Premio y enemigo**
     - *Para pensar:* ¿quién comprueba si se tocan, el personaje o el premio? ¿Importa?
-    - *Pista:* da igual dónde esté el `si ¿tocando…?`, pero tiene que estar dentro de un `por siempre`.
+    - *Pista:* da igual dónde esté el `si ¿tocando…? entonces`, pero tiene que estar dentro de un `por siempre`.
     - *Solución:* premio: `al hacer clic en 🏴` → `por siempre` → `si ¿tocando Personaje? entonces` → `iniciar sonido` → `ir a posición aleatoria`. Enemigo: `al hacer clic en 🏴` → `por siempre` → `mover 5 pasos` → `si toca un borde, rebotar` → `si ¿tocando Personaje? entonces` → `decir ¡Ay! durante 1 segundos`.
 2. **Dos enemigos con velocidades distintas** (si va rápido)
     - *Solución:* duplicar el enemigo (clic derecho → duplicar) y cambiar `mover 5 pasos` por `mover 8 pasos` en la copia.

@@ -102,7 +102,7 @@ Tres niveles en la pizarra. Cada pareja llega hasta donde pueda:
 3. **Condición:** si llega a 10 puntos, dice "¡Has ganado!"; si no, sigue.
 
 **Opción B · Arregla el juego**
-El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pone a 0 al pulsar la bandera; **si puntos < 10** dice «¡Has ganado!» (está al revés: debería ser **puntos = 10**); y la animación usa **repetir 2** en lugar de **por siempre**.
+El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pone a 0 al pulsar la bandera; **si puntos < 10 entonces** dice «¡Has ganado!» (está al revés: debería ser **puntos = 10**); y la animación usa **repetir 2** en lugar de **por siempre**.
 
 **Pistas y soluciones:**
 1. **Reto relámpago (en Scratch)**
@@ -112,7 +112,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
     - *Si va rápido (si… si no):* `si puntos = 10 entonces` → `decir ¡Has ganado!`; `si no` → `decir (unir "Te faltan " (10 - puntos))`.
 2. **Arregla el juego** (opción B)
     - *Pista:* probad el juego con la bandera dos veces seguidas y jugad hasta el final.
-    - *Solución:* `dar a puntos el valor 0` debajo de la bandera; `si puntos = 10 entonces` en lugar de `si puntos < 10`; `por siempre` en lugar de `repetir 2`.
+    - *Solución:* `dar a puntos el valor 0` debajo de la bandera; `si puntos = 10 entonces` en lugar de `si puntos < 10 entonces`; `por siempre` en lugar de `repetir 2`.
 
 - **Frase clave:** "Bucle, variable y condición: las tres herramientas del programador."
 - **Si va rápido:** el nivel 3 con un si… si no.

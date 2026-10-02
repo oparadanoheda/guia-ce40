@@ -93,6 +93,7 @@ Programación Mate 4.0 26-27/
 | `materiales.py` | Genera los 25 PDF (HTML → PDF con Edge sin interfaz) |
 | `svgkit.py` | Dibujos SVG de los materiales (cuadrículas, flechas, bloques, diagramas) |
 | `pictos.py` | Diccionario nombre → id de ARASAAC; descarga los pictogramas a `picto/` y crea `pictos_data.js` (base64 para la web) |
+| `revisar_bloques.py` y `bloques_oficiales.json` | La comprobación de los nombres de los bloques y la copia de los nombres oficiales con la que trabaja sin conexión |
 | `scratch_gen.py` | Genera los 15 proyectos .sb3 (dibujos y sonido propios; las notas amarillas son comentarios de Scratch y los programas se colocan según su alto para que no se pisen) |
 | `empaquetar.py` | Crea `../Guia_CE40_2026-27_web.zip` |
 | `revisar_pdfs.py` | Comprueba que ningún PDF se sale de la página |
@@ -172,6 +173,7 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 | Qué | Cómo |
 |---|---|
 | Ningún PDF se sale de la página | `python revisar_pdfs.py` (desde `web/`). Debe decir `OV ok` en todos |
+| Los bloques se llaman como en el editor | `python revisar_bloques.py` (desde `web/`). Compara cada bloque de Scratch y MakeCode citado en las sesiones, en la guía de herramientas, en las chuletas M20 y M21, en los retos M28 y en las notas de los .sb3 con los nombres oficiales en español (Scratch «es», MakeCode «es-ES», y el Nezha y PlanetX en inglés). Debe decir «Todos los bloques citados existen con ese nombre»; si no, lista cada uno con su archivo y línea. Con `--actualizar` vuelve a descargar los nombres oficiales (hacerlo de vez en cuando: Scratch y MakeCode cambian alguna traducción). No ve una errata en la primera palabra de un bloque ni revisa los números de dentro |
 | Aspecto de los PDF | Abrir las páginas cambiadas y mirarlas (la herramienta Read del asistente muestra cada página como imagen) |
 | Enlaces de la web | Tras `build_web.py`: ningún `[[P:`, `[[M:` ni `[[S:` sin resolver en el HTML |
 | Todas las sesiones completas | Cada sesión con «Si cuesta», «Si va rápido», «Mates» y al menos un recurso enlazado (hoy, 128 de 128) |
@@ -348,6 +350,7 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 29. **Presentación para la reunión de Matemáticas (2 de octubre de 2026):** 14 diapositivas con notas para quien presenta. Mensaje: es una base común de qué se trabaja en cada curso, no un guion obligatorio; el material está hecho para que cualquiera pueda darlo; es un borrador y hay que revisarlo entre todos. Incluye el recorrido de 1º a 6º, el bloque de cada trimestre, la sesión de 45 minutos, la evaluación, lo común y lo que decide cada docente, qué revisar y los supuestos que hay que comprobar en el centro. La diapositiva «Qué mirar y cómo avisar» tiene un hueco entre corchetes para poner por dónde se avisan los fallos.
 30. **Dado de la clase (2 de octubre de 2026):** en «Votaciones y gráfico», preset `votaciones.clase`. Se escriben las tiradas de cada pareja (o los totales de la pizarra) con **Añadir** y se comparan con 1000 tiradas del ordenador. Los dos gráficos llevan la línea «Si salieran igual» (total entre 6), con una escala que la deja a media altura para que se puedan comparar. Se usa en 3º S7 (opción B) y en 5º S3 (mini investigación con el dado de la micro:bit).
 31. **Más archivos de Scratch (2 de octubre de 2026):** soluciones de 3º S11 (baile; figuras con el lápiz), S12 (diálogo) y S13 (variables), y plantillas del videojuego de 4º (S10) y de la pieza del museo de 3º (S20-S21). Pruebas de comportamiento nuevas en `pruebas_scratch/test.js` (37 comprobaciones, todas bien). Los 15 archivos se han abierto en el editor de scratch.mit.edu (en español) y se ven bien. Al hacerlo se vio que la opción para abrir un archivo sale en inglés («Load from your computer»): corregido en la guía, la web, el LEEME del zip y las sesiones.
+32. **Comprobación de los nombres de los bloques (2 de octubre de 2026):** `revisar_bloques.py` (ver «Comprobaciones antes de publicar»). Se ha probado con nombres mal escritos a propósito (por ejemplo «cambiar x por 10», «al presionar el botón A», «por siempre» en MakeCode o «repetir 4» sin «veces») y los detecta. En la primera pasada encontró cuatro descuidos, ya corregidos: «repetir 4» y «repetir 3» en MakeCode (6º S4, es «repetir 4 veces») y dos «si …» sin «entonces» (4º S11 y 5º S1).
 
 ## 11. Pendiente e ideas
 

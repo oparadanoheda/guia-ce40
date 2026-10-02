@@ -224,7 +224,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 1. Programa básico: **al presionarse el botón A** → M1 a velocidad 50 y M2 a velocidad −50 → **pausa (ms) 1000** → parar. Los bloques de la extensión salen en inglés (**Set motor M1 speed to 50 %**, **Stop all motors**).
 2. Miden cuánto avanza en 1 s. Pregunta: "¿Y en 2 s? ¿Y a velocidad 100?". Lo comprueban.
 3. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad). Por eso, para ir recto, M2 va en negativo: está montado en espejo respecto a M1.
-4. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con **repetir 4**).
+4. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con **repetir 4 veces**).
 
 **Pistas y soluciones:**
 1. **¿Y en 2 s? ¿Y a velocidad 100?**
@@ -232,10 +232,10 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 2. **El cuadrado de 50 cm**
     - *Para pensar:* hacen falta dos tiempos: el de avanzar 50 cm y el de girar 90°. ¿Cómo los averiguamos?
     - *Pista:* avanzar: tiempo = 50 ÷ (cm que avanza en 1 s). Girar: los dos motores con el mismo signo (50 y 50), y se prueba la pausa hasta que gire un cuarto de vuelta.
-    - *Solución:* `repetir 4` → M1 a 50 y M2 a −50 → `pausa (ms)` (tiempo de 50 cm) → M1 y M2 a 50 → `pausa (ms)` (tiempo de 90°); al terminar, parar. Con 25 cm/s, avanzar 50 cm son 2000 ms.
+    - *Solución:* `repetir 4 veces` → M1 a 50 y M2 a −50 → `pausa (ms)` (tiempo de 50 cm) → M1 y M2 a 50 → `pausa (ms)` (tiempo de 90°); al terminar, parar. Con 25 cm/s, avanzar 50 cm son 2000 ms.
 3. **El triángulo equilátero** (si va rápido)
     - *Pista:* como con la tortuga de Scratch: al terminar ha dado una vuelta entera.
-    - *Solución:* `repetir 3` y girar **120°** cada vez (360 ÷ 3). Si 90° eran, por ejemplo, 600 ms, 120° serán unos 800 ms (600 × 4 ÷ 3); después se ajusta probando.
+    - *Solución:* `repetir 3 veces` y girar **120°** cada vez (360 ÷ 3). Si 90° eran, por ejemplo, 600 ms, 120° serán unos 800 ms (600 × 4 ÷ 3); después se ajusta probando.
 
 - **Frase clave:** "Si cambio el signo, cambio el sentido."
 - **Si va rápido:** un triángulo equilátero: ¿cuánto hay que girar?
