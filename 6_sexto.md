@@ -73,7 +73,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 | 1 (3 ses.) | S1 Reto relámpago MakeCode · S2 La mascota virtual (eventos múltiples) · S3 Medimos el colegio (sensores y datos) | Gráfico con conclusiones o mascota virtual |
 | 2 (4 ses.) | S4 Nezha: motores y giros · S5 Nezha: mecanismos o sensor · S6 Optimizar y planificar mi proyecto · S7 Mi proyecto | Proyecto individual con sensores y eventos |
 | 3 (5 ses.) | S8 IA, redes y huella digital · S9 Tinkercad: un objeto útil · S10 Proyecto de servicio: definir · S11 Prototipo · S12 Feria y legado | Proyecto de servicio + guía de legado |
-| Opcionales | S13 Proyecto de servicio: sesión extra · S14 Red de micro:bits · S15 Tinkercad II · S16 ART2BIT o Enseño a 4º | |
+| Opcionales | S13 Proyecto de servicio: sesión extra · S14 Red de micro:bits · S15 Tinkercad II · S16 Tinkercad: el soporte del cartel de la feria, o retos de lógica | |
 
 **Dónde poner las opcionales (prioridad):** 1º la S13 (entre la S11 y la S12), 2º la S14 (en T1 o T2), 3º la S15 (después de la S9), 4º la S16.
 
@@ -512,23 +512,23 @@ Cada alumno dibuja su "huella": qué dejaría en internet si tuviera redes (foto
 
 ### S16 · A elegir
 
-- **Qué aprenden:** hacer una situación de ART2BIT, enseñar a 4º lo aprendido o resolver retos de lógica en la pizarra.
+- **Qué aprenden:** diseñar en 3D un soporte a la medida del cartel con el código QR de la feria, o resolver retos de lógica en la pizarra.
 - **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] (juegos de lógica para una sesión a elegir)
 - **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-**Opción A · ART2BIT**
-Una de sus situaciones oficiales, si el centro lo tiene montado.
+**Opción A · Tinkercad: el soporte del cartel de la feria**
+1. Cada equipo mide con la regla el cartel o la tarjeta con su código QR (ancho y grosor, en milímetros).
+2. Diseñan una base (un prisma de unos 80 × 30 × 15 mm, o lo que pida el ancho del cartel) con una **ranura Hueca** de 3 mm de ancho y 10 mm de hondo, un poco más larga que el ancho del cartel.
+3. Comprueban las cuentas antes de agrupar: ¿cabe el cartel en la ranura? ¿La base es más ancha que el cartel para que no se caiga?
+4. Captura de pantalla del diseño, con las medidas a la vista. Si el centro puede imprimir en 3D, es el soporte de la feria.
 
-**Opción B · Enseño a 4º**
-Cada pareja enseña su proyecto de micro:bit a una pareja de 4º: primero se lo explica y después le deja probarlo.
-
-**Opción C · Retos de lógica en la pizarra**
+**Opción B · Retos de lógica en la pizarra**
 Toda la clase con las cartas binarias y la balanza: ¿qué número forman estas cartas? ¿Con cuántas comparaciones se ordenan 8 cajas?
 
-- **Frase clave:** "Lo que aprendo, lo puedo enseñar."
-- **Si va rápido:** enseñar a 4º un reto de ampliación.
-- **Si cuesta:** enseñar el proyecto más sencillo del curso.
-- **Mates:** explicar un algoritmo con números y medidas a otro curso.
+- **Frase clave:** "Lo que aprendo lo uso para algo nuevo."
+- **Si va rápido:** que el soporte sujete el cartel inclinado, o una ranura para dos carteles.
+- **Si cuesta:** el soporte con las medidas ya escritas en la pizarra.
+- **Mates:** medir en milímetros, comparar medidas (ranura y cartel), prismas; en la opción B, sistema binario y comparaciones.
 - **Aplicaciones para la pizarra en sesiones extra:** [[P:paridad|Magia de la paridad]] · [[P:balanza.8|Ordenar con la balanza]] · [[P:flota.xy|Hundir la flota con coordenadas]] · [Blockly Games](https://blockly.games/?lang=es).
 
 ---

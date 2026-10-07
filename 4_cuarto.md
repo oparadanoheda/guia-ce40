@@ -502,7 +502,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Camino fácil:** partir de una situación oficial de Clic and Play con el programa de Scratch ya hecho (*Quiz ¡Prevención en acción!*, *La pirámide de los alimentos*, *Duelo de decisiones saludables*…) y adaptarla.
 - **Camino propio:** un quiz de sumas, un juego de "pulsa el animal que suena" o su videojuego del T2 manejado con el mando.
 
-**Alternativas:** ART2BIT (situaciones oficiales para 3º y 4º) o, para grupos con soltura, *Domótica escolar con Kit Nezha Inventor*.
+**Alternativa** para grupos con soltura: *Domótica escolar con Kit Nezha Inventor*.
 
 ### S17 · Makey Makey: circuitos y teclas `ROB` `SEG`
 

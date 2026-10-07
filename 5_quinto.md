@@ -74,7 +74,7 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 | 1 (3 ses.) | S1 Normas y repaso de Scratch · S2 Conocemos micro:bit · S3 El dado electrónico | Dado electrónico |
 | 2 (4 ses.) | S4 Sensores de luz y temperatura · S5 La alarma del estuche · S6 Cazabichos y plan de mi invento · S7 Mi invento | Invento individual con un sensor |
 | 3 (5 ses.) | S8 Nezha: el robot se mueve · S9 IA, sesgos y bulos · S10 Tinkercad: diseño en 3D · S11 Proyecto en equipo · S12 Mejoramos y presentamos | Proyecto en equipo + Feria con QR |
-| Opcionales | S13 Proyecto: sesión extra · S14 Nezha con sensor · S15 Tinkercad II · S16 Radio, ART2BIT o Enseño a 3º | |
+| Opcionales | S13 Proyecto: sesión extra · S14 Nezha con sensor · S15 Tinkercad II · S16 Radio o Tinkercad: una funda para la micro:bit | |
 
 **Dónde poner las opcionales:** casi todos los grupos tienen 4 o 5 sesiones extra (ver documento general). **Prioridad:** 1º la S13 (antes de la S12, para que el proyecto en equipo tenga dos sesiones), 2º la S14 (después de la S8), 3º la S15 (después de la S10), 4º la S16.
 
@@ -512,7 +512,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 ### S16 · A elegir
 
-- **Qué aprenden:** comunicar dos placas por radio, hacer una situación de ART2BIT o enseñar a 3º lo aprendido.
+- **Qué aprenden:** comunicar dos placas por radio, o diseñar en 3D una funda a la medida de la micro:bit.
 - **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
 - **Archivo de MakeCode:** [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
 - **Minuto de uso responsable:** "Las redes sociales tienen edad mínima por algo." ¿Por qué creéis que existe una edad mínima?
@@ -520,11 +520,11 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 **Opción A · Radio entre dos placas**
 Dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar número**, **al recibir radio**). Cada equipo, un número de grupo distinto. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.
 
-**Opción B · ART2BIT**
-Una de sus situaciones oficiales, si el centro lo tiene montado.
-
-**Opción C · Enseño a 3º**
-Cada pareja enseña su invento a una pareja de 3º: primero se lo explica y después le deja probarlo.
+**Opción B · Tinkercad: una funda para la micro:bit**
+1. Cada pareja mide la micro:bit con la regla, en milímetros (unos 52 × 42 mm), y lo apunta.
+2. Calculan la caja: el hueco de dentro es la placa más 1 mm de holgura por cada lado (54 × 44 mm) y la caja de fuera suma 2 mm de pared por cada lado (58 × 48 mm). Alto: 12 mm por fuera y 10 mm de hueco.
+3. En Tinkercad: una caja **Sólida** de 58 × 48 × 12 mm y otra **Hueca** de 54 × 44 × 10 mm, centradas con **Alinear** y unidas con **Agrupar**. Un hueco más en el lado corto para el cable USB.
+4. Captura de pantalla del diseño, con las medidas a la vista.
 
 **Pistas y soluciones:**
 1. **Radio entre dos placas**
@@ -533,10 +533,10 @@ Cada pareja enseña su invento a una pareja de 3º: primero se lo explica y desp
 2. **Termómetro remoto** (si va rápido)
     - *Solución:* la placa que mide: `para siempre` → `radio enviar número (temperatura (°C))` → `pausa (ms) 60000`. La que recibe enseña el número igual que antes.
 
-- **Frase clave:** "Lo que aprendo, lo puedo enseñar."
-- **Si va rápido:** combinar radio y sensores (termómetro remoto).
-- **Si cuesta:** la radio con un solo número y un icono.
-- **Mates:** codificar mensajes con números; tiempos y distancias de comunicación.
+- **Frase clave:** "Lo que aprendo lo uso para algo nuevo."
+- **Si va rápido:** combinar radio y sensores (termómetro remoto), o una tapa para la funda que encaje.
+- **Si cuesta:** la radio con un solo número y un icono, o la funda con las medidas ya calculadas en la pizarra.
+- **Mates:** codificar mensajes con números; medir en milímetros, sumar holguras y grosores, prismas.
 - **Aplicaciones para la pizarra en sesiones extra:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] · [[P:paridad|Magia de la paridad]] · [AI for Oceans](https://code.org/oceans) · [Blockly Games](https://blockly.games/?lang=es).
 
 ---

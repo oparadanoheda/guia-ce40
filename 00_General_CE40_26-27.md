@@ -38,7 +38,7 @@
 | 1º | Semanal (45 min) | 24 | 4 a 10 según el día | **Desenchufado** + Tale-Bot (1er trimestre, orientativo) + True True + bloques de papel |
 | 2º | Semanal | 24 | 4 a 10 | **Desenchufado** + True True + iniciación a ScratchJr solo en las 3 últimas sesiones |
 | 3º | Semanal | 24 | 4 a 10 | Desenchufado + True True + ScratchJr / Scratch + Makey Makey |
-| 4º | Semanal | 24 | 4 a 10 | Scratch + Makey Makey + ART2BIT (opcional) |
+| 4º | Semanal | 24 | 4 a 10 | Scratch + Makey Makey |
 | 5º | Quincenal | 12 (+4 opcionales) | según semana | Scratch (repaso) + micro:bit + Nezha + Tinkercad + IA |
 | 6º | Quincenal | 12 (+4 opcionales) | según semana | micro:bit + Nezha + Tinkercad + IA + proyecto de servicio |
 
@@ -259,7 +259,6 @@ Sirven para cualquier curso y no necesitan preparación especial:
 - **[Hora del Código: laberinto clásico](https://studio.code.org/hoc/1):** 20 niveles con bloques, en español y sin cuenta (de 3º en adelante).
 - **CS Unplugged (csunplugged.org/es):** actividades desenchufadas gratuitas con guía para el docente.
 - **Reto libre:** el alumnado inventa un reto con el material del trimestre.
-- **Enseño a otro curso:** una pareja enseña su proyecto a un curso inferior.
 - **Recuperación:** para terminar el producto del trimestre.
 - **Situación de aprendizaje oficial:** cualquiera de las de la web de Código Escuela 4.0 para el dispositivo del trimestre.
 

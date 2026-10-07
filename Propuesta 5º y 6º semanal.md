@@ -77,7 +77,7 @@ Así la misma programación sirve para 16, 20 o 24 sesiones. Si se aplica, convi
 
 ## Lo que sale
 
-- **ART2BIT** y **«Enseño a 3º / 4º»** no entran: a la persona responsable no le convencen (ART2BIT) o son complicados de organizar (enseñar a otro curso depende de cuadrar horarios con otro grupo). ART2BIT sigue en Recursos oficiales.
+- **ART2BIT** y **«Enseño a 3º / 4º»** no entran (ya se quitaron también de la versión quincenal): a la persona responsable no le convencen (ART2BIT) o son complicados de organizar (enseñar a otro curso depende de cuadrar horarios con otro grupo). ART2BIT sigue en Recursos oficiales.
 - **Tinkercad II en 5º** queda como idea para sesiones de reserva.
 
 ## Qué habría que cambiar si se aplica
