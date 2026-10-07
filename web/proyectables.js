@@ -780,29 +780,83 @@
   }
 
   /* ------------------------------------------------------------------ 9. Diagramas de flujo paso a paso */
+  // Cada diagrama es un grafo dibujado a mano en una rejilla (columna c, fila r): nodos 'o' (óvalo: empezar y terminar),
+  // 'r' (rectángulo: hacer algo) y 'd' (rombo: pregunta de sí o no, con dos salidas). Las flechas llevan sus puntos de paso;
+  // «junta: true» es una flecha que acaba sobre otra línea (cuando dos caminos se juntan o un bucle vuelve atrás).
   var FLOWS = {
-    calle: { t: 'Cruzar la calle', steps: [['o', 'EMPIEZA'], ['r', 'Llego al paso de cebra'], ['d', '¿Muñeco del semáforo en verde?', 3, 2], ['r', 'Miro a los dos lados'], ['r', 'Cruzo por el paso de cebra'], ['o', 'TERMINA']], noLabel: 'Espero en el bordillo y vuelvo a mirar el semáforo' },
-    planta: { t: 'Regar una planta', steps: [['o', 'EMPIEZA'], ['r', 'Miro la maceta'], ['d', '¿La tierra está seca?', 3, 5], ['r', 'Cojo la regadera'], ['r', 'Riego la planta'], ['o', 'TERMINA']] },
-    par: { t: '¿Par o impar?', steps: [['o', 'EMPIEZA'], ['r', 'Pienso un número'], ['d', '¿Es par?', 3, 4], ['r', 'Digo «PAR»', 5], ['r', 'Digo «IMPAR»'], ['o', 'TERMINA']] },
-    adivina: { t: 'Adivina el número', steps: [['o', 'EMPIEZA'], ['r', 'El ordenador piensa un número'], ['r', 'Digo un número'], ['d', '¿He acertado?', 4, 2], ['r', 'Dice «¡Acertaste!»'], ['o', 'TERMINA']], noLabel: 'Me dice más grande o más pequeño' }
+    calle: { t: 'Cruzar la calle',
+      n: { s: ['o', 'EMPIEZA', 1, 0], a: ['r', 'Llego al paso de cebra', 1, 1], d: ['d', '¿El muñeco del semáforo está en verde?', 1, 2],
+        y1: ['r', 'Miro a los dos lados', 1, 3], y2: ['r', 'Cruzo por el paso de cebra', 1, 4], e: ['o', 'TERMINA', 1, 5], no: ['r', 'Espero en el bordillo', 2.15, 2] },
+      e: [['s', 'a'], ['a', 'd'], ['d', 'y1', 'SÍ'], ['y1', 'y2'], ['y2', 'e'], ['d', 'no', 'NO', 'R', 'L'],
+        ['no', 'd', '', 'T', null, [[2.15, 1.5], [1, 1.5]], 'Vuelvo a mirar el semáforo: el diagrama vuelve atrás hasta que la respuesta es SÍ. Eso es un bucle.']] },
+    planta: { t: 'Regar una planta',
+      n: { s: ['o', 'EMPIEZA', 1, 0], a: ['r', 'Miro la maceta', 1, 1], d: ['d', '¿La tierra está seca?', 1, 2], y1: ['r', 'Cojo la regadera', 1, 3],
+        y2: ['r', 'Riego la planta', 1, 4], e: ['o', 'TERMINA', 1, 5] },
+      e: [['s', 'a'], ['a', 'd'], ['d', 'y1', 'SÍ'], ['y1', 'y2'], ['y2', 'e'], ['d', 'e', 'NO', 'R', 'R', [[2, 2], [2, 5]], 'La tierra está húmeda: no hace falta regar. Se salta los pasos de regar y termina.']] },
+    par: { t: '¿Par o impar?',
+      n: { s: ['o', 'EMPIEZA', 1, 0], a: ['r', 'Pienso un número', 1, 1], d: ['d', '¿Es par?', 1, 2], p: ['r', 'Digo «PAR»', 0, 3], i: ['r', 'Digo «IMPAR»', 2, 3], e: ['o', 'TERMINA', 1, 4] },
+      e: [['s', 'a'], ['a', 'd'], ['d', 'p', 'SÍ', 'L', 'T', [[0, 2]]], ['d', 'i', 'NO', 'R', 'T', [[2, 2]]], ['p', 'e', '', 'B', 'L', [[0, 4]]], ['i', 'e', '', 'B', 'R', [[2, 4]]]] },
+    adivina: { t: 'Adivina el número',
+      n: { s: ['o', 'EMPIEZA', 1, 0], a: ['r', 'El ordenador piensa un número del 1 al 20', 1, 1], b: ['r', 'Digo un número', 1, 2], d1: ['d', '¿He acertado?', 1, 3],
+        ok: ['r', 'Dice «¡Acertaste!»', 1, 4], e: ['o', 'TERMINA', 1, 5], d2: ['d', '¿Mi número es mayor que el secreto?', 2.2, 3],
+        m1: ['r', 'Dice «es más pequeño»', 2.2, 4], m2: ['r', 'Dice «es más grande»', 3.3, 4] },
+      e: [['s', 'a'], ['a', 'b'], ['b', 'd1'], ['d1', 'ok', 'SÍ'], ['ok', 'e'], ['d1', 'd2', 'NO', 'R', 'L'], ['d2', 'm1', 'SÍ'], ['d2', 'm2', 'NO', 'R', 'T', [[3.3, 3]]],
+        ['m1', 'b', '', 'B', null, [[2.2, 4.6], [3.95, 4.6], [3.95, 1.5], [1, 1.5]], 'Vuelvo a decir otro número: es un bucle que se repite hasta acertar.'],
+        ['m2', 'b', '', 'R', null, [[3.95, 4]], 'Vuelvo a decir otro número: es un bucle que se repite hasta acertar.']] }
   };
   function toolFlow(root) {
-    var key = 'calle', at = 0, box = h('div', { class: 'pj-flow' }), ctr = h('div', { class: 'pj-row' }), msg = h('p', { class: 'pj-status' });
-    function draw() {
-      var F = FLOWS[key]; box.innerHTML = '';
-      F.steps.forEach(function (s, i) {
-        box.appendChild(h('div', { class: 'pj-fs ' + s[0] + (i === at ? ' now' : ''), html: '<span>' + s[1] + '</span>' }));
-        if (i < F.steps.length - 1) box.appendChild(h('div', { class: 'pj-farrow', html: '↓' }));
-      });
-      ctr.innerHTML = ''; var s = F.steps[at];
-      if (s[0] === 'd') { ctr.appendChild(btn('SÍ', function () { at = s[2]; draw(); }, 'go')); ctr.appendChild(btn('NO', function () { msg.textContent = F.noLabel ? 'NO → ' + F.noLabel + '.' : ''; at = s[3]; draw(); })); }
-      else if (at < F.steps.length - 1) ctr.appendChild(btn('Siguiente paso ↓', function () { at = s[2] !== undefined && s[0] === 'r' && typeof s[2] === 'number' ? s[2] : at + 1; draw(); }, 'go'));
-      else ctr.appendChild(btn('Empezar otra vez', function () { at = 0; msg.textContent = ''; draw(); }, 'go'));
-      if (s[0] !== 'd' && !(F.noLabel && at === F.steps[2])) {}
+    var key = 'calle', at = 's', last = null, seen = {}, svgBox = h('div', { class: 'pj-flowbox' }), ctr = h('div', { class: 'pj-row' }), msg = h('p', { class: 'pj-status' });
+    var CW = 250, RH = 118, PX = 24, PY = 18, SZ = { o: [150, 52], r: [200, 64], d: [216, 104] };
+    function X(c) { return PX + c * CW + CW / 2; }
+    function Y(r) { return PY + r * RH + RH / 2; }
+    function ancla(id, side) {
+      var nd = FLOWS[key].n[id], w = SZ[nd[0]][0] / 2, hh = SZ[nd[0]][1] / 2, x = X(nd[2]), y = Y(nd[3]);
+      return side === 'T' ? [x, y - hh] : side === 'B' ? [x, y + hh] : side === 'L' ? [x - w, y] : [x + w, y];
     }
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [box]), h('div', { class: 'pj-col' }, [
-      h('p', { class: 'pj-info', html: '<b>Óvalo</b>: empezar o terminar · <b>Rectángulo</b>: hacer algo · <b>Rombo</b>: pregunta de sí o no' }), ctr, msg])]));
-    return { load: function (p) { key = FLOWS[p] ? p : 'calle'; at = 0; draw(); } };
+    function salidas(id) { return FLOWS[key].e.filter(function (ed) { return ed[0] === id; }); }
+    function draw() {
+      var F = FLOWS[key], s = '', maxX = 0, maxY = 0;
+      Object.keys(F.n).forEach(function (id) { var nd = F.n[id]; maxX = Math.max(maxX, X(nd[2]) + SZ[nd[0]][0] / 2); maxY = Math.max(maxY, Y(nd[3]) + SZ[nd[0]][1] / 2); });
+      F.e.forEach(function (ed, k) {
+        var a = ancla(ed[0], ed[3] || 'B'), pts = [a];
+        (ed[5] || []).forEach(function (p) { pts.push([X(p[0]), Y(p[1])]); });
+        if (ed[4] !== null) pts.push(ancla(ed[1], ed[4] || 'T'));
+        pts.forEach(function (p) { maxX = Math.max(maxX, p[0]); maxY = Math.max(maxY, p[1]); });
+        var cls = 'pj-fe' + (seen['e' + k] ? ' done' : '') + (last === k ? ' hot' : '');
+        s += '<path class="' + cls + '" d="' + pts.map(function (p, i) { return (i ? 'L' : 'M') + p[0] + ' ' + p[1]; }).join('') + '" marker-end="url(#pjfa-' + (last === k ? 'hot' : seen['e' + k] ? 'done' : 'n') + ')"/>';
+        if (ed[2]) {
+          var dx = pts[1][0] - pts[0][0], dy = pts[1][1] - pts[0][1], lx = pts[0][0] + (dx ? Math.sign(dx) * 22 : 14), ly = pts[0][1] + (dy ? Math.sign(dy) * 24 : -10);
+          s += '<text class="pj-fl' + (ed[2] === 'SÍ' ? ' si' : ' no') + '" x="' + lx + '" y="' + ly + '" text-anchor="' + (dx < 0 ? 'end' : 'start') + '">' + ed[2] + '</text>';
+        }
+      });
+      Object.keys(F.n).forEach(function (id) {
+        var nd = F.n[id], w = SZ[nd[0]][0], hh = SZ[nd[0]][1], x = X(nd[2]), y = Y(nd[3]);
+        var cls = 'pj-fn ' + nd[0] + (id === at ? ' now' : seen[id] ? ' done' : '');
+        var shape = nd[0] === 'o' ? '<rect x="' + (x - w / 2) + '" y="' + (y - hh / 2) + '" width="' + w + '" height="' + hh + '" rx="' + hh / 2 + '"/>'
+          : nd[0] === 'r' ? '<rect x="' + (x - w / 2) + '" y="' + (y - hh / 2) + '" width="' + w + '" height="' + hh + '" rx="6"/>'
+          : '<path d="M' + x + ' ' + (y - hh / 2) + 'L' + (x + w / 2) + ' ' + y + 'L' + x + ' ' + (y + hh / 2) + 'L' + (x - w / 2) + ' ' + y + 'Z"/>';
+        var tw = nd[0] === 'd' ? w * 0.62 : w - 16, th = nd[0] === 'd' ? hh * 0.7 : hh - 6;
+        s += '<g class="' + cls + '">' + shape + '<foreignObject x="' + (x - tw / 2) + '" y="' + (y - th / 2) + '" width="' + tw + '" height="' + th + '"><div xmlns="http://www.w3.org/1999/xhtml">' + nd[1] + '</div></foreignObject></g>';
+      });
+      var W = maxX + PX, H = maxY + PY;
+      var mk = function (id, col) { return '<marker id="pjfa-' + id + '" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="' + col + '"/></marker>'; };
+      svgBox.innerHTML = '<svg class="pj-flowsvg" style="max-width:' + Math.round(W * 1.1) + 'px" viewBox="0 0 ' + W + ' ' + H + '"><defs>' + mk('n', '#8a93a5') + mk('done', '#2c5bbf') + mk('hot', '#df7619') + '</defs>' + s + '</svg>';
+      ctr.innerHTML = '';
+      var nd = F.n[at], out = salidas(at);
+      if (nd[0] === 'd') out.forEach(function (ed) { ctr.appendChild(btn(ed[2], function () { go(ed); }, ed[2] === 'SÍ' ? 'go' : '')); });
+      else if (out.length) ctr.appendChild(btn('Siguiente paso', function () { go(out[0]); }, 'go'));
+      else ctr.appendChild(btn('Empezar otra vez', function () { start(); }, 'go'));
+    }
+    function go(ed) {
+      var F = FLOWS[key];
+      last = F.e.indexOf(ed); seen['e' + last] = true; seen[at] = true; at = ed[1];
+      msg.textContent = ed[6] || (F.n[at][0] === 'd' ? 'Una pregunta: ¿SÍ o NO? Votad antes de elegir.' : F.n[at][0] === 'o' ? '¡Fin del recorrido! ¿Qué camino habéis seguido?' : '');
+      draw();
+    }
+    function start() { at = 's'; last = null; seen = {}; msg.textContent = ''; draw(); }
+    root.appendChild(h('div', { class: 'pj-two pj-flowtwo' }, [h('div', { class: 'pj-col' }, [svgBox]), h('div', { class: 'pj-col' }, [
+      h('p', { class: 'pj-info', html: '<b>Óvalo</b>: empezar o terminar · <b>Rectángulo</b>: hacer algo · <b>Rombo</b>: pregunta de sí o no, con dos salidas' }), ctr, msg])]));
+    return { load: function (p) { key = FLOWS[p] ? p : 'calle'; start(); } };
   }
 
   /* ------------------------------------------------------------------ 10. Polígonos con la tortuga */

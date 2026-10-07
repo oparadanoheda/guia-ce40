@@ -545,7 +545,7 @@ Dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar núm
 
 Ver el apartado 6 del documento general. En 5º, además:
 
-- **Repaso de conceptos de cursos anteriores** (en la pizarra, con ejemplos y aspecto de su edad): [[P:semaforo.repaso|Si… entonces]] · [[P:bucles.repaso|Bucles]] · [[P:cuadricula.repaso|Algoritmos en la cuadrícula]]. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.
+- **Repaso de conceptos de cursos anteriores** (en la pizarra, con ejemplos y aspecto de su edad): [[P:semaforo.repaso|Si… entonces]] · [[P:bucles.repaso|Bucles]] · [[P:cuadricula.repaso|Algoritmos en la cuadrícula]] · [[P:clasificador.repaso|Reglas y árbol de decisión]] · [[P:patrones.repaso|Patrones y series]] · [[P:secuencias.repaso|Ordenar algoritmos]]. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.
 - **Sesiones quincenales:** la tarjeta «Dónde lo dejamos» (M18) y una foto del montaje al terminar ayudan a retomar el trabajo.
 - **micro:bit y Nezha:** los programas se pueden hacer con los LED en lugar de con el zumbador.
 - **Tinkercad:** dictar el diseño a un compañero o al docente es una forma válida de diseñar.

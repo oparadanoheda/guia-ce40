@@ -357,7 +357,210 @@
     });
   }
 
-  window.PJRepaso = { semaforo: repasoSi, bucles: repasoBucles, cuadricula: repasoRobot };
+  /* ================================================================ 4. Clasificador: reglas con y, o, no, y árbol de decisión */
+  var par = function (n) { return n % 2 === 0; }, mult = function (k) { return function (n) { return n % k === 0; }; };
+  var CL = [
+    { t: 'Reglas con «y»', reglas: [['es par <b>y</b> mayor que 10', function (n) { return par(n) && n > 10; }],
+      ['es múltiplo de 3 <b>y</b> menor que 15', function (n) { return n % 3 === 0 && n < 15; }],
+      ['es impar <b>y</b> múltiplo de 5', function (n) { return !par(n) && n % 5 === 0; }]],
+      q: '¿Puede algún número cumplir la regla «es par <b>y</b> es impar»?',
+      a: 'No: con «y» tienen que cumplirse <b>las dos</b> y ningún número es par e impar a la vez. La caja del SÍ se quedaría vacía.' },
+    { t: 'Reglas con «o»', reglas: [['es múltiplo de 3 <b>o</b> múltiplo de 5', function (n) { return n % 3 === 0 || n % 5 === 0; }],
+      ['es menor que 5 <b>o</b> mayor que 25', function (n) { return n < 5 || n > 25; }],
+      ['es múltiplo de 4 <b>o</b> múltiplo de 10', function (n) { return n % 4 === 0 || n % 10 === 0; }]],
+      q: 'Con la regla «múltiplo de 3 <b>o</b> múltiplo de 5», ¿a qué caja va el 15?',
+      a: 'Al <b>SÍ</b>: cumple las dos, y con «o» basta con una (o con las dos).' },
+    { t: 'Reglas con «no»', reglas: [['<b>no</b> es múltiplo de 3', function (n) { return n % 3 !== 0; }],
+      ['es par y <b>no</b> es múltiplo de 4', function (n) { return par(n) && n % 4 !== 0; }],
+      ['<b>no</b> es mayor que 10', function (n) { return !(n > 10); }]],
+      q: '«<b>No</b> es mayor que 10», ¿es lo mismo que «es menor que 10»?',
+      a: 'Casi, pero no: el <b>10</b> no es mayor que 10, así que va al SÍ, y en cambio no es menor que 10. «No es mayor que 10» quiere decir «menor <b>o igual</b> que 10».' },
+    { t: 'Árbol de decisión', arbol: true,
+      q: '¿En qué caja acaban todos los múltiplos de 4? ¿Y el 6?',
+      a: 'Los múltiplos de 4 son pares y van siempre a la <b>caja A</b>. El 6 es par pero no es múltiplo de 4: <b>caja B</b>. Así clasifica una máquina con un árbol de decisión: una pregunta detrás de otra.' }
+  ];
+  var ARBOL = { q: '¿Es par?', si: { q: '¿Es múltiplo de 4?', si: 'A', no: 'B', f: mult(4) }, no: { q: '¿Es múltiplo de 3?', si: 'C', no: 'D', f: mult(3) }, f: par };
+  function repasoClasificador(root) {
+    return marco(root, CL, function (n, left, right) {
+      var txt = h('p', { class: 'pj-status' });
+      if (!n.arbol) {
+        var regla = null, usados = 0, pool = h('div', { class: 'rp-nums' }), si = h('div', { class: 'rp-bin-in' }), no = h('div', { class: 'rp-bin-in' });
+        var nueva = function () {
+          var otras = n.reglas.filter(function (r0) { return r0 !== regla; }); regla = otras[rnd(otras.length)]; usados = 0;
+          si.innerHTML = ''; no.innerHTML = ''; pool.innerHTML = '';
+          for (var k = 1; k <= 30; k++) (function (k) {
+            pool.appendChild(h('button', { type: 'button', class: 'rp-num', text: String(k), onclick: function (e) {
+              usados++; (regla[1](k) ? si : no).appendChild(h('span', { class: 'rp-num in', text: String(k) })); e.currentTarget.disabled = true;
+              setStatus(txt, '', 'Números probados: ' + usados + '. ¿Cuál es la regla? Decidla antes de desvelarla.');
+            } }));
+          })(k);
+          setStatus(txt, '', 'La máquina tiene una regla secreta. Tocad números y mirad a qué caja los manda.');
+        };
+        left.appendChild(h('h4', { text: 'Tocad un número' })); left.appendChild(pool);
+        right.appendChild(h('div', { class: 'rp-bins' }, [h('div', { class: 'rp-bin yes' }, [h('h4', { text: 'SÍ cumple la regla' }), si]), h('div', { class: 'rp-bin no' }, [h('h4', { text: 'NO cumple la regla' }), no])]));
+        right.appendChild(txt);
+        right.appendChild(h('div', { class: 'pj-row' }, [btn('Desvelar la regla', function () { setStatus(txt, 'good'); txt.innerHTML = 'La regla era: el número <b>' + regla[0].replace(/<\/?b>/g, function (x) { return x; }) + '</b>. Comprobad que todos los del SÍ la cumplen y los del NO no.'; }, 'go'), btn('Otra regla', nueva)]));
+        pensar(right, n.q, n.a);
+        nueva();
+        return;
+      }
+      // árbol de decisión
+      var num = null, cajas = { A: [], B: [], C: [], D: [] }, tree = h('div', { class: 'rp-tree' }), big = h('p', { class: 'rp-bignum' });
+      function pinta(camino) {
+        var on = function (k) { return camino && camino.indexOf(k) >= 0 ? ' on' : ''; };
+        var hoja = function (k) { return '<div class="rp-leaf' + on(k) + '"><b>' + k + '</b><span>' + (cajas[k].join(', ') || '&nbsp;') + '</span></div>'; };
+        tree.innerHTML = '<div class="rp-q' + on('q1') + '">' + ARBOL.q + '</div>' +
+          '<div class="rp-br"><div class="rp-side"><span class="rp-lab si' + on('q2') + '">SÍ</span><div class="rp-q' + on('q2') + '">' + ARBOL.si.q + '</div>' +
+          '<div class="rp-br"><div class="rp-side"><span class="rp-lab si' + on('A') + '">SÍ</span>' + hoja('A') + '</div><div class="rp-side"><span class="rp-lab no' + on('B') + '">NO</span>' + hoja('B') + '</div></div></div>' +
+          '<div class="rp-side"><span class="rp-lab no' + on('q3') + '">NO</span><div class="rp-q' + on('q3') + '">' + ARBOL.no.q + '</div>' +
+          '<div class="rp-br"><div class="rp-side"><span class="rp-lab si' + on('C') + '">SÍ</span>' + hoja('C') + '</div><div class="rp-side"><span class="rp-lab no' + on('D') + '">NO</span>' + hoja('D') + '</div></div></div></div>';
+      }
+      function otro() { var libres = []; for (var k = 1; k <= 30; k++) if (!cajas.A.concat(cajas.B, cajas.C, cajas.D).some(function (x) { return x === k; })) libres.push(k); num = libres.length ? libres[rnd(libres.length)] : null; big.textContent = num === null ? '—' : String(num); pinta(); setStatus(txt, '', num === null ? 'Ya están todos los números.' : '¿En qué caja acabará el ' + num + '? Seguid las preguntas.'); }
+      function camino() {
+        if (num === null) return;
+        var p1 = ARBOL.f(num), sub = p1 ? ARBOL.si : ARBOL.no, p2 = sub.f(num), caja = p2 ? sub.si : sub.no;
+        cajas[caja].push(num); cajas[caja].sort(function (a, bb) { return a - bb; });
+        pinta(['q1', p1 ? 'q2' : 'q3', caja]);
+        setStatus(txt, 'good'); txt.innerHTML = 'El ' + num + ': ¿es par? <b>' + (p1 ? 'SÍ' : 'NO') + '</b> → ' + sub.q.toLowerCase().replace('¿', '¿') + ' <b>' + (p2 ? 'SÍ' : 'NO') + '</b> → caja <b>' + caja + '</b>.';
+        num = null;
+      }
+      left.appendChild(h('h4', { text: 'El número' })); left.appendChild(big);
+      left.appendChild(h('div', { class: 'pj-row' }, [btn('Ver el camino', camino, 'go'), btn('Otro número', otro)]));
+      left.appendChild(txt);
+      right.appendChild(tree);
+      pensar(left, n.q, n.a);
+      otro();
+    });
+  }
+
+  /* ================================================================ 5. Patrones: figuras que crecen, series y bichos */
+  function dots(cells, s) {  // cells: [[x, y]] en cuadros
+    var mx = 0, my = 0; cells.forEach(function (c0) { mx = Math.max(mx, c0[0]); my = Math.max(my, c0[1]); });
+    var W = (mx + 1) * s, H = (my + 1) * s;
+    return '<svg viewBox="-2 -2 ' + (W + 4) + ' ' + (H + 4) + '" style="width:' + (W + 4) + 'px">' + cells.map(function (c0) { return '<rect x="' + c0[0] * s + '" y="' + (my - c0[1]) * s + '" width="' + (s - 3) + '" height="' + (s - 3) + '" rx="3" fill="#2c5bbf"/>'; }).join('') + '</svg>';
+  }
+  function palillos(n, s) {
+    var W = n * s, out = '';
+    for (var k = 0; k <= n; k++) out += '<line x1="' + k * s + '" y1="0" x2="' + k * s + '" y2="' + s + '"/>';
+    for (var j = 0; j < n; j++) out += '<line x1="' + (j * s + 3) + '" y1="0" x2="' + ((j + 1) * s - 3) + '" y2="0"/><line x1="' + (j * s + 3) + '" y1="' + s + '" x2="' + ((j + 1) * s - 3) + '" y2="' + s + '"/>';
+    return '<svg viewBox="-4 -4 ' + (W + 8) + ' ' + (s + 8) + '" style="width:' + (W + 8) + 'px" stroke="#b36b00" stroke-width="5" stroke-linecap="round">' + out + '</svg>';
+  }
+  var FIGS = [
+    { t: 'La escalera', que: 'cuadrados', f: function (n) { return n * (n + 1) / 2; }, dib: function (n) { var c0 = []; for (var x = 0; x < n; x++) for (var y = 0; y <= x; y++) c0.push([x, y]); return dots(c0, 16); },
+      regla: 'Cada figura añade una columna con un cuadrado más que la anterior: 1 + 2 + 3 + … Para la figura 10: 1 + 2 + … + 10 = <b>55</b>.' },
+    { t: 'Cuadrados', que: 'cuadrados', f: function (n) { return n * n; }, dib: function (n) { var c0 = []; for (var x = 0; x < n; x++) for (var y = 0; y < n; y++) c0.push([x, y]); return dots(c0, 13); },
+      regla: 'La figura n es un cuadrado de n × n. La figura 10: 10 × 10 = <b>100</b>.' },
+    { t: 'Palillos', que: 'palillos', f: function (n) { return 3 * n + 1; }, dib: function (n) { return palillos(n, 26); },
+      regla: 'La primera figura tiene 4 palillos y cada cuadrado nuevo añade 3. Figura n: 3 × n + 1. La figura 10: 3 × 10 + 1 = <b>31</b>.' }
+  ];
+  var SERIES = [
+    { s: [3, 7, 11, 15], sig: 19, regla: 'Suma 4 cada vez. El 10.º número: 3 + 9 × 4 = <b>39</b>.' },
+    { s: [50, 46, 42, 38], sig: 34, regla: 'Resta 4 cada vez. El 10.º número: 50 − 9 × 4 = <b>14</b>.' },
+    { s: [1, 2, 4, 8], sig: 16, regla: 'Cada número es el doble del anterior. El 10.º: <b>512</b> (2 × 2 × … nueve veces).' },
+    { s: [1, 1, 2, 3, 5], sig: 8, regla: 'Cada número es la suma de los dos anteriores (la sucesión de Fibonacci). Sigue: 8, 13, 21, 34…' },
+    { s: [2, 5, 10, 17], sig: 26, regla: 'Se suma 3, luego 5, luego 7, luego 9: los impares. También es «posición × posición + 1». El 10.º: 10 × 10 + 1 = <b>101</b>.' }
+  ];
+  var BICHOS = [
+    { s: [4, 8, 12, 15, 20, 24], mal: 3, bien: 16, regla: 'Suma 4: después del 12 va el <b>16</b>, no el 15.' },
+    { s: [1, 3, 6, 10, 14, 21], mal: 4, bien: 15, regla: 'Se suma 2, 3, 4, 5, 6…: después del 10 va el <b>15</b> (10 + 5).' },
+    { s: [100, 90, 80, 75, 60, 50], mal: 3, bien: 70, regla: 'Resta 10: después del 80 va el <b>70</b>.' },
+    { s: [2, 4, 8, 16, 30, 64], mal: 4, bien: 32, regla: 'El doble cada vez: después del 16 va el <b>32</b>.' }
+  ];
+  var PA = [
+    { t: 'Figuras que crecen', tipo: 'fig', q: '¿Qué figura de la escalera tiene 21 cuadrados?', a: 'La <b>figura 6</b>: 1 + 2 + 3 + 4 + 5 + 6 = 21.' },
+    { t: 'Series de números', tipo: 'serie', q: 'En la serie que suma 4 (3, 7, 11, 15…), ¿estará el número 40?', a: '<b>No</b>: todos los números de la serie son 3 más un múltiplo de 4 (3, 7, 11…, 39, 43). El 40 es múltiplo de 4, así que no está.' },
+    { t: 'Series con bicho', tipo: 'bicho', q: '¿Cómo se comprueba una serie sin equivocarse?', a: 'Mirando la <b>diferencia</b> (o la operación) entre cada número y el siguiente, uno por uno. Donde la diferencia cambia está el bicho.' }
+  ];
+  function repasoPatrones(root) {
+    return marco(root, PA, function (n, left, right) {
+      var i = 0, txt = h('p', { class: 'pj-status' }), show = h('div', { class: 'rp-pat' }), inp = h('input', { type: 'number', class: 'pj-input', style: 'width:7em', 'aria-label': 'Respuesta' });
+      var lista = n.tipo === 'fig' ? FIGS : n.tipo === 'serie' ? SERIES : BICHOS;
+      var tabs = h('div', { class: 'pj-row' });
+      lista.forEach(function (x, k) { tabs.appendChild(btn(x.t || ('Serie ' + (k + 1)), function () { i = k; pinta(); })); });
+      function pinta() {
+        var x = lista[i]; setStatus(txt, '', ''); inp.value = '';
+        Array.prototype.forEach.call(tabs.children, function (b0, k) { b0.classList.toggle('go', k === i); });
+        if (n.tipo === 'fig') show.innerHTML = [1, 2, 3, 4].map(function (k) { return '<figure>' + x.dib(k) + '<figcaption>Figura ' + k + '<br><b>' + x.f(k) + '</b> ' + x.que + '</figcaption></figure>'; }).join('') + '<figure class="q"><div>?</div><figcaption>Figura 5</figcaption></figure>';
+        else if (n.tipo === 'serie') show.innerHTML = x.s.map(function (v0) { return '<span class="rp-term">' + v0 + '</span>'; }).join('<i>,</i>') + '<i>,</i><span class="rp-term q">?</span>';
+        else {
+          show.innerHTML = '';
+          x.s.forEach(function (v0, k) { show.appendChild(h('button', { type: 'button', class: 'rp-term', text: String(v0), onclick: function () {
+            if (k === x.mal) { setStatus(txt, 'good'); txt.innerHTML = '¡Bicho encontrado! ' + x.regla; }
+            else setStatus(txt, 'bad', 'Ese número está bien. Mirad la diferencia entre cada número y el siguiente.');
+          } })); });
+        }
+        if (n.tipo !== 'bicho') setStatus(txt, '', n.tipo === 'fig' ? '¿Cuántos ' + x.que + ' tendrá la figura 5?' : '¿Qué número va después?');
+        else setStatus(txt, '', 'Hay un número que rompe la serie. Tocadlo.');
+      }
+      function comprobar() {
+        var x = lista[i], ok = n.tipo === 'fig' ? x.f(5) : x.sig, v0 = Number(inp.value);
+        if (inp.value === '') { setStatus(txt, '', 'Escribid un número.'); return; }
+        if (v0 === ok) { setStatus(txt, 'good'); txt.innerHTML = '¡Sí, ' + ok + '! ' + (n.tipo === 'fig' ? '¿Y la figura 10? Pensadlo y pulsad «Ver la regla».' : '¿Y el número que va en el puesto 10? Pensadlo y pulsad «Ver la regla».'); }
+        else setStatus(txt, 'bad', 'No es ' + v0 + '. Mirad cómo cambia de una ' + (n.tipo === 'fig' ? 'figura' : 'posición') + ' a la siguiente.');
+      }
+      left.appendChild(tabs); left.appendChild(show);
+      if (n.tipo !== 'bicho') {
+        inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') comprobar(); });
+        left.appendChild(h('div', { class: 'pj-row' }, [inp, btn('Comprobar', comprobar, 'go'), btn('Ver la regla', function () { setStatus(txt, 'good'); txt.innerHTML = lista[i].regla; })]));
+      } else left.appendChild(h('div', { class: 'pj-row' }, [btn('Ver la solución', function () { setStatus(txt, 'good'); txt.innerHTML = 'El bicho es el ' + lista[i].s[lista[i].mal] + '. ' + lista[i].regla; })]));
+      left.appendChild(txt);
+      pensar(right, n.q, n.a);
+      pinta();
+    });
+  }
+
+  /* ================================================================ 6. Ordenar la secuencia: algoritmos con más de un orden posible */
+  // antes: [a, b] = el paso a tiene que ir antes que el b. Si dos pasos no tienen orden entre ellos, valen los dos órdenes.
+  var SEQ = [
+    { t: 'Pasar el programa a la micro:bit',
+      pasos: ['Hacer el programa y probarlo en el simulador', 'Conectar la micro:bit al ordenador con el cable USB', 'Pulsar «Descargar» en MakeCode', 'Copiar el archivo .hex en la unidad MICROBIT', 'Esperar a que la luz de la placa deje de parpadear', 'Probar el programa en la placa'],
+      antes: [[0, 2], [1, 3], [2, 3], [3, 4], [4, 5]],
+      nota: 'Fijaos: «Conectar la micro:bit» puede ir en varios sitios. Solo tiene que estar antes de copiar el archivo. Hay más de un orden correcto.',
+      q: '¿Se puede conectar la placa antes de hacer el programa?', a: '<b>Sí</b>. Conectar solo tiene que ir antes de copiar el archivo. Un algoritmo puede tener pasos cuyo orden da igual.' },
+    { t: 'Sumar 47 + 38 en columna',
+      pasos: ['Coloco los números uno debajo del otro: unidades con unidades y decenas con decenas', 'Sumo las unidades: 7 + 8 = 15', 'Escribo el 5 y me llevo 1', 'Sumo las decenas y la que me llevo: 4 + 3 + 1 = 8', 'Escribo el 8: el resultado es 85'],
+      antes: [[0, 1], [1, 2], [2, 3], [3, 4]],
+      q: '¿Por qué hay que empezar por las unidades?', a: 'Porque al sumar las unidades puede haber <b>llevadas</b> (15 son 1 decena y 5 unidades), y esa decena hay que sumarla con las decenas.' },
+    { t: 'La media de cuatro notas: 6, 8, 7 y 9',
+      pasos: ['Sumo todas las notas: 6 + 8 + 7 + 9 = 30', 'Cuento cuántas notas hay: 4', 'Divido la suma entre el número de notas: 30 ÷ 4 = 7,5', 'Escribo la media: 7,5'],
+      antes: [[0, 2], [1, 2], [2, 3]],
+      nota: 'Sumar y contar pueden ir en cualquier orden: las dos cosas tienen que estar hechas antes de dividir.',
+      q: '¿Importa si primero cuento las notas o si primero las sumo?', a: '<b>No</b>: las dos cosas tienen que estar antes de dividir, pero entre ellas no hay orden. Hay dos órdenes correctos.' },
+    { t: 'Resolver un problema',
+      pasos: ['Leo el problema entero', 'Busco los datos y lo que me preguntan', 'Decido qué operación tengo que hacer', 'Hago la operación', 'Compruebo si el resultado tiene sentido', 'Escribo la respuesta con una frase'],
+      antes: [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5]],
+      q: '¿Qué puede pasar si hago la operación sin leer el problema entero?', a: 'Que haga una operación que <b>no responde a la pregunta</b>. Leer y buscar lo que me preguntan va siempre primero.' }
+  ];
+  function repasoSecuencias(root) {
+    return marco(root, SEQ, function (n, left, right) {
+      var pool = h('div', { class: 'rp-pool' }), lista = h('ol', { class: 'rp-order' }), txt = h('p', { class: 'pj-status' }), orden = [], mezcla = [];
+      function valido(o) { return n.antes.every(function (c0) { return o.indexOf(c0[0]) < o.indexOf(c0[1]); }); }
+      function mezclar() {
+        do { mezcla = P.shuffle(n.pasos.map(function (x, k) { return k; })); } while (valido(mezcla));
+        orden = []; pinta(); setStatus(txt, '', 'Tocad los pasos en el orden en que se hacen.');
+      }
+      function pinta(malos) {
+        pool.innerHTML = ''; lista.innerHTML = '';
+        mezcla.forEach(function (k) { if (orden.indexOf(k) < 0) pool.appendChild(h('button', { type: 'button', class: 'rp-step', text: n.pasos[k], onclick: function () { orden.push(k); pinta(); } })); });
+        orden.forEach(function (k, j) { lista.appendChild(h('li', {}, [h('button', { type: 'button', class: 'rp-step in' + (malos && malos.indexOf(k) >= 0 ? ' bad' : ''), text: n.pasos[k], title: 'Tocar para devolverlo', onclick: function () { orden.splice(j, 1); pinta(); } })])); });
+      }
+      function comprobar() {
+        if (orden.length < n.pasos.length) { setStatus(txt, '', 'Faltan pasos por colocar.'); return; }
+        if (valido(orden)) { setStatus(txt, 'good'); txt.innerHTML = '¡Orden correcto!' + (n.nota ? ' ' + n.nota : ''); P.burst(lista); return; }
+        var malos = [];
+        n.antes.forEach(function (c0) { if (orden.indexOf(c0[0]) > orden.indexOf(c0[1])) { malos.push(c0[0], c0[1]); } });
+        pinta(malos);
+        setStatus(txt, 'bad', 'Hay pasos que no pueden ir en ese orden: están marcados. ¿Qué tiene que estar hecho antes?');
+      }
+      left.appendChild(h('h4', { text: 'Pasos' })); left.appendChild(pool);
+      right.appendChild(h('h4', { text: 'Nuestro orden' })); right.appendChild(lista); right.appendChild(txt);
+      right.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', comprobar, 'go'), btn('Mezclar otra vez', mezclar)]));
+      pensar(right, n.q, n.a);
+      mezclar();
+    });
+  }
+
+  window.PJRepaso = { semaforo: repasoSi, bucles: repasoBucles, cuadricula: repasoRobot, clasificador: repasoClasificador, patrones: repasoPatrones, secuencias: repasoSecuencias };
   // para comprobarlo desde fuera (pruebas)
-  window.PJRepaso._prueba = { ejecuta: ejecuta, RETOS: RETOS };
+  window.PJRepaso._prueba = { ejecuta: ejecuta, RETOS: RETOS, SEQ: SEQ };
 })();

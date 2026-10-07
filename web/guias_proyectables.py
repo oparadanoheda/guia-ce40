@@ -76,6 +76,7 @@ GUIAS = {
         "idea": "Viñetas con pictogramas de rutinas de cada día, desordenadas. Hay que ponerlas en orden: es la idea de **algoritmo**, una lista de pasos en orden. "
                 "Se eligieron rutinas con un solo orden posible.",
         "contar": [
+            "Repaso 4º-6º: ordenar algoritmos de su día a día (pasar el programa a la micro:bit, sumar en columna, calcular la media, resolver un problema). En algunos vale más de un orden: la herramienta lo acepta y explica por qué.",
             "Leer las viñetas en voz alta, tal como salen, y preguntar: «¿tiene sentido así?».",
             "Buscar primero el paso que va **el primero** y el que va **el último**; los del medio salen después.",
             "Ordenar tocándolas y pulsar **Comprobar**.",
@@ -100,6 +101,7 @@ GUIAS = {
     "patrones": {
         "idea": "Patrones de figuras que se repiten (AB, AAB, ABB, AABB, ABC, ABCD), un patrón **que crece** (la figura 1 tiene 1 cuadrado, la 2 tiene 2…) y patrones **con bicho**, en los que una figura rompe la regla.",
         "contar": [
+            "Repaso 4º-6º: figuras que crecen (¿cuántos tendrá la figura 5? ¿y la 10?), series de números (sumar, restar, el doble, Fibonacci) y series con un número que las rompe.",
             "Decir el patrón en voz alta, con ritmo: «rojo, azul, rojo, azul…».",
             "Buscar **la parte que se repite** (el «trozo» del patrón) y rodearla con el dedo.",
             "Predecir lo que va en cada «?» y tocar para comprobar.",
@@ -162,6 +164,7 @@ GUIAS = {
     "clasificador": {
         "idea": "Objetos con pictogramas para clasificar **por tipo**, **por color** o **por tamaño**, y una **regla secreta**: la máquina manda cada objeto a «SÍ cumple» o «NO cumple» y la clase tiene que adivinar la regla.",
         "contar": [
+            "Repaso 4º-6º: la regla secreta con números del 1 al 30 (par, múltiplos, mayor o menor que) y reglas con «y», «o» y «no»; y un árbol de decisión de dos preguntas que reparte los números en cuatro cajas, como clasifica una máquina.",
             "Clasificar: tocar un objeto y después la caja donde va.",
             "Cambiar de criterio arriba: el mismo objeto puede ir a otra caja según lo que miremos.",
             "Regla secreta: tocar objetos, ver adónde van y proponer la regla antes de **Desvelar la regla**.",
@@ -230,6 +233,9 @@ GUIAS = {
             ("¿Por qué el rombo tiene dos salidas y el rectángulo solo una?",
              ["¿Qué hay dentro de cada forma?"],
              "El rombo es una **pregunta**: tiene un camino para el SÍ y otro para el NO. El rectángulo es una acción: después de hacerla se sigue siempre por el mismo sitio."),
+            ("En «Par o impar», ¿se pueden decir «PAR» e «IMPAR» en el mismo recorrido?",
+             ["Seguid las flechas desde el rombo.", "¿Por cuántos caminos sale del rombo cada vez?"],
+             "**No**: cada vez que se llega a un rombo se sigue **un solo camino**, el del SÍ o el del NO. Los dos caminos se juntan otra vez antes de TERMINA."),
             ("En «Cruzar la calle», ¿qué pasa si el muñeco no está en verde?",
              ["Sigue la flecha del NO."],
              "Espero en el bordillo y vuelvo a mirar el semáforo: el diagrama **vuelve atrás** hasta que la respuesta es SÍ. Eso es un bucle."),
