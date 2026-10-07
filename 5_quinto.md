@@ -132,9 +132,9 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 **Pasos:**
 1. Enseña una placa de verdad: "Es un ordenador diminuto. Tiene 25 luces, 2 botones, y sensores: sabe si se mueve, cuánta luz hay y qué temperatura hace".
 2. En el display: **Nuevo proyecto**. Explica: los bloques son como los de Scratch; la placa de la izquierda es un **simulador**.
-3. **al iniciar** → **mostrar ícono ❤**. Se ve en el simulador.
+3. **al iniciar** → **mostrar ícono** (corazón). Se ve en el simulador.
 4. **al presionarse el botón A** → **mostrar número 1**; **al presionarse el botón B** → **mostrar número 2**. Se prueba pulsando A y B en el simulador.
-5. Reto: un corazón que late (**para siempre** → **mostrar ícono ❤ grande** → **mostrar ícono ❤ pequeño**).
+5. Reto: un corazón que late (**para siempre** → **mostrar ícono** (corazón grande) → **mostrar ícono** (corazón pequeño)).
 6. Reto con variable: un contador. Crear variable *contador*; **al presionarse el botón A** → **cambiar contador por 1** → **mostrar número contador**.
 7. **Últimos 10 minutos, a la placa de verdad:** conectar con el cable, pulsar **Descargar** y copiar el archivo `.hex` a la unidad **MICROBIT** (o emparejar la placa si el navegador lo permite). Ver la guía.
 
@@ -240,8 +240,8 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 **Pasos:**
 1. Pregunta: "¿Cómo sabría la placa que alguien ha cogido tu estuche?". Porque se mueve.
-2. **si agitar** → **mostrar ícono ✗** → **reproduce secuencia tono Do medio durante 1 pulso** (o una melodía de la categoría Música).
-3. Activar y desactivar: variable *activada*. **al presionarse el botón A** → **fijar activada a 1** → **mostrar ícono ✓**. **al presionarse el botón B** → **fijar activada a 0**. Y en la alarma: **si (activada = 1) entonces** sonar.
+2. **si agitar** → **mostrar ícono** (la equis) → **reproduce secuencia tono Do medio durante 1 pulso** (o una melodía de la categoría Música).
+3. Activar y desactivar: variable *activada*. **al presionarse el botón A** → **fijar activada a 1** → **mostrar ícono** (el sí). **al presionarse el botón B** → **fijar activada a 0**. Y en la alarma: **si (activada = 1) entonces** sonar.
 4. Meten la placa con su portapilas en el estuche y lo prueban.
 
 **Opción B (más sencilla):** solo el paso 2, sin activar y desactivar.

@@ -266,11 +266,12 @@ GUIAS = {
         "mates": "Polígonos regulares, ángulos y giros, la vuelta completa (360°) y la división.",
     },
     "variables": {
-        "idea": "Dos cajas con nombre, **puntos** y **vidas**, y los bloques que cambian su valor. Cada bloque que se usa aparece en la lista de la derecha.",
+        "idea": "Una variable es una **caja con nombre**: el nombre no cambia; lo que guarda, sí. Cuatro modos, con los bloques escritos como en **Scratch** o en **MakeCode** (botón de arriba): **La caja** (dar el valor frente a sumar), **Juego de cálculo** (puntos y vidas en un juego de verdad, con el programa iluminado), **¿Cuánto vale al final?** (programas cortos paso a paso, con su tabla) y **La mascota** (la variable hambre de 6º S2).",
         "contar": [
-            "Una variable es una **caja con nombre**: el nombre no cambia; lo que guarda, sí.",
-            "Pulsar **Empezar juego** (puntos 0, vidas 3) y simular el juego con +1 y −1.",
-            "Mirar la lista de bloques: es el programa que se ha ejecutado.",
+            "La caja: antes de ejecutar un bloque, la clase dice cuánto valdrá. «Dar el valor» borra lo que había; «sumar» parte de lo que había.",
+            "Juego de cálculo: un alumno contesta y la clase mira qué bloque se ilumina. Con vidas = 0 se cumple la condición y el juego acaba.",
+            "¿Cuánto vale al final?: primero se escribe la predicción y después se ejecuta paso a paso. Los programas «Sin valor inicial» e «Intercambiar: con bicho» tienen un error para descubrir.",
+            "La mascota: los botones hacen lo mismo que la placa. La variable guarda el estado: cuánta hambre tiene.",
         ],
         "preguntas": [
             ("Si puntos vale 3, sumo 1 dos veces y después pongo puntos a 0, ¿cuánto vale?",

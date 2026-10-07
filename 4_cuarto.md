@@ -166,12 +166,12 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de "adivin
 ### S4 · Variables: cajas que cambian `PC`
 
 - **Qué aprenden:** crear variables, darles un valor, sumarles y mostrarlas.
-- **Para proyectar:** [[P:variables|Variables]]
+- **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] · [[P:variables.traza|Variables · ¿cuánto vale al final?]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
 - **Minuto de uso responsable:** "Al ordenador, manos limpias y nada de comida ni bebida cerca." ¿Qué podría pasar si se derrama agua sobre el teclado?
 
 **Pasos:**
-1. Proyecta "Variables". Juego de cálculo mental: acierto = +1 punto; fallo = −1 vida. Mirad los bloques que se van ejecutando.
+1. Proyecta «Variables · juego de cálculo»: un acierto suma 1 punto y un fallo quita 1 vida. Mirad qué bloque del programa se ilumina en cada respuesta.
 2. En Scratch, crear *puntos* y *vidas*.
 3. **al hacer clic en 🏴** → **dar a puntos el valor 0** → **dar a vidas el valor 3**; **al hacer clic en este objeto** → **sumar a puntos 1** → **ir a posición aleatoria**; **al presionar tecla espacio** → **sumar a vidas -1**.
 4. Pregunta: "¿Qué pasa si no pongo *dar a puntos el valor 0* al principio?". Que lo prueben.
@@ -381,7 +381,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S12 · Puntos, vidas y final `PC`
 
 - **Qué aprenden:** usar variables y condiciones para ganar y perder.
-- **Para proyectar:** [[P:variables|Variables]]
+- **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] (puntos, vidas y el final)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Minuto de uso responsable:** "No todo lo que sale en una pantalla es verdad." ¿Cómo podemos comprobar si algo es verdad?

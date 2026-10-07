@@ -7,7 +7,7 @@
 
   // ------------------------------------------------------------ bloques dibujados (colores de cada editor)
   var SC = { control: '#FFAB19', op: '#59C059', looks: '#9966FF', vars: '#FF8C1A', pen: '#0FBD8C', mov: '#4C97FF' };
-  var MK = { bas: '#1E90FF', inp: '#D400D4', log: '#00A4A6', loo: '#00AA00' };
+  var MK = { bas: '#1E90FF', inp: '#D400D4', log: '#00A4A6', loo: '#00AA00', var: '#DC143C' };
   function b(col, html) { return '<div class="rp-b" style="background:' + col + '">' + html + '</div>'; }
   // bloque en C: secciones [cabecera, contenido, número de rama]
   function c(col, secs) {
@@ -559,6 +559,227 @@
       mezclar();
     });
   }
+
+  /* ================================================================ Variables (herramienta completa, con cuatro modos) */
+  // Los bloques se escriben como en el editor elegido: Scratch (dar a … el valor, sumar a …) o MakeCode (fijar … a, cambiar … por).
+  var ED = {
+    scratch: { nom: 'Scratch', set: function (v0, x) { return 'dar a ' + r(SC.vars, v0) + ' el valor ' + x; }, chg: function (v0, x) { return 'sumar a ' + r(SC.vars, v0) + ' ' + x; },
+      start: 'al hacer clic en 🏴', rep: function (n) { return 'repetir ' + v(n); }, until: function (c0) { return 'repetir hasta que ' + c0; }, wait: 'esperar ' + v(1) + ' segundos',
+      say: function (x) { return 'decir ' + x; }, si: function (c0) { return 'si ' + c0 + ' entonces'; }, sino: 'si no', mul: '*', colV: SC.vars, colC: SC.control, colL: SC.looks, colO: SC.op, colE: '#FFBF00' },
+    makecode: { nom: 'MakeCode', set: function (v0, x) { return 'fijar ' + r(MK.var, v0) + ' a ' + x; }, chg: function (v0, x) { return 'cambiar ' + r(MK.var, v0) + ' por ' + x; },
+      start: 'al iniciar', rep: function (n) { return 'repetir ' + v(n) + ' veces'; }, until: null, wait: 'pausa (ms) ' + v(1000),
+      say: function (x) { return 'mostrar cadena ' + x; }, si: function (c0) { return 'si ' + c0 + ' entonces'; }, sino: 'si no', mul: '×', colV: MK.var, colC: MK.loo, colL: MK.bas, colO: MK.log, colE: MK.bas }
+  };
+  function caja(nombre, valor, extra) {
+    return '<div class="vr-caja"><span class="vr-nom">' + nombre + '</span><b class="vr-val' + (extra || '') + '">' + valor + '</b></div>';
+  }
+
+  // --- 1. La caja: dar el valor frente a sumar
+  function modoCaja(box, ed, txt) {
+    var val = 3, hist = [];
+    var nSet = h('input', { type: 'number', value: 5, class: 'vr-in', 'aria-label': 'Valor que se da' }), nChg = h('input', { type: 'number', value: 2, class: 'vr-in', 'aria-label': 'Cantidad que se suma' });
+    var cajaEl = h('div', { class: 'vr-cajas' }), tabla = h('table', { class: 'rp-trace' });
+    function pinta(anim) {
+      cajaEl.innerHTML = caja('puntos', val, anim ? ' ' + anim : '');
+      tabla.innerHTML = '<tr><th>Bloque</th><th>puntos vale</th></tr>' + hist.map(function (x) { return '<tr><td>' + x[0] + '</td><td>' + x[1] + '</td></tr>'; }).join('');
+    }
+    function blq(html, fn) { return h('div', { class: 'vr-blq' }, [h('div', { class: 'rp-b', style: 'background:' + ed.colV, html: html }), btn('Ejecutar', fn, 'go')]); }
+    var b1 = blq(ed.set('puntos', ''), function () { var x = Number(nSet.value) || 0; var antes = val; val = x; hist.push([stripTags(ed.set('puntos', x)), val]); pinta('nuevo'); setStatus(txt, 'good'); txt.innerHTML = 'Valía ' + antes + '. «' + stripTags(ed.set('puntos', x)) + '» <b>borra lo que había</b> y guarda el ' + x + '.'; });
+    b1.querySelector('.rp-b').appendChild(nSet);
+    var b2 = blq(ed.chg('puntos', ''), function () { var x = Number(nChg.value) || 0; var antes = val; val = antes + x; hist.push([stripTags(ed.chg('puntos', x)), val]); pinta('suma'); setStatus(txt, 'good'); txt.innerHTML = 'Valía ' + antes + '. «' + stripTags(ed.chg('puntos', x)) + '» <b>parte de lo que había</b>: ' + antes + (x < 0 ? ' − ' + (-x) : ' + ' + x) + ' = ' + val + '.'; });
+    b2.querySelector('.rp-b').appendChild(nChg);
+    box.appendChild(h('div', { class: 'pj-two' }, [
+      h('div', { class: 'pj-col' }, [h('h4', { text: 'Los bloques' }), b1, b2, h('p', { class: 'pj-info', text: 'Cambiad los números de los bloques. Antes de ejecutar: ¿cuánto valdrá puntos?' }),
+        btn('Empezar otra vez (puntos vale 3)', function () { val = 3; hist = []; pinta(); setStatus(txt, '', ''); })]),
+      h('div', { class: 'pj-col' }, [h('h4', { text: 'La caja' }), cajaEl, txt, tabla])]));
+    pinta();
+    return { q: 'Puntos vale 3. Ejecuto «' + stripTags(ed.chg('puntos', 2)) + '» dos veces y después «' + stripTags(ed.set('puntos', 5)) + '». ¿Cuánto vale?', a: '<b>5</b>. Las dos sumas lo llevan a 7, pero «' + stripTags(ed.set('puntos', 5)) + '» borra lo que había y pone el 5.' };
+  }
+  function stripTags(s0) { return s0.replace(/<[^>]+>/g, ''); }
+
+  // --- 2. Juego de cálculo en directo: puntos, vidas y las condiciones que los miran
+  function modoJuego(box, ed, txt) {
+    var pts = 0, vid = 3, a = 0, bb = 0, fin = false;
+    var prog = h('div', { class: 'rp-prog' }), cajas = h('div', { class: 'vr-cajas' }), preg = h('p', { class: 'vr-preg' }), resp = h('div', { class: 'pj-row vr-resp' });
+    var L = {
+      ini: c(ed.colE, [[ed.start, b(ed.colV, ed.set('puntos', v(0))) + b(ed.colV, ed.set('vidas', v(3))), 'ini']]),
+      ok: c(ed.colO, [[ed.si(r(ed.colO, 'respuesta = a ' + ed.mul + ' b')), b(ed.colV, ed.chg('puntos', v(1))), 'ok'], [ed.sino, b(ed.colV, ed.chg('vidas', v(-1))), 'no']]),
+      fin: c(ed.colO, [[ed.si(r(ed.colO, r(ed.colV, 'vidas') + ' = ' + v(0))), b(ed.colL, ed.say(v('Has perdido'))), 'pierde']]),
+      gana: c(ed.colO, [[ed.si(r(ed.colO, r(ed.colV, 'puntos') + ' = ' + v(10))), b(ed.colL, ed.say(v('¡Has ganado!'))), 'gana']])
+    };
+    prog.innerHTML = L.ini + L.ok + L.fin + L.gana;
+    function luz(ids) {
+      prog.querySelectorAll('[data-r]').forEach(function (e) { e.classList.remove('on', 'off'); });
+      ids.forEach(function (id) { prog.querySelectorAll('[data-r="' + id + '"]').forEach(function (e) { e.classList.add('on'); }); });
+    }
+    function pintaCajas(cual) { cajas.innerHTML = caja('puntos', pts, cual === 'p' ? ' suma' : '') + caja('vidas', vid, cual === 'v' ? ' resta' : ''); }
+    function nueva() {
+      if (fin) return;
+      a = 2 + rnd(8); bb = 2 + rnd(8);
+      var ok = a * bb, ops = [ok], cand = [ok + a, ok - a, ok + bb, ok - bb, ok + 1, ok - 1, ok + 10];
+      while (ops.length < 3) { var x = cand[rnd(cand.length)]; if (x > 0 && ops.indexOf(x) < 0) ops.push(x); }
+      ops = P.shuffle(ops);
+      preg.innerHTML = a + ' × ' + bb + ' = <span>?</span>';
+      resp.innerHTML = '';
+      ops.forEach(function (x) { resp.appendChild(btn(String(x), function () { contesta(x); })); });
+    }
+    function contesta(x) {
+      if (fin) return;
+      var bien = x === a * bb;
+      if (bien) pts++; else vid--;
+      pintaCajas(bien ? 'p' : 'v');
+      var ids = [bien ? 'ok' : 'no'];
+      if (vid === 0) { ids.push('pierde'); fin = true; }
+      else if (pts === 10) { ids.push('gana'); fin = true; }
+      luz(ids);
+      setStatus(txt, bien ? 'good' : 'bad');
+      txt.innerHTML = (bien ? '¡Bien! ' + stripTags(ed.chg('puntos', 1)) + '.' : 'Era ' + (a * bb) + '. Se ejecuta el «' + ed.sino + '»: ' + stripTags(ed.chg('vidas', -1)) + '.') +
+        (vid === 0 ? ' <b>Vidas vale 0</b>: se cumple la condición y el juego dice «Has perdido».' : pts === 10 ? ' <b>Puntos vale 10</b>: «¡Has ganado!».' : '');
+      if (fin) { resp.innerHTML = ''; preg.innerHTML = vid === 0 ? 'Has perdido' : '¡Has ganado!'; }
+      else setTimeout(nueva, 900);
+    }
+    function empezar() { pts = 0; vid = 3; fin = false; pintaCajas(); luz(['ini']); setStatus(txt, '', 'Con la bandera, puntos empieza en 0 y vidas en 3.'); nueva(); }
+    box.appendChild(h('div', { class: 'pj-two' }, [
+      h('div', { class: 'pj-col' }, [cajas, preg, resp, txt, btn('Empezar el juego', empezar, 'go')]),
+      h('div', { class: 'pj-col' }, [h('h4', { text: 'El programa (' + ed.nom + ')' }), prog])]));
+    empezar();
+    return { q: '¿Qué pasaría si quitamos los bloques de la bandera y jugamos una segunda partida?', a: 'Puntos y vidas empezarían con lo que quedó de la partida anterior: quizá con 0 vidas, y el juego acabaría nada más empezar. Por eso <b>toda variable se pone a su valor de salida al empezar</b>.' };
+  }
+
+  // --- 3. ¿Cuánto vale al final? Programas cortos que se ejecutan paso a paso
+  // instrucciones: ['set', v, expr], ['chg', v, n], ['rep', n, [...]], ['until', [v, '=', n], [...]] (en MakeCode, «mientras» con la condición contraria), ['wait'], ['say', v]
+  var TRAZAS = [
+    { t: 'Dar y sumar', vars: ['puntos'], ini: {}, prog: [['set', 'puntos', 3], ['chg', 'puntos', 2], ['chg', 'puntos', 2], ['set', 'puntos', 0], ['chg', 'puntos', 5]], preg: 'puntos',
+      q: '¿Por qué las dos sumas de 2 no cuentan al final?', a: 'Porque después viene el bloque que pone puntos a 0 («dar a puntos el valor 0» en Scratch, «fijar puntos a 0» en MakeCode), y ese bloque borra lo que había. Solo cuenta lo que pasa <b>después</b> de él.' },
+    { t: 'Sin valor inicial', vars: ['puntos'], ini: { puntos: 7 }, nota: 'Al empezar, puntos ya vale <b>7</b>: es lo que quedó de la partida anterior.', prog: [['rep', 3, [['chg', 'puntos', 1]]]], preg: 'puntos',
+      q: 'Queríamos ganar 3 puntos y que puntos valiera 3. ¿Cómo se arregla?', a: 'Poniendo al principio, con la bandera, <b>«dar a puntos el valor 0»</b> (en MakeCode, «fijar puntos a 0»). Así cada partida empieza igual.' },
+    { t: 'Cuenta atrás', vars: ['tiempo'], ini: {}, prog: [['set', 'tiempo', 5], ['until', ['tiempo', '=', 0], [['wait'], ['chg', 'tiempo', -1]]], ['say', '¡Se acabó!']], preg: 'tiempo',
+      q: '¿Cuántas veces se ejecuta «esperar» si tiempo empieza en 5?', a: '<b>5 veces</b>: una por cada vuelta, hasta que tiempo vale 0. Por eso la cuenta atrás dura 5 segundos.' },
+    { t: 'Intercambiar: con bicho', vars: ['a', 'b'], ini: {}, prog: [['set', 'a', 4], ['set', 'b', 9], ['set', 'a', 'b'], ['set', 'b', 'a']], preg: 'b',
+      q: 'Queríamos que a valiera 9 y b valiera 4. ¿Por qué no sale?', a: 'Al hacer «a toma el valor de b», el 4 de a <b>se pierde</b>. Cuando b toma el valor de a, a ya vale 9. Hace falta una caja más para guardarlo (siguiente programa).' },
+    { t: 'Intercambiar: bien', vars: ['a', 'b', 'aux'], ini: {}, prog: [['set', 'a', 4], ['set', 'b', 9], ['set', 'aux', 'a'], ['set', 'a', 'b'], ['set', 'b', 'aux']], preg: 'b',
+      q: '¿Para qué sirve la variable aux?', a: 'Para <b>guardar el 4</b> antes de perderlo, como cuando se cambian dos vasos de agua y hace falta un tercer vaso.' },
+    { t: 'El doble', vars: ['n'], ini: {}, prog: [['set', 'n', 1], ['rep', 5, [['set', 'n', ['n', 2]]]]], preg: 'n',
+      q: '¿Y si repetimos 10 veces en lugar de 5?', a: '1 × 2 × 2… diez veces: <b>1024</b>. Duplicar crece muy deprisa.' }
+  ];
+  function expr(x, ed) { return typeof x === 'number' ? v(x) : typeof x === 'string' ? r(ed.colV, x) : r(ed.colO, r(ed.colV, x[0]) + ' ' + ed.mul + ' ' + v(x[1])); }
+  function valor(x, st) { return typeof x === 'number' ? x : typeof x === 'string' ? st[x] : st[x[0]] * x[1]; }
+  function pintaTraza(p, ed, ids) {  // HTML del programa; cada instrucción lleva su número
+    var k = 0;
+    function lista(L0) {
+      return L0.map(function (ins) {
+        var id = k++;
+        if (ins[0] === 'set') return '<div data-i="' + id + '">' + b(ed.colV, ed.set(ins[1], expr(ins[2], ed))) + '</div>';
+        if (ins[0] === 'chg') return '<div data-i="' + id + '">' + b(ed.colV, ed.chg(ins[1], v(ins[2]))) + '</div>';
+        if (ins[0] === 'wait') return '<div data-i="' + id + '">' + b(ed.colC, ed.wait) + '</div>';
+        if (ins[0] === 'say') return '<div data-i="' + id + '">' + b(ed.colL, ed.say(v(ins[1]))) + '</div>';
+        var cab = ins[0] === 'rep' ? ed.rep(ins[1]) : ed.until ? ed.until(r(ed.colO, r(ed.colV, ins[1][0]) + ' = ' + v(ins[1][2]))) : 'mientras ' + r(ed.colO, r(ed.colV, ins[1][0]) + ' &gt; ' + v(ins[1][2]));
+        return '<div data-i="' + id + '">' + c(ed.colC, [[cab, lista(ins[2]), -1]]) + '</div>';
+      }).join('');
+    }
+    return c(ed.colE, [[ed.start, lista(p.prog), -1]]);
+  }
+  function ejecutaTraza(p) {  // pasos: [{i, st}]
+    var st = {}, out = [], k = 0;
+    p.vars.forEach(function (x) { st[x] = p.ini[x] !== undefined ? p.ini[x] : 0; });
+    var ids = new Map();
+    (function numera(L0) { L0.forEach(function (ins) { ids.set(ins, k++); if (ins[0] === 'rep' || ins[0] === 'until') numera(ins[2]); }); })(p.prog);
+    (function corre(L0) {
+      L0.forEach(function (ins) {
+        if (out.length > 200) return;
+        if (ins[0] === 'set') { st[ins[1]] = valor(ins[2], st); out.push({ i: ids.get(ins), st: Object.assign({}, st) }); }
+        else if (ins[0] === 'chg') { st[ins[1]] += ins[2]; out.push({ i: ids.get(ins), st: Object.assign({}, st) }); }
+        else if (ins[0] === 'wait' || ins[0] === 'say') out.push({ i: ids.get(ins), st: Object.assign({}, st), dice: ins[0] === 'say' ? ins[1] : null });
+        else if (ins[0] === 'rep') for (var j = 0; j < ins[1]; j++) corre(ins[2]);
+        else while (!(st[ins[1][0]] === ins[1][2]) && out.length < 200) { out.push({ i: ids.get(ins), st: Object.assign({}, st), mira: true }); corre(ins[2]); }
+      });
+    })(p.prog);
+    return out;
+  }
+  function modoTraza(box, ed, txt) {
+    var cur = 0, pasos = [], k = 0;
+    var tabs = h('div', { class: 'pj-row' }), prog = h('div', { class: 'rp-prog' }), tabla = h('table', { class: 'rp-trace' }), inp = h('input', { type: 'number', class: 'pj-input', style: 'width:6em', 'aria-label': 'Predicción' });
+    var nota = h('p', { class: 'pj-info' }), pregEl = h('p', { class: 'vr-q' }), pens = h('div');
+    TRAZAS.forEach(function (p, i) { tabs.appendChild(btn(p.t, function () { abre(i); })); });
+    function abre(i) {
+      cur = i; var p = TRAZAS[i]; k = 0; pasos = ejecutaTraza(p);
+      Array.prototype.forEach.call(tabs.children, function (x, j) { x.classList.toggle('go', j === i); });
+      prog.innerHTML = pintaTraza(p, ed);
+      nota.innerHTML = p.nota || '';
+      pregEl.innerHTML = '¿Cuánto valdrá <b>' + p.preg + '</b> al final?';
+      tabla.innerHTML = '<tr><th>Paso</th>' + p.vars.map(function (x) { return '<th>' + x + '</th>'; }).join('') + '</tr>' +
+        '<tr><td>al empezar</td>' + p.vars.map(function (x) { return '<td>' + (p.ini[x] !== undefined ? p.ini[x] : 0) + '</td>'; }).join('') + '</tr>';
+      inp.value = ''; setStatus(txt, '', '');
+      pens.innerHTML = ''; pensar(pens, p.q, p.a);
+    }
+    function paso() {
+      if (k >= pasos.length) { fin(); return; }
+      var s = pasos[k++], p = TRAZAS[cur];
+      prog.querySelectorAll('[data-i]').forEach(function (e) { e.classList.toggle('vr-now', +e.getAttribute('data-i') === s.i); });
+      if (!s.mira) tabla.insertAdjacentHTML('beforeend', '<tr><td>' + (tabla.rows.length - 1) + '</td>' + p.vars.map(function (x) { return '<td>' + s.st[x] + '</td>'; }).join('') + '</tr>');
+      if (s.dice) { setStatus(txt, '', 'Dice «' + s.dice + '».'); }
+      if (k >= pasos.length) fin();
+    }
+    function fin() {
+      var p = TRAZAS[cur], ult = pasos[pasos.length - 1].st[p.preg], pred = inp.value === '' ? null : Number(inp.value);
+      setStatus(txt, pred === null || pred === ult ? 'good' : 'bad');
+      txt.innerHTML = 'Al final, <b>' + p.preg + ' vale ' + ult + '</b>.' + (pred === null ? '' : pred === ult ? ' ¡La predicción era correcta!' : ' La predicción era ' + pred + '.');
+    }
+    box.appendChild(tabs);
+    box.appendChild(h('div', { class: 'pj-two' }, [
+      h('div', { class: 'pj-col' }, [nota, prog]),
+      h('div', { class: 'pj-col' }, [pregEl, h('div', { class: 'pj-row' }, [inp, btn('Paso a paso', paso, 'go'), btn('Todo seguido', function () { while (k < pasos.length) paso(); })]), txt, tabla, pens])]));
+    abre(0);
+    return null;
+  }
+
+  // --- 4. La mascota virtual (6º S2, MakeCode): el estado de un programa
+  var ICO = { contenta: CARA.contenta, triste: CARA.triste, graciosa: '#...#' + '.....' + '#####' + '...##' + '...##' };
+  function modoMascota(box, ed0, txt) {
+    var ed = ED.makecode, hambre = 5, pant = h('div', { class: 'vr-pant' }), cajas = h('div', { class: 'vr-cajas' }), prog = h('div', { class: 'rp-prog' });
+    prog.innerHTML =
+      c(MK.inp, [['al presionarse el botón ' + v('A'), c(MK.log, [[ed.si(r(MK.log, r(MK.var, 'hambre') + ' &gt; ' + v(0))), b(MK.var, ed.chg('hambre', v(-1))), 'A1']]) + b(MK.bas, 'mostrar ícono ' + leds(ICO.contenta).replace('rp-leds', 'rp-leds sm')), 'A']]) +
+      c(MK.inp, [['al presionarse el botón ' + v('B'), b(MK.bas, 'mostrar número ' + r(MK.var, 'hambre')), 'B']]) +
+      c(MK.inp, [['si ' + v('agitar'), b(MK.bas, 'mostrar ícono ' + leds(ICO.graciosa).replace('rp-leds', 'rp-leds sm')) + b(MK.var, ed.chg('hambre', v(1))), 'S']]) +
+      c(MK.bas, [['para siempre', b(MK.bas, 'pausa (ms) ' + v(10000)) + b(MK.var, ed.chg('hambre', v(1))) + c(MK.log, [[ed.si(r(MK.log, r(MK.var, 'hambre') + ' &gt; ' + v(8))), b(MK.bas, 'mostrar ícono ' + leds(ICO.triste).replace('rp-leds', 'rp-leds sm')), 'T1']]), 'T']]);
+    function luz(ids) { prog.querySelectorAll('[data-r]').forEach(function (e) { e.classList.toggle('on', ids.indexOf(e.getAttribute('data-r')) >= 0); }); }
+    function pinta(muestra, cual) { cajas.innerHTML = caja('hambre', hambre, cual || ''); if (muestra !== undefined) pant.innerHTML = muestra; }
+    function ev(id) {
+      var ids = [id], m;
+      if (id === 'A') { if (hambre > 0) { hambre--; ids.push('A1'); } m = leds(ICO.contenta); setStatus(txt, '', hambre === 0 && ids.length === 1 ? 'Hambre ya vale 0: el «si hambre > 0» no deja bajar más. Solo pone la cara contenta.' : 'Come: hambre baja 1 y pone la cara contenta.'); pinta(m, ids.length > 1 ? ' resta' : ''); }
+      else if (id === 'B') { m = '<p class="vr-num">' + hambre + '</p>'; setStatus(txt, '', 'Enseña cuánta hambre tiene: lo que guarda la variable.'); pinta(m); }
+      else if (id === 'S') { hambre++; m = leds(ICO.graciosa); setStatus(txt, '', 'Juega: pone la cara graciosa y le entra más hambre.'); pinta(m, ' suma'); }
+      else { hambre++; if (hambre > 8) { ids.push('T1'); m = leds(ICO.triste); } setStatus(txt, hambre > 8 ? 'bad' : '', 'Pasan 10 segundos: hambre sube 1.' + (hambre > 8 ? ' Ahora es mayor que 8: cara triste.' : '')); pinta(m, ' suma'); }
+      luz(ids);
+    }
+    box.appendChild(h('div', { class: 'pj-two' }, [
+      h('div', { class: 'pj-col' }, [h('h4', { text: 'La placa' }), pant, cajas,
+        h('div', { class: 'pj-row' }, [btn('Botón A (comer)', function () { ev('A'); }, 'go'), btn('Botón B (¿cómo está?)', function () { ev('B'); }), btn('Agitar (jugar)', function () { ev('S'); }), btn('Pasan 10 segundos', function () { ev('T'); })]),
+        txt, btn('Empezar otra vez (hambre 5)', function () { hambre = 5; pinta(leds('.........................')); luz([]); setStatus(txt, '', ''); })]),
+      h('div', { class: 'pj-col' }, [h('h4', { text: 'El programa (MakeCode)' }), prog])]));
+    pinta(leds('.........................'));
+    return { q: '¿Para qué sirve el «si hambre &gt; 0» del botón A?', a: 'Para que hambre <b>no baje de 0</b>. Sin él, dándole de comer muchas veces llegaría a −1, −2…, y no tiene sentido tener «menos que nada» de hambre.' };
+  }
+
+  var VMODOS = [['', 'La caja', modoCaja], ['juego', 'Juego de cálculo', modoJuego], ['traza', '¿Cuánto vale al final?', modoTraza], ['mascota', 'La mascota (MakeCode)', modoMascota]];
+  function toolVariables(root) {
+    var modo = '', ed = 'scratch', zona = h('div', { class: 'pj-mode' }), edRow = h('div', { class: 'pj-row vr-ed' });
+    root.appendChild(edRow); root.appendChild(zona);
+    function pinta() {
+      edRow.innerHTML = '';
+      if (modo !== 'mascota') {
+        edRow.appendChild(h('span', { class: 'pj-info', text: 'Bloques de:' }));
+        ['scratch', 'makecode'].forEach(function (e) { edRow.appendChild(btn(ED[e].nom, function () { ed = e; pinta(); }, ed === e ? 'go' : '')); });
+      }
+      zona.innerHTML = '';
+      var txt = h('p', { class: 'pj-status' }), m = VMODOS.filter(function (x) { return x[0] === modo; })[0] || VMODOS[0];
+      var pq = m[2](zona, ED[ed], txt);
+      if (pq) pensar(zona, pq.q, pq.a);
+      zona.appendChild(h('p', { class: 'pj-info', text: 'Una variable es una caja con nombre. El nombre no cambia; lo que guarda, sí.' }));
+    }
+    return { load: function (p) { modo = VMODOS.some(function (x) { return x[0] === p; }) ? p : ''; if (modo === 'mascota') ed = 'makecode'; pinta(); } };
+  }
+  window.Proyectables.register('variables', toolVariables);
 
   window.PJRepaso = { semaforo: repasoSi, bucles: repasoBucles, cuadricula: repasoRobot, clasificador: repasoClasificador, patrones: repasoPatrones, secuencias: repasoSecuencias };
   // para comprobarlo desde fuera (pruebas)

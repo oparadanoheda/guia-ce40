@@ -888,23 +888,7 @@
     return { load: function (p) { rose = p === 'roseton'; if (p === 'triangulo') n = 3; nIn.value = n; draw(); } };
   }
 
-  /* ------------------------------------------------------------------ 11. Variables */
-  function toolVars(root) {
-    var v = { puntos: 0, vidas: 3 }, log = h('ol', { class: 'pj-log' }), boxes = h('div', { class: 'pj-vars' });
-    function blk(txt, cls) { var li = h('li', { html: '<span class="blk ' + (cls || 'var') + '">' + txt + '</span>' }); log.insertBefore(li, log.firstChild); while (log.children.length > 8) log.removeChild(log.lastChild); }
-    function draw() {
-      boxes.innerHTML = '';
-      Object.keys(v).forEach(function (k) {
-        var b = h('div', { class: 'pj-varbox' }, [h('span', { class: 'lbl', text: k }), h('b', { text: v[k] }),
-          h('div', { class: 'pj-row tight' }, [btn('+1', function () { v[k]++; blk('sumar a ' + k + ' 1'); draw(); }, 'go'), btn('−1', function () { v[k]--; blk('sumar a ' + k + ' −1'); draw(); }), btn('poner a 0', function () { v[k] = 0; blk('dar a ' + k + ' el valor 0'); draw(); })])]);
-        boxes.appendChild(b);
-      });
-      if (v.vidas <= 0) blk('si vidas = 0 entonces → decir «Has perdido»', 'ctl');
-    }
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [boxes, h('p', { class: 'pj-info', text: 'Una variable es una caja con nombre. El nombre no cambia; lo que guarda, sí.' })]),
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'Bloques que se han ejecutado' }), log, btn('Empezar juego (puntos 0, vidas 3)', function () { v = { puntos: 0, vidas: 3 }; log.innerHTML = ''; blk('dar a vidas el valor 3'); blk('dar a puntos el valor 0'); draw(); })])]));
-    return { load: draw };
-  }
+  /* ------------------------------------------------------------------ 11. Variables: está en proyectables5.js */
 
   /* ------------------------------------------------------------------ 12. Coordenadas del escenario */
   function toolCoords(root) {
@@ -1155,7 +1139,7 @@
   /* ------------------------------------------------------------------ registro */
   var TOOLS = {
     cuadricula: toolGrid, patrones: toolPatterns, secuencias: toolSequence, bucles: toolLoops, semaforo: toolLight, clasificador: toolSort,
-    animales: toolAnimals, votaciones: toolVotes, diagrama: toolFlow, poligonos: toolPoly, variables: toolVars, coordenadas: toolCoords,
+    animales: toolAnimals, votaciones: toolVotes, diagrama: toolFlow, poligonos: toolPoly, coordenadas: toolCoords,
     circuito: toolCircuit, leds: toolLeds, umbral: toolThreshold, velocidad: toolSpeed, sesgo: toolBias, verdad: toolTruth,
     contrasenas: toolPass, temporizador: toolTimer, cifrado: toolCipher
   };

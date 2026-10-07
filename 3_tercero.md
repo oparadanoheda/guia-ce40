@@ -381,13 +381,13 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 ### S13 · Variables: cajas que guardan números `PC`
 
 - **Qué aprenden:** una variable es una caja con nombre que guarda un número que puede cambiar.
-- **Para proyectar:** [[P:variables|Variables]]
+- **Para proyectar:** [[P:variables|Variables · la caja]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
 - **Archivo de Scratch:** [[S:3-S13-variables-solucion.sb3|Puntos con cada clic · solución]]
 - **Minuto de uso responsable:** "Espalda recta y pies en el suelo cuando uso el ordenador." ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
-1. Proyecta "Variables": dos cajas, *puntos* y *vidas*. Pulsa +1, −1 y "poner a 0". Mirad cómo aparece cada bloque. "La caja se llama siempre igual; lo que tiene dentro cambia".
+1. Proyecta «Variables · la caja». Antes de cada bloque, la clase dice cuánto valdrá *puntos*: «dar el valor» borra lo que había; «sumar» parte de lo que había. "La caja se llama siempre igual; lo que tiene dentro cambia".
 2. En Scratch: Variables → **Crear una variable** → *puntos*.
 3. **al hacer clic en 🏴** → **dar a puntos el valor 0**; **al hacer clic en este objeto** → **sumar a puntos 1** → **iniciar sonido Miau**.
 4. Prueban: cada clic en el gato, un punto. ¿Qué pasa al pulsar la bandera?

@@ -137,7 +137,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 
 - **Qué aprenden:** que un programa puede responder a muchos eventos distintos a la vez, y usar variables para guardar el "estado".
 - **Prepara antes:** tu ejemplo hecho.
-- **Para proyectar:** [[P:variables|Variables]] y [[P:leds.sonrisa|Matriz de LED]]
+- **Para proyectar:** [[P:variables.mascota|Variables · la mascota]] y [[P:leds.sonrisa|Matriz de LED]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:6-S2-mascota-virtual.mkcd|La mascota virtual · solución]]
 - **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
@@ -145,12 +145,12 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 **Opción A · Mascota virtual (recomendada)**
 1. Variable *hambre* (empieza en 5).
 2. Eventos:
-   - **al presionarse el botón A** (comer) → **cambiar hambre por -1** → **mostrar ícono 😊**
+   - **al presionarse el botón A** (comer) → **si (hambre > 0) entonces** → **cambiar hambre por -1** → **mostrar ícono** (cara contenta)
    - **al presionarse el botón B** (preguntar cómo está) → **mostrar número hambre**
    - **si agitar** (jugar) → **mostrar ícono** (gracioso) → **cambiar hambre por 1**
    - **al pulsar el logotipo** (solo micro:bit V2) o **al presionarse el botón A+B** → **reproduce secuencia melodía**
 3. **para siempre** → **pausa (ms) 10000** → **cambiar hambre por 1** (el tiempo le da hambre).
-4. **si (hambre > 8) entonces mostrar ícono 😢**.
+4. **si (hambre > 8) entonces** → **mostrar ícono** (cara triste).
 
 **Opción B · Mando multifunción**
 Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra una flecha o un icono distinto. Después juegan en parejas a "Simón dice" con la placa.
