@@ -529,7 +529,7 @@ Toda la clase con las cartas binarias y la balanza: ¿qué número forman estas 
 - **Si va rápido:** que el soporte sujete el cartel inclinado, o una ranura para dos carteles.
 - **Si cuesta:** el soporte con las medidas ya escritas en la pizarra.
 - **Mates:** medir en milímetros, comparar medidas (ranura y cartel), prismas; en la opción B, sistema binario y comparaciones.
-- **Aplicaciones para la pizarra en sesiones extra:** [[P:paridad|Magia de la paridad]] · [[P:balanza.8|Ordenar con la balanza]] · [[P:flota.xy|Hundir la flota con coordenadas]] · [Blockly Games](https://blockly.games/?lang=es).
+- **Aplicaciones para la pizarra en sesiones extra:** [[P:paridad|Magia de la paridad]] · [[P:balanza.8|Ordenar con la balanza]] · [[P:flota.xyneg|Hundir la flota con coordenadas negativas]] · [Blockly Games](https://blockly.games/?lang=es).
 
 ---
 

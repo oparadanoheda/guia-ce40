@@ -328,7 +328,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S10 · Personaje y escenario `PC`
 
 - **Qué aprenden:** mover un personaje con las flechas y hacer que no se salga (varios eventos a la vez).
-- **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:flota.xy|Hundir la flota · coordenadas (x, y)]]
+- **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:flota.xy|Hundir la flota · plano de 0 a 7]] · [[P:flota.xyneg|Hundir la flota · con negativos]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S10-videojuego-plantilla.sb3|Plantilla de inicio: dibujos y fondos, sin programar]] · [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Minuto de uso responsable:** "Cada 20 minutos miro algo lejano 20 segundos." ¿Qué podemos mirar lejos desde nuestro sitio?

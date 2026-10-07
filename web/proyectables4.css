@@ -132,3 +132,18 @@
 @media (prefers-reduced-motion: reduce){.pj-bar2,.pj-bnum{transition:none}.pj-rolling{animation:none}}
 @media (max-width:640px){.pj-bcols,.pj-xlab{gap:6px}.pj-bnum{font-size:1.1rem}}
 
+
+/* hundir la flota: dos tableros y el plano de coordenadas */
+.pj-fleets{display:grid;gap:18px;width:100%}
+.pj-fleets.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.pj-fboard{display:flex;flex-direction:column;align-items:center;gap:6px;border-radius:18px;padding:6px;border:3px solid transparent;min-width:0}
+.pj-fleets.two .pj-fboard.now{border-color:#df7619}
+.pj-fleets.two .pj-fboard:not(.now){opacity:.72}
+.pj-fname{margin:0;font:600 1.1rem var(--sans)}
+.pj-fstack{display:flex;flex-direction:column;gap:14px}
+.pj-plane{display:block;width:100%;max-width:620px;height:auto;user-select:none}
+.pj-pt{cursor:pointer;outline:none}
+.pj-pt.free:hover circle:last-child,.pj-pt.free:focus-visible circle:last-child{r:11px;fill:#df7619}
+.pj-pt.just{animation:pjpt .6s ease-out;transform-box:fill-box;transform-origin:center}
+@keyframes pjpt{0%{transform:scale(1.8)}100%{transform:scale(1)}}
+@media (max-width:760px){.pj-fleets.two{grid-template-columns:minmax(0,1fr)}}

@@ -97,13 +97,25 @@
   }
 
   /* ------------------------------------------------------------ Hundir la flota */
+  // Con letra y número se dispara a casillas (B3). En el plano (x, y) se dispara a puntos: los cruces de las líneas, como en
+  // un eje de coordenadas; «xy» es el primer cuadrante (de 0 a 7) y «xyneg» el plano completo (de −4 a 4).
+  // Con dos equipos, cada uno tiene su propia flota escondida y su tablero; gana quien la hunda antes.
+  var PLANOS = { xy: { min: 0, max: 7 }, xyneg: { min: -4, max: 4 } };
+  function signo(v) { return v < 0 ? '−' + (-v) : String(v); }
   function toolFleet(root) {
-    var n = 5, mode = 'letras', ships = [], shots = {}, turn = 0, teams = false, score = [0, 0], last = null;
-    var board = h('div', { class: 'pj-fleet' }), msg = h('p', { class: 'pj-status' }), info = h('div', { class: 'pj-row' });
-    var inp = h('input', { class: 'pj-input', placeholder: 'Ej.: B3', 'aria-label': 'Coordenada', size: 6 });
-    function label(x, y) { return mode === 'letras' ? 'ABCDEFGH'.charAt(x) + (y + 1) : '(' + x + ', ' + (n - 1 - y) + ')'; }
-    function place() {
-      var sizes = n === 5 ? [3, 2, 1, 1] : [4, 3, 3, 2, 2, 1]; ships = []; var occ = {};
+    var n = 5, plano = null, teams = false, turn = 0, fleets = [], over = false;
+    var boardsBox = h('div', { class: 'pj-fleets' }), msg = h('p', { class: 'pj-status' }), info = h('div', { class: 'pj-row' });
+    var inp = h('input', { class: 'pj-input', 'aria-label': 'Coordenada', size: 8 });
+    var help = h('p', { class: 'pj-info' }), teamBtn = btn('Dos equipos', function () { teams = !teams; place(); });
+    var main = h('div', { class: 'pj-two' });
+
+    function xy(i, j) { return [plano.min + i, plano.max - j]; }
+    function label(i, j) {
+      if (!plano) return 'ABCDEFGH'.charAt(i) + (j + 1);
+      var c = xy(i, j); return '(' + signo(c[0]) + ', ' + signo(c[1]) + ')';
+    }
+    function nuevaFlota() {
+      var sizes = n === 5 ? [3, 2, 1, 1] : [4, 3, 3, 2, 2, 1], ships = [], occ = {};
       sizes.forEach(function (sz) {
         for (var tries = 0; tries < 500; tries++) {
           var hor = rnd(2) === 0, x = rnd(hor ? n - sz + 1 : n), y = rnd(hor ? n : n - sz + 1), cells = [], ok = true;
@@ -111,48 +123,158 @@
           if (ok) { cells.forEach(function (c) { occ[c[0] + ',' + c[1]] = 1; }); ships.push({ cells: cells, hits: 0 }); break; }
         }
       });
-      shots = {}; score = [0, 0]; turn = 0; last = null; draw(); P.setStatus(msg, '', 'El ordenador ha escondido ' + ships.length + ' barcos. Decid una casilla.');
+      return { ships: ships, shots: {}, last: null, count: 0, el: h('div', { class: 'pj-fboard' }) };
     }
-    function fire(x, y) {
-      var k = x + ',' + y; if (shots[k]) { msg.textContent = 'Esa casilla ya se ha dicho.'; return; }
-      var hit = null; ships.forEach(function (s) { s.cells.forEach(function (c) { if (c[0] === x && c[1] === y) hit = s; }); });
-      if (hit) { hit.hits++; shots[k] = hit.hits === hit.cells.length ? 'sunk' : 'hit'; if (shots[k] === 'sunk') hit.cells.forEach(function (c) { shots[c[0] + ',' + c[1]] = 'sunk'; }); if (teams) score[turn] += hit.hits === hit.cells.length ? 3 : 1; tone(hit.hits === hit.cells.length ? 880 : 660, 0.25); }
-      else { shots[k] = 'water'; tone(220, 0.2); }
-      var left = ships.filter(function (s) { return s.hits < s.cells.length; }).length;
-      P.setStatus(msg, shots[k] === 'water' ? '' : 'good');
-      msg.innerHTML = label(x, y) + ': <b>' + (shots[k] === 'water' ? 'agua' : shots[k] === 'hit' ? '¡tocado!' : '¡hundido!') + '</b> · Quedan ' + left + ' barcos · Disparos: ' + Object.keys(shots).length;
-      if (!left) msg.innerHTML += ' · <b>¡Flota hundida!</b>';
-      if (teams && shots[k] === 'water') turn = 1 - turn;
-      last = k; draw();
-      if (!left) P.burst(board);
+    function left(f) { return f.ships.filter(function (s) { return s.hits < s.cells.length; }).length; }
+    function place() {
+      fleets = teams ? [nuevaFlota(), nuevaFlota()] : [nuevaFlota()];
+      turn = 0; over = false;
+      inp.placeholder = plano ? 'Ej.: ' + (plano.min < 0 ? '−2, 3' : '2, 3') : 'Ej.: B3';
+      help.innerHTML = (plano
+        ? 'Los barcos están en los <b>puntos</b>: los cruces de las líneas. Se dice el punto con <b>primero la x</b> (horizontal) <b>y después la y</b> (vertical)' + (plano.min < 0 ? '; a la izquierda del 0 y por debajo del 0, los números son negativos.' : '.')
+        : 'Un alumno dice la casilla <b>primero la columna y después la fila</b> y la toca en la pizarra.') +
+        (teams ? ' <b>Dos equipos:</b> cada uno busca su propia flota, en su tablero. Si aciertas, vuelves a disparar; si es agua, le toca al otro equipo. Gana quien hunda antes toda su flota.' : '');
+      teamBtn.innerHTML = teams ? 'Toda la clase' : 'Dos equipos';
+      main.className = teams ? 'pj-fstack' : 'pj-two';
+      draw();
+      P.setStatus(msg, '', teams ? 'Cada equipo tiene ' + fleets[0].ships.length + ' barcos escondidos en su tablero. Empieza el equipo A.'
+        : 'El ordenador ha escondido ' + fleets[0].ships.length + ' barcos. Decid ' + (plano ? 'un punto.' : 'una casilla.'));
     }
-    function draw() {
-      board.innerHTML = ''; board.style.gridTemplateColumns = '40px repeat(' + n + ', 1fr)';
-      board.appendChild(h('span'));
-      for (var x = 0; x < n; x++) board.appendChild(h('b', { text: mode === 'letras' ? 'ABCDEFGH'.charAt(x) : String(x) }));
-      for (var y = 0; y < n; y++) {
-        board.appendChild(h('b', { text: mode === 'letras' ? String(y + 1) : String(n - 1 - y) }));
-        for (var xx = 0; xx < n; xx++) (function (x, y) {
-          var st = shots[x + ',' + y];
-          var just = last === x + ',' + y;
-          board.appendChild(h('button', { type: 'button', class: 'pj-sea ' + (st || '') + (just ? ' just' : ''), 'aria-label': label(x, y), html: st === 'water' ? '<i class="w"></i>' : st === 'hit' ? '<i class="x"></i>' : st === 'sunk' ? '<i class="s"></i>' : '', onclick: function () { fire(x, y); } }));
-        })(xx, y);
+    function fire(t, i, j) {
+      if (over) return;
+      if (teams && t !== turn) { msg.textContent = 'Ahora le toca al equipo ' + 'AB'.charAt(turn) + ': su tablero es el que está marcado.'; return; }
+      var f = fleets[t], k = i + ',' + j;
+      if (f.shots[k]) { msg.textContent = (plano ? 'Ese punto' : 'Esa casilla') + ' ya se ha dicho.'; return; }
+      var hit = null; f.ships.forEach(function (s) { s.cells.forEach(function (c) { if (c[0] === i && c[1] === j) hit = s; }); });
+      f.count++;
+      if (hit) {
+        hit.hits++; f.shots[k] = hit.hits === hit.cells.length ? 'sunk' : 'hit';
+        if (f.shots[k] === 'sunk') hit.cells.forEach(function (c) { f.shots[c[0] + ',' + c[1]] = 'sunk'; });
+        tone(f.shots[k] === 'sunk' ? 880 : 660, 0.25);
+      } else { f.shots[k] = 'water'; tone(220, 0.2); }
+      f.last = k;
+      var quedan = left(f), res = f.shots[k] === 'water' ? 'agua' : f.shots[k] === 'hit' ? '¡tocado!' : '¡hundido!';
+      P.setStatus(msg, f.shots[k] === 'water' ? '' : 'good');
+      var quien = teams ? 'Equipo ' + 'AB'.charAt(t) + ' · ' : '';
+      msg.innerHTML = quien + label(i, j) + ': <b>' + res + '</b> · ' + (quedan === 1 ? 'Queda 1 barco' : 'Quedan ' + quedan + ' barcos') + ' · Disparos: ' + f.count;
+      if (!quedan) {
+        over = true;
+        msg.innerHTML += teams ? ' · <b>¡El equipo ' + 'AB'.charAt(t) + ' ha hundido toda su flota y gana!</b>' : ' · <b>¡Flota hundida!</b>';
+      } else if (teams) {
+        if (f.shots[k] === 'water') turn = 1 - turn;
+        msg.innerHTML += ' · Dispara el equipo ' + 'AB'.charAt(turn) + '.';
       }
+      draw();
+      if (!quedan) P.burst(f.el);
+    }
+
+    function drawCells(f, t) {
+      var g = h('div', { class: 'pj-fleet' });
+      g.style.gridTemplateColumns = '40px repeat(' + n + ', 1fr)';
+      g.appendChild(h('span'));
+      for (var i = 0; i < n; i++) g.appendChild(h('b', { text: 'ABCDEFGH'.charAt(i) }));
+      for (var j = 0; j < n; j++) {
+        g.appendChild(h('b', { text: String(j + 1) }));
+        for (var ii = 0; ii < n; ii++) (function (i, j) {
+          var st = f.shots[i + ',' + j], just = f.last === i + ',' + j;
+          g.appendChild(h('button', { type: 'button', class: 'pj-sea ' + (st || '') + (just ? ' just' : ''), 'aria-label': label(i, j),
+            html: st === 'water' ? '<i class="w"></i>' : st === 'hit' ? '<i class="x"></i>' : st === 'sunk' ? '<i class="s"></i>' : '',
+            onclick: function () { fire(t, i, j); } }));
+        })(ii, j);
+      }
+      return g;
+    }
+
+    function drawPlane(f, t) {
+      var S = 52, ML = 54, MT = 40, MB = 50, MR = 46, span = (n - 1) * S;
+      var W = ML + span + MR, H = MT + span + MB;
+      var px = function (i) { return ML + i * S; }, py = function (j) { return MT + j * S; };
+      var ax = -plano.min, ay = plano.max;           // columna del eje y (x = 0) y fila del eje x (y = 0)
+      // los números, con un borde del color del fondo para que las líneas no los crucen
+      var NUM = ' font-size="17" font-weight="700" fill="#1a1d24" stroke="#e3f0fa" stroke-width="5" paint-order="stroke"';
+      var s = '<rect x="0" y="0" width="' + W + '" height="' + H + '" rx="16" fill="#e3f0fa"/>';
+      for (var k = 0; k < n; k++) {
+        s += '<line x1="' + px(k) + '" y1="' + py(0) + '" x2="' + px(k) + '" y2="' + py(n - 1) + '" stroke="#9cc3e3" stroke-width="1.5"/>';
+        s += '<line x1="' + px(0) + '" y1="' + py(k) + '" x2="' + px(n - 1) + '" y2="' + py(k) + '" stroke="#9cc3e3" stroke-width="1.5"/>';
+      }
+      // ejes con flecha en el lado positivo
+      var X0 = px(0) - (plano.min < 0 ? 14 : 0), X1 = px(n - 1) + 30, Y0 = py(n - 1) + (plano.min < 0 ? 14 : 0), Y1 = py(0) - 28;
+      s += '<line x1="' + X0 + '" y1="' + py(ay) + '" x2="' + X1 + '" y2="' + py(ay) + '" stroke="#1a1d24" stroke-width="3"/>';
+      s += '<path d="M' + (X1 + 2) + ' ' + py(ay) + 'l-12 -7v14z" fill="#1a1d24"/>';
+      s += '<text x="' + (X1 + 2) + '" y="' + (py(ay) - 12) + '" text-anchor="end" font-size="20" font-style="italic" font-weight="700" fill="#1a1d24">x</text>';
+      s += '<line x1="' + px(ax) + '" y1="' + Y0 + '" x2="' + px(ax) + '" y2="' + Y1 + '" stroke="#1a1d24" stroke-width="3"/>';
+      s += '<path d="M' + px(ax) + ' ' + (Y1 - 2) + 'l-7 12h14z" fill="#1a1d24"/>';
+      s += '<text x="' + (px(ax) + 12) + '" y="' + (Y1 + 6) + '" font-size="20" font-style="italic" font-weight="700" fill="#1a1d24">y</text>';
+      // números: los de la x debajo del eje x, los de la y a la izquierda del eje y; el 0, una sola vez junto al origen
+      for (var i = 0; i < n; i++) {
+        var vx = plano.min + i; if (vx === 0) continue;
+        s += '<text x="' + px(i) + '" y="' + (py(ay) + 30) + '" text-anchor="middle"' + NUM + '>' + signo(vx) + '</text>';
+      }
+      for (var j = 0; j < n; j++) {
+        var vy = plano.max - j; if (vy === 0) continue;
+        s += '<text x="' + (px(ax) - 17) + '" y="' + (py(j) + 6) + '" text-anchor="end"' + NUM + '>' + signo(vy) + '</text>';
+      }
+      s += '<text x="' + (px(ax) - 14) + '" y="' + (py(ay) + 28) + '" text-anchor="end"' + NUM + '>0</text>';
+      // barcos hundidos: una línea gruesa por sus puntos
+      f.ships.forEach(function (sh) {
+        if (sh.hits < sh.cells.length) return;
+        var a = sh.cells[0], b = sh.cells[sh.cells.length - 1];
+        s += '<line x1="' + px(a[0]) + '" y1="' + py(a[1]) + '" x2="' + px(b[0]) + '" y2="' + py(b[1]) + '" stroke="#4a5568" stroke-width="22" stroke-linecap="round" opacity=".85"/>';
+      });
+      var svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.setAttribute('class', 'pj-plane');
+      svg.innerHTML = s;
+      for (var jj = 0; jj < n; jj++) for (var ii = 0; ii < n; ii++) (function (i, j) {
+        var st = f.shots[i + ',' + j], just = f.last === i + ',' + j, cx = px(i), cy = py(j);
+        var g = document.createElementNS(NS, 'g');
+        g.setAttribute('class', 'pj-pt ' + (st || 'free') + (just ? ' just' : ''));
+        g.setAttribute('role', 'button'); g.setAttribute('tabindex', '0'); g.setAttribute('aria-label', label(i, j));
+        var mark = st === 'water' ? '<circle cx="' + cx + '" cy="' + cy + '" r="9" fill="#fff" stroke="#4f86b8" stroke-width="3"/>'
+          : st === 'hit' ? '<circle cx="' + cx + '" cy="' + cy + '" r="14" fill="#ffb199"/><path d="M' + (cx - 8) + ' ' + (cy - 8) + 'L' + (cx + 8) + ' ' + (cy + 8) + 'M' + (cx + 8) + ' ' + (cy - 8) + 'L' + (cx - 8) + ' ' + (cy + 8) + '" stroke="#cf3f36" stroke-width="4" stroke-linecap="round"/>'
+          : st === 'sunk' ? '<circle cx="' + cx + '" cy="' + cy + '" r="8" fill="#c9ced8"/>'
+          : '<circle cx="' + cx + '" cy="' + cy + '" r="7" fill="#2f7fc1"/>';
+        g.innerHTML = '<circle cx="' + cx + '" cy="' + cy + '" r="22" fill="transparent"/>' + mark;
+        g.addEventListener('click', function () { fire(t, i, j); });
+        g.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fire(t, i, j); } });
+        svg.appendChild(g);
+      })(ii, jj);
+      return svg;
+    }
+
+    function draw() {
+      boardsBox.innerHTML = '';
+      boardsBox.classList.toggle('two', teams);
+      fleets.forEach(function (f, t) {
+        f.el.innerHTML = '';
+        f.el.className = 'pj-fboard' + (teams && t === turn && !over ? ' now' : '');
+        if (teams) f.el.appendChild(h('p', { class: 'pj-fname', html: 'Equipo ' + 'AB'.charAt(t) + ' · ' + (left(f) === 1 ? 'le queda <b>1</b> barco' : 'le quedan <b>' + left(f) + '</b> barcos') + ' · ' + f.count + (f.count === 1 ? ' disparo' : ' disparos') }));
+        f.el.appendChild(plano ? drawPlane(f, t) : drawCells(f, t));
+        boardsBox.appendChild(f.el);
+      });
       info.innerHTML = '';
-      if (teams) ['Equipo A', 'Equipo B'].forEach(function (t, i) { info.appendChild(h('span', { class: 'pj-team' + (turn === i ? ' now' : ''), html: t + ': <b>' + score[i] + '</b>' })); });
+      if (teams && !over) info.appendChild(h('span', { class: 'pj-team now', html: 'Dispara el equipo ' + 'AB'.charAt(turn) }));
     }
     function shootText() {
-      var v = inp.value.trim().toUpperCase().replace(/\s/g, ''), x, y;
-      if (mode === 'letras') { x = 'ABCDEFGH'.indexOf(v.charAt(0)); y = parseInt(v.slice(1), 10) - 1; }
-      else { var m = v.match(/\(?(\d+),(\d+)\)?/); if (m) { x = +m[1]; y = n - 1 - +m[2]; } }
-      if (x >= 0 && x < n && y >= 0 && y < n) fire(x, y); else msg.textContent = 'No entiendo esa casilla. Ejemplo: ' + (mode === 'letras' ? 'B3' : '2,4');
+      var v = inp.value.trim().toUpperCase().replace(/\s/g, '').replace(/−/g, '-'), i, j;
+      if (!plano) { i = 'ABCDEFGH'.indexOf(v.charAt(0)); j = parseInt(v.slice(1), 10) - 1; }
+      else {
+        var m = v.match(/^\(?(-?\d+)[,;](-?\d+)\)?$/);
+        if (m) { i = +m[1] - plano.min; j = plano.max - +m[2]; }
+      }
+      if (i >= 0 && i < n && j >= 0 && j < n) fire(teams ? turn : 0, i, j);
+      else msg.textContent = 'No entiendo ' + (plano ? 'ese punto' : 'esa casilla') + '. Ejemplo: ' + inp.placeholder.replace('Ej.: ', '') + (plano ? ' (primero la x y después la y).' : '');
       inp.value = '';
     }
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') shootText(); });
-    root.appendChild(h('div', { class: 'pj-row' }, [btn('Dos equipos', function () { teams = !teams; score = [0, 0]; draw(); }), btn('Nueva partida', place, 'go')]));
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [board]), h('div', { class: 'pj-col' }, [info, h('div', { class: 'pj-row' }, [inp, btn('Disparar', shootText, 'go')]), msg,
-      h('p', { class: 'pj-info', html: 'Un alumno dice la casilla <b>primero la columna y después la fila</b> y la toca en la pizarra. En equipos: acertar da 1 punto, hundir un barco da 3, y el turno cambia al fallar.' })])]));
-    return { load: function (p) { n = p === 'grande' || p === 'xy' ? 8 : 5; mode = p === 'xy' ? 'xy' : 'letras'; place(); } };
+    root.appendChild(h('div', { class: 'pj-row' }, [teamBtn, btn('Nueva partida', place, 'go')]));
+    main.appendChild(h('div', { class: 'pj-col' }, [boardsBox]));
+    main.appendChild(h('div', { class: 'pj-col' }, [info, h('div', { class: 'pj-row' }, [inp, btn('Disparar', shootText, 'go')]), msg, help]));
+    root.appendChild(main);
+    return { load: function (p) {
+      plano = PLANOS[p] || null;
+      n = plano ? plano.max - plano.min + 1 : (p === 'grande' ? 8 : 5);
+      place();
+    } };
   }
 
   /* ------------------------------------------------------------ Píxel art con código */
