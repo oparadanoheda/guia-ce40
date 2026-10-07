@@ -369,6 +369,8 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 - La frase de objetivo bajo cada sesión en la lista del curso.
 - Las aclaraciones pequeñas de algunas tarjetas de las herramientas (por ejemplo, «Las siguientes tarjetas van dentro»).
 
+**Si 5º y 6º dejan de ser quincenales:** hay un plan acordado (7 de octubre de 2026) en `Propuesta 5º y 6º semanal.md`: 24 sesiones con imprescindibles y recomendadas, para unas 3 de cada 4 semanas. En 2026-27 siguen quincenales.
+
 **Otros pendientes**
 
 - **Probar el zip en el aula virtual real** de EducaMadrid (que Moodle muestre `index.html` y que los PDF y .sb3 se abran).
