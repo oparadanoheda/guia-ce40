@@ -288,14 +288,14 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 ### S10 · Moverse con la bandera y con las teclas `PC`
 
 - **Qué aprenden:** mover un personaje con bloques y con el teclado (eventos).
-- **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:flota|Hundir la flota]]
+- **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:flota|Hundir la flota]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Minuto de uso responsable:** "Cada 20 minutos miro algo lejano 20 segundos." ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos (ejemplo en la pizarra):**
 1. **al hacer clic en 🏴** → **mover 10 pasos**. Pulsa varias veces. Cambia 10 por 50.
 2. Con teclas: **al presionar tecla flecha derecha** → **mover 10 pasos**; flecha izquierda → **mover -10 pasos**.
-3. Proyecta "Coordenadas": al mover al gato, la x cambia. Enseña que arriba y abajo es la y.
+3. Proyecta «Coordenadas del escenario»: al pasar el dedo hacia los lados cambia la x; hacia arriba y abajo, la y. Después, en «Con bloques», ejecutad «sumar a x» y «sumar a y» y predecid dónde acaba el gato.
 4. Reto: que el gato se mueva también arriba y abajo con **sumar a y 10** y **sumar a y -10**.
 
 **Pistas y soluciones:**

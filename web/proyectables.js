@@ -890,31 +890,7 @@
 
   /* ------------------------------------------------------------------ 11. Variables: está en proyectables5.js */
 
-  /* ------------------------------------------------------------------ 12. Coordenadas del escenario */
-  function toolCoords(root) {
-    var x = 0, y = 0, target = null, svg = document.createElementNS(NS, 'svg'), read = h('p', { class: 'pj-big' }), msg = h('p', { class: 'pj-status' });
-    svg.setAttribute('viewBox', '-250 -190 500 380'); svg.setAttribute('class', 'pj-stage');
-    function draw() {
-      var s = '<rect x="-240" y="-180" width="480" height="360" fill="var(--pj-cell)" stroke="var(--pj-line)" stroke-width="2"/>';
-      for (var gx = -200; gx <= 200; gx += 40) s += '<line x1="' + gx + '" y1="-180" x2="' + gx + '" y2="180" stroke="var(--pj-line)" stroke-width=".6"/>';
-      for (var gy = -160; gy <= 160; gy += 40) s += '<line x1="-240" y1="' + gy + '" x2="240" y2="' + gy + '" stroke="var(--pj-line)" stroke-width=".6"/>';
-      s += '<line x1="-240" y1="0" x2="240" y2="0" stroke="#cf3f36" stroke-width="2"/><line x1="0" y1="-180" x2="0" y2="180" stroke="#2a8f4f" stroke-width="2"/>';
-      s += '<text x="232" y="-6" font-size="14" text-anchor="end" fill="#cf3f36">x</text><text x="6" y="-166" font-size="14" fill="#2a8f4f">y</text>';
-      s += '<text x="236" y="16" font-size="11" text-anchor="end" fill="var(--pj-muted)">240</text><text x="-236" y="16" font-size="11" fill="var(--pj-muted)">−240</text><text x="6" y="-172" font-size="11" fill="var(--pj-muted)" dy="14">180</text><text x="6" y="176" font-size="11" fill="var(--pj-muted)">−180</text>';
-      if (target) s += '<circle cx="' + target[0] + '" cy="' + (-target[1]) + '" r="14" fill="none" stroke="#df7619" stroke-width="4" stroke-dasharray="5 4"/>';
-      s += svgPic('gato', x - 26, -y - 26, 52) + '<circle cx="' + x + '" cy="' + (-y) + '" r="4" fill="#cf3f36"/>';
-      svg.innerHTML = s;
-      read.innerHTML = 'x: <b>' + x + '</b> &nbsp; y: <b>' + y + '</b>';
-      if (target && x === target[0] && y === target[1]) msg.textContent = '¡Reto conseguido!';
-    }
-    function mv(dx, dy) { x = Math.max(-240, Math.min(240, x + dx)); y = Math.max(-180, Math.min(180, y + dy)); draw(); }
-    svg.addEventListener('click', function (e) { var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY; var p = pt.matrixTransform(svg.getScreenCTM().inverse()); x = Math.round(p.x / 10) * 10; y = Math.round(-p.y / 10) * 10; draw(); });
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg]), h('div', { class: 'pj-col' }, [read,
-      h('div', { class: 'pj-pad' }, [h('span'), btn('↑ y + 10', function () { mv(0, 10); }), h('span'), btn('← x − 10', function () { mv(-10, 0); }), btn('centro', function () { x = 0; y = 0; draw(); }), btn('→ x + 10', function () { mv(10, 0); }), h('span'), btn('↓ y − 10', function () { mv(0, -10); }), h('span')]),
-      btn('Nuevo reto', function () { target = [(rnd(9) - 4) * 50, (rnd(7) - 3) * 50]; msg.textContent = 'Lleva al gato a x: ' + target[0] + ', y: ' + target[1]; draw(); }, 'go'),
-      h('p', { class: 'pj-info', text: 'Toca el escenario para mover al gato. La x cuenta hacia los lados; la y, hacia arriba y abajo.' }), msg])]));
-    return { load: draw };
-  }
+  /* ------------------------------------------------------------------ 12. Coordenadas del escenario: está en proyectables5.js */
 
   /* ------------------------------------------------------------------ 13. ¿Conduce la electricidad? */
   var OBJS = [['platano', 'Plátano', 2], ['papel', 'Papel', 0], ['cuchara', 'Cuchara de metal', 1], ['lapiz', 'Mina de lápiz (grafito)', 1], ['regla', 'Regla de plástico', 0], ['madera', 'Madera', 0],
@@ -1139,7 +1115,7 @@
   /* ------------------------------------------------------------------ registro */
   var TOOLS = {
     cuadricula: toolGrid, patrones: toolPatterns, secuencias: toolSequence, bucles: toolLoops, semaforo: toolLight, clasificador: toolSort,
-    animales: toolAnimals, votaciones: toolVotes, diagrama: toolFlow, poligonos: toolPoly, coordenadas: toolCoords,
+    animales: toolAnimals, votaciones: toolVotes, diagrama: toolFlow, poligonos: toolPoly,
     circuito: toolCircuit, leds: toolLeds, umbral: toolThreshold, velocidad: toolSpeed, sesgo: toolBias, verdad: toolTruth,
     contrasenas: toolPass, temporizador: toolTimer, cifrado: toolCipher
   };

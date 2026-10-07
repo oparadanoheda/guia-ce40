@@ -288,3 +288,12 @@ button.rp-term{cursor:pointer;border-color:var(--rule);background:var(--sheet)}
 .vr-pant{display:flex;align-items:center;justify-content:center;min-height:150px}
 .vr-pant .rp-leds{width:150px}
 .vr-num{margin:0;font:800 4rem/1 var(--sans);color:#ff3b30;background:#1a1d24;border-radius:14px;padding:18px 28px}
+/* coordenadas del escenario */
+.co-stage{display:block;width:100%;max-width:660px;height:auto;cursor:crosshair;touch-action:none;border-radius:8px}
+.co-read{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font:600 1.1rem var(--sans)}
+.co-read span{min-width:5.5em;color:var(--muted);font-weight:600}
+.co-read b{color:#4C97FF}
+.co-read i{font:800 1.8rem var(--sans);font-style:normal;min-width:2.6em;display:inline-block;color:var(--ink)}
+.co-panel{display:flex;flex-direction:column;align-items:flex-start;gap:8px;width:100%}
+.co-pred{width:5.2em;border:2px solid var(--rule)}
+.co-hueco{box-shadow:0 0 0 3px #df7619}

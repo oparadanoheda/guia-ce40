@@ -284,12 +284,12 @@ GUIAS = {
         "mates": "Suma y resta, valores que cambian y lectura de un registro paso a paso.",
     },
     "coordenadas": {
-        "idea": "El escenario de Scratch con sus ejes: **x** de −240 a 240 (izquierda y derecha) e **y** de −180 a 180 (abajo y arriba). El centro es (0, 0). Se mueve al gato con botones o tocando el escenario.",
+        "idea": "El escenario de Scratch con sus ejes: **x** de −240 a 240 (izquierda y derecha) e **y** de −180 a 180 (abajo y arriba). El centro es (0, 0). Cuatro modos: **Explorar** (al pasar el dedo se ve la x y la y de cada punto), **Con bloques** (ir a, sumar a x, dar a x el valor, con retos de predecir dónde acaba el gato), **¿Dónde está?** (leer las coordenadas de una estrella o tocar un punto) y **Dibujar con «ir a»** (figuras uniendo puntos, con esquinas que faltan o que están mal).",
         "contar": [
-            "Llevar al gato al centro: x 0, y 0.",
-            "Mover a la derecha: la x sube; a la izquierda: la x baja y pasa a **negativa**.",
-            "Igual con la y: arriba sube, abajo baja.",
-            "**Nuevo reto**: la clase dice cuántos pasos hacen falta antes de moverlo.",
+            "Explorar: llevar el dedo hacia la izquierda y ver cómo la x baja y pasa a negativa; igual con la y hacia abajo.",
+            "Con bloques: antes de ejecutar, la clase dice dónde acabará el gato. «Sumar» parte de donde estaba; «ir a» no mira dónde estaba.",
+            "¿Dónde está?: primero la x (bajando hasta el eje x) y después la y. Se da por bueno a 15 pasos o menos.",
+            "Dibujar: calcular las esquinas con el centro en el (0, 0): los mismos números con distinto signo.",
         ],
         "preguntas": [
             ("¿En qué esquina está el punto (240, 180)? ¿Y (−240, −180)?",

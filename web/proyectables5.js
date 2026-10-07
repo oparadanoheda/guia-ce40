@@ -781,6 +781,239 @@
   }
   window.Proyectables.register('variables', toolVariables);
 
+  /* ================================================================ Coordenadas del escenario (herramienta completa, con cuatro modos) */
+  // El escenario de Scratch: x de −240 a 240, y de −180 a 180, el (0, 0) en el centro. En SVG la y va hacia abajo: se dibuja en −y.
+  function sg(n) { return n < 0 ? '−' + (-n) : String(n); }
+  function escenario(extra) {
+    var s = '<rect x="-240" y="-180" width="480" height="360" fill="#fbfcfe" stroke="#9aa6b8" stroke-width="2"/>';
+    for (var gx = -200; gx <= 200; gx += 50) s += '<line x1="' + gx + '" y1="-180" x2="' + gx + '" y2="180" stroke="' + (gx % 100 ? '#e6eaf0' : '#cdd5e0') + '" stroke-width="1"/>';
+    for (var gy = -150; gy <= 150; gy += 50) s += '<line x1="-240" y1="' + gy + '" x2="240" y2="' + gy + '" stroke="' + (gy % 100 ? '#e6eaf0' : '#cdd5e0') + '" stroke-width="1"/>';
+    s += '<line x1="-240" y1="0" x2="240" y2="0" stroke="#1a1d24" stroke-width="2"/><line x1="0" y1="-180" x2="0" y2="180" stroke="#1a1d24" stroke-width="2"/>';
+    var T = ' font-size="12" font-weight="700" fill="#1a1d24" stroke="#fbfcfe" stroke-width="4" paint-order="stroke"';
+    for (var k = -200; k <= 200; k += 100) if (k) s += '<text x="' + k + '" y="15"' + T + ' text-anchor="middle">' + sg(k) + '</text>';
+    for (var j = -100; j <= 100; j += 100) if (j) s += '<text x="-5" y="' + (-j + 4) + '"' + T + ' text-anchor="end">' + sg(j) + '</text>';
+    s += '<text x="-5" y="15"' + T + ' text-anchor="end">0</text>';
+    s += '<text x="236" y="-6"' + T + ' text-anchor="end" font-style="italic">x</text><text x="6" y="-166"' + T + ' font-style="italic">y</text>';
+    // los límites del escenario, fuera del rectángulo para que no se pisen con los números de los ejes
+    var L = ' font-size="12" font-weight="700" fill="#5f677a"';
+    s += '<text x="246" y="4"' + L + '>240</text><text x="-246" y="4"' + L + ' text-anchor="end">−240</text>';
+    s += '<text x="0" y="-186"' + L + ' text-anchor="middle">180</text><text x="0" y="196"' + L + ' text-anchor="middle">−180</text>';
+    return s + (extra || '');
+  }
+  function gato(x, y) {
+    var src = window.PICTO && window.PICTO.gato;
+    return (src ? '<image href="' + src + '" x="' + (x - 24) + '" y="' + (-y - 24) + '" width="48" height="48"/>' : '') + '<circle cx="' + x + '" cy="' + (-y) + '" r="4" fill="#cf3f36"/>';
+  }
+  function svgEscenario() {
+    var svg = document.createElementNS(NS, 'svg');
+    svg.setAttribute('viewBox', '-284 -200 568 402'); svg.setAttribute('class', 'co-stage');
+    return svg;
+  }
+  function puntoDe(svg, e) {
+    var pt = svg.createSVGPoint(); pt.x = e.clientX; pt.y = e.clientY;
+    var p = pt.matrixTransform(svg.getScreenCTM().inverse());
+    return [Math.max(-240, Math.min(240, Math.round(p.x))), Math.max(-180, Math.min(180, Math.round(-p.y)))];
+  }
+  function lectura() { return h('div', { class: 'co-read' }); }
+  function pintaLectura(el, x, y, tit) { el.innerHTML = (tit ? '<span>' + tit + '</span>' : '') + '<b>x:</b> <i>' + sg(x) + '</i> <b>y:</b> <i>' + sg(y) + '</i>'; }
+
+  // --- 1. Explorar
+  function coExplorar(box, txt) {
+    var x = 0, y = 0, svg = svgEscenario(), rGato = lectura(), rPunt = lectura();
+    function pinta() { svg.innerHTML = escenario(gato(x, y)); pintaLectura(rGato, x, y, 'El gato'); }
+    svg.addEventListener('pointermove', function (e) { var p = puntoDe(svg, e); pintaLectura(rPunt, p[0], p[1], 'El dedo'); });
+    svg.addEventListener('click', function (e) {
+      var p = puntoDe(svg, e); x = Math.round(p[0] / 10) * 10; y = Math.round(p[1] / 10) * 10; pinta();
+      setStatus(txt, '', (x < 0 ? 'La x es negativa: está a la izquierda del centro. ' : x > 0 ? 'La x es positiva: a la derecha. ' : 'La x es 0: en la línea del centro. ') +
+        (y < 0 ? 'La y es negativa: por debajo.' : y > 0 ? 'La y es positiva: por encima.' : 'La y es 0: en la línea del centro.'));
+    });
+    box.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg]), h('div', { class: 'pj-col' }, [rGato, rPunt,
+      h('p', { class: 'pj-info', text: 'Pasad el dedo por el escenario: abajo se ve la x y la y de cada punto, como en Scratch. Al tocar, el gato va ahí.' }), txt,
+      btn('Al centro (0, 0)', function () { x = 0; y = 0; pinta(); setStatus(txt, '', 'El centro del escenario es el punto (0, 0).'); })])]));
+    pintaLectura(rPunt, 0, 0, 'El dedo'); pinta();
+    return { q: '¿En qué esquina está el punto (240, 180)? ¿Y (−240, −180)?', a: '(240, 180): <b>arriba a la derecha</b>, el punto más alejado del centro hacia ese lado. (−240, −180): <b>abajo a la izquierda</b>.' };
+  }
+
+  // --- 2. Con bloques
+  var CO_RETOS = [
+    { t: 'Reto 1', ini: [0, 0], prog: [['cx', 100], ['cy', 50]] },
+    { t: 'Reto 2', ini: [-100, 50], prog: [['rep', 3, [['cx', 30]]]] },
+    { t: 'Reto 3', ini: [50, -20], prog: [['cy', -100], ['cx', -150]] },
+    { t: 'Reto 4', ini: [120, 80], prog: [['sx', 0], ['cy', -80]] },
+    { t: 'Reto 5', ini: [0, 0], prog: [['go', -200, 100], ['cx', 50], ['cy', -50]] }
+  ];
+  function coTxt(ins) {
+    return ins[0] === 'go' ? 'ir a x: ' + v(sg(ins[1])) + ' y: ' + v(sg(ins[2])) : ins[0] === 'cx' ? 'sumar a x ' + v(sg(ins[1])) : ins[0] === 'cy' ? 'sumar a y ' + v(sg(ins[1])) :
+      ins[0] === 'sx' ? 'dar a x el valor ' + v(sg(ins[1])) : 'dar a y el valor ' + v(sg(ins[1]));
+  }
+  function coAplica(ins, p) {
+    var x = p[0], y = p[1];
+    if (ins[0] === 'go') { x = ins[1]; y = ins[2]; } else if (ins[0] === 'cx') x += ins[1]; else if (ins[0] === 'cy') y += ins[1]; else if (ins[0] === 'sx') x = ins[1]; else y = ins[1];
+    return [Math.max(-240, Math.min(240, x)), Math.max(-180, Math.min(180, y))];
+  }
+  function coBloques(box, txt) {
+    var pos = [0, 0], rastro = [[0, 0]], svg = svgEscenario(), rd = lectura(), panel = h('div', { class: 'co-panel' }), tabs = h('div', { class: 'pj-row' }), timer = null;
+    function pinta() {
+      var tr = rastro.length > 1 ? '<polyline points="' + rastro.map(function (p) { return p[0] + ',' + (-p[1]); }).join(' ') + '" fill="none" stroke="#df7619" stroke-width="3" stroke-dasharray="6 5"/>' : '';
+      svg.innerHTML = escenario(tr + gato(pos[0], pos[1])); pintaLectura(rd, pos[0], pos[1], 'El gato');
+    }
+    function libre() {
+      panel.innerHTML = '';
+      var filas = [['go', 'ir a x:', 'y:', -100, 50], ['cx', 'sumar a x', null, 30], ['cy', 'sumar a y', null, -20], ['sx', 'dar a x el valor', null, 0], ['sy', 'dar a y el valor', null, 0]];
+      filas.forEach(function (f) {
+        var i1 = h('input', { type: 'number', value: f[3], class: 'vr-in', 'aria-label': 'número' }), i2 = f[2] ? h('input', { type: 'number', value: f[4], class: 'vr-in', 'aria-label': 'número' }) : null;
+        var bk = h('div', { class: 'rp-b', style: 'background:' + SC.mov }, [f[1] + ' ', i1].concat(i2 ? [' ' + f[2] + ' ', i2] : []));
+        panel.appendChild(h('div', { class: 'vr-blq' }, [bk, btn('Ejecutar', function () {
+          var ins = f[0] === 'go' ? ['go', Number(i1.value) || 0, Number(i2.value) || 0] : [f[0], Number(i1.value) || 0];
+          var antes = pos; pos = coAplica(ins, pos); rastro.push(pos); pinta();
+          setStatus(txt, 'good'); txt.innerHTML = 'Estaba en (' + sg(antes[0]) + ', ' + sg(antes[1]) + ') y ahora está en <b>(' + sg(pos[0]) + ', ' + sg(pos[1]) + ')</b>.' +
+            (ins[0] === 'cx' || ins[0] === 'cy' ? ' «Sumar» parte de donde estaba.' : ins[0] === 'go' ? ' «Ir a» no mira dónde estaba.' : ' «Dar el valor» cambia solo esa coordenada.');
+        }, 'go')]));
+      });
+      panel.appendChild(btn('Borrar el rastro y volver al centro', function () { pos = [0, 0]; rastro = [[0, 0]]; pinta(); setStatus(txt, '', ''); }));
+    }
+    function reto(R) {
+      clearInterval(timer);
+      panel.innerHTML = ''; pos = R.ini.slice(); rastro = [pos.slice()]; pinta();
+      var lista = '';
+      R.prog.forEach(function (ins) { lista += ins[0] === 'rep' ? c(SC.control, [['repetir ' + v(ins[1]), ins[2].map(function (x) { return b(SC.mov, coTxt(x)); }).join(''), -1]]) : b(SC.mov, coTxt(ins)); });
+      var px = h('input', { type: 'number', class: 'vr-in co-pred', 'aria-label': 'x que predecís' }), py = h('input', { type: 'number', class: 'vr-in co-pred', 'aria-label': 'y que predecís' });
+      panel.appendChild(h('p', { class: 'pj-info', html: 'El gato empieza en <b>(' + sg(R.ini[0]) + ', ' + sg(R.ini[1]) + ')</b>. ¿Dónde acaba?' }));
+      panel.appendChild(h('div', { class: 'rp-prog', html: lista }));
+      panel.appendChild(h('div', { class: 'pj-row' }, ['Predicción: x ', px, ' y ', py, btn('Ejecutar el programa', function () {
+        var pasos = [];
+        R.prog.forEach(function (ins) { if (ins[0] === 'rep') { for (var k = 0; k < ins[1]; k++) ins[2].forEach(function (x) { pasos.push(x); }); } else pasos.push(ins); });
+        pos = R.ini.slice(); rastro = [pos.slice()]; pinta();
+        var i = 0;
+        timer = setInterval(function () {
+          if (i >= pasos.length) {
+            clearInterval(timer);
+            var ok = px.value !== '' && py.value !== '' && Number(px.value) === pos[0] && Number(py.value) === pos[1];
+            setStatus(txt, px.value === '' ? 'good' : ok ? 'good' : 'bad');
+            txt.innerHTML = 'Acaba en <b>(' + sg(pos[0]) + ', ' + sg(pos[1]) + ')</b>.' + (px.value === '' ? '' : ok ? ' ¡La predicción era correcta!' : ' La predicción era (' + sg(Number(px.value)) + ', ' + sg(Number(py.value)) + ').');
+            return;
+          }
+          pos = coAplica(pasos[i++], pos); rastro.push(pos); pinta();
+        }, document.documentElement.classList.contains('pj-still') ? 1 : 600);
+      }, 'go')]));
+    }
+    tabs.appendChild(btn('Probar bloques', function () { marca(0); libre(); }));
+    CO_RETOS.forEach(function (R, k) { tabs.appendChild(btn(R.t, function () { marca(k + 1); reto(R); })); });
+    function marca(k) { Array.prototype.forEach.call(tabs.children, function (b0, j) { b0.classList.toggle('go', j === k); }); setStatus(txt, '', ''); }
+    box.appendChild(tabs);
+    box.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, rd]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Bloques de Scratch' }), panel, txt])]));
+    marca(0); libre(); pinta();
+    return { q: 'El gato está en (−100, 50). Ejecuto «sumar a x 30» tres veces. ¿Dónde acaba?', a: 'En <b>(−10, 50)</b>: −100 + 30 + 30 + 30 = −10. La y no cambia. Cuidado con los negativos: −100 + 30 es −70, no −130.' };
+  }
+
+  // --- 3. ¿Dónde está? Leer las coordenadas de un punto, o colocar un punto
+  function coDonde(box, txt) {
+    var modo = 'leer', obj = null, toque = null, svg = svgEscenario(), ix = h('input', { type: 'number', class: 'vr-in co-pred', 'aria-label': 'x' }), iy = h('input', { type: 'number', class: 'vr-in co-pred', 'aria-label': 'y' });
+    var zona = h('div', { class: 'co-panel' }), tabs = h('div', { class: 'pj-row' }), TOL = 15;
+    function estrella(x, y, col) { var p = []; for (var k = 0; k < 10; k++) { var a = Math.PI / 5 * k - Math.PI / 2, rr = k % 2 ? 6 : 14; p.push((x + rr * Math.cos(a)).toFixed(1) + ',' + (-y + rr * Math.sin(a)).toFixed(1)); } return '<polygon points="' + p.join(' ') + '" fill="' + col + '" stroke="#1a1d24" stroke-width="1.5"/>'; }
+    function pinta(reveal) {
+      var s = '';
+      if (modo === 'leer' && obj) s += estrella(obj[0], obj[1], '#f5c518');
+      if (modo === 'colocar' && toque) s += '<circle cx="' + toque[0] + '" cy="' + (-toque[1]) + '" r="7" fill="#2c5bbf"/>';
+      if (reveal && obj) s += (modo === 'colocar' ? estrella(obj[0], obj[1], '#f5c518') : '') + '<line x1="' + obj[0] + '" y1="0" x2="' + obj[0] + '" y2="' + (-obj[1]) + '" stroke="#df7619" stroke-width="2" stroke-dasharray="5 4"/><line x1="0" y1="' + (-obj[1]) + '" x2="' + obj[0] + '" y2="' + (-obj[1]) + '" stroke="#df7619" stroke-width="2" stroke-dasharray="5 4"/>';
+      svg.innerHTML = escenario(s);
+    }
+    function nuevo() {
+      obj = [(rnd(23) - 11) * 20, (rnd(17) - 8) * 20]; toque = null; ix.value = ''; iy.value = '';
+      setStatus(txt, '', modo === 'leer' ? '¿En qué punto está la estrella? Escribid su x y su y.' : 'Tocad el punto (' + sg(obj[0]) + ', ' + sg(obj[1]) + ').'); pinta();
+    }
+    function compara(p) {
+      var dx = p[0] - obj[0], dy = p[1] - obj[1], ok = Math.abs(dx) <= TOL && Math.abs(dy) <= TOL;
+      setStatus(txt, ok ? 'good' : 'bad');
+      txt.innerHTML = (ok ? '¡Bien! ' : '') + 'La estrella está en <b>(' + sg(obj[0]) + ', ' + sg(obj[1]) + ')</b>.' +
+        (ok ? '' : ' En la x, ' + (dx ? 'os habéis ido ' + Math.abs(dx) + (dx > 0 ? ' a la derecha' : ' a la izquierda') : 'justo') + '; en la y, ' + (dy ? Math.abs(dy) + (dy > 0 ? ' hacia arriba' : ' hacia abajo') : 'justo') + '.');
+      pinta(true);
+    }
+    svg.addEventListener('click', function (e) { if (modo !== 'colocar' || !obj) return; toque = puntoDe(svg, e); compara(toque); });
+    function abre(m) {
+      modo = m; zona.innerHTML = '';
+      Array.prototype.forEach.call(tabs.children, function (b0, j) { b0.classList.toggle('go', (j === 0) === (m === 'leer')); });
+      if (m === 'leer') zona.appendChild(h('div', { class: 'pj-row' }, ['x ', ix, ' y ', iy, btn('Comprobar', function () { if (ix.value === '' || iy.value === '') { setStatus(txt, '', 'Escribid la x y la y.'); return; } compara([Number(ix.value), Number(iy.value)]); }, 'go')]));
+      zona.appendChild(btn(m === 'leer' ? 'Otra estrella' : 'Otro punto', nuevo));
+      zona.appendChild(h('p', { class: 'pj-info', text: 'Se da por bueno si os quedáis a 15 pasos o menos en cada coordenada.' }));
+      nuevo();
+    }
+    tabs.appendChild(btn('Leer: ¿dónde está la estrella?', function () { abre('leer'); }));
+    tabs.appendChild(btn('Colocar: tocad el punto', function () { abre('colocar'); }));
+    box.appendChild(tabs);
+    box.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg]), h('div', { class: 'pj-col' }, [zona, txt])]));
+    abre('leer');
+    return { q: '¿Cómo se lee un punto sin equivocarse?', a: 'Primero se baja (o se sube) <b>hasta el eje x</b> y se lee la x; después se va <b>hasta el eje y</b> y se lee la y. Primero la x, después la y. Las líneas naranjas de la solución hacen ese camino.' };
+  }
+
+  // --- 4. Dibujar uniendo puntos con «ir a» y el lápiz
+  var CO_DIB = [
+    { t: 'Cuadrado', pts: [[-100, -100], [100, -100], [100, 100], [-100, 100], [-100, -100]], hueco: [3], txt: 'Un cuadrado de 200 pasos de lado, con el centro en el (0, 0). Falta una esquina.' },
+    { t: 'Rectángulo', pts: [[-150, -50], [150, -50], [150, 50], [-150, 50], [-150, -50]], hueco: [2], txt: 'Un rectángulo de 300 de ancho y 100 de alto, con el centro en el (0, 0). Falta una esquina.' },
+    { t: 'Casa', pts: [[-80, -100], [80, -100], [80, 40], [0, 120], [-80, 40], [-80, -100]], hueco: [3], txt: 'Una casa: la pared es un cuadrado de 160 de lado y el tejado acaba en punta, 80 más arriba que la pared. Falta la punta del tejado.' },
+    { t: 'Con bicho', pts: [[-120, -80], [120, -80], [120, 80], [-120, 80], [-120, -80]], mal: [2, [120, 60]], txt: 'Un rectángulo de 240 × 160 con el centro en el (0, 0). Hay una esquina mal: ¿cuál? Arreglad su número.' }
+  ];
+  function coDibujar(box, txt) {
+    var svg = svgEscenario(), panel = h('div', { class: 'co-panel' }), tabs = h('div', { class: 'pj-row' }), timer = null;
+    function abre(D, k) {
+      clearInterval(timer);
+      Array.prototype.forEach.call(tabs.children, function (b0, j) { b0.classList.toggle('go', j === k); });
+      panel.innerHTML = ''; svg.innerHTML = escenario();
+      setStatus(txt, '', '');
+      panel.appendChild(h('p', { class: 'pj-info', text: D.txt }));
+      var ins = [], prog = h('div', { class: 'rp-prog' });
+      D.pts.forEach(function (p, i) {
+        var vis = D.mal && D.mal[0] === i ? D.mal[1] : p, hueco = D.hueco && D.hueco.indexOf(i) >= 0, edit = hueco || D.mal;
+        var ix = h('input', { type: 'number', class: 'vr-in', value: hueco ? '' : vis[0], 'aria-label': 'x del punto ' + (i + 1) }), iy = h('input', { type: 'number', class: 'vr-in', value: hueco ? '' : vis[1], 'aria-label': 'y del punto ' + (i + 1) });
+        if (!edit) { ix.disabled = true; iy.disabled = true; }
+        ins.push([ix, iy]);
+        prog.appendChild(h('div', { class: 'rp-b' + (hueco ? ' co-hueco' : ''), style: 'background:' + SC.mov }, ['ir a x: ', ix, ' y: ', iy]));
+        if (i === 0) prog.appendChild(h('div', { class: 'rp-b', style: 'background:' + SC.pen, text: 'bajar lápiz' }));
+      });
+      prog.insertBefore(h('div', { class: 'rp-b', style: 'background:' + SC.pen, text: 'borrar todo' }), prog.firstChild);
+      panel.appendChild(prog);
+      panel.appendChild(h('div', { class: 'pj-row' }, [btn('Dibujar', function () {
+        var pts = ins.map(function (q) { return [Number(q[0].value), Number(q[1].value)]; });
+        if (ins.some(function (q) { return q[0].value === '' || q[1].value === ''; })) { setStatus(txt, '', 'Faltan números por escribir.'); return; }
+        var i = 1, linea = [pts[0]];
+        clearInterval(timer);
+        timer = setInterval(function () {
+          linea.push(pts[i]);
+          svg.innerHTML = escenario('<polyline points="' + linea.map(function (p) { return p[0] + ',' + (-p[1]); }).join(' ') + '" fill="none" stroke="#0FBD8C" stroke-width="5" stroke-linejoin="round"/>' +
+            linea.map(function (p) { return '<circle cx="' + p[0] + '" cy="' + (-p[1]) + '" r="5" fill="#1a1d24"/>'; }).join(''));
+          if (++i >= pts.length) {
+            clearInterval(timer);
+            var ok = pts.every(function (p, k) { return p[0] === D.pts[k][0] && p[1] === D.pts[k][1]; });
+            setStatus(txt, ok ? 'good' : 'bad');
+            txt.innerHTML = ok ? '¡Correcto! Es ' + (D.t === 'Casa' ? 'la casa' : 'el ' + D.t.toLowerCase().replace('con bicho', 'rectángulo')) + '.' :
+              'No sale bien. Mirad qué esquina no está donde tiene que estar: ¿qué coordenada falla, la x o la y?';
+          }
+        }, document.documentElement.classList.contains('pj-still') ? 1 : 450);
+      }, 'go'), btn('Ver la solución', function () {
+        ins.forEach(function (q, k) { q[0].value = D.pts[k][0]; q[1].value = D.pts[k][1]; });
+        setStatus(txt, 'good', 'Estos son los puntos correctos. Pulsad «Dibujar».');
+      })]));
+    }
+    CO_DIB.forEach(function (D, k) { tabs.appendChild(btn(D.t, function () { abre(D, k); })); });
+    box.appendChild(tabs);
+    box.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg]), h('div', { class: 'pj-col' }, [panel, txt])]));
+    abre(CO_DIB[0], 0);
+    return { q: 'En un cuadrado con el centro en el (0, 0), ¿qué tienen en común las cuatro esquinas?', a: 'Los mismos números con distinto signo: (100, 100), (−100, 100), (−100, −100) y (100, −100). Cambia si está a la izquierda o a la derecha y arriba o abajo.' };
+  }
+
+  var CO_MODOS = [['', 'Explorar', coExplorar], ['bloques', 'Con bloques', coBloques], ['donde', '¿Dónde está?', coDonde], ['dibujar', 'Dibujar con «ir a»', coDibujar]];
+  function toolCoordenadas(root) {
+    var zona = h('div', { class: 'pj-mode' });
+    root.appendChild(zona);
+    return { load: function (p) {
+      var m = CO_MODOS.filter(function (x) { return x[0] === p; })[0] || CO_MODOS[0], txt = h('p', { class: 'pj-status' });
+      zona.innerHTML = '';
+      var pq = m[2](zona, txt);
+      if (pq) pensar(zona, pq.q, pq.a);
+    } };
+  }
+  window.Proyectables.register('coordenadas', toolCoordenadas);
+
   window.PJRepaso = { semaforo: repasoSi, bucles: repasoBucles, cuadricula: repasoRobot, clasificador: repasoClasificador, patrones: repasoPatrones, secuencias: repasoSecuencias };
   // para comprobarlo desde fuera (pruebas)
   window.PJRepaso._prueba = { ejecuta: ejecuta, RETOS: RETOS, SEQ: SEQ };
