@@ -2,16 +2,16 @@
 
 PROYECTABLES = [
     # id, icono, nombre, cursos, descripción, [(reto, etiqueta)]
-    ("cuadricula", "🤖", "Robot en la cuadrícula", "1º-3º", "Programa a un robot con tarjetas de flechas y REPITE en un tablero. Incluye mapas del tesoro, cazabichos y retos de figuras.",
-     [("mapa1", "Mapa 1"), ("mapa2", "Mapa 2"), ("mapa3", "Mapa 3"), ("mapa4", "Mapa 4"), ("mapa5", "Mapa 5"), ("mapa6", "Mapa 6"), ("bicho1", "Cazabichos 1"), ("bicho2", "Cazabichos 2"), ("bicho3", "Cazabichos 3"), ("bicho4", "Cazabichos 4"), ("escalera", "La escalera"), ("cuadrado", "El cuadrado"), ("absoluto", "Modo fácil"), ("libre", "Tablero libre"), ("grande", "Tablero 7×7")]),
+    ("cuadricula", "🤖", "Robot en la cuadrícula", "1º-3º · repaso 4º-6º", "Programa a un robot con tarjetas de flechas y REPITE en un tablero. Incluye mapas del tesoro, cazabichos y retos de figuras. El repaso para 4º-6º trabaja algoritmos con coordenadas: ¿dónde acaba el robot? y cazabichos.",
+     [("mapa1", "Mapa 1"), ("mapa2", "Mapa 2"), ("mapa3", "Mapa 3"), ("mapa4", "Mapa 4"), ("mapa5", "Mapa 5"), ("mapa6", "Mapa 6"), ("bicho1", "Cazabichos 1"), ("bicho2", "Cazabichos 2"), ("bicho3", "Cazabichos 3"), ("bicho4", "Cazabichos 4"), ("escalera", "La escalera"), ("cuadrado", "El cuadrado"), ("absoluto", "Modo fácil"), ("libre", "Tablero libre"), ("grande", "Tablero 7×7"), ("repaso", "Repaso 4º-6º")]),
     ("secuencias", "🧩", "Ordena la secuencia", "1º-2º", "Viñetas con pictogramas de rutinas que solo tienen un orden posible. Se ordenan tocándolas en la pizarra.",
      [("manos", "Lavarse las manos"), ("dientes", "Lavarse los dientes"), ("zapatos", "Ponerse los zapatos"), ("tostada", "Hacer una tostada"), ("semilla", "Plantar una semilla"), ("calle", "Cruzar la calle"), ("manos6", "Lavarse las manos en 6 pasos")]),
     ("patrones", "🔺", "Patrones", "1º-3º", "Patrones de figuras para continuar, patrones que crecen y patrones con bicho.",
      [("ab", "AB"), ("aab", "AAB"), ("abb", "ABB"), ("aabb", "AABB"), ("abc", "ABC"), ("abcd", "ABCD"), ("crece", "Que crece"), ("bicho", "Con bicho")]),
-    ("bucles", "🔁", "Bucles: largo o corto", "1º-4º", "Compara un programa largo con su versión con REPITE y cuenta las tarjetas que se ahorran.",
-     [("palmadas", "Palmadas"), ("escalera", "Escalera"), ("cuadrado", "Cuadrado"), ("baile", "Baile")]),
-    ("semaforo", "🚦", "Semáforo de peatones: si… entonces", "2º-4º", "El semáforo de peatones (muñeco rojo y verde) para trabajar las reglas SI… ENTONCES y SI… SI NO.",
-     [("", "SI… ENTONCES"), ("sino", "SI… SI NO")]),
+    ("bucles", "🔁", "Bucles: largo o corto", "1º-4º · repaso 4º-6º", "Compara un programa largo con su versión con REPITE y cuenta las tarjetas que se ahorran. El repaso para 4º-6º: repetir, un bucle dentro de otro y repetir hasta que, con los bloques de Scratch.",
+     [("palmadas", "Palmadas"), ("escalera", "Escalera"), ("cuadrado", "Cuadrado"), ("baile", "Baile"), ("repaso", "Repaso 4º-6º")]),
+    ("semaforo", "🚦", "Semáforo de peatones: si… entonces", "2º-4º · repaso 4º-6º", "El semáforo de peatones (muñeco rojo y verde) para trabajar las reglas SI… ENTONCES y SI… SI NO. El repaso para 4º-6º usa sensores de la micro:bit y juegos de Scratch: si no, tres caminos, «y» y «o».",
+     [("", "SI… ENTONCES"), ("sino", "SI… SI NO"), ("repaso", "Repaso 4º-6º")]),
     ("clasificador", "🗂️", "Clasificador y regla secreta", "1º-3º", "Clasificar objetos por color, tipo o tamaño, y adivinar la regla secreta de la máquina.",
      [("", "Por tipo"), ("color", "Por color"), ("tam", "Por tamaño"), ("secreta", "Regla secreta")]),
     ("animales", "🐾", "¿Qué animal soy?", "1º-3º", "El ordenador piensa uno de 8 animales y la clase lo descubre eligiendo entre 5 preguntas de sí o no.", [("", "Jugar")]),

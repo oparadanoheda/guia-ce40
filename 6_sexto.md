@@ -537,6 +537,7 @@ Toda la clase con las cartas binarias y la balanza: ¿qué número forman estas 
 
 Ver el apartado 6 del documento general. En 6º, además:
 
+- **Repaso de conceptos de cursos anteriores** (en la pizarra, con ejemplos y aspecto de su edad): [[P:semaforo.repaso|Si… entonces]] · [[P:bucles.repaso|Bucles]] · [[P:cuadricula.repaso|Algoritmos en la cuadrícula]]. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.
 - **Sesiones quincenales:** tarjeta «Dónde lo dejamos» (M18) y foto del montaje al terminar.
 - **Proyecto de servicio:** una opción es diseñar algo útil para el propio centro, por ejemplo un **semáforo de ruido** con el micrófono de la micro:bit (si vuestras placas son V2), un temporizador visual con los LED o un aviso de luz en lugar de un timbre. Se diseña con quien lo va a usar.
 - **IA y redes (S8):** preguntas guiadas de M24; respuesta por escrito o eligiendo entre opciones.

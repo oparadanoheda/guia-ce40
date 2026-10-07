@@ -898,6 +898,64 @@ svg.glyph{width:100%;height:100%;display:block}
 .pj-pt.just{animation:pjpt .6s ease-out;transform-box:fill-box;transform-origin:center}
 @keyframes pjpt{0%{transform:scale(1.8)}100%{transform:scale(1)}}
 @media (max-width:760px){.pj-fleets.two{grid-template-columns:minmax(0,1fr)}}
+
+/* ¿Qué animal soy?: las tarjetas se tocan para descartarlas */
+.pj-an{font:inherit;cursor:pointer}
+.pj-an.bad{border-color:#cf3f36;box-shadow:0 0 0 4px rgba(207,63,54,.35);opacity:1}
+
+/* modos «Repaso 4º-6º» */
+.pj-mode{display:flex;flex-direction:column;gap:14px}
+.pj-mode[hidden]{display:none}
+.pj-mode>h4{margin:.4em 0 0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rp-tag{margin:0;font:700 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#6c44b0}
+.rp-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.rp-tab{font:600 1rem var(--sans);padding:8px 14px;border-radius:10px;border:2px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer}
+.rp-tab b{color:#6c44b0;margin-right:4px}
+.rp-tab[aria-selected="true"]{background:var(--ink);color:var(--sheet);border-color:var(--ink)}
+.rp-tab[aria-selected="true"] b{color:#c9b6f0}
+.rp-two{align-items:start}
+.rp-prog{display:flex;flex-direction:column;align-items:flex-start;gap:3px;font:600 1.05rem/1.3 var(--sans)}
+.rp-b{display:inline-flex;align-items:center;gap:8px;flex-wrap:wrap;color:#fff;padding:7px 12px;border-radius:6px}
+.rp-c{display:inline-flex;flex-direction:column;align-items:stretch;min-width:240px}
+.rp-ch{display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:var(--bc);color:#fff;padding:7px 12px;border-radius:6px 6px 6px 0;transition:opacity .2s,box-shadow .2s}
+.rp-cin{border-left:16px solid var(--bc);padding:4px 0 4px 8px;min-height:24px;display:flex;flex-direction:column;align-items:flex-start;gap:3px;transition:opacity .2s,background .2s}
+.rp-cf{height:14px;width:64px;background:var(--bc);border-radius:0 6px 6px 6px}
+.rp-ch.on{box-shadow:0 0 0 4px #1a1d24}
+.rp-cin.on{background:rgba(42,143,79,.14)}
+.rp-ch.off,.rp-cin.off{opacity:.3}
+.rp-r{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;color:#fff;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
+.rp-v{background:#fff;color:#1a1d24;border-radius:999px;padding:1px 9px;font-weight:700}
+.rp-leds{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;background:#1a1d24;padding:14px;border-radius:14px;width:min(230px,100%)}
+.rp-leds i{aspect-ratio:1;border-radius:3px;background:#3a3f4b}
+.rp-leds i.on{background:#ff3b30;box-shadow:0 0 12px #ff6b5e}
+.rp-leds.sm{display:inline-grid;width:46px;gap:2px;padding:4px;border-radius:5px;vertical-align:middle}
+.rp-leds.sm i.on{box-shadow:none}
+.rp-out{min-height:220px;display:flex;align-items:center;justify-content:center;border:2px dashed var(--rule);border-radius:14px;padding:14px;background:var(--sheet)}
+.rp-wait{margin:0;color:var(--muted);text-align:center}
+.rp-bubble{background:#fff;border:3px solid #1a1d24;border-radius:20px;padding:14px 22px;font:700 1.5rem var(--sans);color:#1a1d24}
+.rp-bubble.none{border-style:dashed;border-color:var(--rule);color:var(--muted);font-weight:500;font-size:1.1rem}
+.rp-ctls{display:flex;flex-direction:column;gap:12px;margin-top:10px;width:100%}
+.rp-ctl{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 3em;gap:12px;align-items:center;font-weight:600}
+.rp-val{font:700 1.6rem var(--sans);text-align:right}
+.rp-think{border-top:1px solid var(--rule);padding-top:10px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.rp-think h4{margin:0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rp-think p{margin:0}
+.rp-ans{background:var(--tint);padding:8px 12px;border-radius:8px}
+.rp-ans[hidden]{display:none}
+.rp-draw{width:100%;max-width:340px;height:auto}
+.rp-draw path{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:rpdraw 2.4s ease-in-out forwards}
+@keyframes rpdraw{to{stroke-dashoffset:0}}
+.pj-still .rp-draw path{animation:none;stroke-dashoffset:0}
+.rp-trace{border-collapse:collapse;font:600 1.05rem var(--sans);min-width:0}
+.rp-trace th,.rp-trace td{border:1px solid var(--rule);padding:5px 12px;text-align:center}
+.rp-trace th{font-size:.8rem;color:var(--muted)}
+.rp-grid{width:100%;max-width:470px;height:auto}
+.rp-line{color:#fff;background:#4C97FF;padding:7px 12px;border-radius:6px;font-weight:600;transition:box-shadow .15s}
+.rp-line.rep{background:#FFAB19}
+.rp-line[role=button]{cursor:pointer}
+.rp-line.sel{box-shadow:0 0 0 4px #1a1d24}
+.rp-line.run{box-shadow:0 0 0 4px #df7619}
+@media (max-width:640px){.rp-ctl{grid-template-columns:minmax(0,1fr) 3em}.rp-ctl input{grid-column:1/-1}}
 /* Modo proyección de la sesión */
 .pz-open{display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;padding:.55rem 1rem;border-radius:.6rem;border:0;cursor:pointer;
   background:var(--c);color:#fff;font:600 .95rem/1 'Instrument Sans',system-ui,sans-serif}
@@ -3771,6 +3829,7 @@ La opción más sencilla (juego de clics con «si puntos = 10»).</p></div></div
 </ul>
 <p><strong>Cómo dar una sesión de Scratch sin saber Scratch:</strong> haz el ejemplo en la pizarra siguiendo los pasos, despacio y en voz alta, mientras las parejas lo copian. Después, el reto. Si una pareja se atasca: "pregunta a tres antes que a mí".</p></div></details><details class="more"><summary>Atención a la diversidad</summary><div class="more-body"><p>Ver el apartado 6 del documento general. En 4º, además:</p>
 <ul>
+<li><strong>Repaso de conceptos de cursos anteriores</strong> (en la pizarra, con ejemplos y aspecto de su edad): <a class="plink" href="#p-semaforo.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Si… entonces</a> · <a class="plink" href="#p-bucles.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Bucles</a> · <a class="plink" href="#p-cuadricula.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Algoritmos en la cuadrícula</a>. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.</li>
 <li><strong>Variables (S4 a S6):</strong> el proyectable de variables muestra las cajas con nombre; unas cajas reales con etiqueta y tarjetas con números sirven de apoyo.</li>
 <li><strong>Videojuego (S9 a S16):</strong> el diseño en papel (M16) sirve de guion pieza a pieza. <strong>Nada de efectos que parpadeen rápido</strong> (fotosensibilidad).</li>
 <li><strong>Playtesting (S14):</strong> los comentarios, siempre con la ficha M17 (dos cosas buenas y una mejora).</li>
@@ -4482,6 +4541,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 </tbody>
 </table></div></div></details><details class="more"><summary>Atención a la diversidad</summary><div class="more-body"><p>Ver el apartado 6 del documento general. En 5º, además:</p>
 <ul>
+<li><strong>Repaso de conceptos de cursos anteriores</strong> (en la pizarra, con ejemplos y aspecto de su edad): <a class="plink" href="#p-semaforo.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Si… entonces</a> · <a class="plink" href="#p-bucles.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Bucles</a> · <a class="plink" href="#p-cuadricula.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Algoritmos en la cuadrícula</a>. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.</li>
 <li><strong>Sesiones quincenales:</strong> la tarjeta «Dónde lo dejamos» (M18) y una foto del montaje al terminar ayudan a retomar el trabajo.</li>
 <li><strong>micro:bit y Nezha:</strong> los programas se pueden hacer con los LED en lugar de con el zumbador.</li>
 <li><strong>Tinkercad:</strong> dictar el diseño a un compañero o al docente es una forma válida de diseñar.</li>
@@ -5061,6 +5121,7 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 </tbody>
 </table></div></div></details><details class="more"><summary>Atención a la diversidad</summary><div class="more-body"><p>Ver el apartado 6 del documento general. En 6º, además:</p>
 <ul>
+<li><strong>Repaso de conceptos de cursos anteriores</strong> (en la pizarra, con ejemplos y aspecto de su edad): <a class="plink" href="#p-semaforo.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Si… entonces</a> · <a class="plink" href="#p-bucles.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Bucles</a> · <a class="plink" href="#p-cuadricula.repaso"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>Algoritmos en la cuadrícula</a>. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.</li>
 <li><strong>Sesiones quincenales:</strong> tarjeta «Dónde lo dejamos» (M18) y foto del montaje al terminar.</li>
 <li><strong>Proyecto de servicio:</strong> una opción es diseñar algo útil para el propio centro, por ejemplo un <strong>semáforo de ruido</strong> con el micrófono de la micro:bit (si vuestras placas son V2), un temporizador visual con los LED o un aviso de luz en lugar de un timbre. Se diseña con quien lo va a usar.</li>
 <li><strong>IA y redes (S8):</strong> preguntas guiadas de M24; respuesta por escrito o eligiendo entre opciones.</li>
@@ -5685,17 +5746,17 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 </div></section><section class="page" id="proyectar" hidden><div class="sheet">
 <p class="eyebrow">Para proyectar</p><h1>Herramientas para la pizarra digital</h1>
 <p class="lede">Para usar con toda la clase en la pizarra. Cada sesión enlaza la suya con el reto ya cargado. Más abajo, los <a href="#videos">vídeos que explican conceptos</a>.</p>
-<div class="pj-gallery"><a class="pj-tile" href="#p-cuadricula"><small>1º-3º</small><b>Robot en la cuadrícula</b><span>Programa a un robot con tarjetas de flechas y REPITE en un tablero. Incluye mapas del tesoro, cazabichos y retos de figuras.</span></a><a class="pj-tile" href="#p-secuencias"><small>1º-2º</small><b>Ordena la secuencia</b><span>Viñetas con pictogramas de rutinas que solo tienen un orden posible. Se ordenan tocándolas en la pizarra.</span></a><a class="pj-tile" href="#p-patrones"><small>1º-3º</small><b>Patrones</b><span>Patrones de figuras para continuar, patrones que crecen y patrones con bicho.</span></a><a class="pj-tile" href="#p-bucles"><small>1º-4º</small><b>Bucles: largo o corto</b><span>Compara un programa largo con su versión con REPITE y cuenta las tarjetas que se ahorran.</span></a><a class="pj-tile" href="#p-semaforo"><small>2º-4º</small><b>Semáforo de peatones: si… entonces</b><span>El semáforo de peatones (muñeco rojo y verde) para trabajar las reglas SI… ENTONCES y SI… SI NO.</span></a><a class="pj-tile" href="#p-clasificador"><small>1º-3º</small><b>Clasificador y regla secreta</b><span>Clasificar objetos por color, tipo o tamaño, y adivinar la regla secreta de la máquina.</span></a><a class="pj-tile" href="#p-animales"><small>1º-3º</small><b>¿Qué animal soy?</b><span>El ordenador piensa uno de 8 animales y la clase lo descubre eligiendo entre 5 preguntas de sí o no.</span></a><a class="pj-tile" href="#p-votaciones"><small>1º-6º</small><b>Votaciones y gráfico</b><span>Encuestas con gráfico de barras en directo, un dado para estudiar frecuencias y el dado de la clase, que compara las tiradas de verdad con 1000 del ordenador.</span></a><a class="pj-tile" href="#p-diagrama"><small>3º-4º</small><b>Diagramas de flujo paso a paso</b><span>Recorre un diagrama de flujo paso a paso decidiendo en cada rombo.</span></a><a class="pj-tile" href="#p-poligonos"><small>3º-4º</small><b>Polígonos</b><span>Cuántos lados, cuánto girar: el programa que dibuja cada polígono y el rosetón.</span></a><a class="pj-tile" href="#p-variables"><small>3º-6º</small><b>Variables</b><span>Dos cajas con nombre (puntos y vidas) y los bloques que las cambian.</span></a><a class="pj-tile" href="#p-coordenadas"><small>3º-4º</small><b>Coordenadas del escenario</b><span>El escenario de Scratch con sus ejes x e y, para mover al gato y resolver retos.</span></a><a class="pj-tile" href="#p-circuito"><small>3º-4º</small><b>¿Conduce la electricidad?</b><span>Un circuito con pila y bombilla: elige un objeto, vota y prueba si se enciende.</span></a><a class="pj-tile" href="#p-leds"><small>5º-6º</small><b>Matriz de LED de la micro:bit</b><span>La pantalla de 5 × 5 luces para dibujar iconos y entender las coordenadas.</span></a><a class="pj-tile" href="#p-umbral"><small>5º-6º</small><b>Sensor y umbral</b><span>Qué mide el sensor, dónde está el umbral y qué decide el programa.</span></a><a class="pj-tile" href="#p-velocidad"><small>5º-6º</small><b>Velocidad × tiempo</b><span>Predice cuánto avanza el robot Nezha según la velocidad y el tiempo.</span></a><a class="pj-tile" href="#p-sesgo"><small>5º-6º</small><b>Entrena a la máquina</b><span>Una máquina que aprende qué es una manzana a partir de ejemplos. Con ejemplos poco variados aprende mal: eso es un sesgo. Sin cámara.</span></a><a class="pj-tile" href="#p-verdad"><small>1º-2º (reserva) · 5º-6º</small><b>¿Puede pasar de verdad? · ¿Verdad, bulo o IA?</b><span>Tarjetas para votar y comprobar, con la explicación de cada una.</span></a><a class="pj-tile" href="#p-contrasenas"><small>3º-6º</small><b>Contraseñas seguras</b><span>Medidor de seguridad y juego de «¿cuál es más segura?».</span></a><a class="pj-tile" href="#p-temporizador"><small>1º-6º</small><b>Temporizador de sesión</b><span>Cuenta atrás de 45 minutos con la fase de la sesión en grande.</span></a><a class="pj-tile" href="#p-cifrado"><small>2º-6º</small><b>Código secreto</b><span>Cifra y descifra mensajes con números o símbolos.</span></a><a class="pj-tile" href="#p-beebot"><small>1º-2º</small><b>Bee-Bot interactivo</b><span>La abeja robot con su botonera real: las órdenes se guardan en una memoria escondida y se ejecutan con GO. Funciona igual que Tale-Bot. Tapetes de números, abecedario y granja.</span></a><a class="pj-tile" href="#p-flota"><small>1º-6º</small><b>Hundir la flota</b><span>Coordenadas jugando: la clase contra el ordenador o dos equipos, cada uno con su flota. Con letra y número (B3) o en el plano con ejes (x, y), también con negativos.</span></a><a class="pj-tile" href="#p-pixelart"><small>1º-4º</small><b>Píxel art con código</b><span>Dibujos secretos descritos con números fila a fila, y dibujo libre que genera su código. Así guarda un ordenador una imagen.</span></a><a class="pj-tile" href="#p-laberinto"><small>2º-6º</small><b>Laberinto de bloques</b><span>Seis niveles con bloques tipo Scratch: avanzar, girar, repetir hasta la meta y «si hay camino».</span></a><a class="pj-tile" href="#p-binario"><small>3º-6º</small><b>Cartas binarias</b><span>Cartas de 1, 2, 4, 8 y 16 puntos para descubrir cómo cuentan los ordenadores con unos y ceros.</span></a><a class="pj-tile" href="#p-simon"><small>1º-3º</small><b>Simón: secuencias</b><span>Secuencias de colores, flechas y sonidos que crecen en cada ronda. Memoria y orden.</span></a><a class="pj-tile" href="#p-balanza"><small>3º-6º</small><b>Ordenar con la balanza</b><span>Cajas con pesos ocultos que se ordenan comparándolas de dos en dos: un algoritmo de ordenación.</span></a><a class="pj-tile" href="#p-paridad"><small>4º-6º</small><b>Magia de la paridad</b><span>El truco de magia que adivina qué carta se ha girado. Así detectan errores los ordenadores.</span></a><a class="pj-tile" href="#p-quiensale"><small>1º-6º</small><b>¿Quién sale? y marcador</b><span>Elige al azar quién sale a la pizarra, sin repetir, y lleva los puntos de los equipos.</span></a></div>
+<div class="pj-gallery"><a class="pj-tile" href="#p-cuadricula"><small>1º-3º · repaso 4º-6º</small><b>Robot en la cuadrícula</b><span>Programa a un robot con tarjetas de flechas y REPITE en un tablero. Incluye mapas del tesoro, cazabichos y retos de figuras. El repaso para 4º-6º trabaja algoritmos con coordenadas: ¿dónde acaba el robot? y cazabichos.</span></a><a class="pj-tile" href="#p-secuencias"><small>1º-2º</small><b>Ordena la secuencia</b><span>Viñetas con pictogramas de rutinas que solo tienen un orden posible. Se ordenan tocándolas en la pizarra.</span></a><a class="pj-tile" href="#p-patrones"><small>1º-3º</small><b>Patrones</b><span>Patrones de figuras para continuar, patrones que crecen y patrones con bicho.</span></a><a class="pj-tile" href="#p-bucles"><small>1º-4º · repaso 4º-6º</small><b>Bucles: largo o corto</b><span>Compara un programa largo con su versión con REPITE y cuenta las tarjetas que se ahorran. El repaso para 4º-6º: repetir, un bucle dentro de otro y repetir hasta que, con los bloques de Scratch.</span></a><a class="pj-tile" href="#p-semaforo"><small>2º-4º · repaso 4º-6º</small><b>Semáforo de peatones: si… entonces</b><span>El semáforo de peatones (muñeco rojo y verde) para trabajar las reglas SI… ENTONCES y SI… SI NO. El repaso para 4º-6º usa sensores de la micro:bit y juegos de Scratch: si no, tres caminos, «y» y «o».</span></a><a class="pj-tile" href="#p-clasificador"><small>1º-3º</small><b>Clasificador y regla secreta</b><span>Clasificar objetos por color, tipo o tamaño, y adivinar la regla secreta de la máquina.</span></a><a class="pj-tile" href="#p-animales"><small>1º-3º</small><b>¿Qué animal soy?</b><span>El ordenador piensa uno de 8 animales y la clase lo descubre eligiendo entre 5 preguntas de sí o no.</span></a><a class="pj-tile" href="#p-votaciones"><small>1º-6º</small><b>Votaciones y gráfico</b><span>Encuestas con gráfico de barras en directo, un dado para estudiar frecuencias y el dado de la clase, que compara las tiradas de verdad con 1000 del ordenador.</span></a><a class="pj-tile" href="#p-diagrama"><small>3º-4º</small><b>Diagramas de flujo paso a paso</b><span>Recorre un diagrama de flujo paso a paso decidiendo en cada rombo.</span></a><a class="pj-tile" href="#p-poligonos"><small>3º-4º</small><b>Polígonos</b><span>Cuántos lados, cuánto girar: el programa que dibuja cada polígono y el rosetón.</span></a><a class="pj-tile" href="#p-variables"><small>3º-6º</small><b>Variables</b><span>Dos cajas con nombre (puntos y vidas) y los bloques que las cambian.</span></a><a class="pj-tile" href="#p-coordenadas"><small>3º-4º</small><b>Coordenadas del escenario</b><span>El escenario de Scratch con sus ejes x e y, para mover al gato y resolver retos.</span></a><a class="pj-tile" href="#p-circuito"><small>3º-4º</small><b>¿Conduce la electricidad?</b><span>Un circuito con pila y bombilla: elige un objeto, vota y prueba si se enciende.</span></a><a class="pj-tile" href="#p-leds"><small>5º-6º</small><b>Matriz de LED de la micro:bit</b><span>La pantalla de 5 × 5 luces para dibujar iconos y entender las coordenadas.</span></a><a class="pj-tile" href="#p-umbral"><small>5º-6º</small><b>Sensor y umbral</b><span>Qué mide el sensor, dónde está el umbral y qué decide el programa.</span></a><a class="pj-tile" href="#p-velocidad"><small>5º-6º</small><b>Velocidad × tiempo</b><span>Predice cuánto avanza el robot Nezha según la velocidad y el tiempo.</span></a><a class="pj-tile" href="#p-sesgo"><small>5º-6º</small><b>Entrena a la máquina</b><span>Una máquina que aprende qué es una manzana a partir de ejemplos. Con ejemplos poco variados aprende mal: eso es un sesgo. Sin cámara.</span></a><a class="pj-tile" href="#p-verdad"><small>1º-2º (reserva) · 5º-6º</small><b>¿Puede pasar de verdad? · ¿Verdad, bulo o IA?</b><span>Tarjetas para votar y comprobar, con la explicación de cada una.</span></a><a class="pj-tile" href="#p-contrasenas"><small>3º-6º</small><b>Contraseñas seguras</b><span>Medidor de seguridad y juego de «¿cuál es más segura?».</span></a><a class="pj-tile" href="#p-temporizador"><small>1º-6º</small><b>Temporizador de sesión</b><span>Cuenta atrás de 45 minutos con la fase de la sesión en grande.</span></a><a class="pj-tile" href="#p-cifrado"><small>2º-6º</small><b>Código secreto</b><span>Cifra y descifra mensajes con números o símbolos.</span></a><a class="pj-tile" href="#p-beebot"><small>1º-2º</small><b>Bee-Bot interactivo</b><span>La abeja robot con su botonera real: las órdenes se guardan en una memoria escondida y se ejecutan con GO. Funciona igual que Tale-Bot. Tapetes de números, abecedario y granja.</span></a><a class="pj-tile" href="#p-flota"><small>1º-6º</small><b>Hundir la flota</b><span>Coordenadas jugando: la clase contra el ordenador o dos equipos, cada uno con su flota. Con letra y número (B3) o en el plano con ejes (x, y), también con negativos.</span></a><a class="pj-tile" href="#p-pixelart"><small>1º-4º</small><b>Píxel art con código</b><span>Dibujos secretos descritos con números fila a fila, y dibujo libre que genera su código. Así guarda un ordenador una imagen.</span></a><a class="pj-tile" href="#p-laberinto"><small>2º-6º</small><b>Laberinto de bloques</b><span>Seis niveles con bloques tipo Scratch: avanzar, girar, repetir hasta la meta y «si hay camino».</span></a><a class="pj-tile" href="#p-binario"><small>3º-6º</small><b>Cartas binarias</b><span>Cartas de 1, 2, 4, 8 y 16 puntos para descubrir cómo cuentan los ordenadores con unos y ceros.</span></a><a class="pj-tile" href="#p-simon"><small>1º-3º</small><b>Simón: secuencias</b><span>Secuencias de colores, flechas y sonidos que crecen en cada ronda. Memoria y orden.</span></a><a class="pj-tile" href="#p-balanza"><small>3º-6º</small><b>Ordenar con la balanza</b><span>Cajas con pesos ocultos que se ordenan comparándolas de dos en dos: un algoritmo de ordenación.</span></a><a class="pj-tile" href="#p-paridad"><small>4º-6º</small><b>Magia de la paridad</b><span>El truco de magia que adivina qué carta se ha girado. Así detectan errores los ordenadores.</span></a><a class="pj-tile" href="#p-quiensale"><small>1º-6º</small><b>¿Quién sale? y marcador</b><span>Elige al azar quién sale a la pizarra, sin repetir, y lleva los puntos de los equipos.</span></a></div>
 <h2 class="h-sec" id="videos">Vídeos que explican conceptos</h2>
 <p class="small">Animaciones de uno a dos minutos, con subtítulos y efectos de sonido opcionales. Cada sesión enlaza el suyo.</p>
 <div class="vid-gallery"><a class="vid-tile" href="#v-algoritmo"><img src="videos/img/algoritmo.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-2º</small><b>Algoritmo</b></span></a><a class="vid-tile" href="#v-descomponer"><img src="videos/img/descomponer.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-4º</small><b>Descomponer</b></span></a><a class="vid-tile" href="#v-patron"><img src="videos/img/patron.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-3º</small><b>Patrón</b></span></a><a class="vid-tile" href="#v-bucle"><img src="videos/img/bucle.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-4º</small><b>Bucle</b></span></a><a class="vid-tile" href="#v-condicion"><img src="videos/img/condicion.jpg" alt="" loading="lazy" width="640" height="360"><span><small>2º-4º</small><b>Condición</b></span></a><a class="vid-tile" href="#v-evento"><img src="videos/img/evento.jpg" alt="" loading="lazy" width="640" height="360"><span><small>2º</small><b>Evento</b></span></a><a class="vid-tile" href="#v-evento-superior"><img src="videos/img/evento-superior.jpg" alt="" loading="lazy" width="640" height="360"><span><small>3º-6º</small><b>Evento</b></span></a><a class="vid-tile" href="#v-variable"><img src="videos/img/variable.jpg" alt="" loading="lazy" width="640" height="360"><span><small>3º-6º</small><b>Variable</b></span></a><a class="vid-tile" href="#v-depurar"><img src="videos/img/depurar.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-3º</small><b>Depurar</b></span></a><a class="vid-tile" href="#v-depurar-superior"><img src="videos/img/depurar-superior.jpg" alt="" loading="lazy" width="640" height="360"><span><small>4º-6º</small><b>Depurar</b></span></a><a class="vid-tile" href="#v-entrada-salida"><img src="videos/img/entrada-salida.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-2º</small><b>Entrada y salida</b></span></a><a class="vid-tile" href="#v-entrada-salida-superior"><img src="videos/img/entrada-salida-superior.jpg" alt="" loading="lazy" width="640" height="360"><span><small>3º-6º</small><b>Entrada y salida</b></span></a><a class="vid-tile" href="#v-optimizar"><img src="videos/img/optimizar.jpg" alt="" loading="lazy" width="640" height="360"><span><small>1º-2º</small><b>Optimizar</b></span></a><a class="vid-tile" href="#v-optimizar-superior"><img src="videos/img/optimizar-superior.jpg" alt="" loading="lazy" width="640" height="360"><span><small>3º-6º</small><b>Optimizar</b></span></a><a class="vid-tile" href="#v-coordenadas"><img src="videos/img/coordenadas.jpg" alt="" loading="lazy" width="640" height="360"><span><small>3º-4º</small><b>Coordenadas (x, y)</b></span></a><a class="vid-tile" href="#v-sensor-umbral"><img src="videos/img/sensor-umbral.jpg" alt="" loading="lazy" width="640" height="360"><span><small>5º-6º</small><b>Sensor y umbral</b></span></a><a class="vid-tile" href="#v-aprende-maquina"><img src="videos/img/aprende-maquina.jpg" alt="" loading="lazy" width="640" height="360"><span><small>5º-6º</small><b>Cómo aprende una máquina</b></span></a></div>
 <h2 class="h-sec">Otras aplicaciones recomendadas</h2>
 <p class="small">Se abren en otra pestaña. Gratuitas y sin cuentas de alumnado.</p>
 <div class="ext-apps"><a class="ext-app" href="https://blockly.games/?lang=es" target="_blank" rel="noopener"><b>Blockly Games ↗</b><span>Juegos de Google en español y sin registro: laberinto, pájaro, tortuga. Muy buenos para hacerlos en la pizarra con toda la clase.</span><small>3º-6º</small></a><a class="ext-app" href="https://quickdraw.withgoogle.com/" target="_blank" rel="noopener"><b>Quick, Draw! ↗</b><span>Una IA intenta adivinar lo que dibujáis en 20 segundos. Salen alumnos a dibujar en la pizarra. Ideal para hablar de cómo aprende una IA.</span><small>5º-6º</small></a><a class="ext-app" href="https://code.org/oceans" target="_blank" rel="noopener"><b>AI for Oceans (Code.org) ↗</b><span>Entrenar una IA para separar peces de basura: datos de entrenamiento y sesgo. Se puede hacer en la pizarra, en español.</span><small>5º-6º</small></a><a class="ext-app" href="https://studio.code.org/hoc/1" target="_blank" rel="noopener"><b>Hora del Código: laberinto clásico ↗</b><span>20 niveles de laberinto con bloques, en español y sin cuenta. Se puede hacer en la pizarra con toda la clase.</span><small>3º-6º</small></a><a class="ext-app" href="https://csunplugged.org/es/" target="_blank" rel="noopener"><b>CS Unplugged ↗</b><span>Actividades de informática sin ordenador, con guía para el docente.</span><small>1º-6º</small></a><a class="ext-app" href="https://teachablemachine.withgoogle.com/" target="_blank" rel="noopener"><b>Teachable Machine ↗</b><span>Entrenar un modelo de IA con la cámara (demostración del docente, sin caras).</span><small>3º-6º</small></a></div></div></section><section class="page pj-page" id="p-cuadricula" data-nav-key="proyectar" hidden><div class="sheet">
-<div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>Robot en la cuadrícula</h1></div>
+<div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º · repaso 4º-6º</p><h1>Robot en la cuadrícula</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><a class="pj-btn" href="#guia-cuadricula">Guía para el docente</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-cuadricula.mapa1">Mapa 1</a><a class="rindex-chip" href="#p-cuadricula.mapa2">Mapa 2</a><a class="rindex-chip" href="#p-cuadricula.mapa3">Mapa 3</a><a class="rindex-chip" href="#p-cuadricula.mapa4">Mapa 4</a><a class="rindex-chip" href="#p-cuadricula.mapa5">Mapa 5</a><a class="rindex-chip" href="#p-cuadricula.mapa6">Mapa 6</a><a class="rindex-chip" href="#p-cuadricula.bicho1">Cazabichos 1</a><a class="rindex-chip" href="#p-cuadricula.bicho2">Cazabichos 2</a><a class="rindex-chip" href="#p-cuadricula.bicho3">Cazabichos 3</a><a class="rindex-chip" href="#p-cuadricula.bicho4">Cazabichos 4</a><a class="rindex-chip" href="#p-cuadricula.escalera">La escalera</a><a class="rindex-chip" href="#p-cuadricula.cuadrado">El cuadrado</a><a class="rindex-chip" href="#p-cuadricula.absoluto">Modo fácil</a><a class="rindex-chip" href="#p-cuadricula.libre">Tablero libre</a><a class="rindex-chip" href="#p-cuadricula.grande">Tablero 7×7</a></nav>
-<div class="pj-stage-root"></div><details class="more" id="guia-cuadricula"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">Un robot en un tablero (5 × 5, 6 × 6 o 7 × 7) que se programa con tarjetas: <strong>avanza</strong>, <strong>gira a la derecha</strong>, <strong>gira a la izquierda</strong> y <strong>REPITE</strong> (×2, ×3, ×4). Hay mapas del tesoro, cazabichos (programas con errores), retos de figuras y un <strong>modo fácil</strong> con flechas de dirección en el que el robot no gira.</p><h4>Qué contar a la clase</h4><ol><li>Antes de poner tarjetas, alguien señala el camino con el dedo sobre el tablero y la clase lo dice en voz alta.</li><li>Ponerse en el lugar del robot: <strong>girar no le mueve de casilla</strong>, solo cambia hacia dónde mira. Ayuda que un alumno gire de pie mirando como el robot.</li><li>Ejecutar y, si falla, usar <strong>Paso a paso</strong>: la pregunta es «¿en qué tarjeta empieza a fallar?».</li><li>Contar las tarjetas y preguntar: «¿se puede hacer con menos?». Ahí entra REPITE.</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>¿Cuál es el programa más corto para cada mapa del tesoro?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Mira primero hacia dónde mira el robot al empezar (todos empiezan mirando hacia arriba).</li><li><span class="g-tag">Pista</span> Cuenta las casillas en línea recta antes de pensar en girar.</li><li><details><summary>Ver la solución</summary><ul>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-cuadricula.mapa1">Mapa 1</a><a class="rindex-chip" href="#p-cuadricula.mapa2">Mapa 2</a><a class="rindex-chip" href="#p-cuadricula.mapa3">Mapa 3</a><a class="rindex-chip" href="#p-cuadricula.mapa4">Mapa 4</a><a class="rindex-chip" href="#p-cuadricula.mapa5">Mapa 5</a><a class="rindex-chip" href="#p-cuadricula.mapa6">Mapa 6</a><a class="rindex-chip" href="#p-cuadricula.bicho1">Cazabichos 1</a><a class="rindex-chip" href="#p-cuadricula.bicho2">Cazabichos 2</a><a class="rindex-chip" href="#p-cuadricula.bicho3">Cazabichos 3</a><a class="rindex-chip" href="#p-cuadricula.bicho4">Cazabichos 4</a><a class="rindex-chip" href="#p-cuadricula.escalera">La escalera</a><a class="rindex-chip" href="#p-cuadricula.cuadrado">El cuadrado</a><a class="rindex-chip" href="#p-cuadricula.absoluto">Modo fácil</a><a class="rindex-chip" href="#p-cuadricula.libre">Tablero libre</a><a class="rindex-chip" href="#p-cuadricula.grande">Tablero 7×7</a><a class="rindex-chip" href="#p-cuadricula.repaso">Repaso 4º-6º</a></nav>
+<div class="pj-stage-root"></div><details class="more" id="guia-cuadricula"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">Un robot en un tablero (5 × 5, 6 × 6 o 7 × 7) que se programa con tarjetas: <strong>avanza</strong>, <strong>gira a la derecha</strong>, <strong>gira a la izquierda</strong> y <strong>REPITE</strong> (×2, ×3, ×4). Hay mapas del tesoro, cazabichos (programas con errores), retos de figuras y un <strong>modo fácil</strong> con flechas de dirección en el que el robot no gira.</p><h4>Qué contar a la clase</h4><ol><li>Repaso 4º-6º: algoritmos en un tablero con coordenadas (x, y). En «¿Dónde acaba?» se predice la casilla final y hacia dónde mira el robot antes de ejecutar; en «Cazabichos» se toca la línea que falla y se comprueba.</li><li>Antes de poner tarjetas, alguien señala el camino con el dedo sobre el tablero y la clase lo dice en voz alta.</li><li>Ponerse en el lugar del robot: <strong>girar no le mueve de casilla</strong>, solo cambia hacia dónde mira. Ayuda que un alumno gire de pie mirando como el robot.</li><li>Ejecutar y, si falla, usar <strong>Paso a paso</strong>: la pregunta es «¿en qué tarjeta empieza a fallar?».</li><li>Contar las tarjetas y preguntar: «¿se puede hacer con menos?». Ahí entra REPITE.</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>¿Cuál es el programa más corto para cada mapa del tesoro?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Mira primero hacia dónde mira el robot al empezar (todos empiezan mirando hacia arriba).</li><li><span class="g-tag">Pista</span> Cuenta las casillas en línea recta antes de pensar en girar.</li><li><details><summary>Ver la solución</summary><ul>
 <li><strong>Mapa 1:</strong> avanza ×3 (3 tarjetas).</li>
 <li><strong>Mapa 2:</strong> avanza ×3 (3).</li>
 <li><strong>Mapa 3:</strong> avanza, avanza, gira a la derecha, avanza, avanza (5).</li>
@@ -5727,19 +5788,19 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><a class="pj-btn" href="#guia-patrones">Guía para el docente</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
 <nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-patrones.ab">AB</a><a class="rindex-chip" href="#p-patrones.aab">AAB</a><a class="rindex-chip" href="#p-patrones.abb">ABB</a><a class="rindex-chip" href="#p-patrones.aabb">AABB</a><a class="rindex-chip" href="#p-patrones.abc">ABC</a><a class="rindex-chip" href="#p-patrones.abcd">ABCD</a><a class="rindex-chip" href="#p-patrones.crece">Que crece</a><a class="rindex-chip" href="#p-patrones.bicho">Con bicho</a></nav>
 <div class="pj-stage-root"></div><details class="more" id="guia-patrones"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">Patrones de figuras que se repiten (AB, AAB, ABB, AABB, ABC, ABCD), un patrón <strong>que crece</strong> (la figura 1 tiene 1 cuadrado, la 2 tiene 2…) y patrones <strong>con bicho</strong>, en los que una figura rompe la regla.</p><h4>Qué contar a la clase</h4><ol><li>Decir el patrón en voz alta, con ritmo: «rojo, azul, rojo, azul…».</li><li>Buscar <strong>la parte que se repite</strong> (el «trozo» del patrón) y rodearla con el dedo.</li><li>Predecir lo que va en cada «?» y tocar para comprobar.</li><li>Con bicho: decirlo en voz alta hasta que «suene mal».</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>En el patrón AB, ¿qué figura va en el puesto 10? ¿Y en el 15?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Escribe los primeros puestos: 1 A, 2 B, 3 A, 4 B…</li><li><span class="g-tag">Pista</span> ¿Qué tienen en común los puestos de la B?</li><li><details><summary>Ver la solución</summary><p>En AB, los puestos <strong>impares</strong> son A y los <strong>pares</strong>, B: el 10 es <strong>B</strong> y el 15 es <strong>A</strong>.</p></details></li></ul></li><li><b>En el patrón ABC, ¿qué figura va en el puesto 12?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> El trozo que se repite tiene 3 figuras.</li><li><span class="g-tag">Pista</span> Cuenta de 3 en 3: 3, 6, 9, 12.</li><li><details><summary>Ver la solución</summary><p>El 12 es múltiplo de 3, así que va la <strong>C</strong>, la última del trozo. En general, se mira el resto de dividir entre el tamaño del trozo.</p></details></li></ul></li><li><b>En el patrón que crece, ¿cuántos cuadrados tiene la figura 10? ¿Y cuántos hay en total en las 5 primeras figuras?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Cuenta los cuadrados de las figuras 1, 2 y 3.</li><li><span class="g-tag">Pista</span> Para el total, suma figura a figura.</li><li><details><summary>Ver la solución</summary><p>La figura 10 tiene <strong>10 cuadrados</strong> (cada figura tiene tantos como su número). En las 5 primeras hay <strong>15</strong>: 1 + 2 + 3 + 4 + 5.</p></details></li></ul></li></ol><h4>Matemáticas</h4><p>Series y regularidades, pares e impares, múltiplos, y el primer álgebra: describir una regla («la figura n tiene n cuadrados»).</p></div></details></div></section><section class="page pj-page" id="p-bucles" data-nav-key="proyectar" hidden><div class="sheet">
-<div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-4º</p><h1>Bucles: largo o corto</h1></div>
+<div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-4º · repaso 4º-6º</p><h1>Bucles: largo o corto</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><a class="pj-btn" href="#guia-bucles">Guía para el docente</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-bucles.palmadas">Palmadas</a><a class="rindex-chip" href="#p-bucles.escalera">Escalera</a><a class="rindex-chip" href="#p-bucles.cuadrado">Cuadrado</a><a class="rindex-chip" href="#p-bucles.baile">Baile</a></nav>
-<div class="pj-stage-root"></div><details class="more" id="guia-bucles"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">Compara un programa largo con el mismo programa escrito con <strong>REPITE</strong> y cuenta las tarjetas que se ahorran. Con la barra se cambia el número de repeticiones.</p><h4>Qué contar a la clase</h4><ol><li>Leer el programa largo en voz alta. «¿Qué se repite?»</li><li>Ver el programa con bucle: el trozo que se repite va <strong>dentro</strong> de REPITE.</li><li>Comprobar que los dos hacen <strong>exactamente lo mismo</strong>, y contar las tarjetas de cada uno.</li><li>Mover la barra de repeticiones: ¿cuál crece y cuál se queda igual?</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>¿Cuántas tarjetas tiene cada programa?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Largo: tarjetas del trozo × veces que se repite.</li><li><span class="g-tag">Pista</span> Corto: las del trozo más la de REPITE.</li><li><details><summary>Ver la solución</summary><ul>
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-bucles.palmadas">Palmadas</a><a class="rindex-chip" href="#p-bucles.escalera">Escalera</a><a class="rindex-chip" href="#p-bucles.cuadrado">Cuadrado</a><a class="rindex-chip" href="#p-bucles.baile">Baile</a><a class="rindex-chip" href="#p-bucles.repaso">Repaso 4º-6º</a></nav>
+<div class="pj-stage-root"></div><details class="more" id="guia-bucles"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">Compara un programa largo con el mismo programa escrito con <strong>REPITE</strong> y cuenta las tarjetas que se ahorran. Con la barra se cambia el número de repeticiones.</p><h4>Qué contar a la clase</h4><ol><li>Repaso 4º-6º: con los bloques de Scratch, cuántas veces se ejecuta cada bloque, cuándo se cierra una figura (repeticiones × giro = 360), un bucle dentro de otro y «repetir hasta que» con su tabla de vueltas.</li><li>Leer el programa largo en voz alta. «¿Qué se repite?»</li><li>Ver el programa con bucle: el trozo que se repite va <strong>dentro</strong> de REPITE.</li><li>Comprobar que los dos hacen <strong>exactamente lo mismo</strong>, y contar las tarjetas de cada uno.</li><li>Mover la barra de repeticiones: ¿cuál crece y cuál se queda igual?</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>¿Cuántas tarjetas tiene cada programa?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Largo: tarjetas del trozo × veces que se repite.</li><li><span class="g-tag">Pista</span> Corto: las del trozo más la de REPITE.</li><li><details><summary>Ver la solución</summary><ul>
 <li><strong>Palmadas</strong> (REPITE 4): largo 4, corto 2.</li>
 <li><strong>Baile</strong> (REPITE 3, 3 tarjetas dentro): largo 9, corto 4.</li>
 <li><strong>Cuadrado</strong> (REPITE 4, 3 dentro): largo 12, corto 4.</li>
 <li><strong>Escalera</strong> (REPITE 3, 4 dentro): largo 12, corto 5.</li>
 </ul></details></li></ul></li><li><b>¿Cuándo se ahorran más tarjetas?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Sube las repeticiones con la barra y mira los dos números.</li><li><span class="g-tag">Pista</span> ¿Qué pasa con el largo? ¿Y con el corto?</li><li><details><summary>Ver la solución</summary><p>El largo crece con cada repetición y el corto <strong>no cambia</strong>. Cuantas más veces se repite algo, más se ahorra con un bucle.</p></details></li></ul></li><li><b>¿Cuántas palmadas hay en «REPITE 3: palmada, palmada»?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> ¿Cuántas palmadas hay en cada vuelta?</li><li><span class="g-tag">Pista</span> ¿Cuántas vueltas da?</li><li><details><summary>Ver la solución</summary><p><strong>6</strong> = 3 × 2.</p></details></li></ul></li></ol><h4>Matemáticas</h4><p>La multiplicación como suma repetida y la comparación de cantidades (¿cuántas menos?).</p></div></details></div></section><section class="page pj-page" id="p-semaforo" data-nav-key="proyectar" hidden><div class="sheet">
-<div class="pj-head"><div><p class="eyebrow">Para proyectar · 2º-4º</p><h1>Semáforo de peatones: si… entonces</h1></div>
+<div class="pj-head"><div><p class="eyebrow">Para proyectar · 2º-4º · repaso 4º-6º</p><h1>Semáforo de peatones: si… entonces</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><a class="pj-btn" href="#guia-semaforo">Guía para el docente</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
-<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-semaforo">SI… ENTONCES</a><a class="rindex-chip" href="#p-semaforo.sino">SI… SI NO</a></nav>
-<div class="pj-stage-root"></div><details class="more" id="guia-semaforo"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">El semáforo de peatones (el muñeco rojo y el verde) para trabajar reglas <strong>SI… ENTONCES</strong> y, en el otro modo, <strong>SI… SI NO</strong>.</p><h4>Qué contar a la clase</h4><ol><li>Leer la regla en voz alta.</li><li>Pulsar <strong>Luz al azar</strong>: la clase dice qué hace el peatón antes de pulsar <strong>Ver respuesta</strong>.</li><li>En modo SI… SI NO: una sola pregunta y dos caminos.</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>¿Qué diferencia hay entre usar dos reglas SI y una SI… SI NO?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Escribe las dos reglas: «si rojo… », «si verde…».</li><li><span class="g-tag">Pista</span> ¿Hace falta preguntar dos veces?</li><li><details><summary>Ver la solución</summary><p>Con SI… SI NO basta <strong>una</strong> pregunta: «si el muñeco está en verde, cruzo; si no, espero». El SI NO recoge todos los demás casos.</p></details></li></ul></li><li><b>Si el muñeco está en verde, ¿cruzamos sin mirar?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> ¿Puede pasar un coche aunque esté en verde para nosotros?</li><li><details><summary>Ver la solución</summary><p>No: primero se mira a los dos lados. La condición del semáforo no basta; la seguridad añade otra comprobación. En programación también se encadenan condiciones.</p></details></li></ul></li></ol><h4>Matemáticas</h4><p>Lógica de sí o no y clasificación de casos.</p></div></details></div></section><section class="page pj-page" id="p-clasificador" data-nav-key="proyectar" hidden><div class="sheet">
+<nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-semaforo">SI… ENTONCES</a><a class="rindex-chip" href="#p-semaforo.sino">SI… SI NO</a><a class="rindex-chip" href="#p-semaforo.repaso">Repaso 4º-6º</a></nav>
+<div class="pj-stage-root"></div><details class="more" id="guia-semaforo"><summary>Guía para el docente: qué contar, preguntas y soluciones</summary><div class="more-body"><p class="g-idea">El semáforo de peatones (el muñeco rojo y el verde) para trabajar reglas <strong>SI… ENTONCES</strong> y, en el otro modo, <strong>SI… SI NO</strong>.</p><h4>Qué contar a la clase</h4><ol><li>Repaso 4º-6º: la clase mueve el valor del sensor o de las variables, predice qué hará el programa y lo comprueba. Se ilumina la rama que se ejecuta. Cinco niveles: si… entonces, si no, tres caminos (si no, si), «y» y «o».</li><li>Leer la regla en voz alta.</li><li>Pulsar <strong>Luz al azar</strong>: la clase dice qué hace el peatón antes de pulsar <strong>Ver respuesta</strong>.</li><li>En modo SI… SI NO: una sola pregunta y dos caminos.</li></ol><h4>Preguntas para pensar</h4><ol class="g-qs"><li><b>¿Qué diferencia hay entre usar dos reglas SI y una SI… SI NO?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> Escribe las dos reglas: «si rojo… », «si verde…».</li><li><span class="g-tag">Pista</span> ¿Hace falta preguntar dos veces?</li><li><details><summary>Ver la solución</summary><p>Con SI… SI NO basta <strong>una</strong> pregunta: «si el muñeco está en verde, cruzo; si no, espero». El SI NO recoge todos los demás casos.</p></details></li></ul></li><li><b>Si el muñeco está en verde, ¿cruzamos sin mirar?</b><ul class="g-steps"><li><span class="g-tag">Pista</span> ¿Puede pasar un coche aunque esté en verde para nosotros?</li><li><details><summary>Ver la solución</summary><p>No: primero se mira a los dos lados. La condición del semáforo no basta; la seguridad añade otra comprobación. En programación también se encadenan condiciones.</p></details></li></ul></li></ol><h4>Matemáticas</h4><p>Lógica de sí o no y clasificación de casos.</p></div></details></div></section><section class="page pj-page" id="p-clasificador" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Para proyectar · 1º-3º</p><h1>Clasificador y regla secreta</h1></div>
 <div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><a class="pj-btn" href="#guia-clasificador">Guía para el docente</a><button type="button" class="pj-btn" data-fullscreen>Pantalla completa</button><button type="button" class="pj-btn" data-still>Sin animaciones</button><a class="pj-btn" href="#proyectar">Todas las herramientas</a></div></div>
 <nav class="rindex" aria-label="Retos"><a class="rindex-chip" href="#p-clasificador">Por tipo</a><a class="rindex-chip" href="#p-clasificador.color">Por color</a><a class="rindex-chip" href="#p-clasificador.tam">Por tamaño</a><a class="rindex-chip" href="#p-clasificador.secreta">Regla secreta</a></nav>
@@ -6428,23 +6489,63 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     ['pez', 'Pez', { plumas: 0, patas4: 0, agua: 1, vuela: 0, grande: 0 }], ['ballena', 'Ballena', { plumas: 0, patas4: 0, agua: 1, vuela: 0, grande: 1 }],
     ['mariposa', 'Mariposa', { plumas: 0, patas4: 0, agua: 0, vuela: 1, grande: 0 }], ['serpiente', 'Serpiente', { plumas: 0, patas4: 0, agua: 0, vuela: 0, grande: 0 }]];
   function toolAnimals(root) {
-    var secret, alive, asked, grid = h('div', { class: 'pj-animals' }), log = h('ol', { class: 'pj-log' }), msg = h('p', { class: 'pj-status' }), qs = h('div', { class: 'pj-qs' });
+    // Por defecto es la clase la que descarta: tras cada respuesta, se tocan los animales que ya no pueden ser.
+    // Con «Descartar solos» lo hace el ordenador (como antes).
+    var secret, out, asked, answers, auto = false, grid = h('div', { class: 'pj-animals' }), log = h('ol', { class: 'pj-log' }), msg = h('p', { class: 'pj-status' }), qs = h('div', { class: 'pj-qs' });
+    var NOMBRE = { Perro: 'el perro', Caballo: 'el caballo', 'Pájaro': 'el pájaro', Avestruz: 'el avestruz', Pez: 'el pez', Ballena: 'la ballena', Mariposa: 'la mariposa', Serpiente: 'la serpiente' };
+    function fits(a) { return answers.every(function (r) { return !!a[2][r[0]] === r[1]; }); }
+    function alive() { return AN.filter(function (a) { return out.indexOf(a) < 0; }); }
     function start() {
-      secret = AN[rnd(AN.length)]; alive = AN.slice(); asked = 0; log.innerHTML = ''; setStatus(msg, '', 'El ordenador ha pensado un animal. Elegid una pregunta de sí o no.'); draw();
+      secret = AN[rnd(AN.length)]; out = []; asked = 0; answers = []; log.innerHTML = '';
+      setStatus(msg, '', 'El ordenador ha pensado un animal. Elegid una pregunta de sí o no.'); draw();
       qs.innerHTML = ''; AQ.forEach(function (q) { qs.appendChild(btn(q[1], function (e) { ask(q, e.currentTarget); })); });
     }
+    function found() {
+      var v = alive();
+      if (v.length !== 1 || v[0] !== secret) return false;
+      setStatus(msg, 'good', '¡Es ' + NOMBRE[secret[1]] + '! Lo habéis encontrado con ' + asked + ' preguntas. ¿Se podría con menos?');
+      burst(grid.querySelector('.pj-an:not(.out)'));
+      return true;
+    }
     function ask(q, b) {
-      if (alive.length === 1) return;
+      if (alive().length === 1 && alive()[0] === secret) return;
       b.disabled = true; asked++;
       var yes = !!secret[2][q[0]];
-      alive = alive.filter(function (a) { return !!a[2][q[0]] === yes; });
-      log.appendChild(h('li', { html: q[1] + ' <b>' + (yes ? 'SÍ' : 'NO') + '</b> → quedan ' + alive.length }));
+      answers.push([q[0], yes]);
+      if (auto) out = AN.filter(function (a) { return !fits(a); });
+      log.appendChild(h('li', { html: q[1] + ' <b>' + (yes ? 'SÍ' : 'NO') + '</b>' + (auto ? ' → quedan ' + alive().length : '') }));
       draw();
-      if (alive.length === 1) { setStatus(msg, 'good'); burst(grid.querySelector('.pj-an:not(.out)')); }
-      msg.textContent = alive.length === 1 ? '¡Es ' +{ Perro: 'el perro', Caballo: 'el caballo', 'Pájaro': 'el pájaro', Avestruz: 'el avestruz', Pez: 'el pez', Ballena: 'la ballena', Mariposa: 'la mariposa', Serpiente: 'la serpiente' }[alive[0][1]] + '! Lo habéis encontrado con ' + asked + ' preguntas. ¿Se podría con menos?' : 'Quedan ' + alive.length + ' animales. Elegid otra pregunta.';
+      if (auto) { if (!found()) setStatus(msg, '', 'Quedan ' + alive().length + ' animales. Elegid otra pregunta.'); }
+      else setStatus(msg, '', 'La respuesta es ' + (yes ? 'SÍ' : 'NO') + '. Tocad los animales que ya no pueden ser para descartarlos.');
     }
-    function draw() { grid.innerHTML = ''; AN.forEach(function (a) { grid.appendChild(h('div', { class: 'pj-an' + (alive.indexOf(a) < 0 ? ' out' : ''), html: pic(a[0]) + '<span>' + a[1] + '</span>' })); }); }
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [grid]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Preguntas' }), qs, log, msg, btn('Otro animal', start, 'go')])]));
+    function toggle(a) {
+      if (auto) return;
+      var i = out.indexOf(a);
+      if (i < 0) out.push(a); else out.splice(i, 1);
+      draw();
+      if (out.indexOf(secret) >= 0 && alive().length <= 1) setStatus(msg, 'bad', '¡Cuidado! Habéis descartado el animal que era. Pulsad «Comprobar» para ver dónde está el fallo.');
+      else if (!found()) setStatus(msg, '', 'Quedan ' + alive().length + ' animales sin descartar.');
+    }
+    function check() {
+      var wrongOut = out.filter(fits), wrongIn = alive().filter(function (a) { return !fits(a); });
+      draw(wrongOut.concat(wrongIn));
+      if (!wrongOut.length && !wrongIn.length) setStatus(msg, 'good', 'Todo bien descartado. ' + (alive().length > 1 ? 'Quedan ' + alive().length + ': elegid otra pregunta.' : ''));
+      else setStatus(msg, 'bad', (wrongOut.length ? (wrongOut.length === 1 ? 'Habéis descartado 1 que todavía puede ser. ' : 'Habéis descartado ' + wrongOut.length + ' que todavía pueden ser. ') : '') + (wrongIn.length ? (wrongIn.length === 1 ? 'Queda 1 que ya no puede ser. ' : 'Quedan ' + wrongIn.length + ' que ya no pueden ser. ') : '') + 'Están marcados en rojo: repasad las respuestas.');
+    }
+    function draw(bad) {
+      grid.innerHTML = '';
+      AN.forEach(function (a) {
+        var e = h('button', { type: 'button', class: 'pj-an' + (out.indexOf(a) >= 0 ? ' out' : '') + (bad && bad.indexOf(a) >= 0 ? ' bad' : ''),
+          'aria-pressed': String(out.indexOf(a) >= 0), 'aria-label': a[1] + (out.indexOf(a) >= 0 ? ' (descartado)' : ''),
+          html: pic(a[0]) + '<span>' + a[1] + '</span>' });
+        e.addEventListener('click', function () { toggle(a); });
+        grid.appendChild(e);
+      });
+    }
+    var autoChk = h('input', { type: 'checkbox', onchange: function (e) { auto = e.target.checked; if (auto) out = AN.filter(function (a) { return !fits(a); }); draw(); if (!auto || !found()) setStatus(msg, '', auto ? 'El ordenador quita solo los que ya no pueden ser. Quedan ' + alive().length + '.' : 'Ahora descartáis vosotros: tocad los animales que ya no pueden ser.'); } });
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [grid]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Preguntas' }), qs, log, msg,
+      h('div', { class: 'pj-row' }, [btn('Comprobar', check), btn('Otro animal', start, 'go')]),
+      h('label', { class: 'pj-chk' }, [autoChk, ' Descartar solos (el ordenador quita los que ya no pueden ser)'])])]));
     root.appendChild(credit());
     return { load: start };
   }
@@ -7056,17 +7157,29 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
     circuito: toolCircuit, leds: toolLeds, umbral: toolThreshold, velocidad: toolSpeed, sesgo: toolBias, verdad: toolTruth,
     contrasenas: toolPass, temporizador: toolTimer, cifrado: toolCipher
   };
-  var mounted = {};
+  var mounted = {}, repMounted = {};
   window.PJH = { h: h, btn: btn, shuffle: shuffle, rnd: rnd, arrowSVG: arrowSVG, NS: NS,
     islandSVG: islandSVG, ROBOT_BODY: ROBOT_BODY, svgConfetti: svgConfetti, burst: burst, setStatus: setStatus, replay: replay };
   window.Proyectables = {
     register: function (id, fn) { TOOLS[id] = fn; },
-    isMounted: function (id) { return !!mounted[id]; },
+    isMounted: function (id) { return !!(mounted[id] || repMounted[id]); },
     open: function (id, preset) {
       var page = document.getElementById('p-' + id); if (!page || !TOOLS[id]) return;
       var stage = page.querySelector('.pj-stage-root');
-      if (!mounted[id]) { mounted[id] = TOOLS[id](stage); }
-      try { mounted[id].load(preset); } catch (e) { console.error(e); }
+      // «Repaso 4º-6º» (proyectables5.js): la misma herramienta, adaptada a 4º-6º, en otro hueco de la página
+      var rep = preset === 'repaso' && window.PJRepaso && window.PJRepaso[id];
+      var box = stage.__boxes || (stage.__boxes = {});
+      if (rep) {
+        if (!box.rep) { box.rep = h('div', { class: 'pj-mode' }); stage.appendChild(box.rep); repMounted[id] = window.PJRepaso[id](box.rep); }
+        if (box.main) box.main.hidden = true;
+        box.rep.hidden = false;
+        try { repMounted[id].load(); } catch (e) { console.error(e); }
+      } else {
+        if (!box.main) { box.main = h('div', { class: 'pj-mode' }); stage.insertBefore(box.main, stage.firstChild); mounted[id] = TOOLS[id](box.main); }
+        if (box.rep) box.rep.hidden = true;
+        box.main.hidden = false;
+        try { mounted[id].load(preset); } catch (e) { console.error(e); }
+      }
       var chips = page.querySelectorAll('.rindex-chip');
       Array.prototype.forEach.call(chips, function (c, i) {
         var hp = c.getAttribute('href').split('.')[1] || '';
@@ -7628,6 +7741,370 @@ La opción más sencilla.</p></div></div></section></div><aside class="f-side"><
   var R = window.Proyectables.register;
   R('beebot', toolBee); R('flota', toolFleet); R('pixelart', toolPixel); R('laberinto', toolMaze); R('binario', toolBinary);
   R('simon', toolSimon); R('balanza', toolScale); R('paridad', toolParity); R('quiensale', toolPicker);
+})();
+;
+/* Modos «Repaso 4º-6º»: los conceptos de los primeros cursos (si… entonces, bucles, algoritmos en la cuadrícula) con
+   ejemplos y aspecto de 4º a 6º, y con los bloques escritos como en Scratch y MakeCode. Se abren con el preset «repaso»
+   de cada herramienta (#p-semaforo.repaso, #p-bucles.repaso, #p-cuadricula.repaso). */
+(function () {
+  'use strict';
+  var P = window.PJH, h = P.h, btn = P.btn, rnd = P.rnd, NS = P.NS, setStatus = P.setStatus;
+
+  // ------------------------------------------------------------ bloques dibujados (colores de cada editor)
+  var SC = { control: '#FFAB19', op: '#59C059', looks: '#9966FF', vars: '#FF8C1A', pen: '#0FBD8C', mov: '#4C97FF' };
+  var MK = { bas: '#1E90FF', inp: '#D400D4', log: '#00A4A6', loo: '#00AA00' };
+  function b(col, html) { return '<div class="rp-b" style="background:' + col + '">' + html + '</div>'; }
+  // bloque en C: secciones [cabecera, contenido, número de rama]
+  function c(col, secs) {
+    return '<div class="rp-c" style="--bc:' + col + '">' + secs.map(function (s) {
+      return '<div class="rp-ch" data-r="' + s[2] + '">' + s[0] + '</div><div class="rp-cin" data-r="' + s[2] + '">' + s[1] + '</div>';
+    }).join('') + '<div class="rp-cf"></div></div>';
+  }
+  function r(col, html) { return '<span class="rp-r" style="background:' + col + '">' + html + '</span>'; }
+  function v(x) { return '<span class="rp-v">' + x + '</span>'; }
+  function mostrar(prog, rama) {
+    prog.querySelectorAll('[data-r]').forEach(function (e) {
+      var k = +e.getAttribute('data-r');
+      e.classList.toggle('on', rama !== null && k === rama);
+      e.classList.toggle('off', rama !== null && k !== rama && k >= 0);
+    });
+  }
+  function leds(pat) {  // pat: 25 caracteres, # encendido
+    return '<div class="rp-leds">' + pat.split('').map(function (ch) { return '<i' + (ch === '#' ? ' class="on"' : '') + '></i>'; }).join('') + '</div>';
+  }
+  var CARA = { contenta: '.....' + '.#.#.' + '.....' + '#...#' + '.###.', triste: '.....' + '.#.#.' + '.....' + '.###.' + '#...#', seria: '.#.#.' + '.....' + '...#.' + '..#..' + '.#...' };
+
+  // armazón común: pestañas de nivel, programa y controles a la izquierda; resultado y «para pensar» a la derecha
+  function marco(root, niveles, pinta) {
+    var tabs = h('div', { class: 'rp-tabs', role: 'tablist' }), left = h('div', { class: 'pj-col' }), right = h('div', { class: 'pj-col' });
+    root.appendChild(h('p', { class: 'rp-tag', text: 'Repaso 4º-6º' }));
+    root.appendChild(tabs);
+    root.appendChild(h('div', { class: 'pj-two rp-two' }, [left, right]));
+    var cur = 0;
+    function abrir(i) {
+      cur = i;
+      Array.prototype.forEach.call(tabs.children, function (t, k) { t.setAttribute('aria-selected', String(k === i)); });
+      left.innerHTML = ''; right.innerHTML = '';
+      pinta(niveles[i], left, right);
+    }
+    niveles.forEach(function (n, i) { tabs.appendChild(h('button', { type: 'button', role: 'tab', class: 'rp-tab', html: '<b>' + (i + 1) + '</b> ' + n.t, onclick: function () { abrir(i); } })); });
+    return { load: function () { abrir(cur); } };
+  }
+  function pensar(box, q, a) {
+    var ans = h('p', { class: 'rp-ans', hidden: true, html: a });
+    box.appendChild(h('div', { class: 'rp-think' }, [h('h4', { text: 'Para pensar' }), h('p', { html: q }), btn('Ver la respuesta', function () { ans.hidden = !ans.hidden; }), ans]));
+  }
+  function deslizador(c0, onchange) {
+    var out = h('b', { class: 'rp-val', text: String(c0.val) });
+    var inp = h('input', { type: 'range', min: c0.min, max: c0.max, step: c0.step || 1, value: c0.val, class: 'pj-range', 'aria-label': c0.aria || c0.label });
+    inp.addEventListener('input', function () { c0.val = +inp.value; out.textContent = String(c0.val); onchange(); });
+    return h('label', { class: 'rp-ctl' }, [h('span', { html: c0.label }), inp, out]);
+  }
+
+  /* ================================================================ 1. Si… entonces */
+  var SI = [
+    { t: 'Si… entonces', ed: 'MakeCode', vars: [{ id: 'luz', label: r(MK.inp, 'nivel de luz'), min: 0, max: 255, val: 120 }],
+      prog: function () {
+        return c(MK.bas, [['para siempre', c(MK.log, [['si ' + r(MK.log, r(MK.inp, 'nivel de luz') + ' &lt; ' + v(50)) + ' entonces', b(MK.bas, 'mostrar LEDs ' + leds('#########################').replace('rp-leds', 'rp-leds sm')), 0]]), -1]]);
+      },
+      run: function (s) { return s.luz < 50 ? { rama: 0, out: leds('#########################'), txt: 'Se cumple la condición (' + s.luz + ' es menor que 50): se encienden todos los LED.' } : { rama: null, out: leds('.........................'), txt: 'No se cumple (' + s.luz + ' no es menor que 50): lo de dentro se salta y la pantalla se queda como estaba.' }; },
+      q: 'Se hace de noche, se encienden los LED… y vuelve la luz. ¿Se apagan?',
+      a: 'No: en el programa no hay nada que los apague. Hace falta un <b>si no</b> con <b>borrar la pantalla</b> (nivel 2).' },
+    { t: 'Si… si no', ed: 'MakeCode', vars: [{ id: 'luz', label: r(MK.inp, 'nivel de luz'), min: 0, max: 255, val: 50 }],
+      prog: function () {
+        return c(MK.bas, [['para siempre', c(MK.log, [['si ' + r(MK.log, r(MK.inp, 'nivel de luz') + ' &lt; ' + v(50)) + ' entonces', b(MK.bas, 'mostrar LEDs ' + leds('#########################').replace('rp-leds', 'rp-leds sm')), 0], ['si no', b(MK.bas, 'borrar la pantalla'), 1]]), -1]]);
+      },
+      run: function (s) { return s.luz < 50 ? { rama: 0, out: leds('#########################'), txt: 'Se cumple la condición: se encienden los LED.' } : { rama: 1, out: leds('.........................'), txt: 'No se cumple la condición, así que se hace el <b>si no</b>: se borra la pantalla.' }; },
+      q: 'Con el nivel de luz justo en 50, ¿se encienden o se apagan?',
+      a: 'Se apagan: 50 <b>no</b> es menor que 50. La condición es «&lt; 50», no «≤ 50». Probadlo con el deslizador.' },
+    { t: 'Tres caminos', ed: 'MakeCode', vars: [{ id: 'son', label: r(MK.inp, 'nivel de sonido'), min: 0, max: 255, val: 120 }],
+      prog: function () {
+        return c(MK.bas, [['para siempre', c(MK.log, [
+          ['si ' + r(MK.log, r(MK.inp, 'nivel de sonido') + ' &gt; ' + v(150)) + ' entonces', b(MK.bas, 'mostrar ícono ' + leds(CARA.triste).replace('rp-leds', 'rp-leds sm')), 0],
+          ['si no, si ' + r(MK.log, r(MK.inp, 'nivel de sonido') + ' &gt; ' + v(90)) + ' entonces', b(MK.bas, 'mostrar ícono ' + leds(CARA.seria).replace('rp-leds', 'rp-leds sm')), 1],
+          ['si no', b(MK.bas, 'mostrar ícono ' + leds(CARA.contenta).replace('rp-leds', 'rp-leds sm')), 2]]), -1]]);
+      },
+      run: function (s) {
+        if (s.son > 150) return { rama: 0, out: leds(CARA.triste), txt: s.son + ' es mayor que 150: cara triste. Las otras ramas ya no se miran.' };
+        if (s.son > 90) return { rama: 1, out: leds(CARA.seria), txt: s.son + ' no es mayor que 150, pero sí que 90: cara seria.' };
+        return { rama: 2, out: leds(CARA.contenta), txt: 'No se cumple ninguna de las dos condiciones: se hace el <b>si no</b>, cara contenta.' };
+      },
+      q: '¿Y si cambiamos el orden y preguntamos primero «&gt; 90» y después «&gt; 150»? ¿Qué sale con 200?',
+      a: 'Saldría la cara <b>seria</b>: se hace la primera condición que se cumple y las demás ya no se miran. Por eso la condición más exigente va primero. Es el semáforo de ruido de 6º.' },
+    { t: 'Dos condiciones con «y»', ed: 'Scratch', vars: [{ id: 'pun', label: r(SC.vars, 'puntos'), min: 0, max: 15, val: 8 }, { id: 'vid', label: r(SC.vars, 'vidas'), min: 0, max: 3, val: 1 }],
+      prog: function () {
+        return c(SC.control, [['si ' + r(SC.op, r(SC.op, r(SC.vars, 'puntos') + ' &gt; ' + v(9)) + ' y ' + r(SC.op, r(SC.vars, 'vidas') + ' &gt; ' + v(0))) + ' entonces', b(SC.looks, 'decir ' + v('¡Has ganado!')), 0]]);
+      },
+      run: function (s) {
+        var a = s.pun > 9, bb = s.vid > 0;
+        return a && bb ? { rama: 0, out: '<div class="rp-bubble">¡Has ganado!</div>', txt: 'Se cumplen <b>las dos</b>: más de 9 puntos y alguna vida.' }
+          : { rama: null, out: '<div class="rp-bubble none">(no dice nada)</div>', txt: (a ? '' : 'No hay más de 9 puntos. ') + (bb ? '' : 'No quedan vidas. ') + 'Con <b>y</b> tienen que cumplirse las dos.' };
+      },
+      q: '¿Qué pasa con 12 puntos y 0 vidas? ¿Y si cambiamos «y» por «o»?',
+      a: 'Con «y», nada: falta una de las dos. Con «<b>o</b>» bastaría una: diría «¡Has ganado!» aunque no queden vidas, y eso no tiene sentido en el juego.' },
+    { t: 'Una u otra con «o»', ed: 'Scratch', vars: [{ id: 'tie', label: r(SC.vars, 'tiempo'), min: 0, max: 30, val: 12 }, { id: 'vid', label: r(SC.vars, 'vidas'), min: 0, max: 3, val: 2 }],
+      prog: function () {
+        return c(SC.control, [['si ' + r(SC.op, r(SC.op, r(SC.vars, 'tiempo') + ' = ' + v(0)) + ' o ' + r(SC.op, r(SC.vars, 'vidas') + ' = ' + v(0))) + ' entonces', b(SC.looks, 'decir ' + v('Fin del juego')), 0]]);
+      },
+      run: function (s) {
+        var a = s.tie === 0, bb = s.vid === 0;
+        return a || bb ? { rama: 0, out: '<div class="rp-bubble">Fin del juego</div>', txt: 'Se cumple ' + (a && bb ? 'las dos' : a ? 'una: se acabó el tiempo' : 'una: no quedan vidas') + '. Con <b>o</b> basta una.' }
+          : { rama: null, out: '<div class="rp-bubble none">(no dice nada)</div>', txt: 'No se cumple ninguna: queda tiempo y quedan vidas.' };
+      },
+      q: '¿Y si cambiamos «o» por «y»?',
+      a: 'Solo acabaría si se terminan el tiempo <b>y</b> las vidas a la vez. Si te quedas sin vidas con tiempo de sobra, el juego seguiría: no es lo que queremos.' }
+  ];
+  function repasoSi(root) {
+    return marco(root, SI, function (n, left, right) {
+      var prog = h('div', { class: 'rp-prog', html: n.prog() }), out = h('div', { class: 'rp-out' }), txt = h('p', { class: 'pj-status' });
+      var s = {};
+      function oculta() { mostrar(prog, null); out.innerHTML = '<p class="rp-wait">¿Qué hará el programa? Pensadlo antes de verlo.</p>'; setStatus(txt, '', ''); }
+      n.vars.forEach(function (x) { s[x.id] = x.val; });
+      left.appendChild(h('h4', { text: 'Así se escribe en ' + n.ed }));
+      left.appendChild(prog);
+      var ctl = h('div', { class: 'rp-ctls' });
+      n.vars.forEach(function (x) { ctl.appendChild(deslizador(x, function () { s[x.id] = x.val; oculta(); })); });
+      left.appendChild(ctl);
+      right.appendChild(h('h4', { text: 'Qué pasa' }));
+      right.appendChild(out); right.appendChild(txt);
+      right.appendChild(h('div', { class: 'pj-row' }, [btn('Ver qué pasa', function () { var res = n.run(s); mostrar(prog, res.rama); out.innerHTML = res.out; setStatus(txt, res.rama === null ? '' : 'good'); txt.innerHTML = res.txt; }, 'go'),
+        btn('Valores al azar', function () { n.vars.forEach(function (x) { x.val = x.min + rnd(Math.floor((x.max - x.min) / (x.step || 1)) + 1) * (x.step || 1); s[x.id] = x.val; }); left.innerHTML = ''; right.innerHTML = ''; repaint(); })]));
+      pensar(right, n.q, n.a);
+      oculta();
+      function repaint() { var i = SI.indexOf(n); root.querySelectorAll('.rp-tab')[i].click(); }
+    });
+  }
+
+  /* ================================================================ 2. Bucles */
+  function tortuga(cmds) {  // cmds: lista de ['m', pasos] o ['g', grados]; como en Scratch: empieza mirando a la derecha (90)
+    var x = 0, y = 0, d = 90, pts = [[0, 0]];
+    cmds.forEach(function (k) {
+      if (k[0] === 'g') d += k[1];
+      else { x += k[1] * Math.sin(d * Math.PI / 180); y += k[1] * Math.cos(d * Math.PI / 180); pts.push([x, y]); }
+    });
+    return pts;
+  }
+  function dibujo(pts) {
+    var xs = pts.map(function (p) { return p[0]; }), ys = pts.map(function (p) { return p[1]; });
+    var minx = Math.min.apply(null, xs), maxx = Math.max.apply(null, xs), miny = Math.min.apply(null, ys), maxy = Math.max.apply(null, ys);
+    var w = Math.max(maxx - minx, 40), hh = Math.max(maxy - miny, 40), pad = 0.12 * Math.max(w, hh) + 10;
+    var d = pts.map(function (p, i) { return (i ? 'L' : 'M') + (p[0] - minx + pad).toFixed(1) + ' ' + (maxy - p[1] + pad).toFixed(1); }).join('');
+    var len = 0; for (var i = 1; i < pts.length; i++) len += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]);
+    var W = w + 2 * pad, H = hh + 2 * pad, sw = Math.max(W, H) / 110;
+    return '<svg class="rp-draw" viewBox="0 0 ' + W.toFixed(0) + ' ' + H.toFixed(0) + '"><path d="' + d + '" fill="none" stroke="#0FBD8C" stroke-width="' + (sw * 1.6).toFixed(2) + '" stroke-linejoin="round" stroke-linecap="round" style="--len:' + len.toFixed(0) + '"/>' +
+      '<circle cx="' + (pts[0][0] - minx + pad).toFixed(1) + '" cy="' + (maxy - pts[0][1] + pad).toFixed(1) + '" r="' + (sw * 2.4).toFixed(2) + '" fill="#1a1d24"/></svg>';
+  }
+  var DIV360 = [2, 3, 4, 5, 6, 8, 9, 10, 12];
+  var BU = [
+    { t: 'Repetir', vars: [{ id: 'n', label: r(SC.control, 'repetir') + ' (veces)', min: 3, max: 10, val: 4 }, { id: 'g', label: r(SC.mov, 'girar ↻') + ' (grados)', min: 30, max: 180, step: 15, val: 90 }],
+      prog: function (s) {
+        return b(SC.pen, 'borrar todo') + b(SC.pen, 'bajar lápiz') +
+          c(SC.control, [['repetir ' + v(s.n), b(SC.mov, 'mover ' + v(60) + ' pasos') + b(SC.mov, 'girar ↻ ' + v(s.g) + ' grados'), 0]]);
+      },
+      run: function (s) {
+        var cmds = []; for (var i = 0; i < s.n; i++) { cmds.push(['m', 60]); cmds.push(['g', s.g]); }
+        var tot = s.n * s.g, cierra = tot % 360 === 0;
+        return { pts: tortuga(cmds), txt: '«mover» y «girar» se ejecutan <b>' + s.n + ' veces</b> cada uno. En total gira ' + s.n + ' × ' + s.g + ' = <b>' + tot + '°</b>: ' +
+          (cierra ? (tot === 360 ? 'una vuelta completa' : tot / 360 + ' vueltas completas') + ', así que la figura se cierra.' : 'no es una vuelta completa, así que la figura no se cierra.') };
+      },
+      q: 'Con 6 repeticiones, ¿qué giro hace falta para que la figura se cierre? ¿Y con 5?',
+      a: '360 ÷ 6 = <b>60°</b> (hexágono) y 360 ÷ 5 = <b>72°</b> (pentágono). Con 5 repeticiones y 144° también se cierra: es una estrella, porque da dos vueltas (5 × 144 = 720).' },
+    { t: 'Un bucle dentro de otro', vars: [{ id: 'r', label: r(SC.control, 'repetir') + ' de fuera (veces)', min: 0, max: DIV360.length - 1, val: 4, fmt: function (i) { return DIV360[i]; } }],
+      prog: function (s) {
+        var R = DIV360[s.r];
+        return b(SC.pen, 'borrar todo') + b(SC.pen, 'bajar lápiz') +
+          c(SC.control, [['repetir ' + v(R), c(SC.control, [['repetir ' + v(4), b(SC.mov, 'mover ' + v(50) + ' pasos') + b(SC.mov, 'girar ↻ ' + v(90) + ' grados'), 1]]) + b(SC.mov, 'girar ↻ ' + v(360 / R) + ' grados'), 0]]);
+      },
+      run: function (s) {
+        var R = DIV360[s.r], cmds = [];
+        for (var i = 0; i < R; i++) { for (var j = 0; j < 4; j++) { cmds.push(['m', 50]); cmds.push(['g', 90]); } cmds.push(['g', 360 / R]); }
+        return { pts: tortuga(cmds), txt: 'Dibuja <b>' + R + ' cuadrados</b>. El bucle de dentro se ejecuta entero en cada vuelta del de fuera: «mover» se ejecuta ' + R + ' × 4 = <b>' + (R * 4) + ' veces</b>. El último giro, ' + (360 / R) + '°, reparte los cuadrados en una vuelta: ' + R + ' × ' + (360 / R) + ' = 360.' };
+      },
+      q: 'Con 8 repeticiones fuera, ¿cuántas veces se ejecuta «mover»? ¿Y cuántos bloques tendría el programa sin bucles?',
+      a: '8 × 4 = <b>32 veces</b>. Sin bucles habría que escribir 32 «mover», 32 «girar 90» y 8 «girar 45»: <b>72 bloques</b> en lugar de 6.' },
+    { t: 'Repetir hasta que', trace: true, vars: [{ id: 'a', label: 'Empieza en', min: 0, max: 5, val: 0 }, { id: 's', label: r(SC.vars, 'sumar a pasos'), min: 1, max: 5, val: 3 }, { id: 'l', label: 'Hasta que pasos &gt;', min: 10, max: 30, val: 20 }],
+      prog: function (s) {
+        return b(SC.vars, 'dar a ' + r(SC.vars, 'pasos') + ' el valor ' + v(s.a)) +
+          c(SC.control, [['repetir hasta que ' + r(SC.op, r(SC.vars, 'pasos') + ' &gt; ' + v(s.l)), b(SC.vars, 'sumar a ' + r(SC.vars, 'pasos') + ' ' + v(s.s)), 0]]) +
+          b(SC.looks, 'decir ' + r(SC.vars, 'pasos'));
+      },
+      run: function (s) {
+        var p = s.a, rows = [], k = 0;
+        while (!(p > s.l) && k < 100) { k++; rows.push([k, p, p + s.s]); p += s.s; }
+        var t = '<table class="rp-trace"><tr><th>Vuelta</th><th>pasos al empezar</th><th>pasos al terminar</th></tr>' +
+          rows.map(function (x) { return '<tr><td>' + x[0] + '</td><td>' + x[1] + '</td><td>' + x[2] + '</td></tr>'; }).join('') + '</table>';
+        return { html: t, txt: 'Da <b>' + k + (k === 1 ? ' vuelta' : ' vueltas') + '</b> y dice <b>' + p + '</b>. Antes de cada vuelta mira la condición: cuando pasos ya es mayor que ' + s.l + ', para.' };
+      },
+      q: 'Si pasos ya empieza siendo mayor que el límite, ¿cuántas vueltas da?',
+      a: '<b>Ninguna</b>: «repetir hasta que» mira la condición <b>antes</b> de cada vuelta. Si ya se cumple al principio, no entra.' }
+  ];
+  function repasoBucles(root) {
+    return marco(root, BU, function (n, left, right) {
+      var s = {}, prog = h('div', { class: 'rp-prog' }), out = h('div', { class: 'rp-out' }), txt = h('p', { class: 'pj-status' });
+      n.vars.forEach(function (x) { s[x.id] = x.val; });
+      function pinta() { prog.innerHTML = n.prog(s); }
+      function oculta() { pinta(); out.innerHTML = '<p class="rp-wait">' + (n.trace ? '¿Cuántas vueltas dará? ¿Qué número dirá?' : '¿Qué dibujará? ¿Cuántas veces se ejecuta cada bloque?') + '</p>'; setStatus(txt, '', ''); }
+      left.appendChild(h('h4', { text: 'Así se escribe en Scratch' }));
+      left.appendChild(prog);
+      var ctl = h('div', { class: 'rp-ctls' });
+      n.vars.forEach(function (x) {
+        var d = deslizador(x, function () { s[x.id] = x.val; if (x.fmt) d.querySelector('.rp-val').textContent = String(x.fmt(x.val)); oculta(); });
+        if (x.fmt) d.querySelector('.rp-val').textContent = String(x.fmt(x.val));
+        ctl.appendChild(d);
+      });
+      left.appendChild(ctl);
+      right.appendChild(h('h4', { text: 'Qué pasa' }));
+      right.appendChild(out); right.appendChild(txt);
+      right.appendChild(h('div', { class: 'pj-row' }, [btn('Ejecutar', function () {
+        var res = n.run(s); out.innerHTML = res.html || dibujo(res.pts); setStatus(txt, 'good'); txt.innerHTML = res.txt;
+      }, 'go')]));
+      pensar(right, n.q, n.a);
+      oculta();
+    });
+  }
+
+  /* ================================================================ 3. Robot en la cuadrícula: algoritmos con coordenadas */
+  // Programas: 'F' avanzar, 'R' girar derecha, 'L' girar izquierda, { rep: n, body: [...] }
+  var DV = { N: [0, 1], E: [1, 0], S: [0, -1], O: [-1, 0] }, ORD = ['N', 'E', 'S', 'O'];
+  var DNOM = { N: 'hacia arriba', E: 'hacia la derecha', S: 'hacia abajo', O: 'hacia la izquierda' };
+  function rep(n, body) { return { rep: n, body: body }; }
+  var RETOS = [
+    { t: '¿Dónde acaba? 1', tipo: 'fin', start: [0, 0, 'N'], prog: [rep(3, ['F']), 'R', rep(2, ['F'])] },
+    { t: '¿Dónde acaba? 2', tipo: 'fin', start: [1, 1, 'E'], prog: [rep(4, ['F', 'F', 'L'])] },
+    { t: '¿Dónde acaba? 3', tipo: 'fin', start: [0, 0, 'N'], prog: [rep(2, ['F', 'R', 'F', 'L'])] },
+    { t: '¿Dónde acaba? 4', tipo: 'fin', start: [0, 0, 'E'], prog: [rep(2, [rep(3, ['F']), 'L'])] },
+    { t: 'Cazabichos 1', tipo: 'bicho', start: [0, 0, 'N'], goal: [3, 2], prog: [rep(2, ['F']), 'L', rep(3, ['F'])], bug: '3', fix: [rep(2, ['F']), 'R', rep(3, ['F'])],
+      why: 'Hay que girar a la <b>derecha</b>: mirando hacia arriba, la meta está a la derecha. Con «girar a la izquierda» se sale del tablero.' },
+    { t: 'Cazabichos 2', tipo: 'bicho', start: [0, 0, 'E'], goal: [2, 4], prog: [rep(2, ['F']), 'L', rep(3, ['F'])], bug: '4', fix: [rep(2, ['F']), 'L', rep(4, ['F'])],
+      why: 'Para subir de y = 0 a y = 4 hacen falta <b>4</b> pasos: el segundo bucle tiene que ser «repetir 4 veces».' },
+    { t: 'Cazabichos 3', tipo: 'bicho', start: [1, 1, 'N'], goal: [1, 1], goalDir: 'N', prog: [rep(3, ['F', 'F', 'R'])], bug: '1', fix: [rep(4, ['F', 'F', 'R'])],
+      why: 'Queremos un cuadrado de lado 2 y volver al punto de partida mirando hacia arriba. Un cuadrado tiene <b>4</b> lados: «repetir 4 veces».' }
+  ];
+  function lineas(prog) {  // [{id, txt, nivel, ins}] en el orden en que se ven
+    var out = [], k = 0;
+    (function walk(list, lvl) {
+      list.forEach(function (it) {
+        k++;
+        if (typeof it === 'string') out.push({ id: String(k), lvl: lvl, ins: it });
+        else { out.push({ id: String(k), lvl: lvl, rep: it.rep }); walk(it.body, lvl + 1); }
+      });
+    })(prog, 0);
+    return out;
+  }
+  function ejecuta(prog, start, n) {  // pasos [{x, y, d, id, choca}]
+    var x = start[0], y = start[1], d = start[2], steps = [{ x: x, y: y, d: d, id: null }], k = 0, choca = false;
+    (function walk(list) {
+      list.forEach(function (it) {
+        k++; var id = String(k);
+        if (choca) return;
+        if (typeof it === 'string') {
+          if (it === 'F') { x += DV[d][0]; y += DV[d][1]; if (x < 0 || y < 0 || x >= n || y >= n) choca = true; }
+          else d = ORD[(ORD.indexOf(d) + (it === 'R' ? 1 : 3)) % 4];
+          steps.push({ x: x, y: y, d: d, id: id, choca: choca });
+        } else {
+          var base = k;
+          for (var i = 0; i < it.rep && !choca; i++) { k = base; walk(it.body); }
+          if (!it.rep) { k = base; }
+          k = base + cuenta(it.body);
+        }
+      });
+    })(prog);
+    return steps;
+  }
+  function cuenta(list) { return list.reduce(function (a, it) { return a + 1 + (typeof it === 'string' ? 0 : cuenta(it.body)); }, 0); }
+  function nombre(l) { return l.rep ? 'repetir ' + v(l.rep) + ' veces' : l.ins === 'F' ? 'avanzar una casilla' : l.ins === 'R' ? 'girar 90° a la derecha' : 'girar 90° a la izquierda'; }
+  function pos(p) { return '(' + p[0] + ', ' + p[1] + ')'; }
+  function repasoRobot(root) {
+    var N = 6;
+    return marco(root, RETOS, function (rt, left, right) {
+      var svg = document.createElementNS(NS, 'svg'), txt = h('p', { class: 'pj-status' }), sel = null, timer = null;
+      svg.setAttribute('class', 'rp-grid');
+      var S = 64, ML = 40, MT = 12, MB = 34, W = ML + N * S + 26, H = MT + N * S + MB;
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      function cx(x) { return ML + x * S + S / 2; }
+      function cy(y) { return MT + (N - 1 - y) * S + S / 2; }
+      function robot(p, choca) {
+        var ang = { N: 0, E: 90, S: 180, O: 270 }[p.d];
+        return '<g transform="translate(' + cx(p.x) + ' ' + cy(p.y) + ') rotate(' + ang + ')"><rect x="-22" y="-22" width="44" height="44" rx="10" fill="' + (choca ? '#cf3f36' : '#2c5bbf') + '"/><path d="M0 -15 L12 6 L-12 6 Z" fill="#fff"/></g>';
+      }
+      function tablero(steps, upto) {
+        var s = '<rect x="' + ML + '" y="' + MT + '" width="' + (N * S) + '" height="' + (N * S) + '" fill="#f3f6fa"/>';
+        for (var i = 0; i <= N; i++) {
+          s += '<line x1="' + (ML + i * S) + '" y1="' + MT + '" x2="' + (ML + i * S) + '" y2="' + (MT + N * S) + '" stroke="#c9d3df" stroke-width="2"/>';
+          s += '<line x1="' + ML + '" y1="' + (MT + i * S) + '" x2="' + (ML + N * S) + '" y2="' + (MT + i * S) + '" stroke="#c9d3df" stroke-width="2"/>';
+        }
+        for (var k = 0; k < N; k++) {
+          s += '<text x="' + cx(k) + '" y="' + (MT + N * S + 24) + '" text-anchor="middle" font-size="18" font-weight="700" fill="#1a1d24">' + k + '</text>';
+          s += '<text x="' + (ML - 12) + '" y="' + (cy(k) + 6) + '" text-anchor="end" font-size="18" font-weight="700" fill="#1a1d24">' + k + '</text>';
+        }
+        s += '<text x="' + (ML + N * S + 6) + '" y="' + (MT + N * S + 24) + '" font-size="16" font-style="italic" fill="#5f677a">x</text><text x="' + (ML - 26) + '" y="' + (MT + 2) + '" font-size="16" font-style="italic" fill="#5f677a">y</text>';
+        if (rt.goal) s += '<rect x="' + (cx(rt.goal[0]) - 26) + '" y="' + (cy(rt.goal[1]) - 26) + '" width="52" height="52" rx="12" fill="none" stroke="#df7619" stroke-width="5" stroke-dasharray="8 6"/>';
+        if (steps) {
+          var path = steps.slice(0, upto + 1).filter(function (p) { return !p.choca; }).map(function (p, i) { return (i ? 'L' : 'M') + cx(p.x) + ' ' + cy(p.y); }).join('');
+          s += '<path d="' + path + '" fill="none" stroke="#2c5bbf" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".35"/>';
+          var p = steps[Math.min(upto, steps.length - 1)];
+          s += robot(p.choca ? steps[upto - 1] : p, p.choca);
+        } else s += robot({ x: rt.start[0], y: rt.start[1], d: rt.start[2] });
+        svg.innerHTML = s;
+      }
+      var prog = h('div', { class: 'rp-prog rp-robot' });
+      lineas(rt.prog).forEach(function (l) {
+        var e = h('div', { class: 'rp-line' + (l.rep ? ' rep' : ''), style: 'margin-left:' + (l.lvl * 1.6) + 'em', 'data-id': l.id, html: nombre(l) });
+        if (rt.tipo === 'bicho') { e.setAttribute('role', 'button'); e.setAttribute('tabindex', '0'); e.addEventListener('click', function () { sel = l.id; prog.querySelectorAll('.rp-line').forEach(function (x) { x.classList.toggle('sel', x === e); }); }); }
+        prog.appendChild(e);
+      });
+      function anima(p, done) {
+        clearInterval(timer);
+        var steps = ejecuta(p, rt.start, N), i = 0;
+        var still = document.documentElement.classList.contains('pj-still');
+        if (still) { tablero(steps, steps.length - 1); done(steps); return; }
+        tablero(steps, 0);
+        timer = setInterval(function () {
+          i++;
+          prog.querySelectorAll('.rp-line').forEach(function (x) { x.classList.toggle('run', steps[i] && x.getAttribute('data-id') === steps[i].id); });
+          tablero(steps, i);
+          if (i >= steps.length - 1) { clearInterval(timer); prog.querySelectorAll('.rp-line').forEach(function (x) { x.classList.remove('run'); }); done(steps); }
+        }, 420);
+      }
+      var st = rt.start;
+      left.appendChild(h('p', { class: 'pj-info', html: rt.tipo === 'fin'
+        ? 'El robot empieza en <b>' + pos(st) + '</b> mirando <b>' + DNOM[st[2]] + '</b>. ¿En qué casilla acaba y hacia dónde mira?'
+        : 'El robot empieza en <b>' + pos(st) + '</b> mirando <b>' + DNOM[st[2]] + '</b> y tiene que llegar a <b>' + pos(rt.goal) + '</b>' + (rt.goalDir ? ' mirando ' + DNOM[rt.goalDir] : '') + '. El programa tiene <b>un bicho</b>: tocad la línea que falla.' }));
+      left.appendChild(prog);
+      right.appendChild(svg); right.appendChild(txt);
+      var fila = h('div', { class: 'pj-row' });
+      if (rt.tipo === 'fin') {
+        fila.appendChild(btn('Ejecutar el programa', function () {
+          anima(rt.prog, function (steps) {
+            var f = steps[steps.length - 1];
+            setStatus(txt, 'good'); txt.innerHTML = 'Acaba en <b>' + pos([f.x, f.y]) + '</b> mirando <b>' + DNOM[f.d] + '</b>. «avanzar» se ha ejecutado ' + steps.filter(function (p) { return p.id && lineas(rt.prog).some(function (l) { return l.id === p.id && l.ins === 'F'; }); }).length + ' veces.';
+          });
+        }, 'go'));
+      } else {
+        fila.appendChild(btn('Comprobar', function () {
+          if (!sel) { setStatus(txt, '', 'Primero tocad la línea que creéis que falla.'); return; }
+          if (sel === rt.bug) { setStatus(txt, 'good'); txt.innerHTML = '¡Bicho encontrado! ' + rt.why; }
+          else setStatus(txt, 'bad', 'Esa línea está bien. Probad a ejecutar el programa para ver dónde se tuerce.');
+        }, 'go'));
+        fila.appendChild(btn('Ejecutar el programa', function () {
+          anima(rt.prog, function (steps) {
+            var f = steps[steps.length - 1];
+            setStatus(txt, f.choca ? 'bad' : '');
+            txt.innerHTML = f.choca ? 'El robot se sale del tablero.' : 'Acaba en ' + pos([f.x, f.y]) + ' mirando ' + DNOM[f.d] + ', y tenía que llegar a ' + pos(rt.goal) + (rt.goalDir ? ' mirando ' + DNOM[rt.goalDir] : '') + '.';
+          });
+        }));
+        fila.appendChild(btn('Ver el programa arreglado', function () {
+          anima(rt.fix, function (steps) { var f = steps[steps.length - 1]; setStatus(txt, 'good'); txt.innerHTML = 'Arreglado: llega a ' + pos([f.x, f.y]) + ' mirando ' + DNOM[f.d] + '. ' + rt.why; });
+        }));
+      }
+      right.appendChild(fila);
+      tablero(null, 0);
+    });
+  }
+
+  window.PJRepaso = { semaforo: repasoSi, bucles: repasoBucles, cuadricula: repasoRobot };
+  // para comprobarlo desde fuera (pruebas)
+  window.PJRepaso._prueba = { ejecuta: ejecuta, RETOS: RETOS };
 })();
 ;window.PZ_ICON={"tarjeta": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%20width%3D%22100%25%22%20height%3D%22100%25%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2296%22%20height%3D%2296%22%20rx%3D%2214.000000000000002%22%20fill%3D%22%232c5bbf%22/%3E%3Cpath%20d%3D%22M50.0%2080.0V24.0M30.0%2043.0L50.0%2022.0L70.0%2043.0%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%2211.0%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E", "repite": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20x%3D%222%22%20y%3D%222%22%20width%3D%2296%22%20height%3D%2296%22%20rx%3D%2214%22%20fill%3D%22%23f39a2b%22/%3E%3Ctext%20x%3D%2250%22%20y%3D%2240%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2219%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3EREPITE%3C/text%3E%3Ctext%20x%3D%2250%22%20y%3D%2280%22%20font-family%3D%22Arial%2Csans-serif%22%20font-size%3D%2238%22%20font-weight%3D%22700%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3E%C3%973%3C/text%3E%3C/svg%3E", "bloque": "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20120%20100%22%3E%3Cpath%20d%3D%22M10%2014%20Q10%208%2016%208%20L98%208%20Q104%208%20104%2014%20L104%2038%20Q114%2038%20114%2050%20Q114%2062%20104%2062%20L104%2086%20Q104%2092%2098%2092%20L16%2092%20Q10%2092%2010%2086%20L10%2062%20Q20%2062%2020%2050%20Q20%2038%2010%2038%20Z%22%20fill%3D%22%233f8fe6%22%20stroke%3D%22rgba%280%2C0%2C0%2C.25%29%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M57%2074V30M42%2045L57%2028L72%2045%22%20stroke%3D%22%23fff%22%20stroke-width%3D%2210%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E"};</script>
 <script>(function () {

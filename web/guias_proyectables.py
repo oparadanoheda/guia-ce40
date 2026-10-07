@@ -45,6 +45,7 @@ GUIAS = {
         "idea": "Un robot en un tablero (5 × 5, 6 × 6 o 7 × 7) que se programa con tarjetas: **avanza**, **gira a la derecha**, **gira a la izquierda** y **REPITE** (×2, ×3, ×4). "
                 "Hay mapas del tesoro, cazabichos (programas con errores), retos de figuras y un **modo fácil** con flechas de dirección en el que el robot no gira.",
         "contar": [
+            "Repaso 4º-6º: algoritmos en un tablero con coordenadas (x, y). En «¿Dónde acaba?» se predice la casilla final y hacia dónde mira el robot antes de ejecutar; en «Cazabichos» se toca la línea que falla y se comprueba.",
             "Antes de poner tarjetas, alguien señala el camino con el dedo sobre el tablero y la clase lo dice en voz alta.",
             "Ponerse en el lugar del robot: **girar no le mueve de casilla**, solo cambia hacia dónde mira. Ayuda que un alumno gire de pie mirando como el robot.",
             "Ejecutar y, si falla, usar **Paso a paso**: la pregunta es «¿en qué tarjeta empieza a fallar?».",
@@ -120,6 +121,7 @@ GUIAS = {
     "bucles": {
         "idea": "Compara un programa largo con el mismo programa escrito con **REPITE** y cuenta las tarjetas que se ahorran. Con la barra se cambia el número de repeticiones.",
         "contar": [
+            "Repaso 4º-6º: con los bloques de Scratch, cuántas veces se ejecuta cada bloque, cuándo se cierra una figura (repeticiones × giro = 360), un bucle dentro de otro y «repetir hasta que» con su tabla de vueltas.",
             "Leer el programa largo en voz alta. «¿Qué se repite?»",
             "Ver el programa con bucle: el trozo que se repite va **dentro** de REPITE.",
             "Comprobar que los dos hacen **exactamente lo mismo**, y contar las tarjetas de cada uno.",
@@ -142,6 +144,7 @@ GUIAS = {
     "semaforo": {
         "idea": "El semáforo de peatones (el muñeco rojo y el verde) para trabajar reglas **SI… ENTONCES** y, en el otro modo, **SI… SI NO**.",
         "contar": [
+            "Repaso 4º-6º: la clase mueve el valor del sensor o de las variables, predice qué hará el programa y lo comprueba. Se ilumina la rama que se ejecuta. Cinco niveles: si… entonces, si no, tres caminos (si no, si), «y» y «o».",
             "Leer la regla en voz alta.",
             "Pulsar **Luz al azar**: la clase dice qué hace el peatón antes de pulsar **Ver respuesta**.",
             "En modo SI… SI NO: una sola pregunta y dos caminos.",

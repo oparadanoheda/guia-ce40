@@ -437,23 +437,63 @@
     ['pez', 'Pez', { plumas: 0, patas4: 0, agua: 1, vuela: 0, grande: 0 }], ['ballena', 'Ballena', { plumas: 0, patas4: 0, agua: 1, vuela: 0, grande: 1 }],
     ['mariposa', 'Mariposa', { plumas: 0, patas4: 0, agua: 0, vuela: 1, grande: 0 }], ['serpiente', 'Serpiente', { plumas: 0, patas4: 0, agua: 0, vuela: 0, grande: 0 }]];
   function toolAnimals(root) {
-    var secret, alive, asked, grid = h('div', { class: 'pj-animals' }), log = h('ol', { class: 'pj-log' }), msg = h('p', { class: 'pj-status' }), qs = h('div', { class: 'pj-qs' });
+    // Por defecto es la clase la que descarta: tras cada respuesta, se tocan los animales que ya no pueden ser.
+    // Con «Descartar solos» lo hace el ordenador (como antes).
+    var secret, out, asked, answers, auto = false, grid = h('div', { class: 'pj-animals' }), log = h('ol', { class: 'pj-log' }), msg = h('p', { class: 'pj-status' }), qs = h('div', { class: 'pj-qs' });
+    var NOMBRE = { Perro: 'el perro', Caballo: 'el caballo', 'Pájaro': 'el pájaro', Avestruz: 'el avestruz', Pez: 'el pez', Ballena: 'la ballena', Mariposa: 'la mariposa', Serpiente: 'la serpiente' };
+    function fits(a) { return answers.every(function (r) { return !!a[2][r[0]] === r[1]; }); }
+    function alive() { return AN.filter(function (a) { return out.indexOf(a) < 0; }); }
     function start() {
-      secret = AN[rnd(AN.length)]; alive = AN.slice(); asked = 0; log.innerHTML = ''; setStatus(msg, '', 'El ordenador ha pensado un animal. Elegid una pregunta de sí o no.'); draw();
+      secret = AN[rnd(AN.length)]; out = []; asked = 0; answers = []; log.innerHTML = '';
+      setStatus(msg, '', 'El ordenador ha pensado un animal. Elegid una pregunta de sí o no.'); draw();
       qs.innerHTML = ''; AQ.forEach(function (q) { qs.appendChild(btn(q[1], function (e) { ask(q, e.currentTarget); })); });
     }
+    function found() {
+      var v = alive();
+      if (v.length !== 1 || v[0] !== secret) return false;
+      setStatus(msg, 'good', '¡Es ' + NOMBRE[secret[1]] + '! Lo habéis encontrado con ' + asked + ' preguntas. ¿Se podría con menos?');
+      burst(grid.querySelector('.pj-an:not(.out)'));
+      return true;
+    }
     function ask(q, b) {
-      if (alive.length === 1) return;
+      if (alive().length === 1 && alive()[0] === secret) return;
       b.disabled = true; asked++;
       var yes = !!secret[2][q[0]];
-      alive = alive.filter(function (a) { return !!a[2][q[0]] === yes; });
-      log.appendChild(h('li', { html: q[1] + ' <b>' + (yes ? 'SÍ' : 'NO') + '</b> → quedan ' + alive.length }));
+      answers.push([q[0], yes]);
+      if (auto) out = AN.filter(function (a) { return !fits(a); });
+      log.appendChild(h('li', { html: q[1] + ' <b>' + (yes ? 'SÍ' : 'NO') + '</b>' + (auto ? ' → quedan ' + alive().length : '') }));
       draw();
-      if (alive.length === 1) { setStatus(msg, 'good'); burst(grid.querySelector('.pj-an:not(.out)')); }
-      msg.textContent = alive.length === 1 ? '¡Es ' +{ Perro: 'el perro', Caballo: 'el caballo', 'Pájaro': 'el pájaro', Avestruz: 'el avestruz', Pez: 'el pez', Ballena: 'la ballena', Mariposa: 'la mariposa', Serpiente: 'la serpiente' }[alive[0][1]] + '! Lo habéis encontrado con ' + asked + ' preguntas. ¿Se podría con menos?' : 'Quedan ' + alive.length + ' animales. Elegid otra pregunta.';
+      if (auto) { if (!found()) setStatus(msg, '', 'Quedan ' + alive().length + ' animales. Elegid otra pregunta.'); }
+      else setStatus(msg, '', 'La respuesta es ' + (yes ? 'SÍ' : 'NO') + '. Tocad los animales que ya no pueden ser para descartarlos.');
     }
-    function draw() { grid.innerHTML = ''; AN.forEach(function (a) { grid.appendChild(h('div', { class: 'pj-an' + (alive.indexOf(a) < 0 ? ' out' : ''), html: pic(a[0]) + '<span>' + a[1] + '</span>' })); }); }
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [grid]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Preguntas' }), qs, log, msg, btn('Otro animal', start, 'go')])]));
+    function toggle(a) {
+      if (auto) return;
+      var i = out.indexOf(a);
+      if (i < 0) out.push(a); else out.splice(i, 1);
+      draw();
+      if (out.indexOf(secret) >= 0 && alive().length <= 1) setStatus(msg, 'bad', '¡Cuidado! Habéis descartado el animal que era. Pulsad «Comprobar» para ver dónde está el fallo.');
+      else if (!found()) setStatus(msg, '', 'Quedan ' + alive().length + ' animales sin descartar.');
+    }
+    function check() {
+      var wrongOut = out.filter(fits), wrongIn = alive().filter(function (a) { return !fits(a); });
+      draw(wrongOut.concat(wrongIn));
+      if (!wrongOut.length && !wrongIn.length) setStatus(msg, 'good', 'Todo bien descartado. ' + (alive().length > 1 ? 'Quedan ' + alive().length + ': elegid otra pregunta.' : ''));
+      else setStatus(msg, 'bad', (wrongOut.length ? (wrongOut.length === 1 ? 'Habéis descartado 1 que todavía puede ser. ' : 'Habéis descartado ' + wrongOut.length + ' que todavía pueden ser. ') : '') + (wrongIn.length ? (wrongIn.length === 1 ? 'Queda 1 que ya no puede ser. ' : 'Quedan ' + wrongIn.length + ' que ya no pueden ser. ') : '') + 'Están marcados en rojo: repasad las respuestas.');
+    }
+    function draw(bad) {
+      grid.innerHTML = '';
+      AN.forEach(function (a) {
+        var e = h('button', { type: 'button', class: 'pj-an' + (out.indexOf(a) >= 0 ? ' out' : '') + (bad && bad.indexOf(a) >= 0 ? ' bad' : ''),
+          'aria-pressed': String(out.indexOf(a) >= 0), 'aria-label': a[1] + (out.indexOf(a) >= 0 ? ' (descartado)' : ''),
+          html: pic(a[0]) + '<span>' + a[1] + '</span>' });
+        e.addEventListener('click', function () { toggle(a); });
+        grid.appendChild(e);
+      });
+    }
+    var autoChk = h('input', { type: 'checkbox', onchange: function (e) { auto = e.target.checked; if (auto) out = AN.filter(function (a) { return !fits(a); }); draw(); if (!auto || !found()) setStatus(msg, '', auto ? 'El ordenador quita solo los que ya no pueden ser. Quedan ' + alive().length + '.' : 'Ahora descartáis vosotros: tocad los animales que ya no pueden ser.'); } });
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [grid]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Preguntas' }), qs, log, msg,
+      h('div', { class: 'pj-row' }, [btn('Comprobar', check), btn('Otro animal', start, 'go')]),
+      h('label', { class: 'pj-chk' }, [autoChk, ' Descartar solos (el ordenador quita los que ya no pueden ser)'])])]));
     root.appendChild(credit());
     return { load: start };
   }
@@ -1065,17 +1105,29 @@
     circuito: toolCircuit, leds: toolLeds, umbral: toolThreshold, velocidad: toolSpeed, sesgo: toolBias, verdad: toolTruth,
     contrasenas: toolPass, temporizador: toolTimer, cifrado: toolCipher
   };
-  var mounted = {};
+  var mounted = {}, repMounted = {};
   window.PJH = { h: h, btn: btn, shuffle: shuffle, rnd: rnd, arrowSVG: arrowSVG, NS: NS,
     islandSVG: islandSVG, ROBOT_BODY: ROBOT_BODY, svgConfetti: svgConfetti, burst: burst, setStatus: setStatus, replay: replay };
   window.Proyectables = {
     register: function (id, fn) { TOOLS[id] = fn; },
-    isMounted: function (id) { return !!mounted[id]; },
+    isMounted: function (id) { return !!(mounted[id] || repMounted[id]); },
     open: function (id, preset) {
       var page = document.getElementById('p-' + id); if (!page || !TOOLS[id]) return;
       var stage = page.querySelector('.pj-stage-root');
-      if (!mounted[id]) { mounted[id] = TOOLS[id](stage); }
-      try { mounted[id].load(preset); } catch (e) { console.error(e); }
+      // «Repaso 4º-6º» (proyectables5.js): la misma herramienta, adaptada a 4º-6º, en otro hueco de la página
+      var rep = preset === 'repaso' && window.PJRepaso && window.PJRepaso[id];
+      var box = stage.__boxes || (stage.__boxes = {});
+      if (rep) {
+        if (!box.rep) { box.rep = h('div', { class: 'pj-mode' }); stage.appendChild(box.rep); repMounted[id] = window.PJRepaso[id](box.rep); }
+        if (box.main) box.main.hidden = true;
+        box.rep.hidden = false;
+        try { repMounted[id].load(); } catch (e) { console.error(e); }
+      } else {
+        if (!box.main) { box.main = h('div', { class: 'pj-mode' }); stage.insertBefore(box.main, stage.firstChild); mounted[id] = TOOLS[id](box.main); }
+        if (box.rep) box.rep.hidden = true;
+        box.main.hidden = false;
+        try { mounted[id].load(preset); } catch (e) { console.error(e); }
+      }
       var chips = page.querySelectorAll('.rindex-chip');
       Array.prototype.forEach.call(chips, function (c, i) {
         var hp = c.getAttribute('href').split('.')[1] || '';

@@ -659,6 +659,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 Ver el apartado 6 del documento general. En 4º, además:
 
+- **Repaso de conceptos de cursos anteriores** (en la pizarra, con ejemplos y aspecto de su edad): [[P:semaforo.repaso|Si… entonces]] · [[P:bucles.repaso|Bucles]] · [[P:cuadricula.repaso|Algoritmos en la cuadrícula]]. Sirven para la sesión de diagnóstico del principio de curso y para quien necesite repasar.
 - **Variables (S4 a S6):** el proyectable de variables muestra las cajas con nombre; unas cajas reales con etiqueta y tarjetas con números sirven de apoyo.
 - **Videojuego (S9 a S16):** el diseño en papel (M16) sirve de guion pieza a pieza. **Nada de efectos que parpadeen rápido** (fotosensibilidad).
 - **Playtesting (S14):** los comentarios, siempre con la ficha M17 (dos cosas buenas y una mejora).
