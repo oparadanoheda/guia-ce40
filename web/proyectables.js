@@ -276,7 +276,7 @@
       for (var i = 0; i < total; i++) {
         var p = u[i % u.length];
         if (i === bug) { var o = u.filter(function (x) { return x[0] !== p[0] || x[1] !== p[1]; }); p = o.length ? o[rnd(o.length)] : ['st', 'P']; }
-        var cell = h('button', { type: 'button', class: 'pj-shape' + (i >= show ? ' hid' : '') });
+        var cell = h('button', { type: 'button', class: 'pj-shape' + (i >= show ? ' hid' : ''), 'aria-label': 'Figura ' + (i + 1) + (i >= show ? ' (tapada)' : '') });
         cell.innerHTML = i >= show ? '<span>?</span>' : shapeSVG(p);
         (function (cell, p, i) {
           cell.addEventListener('click', function () {
@@ -1085,7 +1085,7 @@
       var start = 0; for (var k = 0; k < curI; k++) start += P[k][1] * 60;
       var frac = Math.max(0, Math.min(1, 1 - (used - start) / (P[curI][1] * 60)));
       big.style.setProperty('--p', (frac * 100).toFixed(1));
-      big.style.setProperty('--ph', ['#2c5bbf', '#6c44b0', '#2a8f4f', '#df7619', '#cf3f36'][curI]);
+      big.style.setProperty('--ph', ['var(--c5)', 'var(--c6)', 'var(--c3)', 'var(--c2)', 'var(--c1)'][curI]);
       big.innerHTML = '<div class="pj-ring"><div><b>' + m + ':' + (s < 10 ? '0' : '') + s + '</b><span>' + P[curI][0] + '</span></div></div><small>' + P[curI][2] + '</small>';
       phases.innerHTML = P.map(function (p, i) { return '<div class="' + (i === curI ? 'now' : i < curI ? 'done' : '') + '" style="flex:' + p[1] + '"><b>' + p[0] + '</b><small>' + p[1] + ' min</small></div>'; }).join('');
     }

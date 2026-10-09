@@ -86,9 +86,10 @@
     }
     function newTarget() { var n = BEE_MATS[mat].n; do { target = [rnd(n), rnd(n)]; } while (target[0] === 0 && target[1] === n - 1); var M = BEE_MATS[mat]; P.setStatus(msg, '', 'Reto: lleva la abeja a ' + (M.label ? '«' + M.label(target[0], target[1]) + '»' : 'la casilla marcada') + '. Recordad: primero se borra la memoria.'); draw(true); }
     var pad = h('div', { class: 'pj-beepad' }, [
-      h('span'), btn(glyph('F'), function () { press('F'); }, 'arrow'), h('span'),
-      btn(turn('L'), function () { press('L'); }, 'arrow'), btn('GO', go, 'goBee'), btn(turn('R'), function () { press('R'); }, 'arrow'),
-      btn('<b>II</b>', function () { press('P'); }, 'small'), btn(glyph('B'), function () { press('B'); }, 'arrow'), btn('<b>X</b>', function () { if (!busy) { mem = []; reset(); msg.textContent = 'Memoria borrada.'; } }, 'small')]);
+      h('span'), named(btn(glyph('F'), function () { press('F'); }, 'arrow'), 'Avanza'), h('span'),
+      named(btn(turn('L'), function () { press('L'); }, 'arrow'), 'Gira a la izquierda'), btn('GO', go, 'goBee'), named(btn(turn('R'), function () { press('R'); }, 'arrow'), 'Gira a la derecha'),
+      named(btn('<b>II</b>', function () { press('P'); }, 'small'), 'Pausa'), named(btn(glyph('B'), function () { press('B'); }, 'arrow'), 'Retrocede'), named(btn('<b>X</b>', function () { if (!busy) { mem = []; reset(); msg.textContent = 'Memoria borrada.'; } }, 'small'), 'Borrar la memoria')]);
+    function named(e, t) { e.setAttribute('aria-label', t); return e; }
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, msg]),
       h('div', { class: 'pj-col' }, [h('div', { class: 'pj-row' }, [btn('Nuevo reto', newTarget, 'go')]), h('div', { class: 'pj-beebody' }, [pad]), count,
         h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { showMem = e.target.checked; draw(); } }), ' Ver la memoria (para el docente)']), memEl,
@@ -435,7 +436,7 @@
   function toolSimon(root) {
     var PADS = [['F', '#e0443a', 392], ['R', '#2c5bbf', 494], ['B', '#2a8f4f', 587], ['L', '#d99a00', 659]];
     var seq = [], pos = 0, playing = false, pads = h('div', { class: 'pj-simon' }), msg = h('p', { class: 'pj-status' }), lvl = h('p', { class: 'pj-big' }), cardsRow = h('div', { class: 'pj-ltoks' }), showCards = false;
-    var els = PADS.map(function (p, i) { var b = h('button', { type: 'button', class: 'pj-pad', style: 'background:' + p[1], html: glyph(p[0]) }); b.addEventListener('click', function () { press(i); }); pads.appendChild(b); return b; });
+    var els = PADS.map(function (p, i) { var b = h('button', { type: 'button', class: 'pj-pad', style: 'background:' + p[1], html: glyph(p[0]), 'aria-label': ['Rojo', 'Azul', 'Verde', 'Amarillo'][i] }); b.addEventListener('click', function () { press(i); }); pads.appendChild(b); return b; });
     function flash(i) { els[i].classList.add('lit'); tone(PADS[i][2], .35); return wait(420).then(function () { els[i].classList.remove('lit'); return wait(150); }); }
     async function play() { playing = true; msg.textContent = 'Mirad y escuchad…'; for (var i = 0; i < seq.length; i++) await flash(seq[i]); playing = false; pos = 0; msg.textContent = 'Ahora, ¡repetid la secuencia!'; draw(); }
     function draw() { lvl.innerHTML = 'Longitud de la secuencia: <b>' + seq.length + '</b>'; cardsRow.innerHTML = showCards ? seq.map(function (s) { return '<span class="tk" style="color:' + PADS[s][1] + '">' + glyph(PADS[s][0]) + '</span>'; }).join('') : ''; }
@@ -501,7 +502,7 @@
       board.innerHTML = ''; board.style.gridTemplateColumns = 'repeat(' + (n + 1) + ', 1fr)';
       for (var y = 0; y <= n; y++) for (var x = 0; x <= n; x++) (function (x, y) {
         var extra = (x === n || y === n);
-        var b = h('button', { type: 'button', class: 'pj-pc' + (g[y][x] ? ' blue' : '') + (extra ? ' extra' : '') + (extra && !parity ? ' hidden' : '') });
+        var b = h('button', { type: 'button', class: 'pj-pc' + (g[y][x] ? ' blue' : '') + (extra ? ' extra' : '') + (extra && !parity ? ' hidden' : ''), 'aria-label': 'Carta de la fila ' + (y + 1) + ', columna ' + (x + 1) + ': ' + (g[y][x] ? 'azul' : 'blanca') });
         b.addEventListener('click', function () { if (extra && !parity) return; g[y][x] = 1 - g[y][x]; flipped = [x, y]; draw(); });
         board.appendChild(b);
       })(x, y);

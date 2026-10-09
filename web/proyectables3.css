@@ -46,12 +46,13 @@
 .pj-train span{width:96px;background:#fff;border-radius:10px;padding:6px;border:3px solid transparent;color:#1a1d24}
 .pj-train span.yes{border-color:#2a8f4f}.pj-train span.no{border-color:#cf3f36}
 .pj-train span .pic{width:70px}
-.pj-train small{font:600 .7rem var(--sans)}
+.pj-train small{font:600 .7rem var(--sans);color:#5d6474}
 .pj-learned{font:500 1.15rem/1.4 var(--sans);margin:4px 0;padding:10px 14px;background:#fff8e6;border-left:5px solid #df7619;border-radius:6px;color:#1a1d24}
 .pj-status .bad,.pj-status .no,b.no{color:#cf3f36}
 b.yes{color:#2a8f4f}
 /* tarjetas verdad/fantasía */
 .pj-truth{background:#fff;color:#1a1d24}
+.pj-truth small{color:#5d6474}
 .pj-truth .pj-do .pic{width:clamp(120px,16vw,200px)}
 .pj-kind{display:flex;flex-direction:column;align-items:center;gap:4px;color:#2c5bbf}
 .pj-kind svg{width:90px;height:90px}
@@ -95,5 +96,5 @@ svg.glyph{width:100%;height:100%;display:block}
 .pj-mini.now{outline:4px solid #f5c518;outline-offset:2px;border-radius:12px;transform:scale(1.12);transition:transform .15s;z-index:1;position:relative}
 .pj-status.pj-good{background:#e7f6ec;color:#17602f;border-left:6px solid #2a8f4f;padding:.6rem .9rem;border-radius:.5rem;font-weight:600}
 .pj-status.pj-bad{background:#fdecea;color:#8f2a22;border-left:6px solid #cf3f36;padding:.6rem .9rem;border-radius:.5rem;font-weight:600}
-#p-cuadricula .pj-two{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}
+@media (min-width:901px){#p-cuadricula .pj-two{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}}
 #p-cuadricula .pj-grid{max-width:680px;border-radius:18px;box-shadow:0 8px 24px rgba(20,40,80,.18)}

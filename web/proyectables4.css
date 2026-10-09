@@ -19,7 +19,7 @@
 .pj-grid .pj-bot-rot{transition:transform .42s ease-in-out}
 .pj-grid .pj-flag{transform-box:fill-box;transform-origin:left center;animation:pjflag 1.6s ease-in-out infinite}
 @keyframes pjflag{50%{transform:skewY(-8deg) scaleX(.9)}}
-#p-beebot .pj-two,#p-laberinto .pj-two{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}
+@media (min-width:901px){#p-beebot .pj-two,#p-laberinto .pj-two{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)}}
 #p-beebot .pj-grid,#p-laberinto .pj-grid{max-width:640px;border-radius:18px;box-shadow:0 8px 24px rgba(20,40,80,.18)}
 
 /* ---- hundir la flota: mar ---- */
@@ -268,7 +268,7 @@ button.rp-term{cursor:pointer;border-color:var(--rule);background:var(--sheet)}
 .vr-ed{align-items:center}
 .vr-cajas{display:flex;gap:16px;flex-wrap:wrap}
 .vr-caja{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:150px;padding:12px 18px 16px;border:4px solid #FF8C1A;border-top-width:14px;border-radius:6px 6px 16px 16px;background:#fff8f0}
-.vr-nom{font:800 1.05rem var(--sans);color:#fff;background:#e67a0c;padding:3px 12px;border-radius:6px;margin-top:-26px}
+.vr-nom{font:800 1.05rem var(--sans);color:#fff;background:#b65c06;padding:3px 12px;border-radius:6px;margin-top:-26px}
 .vr-val{font:800 4.2rem/1 var(--sans);color:#1a1d24}
 .vr-val.nuevo{animation:vrnuevo .6s ease-out}
 .vr-val.suma{animation:vrsuma .6s ease-out}
@@ -292,7 +292,7 @@ button.rp-term{cursor:pointer;border-color:var(--rule);background:var(--sheet)}
 .co-stage{display:block;width:100%;max-width:660px;height:auto;cursor:crosshair;touch-action:none;border-radius:8px}
 .co-read{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;font:600 1.1rem var(--sans)}
 .co-read span{min-width:5.5em;color:var(--muted);font-weight:600}
-.co-read b{color:#4C97FF}
+.co-read b{color:var(--pc)}
 .co-read i{font:800 1.8rem var(--sans);font-style:normal;min-width:2.6em;display:inline-block;color:var(--ink)}
 .co-panel{display:flex;flex-direction:column;align-items:flex-start;gap:8px;width:100%}
 .co-pred{width:5.2em;border:2px solid var(--rule)}

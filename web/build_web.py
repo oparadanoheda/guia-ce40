@@ -75,6 +75,8 @@ ICON = {
 }
 
 PLAY_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5.5 3.5-5.5 3.5z"/></svg>'
+# La bandera verde de Scratch («al hacer clic en 🏴» en los .md) se dibuja: la guía no usa emojis.
+FLAG = '<svg class="gflag" viewBox="0 0 16 16" role="img" aria-label="bandera verde"><path d="M3.2 1.6v12.8" stroke="#3d8a37" stroke-width="1.7" stroke-linecap="round"/><path d="M4 2.6c2.1-1.2 3.9.8 6 0 1-.4 1.9-.7 2.8-.5v6.4c-.9-.2-1.8.1-2.8.5-2.1.8-3.9-1.2-6 0z" fill="#4cbf56" stroke="#3d8a37" stroke-width=".9" stroke-linejoin="round"/></svg>'
 PJ_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>'
 RUBRIC = "rubrica"
 
@@ -297,9 +299,10 @@ def parse_course(cid, fname, cycle):
             if line and c["keys"]:
                 c["keys"][-1] = (c["keys"][-1][0], c["keys"][-1][1] + " " + line)
             continue
-        pairs = re.findall(r"\*\*(.+?):\*\*\s*([^·*]+(?:\*[^*][^·]*)?)", line)
         if line.startswith("**Frecuencia"):
-            c["facts"] = [(a.strip(), b.strip()) for a, b in pairs]
+            # «**Frecuencia:** … · **Núcleo:** …»: se parte solo por los « · » que van antes de una etiqueta en negrita
+            parts_ = re.split(r"\s+·\s+(?=\*\*[^*]+:\*\*)", line)
+            c["facts"] = [(m.group(1).strip(), m.group(2).strip()) for m in (re.match(r"\*\*(.+?):\*\*\s*(.*)", x) for x in parts_) if m]
         else:
             mm = re.match(r"\*\*(.+?):\*\*\s*(.*)", line)
             if mm:
@@ -364,7 +367,7 @@ def render_sections(s):
         sec = secs[0]
         head = "Desarrollo de la sesión" if sec["kind"] == "dev" else f'{sec["label"].replace("Opción", "Propuesta")}'
         name = f' <span>· {E(sec["name"])}</span>' if sec["name"] else ""
-        return (f'<div class="props single"><h3 class="p-h">{head}{name}</h3>'
+        return (f'<div class="props single"><h2 class="p-h">{head}{name}</h2>'
                 f'<div class="p-body">{md(chr(10).join(p for p in sec["md"]))}</div></div>')
     def short(sec):
         return ("la principal" if sec["kind"] == "dev" else sec["label"].replace("Opción ", "")) + (f' «{sec["name"]}»' if sec["name"] else "")
@@ -377,11 +380,11 @@ def render_sections(s):
                     f'<span class="p-letter">{E(letter)}</span><span class="p-tl"><small>{E(label)}</small>{E(sec["name"] or "")}</span></button>')
         others = [short(x) for j, x in enumerate(secs) if j != i]
         others = ", ".join(others[:-1]) + " y " + others[-1] if len(others) > 1 else others[0]
-        printed = (f'<h3 class="p-print">{E(label)}{" · " + E(sec["name"]) if sec["name"] else ""}</h3>'
+        printed = (f'<h2 class="p-print">{E(label)}{" · " + E(sec["name"]) if sec["name"] else ""}</h2>'
                    f'<p class="p-print p-print-o">Otras propuestas en la guía: {E(others)}.</p>')
         panels.append(f'<div class="p-body" role="tabpanel" id="{pid}" aria-labelledby="{pid}-t"{"" if i == 0 else " hidden"}>'
                       f'{printed}{md(chr(10) + chr(10).join(sec["md"]))}</div>')
-    return (f'<div class="props"><h3 class="p-h">Propuestas de actividad <span>· elige una</span></h3>'
+    return (f'<div class="props"><h2 class="p-h">Propuestas de actividad <span>· elige una</span></h2>'
             f'<div class="p-tabs" role="tablist" aria-label="Propuestas de actividad">{"".join(tabs)}</div>{"".join(panels)}</div>')
 
 
@@ -521,10 +524,10 @@ def render_session(c, s, prev, nxt, idx):
     if s.get("fast") or s["hard"]:
         cols = ""
         if s.get("fast"):
-            cols += f'<div class="div-box up"><h4>{ICON["up"]} Para ampliar</h4>{md(cap(s["fast"]))}</div>'
+            cols += f'<div class="div-box up"><h3>{ICON["up"]} Para ampliar</h3>{md(cap(s["fast"]))}</div>'
         if s["hard"]:
-            cols += f'<div class="div-box down"><h4>{ICON["down"]} Para simplificar</h4>{md(chr(10) + chr(10).join(cap(h) for h in s["hard"]))}</div>'
-        main.append(f'<section class="diversity" aria-label="Atención a la diversidad"><h3 class="mini">Atención a la diversidad</h3><div class="div-grid">{cols}</div></section>')
+            cols += f'<div class="div-box down"><h3>{ICON["down"]} Para simplificar</h3>{md(chr(10) + chr(10).join(cap(h) for h in s["hard"]))}</div>'
+        main.append(f'<section class="diversity" aria-label="Atención a la diversidad"><h2 class="mini">Atención a la diversidad</h2><div class="div-grid">{cols}</div></section>')
     if s.get("product") or s.get("self"):
         body = ""
         if s.get("product"):
@@ -533,40 +536,40 @@ def render_session(c, s, prev, nxt, idx):
             body += f'<p>{inline(s["self"])}</p>'
         m28 = f' · <a href="materiales/{MAT_INDEX["M28"][2]}.pdf" target="_blank" rel="noopener">Retos del trimestre (M28)</a>' if "M28" in MAT_INDEX else ""
         body += f'<p class="small"><a href="#{RUBRIC}">Ver la rúbrica y los niveles de logro</a>{m28}</p>'
-        main.append(f'<aside class="eval">{ICON["flag"]}<div><h4>Evaluación del trimestre</h4>{body}</div></aside>')
+        main.append(f'<div class="eval">{ICON["flag"]}<div><h3>Evaluación del trimestre</h3>{body}</div></div>')
     if s["notes"]:
         items = "".join(f'<li>{"<strong>" + E(l) + ":</strong> " if l else ""}{inline(cap(tx))}</li>' for l, tx in s["notes"])
-        main.append(f'<aside class="notes">{ICON["note"]}<div><h4>A tener en cuenta</h4><ul>{items}</ul></div></aside>')
+        main.append(f'<div class="notes">{ICON["note"]}<div><h3>A tener en cuenta</h3><ul>{items}</ul></div></div>')
 
     side = []
     vids = BY_SESSION.get(s["id"], [])
     if s.get("proj") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids:
         use = ""
         if vids:
-            use += f'<h5>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h5><p>' + "".join(
+            use += f'<h4>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h4><p>' + "".join(
                 f'<a class="vlink" href="#v-{v[0]}">{PLAY_ICON}{E(v[2])}</a> ' for v in vids).strip() + '</p>'
         if s.get("proj"):
-            use += f'<h5>Para proyectar</h5><p>{inline(s["proj"])}</p>'
+            use += f'<h4>Para proyectar</h4><p>{inline(s["proj"])}</p>'
         if s.get("mat"):
-            use += f'<h5>Material listo para imprimir</h5><p>{inline(s["mat"])}</p>'
+            use += f'<h4>Material listo para imprimir</h4><p>{inline(s["mat"])}</p>'
         if s.get("sb3"):
-            use += f'<h5>Archivos de Scratch</h5><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Load from your computer (esa opción sale en inglés).</p>'
+            use += f'<h4>Archivos de Scratch</h4><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Load from your computer (esa opción sale en inglés).</p>'
         if s.get("mkcd"):
-            use += (f'<h5>Archivos de MakeCode</h5><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
+            use += (f'<h4>Archivos de MakeCode</h4><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
                     f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
         use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
-        side.append(f'<div class="card use"><h4>{ICON["prep"]} Para usar en esta sesión</h4>{use}</div>')
+        side.append(f'<div class="card use"><h3>{ICON["prep"]} Para usar en esta sesión</h3>{use}</div>')
     if s.get("prep"):
-        side.append(f'<div class="card"><h4>{ICON["note"]} Antes de la sesión</h4>{md(cap(s["prep"]))}</div>')
+        side.append(f'<div class="card"><h3>{ICON["note"]} Antes de la sesión</h3>{md(cap(s["prep"]))}</div>')
     if s.get("seg"):
         extra = f' <small>({E(s["seg_extra"])})</small>' if s.get("seg_extra") else ""
-        side.append(f'<div class="card"><h4>{ICON["shield"]} Minuto de uso responsable{extra}</h4>{md(cap(s["seg"]))}</div>')
+        side.append(f'<div class="card"><h3>{ICON["shield"]} Minuto de uso responsable{extra}</h3>{md(cap(s["seg"]))}</div>')
     if s.get("math"):
-        side.append(f'<div class="card"><h4>{ICON["ruler"]} Matemáticas</h4>{md(cap(s["math"]))}</div>')
+        side.append(f'<div class="card"><h3>{ICON["ruler"]} Matemáticas</h3>{md(cap(s["math"]))}</div>')
     res = session_resources(s)
     if res:
         lis = "".join(f'<li><a href="{u}"{" target=_blank rel=noopener" if ext else ""}>{E(tl)}{ICON["ext"] if ext else ""}</a></li>' for tl, u, ext in res)
-        side.append(f'<div class="card res"><h4>{ICON["link"]} Recursos</h4><ul>{lis}</ul></div>')
+        side.append(f'<div class="card res"><h3>{ICON["link"]} Recursos</h3><ul>{lis}</ul></div>')
     if tag_legend:
         pass  # la leyenda de bloques repetía las etiquetas de la cabecera
 
@@ -586,7 +589,7 @@ def render_session(c, s, prev, nxt, idx):
 </header>
 <script type="application/json" class="pz-data">{projection_data(c, s, quin, prev)}</script>
 
-<div class="f-grid"><div class="f-main">{"".join(main)}</div><aside class="f-side">{"".join(side)}</aside></div>
+<div class="f-grid"><div class="f-main">{"".join(main)}</div><div class="f-side">{"".join(side)}</div></div>
 {pager}
 </div></section>'''
 
@@ -594,7 +597,7 @@ def render_session(c, s, prev, nxt, idx):
 
 
 def render_course(c):
-    facts = "".join(f'<div><dt>{E(a)}</dt><dd>{E(b)}</dd></div>' for a, b in c["facts"])
+    facts = "".join(f'<div><dt>{E(a)}</dt><dd>{inline(b)}</dd></div>' for a, b in c["facts"])
     facts += f'<div><dt>Herramientas</dt><dd>{E(COURSE_TOOLS[c["id"]])}</dd></div>'
     keys = "".join(f'<div class="krow"><dt>{E(a)}</dt><dd>{inline(cap(b))}</dd></div>' for a, b in c["keys"])
 
@@ -769,7 +772,7 @@ def method_page(secs):
     qh = "".join(f'<blockquote>{E(q)}</blockquote>' for q in qs)
     tools = "".join(f'<li style="--c:var(--{cid})"><b>{cid[1]}º</b>{E(t)}</li>' for cid, t in COURSE_TOOLS.items())
     joker = re.findall(r"^- \*\*(.+?):\*\*", secs[10][1], flags=re.M)
-    jk = "".join(f"<li>{E(j)}</li>" for j in joker)
+    jk = "".join(f"<li>{post(inline(j))}</li>" for j in joker)
     details = "".join([
         more("Rúbrica completa y autoevaluación", md(secs[9][1]), "rubrica"),
         more("Minuto de uso responsable: banco de frases", md(subsec(s5, "Minuto de uso responsable"))),
@@ -830,7 +833,7 @@ def evolution_page():
                 else:
                     cols.append(f'<div class="tl-c{sep}"></div>')
         rows.append(f'<div class="tl-row"><div class="tl-label"><i class="dot k-{key}"></i>{E(name)}</div>{"".join(cols)}</div>')
-    timeline = f'<div class="scroll"><div class="tl">{head}{sub}{"".join(rows)}</div></div>'
+    timeline = f'<div class="scroll" tabindex="0" role="region" aria-label="Línea de tiempo de la etapa"><div class="tl">{head}{sub}{"".join(rows)}</div></div>'
 
     def pips(l):
         return '<span class="pips">' + "".join('<i class="pip on"></i>' if i < l else '<i class="pip"></i>' for i in range(3)) + "</span>"
@@ -840,9 +843,9 @@ def evolution_page():
         tds = "".join('<td class="lv0"><span class="none">—</span></td>' if l == 0 else
                       f'<td class="lv{l}" title="{LEVEL_NAMES[l]}">{pips(l)}{E(tx)}</td>' for l, tx in cells)
         trs.append(f'<tr><th class="sticky" scope="row">{tag(tg.upper())}<span>{E(name)}</span></th>{tds}</tr>')
-    grid = f'<div class="scroll"><table class="prog"><thead>{thead}</thead><tbody>{"".join(trs)}</tbody></table></div>'
+    grid = f'<div class="scroll" tabindex="0" role="region" aria-label="Progresión por bloques"><table class="prog"><thead>{thead}</thead><tbody>{"".join(trs)}</tbody></table></div>'
     legend = '<div class="legend">' + "".join(f'<span>{pips(l)}{LEVEL_NAMES[l]}</span>' for l in (1, 2, 3)) + '<span><span class="none">—</span> No se trabaja</span></div>'
-    prod = ('<div class="scroll"><table class="prod"><thead><tr><th>Curso</th><th>1er trimestre</th><th>2º trimestre</th><th>3er trimestre</th></tr></thead><tbody>'
+    prod = ('<div class="scroll" tabindex="0" role="region" aria-label="Productos de cada trimestre"><table class="prod"><thead><tr><th>Curso</th><th>1er trimestre</th><th>2º trimestre</th><th>3er trimestre</th></tr></thead><tbody>'
             + "".join(f'<tr style="--c:var(--c{i + 1})"><th scope="row"><span class="cn">{c}</span></th><td>{E(a)}</td><td>{E(b)}</td><td>{E(d)}</td></tr>' for i, (c, a, b, d) in enumerate(PRODUCTS))
             + "</tbody></table></div>")
     return f'''<section class="page" id="etapa" hidden><div class="sheet">
@@ -974,7 +977,7 @@ def build():
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>{CSS}</style>
 <div class="topbar"><button type="button" class="menu-btn" aria-controls="side" aria-expanded="false">{ICON["menu"]}<span>Índice</span></button><a href="#inicio" class="tb-title">Código Escuela 4.0 · Guía didáctica</a></div>
-<div class="shell">{side}<main id="main">{"".join(pages)}</main></div>
+<div class="shell">{side}<main id="main">{"".join(pages).replace("🏴", FLAG)}</main></div>
 <script>{PJS};window.PZ_ICON={json.dumps(pz_icons())};</script>
 <script>{JS}</script>'''
     OUT.write_text(page, encoding="utf-8")

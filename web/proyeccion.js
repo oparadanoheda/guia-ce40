@@ -254,6 +254,9 @@
       li.classList.toggle('now', i === S.step);
       li.classList.toggle('done', i < S.step);
     });
+    // si la misión no cabe en pantallas bajas, el paso actual se desplaza hasta quedar a la vista
+    var nowLi = S.list && S.list.children[S.step];
+    if (nowLi) { var r = nowLi.getBoundingClientRect(), sr = stage.getBoundingClientRect(); if (r.bottom > sr.bottom || r.top < sr.top) nowLi.scrollIntoView({ block: 'nearest' }); }
     // barra de fases: la actual resaltada; dentro, un punto por diapositiva de esa fase
     box.querySelectorAll('.pz-seg').forEach(function (seg, k) {
       seg.classList.toggle('on', k === S.phase);

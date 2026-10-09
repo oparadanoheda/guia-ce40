@@ -564,7 +564,7 @@
   // Los bloques se escriben como en el editor elegido: Scratch (dar a … el valor, sumar a …) o MakeCode (fijar … a, cambiar … por).
   var ED = {
     scratch: { nom: 'Scratch', set: function (v0, x) { return 'dar a ' + r(SC.vars, v0) + ' el valor ' + x; }, chg: function (v0, x) { return 'sumar a ' + r(SC.vars, v0) + ' ' + x; },
-      start: 'al hacer clic en 🏴', rep: function (n) { return 'repetir ' + v(n); }, until: function (c0) { return 'repetir hasta que ' + c0; }, wait: 'esperar ' + v(1) + ' segundos',
+      start: 'al hacer clic en <svg class="gflag" viewBox="0 0 16 16" role="img" aria-label="bandera verde"><path d="M3.2 1.6v12.8" stroke="#3d8a37" stroke-width="1.7" stroke-linecap="round"/><path d="M4 2.6c2.1-1.2 3.9.8 6 0 1-.4 1.9-.7 2.8-.5v6.4c-.9-.2-1.8.1-2.8.5-2.1.8-3.9-1.2-6 0z" fill="#4cbf56" stroke="#3d8a37" stroke-width=".9" stroke-linejoin="round"/></svg>', rep: function (n) { return 'repetir ' + v(n); }, until: function (c0) { return 'repetir hasta que ' + c0; }, wait: 'esperar ' + v(1) + ' segundos',
       say: function (x) { return 'decir ' + x; }, si: function (c0) { return 'si ' + c0 + ' entonces'; }, sino: 'si no', mul: '*', colV: SC.vars, colC: SC.control, colL: SC.looks, colO: SC.op, colE: '#FFBF00' },
     makecode: { nom: 'MakeCode', set: function (v0, x) { return 'fijar ' + r(MK.var, v0) + ' a ' + x; }, chg: function (v0, x) { return 'cambiar ' + r(MK.var, v0) + ' por ' + x; },
       start: 'al iniciar', rep: function (n) { return 'repetir ' + v(n) + ' veces'; }, until: null, wait: 'pausa (ms) ' + v(1000),
