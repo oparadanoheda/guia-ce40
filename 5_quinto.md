@@ -1,4 +1,4 @@
-# 5º de Primaria · "Equipo Maker"
+# 5º de Primaria · «Equipo Maker»
 
 **Frecuencia:** 1 sesión de 45 min **cada dos semanas** · **Núcleo:** 12 sesiones + 4 opcionales
 **Hilo conductor (opcional):** la clase es un equipo de makers que pasa de la pantalla (Scratch) al mundo físico: una placa que siente (micro:bit), un robot que se mueve (Nezha) y objetos diseñados en 3D (Tinkercad).
@@ -8,13 +8,13 @@
 ## Cómo funciona una sesión quincenal
 
 En quince días se olvida casi todo. Tres reglas:
-1. **Tarjeta "Dónde lo dejamos"** (material M18): cada equipo guarda media hoja con qué hizo, qué falta y una foto del montaje (sin caras). Se lee en los 3 primeros minutos.
+1. **Tarjeta «Dónde lo dejamos»** (material M18): cada equipo guarda media hoja con qué hizo, qué falta y una foto del montaje (sin caras). Se lee en los 3 primeros minutos.
 2. **Todo se cierra en la misma sesión.** En los 5 minutos finales se guarda el archivo y se recoge el kit.
 3. **Cada sesión tiene un producto pequeño.** Los proyectos largos se hacen por partes de una sesión.
 
 **Estructura de 45 minutos:** 3' tarjeta · 7' misión y demostración · 25' práctica · 5' compartir · 5' guardar y recoger. El proyectable [[P:temporizador.quincenal|Temporizador]] muestra la fase en la pizarra.
 
-**Material del curso:** M21 chuleta de MakeCode (una por pareja), M18 tarjeta "Dónde lo dejamos", M16 fichas de proyecto, M25 registro de datos, M23 y M24 para IA y redes, M19 rúbrica y M15 pasaporte.
+**Material del curso:** M21 chuleta de MakeCode (una por pareja), M18 tarjeta «Dónde lo dejamos», M16 fichas de proyecto, M25 registro de datos, M23 y M24 para IA y redes, M19 rúbrica y M15 pasaporte.
 
 **Cómo dar micro:bit sin saber micro:bit:** todo se hace primero en el **simulador** de MakeCode (la placa dibujada en la pantalla, a la izquierda), que funciona sin conectar nada. Solo al final se pasa a la placa de verdad. Lee la guía en `07_Guias_rapidas_herramientas.md` (15 minutos) y haz tú los ejemplos de la S2 y la S3 una vez antes de clase. Las sesiones de programar traen su **archivo de MakeCode** con la solución: se abre con *Importar › Importar archivo* y sale ya en bloques.
 
@@ -92,14 +92,14 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 - **Prepara antes:** portátiles con Scratch. Retos escritos en la pizarra.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]] · [[P:laberinto.6|Laberinto de bloques]]
 - **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M18|Tarjeta «Dónde lo dejamos»]] · [[M:M20|Chuleta de Scratch]]
-- **Minuto de uso responsable (7 minutos):** normas del aula maker: los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo; tarjeta "Dónde lo dejamos".
+- **Minuto de uso responsable (7 minutos):** normas del aula maker: los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo; tarjeta «Dónde lo dejamos».
 - **Archivo de Scratch:** [[S:5-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
 
 **Opción A · Reto relámpago (recomendada)**
 Tres niveles en la pizarra. Cada pareja llega hasta donde pueda:
 1. **Bucle:** un personaje que da vueltas por siempre y cambia de disfraz.
 2. **Variable:** que cuente puntos cada vez que haces clic en él.
-3. **Condición:** si llega a 10 puntos, dice "¡Has ganado!"; si no, sigue.
+3. **Condición:** si llega a 10 puntos, dice «¡Has ganado!»; si no, sigue.
 
 **Opción B · Arregla el juego**
 El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pone a 0 al pulsar la bandera; **si puntos < 10 entonces** dice «¡Has ganado!» (está al revés: debería ser **puntos = 10**); y la animación usa **repetir 2** en lugar de **por siempre**.
@@ -114,7 +114,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
     - *Pista:* probad el juego con la bandera dos veces seguidas y jugad hasta el final.
     - *Solución:* `dar a puntos el valor 0` debajo de la bandera; `si puntos = 10 entonces` en lugar de `si puntos < 10 entonces`; `por siempre` en lugar de `repetir 2`.
 
-- **Frase clave:** "Bucle, variable y condición: las tres herramientas del programador."
+- **Frase clave:** «Bucle, variable y condición: las tres herramientas del programador.»
 - **Si va rápido:** el nivel 3 con un si… si no.
 - **Si cuesta:** solo el nivel 1, copiado de la pizarra.
 - **Para ti:** apunta qué parejas llegan al nivel 3; te servirá para hacer grupos equilibrados.
@@ -127,10 +127,10 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
 - **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
-- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
+- **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
-1. Enseña una placa de verdad: "Es un ordenador diminuto. Tiene 25 luces, 2 botones, y sensores: sabe si se mueve, cuánta luz hay y qué temperatura hace".
+1. Enseña una placa de verdad: «Es un ordenador diminuto. Tiene 25 luces, 2 botones, y sensores: sabe si se mueve, cuánta luz hay y qué temperatura hace».
 2. En el display: **Nuevo proyecto**. Explica: los bloques son como los de Scratch; la placa de la izquierda es un **simulador**.
 3. **al iniciar** → **mostrar ícono** (corazón). Se ve en el simulador.
 4. **al presionarse el botón A** → **mostrar número 1**; **al presionarse el botón B** → **mostrar número 2**. Se prueba pulsando A y B en el simulador.
@@ -148,7 +148,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
     - *Pista:* antes de restar hay que preguntar si queda algo que restar.
     - *Solución:* `al presionarse el botón B` → `si contador > 0 entonces` → `cambiar contador por -1`; después, `mostrar número contador`.
 
-- **Frase clave:** "Primero en el simulador, después en la placa."
+- **Frase clave:** «Primero en el simulador, después en la placa.»
 - **Si va rápido:** que el contador baje con el botón B y no pase de 0.
 - **Si cuesta:** llegar hasta el paso 4 (botones A y B) y pasar eso a la placa.
 - **Mates:** conteo, la pantalla como cuadrícula de 5 x 5 (coordenadas).
@@ -160,11 +160,11 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Para proyectar:** [[P:votaciones.clase|Dado de la clase]] · [[P:quiensale|¿Quién sale?]]
 - **Material listo:** [[M:M25|Frecuencias del dado]] (hoja 2) · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S3-dado.mkcd|El dado · solución]] · [[S:5-S3-contador-de-pasos.mkcd|Contador de pasos · solución]]
-- **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
+- **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · El dado (recomendada)**
 1. **si agitar** → **mostrar número (escoger al azar de 1 a 6)**.
-2. En el simulador se agita con el botón "SHAKE" (o moviendo el ratón rápido sobre la placa).
+2. En el simulador se agita con el botón «SHAKE» (o moviendo el ratón rápido sobre la placa).
 3. Mejora: que antes de enseñar el número salga una animación (dos o tres iconos seguidos).
 4. Pásalo a la placa y a jugar.
 5. **Mini investigación:** tirad vuestro dado 30 veces y apuntadlo en M25. Cada pareja dicta sus resultados en el proyectable «Dado de la clase» y se comparan con 1000 tiradas del ordenador: ¿vuestros dados son justos? ¿Sale todo más o menos igual?
@@ -185,7 +185,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Para pensar:* ¿cuenta bien? ¿Por qué a veces cuenta de más o de menos?
     - *Solución:* `si agitar` detecta sacudidas, no pasos exactos: según cómo se mueva el pie, cuenta de más o de menos. Es un buen ejemplo de que un sensor mide, pero no siempre lo que queremos.
 
-- **Frase clave:** "Un sensor es el sentido de la máquina."
+- **Frase clave:** «Un sensor es el sentido de la máquina.»
 - **Si va rápido:** un dado que no repite el número anterior.
 - **Si cuesta:** el dado sin la animación.
 - **Producto de T1:** dado electrónico (o contador de pasos). **Rúbrica del trimestre.**
@@ -204,7 +204,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:umbral|Sensor y umbral]] y [[P:umbral.temp|temperatura]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S4-lamparita.mkcd|Lamparita de noche · solución]]
-- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
+- **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Opción A · La lamparita de noche**
 1. **para siempre** → **si (nivel de luz < 50) entonces** → **mostrar LEDs** (se dibuja una luna o se encienden las 25 luces) / **si no** → **borrar la pantalla**.
@@ -224,7 +224,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 2. **La barra que crece con la luz** (si va rápido)
     - *Solución:* dentro de `para siempre`, el bloque de gráfico de barras de la categoría LED con `nivel de luz` y como máximo 255: cuanta más luz, más luces encendidas.
 
-- **Frase clave:** "El sensor mide; el programa decide."
+- **Frase clave:** «El sensor mide; el programa decide.»
 - **Si va rápido:** que las luces de la pantalla formen una barra que crece con la luz (gráfico de barras de la categoría LED).
 - **Si cuesta:** la opción B, solo midiendo y anotando.
 - **Mates:** medida (temperatura, luz), comparar, umbrales, gráficos.
@@ -236,10 +236,10 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S5-alarma-del-estuche.mkcd|Alarma del estuche · solución]]
-- **Minuto de uso responsable:** "Las pilas y baterías no se tocan con metal ni se mojan." ¿Qué puede pasar si una pila toca un objeto de metal?
+- **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
-1. Pregunta: "¿Cómo sabría la placa que alguien ha cogido tu estuche?". Porque se mueve.
+1. Pregunta: «¿Cómo sabría la placa que alguien ha cogido tu estuche?». Porque se mueve.
 2. **si agitar** → **mostrar ícono** (la equis) → **reproduce secuencia tono Do medio durante 1 pulso** (o una melodía de la categoría Música).
 3. Activar y desactivar: variable *activada*. **al presionarse el botón A** → **fijar activada a 1** → **mostrar ícono** (el sí). **al presionarse el botón B** → **fijar activada a 0**. Y en la alarma: **si (activada = 1) entonces** sonar.
 4. Meten la placa con su portapilas en el estuche y lo prueban.
@@ -254,7 +254,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Pista:* una variable `paso` cuenta cuántas partes del código se han acertado.
     - *Solución:* `al presionarse el botón A` → `si paso < 2 entonces` → `cambiar paso por 1`. `al presionarse el botón B` → `si paso = 2 entonces` → `fijar activada a 0` → `mostrar ícono` (sí); y siempre, `fijar paso a 0`. En esta versión, el botón A ya no activa la alarma: se activa al iniciar con `fijar activada a 1`.
 
-- **Frase clave:** "Un invento útil escucha al mundo y responde."
+- **Frase clave:** «Un invento útil escucha al mundo y responde.»
 - **Si va rápido:** que la alarma se desactive con un código (A, A, B).
 - **Si cuesta:** la opción B, más sencilla.
 - **Mates:** condiciones, lógica (activado o desactivado).
@@ -286,7 +286,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Solución:* lamparita: `nivel de luz > 50` tiene que ser `nivel de luz < 50`. Contador: después de `cambiar contador por 1` falta `mostrar número contador`; el número sube, pero la pantalla no se entera. Dado: `escoger al azar de 0 a 6` tiene que ser de 1 a 6.
     - *Método:* probar, leer el programa en voz alta y cambiar una sola cosa cada vez.
 
-- **Frase clave:** "Un invento empieza con un problema bien elegido."
+- **Frase clave:** «Un invento empieza con un problema bien elegido.»
 - **Si va rápido:** que cada pareja fabrique un bicho para otra.
 - **Si cuesta:** solo dos de los tres programas con bicho.
 - **Mates:** planificación; umbrales y comparaciones.
@@ -296,7 +296,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** construir y probar un invento propio.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Detector de ruido · solución (V2)]]
-- **Minuto de uso responsable:** "Pantalla a la altura de los ojos y a un brazo de distancia." ¿Está bien colocada tu pantalla ahora?
+- **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 - **Pasos:**
   1. Leer la tarjeta y el plan (3 minutos).
   2. Programar en el simulador (15 minutos).
@@ -316,7 +316,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
     - *Brújula:* `dirección de la brújula (°)` da de 0 a 359; el norte está cerca de 0. La primera vez la placa pide calibrar: hay que inclinarla hasta encender todas las luces.
     - *Error frecuente al pasar a la placa:* el umbral que iba bien en el simulador no sirve en la clase: hay que medir y ajustarlo.
 
-- **Frase clave:** "Si funciona en la mesa, pruébalo en la realidad."
+- **Frase clave:** «Si funciona en la mesa, pruébalo en la realidad.»
 
 ---
 
@@ -327,7 +327,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 ### S8 · Nezha: el robot se mueve `ROB` `PC`
 
 - **Qué aprenden:** conectar la micro:bit al robot Nezha y programar sus motores.
-- **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar "nezha"). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
+- **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar «nezha»). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:5-S8-nezha-avanza.mkcd|El Nezha avanza 1 segundo · solución]]
@@ -351,7 +351,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 4. **Llegar a 1,5 metros** (si va rápido)
     - *Solución:* con 25 cm/s: 150 ÷ 25 = 6 segundos → `pausa (ms) 6000`.
 
-- **Frase clave:** "Velocidad por tiempo: así sé cuánto avanza."
+- **Frase clave:** «Velocidad por tiempo: así sé cuánto avanza.»
 - **Si va rápido:** llegar a 1,5 m calculando el tiempo a partir de la medida de 1 m.
 - **Si cuesta:** solo medir cuánto avanza en 1 segundo y en 2 segundos.
 - **Si el coche gira en vez de ir recto:** cambiar el signo de la velocidad de M2 (depende de cómo se haya montado).
@@ -363,16 +363,16 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** nada: el juego y los ejemplos ya están preparados en el proyectable y en M23.
 - **Para proyectar:** [[P:sesgo|Entrena a la máquina]] y [[P:verdad.bulos|¿Verdad, bulo o IA?]]
 - **Material listo:** [[M:M23|¿Verdad, bulo o IA?]] (hojas 2 y 3) · [[M:M24|Casos para debatir]]
-- **Minuto de uso responsable:** "Antes de creer algo, lo contrasto en otra fuente." ¿Qué fuentes fiables conocemos?
+- **Minuto de uso responsable:** «Antes de creer algo, lo contrasto en otra fuente.» ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
-1. **Demostración (12 minutos):** proyecta "Entrena a la máquina", entrenada solo con manzanas rojas. Probad la manzana verde y la fresa: ¿acierta? Debate: "¿De quién es la culpa, de la máquina o de los datos?". Si te animas, se puede hacer también con Teachable Machine y la cámara (ver Herramientas paso a paso).
-2. **Juego "¿Verdad, bulo o IA?" (15 minutos):** proyecta las tarjetas una a una (o reparte M23). Los equipos votan y después se lee la pista de cada una.
+1. **Demostración (12 minutos):** proyecta «Entrena a la máquina», entrenada solo con manzanas rojas. Probad la manzana verde y la fresa: ¿acierta? Debate: «¿De quién es la culpa, de la máquina o de los datos?». Si te animas, se puede hacer también con Teachable Machine y la cámara (ver Herramientas paso a paso).
+2. **Juego «¿Verdad, bulo o IA?» (15 minutos):** proyecta las tarjetas una a una (o reparte M23). Los equipos votan y después se lee la pista de cada una.
 3. **Decálogo (8 minutos):** la clase escribe 5 normas para no creerse bulos.
 
 - **Es la primera sesión de IA de la etapa** (hasta 4º no se trabaja). Si el grupo no sabe qué es, empieza con [Quick, Draw!](https://quickdraw.withgoogle.com/) en la pizarra: una IA intenta adivinar lo que dibuja un alumno. «¿Cómo sabe que es un gato? Porque ha visto miles de dibujos de gatos.»
 - **Otra opción en la pizarra:** [AI for Oceans](https://code.org/oceans) (Code.org, en español): la clase entrena en la pizarra una IA que separa peces de basura y ve cómo influyen los datos.
-- **Frase clave:** "Antes de creer, compruebo."
+- **Frase clave:** «Antes de creer, compruebo.»
 - **Si va rápido:** clasificar los bulos por tipos (foto trucada, titular falso, imagen hecha con IA).
 - **Si cuesta:** solo la demostración y 4 tarjetas del juego.
 - **Mates:** muestras, sesgo, aciertos y errores.
@@ -382,14 +382,14 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** moverse en un programa de diseño 3D, combinar formas y usar medidas.
 - **Prepara antes:** decide el modo de trabajo según lo que permita el centro (guía de Tinkercad en `07_Guias_rapidas_herramientas.md`). **Con clase de Tinkercad:** cuentas de clase con alias creadas por el docente, si el equipo directivo y el delegado de protección de datos lo autorizan; cada pareja entra con su alias. **Sin cuentas:** el docente diseña en el display y los equipos dictan por turnos; cada equipo dibuja antes su diseño en papel isométrico o cuadriculado con medidas.
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño antes)
-- **Minuto de uso responsable:** "Si me duelen los ojos o la cabeza, lo digo." ¿Qué podemos hacer para que no nos pase?
+- **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
 **Pasos:**
 1. Demostración: arrastrar una caja, cambiar sus medidas (cuadraditos blancos), levantarla (flecha negra de arriba), girarla (flechas curvas), ver desde otro lado (cubo de vistas y rueda del ratón).
 2. Agujeros: una forma en modo **Hueco** + otra forma sólida → seleccionar las dos → **Agrupar**.
 3. Reto: un llavero de 40 × 20 × 4 mm con su nombre de equipo en relieve y un agujero para la anilla.
 
-- **Frase clave:** "Diseñar en 3D es construir con formas."
+- **Frase clave:** «Diseñar en 3D es construir con formas.»
 - **Si va rápido:** un llavero con su nombre en relieve y un borde redondeado.
 - **Si cuesta:** el llavero sin texto: una caja con agujero.
 - **Mates:** cuerpos geométricos (prisma, cilindro, esfera), medidas en milímetros, vistas.
@@ -400,7 +400,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** hoja de proyecto en equipo (M16), el material del curso, cartón y cinta.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · [[M:M18|Dónde lo dejamos]]
 - **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Biblioteca silenciosa · solución (V2)]]
-- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
+- **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Retos propuestos (muy acotados: un sensor y una acción):**
 1. **Biblioteca silenciosa:** una placa que muestra una cara triste si hay mucho ruido.
@@ -412,7 +412,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 **Pasos:**
 1. 7 minutos: cada equipo elige reto y reparte tareas (programación, construcción, pruebas, portavoz).
 2. 25 minutos: construir y programar.
-3. 5 minutos: foto del montaje y tarjeta "Dónde lo dejamos" muy detallada.
+3. 5 minutos: foto del montaje y tarjeta «Dónde lo dejamos» muy detallada.
 
 - **Si hay sesiones opcionales:** esta sesión se dedica al plan y la construcción, y la **S13** a programar y probar.
 - **Mates:** resolución de problemas, medida.
@@ -426,7 +426,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 2. **Un registro de datos** (si va rápido)
     - *Solución:* lo más sencillo es apuntar a mano la medida cada 5 minutos en la hoja M25 y hacer un gráfico. Con placas V2 también se puede usar la extensión de registro de datos de MakeCode.
 
-- **Frase clave:** "Un sensor, una acción, un problema resuelto."
+- **Frase clave:** «Un sensor, una acción, un problema resuelto.»
 - **Si va rápido:** añadir un segundo sensor o un registro de datos.
 - **Si cuesta:** el reto de la biblioteca silenciosa con un solo icono.
 
@@ -435,14 +435,14 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** optimizar el programa y presentar el proyecto.
 - **Para proyectar:** [[P:votaciones.mis|Votaciones]] (opcional, para votar el proyecto favorito de la feria)
 - **Material listo:** [[M:M19|Rúbrica y autoevaluación]] · [[M:M15|Pasaporte]]
-- **Minuto de uso responsable:** "Un seudónimo me protege. Mi foto es mía." ¿Qué seudónimo usarías en un juego en línea?
+- **Minuto de uso responsable:** «Un seudónimo me protege. Mi foto es mía.» ¿Qué seudónimo usarías en un juego en línea?
 - **Pasos:**
   1. **Optimizar (10 minutos):** cada equipo revisa su programa con tres preguntas: ¿hay bloques repetidos que pueden ir en un bucle? ¿hay bloques que no hacen nada? ¿los nombres de las variables se entienden?
   2. **Presentar (25 minutos):** feria en el aula o con otros cursos. Cada equipo: problema, solución, cómo funciona, qué mejorarían. QR en la mesa con un vídeo o fotos (sin caras), preparado por el docente o por los propios alumnos si hay tiempo (ver guía de QR).
   3. **Cierre (5 minutos):** autoevaluación.
 - **Producto de T3:** proyecto en equipo. **Rúbrica del trimestre.**
 - **Mates:** presentar con datos y medidas: cuánto mide, qué umbral se eligió y por qué.
-- **Frase clave:** "Un buen proyecto se explica con datos."
+- **Frase clave:** «Un buen proyecto se explica con datos.»
 - **Si va rápido:** presentar con un dato medido (distancia, temperatura, nivel de ruido).
 - **Si cuesta:** presentar enseñando el invento en funcionamiento.
 
@@ -454,7 +454,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** terminar el proyecto en equipo, probarlo con otro equipo y arreglar lo que falle antes de presentarlo.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M18|Dónde lo dejamos]]
-- **Minuto de uso responsable:** "Pantalla a la altura de los ojos y a un brazo de distancia." ¿Está bien colocada tu pantalla ahora?
+- **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
 **Pasos:**
 1. Se coloca entre la S11 y la S12. Cada equipo lee su tarjeta «Dónde lo dejamos» (3 minutos).
@@ -462,7 +462,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 3. Cazabichos cruzado: otro equipo lo prueba y rellena la ficha de prueba (10 minutos).
 4. Apuntar en la tarjeta lo que queda por arreglar, guardar y recoger (5 minutos).
 
-- **Frase clave:** "Otros ojos encuentran otros bichos."
+- **Frase clave:** «Otros ojos encuentran otros bichos.»
 - **Si va rápido:** una mejora propia del equipo.
 - **Si cuesta:** terminar solo lo imprescindible para que funcione.
 - **Mates:** comprobar el funcionamiento con medidas: umbrales, distancias, tiempos.
@@ -473,7 +473,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S14-nezha-para-ante-obstaculo.mkcd|El Nezha para ante un obstáculo · solución]]
-- **Minuto de uso responsable:** "El robot se prueba en el suelo y se apaga antes de tocar la placa." ¿Por qué en el suelo y no en la mesa?
+- **Minuto de uso responsable:** «El robot se prueba en el suelo y se apaga antes de tocar la placa.» ¿Por qué en el suelo y no en la mesa?
 
 **Pasos:**
 1. Se hace después de la S8. Antes, comprobad qué sensores trae el kit.
@@ -489,7 +489,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 3. **Sin sensor**
     - *Solución:* `al presionarse el botón A` → motores en marcha; `al presionarse el botón B` → parar. Con una placa V2, también `al detectar el sonido alto` → parar.
 
-- **Frase clave:** "El sensor decide, el motor actúa."
+- **Frase clave:** «El sensor decide, el motor actúa.»
 - **Si va rápido:** que el robot esquive el obstáculo en lugar de pararse.
 - **Si cuesta:** la versión sin sensor, con los botones A y B.
 - **Mates:** distancias en centímetros, comparación con un umbral («distancia < 10»).
@@ -498,14 +498,14 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** diseñar en 3D un objeto útil con las medidas de un objeto real.
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el objeto con sus medidas)
-- **Minuto de uso responsable:** "Guardo el archivo con el nombre del equipo antes de cerrar." ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
+- **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Pasos:**
 1. Se hace después de la S10. Cada pareja elige: soporte para lápices, portanombres o una pieza para el proyecto en equipo.
 2. Miden con regla el objeto real y apuntan en la hoja las medidas en milímetros.
 3. Lo diseñan en Tinkercad con esas medidas y hacen una captura del diseño.
 
-- **Frase clave:** "Mido en la realidad, diseño en la pantalla."
+- **Frase clave:** «Mido en la realidad, diseño en la pantalla.»
 - **Si va rápido:** un objeto con dos piezas que encajan.
 - **Si cuesta:** copiar el diseño de un soporte sencillo en el display.
 - **Mates:** medir con regla en milímetros, prismas y cilindros, vistas de un cuerpo.
@@ -515,7 +515,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** comunicar dos placas por radio, o diseñar en 3D una funda a la medida de la micro:bit.
 - **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
 - **Archivo de MakeCode:** [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
-- **Minuto de uso responsable:** "Las redes sociales tienen edad mínima por algo." ¿Por qué creéis que existe una edad mínima?
+- **Minuto de uso responsable:** «Las redes sociales tienen edad mínima por algo.» ¿Por qué creéis que existe una edad mínima?
 
 **Opción A · Radio entre dos placas**
 Dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar número**, **al recibir radio**). Cada equipo, un número de grupo distinto. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.
@@ -533,7 +533,7 @@ Dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar núm
 2. **Termómetro remoto** (si va rápido)
     - *Solución:* la placa que mide: `para siempre` → `radio enviar número (temperatura (°C))` → `pausa (ms) 60000`. La que recibe enseña el número igual que antes.
 
-- **Frase clave:** "Lo que aprendo lo uso para algo nuevo."
+- **Frase clave:** «Lo que aprendo lo uso para algo nuevo.»
 - **Si va rápido:** combinar radio y sensores (termómetro remoto), o una tapa para la funda que encaje.
 - **Si cuesta:** la radio con un solo número y un icono, o la funda con las medidas ya calculadas en la pizarra.
 - **Mates:** codificar mensajes con números; medir en milímetros, sumar holguras y grosores, prismas.

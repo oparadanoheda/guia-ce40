@@ -245,8 +245,8 @@
     var trailChk = h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { st.trail = e.target.checked; draw(false); } }), ' Dibujar el rastro']);
     root.appendChild(h('div', { class: 'pj-two' }, [
       h('div', { class: 'pj-col' }, [svg, status]),
-      h('div', { class: 'pj-col' }, [info, h('h4', { text: 'Tarjetas' }), palette,
-        h('h4', { text: 'Programa' }), progEl,
+      h('div', { class: 'pj-col' }, [info, h('h2', { text: 'Tarjetas' }), palette,
+        h('h2', { text: 'Programa' }), progEl,
         h('div', { class: 'pj-row' }, [btn('▶ Ejecutar', run, 'go'), btn('Paso a paso', step), btn('↺ Volver a la salida', reset), btn('Borrar programa', function () { st.prog = []; st.open = null; renderProg(); reset(); })]),
         h('div', { class: 'pj-row' }, [editSel, trailChk])])]));
     return { load: function (p) { load(p || 'mapa1'); } };
@@ -347,8 +347,8 @@
     function draw() {
       range.value = n; var L = LOOPS[key], long = [];
       for (var i = 0; i < n; i++) long = long.concat(L.body);
-      box.innerHTML = '<div class="pj-lcol"><h4>Programa largo</h4><div class="pj-ltoks">' + long.map(tok).join('') + '</div><p class="pj-big"><b>' + long.length + '</b> tarjetas</p></div>' +
-        '<div class="pj-lvs">=</div><div class="pj-lcol"><h4>Programa con bucle</h4><div class="pj-lrep"><b>REPITE ' + n + ' VECES</b><div class="pj-ltoks">' + L.body.map(tok).join('') + '</div></div><p class="pj-big"><b>' + (L.body.length + 1) + '</b> tarjetas</p></div>' +
+      box.innerHTML = '<div class="pj-lcol"><h2>Programa largo</h2><div class="pj-ltoks">' + long.map(tok).join('') + '</div><p class="pj-big"><b>' + long.length + '</b> tarjetas</p></div>' +
+        '<div class="pj-lvs">=</div><div class="pj-lcol"><h2>Programa con bucle</h2><div class="pj-lrep"><b>REPITE ' + n + ' VECES</b><div class="pj-ltoks">' + L.body.map(tok).join('') + '</div></div><p class="pj-big"><b>' + (L.body.length + 1) + '</b> tarjetas</p></div>' +
         '<p class="pj-status" style="grid-column:1/-1">Los dos programas hacen exactamente lo mismo. Con el bucle se ahorran ' + (long.length - L.body.length - 1) + ' tarjetas: ' + n + ' veces ' + L.body.length + ' = ' + long.length + '.</p>';
     }
     root.appendChild(h('div', { class: 'pj-row' }, [h('label', { class: 'pj-chk' }, ['Repeticiones: ', range])]));
@@ -394,7 +394,7 @@
       secret = null; secRow.hidden = true; board.innerHTML = ''; pool.innerHTML = '';
       var C = CRIT[crit], idx = C[1];
       Object.keys(C[2]).forEach(function (g) {
-        var b = h('div', { class: 'pj-bin' }, [h('h4', { text: C[2][g] })]);
+        var b = h('div', { class: 'pj-bin' }, [h('h2', { text: C[2][g] })]);
         var inner = h('div', { class: 'pj-bin-in' }); b.appendChild(inner); board.appendChild(b);
         b.addEventListener('click', function () {
           var s = pool.querySelector('.sel'); if (!s) { setStatus(msg, '', 'Primero toca un objeto.'); return; }
@@ -414,8 +414,8 @@
     }
     function secretDraw() {
       secret = SECRETS[rnd(SECRETS.length)]; secRow.hidden = false; guesses = 0; board.innerHTML = ''; pool.innerHTML = '';
-      var yes = h('div', { class: 'pj-bin yes' }, [h('h4', { text: 'SÍ cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
-      var no = h('div', { class: 'pj-bin no' }, [h('h4', { text: 'NO cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
+      var yes = h('div', { class: 'pj-bin yes' }, [h('h2', { text: 'SÍ cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
+      var no = h('div', { class: 'pj-bin no' }, [h('h2', { text: 'NO cumple la regla' }), h('div', { class: 'pj-bin-in' })]);
       board.appendChild(yes); board.appendChild(no);
       shuffle(ITEMS).forEach(function (it) {
         var e = itemBtn(it);
@@ -491,7 +491,7 @@
       });
     }
     var autoChk = h('input', { type: 'checkbox', onchange: function (e) { auto = e.target.checked; if (auto) out = AN.filter(function (a) { return !fits(a); }); draw(); if (!auto || !found()) setStatus(msg, '', auto ? 'El ordenador quita solo los que ya no pueden ser. Quedan ' + alive().length + '.' : 'Ahora descartáis vosotros: tocad los animales que ya no pueden ser.'); } });
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [grid]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Preguntas' }), qs, log, msg,
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [grid]), h('div', { class: 'pj-col' }, [h('h2', { text: 'Preguntas' }), qs, log, msg,
       h('div', { class: 'pj-row' }, [btn('Comprobar', check), btn('Otro animal', start, 'go')]),
       h('label', { class: 'pj-chk' }, [autoChk, ' Descartar solos (el ordenador quita los que ya no pueden ser)'])])]));
     root.appendChild(credit());
@@ -912,7 +912,7 @@
     function drawTable() { var k = Object.keys(res); tbl.innerHTML = k.length ? '<tr><th>Objeto</th><th>¿Conduce?</th></tr>' + k.map(function (n) { return '<tr><td>' + n + '</td><td><b class="' + (res[n] === 1 ? 'yes' : 'no') + '">' + (res[n] === 1 ? 'Sí' : res[n] === 2 ? 'Muy poco' : 'No') + '</b></td></tr>'; }).join('') : ''; }
     var pick = h('div', { class: 'pj-pool' });
     OBJS.forEach(function (o) { pick.appendChild(h('button', { type: 'button', class: 'pj-item pic', title: o[1], html: pic(o[0]) + '<small>' + o[1] + '</small>', onclick: function () { cur = o; draw(false); msg.textContent = o[1] + ': ¿se encenderá la bombilla? Votad y después pulsad «Probar».'; } })); });
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, msg]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Elige un objeto' }), pick,
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, msg]), h('div', { class: 'pj-col' }, [h('h2', { text: 'Elige un objeto' }), pick,
       btn('Probar el circuito', function () { if (!cur) { msg.textContent = 'Primero elige un objeto.'; return; } draw(cur[2] === 1); res[cur[1]] = cur[2]; drawTable(); msg.textContent = cur[2] === 1 ? '¡Se enciende! ' + cur[1] + ': conduce la electricidad.' : cur[2] === 2 ? 'No se enciende. ' + cur[1] + ': conduce muy poco, no lo bastante para una bombilla. Con Makey Makey, que nota corrientes muy pequeñas, sí sirve como tecla.' : 'No se enciende. ' + cur[1] + ': no conduce la electricidad.'; }, 'go'), tbl])]));
     root.appendChild(credit());
     return { load: function () { draw(false); drawTable(); } };
@@ -977,7 +977,7 @@
     var log = h('ol', { class: 'pj-log' });
     root.appendChild(track);
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [label && lab, h('label', { class: 'pj-chk' }, ['Velocidad: ', vIn]), h('label', { class: 'pj-chk' }, ['Tiempo: ', tIn]), btn('▶ Arrancar el robot', go, 'go'), msg]),
-      h('div', { class: 'pj-col' }, [h('p', { class: 'pj-info', text: 'Antes de arrancar, que la clase prediga cuántos centímetros avanzará. Distancia = velocidad × tiempo.' }), h('h4', { text: 'Pruebas' }), log])]));
+      h('div', { class: 'pj-col' }, [h('p', { class: 'pj-info', text: 'Antes de arrancar, que la clase prediga cuántos centímetros avanzará. Distancia = velocidad × tiempo.' }), h('h2', { text: 'Pruebas' }), log])]));
     return { load: function () { label(); rob.style.left = '0%'; } };
   }
 
@@ -1006,8 +1006,8 @@
       } }));
     });
     root.appendChild(h('div', { class: 'pj-row' }, [btn('1. Entrenar solo con manzanas rojas', function () { set([0, 0, 0, 5, 6, 7]); }), btn('2. Entrenar con manzanas de todos los colores', function () { set([0, 1, 2, 3, 4, 5, 6, 7]); }, 'go')]));
-    root.appendChild(h('h4', { text: 'Ejemplos con los que aprende la máquina' })); root.appendChild(trainEl); root.appendChild(learned);
-    root.appendChild(h('h4', { text: 'Probad la máquina: tocad una fruta' })); root.appendChild(test); root.appendChild(msg);
+    root.appendChild(h('h2', { text: 'Ejemplos con los que aprende la máquina' })); root.appendChild(trainEl); root.appendChild(learned);
+    root.appendChild(h('h2', { text: 'Probad la máquina: tocad una fruta' })); root.appendChild(test); root.appendChild(msg);
     root.appendChild(h('p', { class: 'pj-info', text: 'Con los ejemplos del botón 1, todas las manzanas que ve son rojas, así que la máquina cree que «manzana» significa «rojo»: dice que la fresa y la cereza son manzanas y que la manzana verde no lo es. Eso es un sesgo. Con ejemplos variados (botón 2) aprende lo importante. La máquina aprende de los datos que le damos, también de sus errores.' }));
     root.appendChild(credit());
     return { load: function () { set([0, 0, 0, 5, 6, 7]); } };
@@ -1067,7 +1067,7 @@
     var PAIRS = [['pepe', 'MiPerroSaltaAlas7!'], ['12345678', 'Luna.Verde.2026'], ['ElSolDeMadrid', 'sol']];
     PAIRS.forEach(function (p, k) { pairs.appendChild(btn('Par ' + (k + 1), function () { msg.innerHTML = '¿Cuál es más segura? A) <b>' + p[0] + '</b> · B) <b>' + p[1] + '</b>'; inp.value = ''; draw(); })); });
     root.appendChild(inp); root.appendChild(bar); root.appendChild(list);
-    root.appendChild(h('h4', { text: 'Juego: ¿cuál es más segura?' })); root.appendChild(pairs); root.appendChild(msg);
+    root.appendChild(h('h2', { text: 'Juego: ¿cuál es más segura?' })); root.appendChild(pairs); root.appendChild(msg);
     root.appendChild(h('p', { class: 'pj-info', text: 'Truco: una frase fácil de recordar con mayúsculas, números y un símbolo. Y la contraseña no se presta nunca, como el cepillo de dientes.' }));
     return { load: draw };
   }
@@ -1108,7 +1108,7 @@
     inp.addEventListener('input', draw);
     var hide = h('label', { class: 'pj-chk' }, [h('input', { type: 'checkbox', onchange: function (e) { out.classList.toggle('hideplain', e.target.checked); } }), ' Ocultar el mensaje original']);
     root.appendChild(h('div', { class: 'pj-row' }, [inp, btn('Código de números', function () { kind = 'num'; draw(); }), btn('Código de símbolos', function () { kind = 'sym'; draw(); }), hide]));
-    root.appendChild(out); root.appendChild(h('h4', { text: 'Clave' })); root.appendChild(key);
+    root.appendChild(out); root.appendChild(h('h2', { text: 'Clave' })); root.appendChild(key);
     return { load: draw };
   }
 

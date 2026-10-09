@@ -46,11 +46,11 @@
 
 ## 2. True True
 
-**Qué es:** un robot para el primer ciclo que se programa con **tarjetas de colores**, sin pantalla. Lleva sensores de color en la parte delantera (la "boca") que leen las tarjetas, sensores inferiores y de proximidad. Batería de unos 90 minutos de uso.
+**Qué es:** un robot para el primer ciclo que se programa con **tarjetas de colores**, sin pantalla. Lleva sensores de color en la parte delantera (la «boca») que leen las tarjetas, sensores inferiores y de proximidad. Batería de unos 90 minutos de uso.
 
 **Antes de la primera clase (30 minutos, una sola vez):**
 1. Carga todos los robots.
-2. Mira los vídeos de **"Cómo empezar"** en truetrue.es y en la web de Código Escuela 4.0 de EducaMadrid (apartado Primaria → True True). Con 3 o 4 vídeos basta para dar las primeras sesiones.
+2. Mira los vídeos de **«Cómo empezar»** en truetrue.es y en la web de Código Escuela 4.0 de EducaMadrid (apartado Primaria → True True). Con 3 o 4 vídeos basta para dar las primeras sesiones.
 3. Lee el manual de la caja y comprueba: qué tarjetas hay (avanzar, girar, repetir, sonido…), cómo se cargan las tarjetas en el robot, cómo se ejecuta el programa y qué modos tiene (rejilla o **GRID**, inclinación o **TILT**, siguelíneas).
 4. **Mide el paso del robot** (cuánto avanza con una tarjeta de avanzar) y haz la cuadrícula del suelo o del tapete con casillas de ese tamaño.
 5. Descarga de la web oficial: tarjetas de roles, normas de uso (A3 para el aula) y las situaciones de aprendizaje (*Camino numérico*, *Educación vial*, *Explorando figuras geométricas*, *Recicla*, *Mapa de Madrid*, *Bailando al ritmo*…).
@@ -86,7 +86,7 @@
 - El **nombre del proyecto** se pone en el cuadradito amarillo de arriba a la derecha.
 
 **Si algo falla:**
-- El personaje no vuelve a su sitio: arrastrarlo con el dedo, o poner al principio el bloque azul de "ir al inicio".
+- El personaje no vuelve a su sitio: arrastrarlo con el dedo, o poner al principio el bloque azul de «ir al inicio».
 - No arranca: falta la bandera verde o el bloque de evento.
 - Se ha perdido un proyecto: está en la pantalla de inicio, buscar por su dibujo.
 
@@ -117,7 +117,7 @@
 - Un bucle no para: es un **por siempre**; se para con el círculo rojo.
 - Se ha perdido el trabajo: por eso se guarda **en los últimos 5 minutos de cada sesión**, sin excepción.
 
-**Para aprender más:** tutoriales dentro de Scratch (botón "Tutoriales"), y el [laberinto clásico de la Hora del Código](https://studio.code.org/hoc/1).
+**Para aprender más:** tutoriales dentro de Scratch (botón «Tutoriales»), y el [laberinto clásico de la Hora del Código](https://studio.code.org/es/hoc/1).
 
 ---
 
@@ -153,8 +153,8 @@
 **Lo básico:**
 - Bloques por categorías: **Básico** (mostrar número, ícono, cadena; al iniciar; para siempre; pausa), **Entrada** (al presionarse el botón, si agitar, nivel de luz, temperatura, nivel de sonido), **Música**, **LED**, **Radio**, **Bucles**, **Lógica** (si… entonces… si no, comparaciones), **Variables**, **Matemática** (escoger al azar) y, en **Avanzado**, **Funciones**.
 - **Nombres de los bloques:** la guía los escribe como salen en MakeCode en español de España. Dos despistan: el de agitar se lee **si agitar** (es un evento, como **al presionarse el botón A**; en su desplegable están también inclinar, logotipo hacia arriba…) y el número al azar es **escoger al azar de 1 a 6**.
-- **Simulador** a la izquierda: se pulsan los botones con el ratón; con "SHAKE" se agita; el círculo amarillo cambia la luz y el termómetro la temperatura.
-- **Guardar:** el proyecto se guarda solo en el navegador de ese ordenador (en "Mis proyectos"). Para llevarlo a otro, se descarga el `.hex` o se comparte con el botón **Compartir** (crea un enlace).
+- **Simulador** a la izquierda: se pulsan los botones con el ratón; con «SHAKE» se agita; el círculo amarillo cambia la luz y el termómetro la temperatura.
+- **Guardar:** el proyecto se guarda solo en el navegador de ese ordenador (en «Mis proyectos»). Para llevarlo a otro, se descarga el `.hex` o se comparte con el botón **Compartir** (crea un enlace).
 - **Archivos de la guía (.mkcd):** cada sesión de programar trae la solución. Se abre con **Importar › Importar archivo** (o arrastrando el archivo al editor) y sale ya en bloques; desde ahí, **Descargar** para pasarlo a la placa.
 
 **Si algo falla:**
@@ -173,10 +173,10 @@
 **Qué es:** kit de robótica (Nezha Inventor V2) con una **placa de expansión** donde se encaja la micro:bit, motores, sensores y piezas compatibles tipo LEGO para montar coches y mecanismos. Se programa en MakeCode con la **extensión Nezha** (y **PlanetX** para los sensores del kit).
 
 **Antes de la primera clase:**
-1. Mira el vídeo de presentación del kit y los de sensores en la **Mediateca de EducaMadrid** (buscar "Nezha Inventor").
+1. Mira el vídeo de presentación del kit y los de sensores en la **Mediateca de EducaMadrid** (buscar «Nezha Inventor»).
 2. **Monta los coches antes** (o dedica una sesión opcional a que los monte el alumnado, con el manual de montaje). Montar lleva más de una sesión la primera vez.
 3. Carga las baterías.
-4. En MakeCode: **Extensiones** → buscar "nezha" (y "planetx" si usáis sensores).
+4. En MakeCode: **Extensiones** → buscar «nezha» (y «planetx» si usáis sensores).
 5. Descarga de la web de Código Escuela 4.0 las situaciones oficiales (*Semáforo inteligente*, *Domótica escolar*, *Molinos de viento*, *Vehículos y aceleración*…), que traen programas `.hex` hechos y manuales de montaje.
 
 **Lo básico:**
@@ -199,7 +199,7 @@
 
 **Antes de la primera clase:**
 1. **Cuentas:** Tinkercad necesita cuenta. Autodesk permite que el docente cree una **clase** y dé acceso al alumnado con un código y un **alias** (sin correo). Consultadlo con el equipo directivo y el delegado de protección de datos **antes** de crear nada. Si no se autoriza, el docente diseña en el display y los equipos dictan: se trabaja igual el pensamiento espacial.
-2. Haz el reto del llavero de la S10 de 5º (15 minutos) y los tutoriales iniciales de la propia web ("Aprender").
+2. Haz el reto del llavero de la S10 de 5º (15 minutos) y los tutoriales iniciales de la propia web («Aprender»).
 
 **Lo básico:**
 - **Plano de trabajo** azul en el centro. Formas a la derecha: se arrastran al plano.
@@ -210,7 +210,7 @@
 - Las medidas están en **milímetros**.
 
 **Si algo falla:**
-- La forma se "hunde" en el plano: levantarla con la flecha negra o pulsar la tecla D (la pone sobre el plano).
+- La forma se «hunde» en el plano: levantarla con la flecha negra o pulsar la tecla D (la pone sobre el plano).
 - No deja agrupar: hay que seleccionar las dos formas (arrastrando un rectángulo o con Mayúsculas).
 - Todo se ha movido: Ctrl+Z deshace.
 
@@ -224,7 +224,7 @@
 
 **Lo básico:**
 1. **Empezar** → **Proyecto de imagen** → **Modelo de imagen estándar**.
-2. Cambia el nombre de "Class 1" y "Class 2" (por ejemplo "lápiz" y "goma").
+2. Cambia el nombre de «Class 1» y «Class 2» (por ejemplo «lápiz» y «goma»).
 3. En cada clase, **Cámara web** → mantén pulsado **Mantener para grabar** mientras enseñas el objeto desde varios ángulos (unas 30 imágenes).
 4. **Entrenar modelo** (tarda unos segundos; no cambies de pestaña).
 5. En **Vista previa**, enseña objetos y mira el porcentaje.
@@ -243,7 +243,7 @@
 1. **Graba** un vídeo corto (30 a 60 segundos) o haz fotos del proyecto. **Sin caras del alumnado.** Si se oyen voces, comprobad las autorizaciones de imagen y voz de las familias.
 2. **Súbelo** a un espacio oficial del centro: **Mediateca de EducaMadrid** o **Cloud de EducaMadrid** (con un enlace compartido de solo lectura). No uses cuentas personales ni redes sociales.
 3. **Copia el enlace** del vídeo.
-4. **Genera el QR** con un generador que no pida registro ni cree enlaces que caduquen (busca un generador de "QR estático"), o con la opción de compartir con QR del propio servicio si la tiene. Pega el enlace y descarga la imagen.
+4. **Genera el QR** con un generador que no pida registro ni cree enlaces que caduquen (busca un generador de «QR estático»), o con la opción de compartir con QR del propio servicio si la tiene. Pega el enlace y descarga la imagen.
 5. **Pruébalo** con la tablet antes de imprimirlo.
 6. Imprímelo en una tarjeta con el nombre del proyecto (no de los alumnos).
 

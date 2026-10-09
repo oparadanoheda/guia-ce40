@@ -53,7 +53,7 @@ EXTERNAS = [
     ("Blockly Games", "https://blockly.games/?lang=es", "3º-6º", "Juegos de Google en español y sin registro: laberinto, pájaro, tortuga. Muy buenos para hacerlos en la pizarra con toda la clase."),
     ("Quick, Draw!", "https://quickdraw.withgoogle.com/", "5º-6º", "Una IA intenta adivinar lo que dibujáis en 20 segundos. Salen alumnos a dibujar en la pizarra. Ideal para hablar de cómo aprende una IA."),
     ("AI for Oceans (Code.org)", "https://code.org/oceans", "5º-6º", "Entrenar una IA para separar peces de basura: datos de entrenamiento y sesgo. Se puede hacer en la pizarra, en español."),
-    ("Hora del Código: laberinto clásico", "https://studio.code.org/hoc/1", "3º-6º", "20 niveles de laberinto con bloques, en español y sin cuenta. Se puede hacer en la pizarra con toda la clase."),
-    ("CS Unplugged", "https://csunplugged.org/es/", "1º-6º", "Actividades de informática sin ordenador, con guía para el docente."),
+    ("Hora del Código: laberinto clásico", "https://studio.code.org/es/hoc/1", "3º-6º", "20 niveles de laberinto con bloques, en español y sin cuenta. Se puede hacer en la pizarra con toda la clase."),
+    ("CS Unplugged", "https://www.csunplugged.org/es/", "1º-6º", "Actividades de informática sin ordenador, con guía para el docente."),
     ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "3º-6º", "Entrenar un modelo de IA con la cámara (demostración del docente, sin caras)."),
 ]

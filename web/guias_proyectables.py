@@ -38,7 +38,7 @@ GUIAS = {
         "mates": "Potencias de 2 (1, 2, 4, 8, 16…), dobles, descomposición aditiva de un número, pares e impares, y el **valor posicional**: "
                  "en nuestro sistema cada posición vale 10 veces más (unidades, decenas, centenas); en binario, 2 veces más.",
         "saber": [
-            ("CS Unplugged · Números binarios: la actividad original de las cartas, con fichas y guía (en español)", "https://csunplugged.org/es/topics/binary-numbers/"),
+            ("CS Unplugged · Números binarios: la actividad original de las cartas, con fichas y guía (en español)", "https://www.csunplugged.org/es/topics/binary-numbers/"),
         ],
     },
     "cuadricula": {
@@ -70,7 +70,7 @@ GUIAS = {
              "**REPITE ×4** (avanza, avanza, avanza, gira a la derecha): 5 tarjetas en lugar de 16. El robot vuelve a la casilla de salida."),
         ],
         "mates": "Orientación y giros de un cuarto de vuelta (90°), contar casillas, medir recorridos y la multiplicación como suma repetida (4 veces 4 tarjetas = 16).",
-        "saber": [("CS Unplugged · Kidbots: programar un «robot» humano (en español)", "https://csunplugged.org/es/topics/kidbots/")],
+        "saber": [("CS Unplugged · Kidbots: programar un «robot» humano (en español)", "https://www.csunplugged.org/es/topics/kidbots/")],
     },
     "secuencias": {
         "idea": "Viñetas con pictogramas de rutinas de cada día, desordenadas. Hay que ponerlas en orden: es la idea de **algoritmo**, una lista de pasos en orden. "
@@ -469,7 +469,7 @@ GUIAS = {
              "No: **gira sobre sí misma**. Para avanzar después del giro hace falta otra orden de avanzar."),
         ],
         "mates": "Contar, sumar y restar en el camino numérico, orientación y giros.",
-        "saber": [("CS Unplugged · Kidbots (en español)", "https://csunplugged.org/es/topics/kidbots/")],
+        "saber": [("CS Unplugged · Kidbots (en español)", "https://www.csunplugged.org/es/topics/kidbots/")],
     },
     "flota": {
         "idea": "Hundir la flota con coordenadas: la clase contra el ordenador o **dos equipos, cada uno con su propia flota** en su tablero (si aciertas, vuelves a disparar; gana quien la hunda antes). Con **letra y número** (B3) se dispara a casillas. En el **plano (x, y)** se dispara a **puntos**, los cruces de las líneas, como en unos ejes de coordenadas: de 0 a 7, con el (0, 0) abajo a la izquierda, o el plano completo de −4 a 4, con el (0, 0) en el centro y números negativos.",
@@ -508,7 +508,7 @@ GUIAS = {
              "El corazón, la casa, el robot y el pez son de 10 × 10 = **100** casillas; la flecha, de 5 × 5 = **25**."),
         ],
         "mates": "Cuadrículas, multiplicación, conteo y descomposición de un número (10 = 3 + 1 + 6).",
-        "saber": [("CS Unplugged · Representación de imágenes (en español)", "https://csunplugged.org/es/topics/image-representation/")],
+        "saber": [("CS Unplugged · Representación de imágenes (en español)", "https://www.csunplugged.org/es/topics/image-representation/")],
     },
     "laberinto": {
         "idea": "Seis niveles con bloques tipo Scratch para llevar al robot a la meta: avanzar, girar, «repetir hasta la meta» y bloques «si hay camino». Cada nivel tiene un **máximo de bloques**.",
@@ -563,7 +563,7 @@ GUIAS = {
              "Todas las parejas: **6** con 4 cajas, **15** con 6 y **28** con 8. Con un buen método bastan menos: como mucho **5** con 4 cajas, **10** con 6 y **16** con 8. Eso es optimizar un algoritmo."),
         ],
         "mates": "Comparar y ordenar, más pesado y más ligero, y contar parejas.",
-        "saber": [("CS Unplugged · Redes de ordenación (en español)", "https://csunplugged.org/es/topics/sorting-networks/")],
+        "saber": [("CS Unplugged · Redes de ordenación (en español)", "https://www.csunplugged.org/es/topics/sorting-networks/")],
     },
     "paridad": {
         "idea": "Un truco de magia: se añaden una fila y una columna de cartas para que **cada fila y cada columna tengan un número par** de cartas azules. Si alguien da la vuelta a una carta, el mago la encuentra. Así detectan los ordenadores los errores al guardar o enviar datos.",
@@ -582,7 +582,7 @@ GUIAS = {
              "Puede que el mago **vea que hay un error pero no sepa dónde**: si están en la misma fila, esa fila vuelve a ser par y solo cambian dos columnas. Por eso los ordenadores usan códigos más completos."),
         ],
         "mates": "Pares e impares y razonamiento lógico.",
-        "saber": [("CS Unplugged · Detección y corrección de errores (en español)", "https://csunplugged.org/es/topics/error-detection-and-correction/")],
+        "saber": [("CS Unplugged · Detección y corrección de errores (en español)", "https://www.csunplugged.org/es/topics/error-detection-and-correction/")],
     },
     "quiensale": {
         "idea": "Elige al azar quién sale a la pizarra **sin repetir** hasta que hayan salido todos, y lleva el marcador de hasta 4 equipos. Se puede usar con números de lista o con nombres de equipo.",

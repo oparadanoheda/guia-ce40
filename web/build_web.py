@@ -25,6 +25,12 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
+VERSION, VERSION_FECHA = "1.0", "octubre de 2026"
+DESCRIPCION = ("Guía didáctica de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en Matemáticas: 128 sesiones con propuestas, "
+               "herramientas para la pizarra digital, vídeos de conceptos, material imprimible y proyectos de Scratch y MakeCode.")
+FAVICON = ("data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='13' rx='3' fill='%23c8382f'/%3E"
+           "%3Crect x='17' y='2' width='13' height='13' rx='3' fill='%23257f46'/%3E%3Crect x='2' y='17' width='13' height='13' rx='3' fill='%232c5bbf'/%3E"
+           "%3Crect x='17' y='17' width='13' height='13' rx='3' fill='%23ad5b12'/%3E%3C/svg%3E")
 E = html.escape
 
 COURSES = [
@@ -203,7 +209,7 @@ def parse_session(chunk):
             if extra:
                 s["seg_extra"] = extra.strip("() ")
         elif L.startswith("Frase clave"):
-            s["key"] = text.strip().strip('"“”')
+            s["key"] = text.strip().strip('"“”«»')
         elif L.startswith("Si va rápido"):
             s["fast"] = text
         elif L.startswith("Si cuesta") or L.startswith("Opción más sencilla"):
@@ -290,7 +296,7 @@ def parse_course(cid, fname, cycle):
     parts = re.split(r"^## ", text, flags=re.M)
     head = parts[0]
     h1 = head.split("\n", 1)[0][2:].strip()
-    m = re.match(r"(\dº) de Primaria · [\"“](.+?)[\"”]", h1)
+    m = re.match(r"(\dº) de Primaria · [\"“«](.+?)[\"”»]", h1)
     c = {"id": cid, "num": m.group(1), "name": m.group(2), "cycle": cycle, "facts": [], "keys": [],
          "intro": [], "terms": [], "closing": []}
     for line in head.split("\n")[1:]:
@@ -462,7 +468,7 @@ def close_list(c, s):
 
 def projection_data(c, s, quin, prev=None):
     seg = s.get("seg", "")
-    quotes = re.findall(r"[\"“]([^\"”]{8,})[\"”]", seg)
+    quotes = re.findall(r"[\"“«]([^\"”»]{8,})[\"”»]", seg)
     # la frase y su pregunta; si el texto es largo (minutos ampliados), solo las frases entre comillas
     seg_txt = cap(" ".join(q.strip() for q in quotes) if quotes and len(plain(seg)) > 140 else plain(seg))
     tools = [(label, ref) for ref, label in re.findall(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", s.get("proj", ""))]
@@ -697,7 +703,7 @@ def home(courses, secs):
 <h2 class="h-sec big">Cómo usar esta guía</h2>
 <div class="ucards">
 <div><b>Elige una propuesta</b><p>Cada sesión tiene un objetivo y 2 o 3 formas de trabajarlo. Con una basta.</p></div>
-<div><b>El material está hecho</b><p>Fichas en PDF, herramientas para la pizarra y archivos de Scratch. No hay que fabricar nada.</p></div>
+<div><b>El material está hecho</b><p>Fichas en PDF, herramientas para la pizarra y archivos de Scratch y MakeCode. No hay que fabricar nada.</p></div>
 <div><b>Proyecta o imprime</b><p>«Proyectar la sesión» muestra a la clase el reto, las palabras nuevas y la herramienta. «Imprimir» saca la ficha en un A4 con la propuesta elegida.</p></div>
 <div><b>Es orientativo</b><p>Si algo falla o el grupo va a otro ritmo, pasa a la opción con fichas o usa una sesión de reserva.</p></div>
 </div>
@@ -768,7 +774,7 @@ def method_page(secs):
     roles = [("rol_piloto", "Piloto", "Maneja el robot, el dispositivo o las tarjetas."), ("rol_copiloto", "Copiloto", "Lee el reto y comprueba. No toca."),
              ("rol_material", "Material", "Recoge, cuenta y pone a cargar."), ("rol_portavoz", "Portavoz", "Explica lo que ha hecho el grupo.")]
     rl = "".join(f'<div class="role"><img data-picto="{p}" alt=""><b>{n}</b><p>{t}</p></div>' for p, n, t in roles)
-    qs = re.findall(r'^- "(.+?)"', subsec(s5, "Tres preguntas"), flags=re.M)
+    qs = re.findall(r'^- ["«](.+?)["»]', subsec(s5, "Tres preguntas"), flags=re.M)
     qh = "".join(f'<blockquote>{E(q)}</blockquote>' for q in qs)
     tools = "".join(f'<li style="--c:var(--{cid})"><b>{cid[1]}º</b>{E(t)}</li>' for cid, t in COURSE_TOOLS.items())
     joker = re.findall(r"^- \*\*(.+?):\*\*", secs[10][1], flags=re.M)
@@ -809,7 +815,7 @@ def method_page(secs):
 def calendar_page(secs):
     return f'''<section class="page" id="calendario" hidden><div class="sheet doc">
 <p class="eyebrow">Calendario</p><h1>Sesiones del curso 2026-2027</h1>
-{md(secs[4][1])}</div></section>'''
+{re.sub(r'<h3([^>]*)>(.*?)</h3>', r'<h2 class="h-sec"\1>\2</h2>', md(secs[4][1]))}</div></section>'''
 
 
 def evolution_page():
@@ -972,12 +978,19 @@ def build():
 <a href="#proyectar" data-nav="proyectar">Para proyectar</a><a href="#material" data-nav="material">Material imprimible</a>
 </nav></aside>'''
 
+    colofon = (f'<footer class="colophon"><p><b>Guía didáctica Código Escuela 4.0</b> · Educación Primaria · Curso 2026-2027 · Versión {VERSION} ({VERSION_FECHA})</p>'
+               '<p>Pictogramas: Sergio Palao. Origen: <a href="https://arasaac.org" target="_blank" rel="noopener">ARASAAC</a>. Licencia: CC BY-NC-SA. Propiedad: Gobierno de Aragón. '
+               'Los dibujos de las herramientas, los vídeos y los proyectos de Scratch y MakeCode son propios de la guía.</p></footer>')
     page = f'''<title>Guía didáctica Código Escuela 4.0</title>
+<meta name="description" content="{DESCRIPCION}">
+<meta name="theme-color" content="#e9ebef" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0d0f13" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website"><meta property="og:locale" content="es_ES"><meta property="og:title" content="Guía didáctica Código Escuela 4.0 · Primaria 2026-2027"><meta property="og:description" content="{DESCRIPCION}">
+<link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>{CSS}</style>
 <div class="topbar"><button type="button" class="menu-btn" aria-controls="side" aria-expanded="false">{ICON["menu"]}<span>Índice</span></button><a href="#inicio" class="tb-title">Código Escuela 4.0 · Guía didáctica</a></div>
-<div class="shell">{side}<main id="main">{"".join(pages).replace("🏴", FLAG)}</main></div>
+<div class="shell">{side}<main id="main">{"".join(pages).replace("🏴", FLAG)}{colofon}</main></div>
 <script>{PJS};window.PZ_ICON={json.dumps(pz_icons())};</script>
 <script>{JS}</script>'''
     OUT.write_text(page, encoding="utf-8")
@@ -1071,17 +1084,17 @@ def tool_guide(pid):
     if not g:
         return ""
     body = f'<p class="g-idea">{inline(g["idea"])}</p>'
-    body += '<h4>Qué contar a la clase</h4><ol>' + "".join(f'<li>{inline(x)}</li>' for x in g["contar"]) + '</ol>'
+    body += '<h2 class="g-h">Qué contar a la clase</h2><ol>' + "".join(f'<li>{inline(x)}</li>' for x in g["contar"]) + '</ol>'
     qs = ""
     for q, pistas, sol in g.get("preguntas", []):
         qs += (f'<li><b>{inline(q)}</b><ul class="g-steps">' + "".join(f'<li><span class="g-tag">Pista</span> {inline(x)}</li>' for x in pistas)
                + f'<li><details><summary>Ver la solución</summary>{md(sol)}</details></li></ul></li>')
     if qs:
-        body += f'<h4>Preguntas para pensar</h4><ol class="g-qs">{qs}</ol>'
+        body += f'<h2 class="g-h">Preguntas para pensar</h2><ol class="g-qs">{qs}</ol>'
     if g.get("mates"):
-        body += f'<h4>Matemáticas</h4><p>{inline(g["mates"])}</p>'
+        body += f'<h2 class="g-h">Matemáticas</h2><p>{inline(g["mates"])}</p>'
     if g.get("saber"):
-        body += '<h4>Para saber más</h4><ul>' + "".join(f'<li><a href="{u}" target="_blank" rel="noopener">{E(t)}</a></li>' for t, u in g["saber"]) + '</ul>'
+        body += '<h2 class="g-h">Para saber más</h2><ul>' + "".join(f'<li><a href="{u}" target="_blank" rel="noopener">{E(t)}</a></li>' for t, u in g["saber"]) + '</ul>'
     return more("Guía para el docente: qué contar, preguntas y soluciones", body, did=f"guia-{pid}")
 
 

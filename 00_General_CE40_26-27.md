@@ -27,7 +27,7 @@
    - **Si va rápido / si cuesta:** para ampliar o simplificar sin improvisar.
    - **Mates:** el vínculo con el área, para justificar la sesión en la programación.
 5. **No se trata de terminar la ficha.** Si una sesión se alarga, se acaba en la siguiente o en una sesión de reserva. Es mejor hacer poco y bien.
-6. **Si algo técnico falla**, mira el apartado "Si algo falla" de la herramienta en `07_Guias_rapidas_herramientas.md`. Si no se arregla en 3 minutos, pasa a la opción con fichas: la sesión nunca se pierde.
+6. **Si algo técnico falla**, mira el apartado «Si algo falla» de la herramienta en `07_Guias_rapidas_herramientas.md`. Si no se arregla en 3 minutos, pasa a la opción con fichas: la sesión nunca se pierde.
 7. **Todo es orientativo.** El orden de las sesiones y el reparto de robots y herramientas por curso son una propuesta. Según el progreso del grupo, un recurso se puede adelantar, alargar o recuperar (por ejemplo, seguir con Tale-Bot en 1º más tiempo del previsto, o volver a él en 2º con quien lo necesite).
 8. **Atención a la diversidad:** el apartado 6 indica qué materiales y niveles de la guía sirven para ajustar cada sesión.
 
@@ -51,7 +51,7 @@ Las sesiones se integran en el área de **Matemáticas** (sentido algebraico y p
 Cada sesión lleva etiquetas: **PC** pensamiento computacional · **ROB** robótica · **IA** inteligencia artificial y datos · **SEG** uso responsable y seguridad · **RA** realidad aumentada, QR y 3D.
 
 - **PC** es el hilo de todo el curso.
-- **Primer ciclo (1º y 2º) sin pantallas:** todo se trabaja desenchufado y con robots de suelo: **Tale-Bot**, que se programa con botones (el alumnado lo conoce de Infantil), y **True True**, que se programa con tarjetas. La "programación por bloques" se hace con **bloques de papel** idénticos a los de ScratchJr. La tablet solo aparece en las tres últimas sesiones de 2º (S22 a S24) como iniciación a ScratchJr.
+- **Primer ciclo (1º y 2º) sin pantallas:** todo se trabaja desenchufado y con robots de suelo: **Tale-Bot**, que se programa con botones (el alumnado lo conoce de Infantil), y **True True**, que se programa con tarjetas. La «programación por bloques» se hace con **bloques de papel** idénticos a los de ScratchJr. La tablet solo aparece en las tres últimas sesiones de 2º (S22 a S24) como iniciación a ScratchJr.
 - **ROB**: Tale-Bot (1º, primer trimestre, orientativo; después, como apoyo en 1º y 2º), True True (1º a 3º), Makey Makey (3º y 4º), micro:bit y Nezha (5º y 6º).
 - **IA**: **solo en 5º y 6º** (decisión del centro), con el proyectable «Entrena a la máquina», Teachable Machine en demostración del docente y los casos para debatir (M24). De 1º a 4º no hay sesiones de inteligencia artificial; sí se trabaja lo que la prepara (clasificar, árboles de preguntas, recoger y organizar datos) como pensamiento computacional y estadística.
 - **SEG**: no es un bloque aparte. Es un **«Minuto de uso responsable»** al principio de cada sesión (ver apartado 5) y alguna sesión específica.
@@ -66,15 +66,15 @@ Es la secuenciación que hemos de cubrir. Cada archivo de curso indica, trimestr
 | Curso | 1er trimestre (pensamiento computacional) | 2º trimestre (programación y robótica) | 3er trimestre (proyecto) |
 |---|---|---|---|
 | **1º** | Introducción al pensamiento computacional · Secuencias básicas · Descomposición de problemas simples · Actividades desenchufadas | Introducción a la programación por bloques (ScratchJr) · Bloques de movimiento · Bucles sencillos · Pequeñas animaciones | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
-| **2º** | Reforzar pensamiento computacional · Secuencias avanzadas · Actividades desenchufadas · Bucles | ScratchJr: eventos sencillos · Condicionales básicos ("si… entonces…") · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
+| **2º** | Reforzar pensamiento computacional · Secuencias avanzadas · Actividades desenchufadas · Bucles | ScratchJr: eventos sencillos · Condicionales básicos («si… entonces…») · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
 | **3º** | Reforzar secuencias y bucles · Condicionales sencillos | Introducción a la programación por bloques (ScratchJr/Scratch) · Variables simples (contadores, puntuaciones) · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
-| **4º** | Secuencias y bucles complejos · Variables · Condicionales complejos ("si… entonces… si no…") | Variables y condicionales · Depuración de errores · Juegos con eventos múltiples · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
+| **4º** | Secuencias y bucles complejos · Variables · Condicionales complejos («si… entonces… si no…») | Variables y condicionales · Depuración de errores · Juegos con eventos múltiples · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
 | **5º** | Variables, condicionales y bucles · Introducción a sensores básicos | Uso de sensores para interacción física · Depuración · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
 | **6º** | Sensores · Integración de múltiples eventos | Proyectos con sensores y eventos múltiples · Optimización de código · Proyecto individual | Proyecto colaborativo · Optimización de código · Presentación de proyectos grupales |
 
 **Adaptación en el primer ciclo:** en 1º y 2º, los contenidos de programación por bloques y ScratchJr del segundo trimestre se trabajan **sin pantalla** (bloques de papel, juegos y robot True True), por decisión del centro. ScratchJr se inicia en las tres últimas sesiones de 2º. Los conceptos (bloques, movimiento, bucles, eventos, condiciones, animaciones) son los mismos; cambia el soporte.
 
-**Qué significa "optimización de código" en Primaria** (sale en todos los terceros trimestres): hacer el mismo programa con menos piezas o de forma más clara. En la práctica: sustituir órdenes repetidas por un bucle, quitar bloques que sobran y ordenar el programa para que otra persona lo entienda. Cada curso tiene una sesión dedicada a esto.
+**Qué significa «optimización de código» en Primaria** (sale en todos los terceros trimestres): hacer el mismo programa con menos piezas o de forma más clara. En la práctica: sustituir órdenes repetidas por un bucle, quitar bloques que sobran y ordenar el programa para que otra persona lo entienda. Cada curso tiene una sesión dedicada a esto.
 
 ---
 
@@ -115,19 +115,19 @@ La estructura es siempre la misma. Al alumnado le da seguridad y al docente le q
 
 | Min | Fase | Qué hace el docente |
 |---|---|---|
-| 0-5 | **Arranque** | Recordar la sesión anterior con una pregunta ("¿Qué era un bucle?"). **Minuto de uso responsable** (ver abajo). Repartir roles. |
+| 0-5 | **Arranque** | Recordar la sesión anterior con una pregunta («¿Qué era un bucle?»). **Minuto de uso responsable** (ver abajo). Repartir roles. |
 | 5-12 | **Misión** | Contar el reto con una historia corta y hacer una demostración (en el display, en el suelo o con el robot). Decir la **frase clave**. |
 | 12-35 | **Práctica** | El alumnado trabaja en parejas o grupos. Tú circulas y preguntas; no resuelves. A mitad (min. 23 aprox.) se cambian los roles. |
 | 35-40 | **Compartir** | Un grupo enseña su solución o **su error más interesante**. |
 | 40-45 | **Cierre y recogida** | Repetir la frase clave. Sello en el pasaporte. Guardar proyectos, recoger y poner a cargar. |
 
-**En 5º y 6º (quincenal)** la recogida empieza 5 minutos antes: todo proyecto guardado y todo kit en su caja. Cada equipo rellena una **tarjeta "Dónde lo dejamos"** (material M18), porque en quince días se olvida casi todo.
+**En 5º y 6º (quincenal)** la recogida empieza 5 minutos antes: todo proyecto guardado y todo kit en su caja. Cada equipo rellena una **tarjeta «Dónde lo dejamos»** (material M18), porque en quince días se olvida casi todo.
 
 ### Tres preguntas que sirven para cualquier sesión (cuando no sepas qué decir)
 
-- "¿Qué querías que pasara y qué ha pasado?"
-- "¿En qué paso exacto empieza a fallar?"
-- "¿Se podría hacer con menos pasos?"
+- «¿Qué querías que pasara y qué ha pasado?»
+- «¿En qué paso exacto empieza a fallar?»
+- «¿Se podría hacer con menos pasos?»
 
 Con estas tres preguntas se trabaja depuración y optimización sin necesidad de saber la respuesta técnica.
 
@@ -146,12 +146,12 @@ Un minuto al principio de cada sesión para una norma de uso responsable y segur
 
 | Tema | 1º y 2º | 3º y 4º | 5º y 6º |
 |---|---|---|---|
-| Cuidado del material | "El robot se coge con dos manos." · "Las tarjetas no se doblan ni se pintan." · "Espero mi turno y ayudo sin quitar." | "Los cables se sacan desde el enchufe, no tirando del cable." · "Al ordenador, manos limpias y nada de comida ni bebida cerca." | "Las pilas y baterías no se tocan con metal ni se mojan." · "El robot se prueba en el suelo y se apaga antes de tocar la placa." |
-| Postura y pantallas | "Espalda en la silla, pantalla a un brazo de distancia." | "Cada 20 minutos miro algo lejano 20 segundos." · "Espalda recta y pies en el suelo cuando uso el ordenador." | "Si me duelen los ojos o la cabeza, lo digo." · "Pantalla a la altura de los ojos y a un brazo de distancia." |
-| Contraseñas y privacidad | "Mi contraseña es como mi cepillo de dientes: no se presta." | "No escribo mi nombre completo ni mi dirección en internet." | "Un seudónimo me protege. Mi foto es mía." |
-| Contenido adecuado | "Si veo algo que no me gusta, aviso a un adulto." | "No todo lo que sale en una pantalla es verdad." | "Antes de creer algo, lo contrasto en otra fuente." |
-| Huella digital | "Lo que subo a internet se queda." | "Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube." | "Las redes sociales tienen edad mínima por algo." |
-| Recogida | "Cada cosa a su caja y a cargar." | "Cuento el material antes de guardarlo." · "Guardo mi proyecto con un nombre que sepa encontrar." | "Guardo el archivo con el nombre del equipo antes de cerrar." |
+| Cuidado del material | «El robot se coge con dos manos.» · «Las tarjetas no se doblan ni se pintan.» · «Espero mi turno y ayudo sin quitar.» | «Los cables se sacan desde el enchufe, no tirando del cable.» · «Al ordenador, manos limpias y nada de comida ni bebida cerca.» | «Las pilas y baterías no se tocan con metal ni se mojan.» · «El robot se prueba en el suelo y se apaga antes de tocar la placa.» |
+| Postura y pantallas | «Espalda en la silla, pantalla a un brazo de distancia.» | «Cada 20 minutos miro algo lejano 20 segundos.» · «Espalda recta y pies en el suelo cuando uso el ordenador.» | «Si me duelen los ojos o la cabeza, lo digo.» · «Pantalla a la altura de los ojos y a un brazo de distancia.» |
+| Contraseñas y privacidad | «Mi contraseña es como mi cepillo de dientes: no se presta.» | «No escribo mi nombre completo ni mi dirección en internet.» | «Un seudónimo me protege. Mi foto es mía.» |
+| Contenido adecuado | «Si veo algo que no me gusta, aviso a un adulto.» | «No todo lo que sale en una pantalla es verdad.» | «Antes de creer algo, lo contrasto en otra fuente.» |
+| Huella digital | «Lo que subo a internet se queda.» | «Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube.» | «Las redes sociales tienen edad mínima por algo.» |
+| Recogida | «Cada cosa a su caja y a cargar.» | «Cuento el material antes de guardarlo.» · «Guardo mi proyecto con un nombre que sepa encontrar.» | «Guardo el archivo con el nombre del equipo antes de cerrar.» |
 
 ---
 
@@ -189,7 +189,7 @@ La organización del aula y los apoyos de cada alumno o alumna los decide cada d
 ## 7. Recursos comunes de motivación
 
 - **Pasaporte del programador:** una hoja por alumno con una casilla por sesión. Al final de la sesión se pone un sello o pegatina. Es la evidencia principal de evaluación y motiva muchísimo. Material M15, listo para imprimir.
-- **Cazabichos:** los errores ("bichos") se celebran. Cuando un grupo encuentra un error, lo cuenta en voz alta y se celebra. El docente se equivoca a propósito de vez en cuando.
+- **Cazabichos:** los errores («bichos») se celebran. Cuando un grupo encuentra un error, lo cuenta en voz alta y se celebra. El docente se equivoca a propósito de vez en cuando.
 - **Hilo conductor:** cada curso tiene una pequeña historia que da sentido a los retos (exploradores, ingenieros, estudio de videojuegos…). No es obligatorio usarla, pero ayuda mucho en los cursos pequeños.
 - **Muestra final (junio):** cada curso enseña su proyecto en su aula o a otro curso. Si el centro lo organiza, puede ser una Feria del Código con códigos QR a fotos del trabajo (sin caras), pero no es obligatorio.
 
@@ -241,7 +241,7 @@ Sin exámenes. Cuatro fuentes:
 | **Colabora** y respeta los roles | Le cuesta respetar turnos | Respeta su rol y el del compañero | Anima y organiza al grupo |
 | **Cuida** el material y usa los dispositivos con seguridad | Necesita recordatorios | Cumple las normas | Recuerda las normas a los demás |
 
-3. **Autoevaluación** al final de cada trimestre: caritas en 1º y 2º, una frase ("Aprendí… / Me costó…") de 3º en adelante. Las caritas sirven en cualquier curso para el alumnado que lo necesite.
+3. **Autoevaluación** al final de cada trimestre: caritas en 1º y 2º, una frase («Aprendí… / Me costó…») de 3º en adelante. Las caritas sirven en cualquier curso para el alumnado que lo necesite.
 4. **Retos del trimestre** (material M28): una hoja individual con 4 retos al estilo Bebras por curso y trimestre, de 15 a 20 minutos. No es un examen: es una evidencia individual del pensamiento computacional para la rúbrica. En 1º y 2º el docente lee los retos en voz alta y se responde rodeando. La última hoja de cada curso trae las soluciones y lo que evalúa cada reto (criterio 4.1 o 4.2).
 
 Para el alumnado con necesidades específicas, ver el apartado 6.
@@ -256,7 +256,7 @@ Sirven para cualquier curso y no necesitan preparación especial:
 
 - **Torneo de cazabichos:** fichas M08 del nivel del curso o el proyectable del robot en la cuadrícula, modo cazabichos.
 - **Misiones eXe oficiales (Retos en 45'):** misiones interactivas de Código Escuela 4.0 pensadas para una sesión (ver Recursos oficiales).
-- **[Hora del Código: laberinto clásico](https://studio.code.org/hoc/1):** 20 niveles con bloques, en español y sin cuenta (de 3º en adelante).
+- **[Hora del Código: laberinto clásico](https://studio.code.org/es/hoc/1):** 20 niveles con bloques, en español y sin cuenta (de 3º en adelante).
 - **CS Unplugged (csunplugged.org/es):** actividades desenchufadas gratuitas con guía para el docente.
 - **Reto libre:** el alumnado inventa un reto con el material del trimestre.
 - **Recuperación:** para terminar el producto del trimestre.
@@ -268,7 +268,7 @@ Sirven para cualquier curso y no necesitan preparación especial:
 
 1. Cada nivel tiene su sesión semanal (quincenal en 5º y 6º) y el día concreto se elige aparte.
 2. 1º y 2º son principalmente desenchufados (decisión del centro). Solo se necesitan tablets con ScratchJr para las sesiones 22 a 24 de 2º. Si no hubiera suficientes, se hace en el display por turnos.
-3. 3º llega con ScratchJr solo iniciado (final de 2º) y no conoce Scratch: se introduce desde cero y muy guiado. 4º lo ha visto en 3º. 5º sabe Scratch y 6º conoce MakeCode. Cada curso empieza con una sesión que sirve de diagnóstico: si el nivel es más alto, se usan las opciones de "Si va rápido".
+3. 3º llega con ScratchJr solo iniciado (final de 2º) y no conoce Scratch: se introduce desde cero y muy guiado. 4º lo ha visto en 3º. 5º sabe Scratch y 6º conoce MakeCode. Cada curso empieza con una sesión que sirve de diagnóstico: si el nivel es más alto, se usan las opciones de «Si va rápido».
 4. Cada aula tiene display interactivo.
 5. Hay kits suficientes de True True, Makey Makey, micro:bit y Nezha para grupos de 3 o 4.
 6. Infantil puede prestar sus Tale-Bot a 1º durante el primer trimestre. Si no se puede, esas sesiones se hacen con el proyectable Bee-Bot (funciona igual: botones y GO) y se pasa antes a True True.

@@ -77,6 +77,6 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | Magia de la paridad | 4º-6º | El truco de magia que adivina la carta girada: detección de errores. |
 | ¿Quién sale? y marcador | 1º-6º | Sorteo sin repetir para salir a la pizarra y puntos por equipos. |
 
-**Otras aplicaciones recomendadas** (se abren en otra pestaña; gratuitas y sin cuentas de alumnado): [Blockly Games](https://blockly.games/?lang=es) (laberinto, pájaro, tortuga; 3º-6º) · [Quick, Draw!](https://quickdraw.withgoogle.com/) (una IA adivina dibujos; 5º-6º) · [AI for Oceans](https://code.org/oceans) (entrenar una IA; 5º-6º) · [Hora del Código: laberinto clásico](https://studio.code.org/hoc/1) · [CS Unplugged](https://csunplugged.org/es/).
+**Otras aplicaciones recomendadas** (se abren en otra pestaña; gratuitas y sin cuentas de alumnado): [Blockly Games](https://blockly.games/?lang=es) (laberinto, pájaro, tortuga; 3º-6º) · [Quick, Draw!](https://quickdraw.withgoogle.com/) (una IA adivina dibujos; 5º-6º) · [AI for Oceans](https://code.org/oceans) (entrenar una IA; 5º-6º) · [Hora del Código: laberinto clásico](https://studio.code.org/es/hoc/1) · [CS Unplugged](https://www.csunplugged.org/es/).
 
 **Cómo se usan:** en la web, abre la sección Para proyectar o pulsa el enlace de la ficha de sesión. El botón **Pantalla completa** amplía la herramienta para la pizarra. Funcionan con el dedo o con el ratón y no necesitan instalar nada ni crear cuentas.

@@ -1,6 +1,6 @@
 # Guía Código Escuela 4.0 · Primaria · 2026-2027 — documento del proyecto
 
-Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 30 de septiembre de 2026.
+Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 9 de octubre de 2026 (**versión 1.0**).
 
 ---
 
@@ -10,15 +10,16 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables, con 112 modos o retos), **17 vídeos de conceptos**, **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
 
 | Qué | Dónde |
 |---|---|
-| Web de la guía (vista previa privada) | https://claude.ai/artifact/9EnbQpgEXsa5JESFdnKHqm (versión 10). Los .sb3 no se descargan aquí: los artifacts no sirven ese tipo de archivo |
-| Paquete para el aula virtual o una carpeta compartida | `Guia_CE40_2026-27_web.zip` (4,3 MB) |
+| Web de la guía (sitio oficial) | https://oparadanoheda.github.io/guia-ce40/ (GitHub Pages; se actualiza con cada `git push`) |
+| Vista previa privada en Claude (antigua) | https://claude.ai/artifact/9EnbQpgEXsa5JESFdnKHqm (versión 10, sin actualizar desde entonces). Los .sb3 no se descargan ahí |
+| Paquete para el aula virtual o una carpeta compartida | `Guia_CE40_2026-27_web.zip` (6,1 MB) |
 | Instrucciones para subirlo al aula virtual | `Cómo subir la guía al aula virtual.txt` |
 | PDF para imprimir | `Material imprimible/` (y `Material imprimible/Scratch/`) |
 | Presentación para la reunión del profesorado de Matemáticas | https://claude.ai/artifact/6ZeVqrRinvxkcZ2twnCtzD (14 diapositivas con notas). Es privada: para enseñarla a otros hay que compartirla desde su menú Share |
@@ -61,7 +62,8 @@ Programación Mate 4.0 26-27/
 ├── 00_General_CE40_26-27.md        Marco, calendario, sesión tipo, diversidad, evaluación, comodines, supuestos
 ├── 1_primero.md … 6_sexto.md        Las sesiones de cada curso
 ├── 07_Guias_rapidas_herramientas.md Tale-Bot, True True, ScratchJr, Scratch, Makey Makey, micro:bit, Nezha, Tinkercad, Teachable Machine, QR
-├── 08_Plantillas_y_material.md      Catálogo de M01-M25, archivos de Scratch y proyectables
+├── 08_Plantillas_y_material.md      Catálogo de M01-M28, archivos de Scratch y proyectables
+├── Propuesta 5º y 6º semanal.md     Plan por si 5º y 6º pasan a ser semanales (no se usa en 2026-27)
 ├── LEEME_PROYECTO.md                Este documento
 ├── Animaciones/                     Encargo de los vídeos (Prompts animaciones.md), informe de entrega y bandeja animaciones_nuevas/
 ├── Cómo subir la guía al aula virtual.txt
@@ -83,7 +85,7 @@ Programación Mate 4.0 26-27/
 | `proyeccion.js`, `proyeccion.css` | Modo proyección de cada sesión. Los datos van en un `<script type="application/json" class="pz-data">` dentro de cada ficha (función `projection_data` de `build_web.py`) |
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
-| `proyectables.js`, `proyectables2.js`, `proyectables*.css` | Las 30 herramientas de la pizarra (21 + 9) |
+| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables*.css` | Las 30 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
 | `videos/` | Los 17 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
@@ -98,10 +100,10 @@ Programación Mate 4.0 26-27/
 | `empaquetar.py` | Crea `../Guia_CE40_2026-27_web.zip` |
 | `revisar_pdfs.py` | Comprueba que ningún PDF se sale de la página |
 | `pruebas_scratch/` | Pruebas de los .sb3 en el motor oficial de Scratch (Node) |
+| `pruebas_web/` | Pruebas de la web publicada en Edge sin interfaz (`probar_web.py`): HTML, todas las páginas en varios tamaños y en oscuro, pulsaciones al azar en cada herramienta, la proyección de las 128 sesiones, accesibilidad (axe-core) y enlaces externos. Ver «Comprobaciones antes de publicar» |
 | `capturas.py` | Capturas de la web sin interfaz (para revisar el aspecto) |
 | `arasaac_buscar.py` | Busca pictogramas y crea hojas de contactos para elegir ids |
 | `materiales/` | PDF generados, `src/` (HTML de cada PDF) y `scratch/` (.sb3) |
-| `aplicar_bloques.py`, `aplicar_rev.py`, `quitar_emojis.py`, `materiales_rev.py`, `pj_bloques_nuevos.js` | Scripts de un solo uso de revisiones pasadas. Ya aplicados; se pueden borrar |
 
 ---
 
@@ -133,7 +135,7 @@ Texto o pasos.
 - **Etiquetas:** `PC` pensamiento computacional · `ROB` robótica · `IA` (solo 5º-6º) · `SEG` uso responsable · `RA` realidad aumentada, QR y 3D.
 - **Opciones:** `**Opción A · …**` se convierte en pestañas. `**Pasos:**` crea un único bloque de desarrollo. `**Opción más sencilla:**` cuenta como «Si cuesta».
 - **Enlaces especiales:**
-  - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en el código; hoy se usan 62 y todas existen.
+  - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en el código; hoy se usan 89 y todas existen.
   - `[[M:M07|texto]]` enlaza un PDF.
   - `[[S:archivo.sb3|texto]]` enlaza un proyecto de Scratch.
 - **En la web:** «Si va rápido» y «Si cuesta» aparecen como «Para ampliar» y «Para simplificar» en el bloque «Atención a la diversidad». El resto de viñetas con etiqueta van a «A tener en cuenta».
@@ -172,6 +174,7 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 
 | Qué | Cómo |
 |---|---|
+| **La web funciona** | `python probar_web.py` (desde `web/pruebas_web/`, tras `build_web.py` y `empaquetar.py`; unos 25 minutos). Prueba `docs/index.html`: HTML sin ids repetidos ni enlaces rotos ni emojis; las ~190 páginas a 1366, 1024 y 375 px y en oscuro, sin errores ni desbordes; cada modo de cada herramienta con miles de pulsaciones al azar; la proyección de las 128 sesiones a 1024×768 y 1366×768; y accesibilidad WCAG 2.1 AA con axe-core en claro y en oscuro. Debe terminar en «RESULTADO: todo bien». Se puede pasar por partes: `python probar_web.py estatico` (segundos), `paginas`, `herramientas`, `proyeccion`, `accesibilidad`. Con `enlaces` comprueba los enlaces externos (necesita internet) |
 | Ningún PDF se sale de la página | `python revisar_pdfs.py` (desde `web/`). Debe decir `OV ok` en todos |
 | Los bloques se llaman como en el editor | `python revisar_bloques.py` (desde `web/`). Compara cada bloque de Scratch y MakeCode citado en las sesiones, en la guía de herramientas, en las chuletas M20 y M21, en los retos M28 y en las notas de los .sb3 con los nombres oficiales en español (Scratch «es», MakeCode «es-ES», y el Nezha y PlanetX en inglés). Debe decir «Todos los bloques citados existen con ese nombre»; si no, lista cada uno con su archivo y línea. Con `--actualizar` vuelve a descargar los nombres oficiales (hacerlo de vez en cuando: Scratch y MakeCode cambian alguna traducción). No ve una errata en la primera palabra de un bloque ni revisa los números de dentro |
 | Aspecto de los PDF | Abrir las páginas cambiadas y mirarlas (la herramienta Read del asistente muestra cada página como imagen) |
@@ -211,18 +214,19 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 
 ## 8. Contenido: material, Scratch y proyectables
 
-**Material imprimible (M01-M25):**
+**Material imprimible (M01-M28):**
 - M01 flechas · M02 movimientos · M03 bloques tipo ScratchJr · M04 SI/ENTONCES/SI NO · M05 roles
 - M06 tablero 5×5 y fichas · M07 mapas del tesoro · M08 cazabichos · M09 patrones · M10 secuencias
 - M11 ¿Qué animal soy? (árbol guiado de 4 niveles) · M12 diagramas de flujo · M13 oca de condiciones · M14 misión final · M15 pasaporte
 - M16 planificación · M17 playtesting · M18 «Dónde lo dejamos» · M19 rúbrica · M20 chuleta Scratch
 - M21 chuleta MakeCode · M22 mando Makey Makey · M23 ¿Puede pasar de verdad? / ¿Verdad, bulo o IA? · M24 casos de IA · M25 registro de datos
+- M28 retos del trimestre al estilo Bebras (4 por curso y trimestre, con soluciones)
 - M26 pósteres de conceptos (índice de cuándo colgarlos + 10 pósteres: algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar; cada uno con ejemplo y escalera 1º-2º / 3º-4º / 5º-6º). Cada póster está enlazado en la sesión donde se cuelga (21 enlaces).
 - M27 palabras del curso (una hoja por curso, 12-14 palabras con su sesión)
 
 Detalle en `08_Plantillas_y_material.md`.
 
-**Archivos de Scratch (9, en `web/materiales/scratch/`):**
+**Archivos de Scratch (15, en `web/materiales/scratch/`):**
 - **Con bichos:**
   - 4º S1 «Arregla el juego»: mover −10 con la flecha derecha, sonido suelto sin evento, repetir 3 en vez de por siempre.
   - 4º S7 torneo: la variable no vuelve a 0 / la condición al revés / un cuadrado con repetir 3.
@@ -284,19 +288,7 @@ Detalle en `08_Plantillas_y_material.md`.
 9. **Niveles y vínculos:** «Si cuesta» y «Si va rápido» en todas las sesiones; vínculos matemáticos concretos; recursos en las sesiones que no tenían.
 10. **Archivos de Scratch** probados en scratch-vm, y zip para el aula virtual.
 11. **Estudio de referentes** y primeras mejoras. Se compararon Teach Computing (Reino Unido), Barefoot, Code.org, la EPCIA del INTEF, editoriales españolas, Código Escuela 4.0 de Cantabria, Dr. Scratch, el test de Román-González, Bebras y la EU Code Week. Se añadieron los pósteres de conceptos (M26), el vocabulario por curso (M27 y en cada .md) y el modo proyección de cada sesión.
-14. **Ambientación y animaciones en las herramientas** (ampliación del piloto del robot).
-    - **Piezas comunes** en `proyectables.js`, exportadas en `window.PJH`: `islandSVG`, `ROBOT_BODY`, `svgConfetti`, `burst` (confeti sobre cualquier elemento), `setStatus` (franja verde o roja) y `replay`. Los estilos están en `proyectables4.css`.
-    - **Robot, Bee-Bot y laberinto:** tablero de isla o camino de arena; personaje que se desliza y gira (capa del tablero fija y capa del personaje animada); temblor al chocar; confeti al llegar.
-    - **Flota:** mar con olas, salpicadura al fallar, destello al tocar y barco hundido dibujado.
-    - **Secuencias:** revisión en cascada.
-    - **Patrones y clasificador:** aparición con salto y temblor al fallar.
-    - **Semáforo:** resplandor del color.
-    - **Votaciones:** barras que crecen.
-    - **Circuito:** corriente que circula y bombilla que brilla.
-    - **Temporizador:** anillo con el color de la fase.
-    - **«¿Qué animal soy?»:** confeti al acertar.
-    - **Interruptor «Sin animaciones»** en cada herramienta (clase `pj-still` en `<html>`, se guarda en `localStorage`). También respeta «reducir movimiento» del sistema. Sin sonidos nuevos.
-    - **Sin cambios visuales** en el resto de herramientas (diagramas, polígonos, variables, coordenadas, LED, umbral, velocidad, sesgo, verdad, contraseñas, cifrado, píxel art, binario, Simón, balanza, paridad, ¿quién sale?, bucles).
+12. **Botón «Volver a la sesión»:** al consultar una herramienta, guía o rúbrica desde una sesión, se vuelve al mismo punto. Se descartaron otras opciones: abrir las herramientas encima de la sesión (más riesgo, y solo resolvía las herramientas) y abrirlas en otra pestaña (recarga 2 MB y acumula pestañas en la pizarra).
 13. **Menos texto y más visual** (criterio: lo esencial a la vista, el detalle en desplegables `<details class="more">`).
     - **Portada:** 4 tarjetas.
     - **«El método»:** fases, roles con pictogramas, tres preguntas, evaluación, herramientas y reserva; el resto, en desplegables.
@@ -311,8 +303,20 @@ Detalle en `08_Plantillas_y_material.md`.
       - enlaces «Guía paso a paso» y «Ver la rúbrica» rotos desde la renumeración (ahora las anclas son `g-<herramienta>` y `rubrica`, y un enlace a un desplegable lo abre);
       - listas de «Lo básico» que salían en una línea;
       - guías de ScratchJr que aparecían en las sesiones desenchufadas de 2º T2 (los recursos se buscan en la sesión y en el texto del trimestre, sin sus «Nota:»).
+14. **Ambientación y animaciones en las herramientas** (ampliación del piloto del robot).
+    - **Piezas comunes** en `proyectables.js`, exportadas en `window.PJH`: `islandSVG`, `ROBOT_BODY`, `svgConfetti`, `burst` (confeti sobre cualquier elemento), `setStatus` (franja verde o roja) y `replay`. Los estilos están en `proyectables4.css`.
+    - **Robot, Bee-Bot y laberinto:** tablero de isla o camino de arena; personaje que se desliza y gira (capa del tablero fija y capa del personaje animada); temblor al chocar; confeti al llegar.
+    - **Flota:** mar con olas, salpicadura al fallar, destello al tocar y barco hundido dibujado.
+    - **Secuencias:** revisión en cascada.
+    - **Patrones y clasificador:** aparición con salto y temblor al fallar.
+    - **Semáforo:** resplandor del color.
+    - **Votaciones:** barras que crecen.
+    - **Circuito:** corriente que circula y bombilla que brilla.
+    - **Temporizador:** anillo con el color de la fase.
+    - **«¿Qué animal soy?»:** confeti al acertar.
+    - **Interruptor «Sin animaciones»** en cada herramienta (clase `pj-still` en `<html>`, se guarda en `localStorage`). También respeta «reducir movimiento» del sistema. Sin sonidos nuevos.
+    - **Sin cambios visuales** en el resto de herramientas (diagramas, polígonos, variables, coordenadas, LED, umbral, velocidad, sesgo, verdad, contraseñas, cifrado, píxel art, binario, Simón, balanza, paridad, ¿quién sale?, bucles).
 15. **Repositorio en GitHub:** el proyecto pasa a ser un repositorio Git publicado en GitHub, con la web en `docs/`. Sustituye a la subida manual de archivos y a la carpeta «Para subir a GitHub».
-12. **Botón «Volver a la sesión»:** al consultar una herramienta, guía o rúbrica desde una sesión, se vuelve al mismo punto. Se descartaron otras opciones: abrir las herramientas encima de la sesión (más riesgo, y solo resolvía las herramientas) y abrirlas en otra pestaña (recarga 2 MB y acumula pestañas en la pizarra).
 16. **Vídeos de conceptos:** 17 vídeos animados encargados a otra instancia de Claude, revisados fotograma a fotograma e integrados en la web (galería, una página por vídeo, enlaces en 46 sesiones y diapositiva en el modo proyección). En la revisión se arregló el del sensor (el medidor no se veía y la barra salía al grabar), la regla de «Cómo aprende una máquina» (era circular: ahora «redonda, con rabito, de cualquier color»), el texto final de coordenadas, un aviso que se salía de su recuadro y las marcas de capítulo del patrón. Se decidió no hacer MP4. Después se añadieron efectos de sonido opcionales en los 17.
 17. **Arreglos de herramientas tras la revisión del docente (2 de octubre):**
     - **Votaciones y gráfico:** un solo selector arriba (Mascotas · Juegos · Frutas · Dado · Mis opciones); cada encuesta con su pregunta; gráfico de barras proporcional con escala (antes las barras no guardaban la proporción); «Mis opciones» con casillas (pregunta opcional y de 2 a 8 opciones, que el navegador recuerda); dado dibujado que rueda y enseña el resultado y las últimas 20 tiradas.
@@ -339,11 +343,6 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Contenido:** Hora del Código → laberinto clásico (`code.org/learn` ya no lleva a los tutoriales); el dado de 3º S7 (el proyectable tira, no suma los datos de la clase); semáforo de ruido de 6º S10 con caras (la placa solo tiene luces rojas); lamparita de 5º S4 con «mostrar LEDs» (no hay icono de luna); «unir» con sus espacios; preguntas del minuto adaptadas a sesiones sin robot; «Se usa en» de 12 fichas según el uso real; hoja del dado de M25 para 3º y 5º.
     - **Proyección:** el cierre dice qué se guarda y se recoge según lo que se usa ese día (papel, robots, portátiles, Makey Makey o tablets: `USO_SESION` en `build_web.py`). La barra de fases no recorta las fases cortas en proyectores de 1024 px y en el móvil enseña la fase actual.
     - **Comprobado:** 30 herramientas (87 variantes, 929 pulsaciones sin errores), las 128 proyecciones, los 17 vídeos, los 27 PDF sin desbordes, ninguna página con desbordamiento horizontal en el móvil y modo oscuro.
-
-Las copias de seguridad de cada paso están en `_version_anterior/`.
-
----
-
 26. **Archivos de MakeCode y proyección visual (2 de octubre de 2026):** 24 proyectos .mkcd para 5º y 6º (`makecode_gen.py`; los bloques los genera el propio MakeCode con `makecode_bloques.py` y se guardan en `makecode_bloques/`), con las extensiones oficiales del Nezha (pxt-nezha v1.3.9 y PlanetX v1.5.33). En el coche del kit los motores van en espejo (recto: M1 positivo y M2 negativo). En MakeCode España la variable se fija con «fijar … a …». En la proyección de 1º y 2º, pictogramas en cada paso (`pictos_mision.py`) y botón «Leer» con la voz del sistema.
 27. **Retos del trimestre, M28 (2 de octubre de 2026):** una hoja de 4 retos por curso y trimestre al estilo Bebras, con las soluciones y lo que evalúa cada reto (criterio 4.1 o 4.2). La genera `retos_trimestre.py` (24 páginas); `comprueba()` simula los programas de los retos para que la solución escrita sea la correcta. En 1º y 2º no hace falta leer: el docente lee el reto y se responde rodeando.
 28. **Imprimir la ficha (2 de octubre de 2026):** botón «Imprimir» junto a «Proyectar la sesión». Los estilos están en `web/imprimir.css` (va el último en el CSS de la web): A4 sin menús ni botones, lo que hay que preparar arriba en dos columnas, la propuesta que esté elegida en las pestañas (con su título y el nombre de las demás) y las pistas y soluciones abiertas (`app.js` las abre en `beforeprint` y las cierra después). Las sesiones cortas caben en una hoja; las de 5º y 6º con soluciones, en dos.
@@ -356,6 +355,16 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 35. **Diagramas de flujo con ramas y tres repasos más (7 de octubre de 2026):** los diagramas de flujo eran una lista vertical sin bifurcaciones (en «Par o impar» se pasaba de «Digo PAR» a «Digo IMPAR»). Ahora cada diagrama es un grafo dibujado en una rejilla: el rombo tiene dos salidas, las ramas se juntan y los bucles vuelven atrás; el recorrido ilumina el camino seguido. «Adivina el número» tiene dos preguntas, como el programa de 4º S5. Nuevos repasos 4º-6º: clasificador (reglas con y, o, no con números del 1 al 30, y árbol de decisión), patrones (figuras que crecen, series, series con bicho) y ordenar algoritmos (micro:bit, suma en columna, media, resolver un problema; acepta los órdenes alternativos que son correctos).
 36. **Variables, nueva (7 de octubre de 2026):** la herramienta se ha rehecho en `proyectables5.js` (se registra como `variables`) con cuatro modos y un interruptor Scratch / MakeCode para los nombres de los bloques: La caja (dar el valor frente a sumar; 3º S13), Juego de cálculo (puntos y vidas con el programa iluminado; 4º S4 y S12), ¿Cuánto vale al final? (seis programas paso a paso con su tabla, dos con bicho; 4º S4) y La mascota (6º S2, igual que su .mkcd). Quitados los emojis que quedaban en 5º y 6º (corazón, sí, equis, caras): ahora se dice el icono con palabras.
 37. **Coordenadas del escenario, nueva (7 de octubre de 2026):** rehecha en `proyectables5.js` (se registra como `coordenadas`) con cuatro modos: Explorar (al pasar el dedo se lee la x y la y, como en Scratch), Con bloques (ir a, sumar a x / y, dar a x / y el valor, con cinco retos de predecir dónde acaba el gato; 3º S10 y 4º S10), ¿Dónde está? (leer las coordenadas de una estrella o tocar un punto, con 15 pasos de margen) y Dibujar con «ir a» (cuadrado, rectángulo y casa con una esquina por calcular, y un rectángulo con una esquina mal).
+38. **Versión 1.0 (9 de octubre de 2026): revisión completa.**
+    - **Pruebas nuevas** en `web/pruebas_web/probar_web.py` (ver «Comprobaciones antes de publicar»). En esta revisión: 190 páginas sin errores; unas 45.000 pulsaciones al azar en los 112 modos de las 30 herramientas sin ningún error; las 128 proyecciones; los 37 comportamientos de los .sb3; los 289 bloques citados; los 28 PDF; y los 130 enlaces externos (todos responden salvo Quick, Draw!, bloqueado en la red donde se probó).
+    - **Fallos arreglados:** la cabecera de 5º y 6º mostraba asteriscos («cada dos semanas** · **Núcleo»); el enlace a la Hora del Código salía sin convertir en las sesiones de reserva; el enlace a M28 en la caja «Evaluación del trimestre» era del mismo color que el fondo (invisible) y «Ver la rúbrica» casi no se leía; M21 se salía 18 px de la hoja; en 1366×768 la misión de 23 proyecciones no cabía (ahora el tamaño depende también del alto y el paso actual se desplaza hasta verse).
+    - **Accesibilidad (WCAG 2.1 AA):** colores de 1º a 4º y grises algo más oscuros para que el texto blanco y el texto de color lleguen a 4,5:1 (el naranja de 2º pasa a ser tostado, #ad5b12); títulos en orden (h1, h2, h3, h4) en las fichas, las herramientas, su guía para el docente y el calendario; «sí» y «no» de las herramientas con los colores del tema; sin `aside` dentro de `main`; nombre en los botones que solo tienen dibujo (flechas del Bee-Bot, Simón, paridad, patrones); las tablas con desplazamiento del Mapa de la etapa se pueden recorrer con el teclado. Excepción a propósito: los bloques dibujados en las herramientas copian los colores de Scratch y MakeCode con letra blanca, como el editor.
+    - **Móvil:** los botones de arriba de las herramientas se parten en varias filas; Bee-Bot, laberinto y robot en la cuadrícula se apilan; la micro:bit de los LED cabe.
+    - **Edición:** comillas latinas «…» en todos los textos (932 cambios; quedan rectas solo dentro de los bloques, como `mostrar cadena "Hola"`); la bandera verde de Scratch es un dibujo y no un emoji; ortografía revisada con un diccionario (sin erratas).
+    - **Web:** pie en todas las páginas con la versión y el crédito de los pictogramas de ARASAAC (que la licencia exige y no aparecía en la web), también en la proyección de 1º y 2º; descripción para buscadores y redes, icono de la pestaña y color de la barra del navegador; cuatro enlaces externos actualizados a su dirección final.
+    - **Limpieza:** los scripts de un solo uso de `web/` pasan a `_version_anterior/scripts_un_solo_uso/`.
+
+Las copias de seguridad de cada paso están en `_version_anterior/`.
 
 ## 11. Pendiente e ideas
 
@@ -381,12 +390,13 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 - **Probar el zip en el aula virtual real** de EducaMadrid (que Moodle muestre `index.html` y que los PDF y .sb3 se abran).
 - **Revisar con el equipo de ciclo** la asignación de sesiones a los criterios y contenidos del Decreto 61/2022.
 - **Plantilla imprimible de línea de salida y meta** para el Nezha (5º S8, 6º S4), que ahora dice «una regla o una tira de cinta». Y valorar si los mandos de Makey Makey (cartón, aluminio, celo) necesitan alguna ayuda más.
-- Borrar los scripts de un solo uso de `web/` si ya no se necesitan.
 - **Quick, Draw!** (5º S9) no carga desde la red donde se hizo la revisión: la conexión se corta al cifrar, como hacen los filtros de red. La web funciona; hay que probarla desde la red del centro. Si está bloqueada, la alternativa es AI for Oceans.
 
 ---
 
 ## 12. Problemas técnicos conocidos y trucos
+
+- **Procesos de Edge sin interfaz que se quedan abiertos:** si una prueba se corta, Edge sigue escuchando en su puerto y la siguiente prueba se conecta a ese navegador viejo, con resultados que no cuadran. `pruebas_web/cdp.py` cierra el navegador al terminar; si aun así quedan, se cierran desde el Administrador de tareas (los de las pruebas llevan `--remote-debugging-port`).
 
 - **Edge sin interfaz escribe el PDF de forma asíncrona.** Por eso `materiales.py`:
   - borra el PDF antes de generarlo;

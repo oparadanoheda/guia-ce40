@@ -47,7 +47,7 @@
 .pz-nav button{border:2px solid var(--pz);background:#fff;color:#1a1d24;border-radius:.6rem;padding:.7rem 1.3rem;cursor:pointer;
   font:600 1.05rem/1 'Instrument Sans',sans-serif}
 .pz-nav button:disabled{opacity:.3;cursor:default}
-.pz-hint{font:500 .9rem/1.2 'Instrument Sans',sans-serif;color:#8a92a3;text-align:center}
+.pz-hint{font:500 .9rem/1.2 'Instrument Sans',sans-serif;color:#646b7c;text-align:center}
 @media (max-width:640px){.pz-hint{display:none}.pz-phases{flex-wrap:wrap}.pz-phase{flex:1 1 40%!important}}
 
 /* Botón «Volver a la sesión» */

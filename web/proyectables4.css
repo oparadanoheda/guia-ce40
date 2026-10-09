@@ -155,7 +155,7 @@
 /* modos «Repaso 4º-6º» */
 .pj-mode{display:flex;flex-direction:column;gap:14px}
 .pj-mode[hidden]{display:none}
-.pj-mode>h4{margin:.4em 0 0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pj-mode>h2{margin:.4em 0 0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .rp-tag{margin:0;font:700 .78rem var(--sans);letter-spacing:.12em;text-transform:uppercase;color:#6c44b0}
 .rp-tabs{display:flex;gap:8px;flex-wrap:wrap}
 .rp-tab{font:600 1rem var(--sans);padding:8px 14px;border-radius:10px;border:2px solid var(--rule);background:var(--sheet);color:var(--ink);cursor:pointer}
@@ -187,7 +187,7 @@
 .rp-ctl{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) 3em;gap:12px;align-items:center;font-weight:600}
 .rp-val{font:700 1.6rem var(--sans);text-align:right}
 .rp-think{border-top:1px solid var(--rule);padding-top:10px;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
-.rp-think h4{margin:0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rp-think h2{margin:0;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .rp-think p{margin:0}
 .rp-ans{background:var(--tint);padding:8px 12px;border-radius:8px}
 .rp-ans[hidden]{display:none}
@@ -231,9 +231,9 @@
 .rp-num.in{display:inline-block;min-width:2.4em;padding:4px 6px;margin:3px;border-color:transparent;background:#fff;cursor:default}
 .rp-bins{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
 .rp-bin{border-radius:12px;padding:10px;min-height:150px}
-.rp-bin h4{margin:0 0 6px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
-.rp-bin.yes{background:#e3f4e8}.rp-bin.yes h4{color:#1e7a45}
-.rp-bin.no{background:#fbe5e2}.rp-bin.no h4{color:#b8322a}
+.rp-bin h2{margin:0 0 6px;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+.rp-bin.yes{background:#e3f4e8}.rp-bin.yes h2{color:#1e7a45}
+.rp-bin.no{background:#fbe5e2}.rp-bin.no h2{color:#b8322a}
 .rp-bignum{margin:0;font:800 4.5rem/1 var(--sans);color:#2c5bbf}
 .rp-tree{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%;font-family:var(--sans)}
 .rp-br{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}

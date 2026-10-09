@@ -77,7 +77,7 @@ LIBRARY = [
                 ("Normas de uso para el aula (A3)", MV + "q18b6rvbmrtf7ro2", "PDF"),
                 ("Normas de uso (A4)", MV + "ejr76lddixibmseh", "PDF"),
                 ("Vídeos: funcionamiento, tierra, cables, materiales conductores, Scratch", WEB + "e.-primaria", "Web"),
-                ("Apps para probar (piano, bongos)", "https://makeymakey.com/apps", "Web"),
+                ("Apps para probar (piano, bongos)", "https://makeymakey.com/pages/plug-and-play-makey-makey-apps", "Web"),
             ]),
             ("Situaciones de aprendizaje oficiales (con programa de Scratch)", [
                 ("Clasificador interactivo de alimentos", MV + "w8ggks7jhflbrsrx", "3º-4º"),
@@ -179,7 +179,7 @@ LIBRARY = [
         "intro": "Todas funcionan sin cuenta de alumnado, salvo Tinkercad (ver la guía de herramientas).",
         "groups": [
             ("Programación", [
-                ("ScratchJr: guía de la interfaz", "https://www.scratchjr.org/learn/interface", "2º-3º"),
+                ("ScratchJr: guía de la interfaz", "https://www.scratchjr.org/explore/interface", "2º-3º"),
                 ("Scratch: crear un proyecto", "https://scratch.mit.edu/projects/editor/", "3º-5º"),
                 ("Scratch: tutoriales", "https://scratch.mit.edu/ideas", "3º-5º"),
                 ("MakeCode para micro:bit", "https://makecode.microbit.org/", "5º-6º"),
@@ -188,8 +188,8 @@ LIBRARY = [
                 ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "3º-6º"),
             ]),
             ("Sesiones de reserva", [
-                ("Hora del Código: laberinto clásico", "https://studio.code.org/hoc/1", "3º-6º"),
-                ("CS Unplugged en español", "https://csunplugged.org/es/", "Todos"),
+                ("Hora del Código: laberinto clásico", "https://studio.code.org/es/hoc/1", "3º-6º"),
+                ("CS Unplugged en español", "https://www.csunplugged.org/es/", "Todos"),
                 ("Pictogramas ARASAAC", "https://arasaac.org/", "1º-2º"),
             ]),
         ],
@@ -225,7 +225,7 @@ SESSION_RULES = [
     ("True True", [("Manual docente de True True", MV + "dz7amxzeoegpioah"),
                    ("Normas de uso del robot", MV + "vild4b9fmu8ti5bx"),
                    ("Vídeos de funcionalidades", WEB + "e.-primaria")]),
-    ("ScratchJr", [("ScratchJr: guía de la interfaz", "https://www.scratchjr.org/learn/interface")]),
+    ("ScratchJr", [("ScratchJr: guía de la interfaz", "https://www.scratchjr.org/explore/interface")]),
     ("Scratch ", [("Editor de Scratch", "https://scratch.mit.edu/projects/editor/")]),
     ("Makey Makey", [("Manual docente Makey Makey / Clic and Play", MV + "zf1ps2yb8362az2i"),
                      ("Normas de uso", MV + "q18b6rvbmrtf7ro2")]),
@@ -236,5 +236,5 @@ SESSION_RULES = [
     ("Tinkercad", [("Tinkercad: aprender", "https://www.tinkercad.com/learn")]),
     ("Teachable Machine", [("Teachable Machine", "https://teachablemachine.withgoogle.com/")]),
     ("ARASAAC", [("Pictogramas ARASAAC", "https://arasaac.org/")]),
-    ("csunplugged", [("CS Unplugged en español", "https://csunplugged.org/es/")]),
+    ("csunplugged", [("CS Unplugged en español", "https://www.csunplugged.org/es/")]),
 ]

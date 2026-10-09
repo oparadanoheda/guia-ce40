@@ -22,6 +22,8 @@ web/picto/_hojas/
 web/materiales/src/
 web/pruebas_scratch/node_modules/
 web/pruebas_scratch/package-lock.json
+web/pruebas_web/.edge-*/
+web/pruebas_web/axe.min.js
 
 # Salidas de la web que ya están en docs/ (se regeneran)
 web/programacion_CE40.html

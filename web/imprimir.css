@@ -1,12 +1,13 @@
 
 /* Imprimir la ficha de una sesión: A4 limpio, sin menús ni botones; sale la propuesta elegida y las pistas, abiertas */
 .p-print{display:none}
+@media print{.colophon{display:none}}
 @media print{
   @page{size:A4;margin:12mm 13mm 13mm}
   :root:root:root{
-    --desk:#fff; --sheet:#fff; --ink:#1a1d24; --ink2:#3d4452; --muted:#5f677a; --rule:#d5dae3; --tint:#f3f4f7; --tint2:#eceff3;
-    --c1:#cf3f36; --c2:#df7619; --c3:#2a8f4f; --c4:#108394; --c5:#2c5bbf; --c6:#6c44b0;
-    --pc:#2f64c9; --rob:#d06d17; --ia:#8150cc; --seg:#1e8d5c; --ra:#c7426f;
+    --desk:#fff; --sheet:#fff; --ink:#1a1d24; --ink2:#3d4452; --muted:#5d6474; --rule:#d5dae3; --tint:#f3f4f7; --tint2:#eceff3;
+    --c1:#c8382f; --c2:#ad5b12; --c3:#257f46; --c4:#0f7a8a; --c5:#2c5bbf; --c6:#6c44b0;
+    --pc:#2f64c9; --rob:#ad5b12; --ia:#8150cc; --seg:#1b7f53; --ra:#c53b6a;
     --on-color:#fff; --shadow:none; color-scheme:light}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   html,body{background:#fff}

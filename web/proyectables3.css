@@ -33,7 +33,7 @@
 .pj-bin-in span .pic{width:60px}
 .pj-bin-in span small{font:600 .68rem var(--sans)}
 .pj-bin.yes{border-color:#2a8f4f;background:rgba(42,143,79,.06)}.pj-bin.no{border-color:#cf3f36;background:rgba(207,63,54,.05)}
-.pj-bin h4{text-transform:none;letter-spacing:0;font:650 1.05rem var(--sans);color:var(--ink)}
+.pj-bin h2{text-transform:none;letter-spacing:0;font:650 1.05rem var(--sans);color:var(--ink)}
 /* animales */
 .pj-animals{grid-template-columns:repeat(4,minmax(0,1fr))}
 .pj-an{background:#fff;color:#1a1d24}
@@ -48,8 +48,8 @@
 .pj-train span .pic{width:70px}
 .pj-train small{font:600 .7rem var(--sans);color:#5d6474}
 .pj-learned{font:500 1.15rem/1.4 var(--sans);margin:4px 0;padding:10px 14px;background:#fff8e6;border-left:5px solid #df7619;border-radius:6px;color:#1a1d24}
-.pj-status .bad,.pj-status .no,b.no{color:#cf3f36}
-b.yes{color:#2a8f4f}
+.pj-status .bad,.pj-status .no,b.no{color:var(--c1)}
+b.yes{color:var(--c3)}
 /* tarjetas verdad/fantasía */
 .pj-truth{background:#fff;color:#1a1d24}
 .pj-truth small{color:#5d6474}

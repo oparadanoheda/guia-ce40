@@ -366,7 +366,8 @@
       sp.addEventListener('click', leer);
       nav.appendChild(sp);
     }
-    nav.appendChild(el('span', 'pz-hint', 'Flechas del teclado o toca la pantalla · toca una fase para saltar a ella · ' + (data.visual ? 'L para leer · ' : '') + 'Esc para salir'));
+    nav.appendChild(el('span', 'pz-hint', 'Flechas del teclado o toca la pantalla · toca una fase para saltar a ella · ' + (data.visual ? 'L para leer · ' : '') + 'Esc para salir' +
+      (data.visual ? ' · Pictogramas: Sergio Palao, ARASAAC (CC BY-NC-SA)' : '')));
     nav.appendChild(n);
     box.appendChild(nav);
     document.body.appendChild(box);

@@ -47,7 +47,7 @@
   }
   function pensar(box, q, a) {
     var ans = h('p', { class: 'rp-ans', hidden: true, html: a });
-    box.appendChild(h('div', { class: 'rp-think' }, [h('h4', { text: 'Para pensar' }), h('p', { html: q }), btn('Ver la respuesta', function () { ans.hidden = !ans.hidden; }), ans]));
+    box.appendChild(h('div', { class: 'rp-think' }, [h('h2', { text: 'Para pensar' }), h('p', { html: q }), btn('Ver la respuesta', function () { ans.hidden = !ans.hidden; }), ans]));
   }
   function deslizador(c0, onchange) {
     var out = h('b', { class: 'rp-val', text: String(c0.val) });
@@ -115,12 +115,12 @@
       var s = {};
       function oculta() { mostrar(prog, null); out.innerHTML = '<p class="rp-wait">¿Qué hará el programa? Pensadlo antes de verlo.</p>'; setStatus(txt, '', ''); }
       n.vars.forEach(function (x) { s[x.id] = x.val; });
-      left.appendChild(h('h4', { text: 'Así se escribe en ' + n.ed }));
+      left.appendChild(h('h2', { text: 'Así se escribe en ' + n.ed }));
       left.appendChild(prog);
       var ctl = h('div', { class: 'rp-ctls' });
       n.vars.forEach(function (x) { ctl.appendChild(deslizador(x, function () { s[x.id] = x.val; oculta(); })); });
       left.appendChild(ctl);
-      right.appendChild(h('h4', { text: 'Qué pasa' }));
+      right.appendChild(h('h2', { text: 'Qué pasa' }));
       right.appendChild(out); right.appendChild(txt);
       right.appendChild(h('div', { class: 'pj-row' }, [btn('Ver qué pasa', function () { var res = n.run(s); mostrar(prog, res.rama); out.innerHTML = res.out; setStatus(txt, res.rama === null ? '' : 'good'); txt.innerHTML = res.txt; }, 'go'),
         btn('Valores al azar', function () { n.vars.forEach(function (x) { x.val = x.min + rnd(Math.floor((x.max - x.min) / (x.step || 1)) + 1) * (x.step || 1); s[x.id] = x.val; }); left.innerHTML = ''; right.innerHTML = ''; repaint(); })]));
@@ -199,7 +199,7 @@
       n.vars.forEach(function (x) { s[x.id] = x.val; });
       function pinta() { prog.innerHTML = n.prog(s); }
       function oculta() { pinta(); out.innerHTML = '<p class="rp-wait">' + (n.trace ? '¿Cuántas vueltas dará? ¿Qué número dirá?' : '¿Qué dibujará? ¿Cuántas veces se ejecuta cada bloque?') + '</p>'; setStatus(txt, '', ''); }
-      left.appendChild(h('h4', { text: 'Así se escribe en Scratch' }));
+      left.appendChild(h('h2', { text: 'Así se escribe en Scratch' }));
       left.appendChild(prog);
       var ctl = h('div', { class: 'rp-ctls' });
       n.vars.forEach(function (x) {
@@ -208,7 +208,7 @@
         ctl.appendChild(d);
       });
       left.appendChild(ctl);
-      right.appendChild(h('h4', { text: 'Qué pasa' }));
+      right.appendChild(h('h2', { text: 'Qué pasa' }));
       right.appendChild(out); right.appendChild(txt);
       right.appendChild(h('div', { class: 'pj-row' }, [btn('Ejecutar', function () {
         var res = n.run(s); out.innerHTML = res.html || dibujo(res.pts); setStatus(txt, 'good'); txt.innerHTML = res.txt;
@@ -396,8 +396,8 @@
           })(k);
           setStatus(txt, '', 'La máquina tiene una regla secreta. Tocad números y mirad a qué caja los manda.');
         };
-        left.appendChild(h('h4', { text: 'Tocad un número' })); left.appendChild(pool);
-        right.appendChild(h('div', { class: 'rp-bins' }, [h('div', { class: 'rp-bin yes' }, [h('h4', { text: 'SÍ cumple la regla' }), si]), h('div', { class: 'rp-bin no' }, [h('h4', { text: 'NO cumple la regla' }), no])]));
+        left.appendChild(h('h2', { text: 'Tocad un número' })); left.appendChild(pool);
+        right.appendChild(h('div', { class: 'rp-bins' }, [h('div', { class: 'rp-bin yes' }, [h('h2', { text: 'SÍ cumple la regla' }), si]), h('div', { class: 'rp-bin no' }, [h('h2', { text: 'NO cumple la regla' }), no])]));
         right.appendChild(txt);
         right.appendChild(h('div', { class: 'pj-row' }, [btn('Desvelar la regla', function () { setStatus(txt, 'good'); txt.innerHTML = 'La regla era: el número <b>' + regla[0].replace(/<\/?b>/g, function (x) { return x; }) + '</b>. Comprobad que todos los del SÍ la cumplen y los del NO no.'; }, 'go'), btn('Otra regla', nueva)]));
         pensar(right, n.q, n.a);
@@ -424,7 +424,7 @@
         setStatus(txt, 'good'); txt.innerHTML = 'El ' + num + ': ¿es par? <b>' + (p1 ? 'SÍ' : 'NO') + '</b> → ' + sub.q.toLowerCase().replace('¿', '¿') + ' <b>' + (p2 ? 'SÍ' : 'NO') + '</b> → caja <b>' + caja + '</b>.';
         num = null;
       }
-      left.appendChild(h('h4', { text: 'El número' })); left.appendChild(big);
+      left.appendChild(h('h2', { text: 'El número' })); left.appendChild(big);
       left.appendChild(h('div', { class: 'pj-row' }, [btn('Ver el camino', camino, 'go'), btn('Otro número', otro)]));
       left.appendChild(txt);
       right.appendChild(tree);
@@ -552,8 +552,8 @@
         pinta(malos);
         setStatus(txt, 'bad', 'Hay pasos que no pueden ir en ese orden: están marcados. ¿Qué tiene que estar hecho antes?');
       }
-      left.appendChild(h('h4', { text: 'Pasos' })); left.appendChild(pool);
-      right.appendChild(h('h4', { text: 'Nuestro orden' })); right.appendChild(lista); right.appendChild(txt);
+      left.appendChild(h('h2', { text: 'Pasos' })); left.appendChild(pool);
+      right.appendChild(h('h2', { text: 'Nuestro orden' })); right.appendChild(lista); right.appendChild(txt);
       right.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', comprobar, 'go'), btn('Mezclar otra vez', mezclar)]));
       pensar(right, n.q, n.a);
       mezclar();
@@ -589,9 +589,9 @@
     var b2 = blq(ed.chg('puntos', ''), function () { var x = Number(nChg.value) || 0; var antes = val; val = antes + x; hist.push([stripTags(ed.chg('puntos', x)), val]); pinta('suma'); setStatus(txt, 'good'); txt.innerHTML = 'Valía ' + antes + '. «' + stripTags(ed.chg('puntos', x)) + '» <b>parte de lo que había</b>: ' + antes + (x < 0 ? ' − ' + (-x) : ' + ' + x) + ' = ' + val + '.'; });
     b2.querySelector('.rp-b').appendChild(nChg);
     box.appendChild(h('div', { class: 'pj-two' }, [
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'Los bloques' }), b1, b2, h('p', { class: 'pj-info', text: 'Cambiad los números de los bloques. Antes de ejecutar: ¿cuánto valdrá puntos?' }),
+      h('div', { class: 'pj-col' }, [h('h2', { text: 'Los bloques' }), b1, b2, h('p', { class: 'pj-info', text: 'Cambiad los números de los bloques. Antes de ejecutar: ¿cuánto valdrá puntos?' }),
         btn('Empezar otra vez (puntos vale 3)', function () { val = 3; hist = []; pinta(); setStatus(txt, '', ''); })]),
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'La caja' }), cajaEl, txt, tabla])]));
+      h('div', { class: 'pj-col' }, [h('h2', { text: 'La caja' }), cajaEl, txt, tabla])]));
     pinta();
     return { q: 'Puntos vale 3. Ejecuto «' + stripTags(ed.chg('puntos', 2)) + '» dos veces y después «' + stripTags(ed.set('puntos', 5)) + '». ¿Cuánto vale?', a: '<b>5</b>. Las dos sumas lo llevan a 7, pero «' + stripTags(ed.set('puntos', 5)) + '» borra lo que había y pone el 5.' };
   }
@@ -641,7 +641,7 @@
     function empezar() { pts = 0; vid = 3; fin = false; pintaCajas(); luz(['ini']); setStatus(txt, '', 'Con la bandera, puntos empieza en 0 y vidas en 3.'); nueva(); }
     box.appendChild(h('div', { class: 'pj-two' }, [
       h('div', { class: 'pj-col' }, [cajas, preg, resp, txt, btn('Empezar el juego', empezar, 'go')]),
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'El programa (' + ed.nom + ')' }), prog])]));
+      h('div', { class: 'pj-col' }, [h('h2', { text: 'El programa (' + ed.nom + ')' }), prog])]));
     empezar();
     return { q: '¿Qué pasaría si quitamos los bloques de la bandera y jugamos una segunda partida?', a: 'Puntos y vidas empezarían con lo que quedó de la partida anterior: quizá con 0 vidas, y el juego acabaría nada más empezar. Por eso <b>toda variable se pone a su valor de salida al empezar</b>.' };
   }
@@ -753,10 +753,10 @@
       luz(ids);
     }
     box.appendChild(h('div', { class: 'pj-two' }, [
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'La placa' }), pant, cajas,
+      h('div', { class: 'pj-col' }, [h('h2', { text: 'La placa' }), pant, cajas,
         h('div', { class: 'pj-row' }, [btn('Botón A (comer)', function () { ev('A'); }, 'go'), btn('Botón B (¿cómo está?)', function () { ev('B'); }), btn('Agitar (jugar)', function () { ev('S'); }), btn('Pasan 10 segundos', function () { ev('T'); })]),
         txt, btn('Empezar otra vez (hambre 5)', function () { hambre = 5; pinta(leds('.........................')); luz([]); setStatus(txt, '', ''); })]),
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'El programa (MakeCode)' }), prog])]));
+      h('div', { class: 'pj-col' }, [h('h2', { text: 'El programa (MakeCode)' }), prog])]));
     pinta(leds('.........................'));
     return { q: '¿Para qué sirve el «si hambre &gt; 0» del botón A?', a: 'Para que hambre <b>no baje de 0</b>. Sin él, dándole de comer muchas veces llegaría a −1, −2…, y no tiene sentido tener «menos que nada» de hambre.' };
   }
@@ -901,7 +901,7 @@
     CO_RETOS.forEach(function (R, k) { tabs.appendChild(btn(R.t, function () { marca(k + 1); reto(R); })); });
     function marca(k) { Array.prototype.forEach.call(tabs.children, function (b0, j) { b0.classList.toggle('go', j === k); }); setStatus(txt, '', ''); }
     box.appendChild(tabs);
-    box.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, rd]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Bloques de Scratch' }), panel, txt])]));
+    box.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, rd]), h('div', { class: 'pj-col' }, [h('h2', { text: 'Bloques de Scratch' }), panel, txt])]));
     marca(0); libre(); pinta();
     return { q: 'El gato está en (−100, 50). Ejecuto «sumar a x 30» tres veces. ¿Dónde acaba?', a: 'En <b>(−10, 50)</b>: −100 + 30 + 30 + 30 = −10. La y no cambia. Cuidado con los negativos: −100 + 30 es −70, no −130.' };
   }

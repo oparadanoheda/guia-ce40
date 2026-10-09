@@ -303,7 +303,7 @@
     }
     function check() { var S = PIX[key], bad = 0; board.querySelectorAll('.pj-px').forEach(function (b, i) { var n = S[0].length, y = Math.floor(i / n), x = i % n; var ok = grid[y][x] === +S[y][x]; b.classList.toggle('bad', !ok); if (!ok) bad++; }); msg.textContent = bad ? 'Hay ' + bad + ' cuadrados distintos al código (marcados). ¿Dónde está el bicho?' : '¡Dibujo correcto!'; }
     root.appendChild(h('div', { class: 'pj-row' }, [btn('Comprobar', check), btn('Ver solución', function () { grid = PIX[key].map(function (r) { return r.split('').map(Number); }); draw(); })]));
-    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [pal, board]), h('div', { class: 'pj-col' }, [h('h4', { text: 'Código de cada fila' }), code, msg,
+    root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [pal, board]), h('div', { class: 'pj-col' }, [h('h2', { text: 'Código de cada fila' }), code, msg,
       h('p', { class: 'pj-info', text: 'Así guarda un ordenador una imagen: como números. «3 blancos, 4 rojos, 3 blancos» ocupa menos que decir el color de cada cuadrado uno a uno.' })])]));
     return { load: function (p) { if (p === 'libre') mode = 'libre'; else { mode = 'secreto'; if (PIX[p]) key = p; } load(key); } };
   }
@@ -403,7 +403,7 @@
     }
     LEVELS.forEach(function (_, i) { lvRow.appendChild(btn(String(i + 1), function () { load(i); })); });
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col' }, [svg, tip, msg]),
-      h('div', { class: 'pj-col' }, [h('h4', { text: 'Bloques' }), pal, h('h4', { text: 'Programa (toca dentro de un bloque naranja para meter bloques)' }), progEl,
+      h('div', { class: 'pj-col' }, [h('h2', { text: 'Bloques' }), pal, h('h2', { text: 'Programa (toca dentro de un bloque naranja para meter bloques)' }), progEl,
         h('div', { class: 'pj-row' }, [btn('▶ Ejecutar', run, 'go'), btn('↺ Volver a empezar', function () { reset(); msg.textContent = ''; }), btn('Borrar programa', function () { prog = []; target = null; renderProg(); reset(); })])])]));
     return { load: function (p) { var i = parseInt(p, 10); load(i >= 1 && i <= LEVELS.length ? i - 1 : 0); } };
   }
@@ -527,7 +527,7 @@
     }
     function drawTeams() { tEl.innerHTML = ''; ['Equipo 1', 'Equipo 2', 'Equipo 3', 'Equipo 4'].forEach(function (t, i) { tEl.appendChild(h('div', { class: 'pj-teambox' }, [h('span', { text: t }), h('b', { text: teams[i] }), h('div', { class: 'pj-row tight' }, [btn('+1', function () { teams[i]++; drawTeams(); }, 'go'), btn('−1', function () { teams[i] = Math.max(0, teams[i] - 1); drawTeams(); })])])); }); }
     root.appendChild(h('div', { class: 'pj-two' }, [h('div', { class: 'pj-col center' }, [big, btn('¿Quién sale?', pick, 'go'), info]),
-      h('div', { class: 'pj-col' }, [h('label', { class: 'pj-chk' }, ['Número de alumnos: ', num]), names, btn('Usar esta lista', prepare), h('h4', { text: 'Marcador de equipos' }), tEl, btn('Poner a cero', function () { teams = [0, 0, 0, 0]; drawTeams(); })])]));
+      h('div', { class: 'pj-col' }, [h('label', { class: 'pj-chk' }, ['Número de alumnos: ', num]), names, btn('Usar esta lista', prepare), h('h2', { text: 'Marcador de equipos' }), tEl, btn('Poner a cero', function () { teams = [0, 0, 0, 0]; drawTeams(); })])]));
     return { load: function () { prepare(); drawTeams(); } };
   }
 

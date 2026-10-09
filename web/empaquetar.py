@@ -11,6 +11,7 @@ OUT = HERE.parent / "Guia_CE40_2026-27_web.zip"
 GH = HERE.parent / "docs"
 
 LEEME = """GUÍA DIDÁCTICA · CÓDIGO ESCUELA 4.0 · PRIMARIA · 2026-2027
+Versión 1.0 · octubre de 2026
 
 Cómo abrirla
 - Con conexión o sin ella: descomprime la carpeta y abre index.html con doble clic
@@ -34,13 +35,13 @@ README = """# Guía didáctica · Código Escuela 4.0 · Primaria · 2026-2027
 
 Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas:
 128 sesiones con opciones de actividad, herramientas para la pizarra digital, material imprimible en PDF
-y proyectos de Scratch y de MakeCode.
+y proyectos de Scratch y de MakeCode. Versión 1.0 (octubre de 2026).
 
 **Para abrir la guía**, usa la dirección de GitHub Pages de este repositorio
 (Settings › Pages), no esta página.
 
 - `index.html`: la guía completa (un solo archivo).
-- `materiales/`: material imprimible en PDF (M01-M27).
+- `materiales/`: material imprimible en PDF (M01-M28).
 - `materiales/scratch/`: proyectos de Scratch (.sb3).
 - `materiales/makecode/`: proyectos de MakeCode para micro:bit y Nezha (.mkcd).
 - `videos/`: vídeos animados de conceptos (HTML) y sus miniaturas.

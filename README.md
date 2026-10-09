@@ -1,6 +1,8 @@
 # Guía didáctica · Código Escuela 4.0 · Primaria · 2026-2027
 
-Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, herramientas interactivas para la pizarra digital, vídeos animados que explican los conceptos, material imprimible en PDF y proyectos de Scratch.
+**Versión 1.0** · octubre de 2026
+
+Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, 30 herramientas interactivas para la pizarra digital, 17 vídeos animados que explican los conceptos, 28 materiales imprimibles en PDF y proyectos de Scratch (15) y de MakeCode (24).
 
 **La guía se consulta en la web de GitHub Pages de este repositorio:** https://oparadanoheda.github.io/guia-ce40/
 
@@ -23,6 +25,15 @@ python materiales.py      # PDF del material imprimible
 python scratch_gen.py     # proyectos de Scratch
 python build_web.py       # la web
 python empaquetar.py      # copia la web a docs/ y crea el zip para el aula virtual
+```
+
+## Comprobar antes de publicar
+
+```bash
+python revisar_bloques.py           # los bloques citados se llaman como en Scratch y MakeCode
+python revisar_pdfs.py              # ningún PDF se sale de la página
+cd pruebas_scratch && npm test      # los proyectos de Scratch funcionan
+cd pruebas_web && python probar_web.py   # la web: páginas, herramientas, proyección y accesibilidad
 ```
 
 Detalles en `LEEME_PROYECTO.md`.
