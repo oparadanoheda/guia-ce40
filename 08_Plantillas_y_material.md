@@ -46,21 +46,24 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 
 | Proyectable | Cursos | Para qué sirve |
 |---|---|---|
-| Robot en la cuadrícula | 1º-3º | Programar un robot con flechas y REPITE: mapas del tesoro, cazabichos, escalera, cuadrado y modo fácil con flechas de dirección. |
-| Ordena la secuencia | 1º-2º | Ordenar viñetas de rutinas tocándolas. |
-| Patrones | 1º-3º | Continuar patrones, patrones que crecen y encontrar el bicho. |
-| Bucles: largo o corto | 1º-4º | Comparar un programa largo con su versión con REPITE. |
-| Semáforo de peatones: si… entonces | 2º-4º | Reglas SI… ENTONCES y SI… SI NO con el semáforo de peatones (muñeco rojo y verde). |
-| Clasificador y regla secreta | 1º-3º | Clasificar por atributos y adivinar la regla de la máquina. |
+| Robot en la cuadrícula | 1º-3º · repaso 4º-6º | Programar un robot con flechas y REPITE: mapas del tesoro, cazabichos, escalera, cuadrado y modo fácil con flechas de dirección. |
+| Ordena la secuencia | 1º-2º · repaso 4º-6º | Ordenar viñetas de rutinas tocándolas; en el repaso, algoritmos de 4º-6º. |
+| Patrones | 1º-3º · repaso 4º-6º | Continuar patrones, patrones que crecen y encontrar el bicho. |
+| Bucles: largo o corto | 1º-4º · repaso 4º-6º | Comparar un programa largo con su versión con REPITE. |
+| Semáforo de peatones: si… entonces | 2º-4º · repaso 4º-6º | Reglas SI… ENTONCES y SI… SI NO con el semáforo de peatones (muñeco rojo y verde). |
+| Clasificador y regla secreta | 1º-3º · repaso 4º-6º | Clasificar por atributos y adivinar la regla de la máquina. |
 | ¿Qué animal soy? | 1º-3º | Árbol de preguntas de sí o no. |
 | Votaciones y gráfico | 1º-6º | Encuestas con gráfico de barras en directo, frecuencias del dado y el dado de la clase (tiradas de verdad frente a 1000 del ordenador). |
 | Diagramas de flujo paso a paso | 3º-4º | Recorrer diagramas decidiendo en cada rombo. |
+| Adivina el número | 3º-6º | El juego de «más grande / más pequeño» con la recta numérica; el ordenador adivina preguntando por la mitad; cuántas preguntas hacen falta. |
 | Polígonos | 3º-4º | Lados, giro (360 ÷ lados), programa y rosetón. |
 | Variables | 3º-6º | Cajas con nombre y los bloques que las cambian. |
-| Coordenadas del escenario | 3º-4º | Ejes x e y del escenario de Scratch, con retos. |
+| Coordenadas del escenario | 3º-6º | Ejes x e y del escenario de Scratch: explorar, mover al gato con bloques, leer y colocar puntos, dibujar con «ir a». |
+| Cubos y vistas | 4º-6º | Figuras de cubos y sus vistas de frente, desde arriba y de lado; contar cubos, también los que no se ven. |
 | ¿Conduce la electricidad? | 3º-4º | Circuito con pila y bombilla para probar materiales. |
 | Matriz de LED de la micro:bit | 5º-6º | Dibujar iconos y ver las coordenadas de cada luz. |
 | Sensor y umbral | 5º-6º | Qué mide el sensor, dónde está el umbral y qué decide el programa. |
+| Mensajes: enviar y recibir | 4º-6º | En Scratch, a quién llega un mensaje y quién reacciona; con la radio de la micro:bit, quién recibe según el grupo. |
 | Velocidad × tiempo | 5º-6º | Predecir cuánto avanza el robot Nezha. |
 | Entrena a la máquina | 5º-6º | Ver cómo aprende una IA y cómo se equivoca con datos sesgados, sin cámara. |
 | ¿Puede pasar de verdad? · ¿Verdad, bulo o IA? | 1º-2º (reserva) · 5º-6º | Votar tarjetas y leer la explicación de cada una. |

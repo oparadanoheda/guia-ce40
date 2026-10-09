@@ -191,10 +191,12 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 ### S5 · Adivina el número `PC`
 
 - **Qué aprenden:** usar **número aleatorio**, **preguntar** y **si… entonces… si no** para dar pistas.
-- **Para proyectar:** [[P:diagrama.adivina|Diagrama · adivina el número]]
+- **Para proyectar:** [[P:adivina|Adivina el número · el ordenador piensa]] (calentamiento) · [[P:diagrama.adivina|Diagrama · adivina el número]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S5-adivina-el-numero-solucion.sb3|Adivina el número · solución (con pistas y repetir hasta acertar)]]
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
+
+**Calentamiento en la pizarra (5 minutos):** jugad a [[P:adivina|Adivina el número]] del 1 al 100. ¿Qué número conviene decir primero? Pulsad «Pista: la mitad» y mirad cuánto descarta cada pregunta. Es el juego que vais a programar.
 
 **Pasos (siguiendo el diagrama):**
 1. Crear la variable *secreto*.
@@ -218,7 +220,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
     - *Solución:* `preguntar Dime un número y esperar` → `si (respuesta módulo 2) = 0 entonces` → `decir Par`; `si no` → `decir Impar`. Un número es par si al dividirlo entre 2 el resto es 0.
 
 - **Frase clave:** «El ordenador decide con condiciones.»
-- **Si va rápido:** que cuente cuántos intentos se han necesitado.
+- **Si va rápido:** que cuente cuántos intentos se han necesitado y compararlo con [[P:adivina.cuantas|¿cuántas preguntas hacen falta?]] (del 1 al 20, nunca más de 5).
 - **Si cuesta:** la opción más sencilla (par o impar).
 - **Mates:** comparar números, orden, estimación, resto de la división.
 
@@ -409,14 +411,16 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S13 · Eventos múltiples: mensajes y niveles `PC`
 
 - **Qué aprenden:** que un objeto avise a los demás con un mensaje (un evento que se envía).
+- **Para proyectar:** [[P:mensajes|Mensajes · en Scratch]] (antes de programar: a quién llega un mensaje y quién reacciona)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Eventos»)
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
-1. Al llegar a 5 puntos: **enviar nivel 2** (en el desplegable del bloque, «Nuevo mensaje» y se llama *nivel 2*).
-2. En el escenario: **al recibir nivel 2** → **cambiar fondo a…**.
-3. En el enemigo: **al recibir nivel 2** → más rápido (**mover 10 pasos** en vez de 5).
+1. En la pizarra, con [[P:mensajes|Mensajes]]: antes de pulsar «Robi llega a 5 puntos», la clase marca qué objetos reaccionarán. El mensaje llega a todos; reacciona quien tiene «al recibir nivel 2».
+2. Al llegar a 5 puntos: **enviar nivel 2** (en el desplegable del bloque, «Nuevo mensaje» y se llama *nivel 2*).
+3. En el escenario: **al recibir nivel 2** → **cambiar fondo a…**.
+4. En el enemigo: **al recibir nivel 2** → más rápido (**mover 10 pasos** en vez de 5).
 
 **Opción más sencilla:** solo cambiar de fondo al llegar a 5 puntos, sin mensajes.
 

@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **30 herramientas interactivas** para la pizarra digital (proyectables, con 112 modos o retos), **17 vídeos de conceptos**, **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **17 vídeos de conceptos**, **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -85,7 +85,7 @@ Programación Mate 4.0 26-27/
 | `proyeccion.js`, `proyeccion.css` | Modo proyección de cada sesión. Los datos van en un `<script type="application/json" class="pz-data">` dentro de cada ficha (función `projection_data` de `build_web.py`) |
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
-| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables*.css` | Las 30 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º |
+| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables*.css` | Las 33 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
 | `videos/` | Los 17 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
@@ -235,10 +235,10 @@ Detalle en `08_Plantillas_y_material.md`.
 - **Plantillas** (dibujos y notas, sin programar o con los textos por cambiar): 4º S10 videojuego (Robi, manzana, meteorito y dos fondos) · 3º S20-S21 pieza del museo (4 botones con las teclas del Makey Makey, contador *toques* y final a los 10).
 - **Personajes propios:** Robi (robot), Tina (robot naranja), manzana y meteorito. Se abren con *Archivo › Load from your computer*: esa opción del menú no está traducida en el Scratch en español (las demás sí).
 
-**Proyectables (30):**
-- **Robot y secuencias:** robot en la cuadrícula · ordena la secuencia · patrones · bucles · semáforo de peatones · clasificador · ¿qué animal soy? · votaciones y gráfico · diagramas de flujo
-- **Scratch y matemáticas:** polígonos · variables · coordenadas · circuito
-- **micro:bit y Nezha:** LED de la micro:bit · sensor y umbral · velocidad × tiempo
+**Proyectables (33):**
+- **Robot y secuencias:** robot en la cuadrícula · ordena la secuencia · patrones · bucles · semáforo de peatones · clasificador · ¿qué animal soy? · votaciones y gráfico · diagramas de flujo · adivina el número
+- **Scratch y matemáticas:** polígonos · variables · coordenadas · cubos y vistas · circuito
+- **micro:bit y Nezha:** LED de la micro:bit · sensor y umbral · mensajes (Scratch y radio) · velocidad × tiempo
 - **IA y seguridad:** entrena a la máquina (solo 5º-6º) · verdad/bulo · contraseñas
 - **Utilidades:** temporizador · código secreto
 - **Juegos para la pizarra:** Bee-Bot (funciona como Tale-Bot) · hundir la flota · píxel art · laberinto de bloques · cartas binarias · Simón · balanza · magia de la paridad · ¿quién sale?

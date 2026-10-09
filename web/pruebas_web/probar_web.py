@@ -4,6 +4,7 @@
 #   python probar_web.py estatico      HTML: ids repetidos, etiquetas mal cerradas, enlaces internos y archivos, emojis
 #   python probar_web.py paginas       las ~190 páginas a 1366, 1024 y 375 px (móvil) y en oscuro: errores y desbordes
 #   python probar_web.py herramientas  cada modo de cada herramienta con pulsaciones al azar (ordenador y móvil)
+#                                      (con nombres detrás, solo esas: python probar_web.py herramientas adivina vistas)
 #   python probar_web.py proyeccion    la proyección de las 128 sesiones a 1024×768 y 1366×768
 #   python probar_web.py accesibilidad axe-core (WCAG 2.1 AA) en todas las páginas, en claro y en oscuro
 #   python probar_web.py enlaces       responde cada enlace externo (tarda; necesita internet)
@@ -170,6 +171,9 @@ FUZZ = r"""(async (sel, n, seed)=>{
 })"""
 
 
+SOLO = set()  # herramientas que se prueban (vacío: todas)
+
+
 async def herramientas(b):
     prob, total = [], 0
     for w, movil, n in ((1366, False, 140), (375, True, 60)):
@@ -177,6 +181,8 @@ async def herramientas(b):
         await b.goto(IDX + "#inicio")
         await asyncio.sleep(1)
         for pid, *_r, presets in PROYECTABLES:
+            if SOLO and pid not in SOLO:
+                continue
             for p, _lab in presets:
                 ruta = f"p-{pid}" + (f".{p}" if p else "")
                 for seed in (7, 1234):
@@ -190,7 +196,7 @@ async def herramientas(b):
                     cons = b.errors()
                     if r.get("err") or r["errs"] or r["over"] > 1 or r["raro"] or cons:
                         prob.append(f"{w}px #{ruta}: {r.get('err') or ''} {r['errs'][:2]} desborde={r['over']} {r['raro']} {cons[:2]}")
-    print(f"    ({sum(len(t[5]) for t in PROYECTABLES)} modos, {total} pulsaciones)")
+    print(f"    ({sum(len(t[5]) for t in PROYECTABLES if not SOLO or t[0] in SOLO)} modos, {total} pulsaciones)")
     informe("herramientas", prob)
 
 
@@ -226,7 +232,7 @@ AX = r"""(async (id)=>{ location.hash='#'+id; await new Promise(r=>setTimeout(r,
   return r.violations.flatMap(v=>v.nodes.map(n=>[v.id, n.target.join(' '), (n.any[0]||n.all[0]||n.none[0]||{message:''}).message.slice(0,120)]));
 })"""
 # Excepción a propósito: los bloques dibujados copian los colores de Scratch y MakeCode con letra blanca, como el editor.
-BLOQUES = re.compile(r"\.(blk|rp-b|rp-r|mov|ctl|pen|loo|log|bas|pj-sblk)\b")
+BLOQUES = re.compile(r"\.(blk|rp-b|rp-r|rp-ch|mov|ctl|pen|loo|log|bas|pj-sblk)\b")
 
 
 async def accesibilidad(b):
@@ -283,7 +289,9 @@ async def navegador(partes):
 
 
 def main():
-    partes = sys.argv[1:] or ["estatico", "paginas", "herramientas", "proyeccion", "accesibilidad"]
+    PARTES = ("estatico", "paginas", "herramientas", "proyeccion", "accesibilidad", "enlaces")
+    partes = [a for a in sys.argv[1:] if a in PARTES] or list(PARTES[:5])
+    SOLO.update(a for a in sys.argv[1:] if a not in PARTES)
     if "estatico" in partes:
         estatico()
     if set(partes) & {"paginas", "herramientas", "proyeccion", "accesibilidad"}:

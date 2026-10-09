@@ -279,7 +279,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 
 - **Qué aprenden:** mejorar un programa con bucles, funciones y nombres claros, y planificar un proyecto individual.
 - **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
-- **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?)
+- **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?) · [[P:adivina.cuantas|Adivina el número · ¿cuántas preguntas?]] (otro algoritmo optimizado: buscar por la mitad)
 - **Material listo:** [[M:M16|Plan de mi invento]]
 - **Archivo de MakeCode:** [[S:6-S6-cuadrado-con-funciones.mkcd|El cuadrado con funciones · solución]]
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
@@ -367,6 +367,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 
 - **Qué aprenden:** diseñar en 3D un objeto que resuelva un problema, con medidas reales.
 - **Prepara antes:** como en 5º, decide el modo de trabajo (cuentas de clase con alias autorizadas, o el docente diseña en el display y los equipos dictan). Reglas y objetos del aula para medir. Guía en `07`.
+- **Para proyectar:** [[P:vistas.cuantos|Cubos y vistas · ¿cuántos cubos?]] (calentamiento: volumen contando cubos, también los que no se ven)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño con medidas)
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
@@ -469,7 +470,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S14 · Red de micro:bits `ROB` `PC`
 
 - **Qué aprenden:** comunicar dos placas por radio y entender por qué cada equipo necesita su propio grupo.
-- **Para proyectar:** [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
+- **Para proyectar:** [[P:mensajes.radio|Mensajes · radio de la micro:bit]] (antes de programar: quién recibe según el grupo, con tres retos) · [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
 - **Archivo de MakeCode:** [[S:6-S14-timbre-a-distancia.mkcd|Timbre a distancia]] · [[S:6-S14-mando-por-radio.mkcd|Mando por radio]] · [[S:6-S14-robot-por-radio.mkcd|Robot que obedece al mando]]
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
@@ -497,6 +498,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S15 · Tinkercad II `RA`
 
 - **Qué aprenden:** diseñar en 3D con bloques de código (Codeblocks) o una pieza que encaje en el prototipo.
+- **Para proyectar:** [[P:vistas|Cubos y vistas]] (para dibujar la pieza en la hoja: de frente, desde arriba y de lado)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 

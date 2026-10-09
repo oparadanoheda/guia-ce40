@@ -2,7 +2,7 @@
 
 **Versión 1.0** · octubre de 2026
 
-Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, 30 herramientas interactivas para la pizarra digital, 17 vídeos animados que explican los conceptos, 28 materiales imprimibles en PDF y proyectos de Scratch (15) y de MakeCode (24).
+Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, 33 herramientas interactivas para la pizarra digital, 17 vídeos animados que explican los conceptos, 28 materiales imprimibles en PDF y proyectos de Scratch (15) y de MakeCode (24).
 
 **La guía se consulta en la web de GitHub Pages de este repositorio:** https://oparadanoheda.github.io/guia-ce40/
 

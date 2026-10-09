@@ -381,6 +381,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** moverse en un programa de diseño 3D, combinar formas y usar medidas.
 - **Prepara antes:** decide el modo de trabajo según lo que permita el centro (guía de Tinkercad en `07_Guias_rapidas_herramientas.md`). **Con clase de Tinkercad:** cuentas de clase con alias creadas por el docente, si el equipo directivo y el delegado de protección de datos lo autorizan; cada pareja entra con su alias. **Sin cuentas:** el docente diseña en el display y los equipos dictan por turnos; cada equipo dibuja antes su diseño en papel isométrico o cuadriculado con medidas.
+- **Para proyectar:** [[P:vistas|Cubos y vistas]] (las vistas de frente, desde arriba y de lado que da el cubo de vistas de Tinkercad)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño antes)
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
@@ -497,6 +498,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 ### S15 · Tinkercad II: un objeto útil `RA`
 
 - **Qué aprenden:** diseñar en 3D un objeto útil con las medidas de un objeto real.
+- **Para proyectar:** [[P:vistas.cual|Cubos y vistas · ¿qué vista es?]] (calentamiento: reconocer cada vista antes de dibujar el objeto)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el objeto con sus medidas)
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
