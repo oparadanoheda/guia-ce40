@@ -25,7 +25,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.0", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.1", "octubre de 2026"
 DESCRIPCION = ("Guía didáctica de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en Matemáticas: 128 sesiones con propuestas, "
                "herramientas para la pizarra digital, vídeos de conceptos, material imprimible y proyectos de Scratch y MakeCode.")
 FAVICON = ("data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='13' rx='3' fill='%23c8382f'/%3E"

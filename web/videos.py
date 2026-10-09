@@ -38,6 +38,10 @@ VIDEOS = [
      "El umbral es el número a partir del cual el programa decide.", 39.6, ["c5-s4", "c5-s5", "c6-s5"]),
     ("aprende-maquina", "anim-aprende-maquina.html", "Cómo aprende una máquina", "5º-6º",
      "Una máquina aprende de los ejemplos que le damos.", 34.5, ["c5-s9", "c6-s8"]),
+    ("mitad", "anim-mitad.html", "Buscar por la mitad", "3º-6º",
+     "Cada pregunta buena descarta la mitad.", 31.7, ["c4-s5", "c6-s6"]),
+    ("mensaje", "anim-mensaje.html", "Mensajes", "4º-6º",
+     "Un mensaje es un evento que se envía.", 28.5, ["c4-s13", "c6-s14"]),
 ]
 
 # sesión -> vídeos que se enlazan en ella

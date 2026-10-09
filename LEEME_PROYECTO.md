@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **17 vídeos de conceptos**, **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **19 vídeos de conceptos**, **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -87,7 +87,7 @@ Programación Mate 4.0 26-27/
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
 | `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables*.css` | Las 33 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
-| `videos/` | Los 17 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
+| `videos/` | Los 19 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
 | `recursos_oficiales.py` | Biblioteca de enlaces oficiales (EducaMadrid, Tale-Bot, True True, ART2BIT, Nezha, ALBOR, ARASAAC…) |
@@ -243,13 +243,14 @@ Detalle en `08_Plantillas_y_material.md`.
 - **Utilidades:** temporizador · código secreto
 - **Juegos para la pizarra:** Bee-Bot (funciona como Tale-Bot) · hundir la flota · píxel art · laberinto de bloques · cartas binarias · Simón · balanza · magia de la paridad · ¿quién sale?
 
-**Vídeos de conceptos (17, en `web/videos/`):**
-- 13 conceptos: algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar, coordenadas, sensor y umbral, cómo aprende una máquina.
+**Vídeos de conceptos (19, en `web/videos/`):**
+- 15 conceptos: algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar, coordenadas, sensor y umbral, cómo aprende una máquina, buscar por la mitad y mensajes.
 - Evento, depurar, entrada y salida y optimizar tienen dos versiones: la de 1º-2º (robot personaje) y la `-superior` (aspecto de editor real) para los cursos que ya programan en pantalla.
 - De 45 a 76 s, con subtítulos. Reproductor propio: capítulos, velocidad 0,75×, pantalla completa, «Pausas para pensar» (dos preguntas por vídeo) y «Sonido», los dos apagados por defecto.
 - **Sonido:** efectos sintetizados con Web Audio (sin archivos, sin voz y sin música): pasos y giros del robot, aparecer, acierto, error, duda, éxito, la frase clave y efectos propios (timbre, nota do de 0,5 s, aplauso, luces, pitido del semáforo de peatones, coches). Cada vídeo tiene su lista `SONIDOS` junto a `SUBS` (`[segundo, tipo]`); solo suenan durante la reproducción normal (no al saltar, al arrastrar ni con `?export=1`) y se callan al pausar. La elección se guarda en `localStorage` (`ce40-videos-sonido`). Los pasos y giros del robot se sacaron recorriendo cada vídeo con `seek` y detectando cuándo empieza a moverse.
 - Cada vídeo es un HTML autónomo (sin nada externo) que se dibuja con `render(t)`. Expone `window.ANIM` (`duration`, `seek`, `play`, `pause`, `chapters`, `pausas`); con `?export=1` oculta los controles, por si un día se quieren grabar en MP4 (fotograma a fotograma con `seek` y ffmpeg; se probó con el del bucle: 2,7 MB).
-- En la web: una página por vídeo (`#v-<id>`) dentro de «Para proyectar», con «Volver a la sesión»; enlace en la tarjeta «Para usar en esta sesión» de 46 sesiones, y una diapositiva «Vídeo» en el modo proyección. El reproductor se carga al entrar en la página y se descarga al salir.
+- En la web: una página por vídeo (`#v-<id>`) dentro de «Para proyectar», con «Volver a la sesión»; enlace en la tarjeta «Para usar en esta sesión» de 48 sesiones, y una diapositiva «Vídeo» en el modo proyección. El reproductor se carga al entrar en la página y se descarga al salir.
+- Los dos últimos (buscar por la mitad y mensajes, versión 1.1) se hicieron con el mismo reproductor: el guion de cada uno sustituye la escena de `anim-optimizar-superior.html` (de «Guion: tiempos» a «Escalado 16:9»).
 - Los hizo otra instancia de Claude con el encargo `Animaciones/Prompts animaciones.md`; el informe de entrega está en `Animaciones/ENTREGA para Claude.md`. Para uno nuevo: pedirlo con ese encargo, dejarlo en `Animaciones/animaciones_nuevas/`, revisarlo, copiarlo a `web/videos/` y añadirlo a `videos.py`.
 
 **Aplicaciones externas recomendadas:** Blockly Games, Quick Draw (5º-6º), AI for Oceans (5º-6º), Hora del Código, CS Unplugged.
@@ -363,6 +364,13 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Edición:** comillas latinas «…» en todos los textos (932 cambios; quedan rectas solo dentro de los bloques, como `mostrar cadena "Hola"`); la bandera verde de Scratch es un dibujo y no un emoji; ortografía revisada con un diccionario (sin erratas).
     - **Web:** pie en todas las páginas con la versión y el crédito de los pictogramas de ARASAAC (que la licencia exige y no aparecía en la web), también en la proyección de 1º y 2º; descripción para buscadores y redes, icono de la pestaña y color de la barra del navegador; cuatro enlaces externos actualizados a su dirección final.
     - **Limpieza:** los scripts de un solo uso de `web/` pasan a `_version_anterior/scripts_un_solo_uso/`.
+
+39. **Versión 1.1 (9 de octubre de 2026): tres herramientas y dos vídeos nuevos.**
+    - **Adivina el número** (`adivina`; 4º S5 y 6º S6): el ordenador piensa y la recta numérica tacha lo descartado (con pista de la mitad y aviso si una pregunta ya no sirve); piensa la clase y el ordenador pregunta siempre por la mitad, enseñando la cuenta y detectando respuestas contradictorias; y cuántas preguntas hacen falta (⌊log₂ N⌋ + 1: del 1 al 100, 7; del 1 al millón, 20). Probado: en 100 partidas nunca más de 7; los 100 números se adivinan en 7 preguntas como mucho.
+    - **Cubos y vistas** (`vistas`; Tinkercad en 5º S10 y S15, 6º S9 y S15): figuras de cubos en dibujo isométrico con sus vistas de frente, desde arriba y de lado (desde la derecha); ¿qué vista es? (una de las opciones es la vista al revés, como en un espejo); ¿cuántos cubos?, con figuras en grada para que se vea la cara de arriba de cada torre y la solución por pisos.
+    - **Mensajes** (`mensajes`; 4º S13 y 6º S14): en Scratch, Robi envía «nivel 2» o «fin del juego» y se ve que el mensaje llega a todos y solo reacciona quien tiene «al recibir» (la clase marca antes quién cree que reaccionará); y la radio de la micro:bit con seis placas y sus grupos, con tres retos.
+    - **Vídeos «Buscar por la mitad» (3º-6º) y «Mensajes» (4º-6º)**, con el reproductor de los demás (capítulos, pausas para pensar, sonido, subtítulos), revisados fotograma a fotograma.
+    - Guías para el docente de las tres herramientas; la tabla de proyectables de `08_Plantillas_y_material.md`, puesta al día (rangos de cursos de los repasos y de coordenadas).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

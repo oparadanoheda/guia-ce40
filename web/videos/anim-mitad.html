@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buscar por la mitad (3º-6º) · Código Escuela 4.0</title>
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;overflow:hidden;background:#fbfbf8}
+  body{font-family:system-ui,"Segoe UI",Arial,sans-serif;color:#1a1d24;-webkit-user-select:none;user-select:none}
+  body.nocursor{cursor:none}
+  #stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;background:#fbfbf8;overflow:hidden}
+  #scene{position:absolute;left:0;top:0;width:1920px;height:1080px;display:block}
+  svg text{font-family:system-ui,"Segoe UI",Arial,sans-serif}
+  .layer{position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:44px;padding:0 140px 120px}
+  #finalA .big{font-size:76px;font-weight:800;line-height:1.15;max-width:1560px;text-wrap:balance}
+  #finalA .cmp{font-size:56px;font-weight:700;background:#eceef2;border-radius:30px;padding:18px 48px}
+  #finalA .cmp b{color:#2c5bbf}
+  #finalB .key{font-size:104px;font-weight:800;line-height:1.15;color:#2c5bbf;background:#fff;border-radius:44px;
+    padding:44px 76px;box-shadow:0 14px 44px rgba(26,29,36,.12);text-wrap:balance}
+
+  /* Subtítulos */
+  #sub{position:absolute;left:0;right:0;bottom:150px;display:flex;justify-content:center;pointer-events:none}
+  body.export #sub{bottom:56px}
+  #sub span{text-wrap:balance;max-width:1560px;font-size:56px;font-weight:600;line-height:1.25;color:#fff;background:rgba(26,29,36,.8);
+    border-radius:20px;padding:14px 38px;text-align:center}
+
+  /* Pantalla de inicio */
+  #start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;
+    background:rgba(251,251,248,.78)}
+  #start h1{margin:0;font-size:132px;font-weight:800;letter-spacing:-.01em}
+  #start p{margin:0;font-size:40px;color:#4a4f5c;font-weight:600}
+  #bigplay{width:230px;height:230px;border-radius:50%;border:none;background:#2c5bbf;color:#fff;cursor:pointer;
+    box-shadow:0 14px 40px rgba(44,91,191,.35);display:flex;align-items:center;justify-content:center}
+  #bigplay svg{width:110px;height:110px;margin-left:14px}
+
+  /* Pausa para pensar */
+  #question{position:absolute;left:220px;right:220px;bottom:150px;background:#fff;border:7px solid #f5c518;border-radius:40px;
+    padding:12px 40px 14px;text-align:center;box-shadow:0 16px 50px rgba(26,29,36,.22)}
+  #question .tag{font-size:28px;font-weight:800;color:#6c44b0;letter-spacing:.06em;text-transform:uppercase}
+  #question .q{text-wrap:balance;font-size:54px;font-weight:800;line-height:1.15;margin:2px 0 4px}
+  #question .hint{font-size:28px;color:#4a4f5c;font-weight:600}
+
+  /* Volver a ver */
+  #again{position:absolute;left:50%;bottom:190px;transform:translateX(-50%);height:96px;padding:0 48px;border:none;border-radius:48px;
+    background:#2c5bbf;color:#fff;font:inherit;font-size:40px;font-weight:800;cursor:pointer;box-shadow:0 10px 30px rgba(44,91,191,.3)}
+
+  /* Barra de control */
+  #bar{position:absolute;left:0;right:0;bottom:0;height:150px;padding:14px 40px 18px;color:#fff;display:flex;flex-direction:column;gap:10px;
+    background:linear-gradient(rgba(26,29,36,0),rgba(26,29,36,.72) 28%,rgba(26,29,36,.9))}
+  #bar.hidden{opacity:0;pointer-events:none}
+  #track{position:relative;height:40px;cursor:pointer;touch-action:none}
+  #rail{position:absolute;left:0;right:0;top:13px;height:14px;border-radius:7px;background:rgba(255,255,255,.28);overflow:hidden}
+  #fill{height:100%;width:0;background:#f5c518}
+  .tick{position:absolute;top:7px;width:5px;height:26px;margin-left:-2px;border-radius:3px;background:#fff;opacity:.9}
+  .pm{position:absolute;top:-6px;width:20px;height:20px;margin-left:-10px;border-radius:50%;background:#df7619;border:3px solid #fff;display:none}
+  body.pausas .pm{display:block}
+  #knob{position:absolute;top:4px;width:32px;height:32px;margin-left:-16px;border-radius:50%;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+  #row{display:flex;align-items:center;gap:16px;height:76px}
+  .cb{height:72px;min-width:72px;padding:0 18px;border:none;border-radius:18px;background:rgba(255,255,255,.14);color:#fff;
+    font:inherit;font-size:28px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap}
+  .cb svg{width:36px;height:36px}
+  .cb:hover{background:rgba(255,255,255,.24)}
+  .cb:focus-visible,#bigplay:focus-visible,#again:focus-visible{outline:5px solid #f5c518;outline-offset:3px}
+  #play{min-width:96px;background:#2c5bbf}
+  #time{font-size:30px;font-weight:700;font-variant-numeric:tabular-nums;min-width:190px}
+  #chap{flex:1;font-size:28px;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .seg{display:flex;gap:4px;background:rgba(255,255,255,.14);border-radius:18px;padding:4px}
+  .seg .cb{height:64px;background:transparent;border-radius:14px}
+  .seg .cb[aria-pressed="true"]{background:#fff;color:#1a1d24}
+  #pz .sw,#snd .sw{width:64px;height:36px;border-radius:18px;background:rgba(255,255,255,.35);position:relative;flex:none}
+  #pz .sw::after,#snd .sw::after{content:"";position:absolute;top:4px;left:4px;width:28px;height:28px;border-radius:50%;background:#fff}
+  #pz[aria-checked="true"] .sw,#snd[aria-checked="true"] .sw{background:#2a8f4f}
+  #pz[aria-checked="true"] .sw::after,#snd[aria-checked="true"] .sw::after{left:32px}
+  .hide{display:none!important}
+</style>
+</head>
+<body>
+<div id="stage">
+  <svg id="scene" viewBox="0 0 1920 1080" aria-hidden="true">
+    <defs>
+      <filter id="sh" x="-30%" y="-30%" width="160%" height="170%">
+        <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1a1d24" flood-opacity=".16"/>
+      </filter>
+      <g id="robotArt"><ellipse cx="30" cy="54" rx="19" ry="4" fill="rgba(0,0,0,.18)"/><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><rect x="15" y="17" width="30" height="10" rx="5" fill="#ffffff" opacity=".18"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></g>
+    </defs>
+
+    <g id="world">
+      <g id="frame"></g>
+      <g id="juego"></g>
+      <g id="recta"></g>
+      <g id="resumen"></g>
+      <g id="confetti"></g>
+    </g>
+  </svg>
+
+  <div id="finalA" class="layer">
+    <div class="big">Buscar por la mitad: cada pregunta descarta la mitad de lo que queda.</div>
+    <div class="cmp"><b>70</b> preguntas de uno en uno → <b>7</b> por la mitad</div>
+  </div>
+  <div id="finalB" class="layer">
+    <svg width="170" height="170" viewBox="0 0 60 60" aria-hidden="true"><use href="#robotArt"/></svg>
+    <div class="key">«Cada pregunta buena descarta la mitad.»</div>
+  </div>
+
+  <div id="sub" aria-live="polite"><span></span></div>
+
+  <div id="start">
+    <h1>Buscar por la mitad</h1>
+    <button id="bigplay" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg></button>
+    <p>Código Escuela 4.0 · Primaria · 3º a 6º</p>
+  </div>
+
+  <div id="question" class="hide" role="dialog" aria-live="assertive">
+    <div class="tag">Pausa para pensar</div>
+    <div class="q"></div>
+    <div class="hint">Pulsa ▶ para continuar</div>
+  </div>
+
+  <button id="again" class="hide">↺ Volver a ver</button>
+
+  <div id="bar">
+    <div id="track" role="slider" aria-label="Progreso del vídeo" tabindex="-1">
+      <div id="rail"><div id="fill"></div></div>
+      <div id="marks"></div>
+      <div id="knob"></div>
+    </div>
+    <div id="row">
+      <button class="cb" id="play" aria-label="Reproducir"></button>
+      <button class="cb" id="restart" aria-label="Volver a empezar" title="Volver a empezar">
+        <svg viewBox="0 0 24 24"><path d="M12 5V1.5L6.5 6 12 10.5V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z" fill="currentColor"/></svg>
+      </button>
+      <div id="time">0:00 / 0:00</div>
+      <div id="chap"></div>
+      <div class="seg" role="group" aria-label="Velocidad">
+        <button class="cb" data-rate="0.75" aria-pressed="false">0,75×</button>
+        <button class="cb" data-rate="1" aria-pressed="true">1×</button>
+      </div>
+      <button class="cb" id="snd" role="switch" aria-checked="false"><span class="sw"></span>Sonido</button>
+      <button class="cb" id="pz" role="switch" aria-checked="false"><span class="sw"></span>Pausas para pensar</button>
+      <button class="cb" id="fs" aria-label="Pantalla completa" title="Pantalla completa">
+        <svg viewBox="0 0 24 24"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  'use strict';
+  var REG = 'B', A = REG === 'A';      // A = registro inicial · B = registro superior
+  var NS = 'http://www.w3.org/2000/svg';
+  function $(id){ return document.getElementById(id); }
+  function el(tag, attrs, parent){
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(parent, x, y, s, attrs){
+    var a = { x: x, y: y, 'dominant-baseline': 'central' };
+    for (var k in attrs) a[k] = attrs[k];
+    var e = el('text', a, parent); e.textContent = s; return e;
+  }
+  var EXPORT = new URLSearchParams(location.search).get('export') === '1';
+  if (EXPORT) document.body.classList.add('export');
+  var mqRM = matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ================= Guion: tiempos ================= */
+  var DUR = 68;
+  var CHAPTERS = [
+    { t: 0,  titulo: 'El juego' },
+    { t: 8,  titulo: 'De uno en uno' },
+    { t: 23, titulo: 'Por la mitad' },
+    { t: 48, titulo: 'Cuántas preguntas' },
+    { t: 59, titulo: 'La idea' }
+  ];
+  var PAUSAS = [
+    { t: 22.4, pregunta: '¿Qué número preguntarías primero?' },
+    { t: 47.8, pregunta: 'Del 1 al 1000, ¿cuántas preguntas harían falta?' }
+  ];
+  var SUBS = [
+    [0.4,  7.8,  'Robi ha pensado un número del 1 al 100.'],
+    [8.3,  13.6, 'Podemos preguntar de uno en uno: ¿el 1? ¿El 2?…'],
+    [14.0, 21.9, 'Para llegar al 70, ¡harían falta 70 preguntas!'],
+    [24.1, 26.9, 'Mejor por la mitad: ¿es el 50? «Más grande».'],
+    [27.2, 32.8, 'Cada vez, la mitad de lo que queda: 75, 62…'],
+    [33.2, 41.9, 'Quedan 12 números, luego 6, luego 2, luego 1.'],
+    [43.2, 47.6, '¡El 70! Con 7 preguntas, no con 70.'],
+    [48.6, 53.4, 'Cada pregunta deja, como mucho, la mitad.'],
+    [53.8, 58.8, 'Del 1 al 100, 7 preguntas. Del 1 al 1000, solo 10.']
+  ];
+
+  /* ================= Utilidades ================= */
+  function cl(x, a, b){ if (a === undefined) { a = 0; b = 1; } return x < a ? a : x > b ? b : x; }
+  function lerp(a, b, p){ return a + (b - a) * p; }
+  function seg(t, a, b){ return cl((t - a) / (b - a)); }
+  function ease(p){ return p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; }
+  function easeOutBack(p){ var c1 = 1.4, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); }
+  function rng(seed){ return function(){ seed |= 0; seed = seed + 0x6D2B79F5 | 0; var r = Math.imul(seed ^ seed >>> 15, 1 | seed);
+    r = r + Math.imul(r ^ r >>> 7, 61 | r) ^ r; return ((r ^ r >>> 14) >>> 0) / 4294967296; }; }
+
+  /* ================= El juego: búsqueda de uno en uno y por la mitad ================= */
+  var SECRETO = 70;
+  var LIN0 = 8.6, LINP = .62, LINN = 8;          // de uno en uno: 1, 2, … 8
+  var FF0 = 13.8, FF1 = 16.4;                     // y a toda prisa hasta el 70
+  var B0 = 24, BP = 3;                            // por la mitad: una pregunta cada 3 s
+  var STEPS = [[50, 1], [75, -1], [62, 1], [68, 1], [71, -1], [69, 1], [70, 0]];
+  var HIT = B0 + 6 * BP + 1;                      // 43: «¡Sí!»
+  var CONF_T = HIT + .1;
+  var SUM0 = 48.4;                                // resumen
+  var CADENA = [100, 50, 25, 12, 6, 3, 1];
+
+  var SONIDOS = [[1.6, 'aparece']];
+  for (var k = 0; k < LINN; k++) SONIDOS.push([LIN0 + k * LINP, 'clic']);
+  SONIDOS.push([FF0 + .1, 'desliza'], [FF1 + .2, 'bien']);
+  STEPS.forEach(function(s, i){ var t0 = B0 + i * BP; SONIDOS.push([t0, 'clic'], [t0 + 1, s[1] ? 'aparece' : 'exito']); if (s[1]) SONIDOS.push([t0 + 1.25, 'desliza']); });
+  CADENA.forEach(function(n, i){ SONIDOS.push([SUM0 + .5 * i, 'aparece']); });
+  SONIDOS.push([63.4, 'clave']);
+
+  // Estado en el instante t: lo que puede ser todavía (lo-hi), la pregunta en curso y la respuesta
+  function estado(t){
+    var e = { lo: 1, hi: 100, g: null, resp: null, n: 0, gris: function(){ return 0; }, verde: false };
+    if (t < LIN0) return e;
+    if (t < 22.6) {
+      // de uno en uno
+      var g, n;
+      if (t < FF0) { n = Math.min(LINN, Math.floor((t - LIN0) / LINP) + 1); g = n; e.resp = (t - (LIN0 + (n - 1) * LINP)) > .3 ? 'Más grande' : '…'; }
+      else { var p = ease(seg(t, FF0, FF1)); g = Math.round(lerp(LINN, SECRETO, p)); n = g; e.resp = t >= FF1 + .2 ? '¡Sí!' : 'Más grande'; }
+      e.g = g; e.n = n;
+      var hasta = t >= FF0 ? g - 1 : (e.resp === '…' ? g - 1 : g);
+      e.lo = Math.min(hasta + 1, 100);
+      var vuelta = 1 - seg(t, 22.6, 23.4);
+      e.gris = function(v){ return v < e.lo ? 1 : 0; };
+      e.verde = t >= FF1 + .2;
+      e.lineal = true;
+      return e;
+    }
+    if (t < B0) { var q = seg(t, 22.6, 23.4); e.gris = function(v){ return v < SECRETO ? 1 - q : 0; }; return e; }
+    // por la mitad
+    var lo = 1, hi = 100, barre = null;
+    for (var i = 0; i < STEPS.length; i++) {
+      var s0 = B0 + i * BP;
+      if (t < s0) break;
+      var gg = STEPS[i][0], r = STEPS[i][1];
+      e.g = gg; e.n = i + 1;
+      e.resp = t < s0 + 1 ? '…' : r > 0 ? 'Más grande' : r < 0 ? 'Más pequeño' : '¡Sí!';
+      if (r && t >= s0 + 1.2) {
+        var pp = ease(seg(t, s0 + 1.2, s0 + 2));
+        if (pp >= 1) { if (r > 0) lo = gg + 1; else hi = gg - 1; }
+        else barre = { a: r > 0 ? lo : gg, b: r > 0 ? gg : hi, p: pp };
+      }
+    }
+    e.lo = lo; e.hi = hi;
+    e.gris = function(v){ if (v < lo || v > hi) return 1; if (barre && v >= barre.a && v <= barre.b) return barre.p; return 0; };
+    e.verde = t >= HIT;
+    return e;
+  }
+
+  /* ================= Marco ================= */
+  var frame = $('frame');
+  function panel(x, y, w, h, title, parent){
+    parent = parent || frame;
+    el('rect', { x: x, y: y, width: w, height: h, rx: 22, fill: '#fff', stroke: '#d6d9e0', 'stroke-width': 3 }, parent);
+    el('path', { d: 'M' + x + ' ' + (y + 22) + 'Q' + x + ' ' + y + ' ' + (x + 22) + ' ' + y + 'H' + (x + w - 22) + 'Q' + (x + w) + ' ' + y + ' ' + (x + w) + ' ' + (y + 22) + 'V' + (y + 40) + 'H' + x + 'Z', fill: '#eceef2' }, parent);
+    return txt(parent, x + 24, y + 21, title, { 'font-size': 28, 'font-weight': 700, fill: '#4a4f5c' });
+  }
+  panel(60, 60, 1800, 270, 'El juego');
+  panel(60, 360, 1800, 360, 'La recta del 1 al 100');
+
+  // Robi y su bocadillo
+  var robi = el('g', {}, $('juego'));
+  robi.innerHTML = '<g transform="translate(180 205) scale(2.2) translate(-30 -30)">' + $('robotArt').innerHTML + '</g>';
+  var bub = el('g', {}, $('juego'));
+  el('rect', { x: 300, y: 125, width: 600, height: 150, rx: 30, fill: '#f5f6f8', stroke: '#c3c8d2', 'stroke-width': 3 }, bub);
+  el('path', { d: 'M302 190L262 210L302 222Z', fill: '#f5f6f8', stroke: '#c3c8d2', 'stroke-width': 3, 'stroke-linejoin': 'round' }, bub);
+  el('rect', { x: 303, y: 192, width: 8, height: 28, fill: '#f5f6f8' }, bub);
+  var bubT = txt(bub, 600, 200, '', { 'text-anchor': 'middle', 'font-size': 46, 'font-weight': 800, fill: '#1a1d24' });
+  // la pregunta
+  var chip = el('g', {}, $('juego'));
+  txt(chip, 1210, 128, 'PREGUNTAMOS', { 'text-anchor': 'middle', 'font-size': 26, 'font-weight': 800, fill: '#6b7385', 'letter-spacing': 3 });
+  el('rect', { x: 980, y: 155, width: 460, height: 120, rx: 60, fill: '#2c5bbf' }, chip);
+  var chipT = txt(chip, 1210, 217, '', { 'text-anchor': 'middle', 'font-size': 66, 'font-weight': 800, fill: '#fff' });
+  // el contador
+  var cnt = el('g', {}, $('juego'));
+  txt(cnt, 1660, 128, 'PREGUNTAS', { 'text-anchor': 'middle', 'font-size': 26, 'font-weight': 800, fill: '#6b7385', 'letter-spacing': 3 });
+  var cntT = txt(cnt, 1660, 212, '0', { 'text-anchor': 'middle', 'font-size': 110, 'font-weight': 800, fill: '#1a1d24' });
+
+  // La recta: 100 casillas
+  var X0 = 105, CW = 17, CY = 505, CH = 84;
+  function cx(v){ return X0 + (v - 1) * CW + CW / 2; }
+  var cells = [];
+  for (var v = 1; v <= 100; v++) cells.push(el('rect', { x: X0 + (v - 1) * CW + 1, y: CY, width: CW - 2, height: CH, rx: 3, fill: '#cfe0fb' }, $('recta')));
+  [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100].forEach(function(v){ txt($('recta'), cx(v), CY + CH + 28, String(v), { 'text-anchor': 'middle', 'font-size': 28, 'font-weight': 700, fill: '#4a4f5c' }); });
+  var pin = el('g', {}, $('recta'));
+  el('line', { x1: 0, y1: -26, x2: 0, y2: 50, stroke: '#df7619', 'stroke-width': 5 }, pin);
+  el('circle', { cx: 0, cy: -52, r: 31, fill: '#df7619' }, pin);
+  var pinT = txt(pin, 0, -50, '', { 'text-anchor': 'middle', 'font-size': 30, 'font-weight': 800, fill: '#fff' });
+  var brk = el('g', {}, $('recta'));
+  var brkL = el('path', { d: '', fill: 'none', stroke: '#2c5bbf', 'stroke-width': 4, 'stroke-linejoin': 'round' }, brk);
+  var brkT = txt(brk, 960, 680, '', { 'text-anchor': 'middle', 'font-size': 36, 'font-weight': 700, fill: '#2c5bbf' });
+  var big = txt($('recta'), 960, 682, '¡70 preguntas!', { 'text-anchor': 'middle', 'font-size': 54, 'font-weight': 800, fill: '#df7619' });
+
+  // Resumen: cada pregunta deja, como mucho, la mitad (barras a escala)
+  var res = $('resumen');
+  el('rect', { x: 62, y: 362, width: 1796, height: 356, rx: 21, fill: '#fff' }, res);
+  panel(60, 360, 1800, 360, 'Cada pregunta deja, como mucho, la mitad', res);
+  var ROWS = CADENA.map(function(n, i){
+    var g = el('g', {}, res), y = 432 + i * 41;
+    txt(g, 110, y, i === 0 ? 'Antes de preguntar' : 'Tras ' + i + (i === 1 ? ' pregunta' : ' preguntas'), { 'font-size': 30, 'font-weight': 600, fill: '#4a4f5c' });
+    var bar = el('rect', { x: 420, y: y - 15, width: 0, height: 30, rx: 6, fill: i === CADENA.length - 1 ? '#2a8f4f' : '#5f88dd' }, g);
+    var lab = txt(g, 430, y, (i === 0 ? n + ' números' : 'como mucho ' + n) + (i === CADENA.length - 1 ? ': la 7.ª pregunta acierta' : ''), { 'font-size': 30, 'font-weight': 800, fill: '#1a1d24' });
+    return { g: g, bar: bar, lab: lab, n: n };
+  });
+
+  // Confeti (semilla fija)
+  var CONF_COLORS = ['#cf3f36','#df7619','#2a8f4f','#108394','#2c5bbf','#6c44b0','#f5c518'];
+  var R = rng(77), CONF = [];
+  for (var n2 = 0; n2 < 34; n2++) CONF.push({ el: el('rect', { x: -8, y: -5, width: 16, height: 10, rx: 2, fill: CONF_COLORS[n2 % 7] }, $('confetti')),
+    vx: lerp(-420, 420, R()), vy: lerp(-760, -360, R()), r0: R() * 360, spin: lerp(-540, 540, R()), delay: R() * .25 });
+
+  var world = $('world'), finalA = $('finalA'), finalB = $('finalB'), subBox = $('sub'), subSpan = subBox.firstChild;
+  var lastSub = null, prevTxt = {};
+  function setText(node, key, s){ if (prevTxt[key] !== s) { node.textContent = s; prevTxt[key] = s; } }
+
+  /* ================= render(t): todo depende solo de t ================= */
+  function render(t){
+    t = cl(t, 0, DUR);
+    var RM = mqRM.matches, E = estado(t);
+
+    world.setAttribute('opacity', (1 - seg(t, 58.8, 59.6)).toFixed(3));
+    $('juego').setAttribute('opacity', seg(t, .2, .9).toFixed(3));
+
+    // bocadillo de Robi
+    var dice = t < LIN0 ? 'He pensado un número del 1 al 100.' : (t >= 22.6 && t < B0) ? '¿Otra vez?' : (E.resp || '…');
+    if (E.verde && E.resp === '¡Sí!') dice = '¡Sí! Es el 70.';
+    setText(bubT, 'bub', dice);
+    bubT.setAttribute('font-size', dice.length > 20 ? 37 : 52);
+    bubT.setAttribute('fill', E.resp === '¡Sí!' ? '#2a8f4f' : '#1a1d24');
+    // la pregunta y el contador
+    setText(chipT, 'chip', E.g ? '¿Es el ' + E.g + '?' : '¿…?');
+    setText(cntT, 'cnt', String(E.n));
+    var pulse = 0;
+    if (E.g && !RM) { var since = t < 22.6 ? (t < FF0 ? (t - LIN0) % LINP : 1) : (t - B0) % BP; pulse = since < .25 ? Math.sin(Math.PI * since / .25) : 0; }
+    chip.setAttribute('transform', 'translate(1210 215) scale(' + (1 + .06 * pulse).toFixed(4) + ') translate(-1210 -215)');
+
+    // la recta
+    $('recta').setAttribute('opacity', seg(t, 1.4, 2.2).toFixed(3));
+    for (var v = 1; v <= 100; v++) {
+      var appear = RM ? 1 : seg(t, 1.6 + v * .015, 1.9 + v * .015), gr = E.gris(v), c = cells[v - 1];
+      var col = (E.verde && v === SECRETO) ? '#2a8f4f' : gr >= 1 ? '#dfe2e8' : gr <= 0 ? '#9db8ef' : 'rgb(' + Math.round(lerp(157, 223, gr)) + ',' + Math.round(lerp(184, 226, gr)) + ',' + Math.round(lerp(239, 232, gr)) + ')';
+      c.setAttribute('fill', col);
+      c.setAttribute('opacity', appear.toFixed(3));
+    }
+    // el marcador de la pregunta
+    var showPin = E.g && t < 47.9;
+    pin.setAttribute('opacity', showPin ? 1 : 0);
+    if (showPin) { pin.setAttribute('transform', 'translate(' + cx(E.g).toFixed(1) + ' ' + CY + ')'); setText(pinT, 'pin', String(E.g)); }
+    // lo que puede ser todavía
+    var showBrk = t >= LIN0 && !(t >= FF1 + .2 && t < B0) && t < HIT;
+    brk.setAttribute('opacity', showBrk ? 1 : 0);
+    if (showBrk) {
+      var a = X0 + (E.lo - 1) * CW + 1, b = X0 + E.hi * CW - 1, yb = CY + CH + 52;
+      brkL.setAttribute('d', 'M' + a + ' ' + (yb - 12) + 'V' + yb + 'H' + b + 'V' + (yb - 12));
+      var nq = E.hi - E.lo + 1;
+      setText(brkT, 'brk', 'Puede ser del ' + E.lo + ' al ' + E.hi + ' · quedan ' + nq + (nq === 1 ? ' número' : ' números'));
+      brkT.setAttribute('x', cl((a + b) / 2, 380, 1540).toFixed(1)); brkT.setAttribute('y', yb + 36);
+    }
+    big.setAttribute('opacity', (seg(t, FF1 + .2, FF1 + .6) * (1 - seg(t, 22.2, 22.6))).toFixed(3));
+    big.setAttribute('y', CY + CH + 92);
+
+    // resumen
+    var rs = seg(t, 48.1, 48.5);
+    res.setAttribute('opacity', rs.toFixed(3));
+    res.style.display = rs > 0 ? '' : 'none';
+    ROWS.forEach(function(r, i){
+      var p = ease(seg(t, SUM0 + .5 * i, SUM0 + .5 * i + .45));
+      r.g.setAttribute('opacity', seg(t, SUM0 + .5 * i, SUM0 + .5 * i + .2).toFixed(3));
+      var w = Math.max(6, 1160 * r.n / 100) * p;
+      r.bar.setAttribute('width', w.toFixed(1));
+      r.lab.setAttribute('x', (420 + w + 16).toFixed(1));
+    });
+
+    // confeti al acertar (no con «reducir movimiento»)
+    var showConf = !RM && t > CONF_T && t < CONF_T + 2.4;
+    CONF.forEach(function(c0){
+      var tau = t - CONF_T - c0.delay;
+      if (!showConf || tau <= 0) { c0.el.setAttribute('opacity', 0); return; }
+      var x = cx(SECRETO) + c0.vx * tau, y = CY + c0.vy * tau + 620 * tau * tau;
+      c0.el.setAttribute('transform', 'translate(' + x.toFixed(1) + ' ' + y.toFixed(1) + ') rotate(' + (c0.r0 + c0.spin * tau).toFixed(1) + ')');
+      c0.el.setAttribute('opacity', (1 - seg(tau, 1.6, 2.1)).toFixed(3));
+    });
+
+    // textos finales
+    var fa = seg(t, 59.2, 60) * (1 - seg(t, 62.8, 63.3));
+    finalA.style.opacity = fa;
+    finalA.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - seg(t, 59.2, 60))).toFixed(1) + 'px)';
+    var fb = seg(t, 63.3, 64.1);
+    finalB.style.opacity = fb;
+    finalB.style.transform = RM ? 'none' : 'translateY(' + (20 * (1 - fb)).toFixed(1) + 'px)';
+
+    // subtítulos
+    var sub = null, sop = 0;
+    for (var s2 = 0; s2 < SUBS.length; s2++) {
+      var S = SUBS[s2];
+      if (t >= S[0] && t <= S[1]) { sub = S[2]; sop = Math.min(seg(t, S[0], S[0] + .25), 1 - seg(t, S[1] - .25, S[1])); break; }
+    }
+    if (sub !== lastSub) { subSpan.textContent = sub || ''; lastSub = sub; }
+    subSpan.style.display = sub ? '' : 'none';
+    subBox.style.opacity = sop;
+  }
+
+  /* ================= Escalado 16:9 ================= */
+  var stage = $('stage');
+  function fit(){
+    var s = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = 'translate(' + (innerWidth - 1920 * s) / 2 + 'px,' + (innerHeight - 1080 * s) / 2 + 'px) scale(' + s + ')';
+  }
+  addEventListener('resize', fit); fit();
+
+  /* ================= Sonido: efectos sintetizados (sin archivos, sin voz, sin música) ================= */
+  // Solo suena durante la reproducción, al pasar por cada instante de SONIDOS. Apagado por defecto;
+  // cada navegador recuerda la elección. Nunca suena con ?export=1.
+  var SND = (function(){
+    var KEY = 'ce40-videos-sonido', on = false, ctx = null, comp = null, out = null, noiseBuf = null;
+    try { on = localStorage.getItem(KEY) === '1'; } catch (e) { /* sin almacenamiento */ }
+    function bus(){ out = ctx.createGain(); out.gain.value = .55; out.connect(comp); }
+    function ac(){
+      if (!ctx) {
+        var C = window.AudioContext || window.webkitAudioContext;
+        if (!C) return null;
+        ctx = new C();
+        comp = ctx.createDynamicsCompressor(); comp.connect(ctx.destination);
+        bus();
+        noiseBuf = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate);
+        var d = noiseBuf.getChannelData(0), s = 7;
+        for (var i = 0; i < d.length; i++) { s = (s * 16807) % 2147483647; d[i] = s / 1073741823.5 - 1; }
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    }
+    function env(g, t, a, peak, dur){
+      g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    }
+    function tone(t, f0, f1, dur, type, peak){
+      var o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type; o.frequency.setValueAtTime(f0, t);
+      if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+      env(g, t, .008, peak, dur); o.connect(g); g.connect(out); o.start(t); o.stop(t + dur + .05);
+    }
+    function noise(t, dur, freq, q, peak, ftype){
+      var n = ctx.createBufferSource(), f = ctx.createBiquadFilter(), g = ctx.createGain();
+      n.buffer = noiseBuf; f.type = ftype || 'bandpass'; f.frequency.value = freq; f.Q.value = q;
+      env(g, t, .004, peak, dur); n.connect(f); f.connect(g); g.connect(out); n.start(t); n.stop(t + dur + .05);
+    }
+    var KIT = {
+      paso:    function(t){ tone(t, 620, 420, .09, 'triangle', .22); },
+      giro:    function(t){ tone(t, 420, 760, .16, 'sine', .1); },
+      desliza: function(t){ tone(t, 330, 560, .28, 'sine', .08); },
+      aparece: function(t){ tone(t, 900, 1350, .07, 'sine', .07); },
+      clic:    function(t){ noise(t, .03, 2600, 1.2, .25); tone(t, 1400, 1400, .025, 'square', .03); },
+      bien:    function(t){ tone(t, 880, 880, .12, 'sine', .13); tone(t + .1, 1320, 1320, .22, 'sine', .13); },
+      punto:   function(t){ tone(t, 988, 988, .08, 'square', .045); tone(t + .08, 1319, 1319, .28, 'square', .045); },
+      mal:     function(t){ tone(t, 240, 120, .3, 'triangle', .2); },
+      duda:    function(t){ tone(t, 440, 440, .13, 'sine', .1); tone(t + .14, 560, 560, .2, 'sine', .1); },
+      exito:   function(t){ [523.25, 659.25, 783.99, 1046.5].forEach(function(f, i){ tone(t + i * .09, f, f, .35, 'triangle', .1); }); },
+      clave:   function(t){ tone(t, 783.99, 783.99, 1.4, 'sine', .07); tone(t, 1174.66, 1174.66, 1.2, 'sine', .04); },
+      nota:    function(t){ tone(t, 261.63, 261.63, .6, 'triangle', .25); tone(t, 523.25, 523.25, .4, 'sine', .06); },
+      aplauso: function(t){ [0, .012, .03].forEach(function(d){ noise(t + d, .05, 1300, .9, .5); }); },
+      luz:     function(t){ tone(t, 520, 1040, .22, 'sine', .08); tone(t + .05, 780, 1560, .2, 'sine', .04); },
+      apaga:   function(t){ tone(t, 1040, 520, .22, 'sine', .07); },
+      pitido:  function(t){ tone(t, 1900, 1900, .05, 'square', .025); },
+      coche:   function(t){ noise(t, 1.4, 500, .7, .05, 'lowpass'); },
+      cae:     function(t){ tone(t, 140, 55, .25, 'sine', .3); noise(t, .08, 300, .8, .12, 'lowpass'); },
+      crack:   function(t){ noise(t, .12, 3200, 1.5, .12); },
+      timbre:  function(t, dur){
+        var g = ctx.createGain(), am = ctx.createGain(), lfo = ctx.createOscillator(), lg = ctx.createGain();
+        g.gain.setValueAtTime(.0001, t); g.gain.exponentialRampToValueAtTime(.035, t + .05);
+        g.gain.setValueAtTime(.035, t + dur - .25); g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+        am.gain.value = .5; lg.gain.value = .5; lfo.frequency.value = 22;
+        lfo.connect(lg); lg.connect(am.gain); am.connect(g); g.connect(out);
+        [1450, 2150].forEach(function(f){ var o = ctx.createOscillator(); o.frequency.value = f; o.connect(am); o.start(t); o.stop(t + dur + .05); });
+        lfo.start(t); lfo.stop(t + dur + .05);
+      }
+    };
+    return {
+      get on(){ return on; },
+      set: function(v){ on = !!v; try { localStorage.setItem(KEY, on ? '1' : '0'); } catch (e) { /* sin almacenamiento */ } if (on) ac(); else this.hush(); },
+      prime: function(){ if (on && !EXPORT) ac(); },
+      hush: function(){ if (!ctx || !out) return; out.gain.setTargetAtTime(.0001, ctx.currentTime, .03); bus(); },
+      // suena lo que hay entre a y b (solo avances normales de la reproducción, no saltos)
+      cross: function(a, b, r){
+        if (!on || EXPORT || !(b > a) || b - a > .3 || !ac()) return;
+        SONIDOS.forEach(function(c){ if (c[0] > a && c[0] <= b && KIT[c[1]]) KIT[c[1]](ctx.currentTime + .01, (c[2] || 2) / (r || 1)); });
+      }
+    };
+  })();
+
+  /* ================= Reproductor ================= */
+  var T = 0, playing = false, rate = 1, pausasOn = false, last = null;
+  var bar = $('bar'), playB = $('play'), startOv = $('start'), qBox = $('question'), againB = $('again');
+  var ICON_PLAY = '<svg viewBox="0 0 24 24"><path d="M6 3.5v17l14-8.5z" fill="currentColor"/></svg>';
+  var ICON_PAUSE = '<svg viewBox="0 0 24 24"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z" fill="currentColor"/></svg>';
+
+  function fmt(s){ s = Math.floor(s + 1e-6); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+  var marks = $('marks');
+  CHAPTERS.forEach(function(c){
+    if (c.t === 0) return;
+    var d = document.createElement('div'); d.className = 'tick'; d.style.left = (c.t / DUR * 100) + '%'; d.title = c.titulo; marks.appendChild(d);
+  });
+  PAUSAS.forEach(function(p){
+    var d = document.createElement('div'); d.className = 'pm'; d.style.left = (p.t / DUR * 100) + '%'; d.title = p.pregunta; marks.appendChild(d);
+  });
+
+  var lastIcon = null;
+  function ui(){
+    var icon = playing ? 'pause' : 'play';
+    if (icon !== lastIcon) {
+      playB.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
+      playB.setAttribute('aria-label', playing ? 'Pausa' : 'Reproducir');
+      lastIcon = icon;
+    }
+    var pct = (T / DUR * 100) + '%';
+    $('fill').style.width = pct; $('knob').style.left = pct;
+    $('time').textContent = fmt(T) + ' / ' + fmt(DUR);
+    var ch = CHAPTERS[0];
+    CHAPTERS.forEach(function(c){ if (T >= c.t) ch = c; });
+    $('chap').textContent = ch.titulo;
+    $('track').setAttribute('aria-valuenow', Math.round(T));
+  }
+  function setT(x){ var a = T; T = cl(x, 0, DUR); render(T); ui(); if (playing) SND.cross(a, T, rate); }
+
+  function hideOverlays(){ startOv.classList.add('hide'); qBox.classList.add('hide'); againB.classList.add('hide'); }
+  function showEnd(){ if (!EXPORT) againB.classList.remove('hide'); }
+
+  function play(){
+    if (playing) return;
+    if (T >= DUR - 1e-3) T = 0;
+    SND.prime();
+    hideOverlays();
+    playing = true; last = null; ui(); showBar();
+    requestAnimationFrame(tick);
+  }
+  function pause(){ playing = false; SND.hush(); ui(); showBar(); }
+  function toggle(){ playing ? pause() : play(); }
+  function tick(now){
+    if (!playing) return;
+    if (last === null) last = now;
+    var dt = Math.min(.1, (now - last) / 1000) * rate;
+    last = now;
+    var nt = T + dt;
+    if (pausasOn && !EXPORT) {
+      for (var i = 0; i < PAUSAS.length; i++) {
+        var p = PAUSAS[i];
+        if (T < p.t && nt >= p.t) {
+          setT(p.t); playing = false; ui();
+          qBox.querySelector('.q').textContent = p.pregunta;
+          qBox.classList.remove('hide');
+          showBar();
+          return;
+        }
+      }
+    }
+    if (nt >= DUR) { setT(DUR); playing = false; ui(); showEnd(); showBar(); return; }
+    setT(nt);
+    if (barShown && !overBar && performance.now() > hideAt) hideBar();
+    requestAnimationFrame(tick);
+  }
+  function jump(d){
+    hideOverlays();
+    setT(T + d);
+    if (!playing && T >= DUR) showEnd();
+  }
+  function restart(){ hideOverlays(); setT(0); playing = false; play(); }
+
+  // Barra que se oculta sola mientras se reproduce
+  var barShown = true, hideAt = 0, overBar = false;
+  function showBar(){
+    if (EXPORT) return;
+    bar.classList.remove('hidden'); document.body.classList.remove('nocursor');
+    barShown = true; hideAt = performance.now() + 2600;
+  }
+  function hideBar(){
+    if (!playing) return;
+    bar.classList.add('hidden'); document.body.classList.add('nocursor'); barShown = false;
+  }
+  ['mousemove', 'pointerdown', 'touchstart'].forEach(function(ev){ document.addEventListener(ev, showBar, { passive: true }); });
+  bar.addEventListener('pointerenter', function(){ overBar = true; });
+  bar.addEventListener('pointerleave', function(){ overBar = false; showBar(); });
+
+  // Barra de progreso: tocar o arrastrar
+  var track = $('track'), dragging = false, wasPlaying = false;
+  function seekFromEvent(e){
+    var r = track.getBoundingClientRect();
+    setT(cl((e.clientX - r.left) / r.width) * DUR);
+  }
+  track.addEventListener('pointerdown', function(e){
+    dragging = true; wasPlaying = playing; playing = false; SND.hush();
+    hideOverlays(); track.setPointerCapture(e.pointerId); seekFromEvent(e);
+  });
+  track.addEventListener('pointermove', function(e){ if (dragging) seekFromEvent(e); });
+  function endDrag(){
+    if (!dragging) return;
+    dragging = false;
+    if (wasPlaying && T < DUR) play(); else { ui(); if (T >= DUR) showEnd(); }
+  }
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+
+  // Botones
+  playB.addEventListener('click', toggle);
+  $('bigplay').addEventListener('click', play);
+  $('restart').addEventListener('click', restart);
+  againB.addEventListener('click', restart);
+  Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(b){
+    b.addEventListener('click', function(){
+      rate = parseFloat(b.getAttribute('data-rate'));
+      Array.prototype.forEach.call(document.querySelectorAll('.seg .cb'), function(o){ o.setAttribute('aria-pressed', o === b); });
+    });
+  });
+  var pz = $('pz');
+  pz.addEventListener('click', function(){
+    pausasOn = !pausasOn;
+    pz.setAttribute('aria-checked', pausasOn);
+    document.body.classList.toggle('pausas', pausasOn);
+    if (!pausasOn) qBox.classList.add('hide');
+  });
+  var sndB = $('snd');
+  function sndUI(){ sndB.setAttribute('aria-checked', SND.on); }
+  sndB.addEventListener('click', function(){ SND.set(!SND.on); sndUI(); });
+  sndUI();
+  var root = document.documentElement, fsB = $('fs');
+  fsB.addEventListener('click', function(){
+    if (document.fullscreenElement || document.webkitFullscreenElement) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else { var req = root.requestFullscreen || root.webkitRequestFullscreen; if (req) req.call(root); }
+  });
+  if (!(root.requestFullscreen || root.webkitRequestFullscreen)) fsB.classList.add('hide');
+  document.addEventListener('fullscreenchange', fit);
+
+  // Teclado: espacio = reproducir/pausa; ← → = 5 s; Inicio = volver a empezar
+  addEventListener('keydown', function(e){
+    if (EXPORT || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space' || e.key === ' ') { e.preventDefault(); if (!e.repeat) toggle(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); jump(5); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); jump(-5); }
+    else if (e.key === 'Home') { e.preventDefault(); restart(); }
+    else return;
+    showBar();
+  });
+  addEventListener('keyup', function(e){ if (e.code === 'Space' || e.key === ' ') e.preventDefault(); });
+
+  /* ================= API para la grabación ================= */
+  window.ANIM = {
+    duration: DUR,
+    chapters: CHAPTERS,
+    pausas: PAUSAS,
+    seek: function(t){ playing = false; hideOverlays(); setT(+t || 0); if (T >= DUR) showEnd(); },
+    play: play,
+    pause: pause
+  };
+
+  if (EXPORT) { bar.classList.add('hide'); startOv.classList.add('hide'); }
+  setT(0);
+})();
+</script>
+</body>
+</html>
