@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Retos CE 4.0
+Comment=Retos de programación y matemáticas de Código Escuela 4.0
+Exec=xdg-open https://oparadanoheda.github.io/guia-ce40/tablet/
+Icon=applications-education
+Terminal=false

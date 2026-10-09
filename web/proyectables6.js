@@ -535,5 +535,13 @@
   }
   window.Proyectables.register('mensajes', porModos([['', msScratch], ['radio', msRadio]]));
 
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-qrfull]'); if (!b) return;
+    var q = b.closest('section.page').querySelector('.tqr');
+    if (document.fullscreenElement) { document.exitFullscreen().catch(function () {}); return; }
+    if (q.requestFullscreen) q.requestFullscreen().catch(function () { q.classList.toggle('tqr-max'); }); else q.classList.toggle('tqr-max');
+  });
+  document.addEventListener('click', function (e) { var q = e.target.closest && e.target.closest('.tqr.tqr-max'); if (q) q.classList.remove('tqr-max'); });
+
   window.PJNuevas = { maxPreguntas: maxPreguntas, cadena: cadena, mitad: mitad, vFrente: vFrente, vLado: vLado, suma: suma, grada: grada };
 })();

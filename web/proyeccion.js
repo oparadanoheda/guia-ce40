@@ -177,6 +177,16 @@
     }
     p.say = 'Manos a la obra.' + (d.fast ? ' ¿Habéis terminado? Reto extra: ' + textOf(d.fast) : '');
     out.push(p);
+    if (d.tablet && d.tablet.length) {
+      var tq = slide(2);
+      head(tq, 'Práctica', 'En las tablets o los portátiles');
+      var qs = el('div', 'pz-qrs');
+      d.tablet.forEach(function (t) { var c = el('div', 'pz-qr'); c.appendChild(el('b', null, t[0])); var w = document.createElement('div'); w.innerHTML = t[2]; c.appendChild(w.firstChild); qs.appendChild(c); });
+      tq.el.appendChild(qs);
+      tq.el.appendChild(el('p', 'pz-qrnota', 'Tablets: escanead el código con la cámara y pulsad «Empezar a pantalla completa». Portátiles: abrid el icono «Retos CE 4.0» (o oparadanoheda.github.io/guia-ce40/retos).'));
+      tq.say = 'En las tablets o los portátiles. Escanead el código o abrid el icono de los retos.';
+      out.push(tq);
+    }
     var cr = slide(2, 'keyslide');
     head(cr, 'A mitad de la práctica', 'Cambio de roles');
     cr.el.appendChild(el('p', 'pz-big', 'El piloto pasa a copiloto y el copiloto, a piloto.'));

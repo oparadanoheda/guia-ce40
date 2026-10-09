@@ -11,7 +11,8 @@ from markdown.extensions.toc import slugify_unicode
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from datos_etapa import TOOLS, TOOL_NOTES, STRANDS, PRODUCTS, LEVEL_NAMES  # noqa: E402
 from recursos_oficiales import LIBRARY, SA_LINKS, SESSION_RULES  # noqa: E402
-from catalogo import PROYECTABLES, EXTERNAS  # noqa: E402
+from catalogo import PROYECTABLES, EXTERNAS, TABLET  # noqa: E402
+import segno  # noqa: E402
 import materiales as MAT  # noqa: E402
 import makecode_gen as MK  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
@@ -25,7 +26,18 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.1", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.2", "octubre de 2026"
+# Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
+SITIO = "https://oparadanoheda.github.io/guia-ce40/"
+CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
+TABLET_INDEX = {t[0]: t for t in TABLET}
+TAB_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>'
+
+
+def qr_svg(tid, cls="qr"):
+    """El QR que abre la actividad de la tablet (SVG sin tamaño: lo pone el CSS)."""
+    q = segno.make(SITIO + "tablet/#" + tid, error="m")
+    return q.svg_inline(scale=1, border=2, dark="#1a1d24", light="#ffffff", omitsize=True, svgclass=cls, title="Código QR: " + TABLET_INDEX[tid][1])
 DESCRIPCION = ("Guía didáctica de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en Matemáticas: 128 sesiones con propuestas, "
                "herramientas para la pizarra digital, vídeos de conceptos, material imprimible y proyectos de Scratch y MakeCode.")
 FAVICON = ("data:image/svg+xml," + "%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='13' height='13' rx='3' fill='%23c8382f'/%3E"
@@ -108,6 +120,7 @@ def links(h):
             return label
         return f'<a class="mlink" href="materiales/{MAT_INDEX[code][2]}.pdf" target="_blank" rel="noopener"><b>{code}</b>{label}</a>'
     h = re.sub(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", pj, h)
+    h = re.sub(r"\[\[T:(\w+)\|([^\]]+)\]\]", lambda m: f'<a class="plink tlink" href="#t-{m.group(1)}">{TAB_ICON}{m.group(2)}</a>', h)
     h = re.sub(r"\[\[M:(M\d\d)\|([^\]]+)\]\]", mt, h)
     h = re.sub(r"\[\[S:([\w.-]+\.sb3)\|([^\]]+)\]\]",
                lambda m: f'<a class="mlink" href="materiales/scratch/{m.group(1)}" download><b>SB3</b>{m.group(2)}</a>', h)
@@ -151,7 +164,7 @@ def inline(text):
 # ---------------------------------------------------------------- parsing
 
 
-META = ("Para proyectar", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
+META = ("Para proyectar", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
         "Opción más sencilla", "Mates", "Producto", "Autoevaluación", "Pasos", "Opción ", "Cierre",
         "Para ti", "Aviso", "Sin caras", "Si hay", "Si coincide", "Si el grupo", "Si algún", "Solo sonidos",
         "Minuto")
@@ -218,6 +231,8 @@ def parse_session(chunk):
             s["math"] = text
         elif L.startswith("Para proyectar"):
             s["proj"] = text
+        elif L.startswith("En las tablets") or L.startswith("En tablets o portátiles"):
+            s["tablet"] = text
         elif L.startswith("Material listo"):
             s["mat"] = text
         elif L.startswith("Archivo de Scratch"):
@@ -504,6 +519,7 @@ def projection_data(c, s, quin, prev=None):
     d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
          "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
          "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
+         "tablet": [(TABLET_INDEX[t][1], t, qr_svg(t, "pz-qrsvg")) for t in re.findall(r"\[\[T:(\w+)\|", s.get("tablet", "")) if t in TABLET_INDEX],
          "missions": retos + props, "fast": fast,
          "visual": visual, "fastPics": pictos_paso(plain(re.sub(r"<[^>]+>", "", fast))) if visual else [],
          "close": None if quin else close_list(c, s),
@@ -549,13 +565,15 @@ def render_session(c, s, prev, nxt, idx):
 
     side = []
     vids = BY_SESSION.get(s["id"], [])
-    if s.get("proj") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids:
+    if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids:
         use = ""
         if vids:
             use += f'<h4>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h4><p>' + "".join(
                 f'<a class="vlink" href="#v-{v[0]}">{PLAY_ICON}{E(v[2])}</a> ' for v in vids).strip() + '</p>'
         if s.get("proj"):
             use += f'<h4>Para proyectar</h4><p>{inline(s["proj"])}</p>'
+        if s.get("tablet"):
+            use += f'<h4>En tablets o portátiles</h4><p>{inline(s["tablet"])}</p>'
         if s.get("mat"):
             use += f'<h4>Material listo para imprimir</h4><p>{inline(s["mat"])}</p>'
         if s.get("sb3"):
@@ -703,7 +721,7 @@ def home(courses, secs):
 <h2 class="h-sec big">Cómo usar esta guía</h2>
 <div class="ucards">
 <div><b>Elige una propuesta</b><p>Cada sesión tiene un objetivo y 2 o 3 formas de trabajarlo. Con una basta.</p></div>
-<div><b>El material está hecho</b><p>Fichas en PDF, herramientas para la pizarra y archivos de Scratch y MakeCode. No hay que fabricar nada.</p></div>
+<div><b>El material está hecho</b><p>Fichas en PDF, herramientas para la pizarra, <a href="#tablets">retos para las tablets</a> y archivos de Scratch y MakeCode. No hay que fabricar nada.</p></div>
 <div><b>Proyecta o imprime</b><p>«Proyectar la sesión» muestra a la clase el reto, las palabras nuevas y la herramienta. «Imprimir» saca la ficha en un A4 con la propuesta elegida.</p></div>
 <div><b>Es orientativo</b><p>Si algo falla o el grupo va a otro ritmo, pasa a la opción con fichas o usa una sesión de reserva.</p></div>
 </div>
@@ -962,6 +980,7 @@ def build():
     pages.append(projectables_page())
     pages.extend(tool_pages())
     pages.extend(video_pages(courses))
+    pages.extend(tablet_pages(courses))
     pages.append('<section class="page" id="buscar" hidden><div class="sheet"><p class="eyebrow">Buscador</p><h1>Resultados</h1><p class="lede" id="sr-sum"></p><ol class="slist sr" id="sr"></ol></div></section>')
 
     course_nav = "".join(f'<a href="#{c["id"]}" data-nav="{c["id"]}" style="--c:var(--{c["id"]})"><i></i><b>{c["num"]}</b><span>{E(c["name"])}</span></a>' for c in courses)
@@ -1062,6 +1081,9 @@ def projectables_page():
 <h2 class="h-sec" id="videos">Vídeos que explican conceptos</h2>
 <p class="small">Animaciones de uno a dos minutos, con subtítulos y efectos de sonido opcionales. Cada sesión enlaza el suyo.</p>
 <div class="vid-gallery">{video_tiles()}</div>
+<h2 class="h-sec" id="tablets">Retos para las tablets y los portátiles del alumnado</h2>
+<p class="small">Retos para hacer en parejas. En las tablets se abren con el QR; en los portátiles, con el icono «Retos CE 4.0» o escribiendo <b>{CORTA}</b>. Sin cuentas: nada sale del dispositivo. <a href="#t-portatiles">Cómo prepararlo en los portátiles</a>.</p>
+<div class="pj-gallery">{tablet_tiles()}</div>
 <h2 class="h-sec">Otras aplicaciones recomendadas</h2>
 <p class="small">Se abren en otra pestaña. Gratuitas y sin cuentas de alumnado.</p>
 <div class="ext-apps">{ext}</div></div></section>'''
@@ -1098,6 +1120,56 @@ def tool_guide(pid):
     return more("Guía para el docente: qué contar, preguntas y soluciones", body, did=f"guia-{pid}")
 
 
+def tablet_tiles():
+    return "".join(f'<a class="pj-tile tab-tile" href="#t-{tid}"><small>{E(crs)} · tablet o portátil</small><b>{E(name)}</b><span>{E(desc)}</span></a>' for tid, name, crs, desc, _ in TABLET)
+
+
+def tablet_pages(courses):
+    """Una página por actividad de la tablet: el QR para proyectar, qué hacen, los niveles y cómo se usa."""
+    names, usos = {}, {}
+    for c in courses:
+        for t in c["terms"]:
+            for s in t["sessions"]:
+                names[s["id"]] = (c["id"], f'{c["num"]} · S{s["num"]} · {s["title"]}')
+                for tid in re.findall(r"\[\[T:(\w+)\|", s.get("tablet", "")):
+                    usos.setdefault(tid, []).append(s["id"])
+    out = []
+    for tid, name, crs, desc, niveles in TABLET:
+        url = SITIO + "tablet/#" + tid
+        chips = "".join(f'<a class="rindex-chip" href="#{sid}" style="--c:var(--{names[sid][0]})">{E(names[sid][1])}</a>' for sid in usos.get(tid, []))
+        out.append(f'''<section class="page tab-page" id="t-{tid}" data-nav-key="proyectar" hidden><div class="sheet">
+<div class="pj-head"><div><p class="eyebrow">En tablets o portátiles · {E(crs)}</p><h1>{E(name)}</h1></div>
+<div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><a class="pj-btn" href="#tablets">Todos los retos</a></div></div>
+<div class="tab-grid"><div class="tqr"><p class="tqr-tit">{E(name)}</p>{qr_svg(tid)}<p class="tqr-pie">Escanead el código con la cámara de la tablet</p>
+<p class="tqr-url">{E(url)}</p></div>
+<div class="tab-info"><div class="pj-row"><button type="button" class="pj-btn go" data-qrfull>Proyectar el QR en grande</button><a class="pj-btn" href="tablet/index.html#{tid}" target="_blank" rel="noopener">Probarlo aquí</a></div>
+<p class="lede">{E(desc)}</p><h2 class="h-sec">Niveles</h2><ul>{"".join(f"<li>{E(n)}</li>" for n in niveles)}</ul>
+<h2 class="h-sec">Cómo se usa</h2><ol><li><b>Tablets:</b> proyecta el QR en grande. Cada pareja lo escanea con la cámara y pulsa «Empezar a pantalla completa». El botón «Pantalla completa» se queda arriba.</li>
+<li><b>Portátiles:</b> abren el icono «Retos CE 4.0» (o escriben <b>{CORTA}</b>) y tocan «{E(name)}». <a href="#t-portatiles">Cómo dejar el icono preparado</a>.</li>
+<li>Diles qué nivel hacer. Cada nivel da hasta 3 estrellas.</li><li>Al terminar, enseñan sus estrellas o explican un reto a otra pareja.</li></ol>
+<p class="small">Con teclado se juega igual: números y Enter; en el robot, las flechas. Sin cuentas ni datos: las estrellas se guardan solo en ese dispositivo y se borran desde su pantalla de inicio. Necesita internet para abrirse, porque la página está en la web de la guía. En un iPad o un iPhone que no deje poner la pantalla completa: «Compartir» › «Añadir a pantalla de inicio», y se abre desde ese icono.</p></div></div>
+{('<h2 class="h-sec">Se usa en</h2><nav class="rindex" aria-label="Sesiones">' + chips + '</nav>') if chips else ''}
+</div></section>''')
+    out.append(f'''<section class="page tab-page" id="t-portatiles" data-nav-key="proyectar" hidden><div class="sheet doc">
+<p class="eyebrow">Retos para el alumnado</p><h1>Los retos en los portátiles</h1>
+<p class="lede">Los portátiles no suelen leer QR, así que lo más rápido es dejar en cada uno un icono que abre los retos. Se prepara una sola vez; después, el alumnado abre el icono y toca el reto que digas.</p>
+<h2 class="h-sec">1. Instalarlo como aplicación (lo más cómodo)</h2>
+<ol><li>En cada portátil, abre <a href="{SITIO}tablet/" target="_blank" rel="noopener">{CORTA}</a> con Chrome o Edge.</li>
+<li>Pulsa el botón blanco <b>Instalar</b> de arriba (o el icono de instalar de la barra de direcciones).</li>
+<li>Aparece el icono «Retos CE 4.0» en el escritorio y en el menú de inicio. Se abre sin las barras del navegador y, una vez abierto, funciona también sin conexión.</li></ol>
+<h2 class="h-sec">2. Copiar un acceso directo al escritorio</h2>
+<p>Si no deja instalar: descarga el acceso directo y cópialo en el escritorio de cada portátil (con un pendrive o desde la carpeta compartida).</p>
+<div class="pj-row"><a class="pj-btn" href="tablet/Retos-CE40.url" download>Acceso directo para Windows</a><a class="pj-btn" href="tablet/retos-ce40.desktop" download>Acceso directo para Linux (MAX)</a></div>
+<p class="small">En Linux, la primera vez hay que pulsar con el botón derecho sobre el icono y elegir «Permitir lanzar».</p>
+<h2 class="h-sec">3. Sin preparar nada</h2>
+<p>Proyecta la dirección corta para que la escriban: <b>{CORTA}</b>. Desde la segunda vez, el navegador la completa sola. También se puede guardar en favoritos (Ctrl + D).</p>
+<h2 class="h-sec">Con el teclado</h2>
+<p>Los números se escriben con el teclado y Enter comprueba (y, después, pasa al siguiente reto). En «Programa al robot»: ↑ avanzar, ← y → girar, R repetir, Enter ejecutar y la tecla de borrar quita el último bloque.</p>
+<p><a class="pj-btn" href="#tablets">Ver los retos</a></p>
+</div></section>''')
+    return out
+
+
 def video_tiles():
     return "".join(
         f'<a class="vid-tile" href="#v-{vid}"><img src="videos/img/{vid}.jpg" alt="" loading="lazy" width="640" height="360">'
@@ -1127,7 +1199,7 @@ def video_pages(courses):
 
 
 HERE = Path(__file__).resolve().parent
-CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
+CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
 JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8")
 PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables5.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables6.js").read_text(encoding="utf-8")
 

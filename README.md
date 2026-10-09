@@ -1,8 +1,8 @@
 # Guía didáctica · Código Escuela 4.0 · Primaria · 2026-2027
 
-**Versión 1.1** · octubre de 2026
+**Versión 1.2** · octubre de 2026
 
-Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, 33 herramientas interactivas para la pizarra digital, 19 vídeos animados que explican los conceptos, 28 materiales imprimibles en PDF y proyectos de Scratch (15) y de MakeCode (24).
+Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas: 128 sesiones con opciones de actividad, 33 herramientas interactivas para la pizarra digital, 19 vídeos animados que explican los conceptos, 5 retos para las tablets y los portátiles del alumnado (con un QR o con un icono en el escritorio), 28 materiales imprimibles en PDF y proyectos de Scratch (15) y de MakeCode (24).
 
 **La guía se consulta en la web de GitHub Pages de este repositorio:** https://oparadanoheda.github.io/guia-ce40/
 
@@ -18,7 +18,7 @@ Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el
 
 ## Regenerar la web
 
-Desde la carpeta `web/` (Python 3 con `markdown`, `pypdf` y `PyMuPDF`, y Microsoft Edge para los PDF):
+Desde la carpeta `web/` (Python 3 con `markdown`, `pypdf`, `PyMuPDF` y `segno`, y Microsoft Edge para los PDF):
 
 ```bash
 python materiales.py      # PDF del material imprimible
@@ -33,7 +33,7 @@ python empaquetar.py      # copia la web a docs/ y crea el zip para el aula virt
 python revisar_bloques.py           # los bloques citados se llaman como en Scratch y MakeCode
 python revisar_pdfs.py              # ningún PDF se sale de la página
 cd pruebas_scratch && npm test      # los proyectos de Scratch funcionan
-cd pruebas_web && python probar_web.py   # la web: páginas, herramientas, proyección y accesibilidad
+cd pruebas_web && python probar_web.py   # la web: páginas, herramientas, proyección, accesibilidad y retos de la tablet
 ```
 
 Detalles en `LEEME_PROYECTO.md`.

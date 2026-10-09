@@ -1,0 +1,21 @@
+/* Páginas «En las tablets» de la guía: el QR para proyectar y cómo se usa. */
+.tlink .i{width:1.15em;height:1.15em}
+.tab-grid{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.tab-grid{grid-template-columns:minmax(0,1fr)}}
+.tqr{background:#fff;color:#1a1d24;border:2px solid var(--rule);border-radius:18px;padding:18px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.tqr .qr{width:100%;max-width:300px;height:auto;display:block}
+.tqr-tit{margin:0;font:800 1.3rem/1.2 var(--sans)}
+.tqr-pie{margin:0;font:600 1rem var(--sans)}
+.tqr-url{margin:0;font:500 .78rem var(--mono);color:#5d6474;word-break:break-all}
+.tqr:fullscreen{justify-content:center;border:0;border-radius:0;gap:2vh}
+.tqr:fullscreen .qr{max-width:none;width:auto;height:70vh}
+.tqr:fullscreen .tqr-tit{font-size:5vh}.tqr:fullscreen .tqr-pie{font-size:3.4vh}.tqr:fullscreen .tqr-url{font-size:2vh}
+.tqr.tqr-max{position:fixed;inset:0;z-index:100;justify-content:center;border-radius:0}
+.tqr.tqr-max .qr{max-width:none;width:auto;height:70vh}
+.tab-info ul,.tab-info ol{padding-left:1.2em}
+.tab-tile small{color:var(--c3)}
+.pz-qrs{display:flex;flex-wrap:wrap;gap:3vw;justify-content:center;align-items:flex-start}
+.pz-qr{background:#fff;border-radius:1rem;padding:1.4vh 1.4vw;display:flex;flex-direction:column;align-items:center;gap:.6vh;border:2px solid #e3e6ec}
+.pz-qr b{font:800 clamp(1.2rem,2.2vw,2.2rem)/1.1 'Instrument Sans',sans-serif;color:#1a1d24}
+.pz-qrsvg{display:block;width:auto;height:min(36vh,30vw)}
+.pz-qrnota{margin:0;text-align:center;font:600 clamp(1.1rem,min(2vw,3.6vh),1.9rem)/1.3 'Literata',Georgia,serif;color:#343a46}

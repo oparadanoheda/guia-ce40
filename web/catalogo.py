@@ -63,3 +63,19 @@ EXTERNAS = [
     ("CS Unplugged", "https://www.csunplugged.org/es/", "1º-6º", "Actividades de informática sin ordenador, con guía para el docente."),
     ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "3º-6º", "Entrenar un modelo de IA con la cámara (demostración del docente, sin caras)."),
 ]
+
+
+# Retos para las tablets del alumnado (web/tablet/): se abren con un QR que el docente proyecta.
+# id, nombre, cursos, qué hacen, niveles
+TABLET = [
+    ("robot", "Programa al robot", "3º-4º", "Llevar al robot a la estrella con avanzar, girar y repetir. Con menos bloques, más estrellas.",
+     ["Niveles 1 a 3: secuencias y giros.", "Niveles 4 a 10: repetir. Para las 3 estrellas hay que usarlo."]),
+    ("coordenadas", "Coordenadas", "3º-6º", "Tocar el punto que se pide o escribir dónde está la estrella.",
+     ["Niveles 1 y 2: cuadrícula del 0 al 6 (3º y 4º).", "Niveles 3 y 4: con negativos, del −5 al 5 (5º y 6º).", "Nivel 5: el escenario de Scratch, con 15 pasos de margen."]),
+    ("variables", "¿Cuánto vale?", "4º-6º", "Leer un programa corto, con bloques de Scratch o de MakeCode, y decir cuánto vale la variable al final. Si se fallan, ven la tabla paso a paso.",
+     ["Nivel 1: dar el valor y sumar.", "Nivel 2: «dar el valor» borra lo que había.", "Nivel 3: con repetir (sumar varias veces es multiplicar).", "Nivel 4: dos variables."]),
+    ("cubos", "Cubos y vistas", "4º-6º", "Contar los cubos de una figura, también los que no se ven, y elegir su vista de frente, desde arriba o de lado.",
+     ["Nivel 1: figuras pequeñas (3 × 3, dos pisos).", "Nivel 2: figuras de hasta cuatro pisos.", "Nivel 3: ¿qué vista es?"]),
+    ("adivina", "Adivina el número", "3º-6º", "Encontrar el número con las pistas «más grande» y «más pequeño». La recta enseña dónde puede estar todavía.",
+     ["Nivel 1: del 1 al 20 (3 estrellas con 5 intentos o menos).", "Nivel 2: del 1 al 100 (con 7 o menos).", "Nivel 3: del 1 al 1000 (con 10 o menos)."]),
+]

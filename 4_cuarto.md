@@ -110,6 +110,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 
 - **Qué aprenden:** usar repetir para dibujar polígonos, y un repetir dentro de otro para hacer rosetones.
 - **Para proyectar:** [[P:poligonos|Polígonos]] y [[P:poligonos.roseton|Rosetón]] · [[P:laberinto.4|Laberinto · bucles]]
+- **En tablets o portátiles:** [[T:robot|Programa al robot]] (niveles 6 a 10: escaleras y vueltas con repetir)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Lápiz»)
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
@@ -167,6 +168,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 
 - **Qué aprenden:** crear variables, darles un valor, sumarles y mostrarlas.
 - **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] · [[P:variables.traza|Variables · ¿cuánto vale al final?]]
+- **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 1 a 3: predecir el valor final de una variable)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
 
@@ -192,6 +194,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 
 - **Qué aprenden:** usar **número aleatorio**, **preguntar** y **si… entonces… si no** para dar pistas.
 - **Para proyectar:** [[P:adivina|Adivina el número · el ordenador piensa]] (calentamiento) · [[P:diagrama.adivina|Diagrama · adivina el número]]
+- **En tablets o portátiles:** [[T:adivina|Adivina el número]] (nivel 1: el mismo juego que programáis, del 1 al 20)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S5-adivina-el-numero-solucion.sb3|Adivina el número · solución (con pistas y repetir hasta acertar)]]
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
@@ -331,6 +334,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Qué aprenden:** mover un personaje con las flechas y hacer que no se salga (varios eventos a la vez).
 - **Para proyectar:** [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:coordenadas.donde|Coordenadas · ¿dónde está?]] · [[P:flota.xy|Hundir la flota · plano de 0 a 7]] · [[P:flota.xyneg|Hundir la flota · con negativos]]
+- **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 2 y 5: leer puntos y el escenario de Scratch)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S10-videojuego-plantilla.sb3|Plantilla de inicio: dibujos y fondos, sin programar]] · [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?

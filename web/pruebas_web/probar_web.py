@@ -7,6 +7,7 @@
 #                                      (con nombres detrás, solo esas: python probar_web.py herramientas adivina vistas)
 #   python probar_web.py proyeccion    la proyección de las 128 sesiones a 1024×768 y 1366×768
 #   python probar_web.py accesibilidad axe-core (WCAG 2.1 AA) en todas las páginas, en claro y en oscuro
+#   python probar_web.py tablet        los retos de la tablet: todos los niveles resueltos, tres tamaños de pantalla, accesibilidad
 #   python probar_web.py enlaces       responde cada enlace externo (tarda; necesita internet)
 #
 # Cada apartado termina con una línea «OK» o con la lista de lo que falla.
@@ -281,20 +282,104 @@ def enlaces():
             [f"redirige: {u} → {f}" for u, c, f in res if c == 200 and f and f.rstrip("/") != u.rstrip("/") and "?" not in u])
 
 
+# ------------------------------------------------------------------ retos para la tablet (docs/tablet/)
+TAB_JUEGA = r"""(async (act, nivel)=>{
+  const P = RETOS.prueba, B = t=>[...document.querySelectorAll('button')].find(b=>b.textContent.trim()===t);
+  const T = k=>[...document.querySelectorAll('.tecla')].find(b=>b.textContent===k).click();
+  const escribe = n=>{ String(n).split('').forEach(ch=>T(ch==='-'?'−':ch)); T('Comprobar'); };
+  const est = ()=>document.querySelector('.estado').textContent;
+  location.hash = '#' + act + '/' + nivel; await new Promise(r=>setTimeout(r,150));
+  if (act === 'adivina') { const N = [20,100,1000][nivel-1]; let lo=1, hi=N, k=0;
+    while (k<25) { const g=Math.floor((lo+hi)/2); k++; escribe(g); const t=est(); if (t.startsWith('¡Es')) return [k, t]; if (t.includes('más grande')) lo=g+1; else hi=g-1; } return [k, est()]; }
+  for (let i=0;i<8;i++) {
+    if (act === 'coordenadas') { const o=P.obj;
+      if (document.querySelectorAll('.casilla').length) { escribe(o[0]); document.querySelectorAll('.casilla')[1].click(); String(o[1]).split('').forEach(ch=>T(ch==='-'?'−':ch)); T('Comprobar'); }
+      else { const svg=document.querySelector('.dibujo'), vb=svg.viewBox.baseVal, pt=svg.createSVGPoint();
+        if (vb.x < 0) { pt.x=o[0]; pt.y=-o[1]; } else { const lv=[[0,6],[0,6],[-5,5],[-5,5]][nivel-1]; pt.x=46+(o[0]-lv[0])*56; pt.y=46+(lv[1]-o[1])*56; }
+        const s=pt.matrixTransform(svg.getScreenCTM()); svg.dispatchEvent(new MouseEvent('click',{bubbles:true,clientX:s.x,clientY:s.y})); } }
+    else if (act === 'variables') escribe(P.valor);
+    else if (act === 'cubos') { if (nivel < 3) escribe(P.H.flat().reduce((a,b)=>a+b,0)); else document.querySelectorAll('.op')[P.buena].click(); }
+    if (i < 7) B('Siguiente').click();
+  }
+  return [8, est()];
+})"""
+
+
+async def tablet(b):
+    prob = []
+    url = (DOCS / "tablet" / "index.html").as_uri()
+    for w, hh in ((1024, 768), (768, 1024), (390, 844)):
+        await b.send("Emulation.setDeviceMetricsOverride", width=w, height=hh, deviceScaleFactor=1, mobile=True)
+        await b.goto(url)
+        await asyncio.sleep(.5)
+        await b.js("try{localStorage.clear();sessionStorage.setItem('ce40-tablet-entrada','1')}catch(e){}; 1")
+        await b.goto(url)
+        await asyncio.sleep(.5)
+        refs = await b.js("RETOS.NIV_ROBOT.map((n,i)=>{const s=RETOS.simula(n,RETOS.leeRef(n.ref)); return s.llega && !s.choque})")
+        prob += [f"robot nivel {i + 1}: la solución de referencia no llega" for i, ok in enumerate(refs) if not ok]
+        for act, niveles in (("coordenadas", 5), ("variables", 4), ("cubos", 3), ("adivina", 3)):
+            for nv in range(1, niveles + 1):
+                n, t = await b.js(f"({TAB_JUEGA})({json.dumps(act)}, {nv})")
+                bien = t.startswith("8 de 8") if act != "adivina" else (t.startswith("¡Es") and n <= [5, 7, 10][nv - 1])
+                if not bien:
+                    prob.append(f"{w}px {act} {nv}: {t[:80]}")
+                over = await b.js("document.documentElement.scrollWidth - document.documentElement.clientWidth")
+                if over > 1:
+                    prob.append(f"{w}px {act} {nv}: se sale {over} px")
+        for k in range(1, 11):
+            await b.js(f"location.hash='#robot/{k}'")
+            await asyncio.sleep(.08)
+        # con el teclado del ordenador: el robot con las flechas y una respuesta con números y Enter
+        async def tecla(k):
+            cod = {"ArrowUp": 38, "ArrowLeft": 37, "ArrowRight": 39, "Enter": 13}.get(k, ord(k) if len(k) == 1 else 0)
+            for t in ("keyDown", "keyUp"):
+                await b.send("Input.dispatchKeyEvent", type=t, key=k, code=k if len(k) > 1 else "Digit" + k, windowsVirtualKeyCode=cod, text=k if (t == "keyDown" and len(k) == 1) else "")
+        await b.js("location.hash='#robot/2'; document.activeElement && document.activeElement.blur(); 1")
+        await asyncio.sleep(.2)
+        for k in ("ArrowUp", "ArrowUp", "ArrowRight", "ArrowUp", "ArrowUp", "Enter"):
+            await tecla(k)
+        await asyncio.sleep(3.5)
+        t = await b.js("document.querySelector('.estado').textContent")
+        if not t.startswith("¡Llega"):
+            prob.append(f"{w}px: el robot con el teclado no llega: {t[:60]}")
+        await b.js("location.hash='#variables/1'; document.activeElement && document.activeElement.blur(); 1")
+        await asyncio.sleep(.2)
+        for ch in str(await b.js("RETOS.prueba.valor")):
+            await tecla(ch)
+        await tecla("Enter")
+        t = await b.js("document.querySelector('.estado').textContent")
+        if not t.startswith("¡Muy bien"):
+            prob.append(f"{w}px: la respuesta con el teclado no funciona: {t[:60]}")
+        prob += [f"{w}px: consola: {e}" for e in b.errors()]
+    if not AXE.exists():
+        AXE.write_bytes(urllib.request.urlopen(AXE_URL, timeout=60).read())
+    await b.send("Emulation.setDeviceMetricsOverride", width=1024, height=768, deviceScaleFactor=1, mobile=True)
+    await b.goto(url)
+    await asyncio.sleep(.5)
+    await b.js(AXE.read_text(encoding="utf-8") + ";1")
+    for r in ("", "robot/4", "coordenadas/2", "variables/3", "cubos/3", "adivina/2"):
+        vs = await b.js(f"""(async()=>{{ location.hash='#{r}'; await new Promise(x=>setTimeout(x,250));
+          const res = await axe.run(document, {{runOnly:{{type:'tag', values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}}});
+          return res.violations.flatMap(v=>v.nodes.map(n=>v.id+' · '+n.target.join(' ')))}})()""")
+        # los bloques dibujados de «¿Cuánto vale?» (.b, .r, .c-cab) son la misma excepción: colores del editor con letra blanca
+        prob += [f"accesibilidad #{r}: {v}" for v in vs if not re.search(r"\.(?:b|r|c-cab)(?![\w-])", v)]
+    informe("tablet", prob)
+
+
 async def navegador(partes):
     async with Browser(port=9480, w=1366, h=860) as b:
-        for nombre, fn in (("paginas", paginas), ("herramientas", herramientas), ("proyeccion", proyeccion), ("accesibilidad", accesibilidad)):
+        for nombre, fn in (("paginas", paginas), ("herramientas", herramientas), ("proyeccion", proyeccion), ("accesibilidad", accesibilidad), ("tablet", tablet)):
             if nombre in partes:
                 await fn(b)
 
 
 def main():
-    PARTES = ("estatico", "paginas", "herramientas", "proyeccion", "accesibilidad", "enlaces")
-    partes = [a for a in sys.argv[1:] if a in PARTES] or list(PARTES[:5])
+    PARTES = ("estatico", "paginas", "herramientas", "proyeccion", "accesibilidad", "tablet", "enlaces")
+    partes = [a for a in sys.argv[1:] if a in PARTES] or list(PARTES[:6])
     SOLO.update(a for a in sys.argv[1:] if a not in PARTES)
     if "estatico" in partes:
         estatico()
-    if set(partes) & {"paginas", "herramientas", "proyeccion", "accesibilidad"}:
+    if set(partes) & {"paginas", "herramientas", "proyeccion", "accesibilidad", "tablet"}:
         asyncio.run(navegador(partes))
     if "enlaces" in partes:
         enlaces()

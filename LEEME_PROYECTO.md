@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **19 vídeos de conceptos**, **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **19 vídeos de conceptos**, **5 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -87,6 +87,8 @@ Programación Mate 4.0 26-27/
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
 | `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables*.css` | Las 33 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
+| `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js`, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
+| `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y de su diapositiva en la proyección |
 | `videos/` | Los 19 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
@@ -138,6 +140,7 @@ Texto o pasos.
   - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en el código; hoy se usan 89 y todas existen.
   - `[[M:M07|texto]]` enlaza un PDF.
   - `[[S:archivo.sb3|texto]]` enlaza un proyecto de Scratch.
+  - `[[T:robot|texto]]` enlaza un reto para tablets o portátiles (va en la línea `- **En tablets o portátiles:** …`, con para qué niveles). Sale en la tarjeta de la sesión y como diapositiva con el QR en la práctica del modo proyección.
 - **En la web:** «Si va rápido» y «Si cuesta» aparecen como «Para ampliar» y «Para simplificar» en el bloque «Atención a la diversidad». El resto de viñetas con etiqueta van a «A tener en cuenta».
 - **Sesiones opcionales (5º y 6º, S13-S16):** son párrafos breves. Hay que dejar una **línea en blanco** entre las viñetas de cabecera y el párrafo; si no, el texto aparece en la columna lateral.
 - **Cada curso tiene además:**
@@ -148,7 +151,7 @@ Texto o pasos.
 
 ## 5. Cómo regenerar todo
 
-Desde `web/` (Python 3 con `markdown`, `pypdf` y `PyMuPDF`; Edge instalado en la ruta estándar):
+Desde `web/` (Python 3 con `markdown`, `pypdf`, `PyMuPDF` y `segno` (los QR); Edge instalado en la ruta estándar):
 
 ```bash
 python vocab_md.py             # solo si cambia vocabulario.py (reescribe «Palabras del curso» en los .md)
@@ -174,7 +177,7 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 
 | Qué | Cómo |
 |---|---|
-| **La web funciona** | `python probar_web.py` (desde `web/pruebas_web/`, tras `build_web.py` y `empaquetar.py`; unos 25 minutos). Prueba `docs/index.html`: HTML sin ids repetidos ni enlaces rotos ni emojis; las ~190 páginas a 1366, 1024 y 375 px y en oscuro, sin errores ni desbordes; cada modo de cada herramienta con miles de pulsaciones al azar; la proyección de las 128 sesiones a 1024×768 y 1366×768; y accesibilidad WCAG 2.1 AA con axe-core en claro y en oscuro. Debe terminar en «RESULTADO: todo bien». Se puede pasar por partes: `python probar_web.py estatico` (segundos), `paginas`, `herramientas`, `proyeccion`, `accesibilidad`. Con `enlaces` comprueba los enlaces externos (necesita internet) |
+| **La web funciona** | `python probar_web.py` (desde `web/pruebas_web/`, tras `build_web.py` y `empaquetar.py`; unos 25 minutos). Prueba `docs/index.html`: HTML sin ids repetidos ni enlaces rotos ni emojis; las ~190 páginas a 1366, 1024 y 375 px y en oscuro, sin errores ni desbordes; cada modo de cada herramienta con miles de pulsaciones al azar; la proyección de las 128 sesiones a 1024×768 y 1366×768; y accesibilidad WCAG 2.1 AA con axe-core en claro y en oscuro. Debe terminar en «RESULTADO: todo bien». Se puede pasar por partes: `python probar_web.py estatico` (segundos), `paginas`, `herramientas`, `proyeccion`, `accesibilidad`, `tablet` (resuelve todos los niveles de los retos de la tablet en tres tamaños de pantalla y pasa axe-core). Con `enlaces` comprueba los enlaces externos (necesita internet) |
 | Ningún PDF se sale de la página | `python revisar_pdfs.py` (desde `web/`). Debe decir `OV ok` en todos |
 | Los bloques se llaman como en el editor | `python revisar_bloques.py` (desde `web/`). Compara cada bloque de Scratch y MakeCode citado en las sesiones, en la guía de herramientas, en las chuletas M20 y M21, en los retos M28 y en las notas de los .sb3 con los nombres oficiales en español (Scratch «es», MakeCode «es-ES», y el Nezha y PlanetX en inglés). Debe decir «Todos los bloques citados existen con ese nombre»; si no, lista cada uno con su archivo y línea. Con `--actualizar` vuelve a descargar los nombres oficiales (hacerlo de vez en cuando: Scratch y MakeCode cambian alguna traducción). No ve una errata en la primera palabra de un bloque ni revisa los números de dentro |
 | Aspecto de los PDF | Abrir las páginas cambiadas y mirarlas (la herramienta Read del asistente muestra cada página como imagen) |
@@ -371,6 +374,13 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Mensajes** (`mensajes`; 4º S13 y 6º S14): en Scratch, Robi envía «nivel 2» o «fin del juego» y se ve que el mensaje llega a todos y solo reacciona quien tiene «al recibir» (la clase marca antes quién cree que reaccionará); y la radio de la micro:bit con seis placas y sus grupos, con tres retos.
     - **Vídeos «Buscar por la mitad» (3º-6º) y «Mensajes» (4º-6º)**, con el reproductor de los demás (capítulos, pausas para pensar, sonido, subtítulos), revisados fotograma a fotograma.
     - Guías para el docente de las tres herramientas; la tabla de proyectables de `08_Plantillas_y_material.md`, puesta al día (rangos de cursos de los repasos y de coordenadas).
+
+40. **Versión 1.2 (10 de octubre de 2026): retos para las tablets y los portátiles del alumnado.**
+    - **Qué es:** una página aparte para las tablets (`web/tablet/`, publicada en `…/guia-ce40/tablet/`), pensada para el dedo: botones grandes, teclado numérico propio (no sale el de la tablet), botón **Pantalla completa** siempre arriba y, al abrir, una pantalla «Empezar a pantalla completa» (la pantalla completa necesita que se toque algo). Si la tablet no lo permite (iPhone), explica cómo añadirla a la pantalla de inicio; el manifiesto la abre entonces a pantalla completa. Sin sonido, sin cuentas y sin enviar nada: las estrellas se guardan solo en la tablet y se borran desde su inicio.
+    - **Cinco retos:** Programa al robot (3º-4º, 10 niveles con avanzar, girar y repetir; las 3 estrellas exigen no pasar de los bloques de la solución corta), Coordenadas (3º-6º: del 0 al 6, con negativos y el escenario de Scratch), ¿Cuánto vale? (4º-6º: programas con bloques de Scratch o MakeCode, con la tabla paso a paso si se falla), Cubos y vistas (4º-6º) y Adivina el número (3º-6º: del 1 al 20, al 100 y al 1000). Cada nivel de rondas tiene 8 retos generados al azar.
+    - **En la guía:** cada reto tiene su página (`#t-<reto>`) con el QR, «Proyectar el QR en grande», «Probarlo aquí», los niveles y cómo se usa; una sección en «Para proyectar»; y la línea «En las tablets» en 13 sesiones de 3º (desde el segundo trimestre, cuando hay tablets) a 6º, con su diapositiva del QR en la práctica del modo proyección. Los QR se generan al construir la web con la librería `segno` (sin servicios externos) y se han comprobado leyéndolos de capturas.
+    - **En los portátiles** (no suelen leer QR): la misma página se instala como aplicación con el botón «Instalar» (Chrome y Edge; queda el icono «Retos CE 4.0» en el escritorio y funciona sin conexión gracias a `sw.js`, que pide primero a la red para que lleguen las versiones nuevas), o se copia un acceso directo (`Retos-CE40.url` para Windows, `retos-ce40.desktop` para Linux/MAX), o se escribe la dirección corta `oparadanoheda.github.io/guia-ce40/retos` (`web/retos/` redirige a `tablet/`). Con teclado: números y Enter (Enter también pasa al siguiente reto) y, en el robot, flechas, R y Enter. Página para el docente: `#t-portatiles`. En las sesiones la etiqueta es «En tablets o portátiles» (se acepta también «En las tablets»).
+    - **Comprobado:** `probar_web.py tablet` resuelve todos los niveles en tablet horizontal, vertical y móvil, también con el teclado, sin errores ni desbordes; con un servidor local, que se puede instalar, que abre sin conexión y que la dirección corta lleva al reto; las 10 soluciones del robot llegan sin chocar; accesibilidad AA salvo los bloques dibujados (misma excepción que en la guía).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

@@ -138,6 +138,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Qué aprenden:** que un programa puede responder a muchos eventos distintos a la vez, y usar variables para guardar el «estado».
 - **Prepara antes:** tu ejemplo hecho.
 - **Para proyectar:** [[P:variables.mascota|Variables · la mascota]] y [[P:leds.sonrisa|Matriz de LED]]
+- **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 3 y 4, con bloques de MakeCode)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:6-S2-mascota-virtual.mkcd|La mascota virtual · solución]]
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
@@ -280,6 +281,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Qué aprenden:** mejorar un programa con bucles, funciones y nombres claros, y planificar un proyecto individual.
 - **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?) · [[P:adivina.cuantas|Adivina el número · ¿cuántas preguntas?]] (otro algoritmo optimizado: buscar por la mitad)
+- **En tablets o portátiles:** [[T:adivina|Adivina el número]] (nivel 3: del 1 al 1000 en 10 preguntas o menos)
 - **Material listo:** [[M:M16|Plan de mi invento]]
 - **Archivo de MakeCode:** [[S:6-S6-cuadrado-con-funciones.mkcd|El cuadrado con funciones · solución]]
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
@@ -368,6 +370,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **Qué aprenden:** diseñar en 3D un objeto que resuelva un problema, con medidas reales.
 - **Prepara antes:** como en 5º, decide el modo de trabajo (cuentas de clase con alias autorizadas, o el docente diseña en el display y los equipos dictan). Reglas y objetos del aula para medir. Guía en `07`.
 - **Para proyectar:** [[P:vistas.cuantos|Cubos y vistas · ¿cuántos cubos?]] (calentamiento: volumen contando cubos, también los que no se ven)
+- **En tablets o portátiles:** [[T:cubos|Cubos y vistas]] (nivel 2: contar cubos, también los que no se ven)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño con medidas)
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
@@ -499,6 +502,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 
 - **Qué aprenden:** diseñar en 3D con bloques de código (Codeblocks) o una pieza que encaje en el prototipo.
 - **Para proyectar:** [[P:vistas|Cubos y vistas]] (para dibujar la pieza en la hoja: de frente, desde arriba y de lado)
+- **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 3 a 5: con negativos, para colocar piezas en Codeblocks)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 

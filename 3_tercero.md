@@ -289,6 +289,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 
 - **Qué aprenden:** mover un personaje con bloques y con el teclado (eventos).
 - **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:flota|Hundir la flota]]
+- **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 1 y 2, para quien termine: tocar y leer puntos del 0 al 6)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
@@ -316,6 +317,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 
 - **Qué aprenden:** el bloque **repetir** hace varias veces lo que tiene dentro; **por siempre** no para nunca.
 - **Para proyectar:** [[P:poligonos|Polígonos]] (para la opción B) · [[P:laberinto.4|Laberinto · escalera]]
+- **En tablets o portátiles:** [[T:robot|Programa al robot]] (niveles 4 a 6, para quien termine: repetir)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:3-S11-baile-solucion.sb3|El baile · solución]] · [[S:3-S11-figuras-solucion.sb3|Figuras con el lápiz · solución (teclas 3, 4 y 6)]]
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
@@ -382,6 +384,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 
 - **Qué aprenden:** una variable es una caja con nombre que guarda un número que puede cambiar.
 - **Para proyectar:** [[P:variables|Variables · la caja]]
+- **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (nivel 1, con bloques de Scratch: dar el valor y sumar)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
 - **Archivo de Scratch:** [[S:3-S13-variables-solucion.sb3|Puntos con cada clic · solución]]
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?

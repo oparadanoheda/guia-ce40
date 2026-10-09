@@ -11,7 +11,7 @@ OUT = HERE.parent / "Guia_CE40_2026-27_web.zip"
 GH = HERE.parent / "docs"
 
 LEEME = """GUÍA DIDÁCTICA · CÓDIGO ESCUELA 4.0 · PRIMARIA · 2026-2027
-Versión 1.1 · octubre de 2026
+Versión 1.2 · octubre de 2026
 
 Cómo abrirla
 - Con conexión o sin ella: descomprime la carpeta y abre index.html con doble clic
@@ -22,6 +22,9 @@ Cómo abrirla
 - Los proyectos de MakeCode (micro:bit y Nezha) están en «materiales/makecode». Se abren
   en makecode.microbit.org con Importar > Importar archivo, o arrastrándolos al editor.
 - Los vídeos de conceptos están en «videos» y se ven desde la guía (Para proyectar).
+- Los retos para tablets y portátiles están en «tablet». Los QR y la dirección corta de la guía
+  (oparadanoheda.github.io/guia-ce40/retos) abren la copia de internet: hace falta conexión
+  la primera vez; después funcionan sin ella.
 - Sin internet funciona todo menos los enlaces a webs externas (EducaMadrid,
   Scratch online…); el tipo de letra cambia, pero el contenido es el mismo.
 
@@ -35,7 +38,7 @@ README = """# Guía didáctica · Código Escuela 4.0 · Primaria · 2026-2027
 
 Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas:
 128 sesiones con opciones de actividad, herramientas para la pizarra digital, material imprimible en PDF
-y proyectos de Scratch y de MakeCode. Versión 1.1 (octubre de 2026).
+y proyectos de Scratch y de MakeCode. Versión 1.2 (octubre de 2026).
 
 **Para abrir la guía**, usa la dirección de GitHub Pages de este repositorio
 (Settings › Pages), no esta página.
@@ -67,6 +70,8 @@ def files():
     out += [(p, f"materiales/makecode/{p.name}") for p in sorted((HERE / "materiales" / "makecode").glob("*.mkcd"))]
     out += [(p, f"videos/{p.name}") for p in sorted((HERE / "videos").glob("anim-*.html"))]
     out += [(p, f"videos/img/{p.name}") for p in sorted((HERE / "videos" / "img").glob("*.jpg"))]
+    out += [(p, f"tablet/{p.name}") for p in sorted((HERE / "tablet").iterdir()) if p.is_file()]
+    out += [(HERE / "retos" / "index.html", "retos/index.html")]
     return out
 
 
@@ -86,6 +91,8 @@ def make_github():
     (GH / "materiales" / "scratch").mkdir(parents=True)
     (GH / "materiales" / "makecode").mkdir(parents=True)
     (GH / "videos" / "img").mkdir(parents=True)
+    (GH / "tablet").mkdir(parents=True)
+    (GH / "retos").mkdir(parents=True)
     (GH / "index.html").write_text(page(noindex=True), encoding="utf-8")
     for src, arc in files():
         shutil.copyfile(src, GH / arc)
