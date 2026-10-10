@@ -11,7 +11,7 @@ from markdown.extensions.toc import slugify_unicode
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from datos_etapa import TOOLS, TOOL_NOTES, STRANDS, PRODUCTS, LEVEL_NAMES  # noqa: E402
 from recursos_oficiales import LIBRARY, SA_LINKS, SESSION_RULES  # noqa: E402
-from catalogo import PROYECTABLES, EXTERNAS, TABLET  # noqa: E402
+from catalogo import PROYECTABLES, EXTERNAS, TABLET, ADAPTA  # noqa: E402
 import segno  # noqa: E402
 import materiales as MAT  # noqa: E402
 import makecode_gen as MK  # noqa: E402
@@ -26,7 +26,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.2", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.3", "octubre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -1083,6 +1083,11 @@ def projectables_page():
 <div class="vid-gallery">{video_tiles()}</div>
 <h2 class="h-sec" id="tablets">Retos para las tablets y los portátiles del alumnado</h2>
 <p class="small">Retos para hacer en parejas. En las tablets se abren con el QR; en los portátiles, con el icono «Retos CE 4.0» o escribiendo <b>{CORTA}</b>. Sin cuentas: nada sale del dispositivo. <a href="#t-portatiles">Cómo prepararlo en los portátiles</a>.</p>
+<div class="tab-apoyos"><p><b>Pensados para un aula diversa</b></p><ul>
+<li><b>Escuchar:</b> lee en voz alta el enunciado, las opciones y las pistas, con la voz del propio dispositivo.</li>
+<li><b>Una segunda oportunidad:</b> el primer fallo no cuenta; sale una pista que dice cómo pensarlo, sin dar la respuesta.</li>
+<li><b>Sin prisas:</b> sin tiempo, sin sonidos y sin clasificaciones. Las estrellas solo se ven en ese dispositivo.</li>
+<li><b>Cada nivel dice desde qué curso</b> se recomienda, y se puede empezar por cualquiera. Cada reto tiene su «Si cuesta» y su «Si va rápido».</li></ul></div>
 <div class="pj-gallery">{tablet_tiles()}</div>
 <h2 class="h-sec">Otras aplicaciones recomendadas</h2>
 <p class="small">Se abren en otra pestaña. Gratuitas y sin cuentas de alumnado.</p>
@@ -1144,9 +1149,11 @@ def tablet_pages(courses):
 <p class="tqr-url">{E(url)}</p></div>
 <div class="tab-info"><div class="pj-row"><button type="button" class="pj-btn go" data-qrfull>Proyectar el QR en grande</button><a class="pj-btn" href="tablet/index.html#{tid}" target="_blank" rel="noopener">Probarlo aquí</a></div>
 <p class="lede">{E(desc)}</p><h2 class="h-sec">Niveles</h2><ul>{"".join(f"<li>{E(n)}</li>" for n in niveles)}</ul>
+<h2 class="h-sec">Para la diversidad del aula</h2><ul class="tab-adapta"><li><b>Si cuesta:</b> {E(ADAPTA[tid][0])}</li><li><b>Si va rápido:</b> {E(ADAPTA[tid][1])}</li>
+<li><b>En la pantalla:</b> {E(ADAPTA[tid][2])} «Escuchar» lee el enunciado, las opciones y las pistas en voz alta.</li></ul>
 <h2 class="h-sec">Cómo se usa</h2><ol><li><b>Tablets:</b> proyecta el QR en grande. Cada pareja lo escanea con la cámara y pulsa «Empezar a pantalla completa». El botón «Pantalla completa» se queda arriba.</li>
 <li><b>Portátiles:</b> abren el icono «Retos CE 4.0» (o escriben <b>{CORTA}</b>) y tocan «{E(name)}». <a href="#t-portatiles">Cómo dejar el icono preparado</a>.</li>
-<li>Diles qué nivel hacer. Cada nivel da hasta 3 estrellas.</li><li>Al terminar, enseñan sus estrellas o explican un reto a otra pareja.</li></ol>
+<li>Diles qué nivel hacer: cada pareja puede ir a uno distinto. Cada nivel da hasta 3 estrellas.</li><li>Al terminar, enseñan sus estrellas o explican un reto a otra pareja.</li></ol>
 <p class="small">Con teclado se juega igual: números y Enter; en el robot, las flechas. Sin cuentas ni datos: las estrellas se guardan solo en ese dispositivo y se borran desde su pantalla de inicio. Necesita internet para abrirse, porque la página está en la web de la guía. En un iPad o un iPhone que no deje poner la pantalla completa: «Compartir» › «Añadir a pantalla de inicio», y se abre desde ese icono.</p></div></div>
 {('<h2 class="h-sec">Se usa en</h2><nav class="rindex" aria-label="Sesiones">' + chips + '</nav>') if chips else ''}
 </div></section>''')

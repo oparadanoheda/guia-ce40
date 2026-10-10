@@ -1,6 +1,8 @@
 /* Retos en la tablet · Código Escuela 4.0
    Página para el alumnado: se abre con un QR (…/tablet/#robot, #coordenadas, #variables, #cubos, #adivina).
-   Sin cuentas y sin conexión con nada: las estrellas se guardan solo en esta tablet (localStorage) y se pueden borrar. */
+   Sin cuentas y sin conexión con nada: las estrellas se guardan solo en esta tablet (localStorage) y se pueden borrar.
+   Para la diversidad del aula: el primer fallo de cada reto no cuenta (sale una pista y se vuelve a intentar),
+   «Escuchar» lee la pantalla en voz alta, no hay tiempo ni sonidos y se puede empezar por cualquier nivel. */
 (function () {
   'use strict';
   var NS = 'http://www.w3.org/2000/svg';
@@ -12,7 +14,7 @@
       else if (k === 'text') e.textContent = attrs[k];
       else if (k === 'html') e.innerHTML = attrs[k];
       else if (k.slice(0, 2) === 'on') e.addEventListener(k.slice(2), attrs[k]);
-      else e.setAttribute(k, attrs[k]);
+      else if (attrs[k] != null) e.setAttribute(k, attrs[k]);
     });
     (kids || []).forEach(function (c) { if (c != null) e.append(c); });
     return e;
@@ -29,6 +31,7 @@
     bien: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#257f46"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     mal: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#c8382f"/><path d="M8 8l8 8M16 8l-8 8" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
     info: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#2c5bbf"/><path d="M12 11v6M12 7.2v.1" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>',
+    pista: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#ad5b12"/><path d="M12 5.6a4.3 4.3 0 0 0-2.5 7.8c.6.4.9 1 .9 1.6h3.2c0-.6.3-1.2.9-1.6A4.3 4.3 0 0 0 12 5.6zM10.4 17.6h3.2" fill="none" stroke="#fff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     avanza: '<svg viewBox="0 0 24 24"><path d="M12 3l7 8h-4.5v10h-5V11H5z"/></svg>',
     izq: '<svg viewBox="0 0 24 24"><path d="M9 4L3 9.5 9 15v-3.5h5a3.5 3.5 0 0 1 3.5 3.5v6h3v-6A6.5 6.5 0 0 0 14 8.5H9z"/></svg>',
     der: '<svg viewBox="0 0 24 24"><path d="M15 4l6 5.5-6 5.5v-3.5h-5A3.5 3.5 0 0 0 6.5 15v6h-3v-6A6.5 6.5 0 0 1 10 8.5h5z"/></svg>',
@@ -81,7 +84,7 @@
   /* ------------------------------------------------------------ piezas comunes */
   function estado(el, tipo, html) {
     el.className = 'estado' + (tipo ? ' ' + tipo : '');
-    el.innerHTML = (tipo === 'bien' ? ICO.bien : tipo === 'mal' ? ICO.mal : ICO.info) + '<span>' + html + '</span>';
+    el.innerHTML = (tipo === 'bien' ? ICO.bien : tipo === 'mal' ? ICO.mal : tipo === 'pista' ? ICO.pista : ICO.info) + '<span>' + html + '</span>';
     if (tipo && !quieto()) { el.classList.remove('anim-sale'); void el.offsetWidth; el.classList.add('anim-sale'); }
   }
   function boton(texto, fn, cls) { return h('button', { type: 'button', class: 'boton' + (cls ? ' ' + cls : ''), html: texto, onclick: fn }); }
@@ -120,9 +123,35 @@
     return { el: t, limpia: function () { vals = casillas.map(function () { return ''; }); act = 0; pinta(); }, siguiente: function () { if (act < casillas.length - 1) { act++; pinta(); } } };
   }
   function casilla() { return h('div', { class: 'casilla', role: 'button', tabindex: '0', 'aria-label': 'respuesta' }); }
+  // teclado de letras (con la Ñ): escribe en una casilla ancha
+  function tecladoLetras(cas, ok) {
+    var val = '';
+    function pinta() { cas.textContent = val === '' ? ' ' : val; cas.classList.add('activa'); }
+    function tecla(t) {
+      if (t === 'ok') { ok(val); return; }
+      if (t === 'borra') val = val.slice(0, -1); else if (val.length < 14) val += t;
+      pinta();
+    }
+    var t = h('div', { class: 'teclado letras' });
+    'QWERTYUIOPASDFGHJKLÑZXCVBNM'.split('').forEach(function (k) { t.append(h('button', { type: 'button', class: 'tecla', text: k, onclick: function () { tecla(k); } })); });
+    t.append(h('button', { type: 'button', class: 'tecla borra', text: 'Borrar', 'aria-label': 'Borrar', onclick: function () { tecla('borra'); } }));
+    var bok = h('button', { type: 'button', class: 'tecla ok', text: 'Comprobar', onclick: function () { tecla('ok'); } });
+    t.append(bok);
+    teclaFisica = function (k) {
+      if (/^[a-zñA-ZÑ]$/.test(k)) { tecla(k.toUpperCase()); return true; }
+      if (k === 'Backspace' || k === 'Delete') { tecla('borra'); return true; }
+      if (k === 'Enter') { tecla('ok'); return true; }
+      return false;
+    };
+    if (conRaton) t.append(h('p', { class: 'pista-teclado', text: 'Con el teclado: escribe la palabra y pulsa Enter.' }));
+    pinta();
+    return { el: t, limpia: function () { val = ''; pinta(); } };
+  }
   // rondas: 8 por nivel; estrellas según aciertos
   function marcador(total) { return { total: total, hecho: 0, bien: 0 }; }
   function estrellasRondas(bien, total) { return bien === total ? 3 : bien >= total - 2 ? 2 : bien >= Math.ceil(total / 2) ? 1 : 0; }
+  // al acabar las rondas: sin estrellas no sale en rojo, sino una invitación a volver a jugar
+  function resultado(el, bien, total, e) { estado(el, e ? 'bien' : '', bien + ' de ' + total + ' aciertos. ' + (e ? tresEstrellas(e, 24) : 'Juega otra vez: con práctica sale mejor.')); }
 
   /* ================================================================ 1. Programa al robot */
   // x de 0 a 5 (izquierda → derecha), y de 0 a 5 (arriba → abajo). Dirección: 0 arriba, 1 derecha, 2 abajo, 3 izquierda.
@@ -326,24 +355,24 @@
   }
   function estrellaEn(p, r) { var pt = []; for (var k = 0; k < 10; k++) { var a = Math.PI / 5 * k - Math.PI / 2, rr = k % 2 ? r * .42 : r; pt.push((p[0] + rr * Math.cos(a)).toFixed(1) + ',' + (p[1] + rr * Math.sin(a)).toFixed(1)); } return '<polygon points="' + pt.join(' ') + '" fill="#f5c518" stroke="#b8860b" stroke-width="2.5" stroke-linejoin="round"/>'; }
   function coordenadas(zona, nivel) {
-    var nv = NIV_COORD[nivel - 1], M = marcador(8), obj = null, ant = null, hecho = false;
+    var nv = NIV_COORD[nivel - 1], M = marcador(8), obj = null, ant = null, hecho = false, segunda = false;
     var dib = h('div'), est = h('p', { class: 'estado' }), enun = h('p', { class: 'enunciado' }), ronda = h('p', { class: 'ronda' }), lado = h('div', { class: 'panel' });
     var cx = casilla(), cy = casilla(), tec = null, bSig = boton('Siguiente', siguiente, 'primario');
     function nuevo() {
       do {
         obj = nv.tipo === 'scratch' ? [(rnd(21) - 10) * 20, (rnd(15) - 7) * 20] : [nv.min + rnd(nv.max - nv.min + 1), nv.min + rnd(nv.max - nv.min + 1)];
       } while (ant && obj[0] === ant[0] && obj[1] === ant[1] || (nv.min < 0 && (obj[0] === 0 || obj[1] === 0) && rnd(3)));
-      ant = obj; hecho = false; bSig.hidden = true; PRUEBA.obj = obj;
+      ant = obj; hecho = false; segunda = false; bSig.hidden = true; PRUEBA.obj = obj;
       ronda.textContent = 'Reto ' + (M.hecho + 1) + ' de ' + M.total + ' · aciertos: ' + M.bien;
       if (nv.tipo === 'leer') { enun.innerHTML = '¿En qué punto está la <b>estrella</b>?'; tec.limpia(); }
       else enun.innerHTML = 'Toca el punto <b>(' + sg(obj[0]) + ', ' + sg(obj[1]) + ')</b>';
       pinta();
       estado(est, '', nv.tipo === 'leer' ? 'Primero la x (los números de abajo) y después la y.' : nv.tipo === 'scratch' ? 'La x va de −240 a 240 y la y de −180 a 180.' : 'Primero ve por la x y después sube o baja por la y.');
     }
-    function pinta(toque, bien) {
+    function pinta(toque, bien, guia) {
       var P = plano(nv), m = '';
       if (nv.tipo === 'leer' || hecho) { var q = P.a(obj[0], obj[1]); m += estrellaEn(q, nv.tipo === 'scratch' ? 16 : 20); }
-      if (hecho && !bien) {
+      if ((hecho && !bien) || guia) {
         var o = P.a(obj[0], obj[1]), b0 = P.a(obj[0], nv.tipo === 'scratch' ? 0 : (nv.min < 0 ? 0 : nv.min)), z = P.a(nv.tipo === 'scratch' || nv.min < 0 ? 0 : nv.min, obj[1]);
         m += '<line x1="' + o[0] + '" y1="' + b0[1] + '" x2="' + o[0] + '" y2="' + o[1] + '" stroke="#df7619" stroke-width="4" stroke-dasharray="7 6"/><line x1="' + z[0] + '" y1="' + o[1] + '" x2="' + o[0] + '" y2="' + o[1] + '" stroke="#df7619" stroke-width="4" stroke-dasharray="7 6"/>';
       }
@@ -358,12 +387,28 @@
         responde(d);
       });
     }
+    // la pista del primer fallo: cómo buscar el punto, sin decirlo
+    function lado0(v, pos, neg) { return v > 0 ? pos : v < 0 ? neg : 'en la línea del centro'; }
+    function pistaCoord() {
+      var neg = nv.min < 0;
+      if (nv.tipo === 'leer') return neg ? 'Pista: sigue la línea naranja desde la estrella hasta el eje horizontal (la x) y hasta el vertical (la y).' : 'Pista: sigue la línea naranja desde la estrella hasta los números de abajo (la x) y hasta los de la izquierda (la y).';
+      if (nv.tipo === 'scratch') return 'Pista: x = ' + sg(obj[0]) + ' está ' + lado0(obj[0], 'a la derecha del centro', 'a la izquierda del centro') + ', e y = ' + sg(obj[1]) + ', ' + lado0(obj[1], 'hacia arriba', 'hacia abajo') + '. Cada línea gris son 50 pasos.';
+      return 'Pista: busca primero el ' + sg(obj[0]) + ' en ' + (neg ? 'el eje horizontal' : 'los números de abajo') + ' (la x)' + (obj[1] === 0 ? '; la y es 0, así que no subas ni bajes.' : ' y después ' + (obj[1] < 0 ? 'baja' : 'sube') + ' hasta el ' + sg(obj[1]) + ' (la y).');
+    }
     function responde(d) {
-      hecho = true; M.hecho++;
       var bien = nv.tipo === 'scratch' ? Math.abs(d[0] - obj[0]) <= 15 && Math.abs(d[1] - obj[1]) <= 15 : d[0] === obj[0] && d[1] === obj[1];
+      var dicho = nv.tipo === 'leer' ? 'Habéis escrito (' + sg(d[0]) + ', ' + sg(d[1]) + ').' : 'Habéis tocado (' + sg(d[0]) + ', ' + sg(d[1]) + ').';
+      if (!bien && !segunda) {  // primer fallo: una pista y otra oportunidad
+        segunda = true;
+        pinta(nv.tipo === 'leer' ? null : d, false, nv.tipo === 'leer');
+        if (tec) tec.limpia();
+        estado(est, 'pista', 'Todavía no. ' + dicho + ' ' + pistaCoord());
+        return;
+      }
+      hecho = true; M.hecho++;
       if (bien) M.bien++;
       pinta(nv.tipo === 'leer' ? null : d, bien);
-      estado(est, bien ? 'bien' : 'mal', (bien ? '¡Muy bien! ' : '') + 'La estrella está en (' + sg(obj[0]) + ', ' + sg(obj[1]) + ').' + (bien ? '' : ' ' + (nv.tipo === 'leer' ? 'Habéis escrito (' + (d[0] == null ? '?' : sg(d[0])) + ', ' + (d[1] == null ? '?' : sg(d[1])) + ').' : 'Habéis tocado (' + sg(d[0]) + ', ' + sg(d[1]) + ').')));
+      estado(est, bien ? 'bien' : 'mal', (bien ? (segunda ? '¡Ahora sí! ' : '¡Muy bien! ') : '') + 'La estrella está en (' + sg(obj[0]) + ', ' + sg(obj[1]) + ').' + (bien ? '' : ' ' + dicho));
       ronda.textContent = 'Reto ' + M.hecho + ' de ' + M.total + ' · aciertos: ' + M.bien;
       if (M.hecho >= M.total) fin(); else bSig.hidden = false;
     }
@@ -371,7 +416,7 @@
     function fin() {
       var e = estrellasRondas(M.bien, M.total);
       apunta('coordenadas', nivel, e); cabecera(); pintaNiveles();
-      estado(est, e ? 'bien' : 'mal', M.bien + ' de ' + M.total + ' aciertos. ' + (e ? tresEstrellas(e, 24) : 'Vuelve a intentarlo.'));
+      resultado(est, M.bien, M.total, e);
       bSig.hidden = true;
       lado.append(boton('Jugar otra vez', function () { M = marcador(8); this.remove(); nuevo(); }, 'verde'));
     }
@@ -434,27 +479,39 @@
   var editor = 'scratch';
   try { editor = localStorage.getItem('ce40-tablet-editor') || 'scratch'; } catch (e) { /* nada */ }
   function variables(zona, nivel) {
-    var M = marcador(8), G = null, hecho = false;
+    var M = marcador(8), G = null, hecho = false, segunda = false;
     var progEl = h('div'), est = h('p', { class: 'estado' }), enun = h('p', { class: 'enunciado' }), ronda = h('p', { class: 'ronda' }), traza = h('div');
     var cas = casilla(), bSig = boton('Siguiente', nuevo, 'primario'), lado = h('div', { class: 'panel' });
+    // la pista del primer fallo: cómo seguir el programa en este nivel, sin dar el número
+    function pistaVar() {
+      var sc = editor === 'scratch', dar = sc ? '«dar el valor»' : '«fijar»', sum = sc ? '«sumar a»' : '«cambiar»';
+      if (nivel === 1) return 'Pista: empieza por el número de ' + dar + ' y súmale los números de ' + sum + '.';
+      if (nivel === 2) {
+        var neg = G.p.filter(function (i) { return i[0] === 'suma' && i[2] < 0; })[0];
+        return 'Pista: ' + dar + ' borra lo que había. Empieza a contar desde el último ' + dar + '.' + (neg ? ' ' + (sc ? 'Sumar ' : 'Cambiar por ') + sg(neg[2]) + ' es quitar ' + (-neg[2]) + '.' : '');
+      }
+      if (nivel === 3) { var r = G.p[1], d = r[2][0][2], veces = []; for (var k = 0; k < r[1]; k++) veces.push(sg(d)); return 'Pista: empieza en ' + sg(G.p[0][2]) + ' y suma ' + veces.join(' + ') + ' (' + r[1] + ' veces).'; }
+      return 'Pista: mira primero cuánto vale extra. En cada vuelta del repetir, puntos suma lo que vale extra.' + (G.p.length > 3 ? ' Al final, extra cambia otra vez.' : '');
+    }
     var tec = teclado([cas], function (v) {
       if (hecho) { if (!bSig.hidden) nuevo(); return; }
       if (v[0] === null) { estado(est, 'mal', 'Escribe un número.'); return; }
-      hecho = true; M.hecho++;
       var R = ejecutaVar(G.p), ok = v[0] === R.vars[G.q];
+      if (!ok && !segunda) { segunda = true; tec.limpia(); estado(est, 'pista', 'Todavía no. ' + pistaVar()); return; }
+      hecho = true; M.hecho++;
       if (ok) M.bien++;
-      estado(est, ok ? 'bien' : 'mal', (ok ? '¡Muy bien! ' : 'No: ') + G.q + ' vale <b>' + sg(R.vars[G.q]) + '</b>.');
+      estado(est, ok ? 'bien' : 'mal', (ok ? (segunda ? '¡Ahora sí! ' : '¡Muy bien! ') : 'No: ') + G.q + ' vale <b>' + sg(R.vars[G.q]) + '</b>.');
       if (!ok) traza.innerHTML = '<table class="traza"><thead><tr><th>Paso</th><th>Variable</th><th>Vale</th></tr></thead><tbody>' + R.traza.map(function (t, i) { return '<tr><td>' + (i + 1) + '</td><td>' + t[1] + '</td><td>' + sg(t[2]) + '</td></tr>'; }).join('') + '</tbody></table>';
       ronda.textContent = 'Reto ' + M.hecho + ' de ' + M.total + ' · aciertos: ' + M.bien;
       if (M.hecho >= M.total) {
         var e = estrellasRondas(M.bien, M.total);
         apunta('variables', nivel, e); cabecera(); pintaNiveles();
-        estado(est, e ? 'bien' : 'mal', M.bien + ' de ' + M.total + ' aciertos. ' + (e ? tresEstrellas(e, 24) : 'Vuelve a intentarlo.'));
+        resultado(est, M.bien, M.total, e);
         lado.append(boton('Jugar otra vez', function () { M = marcador(8); this.remove(); nuevo(); }, 'verde'));
       } else bSig.hidden = false;
     });
     function nuevo() {
-      G = genVar(nivel); PRUEBA.G = G; PRUEBA.valor = ejecutaVar(G.p).vars[G.q]; hecho = false; bSig.hidden = true; traza.innerHTML = ''; tec.limpia();
+      G = genVar(nivel); PRUEBA.G = G; PRUEBA.valor = ejecutaVar(G.p).vars[G.q]; hecho = false; segunda = false; bSig.hidden = true; traza.innerHTML = ''; tec.limpia();
       progEl.innerHTML = progVar(ED[editor], G.p);
       enun.innerHTML = 'Al terminar el programa, ¿cuánto vale <b>' + G.q + '</b>?';
       ronda.textContent = 'Reto ' + (M.hecho + 1) + ' de ' + M.total + ' · aciertos: ' + M.bien;
@@ -518,8 +575,17 @@
     return '<svg viewBox="0 0 ' + (C * c + 4) + ' ' + (R * c + 6) + '" aria-hidden="true">' + s + '</svg>';
   }
   var NOMV = { frente: 'de frente', lado: 'de lado (desde la derecha)', arriba: 'desde arriba' };
+  // la figura por pisos, vista desde arriba: cada cuadrado es un cubo de ese piso
+  function porPisos(H) {
+    var max = Math.max.apply(null, H.map(function (f) { return Math.max.apply(null, f); })), cont = h('div', { class: 'pisos', role: 'group', 'aria-label': 'La figura piso a piso' });
+    for (var k = 1; k <= max; k++) {
+      var g = H.map(function (f) { return f.map(function (x) { return x >= k ? 1 : 0; }); });
+      cont.append(h('figure', {}, [h('div', { html: rejilla(g, false, '#9db8ef') }), h('figcaption', { text: 'Piso ' + k })]));
+    }
+    return cont;
+  }
   function cubos(zona, nivel) {
-    var M = marcador(8), H = null, hecho = false, pide = null, vuelta = 0;
+    var M = marcador(8), H = null, hecho = false, pide = null, vuelta = 0, segunda = false;
     var dib = h('div'), est = h('p', { class: 'estado' }), enun = h('p', { class: 'enunciado' }), ronda = h('p', { class: 'ronda' }), lado = h('div', { class: 'panel' }), ops = h('div', { class: 'ops' });
     var cas = casilla(), bSig = boton('Siguiente', nuevo, 'primario'), tec = null;
     function acaba(ok, msg) {
@@ -529,12 +595,12 @@
       if (M.hecho >= M.total) {
         var e = estrellasRondas(M.bien, M.total);
         apunta('cubos', nivel, e); cabecera(); pintaNiveles();
-        estado(est, e ? 'bien' : 'mal', M.bien + ' de ' + M.total + ' aciertos. ' + (e ? tresEstrellas(e, 24) : 'Vuelve a intentarlo.'));
+        resultado(est, M.bien, M.total, e);
         lado.append(boton('Jugar otra vez', function () { M = marcador(8); this.remove(); nuevo(); }, 'verde'));
       } else bSig.hidden = false;
     }
     function nuevo() {
-      hecho = false; bSig.hidden = true;
+      hecho = false; segunda = false; bSig.hidden = true; dib.classList.remove('con-pisos');
       ronda.textContent = 'Reto ' + (M.hecho + 1) + ' de ' + M.total + ' · aciertos: ' + M.bien;
       if (nivel < 3) {
         H = nivel === 1 ? grada(3, 2) : grada(4, 4); PRUEBA.H = H;
@@ -575,7 +641,12 @@
         if (v[0] === null) { estado(est, 'mal', 'Escribe un número.'); return; }
         var pisos = []; for (var k = 1; k <= 4; k++) { var n = 0; H.forEach(function (f) { f.forEach(function (x) { if (x >= k) n++; }); }); if (n) pisos.push(n); }
         var t = suma(H);
-        acaba(v[0] === t, (v[0] === t ? '¡Muy bien! ' : 'No. ') + 'Hay <b>' + t + '</b> cubos: ' + pisos.map(function (n, i) { return 'piso ' + (i + 1) + ', ' + n; }).join('; ') + '.');
+        if (v[0] !== t && !segunda) {  // primer fallo: la figura por pisos y otra oportunidad
+          segunda = true; tec.limpia(); dib.classList.add('con-pisos'); dib.append(porPisos(H));
+          estado(est, 'pista', 'Todavía no. Pista: cuenta piso a piso. Debajo de la figura está cada piso visto desde arriba: cada cuadrado es un cubo.');
+          return;
+        }
+        acaba(v[0] === t, (v[0] === t ? (segunda ? '¡Ahora sí! ' : '¡Muy bien! ') : 'No. ') + 'Hay <b>' + t + '</b> cubos: ' + pisos.map(function (n, i) { return 'piso ' + (i + 1) + ', ' + n; }).join('; ') + '.');
       });
       lado.append(h('div', { class: 'respuesta' }, ['Hay', cas, 'cubos']), tec.el);
     } else lado.append(ops);
@@ -628,14 +699,48 @@
 
   /* ------------------------------------------------------------ menú, niveles y rutas */
   var ACTS = [
-    { id: 'robot', tit: 'Programa al robot', cursos: '3º y 4º', desc: 'Llega a la estrella con avanzar, girar y repetir.', col: '#2c5bbf', niveles: NIV_ROBOT.map(function (n) { return n.t; }), fn: robot },
-    { id: 'coordenadas', tit: 'Coordenadas', cursos: '3º a 6º', desc: 'Toca el punto o di dónde está la estrella.', col: '#257f46', niveles: NIV_COORD.map(function (n) { return n.t; }), fn: coordenadas },
-    { id: 'variables', tit: '¿Cuánto vale?', cursos: '4º a 6º', desc: 'Lee el programa y di cuánto vale la variable al final.', col: '#b65c06', niveles: NIV_VAR.map(function (n) { return n.t; }), fn: variables },
-    { id: 'cubos', tit: 'Cubos y vistas', cursos: '4º a 6º', desc: 'Cuenta los cubos y elige la vista correcta.', col: '#6c44b0', niveles: NIV_CUBOS.map(function (n) { return n.t; }), fn: cubos },
-    { id: 'adivina', tit: 'Adivina el número', cursos: '3º a 6º', desc: 'Encuéntralo con «más grande» y «más pequeño».', col: '#0f7a8a', niveles: NIV_ADIVINA.map(function (n) { return n.t; }), fn: adivina }
+    { id: 'robot', tit: 'Programa al robot', cursos: '3º y 4º', desc: 'Llega a la estrella con avanzar, girar y repetir.', grupo: 'prog', col: '#2c5bbf', niveles: NIV_ROBOT.map(function (n) { return n.t; }), fn: robot },
+    { id: 'coordenadas', tit: 'Coordenadas', cursos: '3º a 6º', desc: 'Toca el punto o di dónde está la estrella.', grupo: 'mates', col: '#257f46', niveles: NIV_COORD.map(function (n) { return n.t; }), fn: coordenadas },
+    { id: 'variables', tit: '¿Cuánto vale?', cursos: '3º a 6º', desc: 'Lee el programa y di cuánto vale la variable al final.', grupo: 'prog', col: '#b65c06', niveles: NIV_VAR.map(function (n) { return n.t; }), fn: variables },
+    { id: 'cubos', tit: 'Cubos y vistas', cursos: '4º a 6º', desc: 'Cuenta los cubos y elige la vista correcta.', grupo: 'mates', col: '#6c44b0', niveles: NIV_CUBOS.map(function (n) { return n.t; }), fn: cubos },
+    { id: 'adivina', tit: 'Adivina el número', cursos: '3º a 6º', desc: 'Encuéntralo con «más grande» y «más pequeño».', grupo: 'mates', col: '#0f7a8a', niveles: NIV_ADIVINA.map(function (n) { return n.t; }), fn: adivina }
   ];
   var app = $('app'), titulo = $('titulo'), estrellasEl = $('estrellas'), actual = null, nivelActual = 1, limpiar = null, nivEl = null;
+  /* ------------------------------------------------------------ escuchar: lee en voz alta el enunciado, los datos, las opciones y las pistas */
+  // Con la voz del propio dispositivo (no sale nada a internet). Para quien lee con dificultad o está aprendiendo español.
+  var bEsc = $('escuchar') || h('button', { hidden: '' }, [h('span')]), habla = 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window, voz = null;
+  function eligeVoz() {
+    var vs = speechSynthesis.getVoices().filter(function (v) { return /^es/i.test(v.lang); });
+    voz = vs.filter(function (v) { return /es[-_]ES/i.test(v.lang); })[0] || vs[0] || null;
+  }
+  function paraVoz(s) {
+    return s.replace(/−/g, ' menos ').replace(/×/g, ' por ').replace(/(\d)\s*:\s*(\d)/g, '$1 entre $2').replace(/cm\/s/g, 'centímetros por segundo')
+      .replace(/(\d) ?cm\b/g, '$1 centímetros').replace(/°C/g, ' grados').replace(/[«»↻◀▶→↑↓]/g, ' ').replace(/\s+/g, ' ').trim();
+  }
+  function textoPantalla() {
+    var partes = [];
+    [].forEach.call(app.querySelectorAll('.enunciado, .dato, .ayuda, .ops-txt, .estado'), function (e) {
+      if (!e.offsetParent) return;
+      if (e.classList.contains('ops-txt')) { [].forEach.call(e.children, function (b, i) { partes.push('Opción ' + (i + 1) + ': ' + b.textContent); }); return; }
+      partes.push(e.textContent);
+    });
+    return paraVoz(partes.map(function (p) { p = p.trim(); return /[.?!]$/.test(p) ? p : p.replace(/:$/, '') + '.'; }).join(' '));
+  }
+  function marcaEsc(on) { bEsc.querySelector('span').textContent = on ? 'Parar' : 'Escuchar'; }
+  function callar() { if (habla && (speechSynthesis.speaking || speechSynthesis.pending)) speechSynthesis.cancel(); marcaEsc(false); }
+  if (habla) {
+    eligeVoz();
+    if (speechSynthesis.addEventListener) speechSynthesis.addEventListener('voiceschanged', eligeVoz);
+    bEsc.addEventListener('click', function () {
+      if (speechSynthesis.speaking || speechSynthesis.pending) { callar(); return; }
+      var u = new SpeechSynthesisUtterance(textoPantalla());
+      u.lang = voz ? voz.lang : 'es-ES'; if (voz) u.voice = voz; u.rate = .92;
+      u.onend = u.onerror = function () { marcaEsc(false); };
+      marcaEsc(true); speechSynthesis.speak(u);
+    });
+  }
   function cabecera() {
+    bEsc.hidden = !habla || !actual;
     if (!actual) { titulo.textContent = 'Retos de Código Escuela 4.0'; estrellasEl.innerHTML = ''; document.title = 'Retos · Código Escuela 4.0'; return; }
     titulo.textContent = actual.tit;
     document.title = actual.tit + ' · Retos de Código Escuela 4.0';
@@ -651,18 +756,25 @@
         onclick: function () { location.hash = '#' + actual.id + '/' + n; } }));
     });
   }
+  var GRUPOS = [['prog', 'Programación'], ['mates', 'Matemáticas'], ['logica', 'Lógica y códigos']];
   function menu() {
+    GRUPOS.forEach(function (g) {
+    var lista = ACTS.filter(function (a) { return a.grupo === g[0]; });
+    if (!lista.length) return;
+    app.append(h('h2', { class: 'grupo', text: g[1] }));
     var m = h('div', { class: 'menu' });
-    ACTS.forEach(function (a) {
+    lista.forEach(function (a) {
       m.append(h('button', { type: 'button', class: 'tarjeta', style: '--c:' + a.col, onclick: function () { location.hash = '#' + a.id; },
         html: '<small>' + a.cursos + '</small><b>' + a.tit + '</b><span>' + a.desc + '</span><span class="est">' + estrella(true, 22) + '<span>' + totalDe(a) + ' de ' + a.niveles.length * 3 + '</span></span>' }));
     });
     app.append(m);
+    });
     app.append(h('div', { class: 'pie' }, [h('span', { text: 'Sin cuentas: las estrellas se guardan solo en este dispositivo.' }),
       boton('Borrar las estrellas de este dispositivo', function () { if (confirm('¿Borrar todas las estrellas de este dispositivo?')) { PROG = {}; guarda(); ruta(); } })]));
   }
   function ruta() {
     if (limpiar) { limpiar(); limpiar = null; }
+    callar();
     teclaFisica = null;
     app.innerHTML = '';
     var m = /^#?([a-z]+)(?:\/(\d+))?/.exec(location.hash || '');
@@ -692,9 +804,15 @@
   window.addEventListener('appinstalled', function () { bInst.hidden = true; });
   // sin conexión: una vez abierta, la página se guarda en el dispositivo
   if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(function () { /* nada */ });
-  marcaPC();
-  ruta();
-  entrada();
+  function inicio() { marcaPC(); ruta(); entrada(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inicio); else setTimeout(inicio, 0);
   // para las pruebas
+  window.RetosAPI = {
+    h: h, rnd: rnd, shuffle: shuffle, sg: sg, num: num, ICO: ICO, estrella: estrella, tresEstrellas: tresEstrellas, quieto: quieto,
+    estado: estado, boton: boton, teclado: teclado, tecladoLetras: tecladoLetras, casilla: casilla, marcador: marcador, estrellasRondas: estrellasRondas, resultado: resultado,
+    apunta: function (act, nivel, n) { apunta(act, nivel, n); cabecera(); pintaNiveles(); }, prueba: PRUEBA, conRaton: conRaton,
+    tecla: function (fn) { teclaFisica = fn; },
+    registra: function (a) { ACTS.push(a); }
+  };
   window.RETOS = { NIV_ROBOT: NIV_ROBOT, simula: simula, leeRef: leeRef, cuentaBloques: cuentaBloques, ejecutaVar: ejecutaVar, genVar: genVar, prueba: PRUEBA };
 })();

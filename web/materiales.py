@@ -977,6 +977,29 @@ def m27():
     return pages
 
 
+def m29():
+    """Una tarjeta por reto de tablets y portátiles, con su QR, para recortar y dejar en la mesa o en la funda."""
+    import segno
+    from catalogo import TABLET
+    sitio = "https://oparadanoheda.github.io/guia-ce40/tablet/"
+    def tarjeta(url, nombre, cursos, pie):
+        q = segno.make(url, error="m").svg_inline(scale=1, border=2, dark="#1a1d24", light="#ffffff", omitsize=True)
+        q = q.replace("<svg ", '<svg style="width:30mm;height:30mm;display:block;margin:0 auto" ', 1)
+        return (f'<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:1.2mm;text-align:center">'
+                f'<div style="font:700 7pt Bahnschrift;letter-spacing:.08em;text-transform:uppercase;color:#5d6474">{E(cursos)}</div>{q}'
+                f'<div style="font:700 11pt/1.15 Bahnschrift">{E(nombre)}</div><div style="font:8pt Segoe UI;color:#434a59">{E(pie)}</div></div>')
+    items = [tarjeta(sitio, "Todos los retos", "3º a 6º", "El menú con los 13 retos")]
+    items += [tarjeta(sitio + "#" + tid, nombre, crs, "Escanea con la cámara") for tid, nombre, crs, _d, _n in TABLET]
+    while len(items) % 12:
+        items.append("")
+    uso = ("<b>Cómo usarlas:</b> imprime y recorta. Deja cada tarjeta en la mesa o en la funda de la tablet: la pareja escanea el código con la cámara y se abre el reto; "
+           "el botón amarillo lo pone a pantalla completa. En los portátiles: icono «Retos CE 4.0» o <b>oparadanoheda.github.io/guia-ce40/retos</b>. Sin cuentas: nada sale del dispositivo.")
+    pages = []
+    for k in range(0, len(items), 12):
+        pages.append(page("M29", "Tarjetas QR de los retos", "3º a 6º", "Sesiones con «En tablets o portátiles»", uso, cards(items[k:k + 12], 3, 4), "c4", f"hoja {k // 12 + 1} de {len(items) // 12}"))
+    return pages
+
+
 def m28():
     """Retos del trimestre: una hoja por curso y trimestre y sus soluciones (retos_trimestre.py)."""
     from retos_trimestre import paginas
@@ -999,6 +1022,7 @@ MATERIALS = [
     ("M25", "Hojas de registro de datos", "3º-6º", m25),
     ("M26", "Pósteres de conceptos", "1º-6º", m26), ("M27", "Palabras del curso", "1º-6º", m27),
     ("M28", "Retos del trimestre", "1º-6º", lambda: m28()),
+    ("M29", "Tarjetas QR de los retos", "3º-6º", lambda: m29()),
 ]
 
 

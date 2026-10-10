@@ -355,6 +355,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 
 - **Qué aprenden:** dar vida a una escena con disfraces, diálogos, sonidos y dos personajes.
 - **Para proyectar:** [[P:pixelart.robot|Píxel art: los disfraces son dibujos hechos de píxeles]]
+- **En tablets o portátiles:** [[T:pixel|Píxel art]] (dibujos 1 a 3: cada cuadrado es un píxel, como en los disfraces)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:3-S12-dialogo-solucion.sb3|Diálogo de dos personajes · solución]]
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?

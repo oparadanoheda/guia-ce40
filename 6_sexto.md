@@ -217,6 +217,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Qué aprenden:** programar los motores con velocidad y tiempo, y entender que el sentido de giro depende del signo (cambio de polaridad).
 - **Prepara antes:** robots, cinta métrica, una línea de salida y una meta en el suelo (vale una regla o una tira de cinta).
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
+- **En tablets o portátiles:** [[T:velocidad|Velocidad × tiempo]] (niveles 3 y 4: tiempo y velocidad, dividiendo)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:6-S4-nezha-cuadrado.mkcd|El cuadrado · solución]]
 - **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
@@ -281,7 +282,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Qué aprenden:** mejorar un programa con bucles, funciones y nombres claros, y planificar un proyecto individual.
 - **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?) · [[P:adivina.cuantas|Adivina el número · ¿cuántas preguntas?]] (otro algoritmo optimizado: buscar por la mitad)
-- **En tablets o portátiles:** [[T:adivina|Adivina el número]] (nivel 3: del 1 al 1000 en 10 preguntas o menos)
+- **En tablets o portátiles:** [[T:balanza|Ordenar con la balanza]] (nivel 3: 5 cajas; 3 estrellas con 8 pesadas y el reto extra con 7) · [[T:adivina|Adivina el número]] (nivel 3: del 1 al 1000 en 10 preguntas o menos)
 - **Material listo:** [[M:M16|Plan de mi invento]]
 - **Archivo de MakeCode:** [[S:6-S6-cuadrado-con-funciones.mkcd|El cuadrado con funciones · solución]]
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
@@ -474,6 +475,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 
 - **Qué aprenden:** comunicar dos placas por radio y entender por qué cada equipo necesita su propio grupo.
 - **Para proyectar:** [[P:mensajes.radio|Mensajes · radio de la micro:bit]] (antes de programar: quién recibe según el grupo, con tres retos) · [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
+- **En tablets o portátiles:** [[T:cifrado|Mensajes secretos]] (niveles 3 y 4: el cifrado de César, para hablar de privacidad)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
 - **Archivo de MakeCode:** [[S:6-S14-timbre-a-distancia.mkcd|Timbre a distancia]] · [[S:6-S14-mando-por-radio.mkcd|Mando por radio]] · [[S:6-S14-robot-por-radio.mkcd|Robot que obedece al mando]]
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
@@ -520,6 +522,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 
 - **Qué aprenden:** diseñar en 3D un soporte a la medida del cartel con el código QR de la feria, o resolver retos de lógica en la pizarra.
 - **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] (juegos de lógica para una sesión a elegir)
+- **En tablets o portátiles:** [[T:regla|La regla secreta]] (nivel 3: con «y», «o» y «no»)
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Opción A · Tinkercad: el soporte del cartel de la feria**

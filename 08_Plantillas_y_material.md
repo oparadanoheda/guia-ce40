@@ -41,6 +41,7 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | M26 | Pósteres de conceptos | 1º-6º | Diez pósteres para el aula (algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar) con ejemplo y cómo se ve en cada ciclo, e índice de cuándo colgarlos. |
 | M27 | Palabras del curso | 1º-6º | Una hoja por curso con el vocabulario nuevo, qué significa y en qué sesión aparece. |
 | M28 | Retos del trimestre | 1º-6º | Una hoja de 4 retos por curso y trimestre, al estilo Bebras (sin lectura en 1º y 2º), y las soluciones de cada curso con lo que evalúa cada reto. |
+| M29 | Tarjetas QR de los retos | 3º-6º | Una tarjeta por reto para tablets y portátiles (y otra con el menú), con su QR, para recortar y dejar en la mesa o en la funda. |
 
 ## Proyectables para la pizarra digital
 

@@ -65,17 +65,63 @@ EXTERNAS = [
 ]
 
 
-# Retos para las tablets del alumnado (web/tablet/): se abren con un QR que el docente proyecta.
-# id, nombre, cursos, qué hacen, niveles
+# Retos para las tablets y los portátiles del alumnado (web/tablet/): se abren con un QR o con el icono.
+# id, nombre, cursos, qué hacen, niveles (cada uno con el curso desde el que se recomienda; se puede empezar por cualquiera)
 TABLET = [
     ("robot", "Programa al robot", "3º-4º", "Llevar al robot a la estrella con avanzar, girar y repetir. Con menos bloques, más estrellas.",
-     ["Niveles 1 a 3: secuencias y giros.", "Niveles 4 a 10: repetir. Para las 3 estrellas hay que usarlo."]),
+     ["Niveles 1 a 3 (desde 3º): secuencias y giros.", "Niveles 4 a 8 (3º y 4º): repetir. Para las 3 estrellas hay que usarlo.", "Niveles 9 y 10 (4º): el robot empieza mirando hacia abajo, y dos repetir seguidos."]),
     ("coordenadas", "Coordenadas", "3º-6º", "Tocar el punto que se pide o escribir dónde está la estrella.",
-     ["Niveles 1 y 2: cuadrícula del 0 al 6 (3º y 4º).", "Niveles 3 y 4: con negativos, del −5 al 5 (5º y 6º).", "Nivel 5: el escenario de Scratch, con 15 pasos de margen."]),
-    ("variables", "¿Cuánto vale?", "4º-6º", "Leer un programa corto, con bloques de Scratch o de MakeCode, y decir cuánto vale la variable al final. Si se fallan, ven la tabla paso a paso.",
-     ["Nivel 1: dar el valor y sumar.", "Nivel 2: «dar el valor» borra lo que había.", "Nivel 3: con repetir (sumar varias veces es multiplicar).", "Nivel 4: dos variables."]),
+     ["Niveles 1 y 2 (3º y 4º): cuadrícula del 0 al 6.", "Niveles 3 y 4 (5º y 6º): con negativos, del −5 al 5.", "Nivel 5 (desde 4º): el escenario de Scratch, con 15 pasos de margen."]),
+    ("variables", "¿Cuánto vale?", "3º-6º", "Leer un programa corto, con bloques de Scratch o de MakeCode, y decir cuánto vale la variable al final. Si se fallan dos veces, ven la tabla paso a paso.",
+     ["Nivel 1 (desde 3º): dar el valor y sumar.", "Nivel 2 (desde 4º): «dar el valor» borra lo que había; sumar −2 es quitar 2.", "Nivel 3 (desde 4º): con repetir (sumar varias veces es multiplicar).", "Nivel 4 (5º y 6º): dos variables."]),
     ("cubos", "Cubos y vistas", "4º-6º", "Contar los cubos de una figura, también los que no se ven, y elegir su vista de frente, desde arriba o de lado.",
-     ["Nivel 1: figuras pequeñas (3 × 3, dos pisos).", "Nivel 2: figuras de hasta cuatro pisos.", "Nivel 3: ¿qué vista es?"]),
+     ["Nivel 1 (desde 4º): figuras pequeñas (3 × 3, dos pisos).", "Nivel 2 (5º y 6º): figuras de hasta cuatro pisos.", "Nivel 3 (5º y 6º): ¿qué vista es?"]),
     ("adivina", "Adivina el número", "3º-6º", "Encontrar el número con las pistas «más grande» y «más pequeño». La recta enseña dónde puede estar todavía.",
-     ["Nivel 1: del 1 al 20 (3 estrellas con 5 intentos o menos).", "Nivel 2: del 1 al 100 (con 7 o menos).", "Nivel 3: del 1 al 1000 (con 10 o menos)."]),
+     ["Nivel 1 (desde 3º): del 1 al 20 (3 estrellas con 5 intentos o menos).", "Nivel 2 (desde 3º): del 1 al 100 (con 7 o menos).", "Nivel 3 (desde 4º): del 1 al 1000 (con 10 o menos)."]),
+    ("condiciones", "¿Qué hace el programa?", "4º-6º", "Leer un programa con condiciones (bloques de Scratch o de MakeCode), mirar el valor de la variable o del sensor y elegir qué hace. Algunos valores son justo el de la condición: «mayor que 10» no incluye el 10.",
+     ["Niveles 1 y 2 (desde 4º): si… entonces (a veces no hace nada) y si… si no.", "Nivel 3 (desde 5º): tres caminos.", "Nivel 4 (5º y 6º): con «y» (dentro de un intervalo) y con «o» (fuera)."]),
+    ("poligonos", "La tortuga y los polígonos", "4º-6º", "Completar «repetir [ ] veces: mover 100 pasos y girar [ ] grados» para dibujar la figura que se pide. Si no sale, la pista recuerda la cuenta (360 entre el número de lados) sin dar el resultado.",
+     ["Nivel 1 (desde 4º): cuadrado, triángulo, hexágono y pentágono, en ese orden.", "Nivel 2 (5º y 6º): 8, 9, 10 y 12 lados.", "Nivel 3 (6º, o para quien va rápido): estrellas, que dan varias vueltas (5 puntas: 144 grados)."]),
+    ("binario", "Cartas binarias", "3º-6º", "Cartas con 1, 2, 4, 8, 16 y 32 puntos: boca arriba cuentan (1) y boca abajo no (0). Así se escriben los números en binario.",
+     ["Niveles 1 y 2 (desde 3º): ¿qué número forman? (4 y 5 cartas).", "Nivel 3 (desde 4º): forma el número dando la vuelta a las cartas (hasta 31).", "Nivel 4 (5º y 6º): con 6 cartas (hasta 63)."]),
+    ("velocidad", "Velocidad × tiempo", "5º-6º", "El coche Nezha a una velocidad fija: distancia = velocidad × tiempo. Después de responder, el coche recorre la pista.",
+     ["Nivel 1 (5º): ¿cuántos centímetros?", "Nivel 2 (5º): con medios segundos.", "Nivel 3 (6º): ¿cuánto tiempo? (dividir).", "Nivel 4 (6º): ¿qué velocidad? (dividir)."]),
+    ("cifrado", "Mensajes secretos", "3º-6º", "Descifrar palabras con una clave: números (A = 1, con la Ñ), símbolos y desplazamientos de letras (el cifrado de César). Teclado de letras en la pantalla.",
+     ["Niveles 1 y 2 (desde 3º): código de números y de símbolos.", "Nivel 3 (desde 4º): cada letra va 3 puestos después.", "Nivel 4 (desde 4º): descubrir, probando, cuántos puestos se ha movido."]),
+    ("pixel", "Píxel art", "3º-4º", "Pintar un dibujo siguiendo el código de cada fila (cuántos cuadrados seguidos de cada color). Se pinta tocando o arrastrando el dedo.",
+     ["Para empezar: la flecha (5 × 5).", "Después: el corazón, el pez, la casa y el robot (10 × 10).", "3 estrellas si sale bien a la primera."]),
+    ("regla", "La regla secreta", "3º-6º", "La máquina tiene una regla sobre los números del 1 al 30. Se tocan números para ver cuáles la cumplen y, después de probar al menos 3, se elige la regla entre cuatro.",
+     ["Nivel 1 (desde 3º): par, impar, mayor que, acaba en…", "Nivel 2 (desde 3º): las tablas del 3, 4, 5, 6, 7 y 9 (debajo pone «múltiplo de», para 5º y 6º).", "Nivel 3 (5º y 6º): con «y», «o» y «no»."]),
+    ("balanza", "Ordenar con la balanza", "3º-6º", "Ordenar cajas de más ligera a más pesada comparándolas de dos en dos en la balanza: un algoritmo de ordenación. Con menos pesadas, más estrellas.",
+     ["Nivel 1 (desde 3º): 3 cajas (3 estrellas con 3 pesadas o menos).", "Nivel 2 (desde 4º): 4 cajas (con 5 o menos).", "Nivel 3 (5º y 6º): 5 cajas (con 8 o menos). Reto extra: con 7, el mínimo que asegura el orden."]),
 ]
+
+# Para la diversidad del aula (se ve en la página de cada reto): si cuesta, si va rápido y la ayuda que trae la pantalla.
+# Todos tienen además «Escuchar» (lee la pantalla en voz alta) y se juegan sin tiempo, sin sonidos y sin clasificaciones.
+SEGUNDA = "El primer fallo de cada reto no cuenta: sale una pista que dice cómo pensarlo, sin dar la respuesta."
+ADAPTA = {
+    "robot": ("Niveles 1 a 3. Antes de ejecutar, la pareja dice cada bloque en voz alta y lo sigue con el dedo en el tablero.",
+              "Los niveles 9 y 10 con 3 estrellas, y explicar a otra pareja qué se repite.",
+              "Se puede ejecutar todas las veces que haga falta; si choca, se queda marcado el bloque que falla."),
+    "coordenadas": ("Nivel 1, con el dedo: primero se va por la x y después se sube por la y.", "Nivel 5, el escenario de Scratch: ¿dónde está el (0, 0)?", SEGUNDA),
+    "variables": ("Nivel 1, con una tabla en papel (paso y cuánto vale) o un vaso con tapones como «caja».", "Nivel 4, y explicar por qué «dar el valor» borra lo que había.",
+                  SEGUNDA + " Si se vuelve a fallar, sale la tabla paso a paso."),
+    "cubos": ("Nivel 1 con cubos encajables en la mesa: construir la figura y contarla piso a piso, como en la pista.", "Nivel 3, y dibujar en cuadrícula la vista que no se ha preguntado.",
+              SEGUNDA + " Al contar, la pista enseña la figura piso a piso."),
+    "adivina": ("Nivel 1 con una recta del 1 al 20 en papel, tachando los números que ya no pueden ser.", "Nivel 3 en 10 intentos o menos, y explicar por qué conviene preguntar por la mitad.",
+                "La recta enseña en azul dónde puede estar todavía el número, y avisa si se pregunta uno ya descartado."),
+    "condiciones": ("Niveles 1 y 2, leyendo el programa en voz alta: «si puntos es mayor que 10, entonces…».", "Nivel 4, y probar con el otro editor (Scratch o MakeCode).",
+                    "Después de cada respuesta se explica por qué, también cuando el valor es justo el de la condición."),
+    "poligonos": ("Solo el cuadrado y el triángulo. Antes, la clase gira el cuerpo (un cuarto de vuelta son 90 grados); la división 360 : n, con calculadora si hace falta.",
+                  "Nivel 3: las estrellas, y descubrir por qué 144 grados dibuja una estrella de 5 puntas.", SEGUNDA + " Las casillas se quedan para corregir solo lo que falla."),
+    "binario": ("Nivel 1 con cartas de papel y fichas para contar los puntos.", "Nivel 4, y escribir en binario el día de su cumpleaños.", SEGUNDA),
+    "velocidad": ("Nivel 1 con una tabla de 1, 2, 3… segundos, sumando la velocidad cada vez.", "Niveles 3 y 4, e inventar un problema para la pareja.", SEGUNDA),
+    "cifrado": ("Nivel 1: las primeras palabras son cortas y, al tocar un número del mensaje, se ilumina en la clave.", "Nivel 4, y cifrar una palabra para que la descifre otra pareja.",
+                SEGUNDA + " Si la palabra está casi bien, se subrayan las letras que fallan."),
+    "pixel": ("La flecha (5 × 5), tocando cada fila del código para marcarla en el dibujo.", "El robot, y después inventar un dibujo y su código en papel cuadriculado.",
+              "Al comprobar se marcan los cuadrados que no están bien, y se puede seguir pintando."),
+    "regla": ("Nivel 1, probando los números en orden (1, 2, 3…). En el nivel 2, con la tabla de multiplicar a la vista.", "Nivel 3, descubriendo la regla con los menos números posibles.",
+              "Si se elige mal la primera vez, esa opción se tacha y se prueban 2 números más antes de volver a elegir."),
+    "balanza": ("Nivel 1 con tres objetos de verdad y las manos como balanza; apuntar «A pesa menos que B».", "Nivel 3 con 7 pesadas o menos (el reto extra).",
+                "«Lo que sabemos» apunta cada pesada. Si el orden no está bien, dice qué dos cajas hay que cambiar."),
+}

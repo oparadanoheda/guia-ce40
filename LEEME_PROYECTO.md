@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **28 materiales imprimibles** en PDF (M01-M28, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **19 vídeos de conceptos**, **5 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **20 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -62,7 +62,7 @@ Programación Mate 4.0 26-27/
 ├── 00_General_CE40_26-27.md        Marco, calendario, sesión tipo, diversidad, evaluación, comodines, supuestos
 ├── 1_primero.md … 6_sexto.md        Las sesiones de cada curso
 ├── 07_Guias_rapidas_herramientas.md Tale-Bot, True True, ScratchJr, Scratch, Makey Makey, micro:bit, Nezha, Tinkercad, Teachable Machine, QR
-├── 08_Plantillas_y_material.md      Catálogo de M01-M28, archivos de Scratch y proyectables
+├── 08_Plantillas_y_material.md      Catálogo de M01-M29, archivos de Scratch y proyectables
 ├── Propuesta 5º y 6º semanal.md     Plan por si 5º y 6º pasan a ser semanales (no se usa en 2026-27)
 ├── LEEME_PROYECTO.md                Este documento
 ├── Animaciones/                     Encargo de los vídeos (Prompts animaciones.md), informe de entrega y bandeja animaciones_nuevas/
@@ -87,9 +87,9 @@ Programación Mate 4.0 26-27/
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
 | `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables*.css` | Las 33 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
-| `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js`, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
+| `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js` con el núcleo y los cinco primeros retos, `retos2.js` con los ocho siguientes, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
 | `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y de su diapositiva en la proyección |
-| `videos/` | Los 19 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
+| `videos/` | Los 20 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
 | `recursos_oficiales.py` | Biblioteca de enlaces oficiales (EducaMadrid, Tale-Bot, True True, ART2BIT, Nezha, ALBOR, ARASAAC…) |
@@ -217,13 +217,14 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 
 ## 8. Contenido: material, Scratch y proyectables
 
-**Material imprimible (M01-M28):**
+**Material imprimible (M01-M29):**
 - M01 flechas · M02 movimientos · M03 bloques tipo ScratchJr · M04 SI/ENTONCES/SI NO · M05 roles
 - M06 tablero 5×5 y fichas · M07 mapas del tesoro · M08 cazabichos · M09 patrones · M10 secuencias
 - M11 ¿Qué animal soy? (árbol guiado de 4 niveles) · M12 diagramas de flujo · M13 oca de condiciones · M14 misión final · M15 pasaporte
 - M16 planificación · M17 playtesting · M18 «Dónde lo dejamos» · M19 rúbrica · M20 chuleta Scratch
 - M21 chuleta MakeCode · M22 mando Makey Makey · M23 ¿Puede pasar de verdad? / ¿Verdad, bulo o IA? · M24 casos de IA · M25 registro de datos
 - M28 retos del trimestre al estilo Bebras (4 por curso y trimestre, con soluciones)
+- M29 tarjetas QR de los retos para tablets y portátiles (una por reto y otra con el menú)
 - M26 pósteres de conceptos (índice de cuándo colgarlos + 10 pósteres: algoritmo, descomponer, patrón, bucle, condición, evento, variable, depurar, entrada y salida, optimizar; cada uno con ejemplo y escalera 1º-2º / 3º-4º / 5º-6º). Cada póster está enlazado en la sesión donde se cuelga (21 enlaces).
 - M27 palabras del curso (una hoja por curso, 12-14 palabras con su sesión)
 
@@ -381,6 +382,21 @@ Detalle en `08_Plantillas_y_material.md`.
     - **En la guía:** cada reto tiene su página (`#t-<reto>`) con el QR, «Proyectar el QR en grande», «Probarlo aquí», los niveles y cómo se usa; una sección en «Para proyectar»; y la línea «En las tablets» en 13 sesiones de 3º (desde el segundo trimestre, cuando hay tablets) a 6º, con su diapositiva del QR en la práctica del modo proyección. Los QR se generan al construir la web con la librería `segno` (sin servicios externos) y se han comprobado leyéndolos de capturas.
     - **En los portátiles** (no suelen leer QR): la misma página se instala como aplicación con el botón «Instalar» (Chrome y Edge; queda el icono «Retos CE 4.0» en el escritorio y funciona sin conexión gracias a `sw.js`, que pide primero a la red para que lleguen las versiones nuevas), o se copia un acceso directo (`Retos-CE40.url` para Windows, `retos-ce40.desktop` para Linux/MAX), o se escribe la dirección corta `oparadanoheda.github.io/guia-ce40/retos` (`web/retos/` redirige a `tablet/`). Con teclado: números y Enter (Enter también pasa al siguiente reto) y, en el robot, flechas, R y Enter. Página para el docente: `#t-portatiles`. En las sesiones la etiqueta es «En tablets o portátiles» (se acepta también «En las tablets»).
     - **Comprobado:** `probar_web.py tablet` resuelve todos los niveles en tablet horizontal, vertical y móvil, también con el teclado, sin errores ni desbordes; con un servidor local, que se puede instalar, que abre sin conexión y que la dirección corta lleva al reto; las 10 soluciones del robot llegan sin chocar; accesibilidad AA salvo los bloques dibujados (misma excepción que en la guía).
+
+41. **Versión 1.3 (10 de octubre de 2026): ocho retos más para tablets y portátiles, M29, el vídeo «Funciones» y una revisión de la dificultad pensando en la diversidad.**
+    - **Retos nuevos** (`web/tablet/retos2.js`), adaptados de las herramientas de la pizarra con su mismo contenido: ¿Qué hace el programa? (4º-6º; si, si no, tres caminos, «y» y «o», con bloques de Scratch o MakeCode; en Scratch el segundo «si» va dentro del «si no», que no tiene «si no, si»; valores justo en el límite para ver que «mayor que 10» no incluye el 10; en MakeCode «FRESCO» en vez de «FRÍO», porque la pantalla de la micro:bit no tiene tildes), La tortuga y los polígonos (4º-6º; repetir y girar, también estrellas; vale repetir la figura más veces), Cartas binarias (3º-6º), Velocidad × tiempo (5º-6º; el coche Nezha), Mensajes secretos (3º-6º; números, símbolos y César, con teclado de letras con Ñ y solo palabras sin tilde), Píxel art (3º-4º; se pinta tocando o arrastrando), La regla secreta (3º-6º; las cuatro opciones siempre tienen conjuntos distintos del 1 al 30) y Ordenar con la balanza (3º-6º; 3 estrellas con 3, 5 y 8 pesadas, y el reto extra con 7, el mínimo que asegura el orden de 5 cajas; ordenar sin pesar no vale).
+    - **El menú** se agrupa en Programación, Matemáticas y Lógica y códigos. El núcleo (`tablet.js`) ofrece `RetosAPI` para registrar retos desde otros archivos; cada reto deja en `RETOS.prueba.resuelve` cómo resolver el reto en curso, para las pruebas.
+    - **M29 · Tarjetas QR de los retos:** 14 tarjetas (una por reto y otra con el menú) para recortar y dejar en la mesa o en la funda de la tablet. Se han leído los 14 QR del PDF.
+    - **En las sesiones:** la línea «En tablets o portátiles» está ahora en 22 sesiones de 3º a 6º, con para qué niveles.
+    - **Vídeo «Funciones» (6º S6):** el programa del cuadrado del Nezha se reparte en las funciones *avanzar* y *girar_derecha* (bloques de MakeCode con sus colores; los del Nezha en inglés, como en la extensión). El coche gira de más con una pausa de 700 ms; el cambio a 600 se hace en un solo sitio, dentro de *girar_derecha*, y sale el cuadrado. Termina con la frase clave de la sesión.
+    - **Dificultad y diversidad (revisión de los 13 retos):**
+      - **Cada nivel dice desde qué curso** se recomienda (en la guía y en M29), y se puede empezar por cualquiera. «¿Cuánto vale?» pasa a 3º-6º (3º S13 usa el nivel 1).
+      - **El primer fallo de cada reto no cuenta** en los retos de escribir la respuesta (coordenadas, variables, contar cubos, cartas binarias, mensajes secretos, polígonos, velocidad y la regla secreta): sale una pista que dice cómo pensarlo, sin dar el resultado («360 : 5 = ?», «8 + 2 + 1 = ?», la figura piso a piso, las letras que fallan subrayadas…). Si se acierta después, cuenta como acierto.
+      - **«Escuchar»** lee en voz alta el enunciado, los datos, las opciones y las pistas con la voz del dispositivo (`speechSynthesis`, sin conexión).
+      - **Ajustes de contenido:** en la regla secreta, «está en la tabla del 3» (y debajo «múltiplo de 3»); en mensajes secretos, las primeras palabras de cada nivel son cortas y al tocar un número o un símbolo se ilumina en la clave; en polígonos, primero el cuadrado y el pentágono al final; en píxel art, tocar una fila del código la marca en el dibujo; en la balanza, 3 estrellas alcanzables con 5 cajas (8 pesadas).
+      - **Al acabar sin estrellas** ya no sale en rojo: «Juega otra vez: con práctica sale mejor».
+      - **En la guía**, cada reto tiene «Para la diversidad del aula» (si cuesta, si va rápido y la ayuda que trae la pantalla) y el apartado de los retos explica las ayudas comunes.
+    - **Comprobado:** `probar_web.py tablet` resuelve todos los niveles de los 13 retos en tablet horizontal, vertical y móvil, prueba la segunda oportunidad en 8 retos y pasa axe también con las pistas a la vista.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

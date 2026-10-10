@@ -305,6 +305,45 @@ TAB_JUEGA = r"""(async (act, nivel)=>{
 })"""
 
 
+TAB_GENERICO = r"""(async (act, nivel, rondas)=>{ const est=()=>document.querySelector('.estado').textContent, z=ms=>new Promise(r=>setTimeout(r,ms));
+  location.hash = '#'+act+'/'+nivel; await z(150);
+  for (let i=0;i<rondas;i++){ RETOS.prueba.resuelve(); await z(40);
+    if (i<rondas-1){ const b=[...document.querySelectorAll('button')].find(b=>b.textContent.trim()==='Siguiente' && !b.hidden); if(!b) return 'sin «Siguiente» en la ronda '+(i+1)+': '+est(); b.click(); await z(20); } }
+  return est(); })"""
+# El primer fallo de cada reto no cuenta: sale una pista (estado «pista»), la ronda no avanza y, si se acierta después, cuenta como acierto.
+TAB_SEGUNDA = r"""(async (act, nivel)=>{
+  const z=ms=>new Promise(r=>setTimeout(r,ms)), P=RETOS.prueba;
+  const T=k=>[...document.querySelectorAll('.tecla')].find(b=>b.textContent===k).click();
+  const escribe=n=>String(n).split('').forEach(ch=>T(ch==='-'?'−':ch)), borra=k=>{ for(let i=0;i<k;i++) T('Borrar'); };
+  const est=()=>document.querySelector('.estado'), ronda=()=>{ const r=document.querySelectorAll('.ronda'); return r.length?r[r.length-1].textContent:''; };
+  const cubos=()=>P.H.flat().reduce((a,b)=>a+b,0), vel=()=>{ const Q=P.vel; return Q.pide==='d'?Q.d:Q.pide==='t'?Q.t:Q.v; };
+  location.hash='#'+act+'/'+nivel; await z(200);
+  const r0=ronda();
+  if (act==='coordenadas') { escribe(P.obj[0]===6?5:P.obj[0]+1); document.querySelectorAll('.casilla')[1].click(); escribe(P.obj[1]); T('Comprobar'); }
+  else if (act==='variables') { escribe(P.valor+1); T('Comprobar'); }
+  else if (act==='cubos') { escribe(cubos()+1); T('Comprobar'); }
+  else if (act==='binario') { escribe(P.obj+1); T('Comprobar'); }
+  else if (act==='cifrado') { T('Z'); T('Comprobar'); }
+  else if (act==='poligonos') { const c=document.querySelectorAll('.casilla'); c[0].click(); escribe(P.fig[1]); c[1].click(); escribe(7); T('Comprobar'); }
+  else if (act==='velocidad') { escribe(vel()+1); T('Comprobar'); }
+  else if (act==='regla') { const t=document.querySelectorAll('.num'); [0,1,2].forEach(i=>t[i].click()); [...document.querySelectorAll('.op-txt')].find(b=>b.dataset.ok==='false').click(); }
+  await z(50);
+  const pista=est().classList.contains('pista'), r1=ronda();
+  if (act==='cifrado') { borra(1); P.palabra.split('').forEach(T); T('Comprobar'); }
+  else if (act==='poligonos') { document.querySelectorAll('.casilla')[1].click(); borra(1); escribe(360*P.fig[2]/P.fig[1]); T('Comprobar'); }
+  else if (act==='regla') { const t=document.querySelectorAll('.num'); [3,4].forEach(i=>t[i].click()); [...document.querySelectorAll('.op-txt')].find(b=>b.dataset.ok==='true').click(); }
+  else if (act==='coordenadas') { escribe(P.obj[0]); document.querySelectorAll('.casilla')[1].click(); escribe(P.obj[1]); T('Comprobar'); }
+  else if (act==='variables') { escribe(P.valor); T('Comprobar'); }
+  else if (act==='cubos') { escribe(cubos()); T('Comprobar'); }
+  else if (act==='binario') { escribe(P.obj); T('Comprobar'); }
+  else if (act==='velocidad') { escribe(vel()); T('Comprobar'); }
+  await z(50);
+  const fin=ronda();
+  return (pista && r0===r1 && est().classList.contains('bien') && /aciertos: 1$/.test(fin)) ? 'ok' : 'pista '+pista+' · '+r0+' → '+r1+' → '+fin+' · '+est().textContent.slice(0,80);
+})"""
+RETOS2 = [("binario", 4, 8), ("cifrado", 4, 6), ("poligonos", 3, 4), ("pixel", 5, 1), ("condiciones", 4, 8), ("regla", 3, 6), ("balanza", 3, 1), ("velocidad", 4, 6)]
+
+
 async def tablet(b):
     prob = []
     url = (DOCS / "tablet" / "index.html").as_uri()
@@ -326,6 +365,13 @@ async def tablet(b):
                 over = await b.js("document.documentElement.scrollWidth - document.documentElement.clientWidth")
                 if over > 1:
                     prob.append(f"{w}px {act} {nv}: se sale {over} px")
+        for act, niveles, rondas in RETOS2:
+            for nv in range(1, niveles + 1):
+                t = await b.js(f"({TAB_GENERICO})({json.dumps(act)}, {nv}, {rondas})")
+                bien = t.startswith(f"{rondas} de {rondas}") if rondas > 1 else t.startswith("¡")
+                over = await b.js("document.documentElement.scrollWidth - document.documentElement.clientWidth")
+                if not bien or over > 1:
+                    prob.append(f"{w}px {act} {nv}: {t[:80]} (se sale {over} px)")
         for k in range(1, 11):
             await b.js(f"location.hash='#robot/{k}'")
             await asyncio.sleep(.08)
@@ -350,6 +396,14 @@ async def tablet(b):
         t = await b.js("document.querySelector('.estado').textContent")
         if not t.startswith("¡Muy bien"):
             prob.append(f"{w}px: la respuesta con el teclado no funciona: {t[:60]}")
+        if w == 1024:
+            for act, nv in (("coordenadas", 2), ("coordenadas", 4), ("variables", 2), ("cubos", 1), ("binario", 1), ("cifrado", 1), ("cifrado", 3), ("poligonos", 1), ("velocidad", 2), ("regla", 2)):
+                t = await b.js(f"({TAB_SEGUNDA})({json.dumps(act)}, {nv})")
+                if t != "ok":
+                    prob.append(f"segunda oportunidad {act} {nv}: {t}")
+            esc = await b.js("(async()=>{ location.hash=''; await new Promise(r=>setTimeout(r,100)); const m=document.getElementById('escuchar').hidden; location.hash='#regla/1'; await new Promise(r=>setTimeout(r,150)); return [m, document.getElementById('escuchar').hidden]; })()")
+            if esc != [True, not await b.js("'speechSynthesis' in window")]:
+                prob.append(f"«Escuchar»: oculto en el menú y visible en los retos ({esc})")
         prob += [f"{w}px: consola: {e}" for e in b.errors()]
     if not AXE.exists():
         AXE.write_bytes(urllib.request.urlopen(AXE_URL, timeout=60).read())
@@ -357,12 +411,21 @@ async def tablet(b):
     await b.goto(url)
     await asyncio.sleep(.5)
     await b.js(AXE.read_text(encoding="utf-8") + ";1")
-    for r in ("", "robot/4", "coordenadas/2", "variables/3", "cubos/3", "adivina/2"):
+    for r in ("", "robot/4", "coordenadas/2", "variables/3", "cubos/3", "adivina/2", "binario/3", "cifrado/1", "poligonos/1", "pixel/2", "condiciones/3", "regla/1", "balanza/2", "velocidad/1"):
         vs = await b.js(f"""(async()=>{{ location.hash='#{r}'; await new Promise(x=>setTimeout(x,250));
           const res = await axe.run(document, {{runOnly:{{type:'tag', values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}}});
           return res.violations.flatMap(v=>v.nodes.map(n=>v.id+' · '+n.target.join(' ')))}})()""")
         # los bloques dibujados de «¿Cuánto vale?» (.b, .r, .c-cab) son la misma excepción: colores del editor con letra blanca
         prob += [f"accesibilidad #{r}: {v}" for v in vs if not re.search(r"\.(?:b|r|c-cab)(?![\w-])", v)]
+    # también con las ayudas a la vista: la pista de un fallo, la figura por pisos, las letras subrayadas y una fila del píxel art marcada
+    for r, fallo in (("cubos/1", "T(String(RETOS.prueba.H.flat().reduce((a,b)=>a+b,0)+1))"), ("cifrado/1", "T('Z')"), ("pixel/2", None)):
+        vs = await b.js(f"""(async()=>{{ location.hash='#{r}'; await new Promise(x=>setTimeout(x,250));
+          const T=k=>String(k).split('').forEach(c=>[...document.querySelectorAll('.tecla')].find(b=>b.textContent===c).click()), C=()=>[...document.querySelectorAll('.tecla')].find(b=>b.textContent==='Comprobar').click();
+          {(fallo + "; C();") if fallo else "document.querySelectorAll('.pixcod button')[2].click();"}
+          await new Promise(x=>setTimeout(x,600));  // que acabe la animación de entrada del mensaje
+          const res = await axe.run(document, {{runOnly:{{type:'tag', values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}}});
+          return res.violations.flatMap(v=>v.nodes.map(n=>v.id+' · '+n.target.join(' ')))}})()""")
+        prob += [f"accesibilidad #{r} con la ayuda: {v}" for v in vs if not re.search(r"\.(?:b|r|c-cab)(?![\w-])", v)]
     informe("tablet", prob)
 
 

@@ -110,7 +110,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 
 - **Qué aprenden:** usar repetir para dibujar polígonos, y un repetir dentro de otro para hacer rosetones.
 - **Para proyectar:** [[P:poligonos|Polígonos]] y [[P:poligonos.roseton|Rosetón]] · [[P:laberinto.4|Laberinto · bucles]]
-- **En tablets o portátiles:** [[T:robot|Programa al robot]] (niveles 6 a 10: escaleras y vueltas con repetir)
+- **En tablets o portátiles:** [[T:poligonos|La tortuga y los polígonos]] (nivel 1: cuánto girar en cada esquina) · [[T:robot|Programa al robot]] (niveles 6 a 10: escaleras y vueltas con repetir)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Lápiz»)
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
@@ -143,6 +143,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 
 - **Qué aprenden:** las condiciones de dos caminos y cómo se dibujan en un diagrama de flujo.
 - **Para proyectar:** [[P:diagrama.par|Diagrama · par o impar]] y [[P:diagrama.adivina|adivina el número]] · [[P:laberinto.6|Laberinto · si… si no]] (las dos ramas de la condición, en pantalla)
+- **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 y 2, con bloques de Scratch)
 - **Material listo:** [[M:M12|Diagramas de flujo]]
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
@@ -230,6 +231,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 ### S6 · El juego de las tablas `PC`
 
 - **Qué aprenden:** combinar variables, azar, preguntar y condiciones en un juego útil para la clase.
+- **En tablets o portátiles:** [[T:regla|La regla secreta]] (nivel 2: ¿en qué tabla están los números que dicen «sí»?)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S6-juego-de-las-tablas-solucion.sb3|Juego de las tablas · solución]]
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
@@ -591,6 +593,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Qué aprenden:** mejorar el programa para que sea más corto, más claro y fácil de cambiar.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]]
+- **En tablets o portátiles:** [[T:balanza|Ordenar con la balanza]] (niveles 1 y 2: optimizar es hacerlo con menos pesadas)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Control»)
 - **Minuto de uso responsable:** «Guardo mi proyecto con un nombre que sepa encontrar.» ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 

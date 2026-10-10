@@ -42,6 +42,8 @@ VIDEOS = [
      "Cada pregunta buena descarta la mitad.", 31.7, ["c4-s5", "c6-s6"]),
     ("mensaje", "anim-mensaje.html", "Mensajes", "4º-6º",
      "Un mensaje es un evento que se envía.", 28.5, ["c4-s13", "c6-s14"]),
+    ("funcion", "anim-funcion.html", "Funciones", "6º",
+     "Un buen programa es corto, claro y fácil de cambiar.", 30.5, ["c6-s6"]),
 ]
 
 # sesión -> vídeos que se enlazan en ella

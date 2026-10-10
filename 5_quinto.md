@@ -125,6 +125,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Qué aprenden:** qué es una placa programable, sus partes (pantalla de 25 luces, botones A y B, sensores) y cómo se programa con bloques.
 - **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
 - **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
+- **En tablets o portátiles:** [[T:binario|Cartas binarias]] (niveles 1 a 3: así cuenta la micro:bit, con unos y ceros)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
 - **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
@@ -202,6 +203,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** leer valores de los sensores y decidir con **si… entonces… si no**.
 - **Prepara antes:** ejemplo en el display. Hoja de registro de datos.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]] y [[P:umbral.temp|temperatura]]
+- **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 a 3, con bloques de MakeCode y el sensor de temperatura)
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S4-lamparita.mkcd|Lamparita de noche · solución]]
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
@@ -329,6 +331,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** conectar la micro:bit al robot Nezha y programar sus motores.
 - **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar «nezha»). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
+- **En tablets o portátiles:** [[T:velocidad|Velocidad × tiempo]] (niveles 1 y 2, antes de medir con el coche)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:5-S8-nezha-avanza.mkcd|El Nezha avanza 1 segundo · solución]]
 - **Minuto de uso responsable:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.
@@ -518,6 +521,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** comunicar dos placas por radio, o diseñar en 3D una funda a la medida de la micro:bit.
 - **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
+- **En tablets o portátiles:** [[T:cifrado|Mensajes secretos]] (opción A: cifrar es otra forma de que nadie más entienda tus mensajes) · [[T:cubos|Cubos y vistas]] (opción B, nivel 3: las vistas de la funda)
 - **Archivo de MakeCode:** [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
 - **Minuto de uso responsable:** «Las redes sociales tienen edad mínima por algo.» ¿Por qué creéis que existe una edad mínima?
 
