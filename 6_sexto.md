@@ -217,7 +217,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Qué aprenden:** programar los motores con velocidad y tiempo, y entender que el sentido de giro depende del signo (cambio de polaridad).
 - **Prepara antes:** robots, cinta métrica, una línea de salida y una meta en el suelo (vale una regla o una tira de cinta).
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
-- **En tablets o portátiles:** [[T:velocidad|Velocidad × tiempo]] (niveles 3 y 4: tiempo y velocidad, dividiendo)
+- **En tablets o portátiles:** [[T:velocidad|Aparca el coche Nezha]] (niveles 3 y 4: tiempo y velocidad, dividiendo)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:6-S4-nezha-cuadrado.mkcd|El cuadrado · solución]]
 - **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.

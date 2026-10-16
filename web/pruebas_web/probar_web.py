@@ -354,6 +354,7 @@ async def tablet(b):
         await b.js("try{localStorage.clear();sessionStorage.setItem('ce40-tablet-entrada','1')}catch(e){}; 1")
         await b.goto(url)
         await asyncio.sleep(.5)
+        await b.js("RETOS.prueba.rapido = true; 1")  # el coche Nezha llega sin animación
         refs = await b.js("RETOS.NIV_ROBOT.map((n,i)=>{const s=RETOS.simula(n,RETOS.leeRef(n.ref)); return s.llega && !s.choque})")
         prob += [f"robot nivel {i + 1}: la solución de referencia no llega" for i, ok in enumerate(refs) if not ok]
         for act, niveles in (("coordenadas", 5), ("variables", 4), ("cubos", 3), ("adivina", 3)):
@@ -401,6 +402,14 @@ async def tablet(b):
                 t = await b.js(f"({TAB_SEGUNDA})({json.dumps(act)}, {nv})")
                 if t != "ok":
                     prob.append(f"segunda oportunidad {act} {nv}: {t}")
+            # Adivina: tocar una ficha pregunta por ella; las descartadas se apagan y no se pueden tocar
+            adv = await b.js("""(async()=>{ location.hash='#adivina/2'; await new Promise(r=>setTimeout(r,150)); const s=RETOS.prueba.sec, g=s===50?49:50;
+              document.querySelectorAll('.adv-f')[g-1].click(); await new Promise(r=>setTimeout(r,50));
+              const apagadas=document.querySelectorAll('.adv-f.fuera').length, desact=document.querySelectorAll('.adv-f:disabled').length;
+              document.querySelectorAll('.adv-f')[s-1].click(); await new Promise(r=>setTimeout(r,50));
+              return [apagadas, desact, document.querySelector('.estado').textContent.slice(0,6), !document.querySelector('.adv-revela').hidden]; })()""")
+            if not (adv[0] >= 49 and adv[1] == adv[0] and adv[2].startswith("¡Es el") and adv[3]):
+                prob.append(f"Adivina: tocar las fichas no funciona ({adv})")
             esc = await b.js("(async()=>{ location.hash=''; await new Promise(r=>setTimeout(r,100)); const m=document.getElementById('escuchar').hidden; location.hash='#regla/1'; await new Promise(r=>setTimeout(r,150)); return [m, document.getElementById('escuchar').hidden]; })()")
             if esc != [True, not await b.js("'speechSynthesis' in window")]:
                 prob.append(f"«Escuchar»: oculto en el menú y visible en los retos ({esc})")
@@ -411,7 +420,7 @@ async def tablet(b):
     await b.goto(url)
     await asyncio.sleep(.5)
     await b.js(AXE.read_text(encoding="utf-8") + ";1")
-    for r in ("", "robot/4", "coordenadas/2", "variables/3", "cubos/3", "adivina/2", "binario/3", "cifrado/1", "poligonos/1", "pixel/2", "condiciones/3", "regla/1", "balanza/2", "velocidad/1"):
+    for r in ("", "robot/4", "coordenadas/2", "variables/3", "cubos/3", "adivina/2", "adivina/3", "binario/3", "cifrado/1", "poligonos/1", "pixel/2", "condiciones/3", "regla/1", "balanza/2", "velocidad/1"):
         vs = await b.js(f"""(async()=>{{ location.hash='#{r}'; await new Promise(x=>setTimeout(x,250));
           const res = await axe.run(document, {{runOnly:{{type:'tag', values:['wcag2a','wcag2aa','wcag21a','wcag21aa']}}}});
           return res.violations.flatMap(v=>v.nodes.map(n=>v.id+' · '+n.target.join(' ')))}})()""")

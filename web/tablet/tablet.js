@@ -655,45 +655,84 @@
     nuevo();
   }
 
-  /* ================================================================ 5. Adivina el número */
+  /* ================================================================ 5. Adivina el número: ¿dónde se esconde Robi? */
+  // Robi se esconde detrás de un número. Cada pregunta dice «más grande» o «más pequeño», y los números que ya no pueden ser
+  // se apagan en una ola desde el que se ha preguntado. Preguntando por la mitad, nunca hacen falta más de 5, 7 o 10 preguntas.
   var NIV_ADIVINA = [{ t: 'Del 1 al 20', n: 20 }, { t: 'Del 1 al 100', n: 100 }, { t: 'Del 1 al 1000', n: 1000 }];
   function maxPreguntas(n) { var k = 0; while (n >= 1) { k++; n = Math.floor(n / 2); } return k; }
+  var ROBI = '<svg viewBox="0 0 60 60" aria-hidden="true"><rect x="6" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="46" y="18" width="8" height="24" rx="3" fill="#1a1d24"/><rect x="11" y="13" width="38" height="38" rx="11" fill="#2c5bbf" stroke="#1b3f8f" stroke-width="2.5"/><path d="M22 13L30 1L38 13Z" fill="#f5c518" stroke="#b8860b" stroke-width="2" stroke-linejoin="round"/><circle cx="23" cy="29" r="5.5" fill="#fff"/><circle cx="37" cy="29" r="5.5" fill="#fff"/><circle cx="23" cy="27.5" r="2.6" fill="#1a1d24"/><circle cx="37" cy="27.5" r="2.6" fill="#1a1d24"/><path d="M23 41Q30 46 37 41" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>';
   function adivina(zona, nivel) {
-    var N = NIV_ADIVINA[nivel - 1].n, MX = maxPreguntas(N), sec, lo, hi, ints, fin;
-    var recta = h('div'), est = h('p', { class: 'estado' }), enun = h('p', { class: 'enunciado' }), lista = h('p', { class: 'ronda' }), cas = casilla(), lado = h('div', { class: 'panel' });
-    var bOtra = boton('Otro número', nuevo, 'primario');
-    function dibuja() {
-      var W = 900, x = function (v) { return 30 + (v - 1) / (N - 1) * (W - 60); }, s = '<rect x="30" y="30" width="' + (W - 60) + '" height="40" rx="8" fill="#e4e6eb"/>';
-      if (lo <= hi) s += '<rect x="' + x(lo).toFixed(1) + '" y="30" width="' + Math.max(8, x(hi) - x(lo)).toFixed(1) + '" height="40" rx="8" fill="#9db8ef" stroke="#2c5bbf" stroke-width="2"/>';
-      [1, N / 4, N / 2, 3 * N / 4, N].forEach(function (v) { v = Math.max(1, Math.round(v)); s += '<text x="' + x(v).toFixed(1) + '" y="100" text-anchor="middle" font-size="24" font-weight="800" fill="#5d6474">' + num(v) + '</text>'; });
-      ints.forEach(function (g, i) { var xx = x(g[0]).toFixed(1), col = g[1] === 0 ? '#257f46' : i === ints.length - 1 ? '#c8382f' : '#5d6474'; s += '<line x1="' + xx + '" y1="22" x2="' + xx + '" y2="78" stroke="' + col + '" stroke-width="4"/>'; });
-      recta.innerHTML = '<svg class="dibujo" viewBox="0 0 ' + W + ' 110" role="img" aria-label="Recta del 1 al ' + N + '">' + s + '</svg>';
+    var N = NIV_ADIVINA[nivel - 1].n, MX = maxPreguntas(N), sec, lo, hi, ints, fin, mitad, conAyuda, celdas = [];
+    var tab = h('div', { class: 'adv-tab ' + (N > 100 ? 'mil' : N > 20 ? 'cien' : 'veinte') }), caja = h('div', { class: 'adv-caja' }, [tab]), revela = h('div', { class: 'adv-revela', hidden: '' });
+    var cuenta = h('div', { class: 'adv-cuenta' }), est = h('p', { class: 'estado' }), enun = h('p', { class: 'enunciado' }), lista = h('div', { class: 'adv-lista', 'aria-label': 'Preguntas hechas' });
+    var cas = casilla(), lado = h('div', { class: 'panel' });
+    caja.append(revela);
+    // el tablero: fichas con su número (hasta 100); del 1 al 1000, diez bloques de cien casillas
+    if (N <= 100) for (var i = 1; i <= N; i++) (function (n) {
+      var b = h('button', { type: 'button', class: 'adv-f', tabindex: '-1', text: String(n), onclick: function () { pregunta(n); } });
+      celdas.push(b); tab.append(b);
+    })(i);
+    else {
+      tab.setAttribute('role', 'img');
+      for (var bq = 0; bq < 10; bq++) {
+        var rej = h('div', { class: 'adv-rej' });
+        for (var j = 0; j < 100; j++) { var c = h('span', { class: 'adv-c' }); celdas.push(c); rej.append(c); }
+        tab.append(h('div', { class: 'adv-bloque' }, [rej, h('small', { text: num(bq * 100 + 1) + '–' + num(bq * 100 + 100) })]));
+      }
     }
-    function nuevo() {
-      sec = 1 + rnd(N); PRUEBA.sec = sec; lo = 1; hi = N; ints = []; fin = false; tec.limpia();
-      enun.innerHTML = 'He pensado un número del <b>1</b> al <b>' + num(N) + '</b>. ¿Cuál es?';
-      lista.textContent = 'Intentos: 0. ¿Lo encuentras en ' + MX + ' o menos?';
-      estado(est, '', 'Escribe un número y pulsa «Comprobar».');
-      dibuja();
+    function pinta(desde) {
+      celdas.forEach(function (c, k) {
+        var n = k + 1, fuera = (n < lo || n > hi) && !(fin && n === sec), antes = c.classList.contains('fuera');
+        c.style.transitionDelay = fuera && !antes && desde ? Math.min(600, Math.abs(n - desde) * (N > 100 ? .6 : N > 20 ? 7 : 26)) + 'ms' : '';
+        c.classList.toggle('fuera', fuera);
+        c.classList.toggle('probado', ints.some(function (x) { return x[0] === n && x[1] !== 0; }));
+        c.classList.toggle('mitad', mitad === n);
+        c.classList.toggle('robi', fin && n === sec);
+        if (N <= 100) {
+          var html = fin && n === sec ? ROBI : String(n);
+          if (c._h !== html) { c.innerHTML = html; c._h = html; }
+          c.disabled = fuera || fin; c.setAttribute('aria-label', String(n) + (fin && n === sec ? ': ¡aquí estaba Robi!' : fuera ? ', descartado' : ''));
+        }
+      });
+      if (N > 100) tab.setAttribute('aria-label', 'Tablero del 1 al 1000: ' + (fin ? 'Robi estaba en el ' + num(sec) : 'puede estar del ' + num(lo) + ' al ' + num(hi)));
+      var quedan = hi - lo + 1;
+      cuenta.innerHTML = '<span>' + (fin ? '¡Encontrado!' : 'Quedan <b>' + num(quedan) + '</b> ' + (quedan === 1 ? 'número' : 'números')) + '</span><span>Preguntas: <b>' + ints.length + '</b> · 3 estrellas con ' + MX + ' o menos</span>';
     }
-    var tec = teclado([cas], function (v) {
+    function pregunta(g) {
       if (fin) { nuevo(); return; }
-      var g = v[0];
       if (g === null || g < 1 || g > N) { estado(est, 'mal', 'Escribe un número del 1 al ' + num(N) + '.'); return; }
       var r = g === sec ? 0 : g < sec ? 1 : -1, inutil = g < lo || g > hi;
-      ints.push([g, r]); tec.limpia();
+      ints.push([g, r]); tec.limpia(); mitad = null;
       if (r > 0) lo = Math.max(lo, g + 1); else if (r < 0) hi = Math.min(hi, g - 1);
-      lista.textContent = 'Intentos: ' + ints.length + ' · ' + ints.map(function (x) { return num(x[0]) + (x[1] > 0 ? ' ↑' : x[1] < 0 ? ' ↓' : ' ¡sí!'); }).join('  ');
+      lista.innerHTML = ints.map(function (x) { return '<span class="adv-int ' + (x[1] > 0 ? 'mas' : x[1] < 0 ? 'menos' : 'si') + '">' + num(x[0]) + (x[1] > 0 ? ' ↑' : x[1] < 0 ? ' ↓' : '') + '</span>'; }).join('');
       if (r === 0) {
         fin = true; lo = hi = g;
         var e = ints.length <= MX ? 3 : ints.length <= MX + 3 ? 2 : 1;
+        if (conAyuda) e = Math.min(e, 2);
         apunta('adivina', nivel, e); cabecera(); pintaNiveles();
-        estado(est, 'bien', '¡Es el ' + num(sec) + '! En ' + ints.length + (ints.length === 1 ? ' intento. ' : ' intentos. ') + tresEstrellas(e, 24) + (e < 3 ? ' Pista: pregunta siempre por la mitad de lo que queda.' : ''));
-      } else estado(est, inutil ? 'mal' : '', (r > 0 ? 'Es <b>más grande</b> que ' : 'Es <b>más pequeño</b> que ') + num(g) + '.' + (inutil ? ' Ese número ya estaba descartado.' : ' Puede ser del ' + num(lo) + ' al ' + num(hi) + '.'));
-      dibuja();
+        estado(est, 'bien', '¡Es el ' + num(sec) + '! Robi estaba ahí. ' + (ints.length === 1 ? 'A la primera. ' : 'En ' + ints.length + ' preguntas. ') + tresEstrellas(e, 24) +
+          (e < 3 ? (conAyuda && ints.length <= MX ? ' Sin la ayuda de «la mitad», son 3 estrellas.' : ' Pista: pregunta siempre por la mitad de lo que queda.') : ''));
+        revela.innerHTML = '<div><span class="chispas">' + [0, 1, 2, 3, 4, 5, 6, 7].map(function (k) { return '<i style="--k:' + k + '">' + estrella(true, 22) + '</i>'; }).join('') + '</span>' + ROBI + '<b>' + num(sec) + '</b></div>';
+        revela.hidden = false;
+      } else estado(est, inutil ? 'mal' : '', 'Es <b>' + (r > 0 ? 'más grande' : 'más pequeño') + '</b> que ' + num(g) + '.' + (inutil ? ' Ese número ya estaba descartado.' : ' Puede ser del ' + num(lo) + ' al ' + num(hi) + '.'));
+      pinta(g);
+    }
+    function nuevo() {
+      sec = 1 + rnd(N); PRUEBA.sec = sec; lo = 1; hi = N; ints = []; fin = false; mitad = null; conAyuda = false; tec.limpia();
+      revela.hidden = true; revela.innerHTML = ''; lista.innerHTML = '';
+      celdas.forEach(function (c) { c.style.transitionDelay = ''; });
+      enun.innerHTML = 'Robi se ha escondido detrás de un número del <b>1</b> al <b>' + num(N) + '</b>. ¿Detrás de cuál?';
+      estado(est, '', N <= 100 ? 'Toca un número o escríbelo. Te diré si Robi está en uno más grande o más pequeño.' : 'Escribe un número y pulsa «Comprobar». Te diré si Robi está en uno más grande o más pequeño.');
+      pinta(0);
+    }
+    var tec = teclado([cas], function (v) { pregunta(v[0]); });
+    var bMitad = boton('Ver la mitad', function () {
+      if (fin) return;
+      mitad = Math.floor((lo + hi) / 2); conAyuda = true; pinta(0);
+      estado(est, 'pista', 'La mitad de lo que queda es el <b>' + num(mitad) + '</b>: si preguntas por él, descartas la mitad de los números. (Con esta ayuda, hasta 2 estrellas.)');
     });
-    lado.append(enun, h('div', { class: 'respuesta' }, ['¿Es el', cas, '?']), tec.el, est, lista, h('div', { class: 'fila' }, [bOtra]));
-    zona.append(h('div', { class: 'juego' }, [h('div', { class: 'panel' }, [recta, h('p', { class: 'ayuda', text: 'Lo azul es donde todavía puede estar el número.' })]), lado]));
+    lado.append(enun, h('div', { class: 'respuesta' }, ['¿Es el', cas, '?']), tec.el, est, lista, h('div', { class: 'fila' }, [bMitad, boton('Otro número', nuevo, 'primario')]));
+    zona.append(h('div', { class: 'juego' }, [h('div', { class: 'panel' }, [cuenta, caja, h('p', { class: 'ayuda', text: N <= 100 ? 'Los números apagados ya no pueden ser.' : 'Cada bloque tiene cien números. Las casillas apagadas ya no pueden ser.' })]), lado]));
     nuevo();
   }
 
@@ -703,7 +742,7 @@
     { id: 'coordenadas', tit: 'Coordenadas', cursos: '3º a 6º', desc: 'Toca el punto o di dónde está la estrella.', grupo: 'mates', col: '#257f46', niveles: NIV_COORD.map(function (n) { return n.t; }), fn: coordenadas },
     { id: 'variables', tit: '¿Cuánto vale?', cursos: '3º a 6º', desc: 'Lee el programa y di cuánto vale la variable al final.', grupo: 'prog', col: '#b65c06', niveles: NIV_VAR.map(function (n) { return n.t; }), fn: variables },
     { id: 'cubos', tit: 'Cubos y vistas', cursos: '4º a 6º', desc: 'Cuenta los cubos y elige la vista correcta.', grupo: 'mates', col: '#6c44b0', niveles: NIV_CUBOS.map(function (n) { return n.t; }), fn: cubos },
-    { id: 'adivina', tit: 'Adivina el número', cursos: '3º a 6º', desc: 'Encuéntralo con «más grande» y «más pequeño».', grupo: 'mates', col: '#0f7a8a', niveles: NIV_ADIVINA.map(function (n) { return n.t; }), fn: adivina }
+    { id: 'adivina', tit: 'Adivina el número', cursos: '3º a 6º', desc: '¿Dónde se esconde Robi? Cada pregunta apaga los números que ya no pueden ser.', grupo: 'mates', col: '#0f7a8a', niveles: NIV_ADIVINA.map(function (n) { return n.t; }), fn: adivina }
   ];
   var app = $('app'), titulo = $('titulo'), estrellasEl = $('estrellas'), actual = null, nivelActual = 1, limpiar = null, nivEl = null;
   /* ------------------------------------------------------------ escuchar: lee en voz alta el enunciado, los datos, las opciones y las pistas */

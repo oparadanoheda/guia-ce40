@@ -331,7 +331,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** conectar la micro:bit al robot Nezha y programar sus motores.
 - **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar «nezha»). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
-- **En tablets o portátiles:** [[T:velocidad|Velocidad × tiempo]] (niveles 1 y 2, antes de medir con el coche)
+- **En tablets o portátiles:** [[T:velocidad|Aparca el coche Nezha]] (niveles 1 y 2, antes de medir con el coche)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:5-S8-nezha-avanza.mkcd|El Nezha avanza 1 segundo · solución]]
 - **Minuto de uso responsable:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.

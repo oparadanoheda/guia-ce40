@@ -397,6 +397,10 @@ Detalle en `08_Plantillas_y_material.md`.
       - **Al acabar sin estrellas** ya no sale en rojo: «Juega otra vez: con práctica sale mejor».
       - **En la guía**, cada reto tiene «Para la diversidad del aula» (si cuesta, si va rápido y la ayuda que trae la pantalla) y el apartado de los retos explica las ayudas comunes.
     - **Comprobado:** `probar_web.py tablet` resuelve todos los niveles de los 13 retos en tablet horizontal, vertical y móvil, prueba la segunda oportunidad en 8 retos y pasa axe también con las pistas a la vista.
+42. **Versión 1.4 (16 de octubre de 2026): dos retos del alumnado rehechos, que eran los más pobres.**
+    - **Aparca el coche Nezha** (antes «Velocidad × tiempo», `web/tablet/retos2.js`): una pista con cinta métrica, salida, final de pista y, en los niveles 3 y 4, bandera de meta. Se responde y el coche (de lado, con las ruedas girando) arranca con ese número: un marcador cuenta los segundos y los centímetros, y cada segundo deja una marca roja en la cinta, para ver que avanza siempre lo mismo. En los niveles 1 y 2 se pone un cono donde se dice que para. Si se falla la primera vez, el coche arranca con el número escrito y se ve dónde se para (en los niveles 1 y 2, solo el primer segundo, para no dar la respuesta). La columna de la pista es más ancha.
+    - **Adivina el número: ¿dónde se esconde Robi?** (`web/tablet/tablet.js`): un tablero en vez de una barra (20 fichas grandes, la tabla del 100 o mil casillas en diez bloques de cien). Del 1 al 100 se pregunta tocando la ficha. Los números que ya no pueden ser se apagan en una ola desde el que se ha preguntado y ya no se pueden tocar. Al encontrarlo, Robi sale con estrellas. «Ver la mitad» marca el número del medio de lo que queda (con esa ayuda, hasta 2 estrellas).
+    - **Comprobado:** `probar_web.py tablet` resuelve todos los niveles (el coche, con `RETOS.prueba.rapido` para no esperar la animación), prueba tocar las fichas de Adivina y pasa axe en los tres tableros.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

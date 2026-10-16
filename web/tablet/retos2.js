@@ -15,6 +15,7 @@
       ronda: function () { return P.hecho; },
       empieza: function () { bSig.hidden = true; P.segunda = false; cuenta(true); },
       otra: function (pista) { if (P.segunda) return false; P.segunda = true; A.estado(est, 'pista', 'Todavía no. ' + pista); return true; },
+      puedeOtra: function () { return !P.segunda; },
       acaba: function (ok, msg) {
         P.hecho++; if (ok) P.bien++;
         A.estado(est, ok ? 'bien' : 'mal', ok && P.segunda ? msg.replace('¡Muy bien! ', '¡Ahora sí! ') : msg); cuenta(false);
@@ -542,70 +543,154 @@
     empieza();
   }
 
-  /* ================================================================ 13. Velocidad × tiempo */
-  // El coche Nezha a una potencia fija avanza siempre lo mismo cada segundo: distancia = velocidad × tiempo.
-  var NIV_VEL = [{ t: '¿Cuántos centímetros?' }, { t: 'Con medios segundos' }, { t: '¿Cuánto tiempo?' }, { t: '¿Qué velocidad?' }];
+  /* ================================================================ 13. Aparca el coche Nezha: velocidad × tiempo */
+  // A una potencia fija, el coche avanza siempre lo mismo cada segundo: distancia = velocidad × tiempo.
+  // Se responde y el coche arranca con ese número: se ve dónde se para, con una marca roja por cada segundo.
+  var NIV_VEL = [{ t: '¿Dónde para?' }, { t: 'Medios segundos' }, { t: '¿Cuánto tiempo?' }, { t: '¿Qué velocidad?' }];
+  var VX0 = 120, VPX = 3.1, VFIN = 210;   // la punta del coche sale de x = 120; 1 cm son 3,1 px; la pista acaba en 210 cm
   function coma(x) { return String(x).replace('.', ','); }
-  function velocidad(zona, nivel) {
-    var Q = null, hecho = false, pista = h('div'), datos = h('p', { class: 'dato' }), anim = null;
-    var B = base(zona, [pista, datos]);
-    var cas = A.casilla(), bSig = A.boton('Siguiente', nuevo, 'primario');
-    var J = partida('velocidad', nivel, 6, B.lado, B.est, B.ronda, bSig, nuevo);
-    function coche(d) {
-      var x = 30 + d * 3.3, s = '<rect x="20" y="96" width="680" height="10" rx="5" fill="#d5dae3"/>';
-      for (var c = 0; c <= 200; c += 20) s += '<line x1="' + (30 + c * 3.3) + '" y1="90" x2="' + (30 + c * 3.3) + '" y2="112" stroke="#5d6474" stroke-width="2"/><text x="' + (30 + c * 3.3) + '" y="136" text-anchor="middle" font-size="18" font-weight="700" fill="#5d6474">' + c + '</text>';
-      s += '<text x="700" y="160" text-anchor="end" font-size="16" fill="#5d6474">centímetros</text>';
-      s += '<g transform="translate(' + x.toFixed(1) + ' 60)"><rect x="-44" y="0" width="70" height="30" rx="7" fill="#2c5bbf" stroke="#1a1d24" stroke-width="2.5"/><rect x="-30" y="-14" width="40" height="18" rx="5" fill="#9db8ef" stroke="#1a1d24" stroke-width="2"/><circle cx="-28" cy="32" r="9" fill="#1a1d24"/><circle cx="12" cy="32" r="9" fill="#1a1d24"/><path d="M26 15h8" stroke="#f5c518" stroke-width="5"/></g>';
-      return '<svg class="dibujo" viewBox="0 0 720 170" role="img" aria-label="Pista del coche">' + s + '</svg>';
+  function vx(cm) { return VX0 + cm * VPX; }
+  function seg(t) { return coma(t) + (t === 1 ? ' segundo' : ' segundos'); }
+  var ICO_VEL = {
+    vel: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 16.5a8.5 8.5 0 1 1 17 0" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M12 16.5l4.6-5.2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><circle cx="12" cy="16.5" r="2" fill="currentColor"/></svg>',
+    tiempo: '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 13.5V9.6M9.6 3h4.8M12 3v2.6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>',
+    dist: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="8" width="19" height="8.5" rx="1.6" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M6.5 8v3.6M10.5 8v2.2M14.5 8v3.6M18.5 8v2.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
+  };
+  // el coche Nezha de lado; (0, 0) es la punta delantera, a ras de la pista. Las ruedas giran al avanzar.
+  function cocheLado(cm) {
+    var a = (cm * VPX / 12 * 57.3) % 360, r = function (cx) { return '<circle cx="' + cx + '" cy="-12" r="12" fill="#1a1d24"/><circle cx="' + cx + '" cy="-12" r="7" fill="#5d6474"/><path transform="rotate(' + a.toFixed(1) + ' ' + cx + ' -12)" d="M' + cx + ' -18.5v13M' + (cx - 6.5) + ' -12h13" stroke="#c3c8d2" stroke-width="2.4" stroke-linecap="round"/>'; };
+    return '<rect x="-68" y="-42" width="66" height="27" rx="7" fill="#3a3f4b" stroke="#1a1d24" stroke-width="2.5"/>' +
+      '<rect x="-56" y="-53" width="38" height="12" rx="2.5" fill="#1a1d24"/><circle cx="-45" cy="-47" r="2" fill="#ff5a4f"/><circle cx="-37" cy="-47" r="2" fill="#ff5a4f"/><circle cx="-29" cy="-47" r="2" fill="#ff5a4f"/>' +
+      '<rect x="-8" y="-36" width="6" height="8" rx="2" fill="#f5c518"/>' + r(-54) + r(-17);
+  }
+  function chispas(x, y) { var s = ''; for (var k = 0; k < 8; k++) { var an = k * Math.PI / 4, px = x + 52 * Math.cos(an), py = y + 52 * Math.sin(an); s += '<path transform="translate(' + px.toFixed(1) + ' ' + py.toFixed(1) + ') scale(1.6)" d="M0 -7l2 5 5 2-5 2-2 5-2-5-5-2 5-2z" fill="#f5c518" stroke="#b8860b" stroke-width="1"/>'; } return s; }
+  function pastilla(x, ico, txt) {
+    return '<g transform="translate(' + x + ' 8)"><rect width="200" height="56" rx="28" fill="#fff" stroke="#d5dae3" stroke-width="2.5"/><g transform="translate(16 11) scale(1.4)" style="color:#2c5bbf">' + ico.replace('<svg viewBox="0 0 24 24" aria-hidden="true">', '').replace('</svg>', '') + '</g>' +
+      '<text x="64" y="39" font-size="30" font-weight="800" fill="#1a1d24">' + txt + '</text></g>';
+  }
+  // la escena, de arriba abajo: el marcador (tiempo y distancia), la bandera de meta, la pista con el coche, la cinta métrica y las marcas de cada segundo
+  function escenaVel(st) {
+    var W = vx(VFIN) + 46, s = '';
+    s += pastilla(10, ICO_VEL.tiempo, coma(Math.round(st.tm * 10) / 10) + ' s') + pastilla(222, ICO_VEL.dist, Math.round(st.pos) + ' cm');
+    s += '<rect x="8" y="182" width="' + (W - 16) + '" height="96" rx="14" fill="#4a5060"/><line x1="24" y1="196" x2="' + (W - 24) + '" y2="196" stroke="#c3c8d2" stroke-width="4" stroke-dasharray="20 14"/>';
+    s += '<rect x="' + (vx(0) - 4) + '" y="204" width="8" height="74" fill="#fff"/>';
+    for (var k = 0; k < 8; k++) s += '<rect x="' + (vx(VFIN) + 6) + '" y="' + (150 + k * 16) + '" width="22" height="16" fill="' + (k % 2 ? '#fff' : '#c8382f') + '"/>';
+    s += '<rect x="' + (vx(VFIN) + 6) + '" y="150" width="22" height="128" fill="none" stroke="#1a1d24" stroke-width="2.5"/>';
+    if (st.meta != null) {
+      var mx = vx(st.meta);
+      for (var f = 0; f < 6; f++) for (var c = 0; c < 2; c++) s += '<rect x="' + (mx - 8 + c * 8) + '" y="' + (204 + f * 12.33).toFixed(1) + '" width="8" height="12.4" fill="' + ((f + c) % 2 ? '#fff' : '#1a1d24') + '"/>';
+      s += '<line x1="' + mx + '" y1="84" x2="' + mx + '" y2="204" stroke="#5d6474" stroke-width="5" stroke-linecap="round"/>';
+      for (var fy = 0; fy < 3; fy++) for (var fx = 0; fx < 4; fx++) s += '<rect x="' + (mx + 3 + fx * 13) + '" y="' + (86 + fy * 12) + '" width="13" height="12" fill="' + ((fx + fy) % 2 ? '#fff' : '#1a1d24') + '"/>';
+      s += '<rect x="' + (mx + 3) + '" y="86" width="52" height="36" fill="none" stroke="#1a1d24" stroke-width="2"/>';
+      s += (st.meta > 120 ? '<text x="' + (mx - 12) + '" y="116" text-anchor="end"' : '<text x="' + (mx + 64) + '" y="116"') + ' font-size="28" font-weight="800" fill="#1e7a45">meta: ' + st.meta + ' cm</text>';
     }
+    if (st.cono != null) {
+      var cx = vx(Math.min(st.cono, VFIN + 4));
+      s += '<line x1="' + cx + '" y1="204" x2="' + cx + '" y2="278" stroke="#f5c518" stroke-width="5" stroke-dasharray="8 6"/>';
+      s += '<path d="M' + (cx - 18) + ' 184L' + cx + ' 134L' + (cx + 18) + ' 184Z" fill="#f07a1a" stroke="#a24b06" stroke-width="2.5" stroke-linejoin="round"/><path d="M' + (cx - 10.5) + ' 162h21" stroke="#fff" stroke-width="7"/><rect x="' + (cx - 24) + '" y="181" width="48" height="8" rx="3" fill="#a24b06"/>';
+      s += '<text x="' + cx + '" y="122" text-anchor="middle" font-size="28" font-weight="800" fill="#a24b06">' + st.cono + ' cm</text>';
+    }
+    s += '<rect x="' + (vx(0) - 20) + '" y="290" width="' + (vx(VFIN) - vx(0) + 40) + '" height="54" rx="8" fill="#f5c518" stroke="#b8860b" stroke-width="2.5"/>';
+    for (var cm = 0; cm <= VFIN; cm += 10) {
+      s += '<line x1="' + vx(cm) + '" y1="290" x2="' + vx(cm) + '" y2="' + (290 + (cm % 20 ? 12 : 20)) + '" stroke="#1a1d24" stroke-width="2.5"/>';
+      if (cm % 20 === 0) s += '<text x="' + vx(cm) + '" y="335" text-anchor="middle" font-size="25" font-weight="800" fill="#1a1d24">' + cm + '</text>';
+    }
+    if (st.meta != null) s += '<line x1="' + vx(st.meta) + '" y1="290" x2="' + vx(st.meta) + '" y2="316" stroke="#1e7a45" stroke-width="7"/>';
+    st.marcas.forEach(function (m) {
+      s += '<circle cx="' + vx(m[0]) + '" cy="290" r="8" fill="#c8382f" stroke="#fff" stroke-width="2.5"/><text x="' + vx(m[0]) + '" y="374" text-anchor="middle" font-size="24" font-weight="800" fill="#c8382f">' + m[1] + '</text>';
+    });
+    s += '<g transform="translate(' + vx(Math.min(st.pos, VFIN)).toFixed(1) + ' 268) scale(1.5)">' + cocheLado(st.pos) + '</g>';
+    if (st.brillo) s += chispas(vx(st.pos), 222);
+    if (st.fuera) s += '<text x="' + (vx(VFIN) - 8) + '" y="140" text-anchor="end" font-size="28" font-weight="800" fill="#c8382f">¡Se sale de la pista!</text>';
+    return '<svg viewBox="0 0 ' + W + ' 384" role="img" aria-label="El coche en la pista: ' + Math.round(st.pos) + ' centímetros en ' + coma(Math.round(st.tm * 10) / 10) + ' segundos">' + s + '</svg>';
+  }
+  function velocidad(zona, nivel) {
+    var Q = null, hecho = false, corriendo = false, anim = null, st = null;
+    var datos = h('div', { class: 'vel-datos' }), escena = h('div', { class: 'vel-escena' });
+    var B = base(zona, [escena, datos, h('p', { class: 'ayuda', text: 'La distancia se mide desde la punta del coche. Cada segundo, el coche deja una marca roja en la cinta.' })]);
+    zona.querySelector('.juego').classList.add('ancho');  // la pista necesita sitio
+    var cas = A.casilla(), bSig = A.boton('Siguiente', nuevo, 'primario'), lab = h('span', { text: 'cm' });
+    var J = partida('velocidad', nivel, 6, B.lado, B.est, B.ronda, bSig, nuevo);
     function gen() {
       var vv, t, d;
       do {
-        if (nivel === 1) { vv = [10, 15, 20, 25, 30][rnd(5)]; t = 1 + rnd(6); }
+        if (nivel === 1) { vv = [10, 15, 20, 25, 30][rnd(5)]; t = 2 + rnd(5); }
         else if (nivel === 2) { vv = [10, 20, 30, 40][rnd(4)]; t = [0.5, 1.5, 2.5, 3.5, 4.5][rnd(5)]; }
         else if (nivel === 3) { vv = [10, 20, 25, 40][rnd(4)]; t = 1 + rnd(8); }
         else { t = [2, 4, 5][rnd(3)]; vv = 10 + 5 * rnd(7); }
         d = vv * t;
-      } while (d > 200 || d < 10);
+      } while (d > 200 || d < 20);
       return { v: vv, t: t, d: d, pide: nivel <= 2 ? 'd' : nivel === 3 ? 't' : 'v' };
     }
-    function anima(hasta) {
-      cancelAnimationFrame(anim);
-      if (A.quieto()) { pista.innerHTML = coche(hasta); return; }
-      var t0 = null, dur = 900;
-      function f(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / dur); pista.innerHTML = coche(hasta * k); if (k < 1) anim = requestAnimationFrame(f); }
-      anim = requestAnimationFrame(f);
+    function pintaEscena() { escena.innerHTML = escenaVel(st); }
+    function pintaDatos(resp) {
+      var C = [['vel', 'Velocidad', Q.pide === 'v', Q.v, 'cm/s'], ['tiempo', 'Tiempo', Q.pide === 't', Q.t, 's'], ['dist', 'Distancia', Q.pide === 'd', Q.d, 'cm']];
+      datos.innerHTML = C.map(function (c) {
+        var val = c[2] ? (resp == null ? '?' : coma(resp) + ' ' + c[4]) : coma(c[3]) + ' ' + c[4];
+        return '<div class="vd' + (c[2] ? ' incog' : '') + '"><span class="vd-ico">' + ICO_VEL[c[0]] + '</span><span class="vd-nom">' + c[1] + '</span><b>' + val + '</b></div>';
+      }).join('');
     }
-    function nuevo() {
-      hecho = false; J.empieza(); tec.limpia();
-      Q = gen(); PRUEBA.vel = Q;
-      pista.innerHTML = coche(0);
-      var vt = Q.pide === 'v' ? '?' : Q.v, tt = Q.pide === 't' ? '?' : coma(Q.t), dt = Q.pide === 'd' ? '?' : Q.d;
-      datos.innerHTML = 'Velocidad: <b>' + vt + ' cm/s</b> · Tiempo: <b>' + tt + ' s</b> · Distancia: <b>' + dt + ' cm</b>';
-      B.enun.innerHTML = Q.pide === 'd' ? '¿Cuántos centímetros avanza?' : Q.pide === 't' ? '¿Cuántos segundos tarda en llegar?' : '¿A qué velocidad va (cm cada segundo)?';
-      lab.textContent = Q.pide === 'd' ? 'cm' : Q.pide === 't' ? 's' : 'cm/s';
-      A.estado(B.est, '', Q.pide === 'd' ? 'Cada segundo avanza ' + Q.v + ' cm.' : Q.pide === 't' ? '¿Cuántas veces cabe ' + Q.v + ' en ' + Q.d + '?' : 'Si en ' + Q.t + ' s avanza ' + Q.d + ' cm, ¿cuánto avanza en 1 s?');
+    // el coche arranca a vv cm/s durante tt s (si llega al final de la pista, se para allí)
+    function arranca(vv, tt, alParar) {
+      cancelAnimationFrame(anim);
+      var lejos = vv * tt, para = Math.min(lejos, VFIN), tPara = vv ? para / vv : 0;
+      function marcas(tm) { var m = []; for (var s = 1; s <= tm + 1e-9; s++) m.push([vv * s, s + ' s']); return m; }
+      function fin() { st.pos = para; st.tm = tPara; st.marcas = marcas(tPara); st.fuera = lejos > VFIN; corriendo = false; pintaEscena(); alParar(para); }
+      corriendo = true; st.brillo = false; st.fuera = false;
+      if (A.quieto() || PRUEBA.rapido) { fin(); return; }
+      var t0 = null, dur = Math.max(800, Math.min(4200, tPara * 560));
+      function paso(ts) {
+        if (!t0) t0 = ts;
+        var k = Math.min(1, (ts - t0) / dur);
+        st.tm = tPara * k; st.pos = vv * st.tm; st.marcas = marcas(st.tm); pintaEscena();
+        if (k < 1) anim = requestAnimationFrame(paso); else fin();
+      }
+      anim = requestAnimationFrame(paso);
     }
     // la pista del primer fallo: la cuenta que hay que hacer, sin el resultado
     function pistaVel() {
       var v = Q.v, t = Q.t, d = Q.d;
       if (Q.pide === 'd') {
-        if (t % 1 === 0) return 'Cada segundo avanza ' + v + ' cm. En ' + t + (t === 1 ? ' segundo: ' : ' segundos: ') + v + ' × ' + t + ' = ?';
+        if (t % 1 === 0) return 'En ' + seg(t) + ': ' + v + ' × ' + t + ' = ?';
         if (t < 1) return 'Medio segundo es la mitad de un segundo: ¿cuánto es la mitad de ' + v + '?';
-        return 'Cada segundo avanza ' + v + ' cm, y en medio segundo, la mitad (' + v / 2 + ' cm). En ' + coma(t) + ' s: ' + v + ' × ' + Math.floor(t) + ' + ' + v / 2 + ' = ?';
+        return 'En medio segundo avanza la mitad (' + v / 2 + ' cm). En ' + coma(t) + ' s: ' + v + ' × ' + Math.floor(t) + ' + ' + v / 2 + ' = ?';
       }
       if (Q.pide === 't') return '¿Cuántas veces cabe ' + v + ' en ' + d + '? Puedes ir sumando ' + v + ' + ' + v + ' + … hasta llegar a ' + d + '.';
       return 'Reparte ' + d + ' cm entre ' + t + ' segundos: ' + d + ' : ' + t + ' = ?';
     }
-    var lab = h('span', { text: 'cm' });
+    function nuevo() {
+      cancelAnimationFrame(anim); corriendo = false; hecho = false; J.empieza(); tec.limpia();
+      Q = gen(); PRUEBA.vel = Q;
+      st = { pos: 0, tm: 0, marcas: [], meta: Q.pide === 'd' ? null : Q.d, cono: null, fuera: false, brillo: false };
+      pintaDatos(null); pintaEscena();
+      B.enun.innerHTML = Q.pide === 'd' ? 'El coche va a <b>' + Q.v + ' cm por segundo</b> y anda <b>' + seg(Q.t) + '</b>. ¿En qué centímetro se para?'
+        : Q.pide === 't' ? 'La meta está en <b>' + Q.d + ' cm</b> y el coche va a <b>' + Q.v + ' cm por segundo</b>. ¿Cuántos segundos tiene que andar para parar en la meta?'
+          : 'La meta está en <b>' + Q.d + ' cm</b> y el coche tiene que llegar en <b>' + seg(Q.t) + '</b>. ¿A qué velocidad tiene que ir?';
+      lab.textContent = Q.pide === 'd' ? 'cm' : Q.pide === 't' ? 's' : 'cm/s';
+      A.estado(B.est, '', 'Escribe tu respuesta y pulsa «Comprobar»: el coche arrancará con tu número.');
+    }
     var tec = A.teclado([cas], function (r) {
+      if (corriendo) return;
       if (hecho) { if (!bSig.hidden) nuevo(); return; }
       if (r[0] === null) { A.estado(B.est, 'mal', 'Escribe un número.'); return; }
-      var buena = Q.pide === 'd' ? Q.d : Q.pide === 't' ? Q.t : Q.v, ok = r[0] === buena;
-      if (!ok && J.otra(pistaVel())) { tec.limpia(); return; }
+      var x = r[0], buena = Q.pide === 'd' ? Q.d : Q.pide === 't' ? Q.t : Q.v, ok = x === buena;
+      var vv = Q.pide === 'v' ? x : Q.v, tt = Q.pide === 't' ? x : Q.t;
+      if (Q.pide === 'd') st.cono = x;
+      pintaDatos(x); tec.limpia();
+      A.estado(B.est, '', 'El coche arranca…');
+      if (!ok && J.puedeOtra()) {  // primer fallo: no cuenta
+        // en «¿dónde se para?» anda solo 1 segundo (si anduviera todo, se vería la respuesta); en las otras, anda con tu número
+        if (Q.pide === 'd') arranca(Q.v, Q.t > 1 ? 1 : 0, function () { J.otra((Q.t > 1 ? 'Mira la marca «1 s»: en 1 segundo avanza ' + Q.v + ' cm. ' : '') + pistaVel()); });
+        else arranca(vv, tt, function (p) { J.otra('Con ' + coma(x) + (Q.pide === 't' ? ' s' : ' cm/s') + ' se para en ' + Math.round(p) + ' cm' + (vv * tt > VFIN ? ' (se sale de la pista)' : '') + ', y la meta está en ' + Q.d + ' cm. ' + pistaVel()); });
+        return;
+      }
       hecho = true;
-      anima(Q.d);
-      J.acaba(ok, (ok ? '¡Muy bien! ' : 'No. ') + (Q.pide === 'd' ? Q.v + ' × ' + coma(Q.t) + ' = ' + Q.d + ' cm.' : Q.pide === 't' ? Q.d + ' : ' + Q.v + ' = ' + Q.t + ' s.' : Q.d + ' : ' + Q.t + ' = ' + Q.v + ' cm/s.'));
+      var cuenta = Q.pide === 'd' ? Q.v + ' × ' + coma(Q.t) + ' = ' + Q.d + ' cm' : Q.pide === 't' ? Q.d + ' : ' + Q.v + ' = ' + Q.t + ' s' : Q.d + ' : ' + Q.t + ' = ' + Q.v + ' cm/s';
+      arranca(Q.pide === 'd' ? Q.v : vv, Q.pide === 'd' ? Q.t : tt, function (p) {
+        if (ok) { st.brillo = true; pintaEscena(); }
+        J.acaba(ok, ok ? '¡Muy bien! ' + (Q.pide === 'd' ? 'Se para justo en el cono: ' : 'Para justo en la meta: ') + cuenta + '.'
+          : 'No. ' + (Q.pide === 'd' ? 'Se para en ' + Q.d + ' cm, no en ' + x + ' cm: ' : 'Con ' + coma(x) + (Q.pide === 't' ? ' s' : ' cm/s') + ' se para en ' + Math.round(p) + ' cm. La respuesta era ') + cuenta + '.');
+      });
     });
     B.lado.append(B.enun, B.ronda, h('div', { class: 'respuesta' }, [cas, lab]), tec.el, B.est, h('div', { class: 'fila' }, [bSig]));
     PRUEBA.resuelve = function () { var r = Q.pide === 'd' ? Q.d : Q.pide === 't' ? Q.t : Q.v; String(r).split('').forEach(pulsaTecla); pulsaTecla('Comprobar'); };
@@ -614,7 +699,7 @@
   }
 
   A.registra({ id: 'condiciones', tit: '¿Qué hace el programa?', cursos: '4º a 6º', grupo: 'prog', col: '#00A4A6', desc: 'Si, si no, tres caminos, «y» y «o»: sigue el programa.', niveles: NIV_SI.map(function (n) { return n.t; }), fn: condiciones });
-  A.registra({ id: 'velocidad', tit: 'Velocidad × tiempo', cursos: '5º y 6º', grupo: 'mates', col: '#ad5b12', desc: 'El coche Nezha: distancia, tiempo y velocidad.', niveles: NIV_VEL.map(function (n) { return n.t; }), fn: velocidad });
+  A.registra({ id: 'velocidad', tit: 'Aparca el coche Nezha', cursos: '5º y 6º', grupo: 'mates', col: '#ad5b12', desc: 'Velocidad × tiempo: haz que el coche pare justo en la meta.', niveles: NIV_VEL.map(function (n) { return n.t; }), fn: velocidad });
   A.registra({ id: 'regla', tit: 'La regla secreta', cursos: '3º a 6º', grupo: 'logica', col: '#257f46', desc: 'Prueba números del 1 al 30 y descubre la regla de la máquina.', niveles: NIV_REGLA.map(function (n) { return n.t; }), fn: regla });
   A.registra({ id: 'balanza', tit: 'Ordenar con la balanza', cursos: '3º a 6º', grupo: 'logica', col: '#b65c06', desc: 'Ordena las cajas con las menos pesadas posibles.', niveles: NIV_BAL.map(function (n) { return n.t; }), fn: balanza });
 

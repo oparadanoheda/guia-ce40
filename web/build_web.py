@@ -26,7 +26,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.3", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.4", "octubre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
