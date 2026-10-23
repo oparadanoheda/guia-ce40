@@ -16,7 +16,7 @@ import segno  # noqa: E402
 import materiales as MAT  # noqa: E402
 import makecode_gen as MK  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
-from videos import VIDEOS, BY_SESSION  # noqa: E402
+from videos import VIDEOS, BY_SESSION, VERSIONES  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
 from mision_clase import MISION  # noqa: E402
 from pictos_mision import pictos_paso  # noqa: E402
@@ -26,7 +26,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.4", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.5", "octubre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -1195,7 +1195,7 @@ def video_pages(courses):
         chips = "".join(f'<a class="rindex-chip" href="#{sid}" style="--c:var(--{names[sid][0]})">{E(names[sid][1])}</a>' for sid in sids)
         out.append(f'''<section class="page vid-page" id="v-{vid}" data-nav-key="proyectar" hidden><div class="sheet">
 <div class="pj-head"><div><p class="eyebrow">Vídeo · {E(crs)}</p><h1>{E(title)}</h1></div>
-<div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a><button type="button" class="pj-btn" data-vfull>Pantalla completa</button><a class="pj-btn" href="#videos">Todos los vídeos</a></div></div>
+<div class="pj-row"><a class="pj-btn back-inline" href="#" hidden>← Volver a la sesión</a>{(f'<a class="pj-btn" href="#v-{VERSIONES[vid][0]}">{E(VERSIONES[vid][1])}</a>') if vid in VERSIONES else ''}<button type="button" class="pj-btn" data-vfull>Pantalla completa</button><a class="pj-btn" href="#videos">Todos los vídeos</a></div></div>
 <div class="vid-frame"><iframe data-src="videos/{fname}" title="Vídeo: {E(title)}" allow="fullscreen" allowfullscreen></iframe></div>
 <p class="vid-idea">{E(idea)}</p>
 <ul class="vid-tips"><li><b>Pausas para pensar:</b> actívalas en la barra del vídeo y se detiene en dos preguntas para la clase.</li>

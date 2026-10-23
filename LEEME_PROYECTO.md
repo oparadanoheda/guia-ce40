@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **20 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **21 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -89,7 +89,7 @@ Programación Mate 4.0 26-27/
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
 | `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js` con el núcleo y los cinco primeros retos, `retos2.js` con los ocho siguientes, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
 | `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y de su diapositiva en la proyección |
-| `videos/` | Los 20 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
+| `videos/` | Los 21 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
 | `recursos_oficiales.py` | Biblioteca de enlaces oficiales (EducaMadrid, Tale-Bot, True True, ART2BIT, Nezha, ALBOR, ARASAAC…) |
@@ -401,6 +401,10 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Aparca el coche Nezha** (antes «Velocidad × tiempo», `web/tablet/retos2.js`): una pista con cinta métrica, salida, final de pista y, en los niveles 3 y 4, bandera de meta. Se responde y el coche (de lado, con las ruedas girando) arranca con ese número: un marcador cuenta los segundos y los centímetros, y cada segundo deja una marca roja en la cinta, para ver que avanza siempre lo mismo. En los niveles 1 y 2 se pone un cono donde se dice que para. Si se falla la primera vez, el coche arranca con el número escrito y se ve dónde se para (en los niveles 1 y 2, solo el primer segundo, para no dar la respuesta). La columna de la pista es más ancha.
     - **Adivina el número: ¿dónde se esconde Robi?** (`web/tablet/tablet.js`): un tablero en vez de una barra (20 fichas grandes, la tabla del 100 o mil casillas en diez bloques de cien). Del 1 al 100 se pregunta tocando la ficha. Los números que ya no pueden ser se apagan en una ola desde el que se ha preguntado y ya no se pueden tocar. Al encontrarlo, Robi sale con estrellas. «Ver la mitad» marca el número del medio de lo que queda (con esa ayuda, hasta 2 estrellas).
     - **Comprobado:** `probar_web.py tablet` resuelve todos los niveles (el coche, con `RETOS.prueba.rapido` para no esperar la animación), prueba tocar las fichas de Adivina y pasa axe en los tres tableros.
+43. **Versión 1.5 (23 de octubre de 2026): el vídeo «Variable» con MakeCode.**
+    - **`anim-variable-makecode.html`** (5º y 6º; enlazado en 5º S2 y 6º S2): la misma idea, capítulos, pausas para pensar y frase clave que «Variable», pero con la micro:bit y los bloques de MakeCode con sus colores (al iniciar, fijar, cambiar … por, mostrar número, al presionarse el botón). El botón A suma un punto y la pantalla de 5 × 5 luces lo enseña con las cifras de la micro:bit; el botón B quita una vida. Las cajas, el registro y la iluminación del bloque que se ejecuta son como en la versión de Scratch.
+    - **En la guía**, la página de cada uno de los dos vídeos tiene un botón para pasar a la otra versión (`VERSIONES` en `web/videos.py`).
+    - Está hecho sobre `anim-variable.html`: mismo reproductor, sonido, subtítulos y textos finales.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

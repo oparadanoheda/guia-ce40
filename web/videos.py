@@ -20,6 +20,8 @@ VIDEOS = [
      "Un evento es la señal que hace empezar un programa.", 48.4, ["c3-s10", "c4-s13", "c6-s2"]),
     ("variable", "anim-variable.html", "Variable", "3º-6º",
      "Una variable guarda un número que puede cambiar.", 44.0, ["c3-s13", "c4-s4", "c4-s12"]),
+    ("variable-makecode", "anim-variable-makecode.html", "Variable (MakeCode)", "5º-6º",
+     "Una variable guarda un número que puede cambiar.", 28.0, ["c5-s2", "c6-s2"]),
     ("depurar", "anim-depurar.html", "Depurar", "1º-3º",
      "Depurar es encontrar el error y arreglarlo.", 45.6, ["c1-s6", "c2-s5", "c3-s6"]),
     ("depurar-superior", "anim-depurar-superior.html", "Depurar", "4º-6º",
@@ -45,6 +47,9 @@ VIDEOS = [
     ("funcion", "anim-funcion.html", "Funciones", "6º",
      "Un buen programa es corto, claro y fácil de cambiar.", 30.5, ["c6-s6"]),
 ]
+
+# Vídeos con dos versiones (bloques de Scratch y de MakeCode): la página de cada uno enlaza la otra
+VERSIONES = {"variable": ("variable-makecode", "Versión con MakeCode"), "variable-makecode": ("variable", "Versión con Scratch")}
 
 # sesión -> vídeos que se enlazan en ella
 BY_SESSION = {}
