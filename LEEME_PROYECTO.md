@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **33 herramientas interactivas** para la pizarra digital (proyectables, con 120 modos o retos), **21 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **34 herramientas interactivas** para la pizarra digital (proyectables, con 123 modos o retos), **21 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -85,7 +85,7 @@ Programación Mate 4.0 26-27/
 | `proyeccion.js`, `proyeccion.css` | Modo proyección de cada sesión. Los datos van en un `<script type="application/json" class="pz-data">` dentro de cada ficha (función `projection_data` de `build_web.py`) |
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
-| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables*.css` | Las 33 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes |
+| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables7.js`, `proyectables*.css` | Las 34 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes; en `proyectables7.js` (con `proyectables7.css`), eventos |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
 | `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js` con el núcleo y los cinco primeros retos, `retos2.js` con los ocho siguientes, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
 | `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y de su diapositiva en la proyección |
@@ -410,6 +410,14 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Qué es:** en la tarjeta «Para usar en esta sesión», los conceptos de cursos o sesiones anteriores que la sesión da por sabidos (por ejemplo, en 6º S1: evento, variable, sensores y números al azar), cada uno con los recursos de ese curso para repasarlo: el vídeo (en 5º y 6º, el de MakeCode si lo hay), la herramienta para la pizarra en su modo de repaso, el póster de M26 (abre su página), el reto de tablet y «Se vio en 5º S2», enlazado a la última sesión en que se trabajó. Si un concepto no tiene recurso propio, salen sus bloques en Scratch o en MakeCode.
     - **Dónde está:** la línea `- **Para repasar:** …` de cada sesión (63 sesiones de 3º a 6º, elegidas a mano) y `web/repaso.py` (los 23 conceptos, sus recursos por curso, las sesiones donde se trabaja cada uno y la lista de recursos que faltan). No se repite un concepto que ya es el vídeo de la sesión.
     - **Lo que falta** está en el apartado 11 («Recursos para repasar que faltan»).
+45. **Versión 1.7 (23 de octubre de 2026): herramienta «Eventos: ¿qué programa empieza?».** Es el primer recurso de la lista de «Recursos para repasar que faltan» (apartado 11), el que pedían más sesiones (18).
+    - **Tres modos** (`web/proyectables7.js` y `proyectables7.css`):
+      - **En Scratch:** Robi y una estrella con siete programas (bandera, tecla espacio, flecha derecha, clic en Robi y uno sin evento). Al pulsar un evento se iluminan los programas que se ponen en marcha y, dentro de cada uno, el bloque que se está haciendo, y el escenario cambia. Con la tecla espacio empiezan dos programas a la vez, en dos objetos.
+      - **En la micro:bit:** al iniciar, los botones A y B y agitar (el dado, con «escoger al azar de 1 a 6»), con la pantalla de luces y un bloque suelto en gris, como en MakeCode.
+      - **¿Cuáles empiezan?:** seis rondas con un evento y seis programas al azar. La clase elige los que se ponen en marcha y cada uno explica por qué sí o por qué no (otra tecla, otro objeto, sin evento, un mensaje que nadie envía; en MakeCode, «para siempre» empieza al encender la placa y A+B no es pulsar A).
+    - Antes de pulsar, «¿Empieza?» deja marcar la predicción, y después dice cuántas se han acertado. Se puede usar el teclado del aula: espacio y flecha derecha en Scratch, y las teclas A y B en la micro:bit.
+    - **Enlazada** en 3º S10, 4º S10, 5º S2 y 6º S2, y en «Para repasar» (evento).
+    - **Guía para el docente** en `guias_proyectables.py`.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
@@ -433,7 +441,6 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 **Si 5º y 6º dejan de ser quincenales:** hay un plan acordado (7 de octubre de 2026) en `Propuesta 5º y 6º semanal.md`: 24 sesiones con imprescindibles y recomendadas, para unas 3 de cada 4 semanas. En 2026-27 siguen quincenales.
 
 **Recursos para repasar que faltan** (`FALTAN` en `web/repaso.py`; hoy salen solo los bloques). Por orden de cuántas sesiones los piden en «Para repasar»:
-- **Evento (18 sesiones de 3º a 6º):** una herramienta para la pizarra con varios eventos y qué programa empieza con cada uno. El vídeo «Evento» ya da la idea.
 - **Para siempre (6):** vídeo o herramienta sobre el bucle que no para frente a «repetir N veces», y para qué sirve mirar un sensor todo el rato (3º S14, 4º S10 y S11, 5º S4 y S7, 6º S3).
 - **Números al azar (5):** vídeo o herramienta sobre el dado electrónico y la posición aleatoria, y por qué cada vez sale distinto (4º S5, S6 y S11, 5º S3, 6º S1).
 - **Descomponer en 3º-6º (5):** herramienta para partir un proyecto en partes; solo hay vídeo de 1º-4º y póster (3º S19, 4º S18, 5º S11, 6º S6 y S10).

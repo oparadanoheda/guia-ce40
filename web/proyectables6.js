@@ -543,5 +543,5 @@
   });
   document.addEventListener('click', function (e) { var q = e.target.closest && e.target.closest('.tqr.tqr-max'); if (q) q.classList.remove('tqr-max'); });
 
-  window.PJNuevas = { maxPreguntas: maxPreguntas, cadena: cadena, mitad: mitad, vFrente: vFrente, vLado: vLado, suma: suma, grada: grada };
+  window.PJNuevas = { maxPreguntas: maxPreguntas, cadena: cadena, mitad: mitad, vFrente: vFrente, vLado: vLado, suma: suma, grada: grada, porModos: porModos, pensar: pensar, selector: selector };
 })();

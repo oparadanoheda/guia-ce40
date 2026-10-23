@@ -27,6 +27,7 @@ CONCEPTOS = {
         ("456", "tablet", "condiciones", "¿Qué hace el programa?")], ["c2-s9", "c2-s11", "c3-s5", "c4-s3", "c5-s4"]),
     "evento": ("Evento", [
         ("3456", "video", "evento-superior", ""), ("3456", "poster", 7, ""),
+        ("34", "pizarra", "eventos", "Eventos en Scratch"), ("56", "pizarra", "eventos.microbit", "Eventos en la micro:bit"), ("3456", "pizarra", "eventos.reto", "Eventos · ¿cuáles empiezan?"),
         ("34", "bloque", "", "En Scratch: **al hacer clic en la bandera**, **al presionar tecla**, **al hacer clic en este objeto**."),
         ("56", "bloque", "", "En MakeCode: **al iniciar**, **al presionarse el botón A**, **al agitar**.")],
         ["c2-s10", "c3-s10", "c4-s10", "c5-s2", "c6-s2"]),
@@ -89,7 +90,6 @@ CONCEPTOS = {
 FALTAN = [
     ("para-siempre", "Vídeo o herramienta: un bucle que no para (por siempre / para siempre) frente a repetir N veces, y para qué sirve mirar un sensor todo el rato."),
     ("azar", "Vídeo o herramienta: números al azar (el dado electrónico, la posición aleatoria) y por qué cada vez sale distinto."),
-    ("evento", "Herramienta para la pizarra: varios eventos y qué programa empieza con cada uno (en el vídeo «Evento» ya está la idea)."),
     ("funciones", "Herramienta para la pizarra o reto de tablet: dar nombre a un trozo de programa y llamarlo."),
     ("motores", "Vídeo: el coche Nezha, los dos motores y el signo de la velocidad (por qué uno va en positivo y el otro en negativo para avanzar)."),
     ("descomponer", "Herramienta para la pizarra en 3º-6º: partir un proyecto en partes (solo hay vídeo de 1º-4º y póster)."),

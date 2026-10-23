@@ -265,6 +265,28 @@ GUIAS = {
         ],
         "mates": "Polígonos regulares, ángulos y giros, la vuelta completa (360°) y la división.",
     },
+    "eventos": {
+        "idea": "Un **evento** es la señal que hace que un programa empiece: hacer clic en la bandera, pulsar una tecla, hacer clic en un objeto, pulsar un botón de la micro:bit, encenderla o agitarla. Tres modos: **En Scratch** (Robi y una estrella con siete programas), **En la micro:bit** (al iniciar, los botones A y B y agitar) y **¿Cuáles empiezan?** (seis rondas para predecir qué programas se ponen en marcha con un evento).",
+        "contar": [
+            "Antes de pulsar un evento, la clase marca con «¿Empieza?» los programas que cree que se pondrán en marcha. Después se pulsa y se comprueba: el programa que se ejecuta se ilumina, y dentro de él, el bloque que está haciendo.",
+            "Con la tecla espacio se ponen en marcha **dos programas a la vez**, uno en Robi y otro en la estrella: un mismo evento puede empezar varios programas, también en objetos distintos.",
+            "El programa sin evento de arriba no empieza nunca. Es un bicho frecuente cuando se monta un programa: los bloques están bien, pero falta el evento.",
+            "En la micro:bit pasa lo mismo, y MakeCode pone en gris los bloques sueltos. En el juego, la placa también avisa de que «para siempre» empieza al encenderla.",
+            "En el aula también se puede usar el teclado: espacio y flecha derecha en Scratch, y las teclas A y B en la micro:bit.",
+        ],
+        "preguntas": [
+            ("En Scratch, ¿qué pasa si pulsamos la bandera dos veces seguidas?",
+             ["¿Qué programas empiezan con la bandera?"],
+             "Vuelven a empezar los dos programas de la bandera: Robi vuelve a su sitio y a saludar, y la estrella, al suyo. Los programas de las teclas no hacen nada."),
+            ("Queremos que la estrella también diga «¡Hola!» al empezar el juego. ¿Qué hacemos y por qué no hay que tocar a Robi?",
+             ["Cada objeto tiene sus propios programas."],
+             "En la estrella, debajo de «al hacer clic en la bandera», se añade «decir ¡Hola!». La bandera pone en marcha **todos** los programas que empiezan con ella, en todos los objetos."),
+            ("En la micro:bit, ¿se pueden poner dos «al presionarse el botón A» en el mismo programa?",
+             ["Pruébalo en MakeCode."],
+             "No: MakeCode deja solo uno por evento y el segundo se queda en gris. Si hay que hacer varias cosas, van todas dentro del mismo evento, una debajo de otra. En Scratch, en cambio, sí puede haber varios programas con el mismo evento."),
+        ],
+        "mates": "Relaciones de causa y efecto, simultaneidad (dos cosas a la vez) y predicción antes de comprobar.",
+    },
     "variables": {
         "idea": "Una variable es una **caja con nombre**: el nombre no cambia; lo que guarda, sí. Cuatro modos, con los bloques escritos como en **Scratch** o en **MakeCode** (botón de arriba): **La caja** (dar el valor frente a sumar), **Juego de cálculo** (puntos y vidas en un juego de verdad, con el programa iluminado), **¿Cuánto vale al final?** (programas cortos paso a paso, con su tabla) y **La mascota** (la variable hambre de 6º S2).",
         "contar": [

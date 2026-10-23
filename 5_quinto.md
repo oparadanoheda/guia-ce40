@@ -125,11 +125,10 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 
 - **Qué aprenden:** qué es una placa programable, sus partes (pantalla de 25 luces, botones A y B, sensores) y cómo se programa con bloques.
 - **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
-- **Para proyectar:** [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
+- **Para proyectar:** [[P:eventos.microbit|Eventos en la micro:bit]] · [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
 - **En tablets o portátiles:** [[T:binario|Cartas binarias]] (niveles 1 a 3: así cuenta la micro:bit, con unos y ceros)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
 - **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
-- **Para repasar:** evento
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**

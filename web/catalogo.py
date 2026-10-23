@@ -23,6 +23,8 @@ PROYECTABLES = [
      [("", "El ordenador piensa"), ("clase", "Piensa la clase"), ("cuantas", "¿Cuántas preguntas?")]),
     ("poligonos", "⬡", "Polígonos", "3º-4º", "Cuántos lados, cuánto girar: el programa que dibuja cada polígono y el rosetón.",
      [("", "Polígonos"), ("roseton", "Rosetón")]),
+    ("eventos", "", "Eventos: ¿qué programa empieza?", "3º-6º", "Cada programa empieza con un evento: la bandera, una tecla, un clic, un botón o al iniciar. Se pulsa el evento y se ve qué programas se ponen en marcha (a la vez, si son varios), en Scratch y en la micro:bit, y un juego para predecirlo.",
+     [("", "En Scratch"), ("microbit", "En la micro:bit"), ("reto", "¿Cuáles empiezan?")]),
     ("variables", "📦", "Variables", "3º-6º", "Cajas con nombre y los bloques que las cambian, con los nombres de Scratch o de MakeCode: dar el valor frente a sumar, un juego de cálculo con puntos y vidas, programas para predecir cuánto vale una variable al final y la mascota virtual.",
      [("", "La caja"), ("juego", "Juego de cálculo"), ("traza", "¿Cuánto vale al final?"), ("mascota", "La mascota (MakeCode)")]),
     ("coordenadas", "🐱", "Coordenadas del escenario", "3º-6º", "El escenario de Scratch con sus ejes x e y: explorar los puntos, mover al gato con bloques (ir a, sumar a x, dar a x el valor), leer y colocar puntos, y dibujar figuras uniendo puntos.",

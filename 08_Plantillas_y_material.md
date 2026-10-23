@@ -64,6 +64,7 @@ Todo el material de la guía está **ya hecho**: no hay que dibujar, recortar pl
 | ¿Conduce la electricidad? | 3º-4º | Circuito con pila y bombilla para probar materiales. |
 | Matriz de LED de la micro:bit | 5º-6º | Dibujar iconos y ver las coordenadas de cada luz. |
 | Sensor y umbral | 5º-6º | Qué mide el sensor, dónde está el umbral y qué decide el programa. |
+| Eventos: ¿qué programa empieza? | 3º-6º | Qué programas se ponen en marcha con la bandera, una tecla, un clic o un botón, en Scratch y en la micro:bit, y un juego para predecirlo. |
 | Mensajes: enviar y recibir | 4º-6º | En Scratch, a quién llega un mensaje y quién reacciona; con la radio de la micro:bit, quién recibe según el grupo. |
 | Velocidad × tiempo | 5º-6º | Predecir cuánto avanza el robot Nezha. |
 | Entrena a la máquina | 5º-6º | Ver cómo aprende una IA y cómo se equivoca con datos sesgados, sin cámara. |

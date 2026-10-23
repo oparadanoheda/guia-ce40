@@ -295,7 +295,7 @@ Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucl
 ### S10 · Moverse con la bandera y con las teclas `PC`
 
 - **Qué aprenden:** mover un personaje con bloques y con el teclado (eventos).
-- **Para proyectar:** [[P:coordenadas|Coordenadas del escenario]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:flota|Hundir la flota]]
+- **Para proyectar:** [[P:eventos|Eventos: ¿qué programa empieza?]] · [[P:coordenadas|Coordenadas del escenario]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:flota|Hundir la flota]]
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 1 y 2, para quien termine: tocar y leer puntos del 0 al 6)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
