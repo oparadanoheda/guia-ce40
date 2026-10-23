@@ -86,16 +86,16 @@
     <g id="world">
       <!-- Paneles del editor -->
       <g id="panels">
-        <rect x="60" y="60" width="560" height="660" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
+        <rect x="60" y="60" width="560" height="690" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
         <path d="M60 82Q60 60 82 60H598Q620 60 620 82V100H60Z" fill="#eceef2"/>
         <text x="84" y="81" dominant-baseline="central" font-size="28" font-weight="700" fill="#4a4f5c">La micro:bit</text>
         <rect x="660" y="60" width="1200" height="220" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
         <path d="M660 82Q660 60 682 60H1838Q1860 60 1860 82V100H660Z" fill="#eceef2"/>
         <text x="684" y="81" dominant-baseline="central" font-size="28" font-weight="700" fill="#4a4f5c">Variables</text>
-        <rect x="660" y="300" width="780" height="420" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
+        <rect x="660" y="300" width="780" height="450" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
         <path d="M660 322Q660 300 682 300H1418Q1440 300 1440 322V340H660Z" fill="#eceef2"/>
         <text x="684" y="321" dominant-baseline="central" font-size="28" font-weight="700" fill="#4a4f5c">Programa (MakeCode)</text>
-        <rect x="1460" y="300" width="400" height="420" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
+        <rect x="1460" y="300" width="400" height="450" rx="22" fill="#fff" stroke="#d6d9e0" stroke-width="3"/>
         <path d="M1460 322Q1460 300 1482 300H1838Q1860 300 1860 322V340H1460Z" fill="#eceef2"/>
         <text x="1484" y="321" dominant-baseline="central" font-size="28" font-weight="700" fill="#4a4f5c">Registro</text>
         <g font-size="27" font-weight="700" fill="#6b7180">
@@ -209,7 +209,9 @@
     [0.4,  11.8, 'Una variable es una caja con nombre. Al iniciar, puntos vale 0.'],
     [12.3, 29.8, 'Cada vez que se pulsa A: cambiar puntos por 1, y se ve en las luces.'],
     [30.3, 35.8, 'La caja se llama igual. Lo de dentro cambia.'],
-    [36.3, 45.8, 'Puede haber varias cajas: aquí, las vidas. El botón B quita una.'],
+    [36.3, 38.1, 'Puede haber varias cajas: aquí, las vidas.'],
+    [38.4, 40.9, 'Un evento nuevo: al pulsar B, cambiar vidas por −1 y mostrar las vidas.'],
+    [41.2, 45.8, 'Ahora la pantalla enseña las vidas, con un corazón delante para que se sepa.'],
     [49.2, 53.8, 'Otra vez B: le queda 1 vida.']
   ];
   // Pulsaciones de los botones (el valor cambia 0,4 s después y la pantalla lo enseña 0,4 s más tarde)
@@ -263,11 +265,17 @@
   // +1 y −1 que suben desde la pantalla
   var FLOTA_A = PULSA_A.map(function(t){ return { t: t + .4, e: txt($('fx'), CXM + 150, 290, '+1', { 'text-anchor': 'middle', 'font-size': 46, 'font-weight': 800, fill: '#2a8f4f' }) }; });
   var FLOTA_B = PULSA_B.map(function(t){ return { t: t + .4, e: txt($('fx'), CXM + 150, 290, '−1', { 'text-anchor': 'middle', 'font-size': 46, 'font-weight': 800, fill: '#cf3f36' }) }; });
-  var notaPulsa = txt($('fx'), CXM, 640, '', { 'text-anchor': 'middle', 'font-size': 32, 'font-weight': 800, fill: '#1a1d24' });
+  var notaPulsa = txt($('fx'), CXM, 624, '', { 'text-anchor': 'middle', 'font-size': 32, 'font-weight': 800, fill: '#1a1d24' });
+  // qué variable enseña la pantalla en cada momento
+  var enPant = el('g', {}, $('fx'));
+  txt(enPant, CXM - 14, 690, 'En la pantalla:', { 'text-anchor': 'end', 'font-size': 30, 'font-weight': 700, fill: '#4a4f5c' });
+  var enPantV = txt(enPant, CXM + 2, 690, '', { 'font-size': 32, 'font-weight': 800, fill: '#DC143C' });
   // Las cifras de la micro:bit (5 × 5), como en su pantalla
-  var CIFRAS = { 0: '.##..#..#.#..#.#..#..##..', 1: '..#...##....#....#...###.', 2: '###.....#..##..#....####.', 3: '####....#...#..#..#..##..' };
+  var CIFRAS = { corazon: '.#.#.##########.###...#..', 0: '.##..#..#.#..#.#..#..##..', 1: '..#...##....#....#...###.', 2: '###.....#..##..#....####.', 3: '####....#...#..#..#..##..' };
   // Lo que enseña la pantalla en cada momento: [segundo, número]
-  var PANTALLA = [[5.4, 0], [15.4, 1], [21.1, 2], [26.9, 3], [41.9, 2], [49.9, 1]];
+  // con B: primero el corazón (mostrar ícono) y después el número de vidas
+  var PANTALLA = [[5.4, 0, 'puntos'], [15.4, 1, 'puntos'], [21.1, 2, 'puntos'], [26.9, 3, 'puntos'],
+    [41.9, 'corazon', 'un corazón'], [42.7, 2, 'vidas'], [49.9, 'corazon', 'un corazón'], [50.7, 1, 'vidas']];
 
   /* ================= Valores de las variables ================= */
   var PUNTOS = [[5.0, 0], [15.0, 1], [20.7, 2], [26.5, 3]];
@@ -313,6 +321,12 @@
         var e3 = txt(g, cx, cy + 1, p.num, { 'text-anchor': 'middle', 'font-size': 24, 'font-weight': 700, fill: '#1a1d24' });
         var w3 = Math.max(42, measure(e3) + 22); r3.setAttribute('width', w3); e3.setAttribute('x', cx + w3 / 2); cx += w3 + 9; return;
       }
+      if (p.ico !== undefined) {
+        var r5 = el('rect', { x: cx, y: cy - 17, width: 64, height: 34, rx: 6, fill: 'rgba(0,0,0,.2)' }, g);
+        for (var q = 0; q < 25; q++) if (CIFRAS[p.ico].charAt(q) === '#') el('rect', { x: cx + 8 + (q % 5) * 5.2, y: cy - 13 + Math.floor(q / 5) * 5.2, width: 4.4, height: 4.4, fill: '#fff' }, g);
+        txt(g, cx + 40, cy + 1, '▾', { 'font-size': 20, 'font-weight': 700, fill: '#fff' });
+        r5.setAttribute('width', 64); cx += 64 + 9; return;
+      }
       if (p.v !== undefined) {
         var r4 = el('rect', { x: cx, y: cy - 17, width: 10, height: 34, rx: 17, fill: COL.vr, stroke: 'rgba(0,0,0,.25)', 'stroke-width': 1.5 }, g);
         var e4 = txt(g, cx + 14, cy + 1, p.v, { 'font-size': 24, 'font-weight': 700, fill: '#fff' });
@@ -351,9 +365,10 @@
   var E_A = evento(X2, 360, COL.inp, ['al presionarse el botón', { drop: 'A' }], 2);
   var B_CP = bloque(X2 + 22, E_A.y0, COL.vr, ['cambiar', { drop: 'puntos' }, 'por', { num: '1' }]);
   var B_MP = bloque(X2 + 22, E_A.y0 + 44, COL.bas, ['mostrar número', { v: 'puntos' }]);
-  var E_B = evento(X2, 548, COL.inp, ['al presionarse el botón', { drop: 'B' }], 2);
+  var E_B = evento(X2, 536, COL.inp, ['al presionarse el botón', { drop: 'B' }], 3);
   var B_CV = bloque(X2 + 22, E_B.y0, COL.vr, ['cambiar', { drop: 'vidas' }, 'por', { num: '-1' }]);
-  var B_MV = bloque(X2 + 22, E_B.y0 + 44, COL.bas, ['mostrar número', { v: 'vidas' }]);
+  var B_IC = bloque(X2 + 22, E_B.y0 + 44, COL.bas, ['mostrar ícono', { ico: 'corazon' }]);
+  var B_MV = bloque(X2 + 22, E_B.y0 + 88, COL.bas, ['mostrar número', { v: 'vidas' }]);
 
   /* ================= Registro (tabla de seguimiento) ================= */
   var ROWS = [
@@ -402,8 +417,12 @@
 
     // La pantalla de la micro:bit
     var n = null;
-    PANTALLA.forEach(function(P){ if (t >= P[0]) n = P[1]; });
+    var que = '';
+    PANTALLA.forEach(function(P){ if (t >= P[0]) { n = P[1]; que = P[2]; } });
     pinta(n);
+    setText(enPantV, 'enpant', que);
+    enPantV.setAttribute('fill', que === 'un corazón' ? '#1E90FF' : '#DC143C');
+    enPant.setAttribute('opacity', que ? 1 : 0);
     // Botones: se hunden al pulsarlos y se marca cuál
     [[BT_A, PULSA_A], [BT_B, PULSA_B]].forEach(function(B){
       var pul = 0, an = 0;
@@ -439,7 +458,7 @@
     B_FV.g.setAttribute('opacity', fv.toFixed(3));
     E_INI.ponFilas(2 + ease(seg(t, 36.2, 36.6)));
     [E_A, B_CP, B_MP].forEach(function(B){ B.g.setAttribute('opacity', seg(t, 8.4, 8.9).toFixed(3)); });
-    [E_B, B_CV, B_MV].forEach(function(B){ B.g.setAttribute('opacity', seg(t, 38, 38.5).toFixed(3)); });
+    [E_B, B_CV, B_IC, B_MV].forEach(function(B){ B.g.setAttribute('opacity', seg(t, 38, 38.5).toFixed(3)); });
     E_INI.hl.setAttribute('opacity', win(t, 4.2, 5.8, .2).toFixed(3));
     B_FP.hl.setAttribute('opacity', win(t, 4.6, 5.3, .15).toFixed(3));
     B_MP0.hl.setAttribute('opacity', win(t, 5.2, 5.8, .15).toFixed(3));
@@ -450,7 +469,10 @@
       ev.hl.setAttribute('opacity', a.toFixed(3)); cam.hl.setAttribute('opacity', b.toFixed(3)); mos.hl.setAttribute('opacity', c.toFixed(3));
     }
     luces(PULSA_A, E_A, B_CP, B_MP);
-    luces(PULSA_B, E_B, B_CV, B_MV);
+    // botón B: cambiar (0,3 s), el corazón (0,8 s) y el número (1,6 s); al aparecer, el evento nuevo se ilumina
+    var eb = win(t, 38.5, 40.6, .3), cb = 0, ib = 0, mb = 0;
+    PULSA_B.forEach(function(tp){ eb = Math.max(eb, win(t, tp, tp + 2.3, .2)); cb = Math.max(cb, win(t, tp + .3, tp + .8, .15)); ib = Math.max(ib, win(t, tp + .75, tp + 1.55, .15)); mb = Math.max(mb, win(t, tp + 1.5, tp + 2.3, .15)); });
+    E_B.hl.setAttribute('opacity', eb.toFixed(3)); B_CV.hl.setAttribute('opacity', cb.toFixed(3)); B_IC.hl.setAttribute('opacity', ib.toFixed(3)); B_MV.hl.setAttribute('opacity', mb.toFixed(3));
 
     // Registro: cada fila aparece cuando ocurre; la columna de vidas se rellena al aparecer la variable
     ROWS.forEach(function(R){
