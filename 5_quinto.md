@@ -126,6 +126,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Qué aprenden:** qué es una placa programable, sus partes (pantalla de 25 luces, botones A y B, sensores) y cómo se programa con bloques.
 - **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
 - **Para proyectar:** [[P:eventos.microbit|Eventos en la micro:bit]] · [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
+- **Preguntas de salida:** [[P:salida.evento_mk|Eventos]] · [[P:salida.siempre_mk|Para siempre]]
 - **En tablets o portátiles:** [[T:binario|Cartas binarias]] (niveles 1 a 3: así cuenta la micro:bit, con unos y ceros)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
 - **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
@@ -205,6 +206,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** leer valores de los sensores y decidir con **si… entonces… si no**.
 - **Prepara antes:** ejemplo en el display. Hoja de registro de datos.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]] y [[P:umbral.temp|temperatura]]
+- **Preguntas de salida:** [[P:salida.condicion_mk|Si… si no]]
 - **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 a 3, con bloques de MakeCode y el sensor de temperatura)
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S4-lamparita.mkcd|Lamparita de noche · solución]]
@@ -239,6 +241,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** usar un sensor para que un objeto reaccione al mundo físico (interacción física).
 - **Prepara antes:** estuches o cajitas, portapilas. La micro:bit V2 tiene altavoz; si no, se usa solo la pantalla.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
+- **Preguntas de salida:** [[P:salida.variable_mk|Variables]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S5-alarma-del-estuche.mkcd|Alarma del estuche · solución]]
 - **Para repasar:** condición

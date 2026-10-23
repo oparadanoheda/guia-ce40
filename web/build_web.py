@@ -14,10 +14,11 @@ from recursos_oficiales import LIBRARY, SA_LINKS, SESSION_RULES  # noqa: E402
 from catalogo import PROYECTABLES, EXTERNAS, TABLET, ADAPTA  # noqa: E402
 import segno  # noqa: E402
 import materiales as MAT  # noqa: E402
+import imprimibles as IMP  # noqa: E402
 import makecode_gen as MK  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
 from videos import VIDEOS, BY_SESSION, VERSIONES  # noqa: E402
-from repaso import CONCEPTOS, clave as clave_repaso, antes as antes_repaso  # noqa: E402
+from repaso import CONCEPTOS, GRUPOS, DEFINICION, clave as clave_repaso, antes as antes_repaso, ancla as ancla_repaso  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
 from mision_clase import MISION  # noqa: E402
 from pictos_mision import pictos_paso  # noqa: E402
@@ -27,7 +28,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.7", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.8", "octubre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -97,6 +98,8 @@ PLAY_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="1
 # La bandera verde de Scratch («al hacer clic en 🏴» en los .md) se dibuja: la guía no usa emojis.
 FLAG = '<svg class="gflag" viewBox="0 0 16 16" role="img" aria-label="bandera verde"><path d="M3.2 1.6v12.8" stroke="#3d8a37" stroke-width="1.7" stroke-linecap="round"/><path d="M4 2.6c2.1-1.2 3.9.8 6 0 1-.4 1.9-.7 2.8-.5v6.4c-.9-.2-1.8.1-2.8.5-2.1.8-3.9-1.2-6 0z" fill="#4cbf56" stroke="#3d8a37" stroke-width=".9" stroke-linejoin="round"/></svg>'
 PJ_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M12 16v4M8 20h8"/></svg>'
+POSTER_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5v2"/><rect x="5" y="4.5" width="14" height="17" rx="1.5"/><path d="M8.5 10h7M8.5 13.5h7M8.5 17h4"/></svg>'
+DOC_ICON = '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h8.5L19 7.5V21H6z"/><path d="M14 3v5h5M9 12.5h6M9 16.5h6"/></svg>'
 RUBRIC = "rubrica"
 
 # ---------------------------------------------------------------- markdown
@@ -165,7 +168,7 @@ def inline(text):
 # ---------------------------------------------------------------- parsing
 
 
-META = ("Para proyectar", "Para repasar", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
+META = ("Para proyectar", "Para repasar", "Preguntas de salida", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
         "Opción más sencilla", "Mates", "Producto", "Autoevaluación", "Pasos", "Opción ", "Cierre",
         "Para ti", "Aviso", "Sin caras", "Si hay", "Si coincide", "Si el grupo", "Si algún", "Solo sonidos",
         "Minuto")
@@ -232,6 +235,8 @@ def parse_session(chunk):
             s["math"] = text
         elif L.startswith("Para proyectar"):
             s["proj"] = text
+        elif L.startswith("Preguntas de salida"):
+            s["salida"] = text
         elif L.startswith("Para repasar"):
             s["repaso"] = [x.strip() for x in text.split("·") if x.strip()]
         elif L.startswith("En las tablets") or L.startswith("En tablets o portátiles"):
@@ -524,6 +529,7 @@ def projection_data(c, s, quin, prev=None):
          "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
          "tablet": [(TABLET_INDEX[t][1], t, qr_svg(t, "pz-qrsvg")) for t in re.findall(r"\[\[T:(\w+)\|", s.get("tablet", "")) if t in TABLET_INDEX],
          "missions": retos + props, "fast": fast,
+         "salida": [(label, ref) for ref, label in re.findall(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", s.get("salida", ""))],
          "visual": visual, "fastPics": pictos_paso(plain(re.sub(r"<[^>]+>", "", fast))) if visual else [],
          "close": None if quin else close_list(c, s),
          "prev": {"title": prev["title"], "key": plain(prev.get("key", "")), "num": prev["num"]} if prev else None}
@@ -568,7 +574,7 @@ def render_session(c, s, prev, nxt, idx):
 
     side = []
     vids = BY_SESSION.get(s["id"], [])
-    if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids or s.get("repaso"):
+    if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids or s.get("repaso") or s.get("salida"):
         use = ""
         if vids:
             use += f'<h4>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h4><p>' + "".join(
@@ -578,12 +584,14 @@ def render_session(c, s, prev, nxt, idx):
         if s.get("tablet"):
             use += f'<h4>En tablets o portátiles</h4><p>{inline(s["tablet"])}</p>'
         if s.get("mat"):
-            use += f'<h4>Material listo para imprimir</h4><p>{inline(s["mat"])}</p>'
+            use += imprimir_html(c, s)
         if s.get("sb3"):
             use += f'<h4>Archivos de Scratch</h4><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Load from your computer (esa opción sale en inglés).</p>'
         if s.get("mkcd"):
             use += (f'<h4>Archivos de MakeCode</h4><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
                     f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
+        if s.get("salida"):
+            use += f'<h4>Preguntas de salida (al final)</h4><p>{inline(s["salida"])}</p>'
         if s.get("repaso"):
             use += repaso_html(s, c)
         use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
@@ -886,9 +894,83 @@ def evolution_page():
 <h2 class="h-sec">Progresión de contenidos</h2>
 <p class="small">Qué se trabaja de cada contenido en cada curso, y con qué grado.</p>
 {legend}{grid}
+<p class="small">Cada concepto con las sesiones donde se aprende y sus recursos, curso a curso: <a href="#conceptos">Mapa de conceptos</a>.</p>
 <h2 class="h-sec">Productos de cada trimestre</h2>
 <p class="small">Lo que entrega el alumnado al final de cada trimestre. Es el momento de marcar la rúbrica.</p>
 {prod}
+</div></section>'''
+
+
+def concept_map_page(courses):
+    """Mapa de conceptos: cada concepto de 1º a 6º, con las sesiones donde se aprende, las que lo dan por sabido
+    («Para repasar») y los recursos de cada curso. Los datos son los de repaso.py."""
+    titulos, usa = {}, {}
+    for c in courses:
+        for t in c["terms"]:
+            for s in t["sessions"]:
+                titulos[s["id"]] = s["title"]
+                for x in s.get("repaso", []):
+                    usa.setdefault(clave_repaso(x), []).append(s["id"])
+    vt = {v[0]: v[2] for v in VIDEOS}
+
+    def num(sid):
+        return int(sid.split("-s")[1])
+
+    def recurso(nombre, tipo, ref, texto):
+        fuera = False
+        if tipo == "video":
+            href, label, ico = f"#v-{ref}", f"Vídeo: {vt[ref]}", PLAY_ICON
+        elif tipo == "pizarra":
+            href, label, ico = f"#p-{ref}", f"Para proyectar: {texto}", PJ_ICON
+        elif tipo == "tablet":
+            href, label, ico = f"#t-{ref}", f"Reto de tablet: {texto}", TAB_ICON
+        elif tipo == "poster":
+            href, label, ico, fuera = f'materiales/{MAT_INDEX["M26"][2]}.pdf#page={ref}', f"Póster de M26: {nombre}", POSTER_ICON, True
+        elif tipo == "material":
+            href, label, ico, fuera = f"materiales/{MAT_INDEX[ref][2]}.pdf", f"{ref}: {texto}", DOC_ICON, True
+        else:
+            return ""  # los bloques sueltos se quedan en «Para repasar»: aquí no caben
+        extra = ' target="_blank" rel="noopener"' if fuera else ""
+        return f'<a href="{href}" title="{E(label)}" aria-label="{E(label)}"{extra}>{ico}</a>'
+
+    rows = []
+    for grupo, claves in GRUPOS:
+        rows.append(f'<tr class="km-g"><th colspan="7" scope="colgroup">{E(grupo)}</th></tr>')
+        for k in claves:
+            nombre, recursos, sesiones = CONCEPTOS[k]
+            por_curso = {}
+            for sid in sesiones:
+                por_curso.setdefault(sid[:2], {})[sid] = True
+            for sid in usa.get(k, []):
+                por_curso.setdefault(sid[:2], {}).setdefault(sid, False)
+            hay = [i for i in range(1, 7) if f"c{i}" in por_curso]
+            cells = []
+            for i in range(1, 7):
+                cid = f"c{i}"
+                # la línea une el primer curso en que aparece con el último
+                linea = (" l" + (" la" if i == hay[0] else "") + (" lz" if i == hay[-1] else "")) if len(hay) > 1 and hay[0] <= i <= hay[-1] else ""
+                if cid not in por_curso:
+                    cells.append(f'<td class="km-c{linea}"></td>')
+                    continue
+                chips = "".join(
+                    f'<a class="km-s{" on" if on else ""}" href="#{sid}" title="{E(f"{i}º S{num(sid)} · {titulos[sid]}")}" '
+                    f'aria-label="{E(f"{i}º S{num(sid)} · {titulos[sid]} · " + ("se aprende" if on else "lo da por sabido"))}">S{num(sid)}</a>'
+                    for sid, on in sorted(por_curso[cid].items(), key=lambda x: num(x[0])))
+                icons = "".join(recurso(nombre, *r[1:]) for r in recursos if str(i) in r[0])
+                rec = f'<div class="km-rec">{icons}</div>' if icons else ""
+                cells.append(f'<td class="km-c{linea}" style="--c:var(--{cid})"><div class="km-ses">{chips}</div>{rec}</td>')
+            rows.append(f'<tr id="{ancla_repaso(k)}"><th class="sticky" scope="row"><b>{E(nombre)}</b><small>{E(DEFINICION[k])}</small></th>{"".join(cells)}</tr>')
+    head = '<tr><th class="sticky" scope="col">Concepto</th>' + "".join(
+        f'<th scope="col" style="--c:var(--c{i})"><span class="cn">{i}º</span></th>' for i in range(1, 7)) + "</tr>"
+    legend = (f'<ul class="km-legend"><li><span class="km-s on">S4</span>Se aprende en esa sesión</li>'
+              f'<li><span class="km-s">S7</span>La sesión lo da por sabido</li><li>{PLAY_ICON}Vídeo</li><li>{PJ_ICON}Para proyectar</li>'
+              f'<li>{TAB_ICON}Reto de tablet</li><li>{POSTER_ICON}Póster (M26)</li><li>{DOC_ICON}Ficha</li></ul>')
+    return f'''<section class="page" id="conceptos" hidden><div class="sheet">
+<p class="eyebrow">Mapa de conceptos</p><h1>Cada concepto, de 1º a 6º</h1>
+<p class="lede">En qué sesión se aprende cada concepto, qué sesiones lo dan por sabido y con qué se repasa en cada curso.</p>
+{legend}
+<div class="scroll" tabindex="0" role="region" aria-label="Mapa de conceptos"><table class="kmap"><thead>{head}</thead><tbody>{"".join(rows)}</tbody></table></div>
+<p class="small">Los recursos de cada casilla son los de ese curso. Si un concepto aún no tiene vídeo ni herramienta, «Para repasar», en la sesión, enseña sus bloques.</p>
 </div></section>'''
 
 
@@ -971,7 +1053,7 @@ def doc_page(pid, eyebrow, title, lede, fname, prefix):
 def build():
     courses = [parse_course(*c) for c in COURSES]
     secs = split_general()
-    pages = [home(courses, secs), method_page(secs), calendar_page(secs), evolution_page()]
+    pages = [home(courses, secs), method_page(secs), calendar_page(secs), evolution_page(), concept_map_page(courses)]
     for c in courses:
         pages.append(render_course(c))
         flat = [s for t in c["terms"] for s in t["sessions"]]
@@ -995,7 +1077,8 @@ def build():
 <nav aria-label="Guía">
 <p class="ng">La guía</p>
 <a href="#inicio" data-nav="inicio">Presentación</a><a href="#metodo" data-nav="metodo">El método</a>
-<a href="#etapa" data-nav="etapa">Mapa de la etapa</a><a href="#calendario" data-nav="calendario">Calendario</a>
+<a href="#etapa" data-nav="etapa">Mapa de la etapa</a><a href="#conceptos" data-nav="conceptos">Mapa de conceptos</a>
+<a href="#calendario" data-nav="calendario">Calendario</a>
 <p class="ng">Cursos</p><div class="cnav">{course_nav}</div>
 <p class="ng">Recursos</p>
 <a href="#recursos" data-nav="recursos">Recursos oficiales</a><a href="#herramientas" data-nav="herramientas">Herramientas paso a paso</a>
@@ -1051,8 +1134,9 @@ def material_page():
         pdf = HERE / "materiales" / f"{name}.pdf"
         n = len(pypdf.PdfReader(str(pdf)).pages) if pdf.exists() else 0
         c = color.get(courses[:2], "c5")
-        tiles.append(f'<a class="mat-tile" style="--c:var(--{c})" href="materiales/{name}.pdf" target="_blank" rel="noopener">'
-                     f'<span class="mat-code">{code}</span><span><b>{E(title)}</b><small>{E(courses)} · {n} {"página" if n == 1 else "páginas"} · PDF</small></span></a>')
+        img = f'<img src="{IMP.miniatura(code)}" alt="" width="76" height="107" loading="lazy">' if pdf.exists() else ""
+        tiles.append(f'<a class="mat-tile mat-pdf" style="--c:var(--{c})" href="materiales/{name}.pdf" target="_blank" rel="noopener">{img}'
+                     f'<span><span class="mat-code">{code}</span><b>{E(title)}</b><small>{E(courses)} · {n} {"página" if n == 1 else "páginas"} · PDF</small></span></a>')
     sb3 = [f'<a class="mat-tile" style="--c:var(--{c})" href="materiales/scratch/{f}" download>'
            f'<span class="mat-code">SB3</span><span><b>{E(t)}</b><small>{E(w)} · Scratch</small></span></a>' for f, t, w, c in SB3]
     mk = [f'<a class="mat-tile" style="--c:var(--c{n[0]})" href="materiales/makecode/{n}.mkcd" download>'
@@ -1074,18 +1158,54 @@ def material_page():
 </div></section>'''
 
 
+def cursos_de(texto):
+    """«1º-3º · repaso 4º-6º» → "123456"; «2º» → "2". Para el filtro de «Para proyectar»."""
+    out = set()
+    for a, b in re.findall(r"(\d)º(?:\s*-\s*(\d)º)?", texto):
+        out |= set(range(int(a), int(b or a) + 1))
+    return "".join(str(x) for x in sorted(out))
+
+
+def sin_tildes(texto):
+    import unicodedata
+    return "".join(ch for ch in unicodedata.normalize("NFD", texto.lower()) if unicodedata.category(ch) != "Mn")
+
+
+def filtro_attrs(tipo, cursos, *textos):
+    """Atributos de una ficha de «Para proyectar» para el filtro: tipo, cursos y el texto en que se busca
+    (nombre, descripción y los conceptos que trabaja, según repaso.py)."""
+    ref = textos[0]
+    conceptos = [n for n, rec, _ in CONCEPTOS.values()
+                 if any(r[1] == {"pj": "pizarra", "vid": "video", "tab": "tablet"}.get(tipo) and r[2].split(".")[0] == ref for r in rec)]
+    q = sin_tildes(" ".join(textos[1:] + tuple(conceptos)))
+    return f' data-tipo="{tipo}" data-cursos="{cursos_de(cursos)}" data-q="{E(q)}"'
+
+
+def filtro_bar():
+    cursos = "".join(f'<button type="button" data-curso="{i}" aria-pressed="false" style="--c:var(--c{i})">{i}º</button>' for i in range(1, 7))
+    return (f'<div class="pfiltro" role="search" aria-label="Filtrar los recursos"><div class="pf-cursos" role="group" aria-label="Curso">'
+            f'<span class="pf-l" aria-hidden="true">Curso</span><button type="button" data-curso="" aria-pressed="true">Todos</button>{cursos}</div>'
+            f'<label class="pf-q">{ICON["search"]}<input type="search" placeholder="Buscar: variable, robot, IA…" aria-label="Buscar por nombre o por concepto" autocomplete="off"></label>'
+            f'<p class="pf-res" aria-live="polite"></p></div>')
+
+
+def vacio(tipo, que):
+    return f'<p class="pf-vacio small" data-tipo="{tipo}" hidden>Ninguna {que} con ese filtro.</p>'
+
+
 def projectables_page():
     tiles = "".join(
-        f'<a class="pj-tile" href="#p-{pid}"><small>{E(courses)}</small><b>{E(name)}</b><span>{E(desc)}</span></a>'
+        f'<a class="pj-tile" href="#p-{pid}"{filtro_attrs("pj", courses, pid, name, desc)}><small>{E(courses)}</small><b>{E(name)}</b><span>{E(desc)}</span></a>'
         for pid, ic, name, courses, desc, _ in PROYECTABLES)
-    ext = "".join(f'<a class="ext-app" href="{u}" target="_blank" rel="noopener"><b>{E(n)} ↗</b><span>{E(d)}</span><small>{E(c)}</small></a>' for n, u, c, d in EXTERNAS)
+    ext = "".join(f'<a class="ext-app" href="{u}" target="_blank" rel="noopener"{filtro_attrs("ext", c, "", n, d)}><b>{E(n)} ↗</b><span>{E(d)}</span><small>{E(c)}</small></a>' for n, u, c, d in EXTERNAS)
     return f'''<section class="page" id="proyectar" hidden><div class="sheet">
 <p class="eyebrow">Para proyectar</p><h1>Herramientas para la pizarra digital</h1>
 <p class="lede">Para usar con toda la clase en la pizarra. Cada sesión enlaza la suya con el reto ya cargado. Más abajo, los <a href="#videos">vídeos que explican conceptos</a>.</p>
-<div class="pj-gallery">{tiles}</div>
+{filtro_bar()}
+<div class="pj-gallery">{tiles}</div>{vacio("pj", "herramienta")}
 <h2 class="h-sec" id="videos">Vídeos que explican conceptos</h2>
 <p class="small">Animaciones de uno a dos minutos, con subtítulos y efectos de sonido opcionales. Cada sesión enlaza el suyo.</p>
-<div class="vid-gallery">{video_tiles()}</div>
+<div class="vid-gallery">{video_tiles()}</div>{vacio("vid", "vídeo")}
 <h2 class="h-sec" id="tablets">Retos para las tablets y los portátiles del alumnado</h2>
 <p class="small">Retos para hacer en parejas. En las tablets se abren con el QR; en los portátiles, con el icono «Retos CE 4.0» o escribiendo <b>{CORTA}</b>. Sin cuentas: nada sale del dispositivo. <a href="#t-portatiles">Cómo prepararlo en los portátiles</a>.</p>
 <div class="tab-apoyos"><p><b>Pensados para un aula diversa</b></p><ul>
@@ -1093,10 +1213,10 @@ def projectables_page():
 <li><b>Una segunda oportunidad:</b> el primer fallo no cuenta; sale una pista que dice cómo pensarlo, sin dar la respuesta.</li>
 <li><b>Sin prisas:</b> sin tiempo, sin sonidos y sin clasificaciones. Las estrellas solo se ven en ese dispositivo.</li>
 <li><b>Cada nivel dice desde qué curso</b> se recomienda, y se puede empezar por cualquiera. Cada reto tiene su «Si cuesta» y su «Si va rápido».</li></ul></div>
-<div class="pj-gallery">{tablet_tiles()}</div>
+<div class="pj-gallery">{tablet_tiles()}</div>{vacio("tab", "reto")}
 <h2 class="h-sec">Otras aplicaciones recomendadas</h2>
 <p class="small">Se abren en otra pestaña. Gratuitas y sin cuentas de alumnado.</p>
-<div class="ext-apps">{ext}</div></div></section>'''
+<div class="ext-apps">{ext}</div>{vacio("ext", "aplicación")}</div></section>'''
 
 
 def tool_pages():
@@ -1130,6 +1250,21 @@ def tool_guide(pid):
     return more("Guía para el docente: qué contar, preguntas y soluciones", body, did=f"guia-{pid}")
 
 
+def imprimir_html(c, s):
+    """«Material listo para imprimir»: cada ficha con la miniatura de la página que usa la sesión, y el PDF se abre en esa página."""
+    items, sueltos = [], []
+    for code, lab, pista in IMP.piezas(s["mat"]):
+        if not code or code not in MAT_INDEX:
+            sueltos.append(f'<p class="small">{inline(cap(lab))}</p>')
+            continue
+        pag, n = IMP.pagina(code, lab, pista, int(c["id"][1]), s["num"]), len(IMP.paginas(code))
+        nota = pista if re.search(r"\b(hojas?|nivel) \d", pista) or code == "M26" or n == 1 else f"hoja {pag} de {n}" + (f" · {pista}" if pista else "")
+        href = f'materiales/{MAT_INDEX[code][2]}.pdf' + (f"#page={pag}" if n > 1 else "")
+        items.append(f'<li><a class="imp" href="{href}" target="_blank" rel="noopener"><img src="{IMP.miniatura(code, pag)}" alt="" width="64" height="90" loading="lazy">'
+                     f'<span><b>{code}</b>{E(lab)}{f"<small>{E(cap(nota))}</small>" if nota else ""}</span></a></li>')
+    return f'<h4>Material listo para imprimir</h4><ul class="imp-lista">{"".join(items)}</ul>{"".join(sueltos)}'
+
+
 def repaso_html(s, c):
     """«Para repasar»: cada concepto de antes con los recursos de este curso y dónde se vio por última vez."""
     curso, sid, items = c["num"][0], f'{c["id"]}-s{s["num"]}', []
@@ -1160,12 +1295,12 @@ def repaso_html(s, c):
         if prev:
             pc, pn = prev[1:].split("-s")
             visto = f' <span class="rep-visto">Se vio en <a href="#{prev}">{pc}º S{pn}</a></span>'
-        items.append(f'<li><p class="rep-nom"><b>{E(nombre)}</b>{visto}</p>{" ".join(links)}</li>')
+        items.append(f'<li><p class="rep-nom"><a class="rep-k" href="#{ancla_repaso(k)}" title="Verlo en el mapa de conceptos"><b>{E(nombre)}</b></a>{visto}</p>{" ".join(links)}</li>')
     return '<h4>Para repasar (de antes)</h4><ul class="rep-lista">' + "".join(items) + "</ul>"
 
 
 def tablet_tiles():
-    return "".join(f'<a class="pj-tile tab-tile" href="#t-{tid}"><small>{E(crs)} · tablet o portátil</small><b>{E(name)}</b><span>{E(desc)}</span></a>' for tid, name, crs, desc, _ in TABLET)
+    return "".join(f'<a class="pj-tile tab-tile" href="#t-{tid}"{filtro_attrs("tab", crs, tid, name, desc)}><small>{E(crs)} · tablet o portátil</small><b>{E(name)}</b><span>{E(desc)}</span></a>' for tid, name, crs, desc, _ in TABLET)
 
 
 def tablet_pages(courses):
@@ -1218,7 +1353,7 @@ def tablet_pages(courses):
 
 def video_tiles():
     return "".join(
-        f'<a class="vid-tile" href="#v-{vid}"><img src="videos/img/{vid}.jpg" alt="" loading="lazy" width="640" height="360">'
+        f'<a class="vid-tile" href="#v-{vid}"{filtro_attrs("vid", courses, vid, title, idea)}><img src="videos/img/{vid}.jpg" alt="" loading="lazy" width="640" height="360">'
         f'<span><small>{E(courses)}</small><b>{E(title)}</b></span></a>'
         for vid, fname, title, courses, idea, t, sids in VIDEOS)
 
@@ -1245,9 +1380,9 @@ def video_pages(courses):
 
 
 HERE = Path(__file__).resolve().parent
-CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
+CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyectables8.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
 JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8")
-PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables5.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables6.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables7.js").read_text(encoding="utf-8")
+PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables5.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables6.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables7.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables8.js").read_text(encoding="utf-8")
 
 if __name__ == "__main__":
     build()

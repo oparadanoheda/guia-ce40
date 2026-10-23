@@ -162,6 +162,46 @@
     if (e.target.closest && e.target.closest('.pr-open')) window.print();
   });
 
+  // «Para proyectar»: filtro por curso y buscador (herramientas, vídeos, retos y aplicaciones).
+  // El curso elegido se recuerda en este navegador.
+  (function () {
+    var bar = document.querySelector('.pfiltro');
+    if (!bar) return;
+    var page = bar.closest('section.page');
+    var tiles = Array.prototype.slice.call(page.querySelectorAll('[data-cursos]'));
+    var btns = Array.prototype.slice.call(bar.querySelectorAll('button[data-curso]'));
+    var input = bar.querySelector('input');
+    var res = bar.querySelector('.pf-res');
+    var KEY = 'ce40-proyectar-curso';
+    var curso = '';
+    try { curso = localStorage.getItem(KEY) || ''; } catch (e) { curso = ''; }
+    if (!/^[1-6]?$/.test(curso)) curso = '';
+    function norm(s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+    function cuenta(n, uno, varios) { return n + ' ' + (n === 1 ? uno : varios); }
+    function apply() {
+      var q = norm(input.value.trim());
+      var n = { pj: 0, vid: 0, tab: 0, ext: 0 };
+      tiles.forEach(function (t) {
+        var ok = (!curso || t.getAttribute('data-cursos').indexOf(curso) >= 0) && (!q || t.getAttribute('data-q').indexOf(q) >= 0);
+        t.hidden = !ok;
+        if (ok) n[t.getAttribute('data-tipo')]++;
+      });
+      page.querySelectorAll('.pf-vacio').forEach(function (p) { p.hidden = n[p.getAttribute('data-tipo')] > 0; });
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-curso') === curso)); });
+      res.textContent = (curso || q) ? ((curso ? 'En ' + curso + 'º: ' : '') + cuenta(n.pj, 'herramienta', 'herramientas') + ', ' +
+        cuenta(n.vid, 'vídeo', 'vídeos') + ', ' + cuenta(n.tab, 'reto', 'retos') + ' y ' + cuenta(n.ext, 'aplicación', 'aplicaciones') + '.') : '';
+    }
+    btns.forEach(function (b) {
+      b.addEventListener('click', function () {
+        curso = b.getAttribute('data-curso');
+        try { localStorage.setItem(KEY, curso); } catch (e) { /* sin almacenamiento: vale para esta visita */ }
+        apply();
+      });
+    });
+    input.addEventListener('input', apply);
+    apply();
+  })();
+
   // Buscador de sesiones
   var q = document.getElementById('q');
   var list = document.getElementById('sr');

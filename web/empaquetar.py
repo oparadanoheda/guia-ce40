@@ -11,7 +11,7 @@ OUT = HERE.parent / "Guia_CE40_2026-27_web.zip"
 GH = HERE.parent / "docs"
 
 LEEME = """GUÍA DIDÁCTICA · CÓDIGO ESCUELA 4.0 · PRIMARIA · 2026-2027
-Versión 1.7 · octubre de 2026
+Versión 1.8 · octubre de 2026
 
 Cómo abrirla
 - Con conexión o sin ella: descomprime la carpeta y abre index.html con doble clic
@@ -38,7 +38,7 @@ README = """# Guía didáctica · Código Escuela 4.0 · Primaria · 2026-2027
 
 Programación de Código Escuela 4.0 para 1º a 6º de Primaria, integrada en el área de Matemáticas:
 128 sesiones con opciones de actividad, herramientas para la pizarra digital, material imprimible en PDF
-y proyectos de Scratch y de MakeCode. Versión 1.7 (octubre de 2026).
+y proyectos de Scratch y de MakeCode. Versión 1.8 (octubre de 2026).
 
 **Para abrir la guía**, usa la dirección de GitHub Pages de este repositorio
 (Settings › Pages), no esta página.
@@ -47,6 +47,7 @@ y proyectos de Scratch y de MakeCode. Versión 1.7 (octubre de 2026).
 - `materiales/`: material imprimible en PDF (M01-M29).
 - `materiales/scratch/`: proyectos de Scratch (.sb3).
 - `materiales/makecode/`: proyectos de MakeCode para micro:bit y Nezha (.mkcd).
+- `materiales/min/`: miniaturas de las páginas de los PDF (las usa la guía).
 - `videos/`: vídeos animados de conceptos (HTML) y sus miniaturas.
 
 Pictogramas: Sergio Palao. Origen: ARASAAC (arasaac.org). Licencia: CC BY-NC-SA. Propiedad: Gobierno de Aragón.
@@ -68,6 +69,7 @@ def files():
     out = [(p, f"materiales/{p.name}") for p in sorted((HERE / "materiales").glob("M*.pdf"))]
     out += [(p, f"materiales/scratch/{p.name}") for p in sorted((HERE / "materiales" / "scratch").glob("*.sb3"))]
     out += [(p, f"materiales/makecode/{p.name}") for p in sorted((HERE / "materiales" / "makecode").glob("*.mkcd"))]
+    out += [(p, f"materiales/min/{p.name}") for p in sorted((HERE / "materiales" / "min").glob("*.jpg"))]
     out += [(p, f"videos/{p.name}") for p in sorted((HERE / "videos").glob("anim-*.html"))]
     out += [(p, f"videos/img/{p.name}") for p in sorted((HERE / "videos" / "img").glob("*.jpg"))]
     out += [(p, f"tablet/{p.name}") for p in sorted((HERE / "tablet").iterdir()) if p.is_file()]
@@ -90,6 +92,7 @@ def make_github():
         shutil.rmtree(GH)
     (GH / "materiales" / "scratch").mkdir(parents=True)
     (GH / "materiales" / "makecode").mkdir(parents=True)
+    (GH / "materiales" / "min").mkdir(parents=True)
     (GH / "videos" / "img").mkdir(parents=True)
     (GH / "tablet").mkdir(parents=True)
     (GH / "retos").mkdir(parents=True)

@@ -25,6 +25,9 @@ PROYECTABLES = [
      [("", "Polígonos"), ("roseton", "Rosetón")]),
     ("eventos", "", "Eventos: ¿qué programa empieza?", "3º-6º", "Cada programa empieza con un evento: la bandera, una tecla, un clic, un botón o al iniciar. Se pulsa el evento y se ve qué programas se ponen en marcha (a la vez, si son varios), en Scratch y en la micro:bit, y un juego para predecirlo.",
      [("", "En Scratch"), ("microbit", "En la micro:bit"), ("reto", "¿Cuáles empiezan?")]),
+    ("salida", "", "Preguntas de salida", "3º-6º", "Tres preguntas para el final de la sesión, con el programa en bloques de Scratch (3º y 4º) o de MakeCode (5º y 6º). La clase vota la A, la B o la C y después se ve la buena y por qué.",
+     [("evento", "Eventos · Scratch"), ("bucle", "Bucles · Scratch"), ("variable", "Variables · Scratch"), ("condicion", "Si… entonces · Scratch"),
+      ("evento_mk", "Eventos · MakeCode"), ("siempre_mk", "Para siempre · MakeCode"), ("variable_mk", "Variables · MakeCode"), ("condicion_mk", "Si… si no · MakeCode")]),
     ("variables", "📦", "Variables", "3º-6º", "Cajas con nombre y los bloques que las cambian, con los nombres de Scratch o de MakeCode: dar el valor frente a sumar, un juego de cálculo con puntos y vidas, programas para predecir cuánto vale una variable al final y la mascota virtual.",
      [("", "La caja"), ("juego", "Juego de cálculo"), ("traza", "¿Cuánto vale al final?"), ("mascota", "La mascota (MakeCode)")]),
     ("coordenadas", "🐱", "Coordenadas del escenario", "3º-6º", "El escenario de Scratch con sus ejes x e y: explorar los puntos, mover al gato con bloques (ir a, sumar a x, dar a x el valor), leer y colocar puntos, y dibujar figuras uniendo puntos.",
@@ -63,7 +66,7 @@ EXTERNAS = [
     ("AI for Oceans (Code.org)", "https://code.org/oceans", "5º-6º", "Entrenar una IA para separar peces de basura: datos de entrenamiento y sesgo. Se puede hacer en la pizarra, en español."),
     ("Hora del Código: laberinto clásico", "https://studio.code.org/es/hoc/1", "3º-6º", "20 niveles de laberinto con bloques, en español y sin cuenta. Se puede hacer en la pizarra con toda la clase."),
     ("CS Unplugged", "https://www.csunplugged.org/es/", "1º-6º", "Actividades de informática sin ordenador, con guía para el docente."),
-    ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "3º-6º", "Entrenar un modelo de IA con la cámara (demostración del docente, sin caras)."),
+    ("Teachable Machine", "https://teachablemachine.withgoogle.com/", "5º-6º", "Entrenar un modelo de IA con la cámara (demostración del docente, sin caras)."),
 ]
 
 

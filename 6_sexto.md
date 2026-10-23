@@ -88,6 +88,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Qué aprenden:** recordar MakeCode y las normas del aula maker.
 - **Prepara antes:** makecode.microbit.org en los portátiles, placas con cable. Los retos escritos en la pizarra.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]]
+- **Preguntas de salida:** [[P:salida.siempre_mk|Para siempre]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M18|Tarjeta «Dónde lo dejamos»]]
 - **Archivo de MakeCode:** [[S:6-S1-contador.mkcd|Reto 2: contador]] · [[S:6-S1-juego-de-reflejos.mkcd|Reto 4: juego de reflejos]]
 - **Para repasar:** evento · variable · sensores · azar
@@ -139,6 +140,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Qué aprenden:** que un programa puede responder a muchos eventos distintos a la vez, y usar variables para guardar el «estado».
 - **Prepara antes:** tu ejemplo hecho.
 - **Para proyectar:** [[P:eventos.microbit|Eventos en la micro:bit]] · [[P:variables.mascota|Variables · la mascota]] y [[P:leds.sonrisa|Matriz de LED]]
+- **Preguntas de salida:** [[P:salida.evento_mk|Eventos]] · [[P:salida.variable_mk|Variables]]
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 3 y 4, con bloques de MakeCode)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:6-S2-mascota-virtual.mkcd|La mascota virtual · solución]]

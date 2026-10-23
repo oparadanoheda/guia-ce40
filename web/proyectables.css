@@ -188,3 +188,22 @@ a.mlink b{font:700 .78em var(--mono);background:var(--ink);color:var(--sheet);pa
 .pj-page .rindex{margin-bottom:18px}
 .pj-item.lab{width:auto;height:auto;min-width:92px;padding:6px 8px;display:flex;flex-direction:column;align-items:center;gap:2px}
 .pj-item.lab small{font:600 .72rem/1.15 var(--sans);color:var(--ink2);max-width:9em;text-align:center}
+/* galería de material: cada PDF con la miniatura de su primera página */
+.mat-tile.mat-pdf{align-items:center}
+.mat-tile.mat-pdf img{width:76px;height:auto;aspect-ratio:210/297;flex:none;border:1px solid var(--rule);border-radius:2px;background:#fff}
+.mat-tile.mat-pdf .mat-code{display:inline-block;margin:0 0 6px;padding:2px 7px;font-size:.8rem}
+/* «Para proyectar»: filtro por curso y buscador */
+.pfiltro{display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px;margin:18px 0 22px;padding:12px 0;border-block:1px solid var(--rule);background:var(--sheet)}
+@media (min-width:901px){.pfiltro{position:sticky;top:0;z-index:5}}
+.pf-cursos{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.pf-l{margin-right:4px;font:600 .86rem var(--sans);color:var(--muted)}
+.pf-cursos button{--c:var(--ink);min-width:44px;min-height:38px;padding:4px 12px;border:1.5px solid var(--rule);border-radius:999px;background:var(--sheet);color:var(--ink);font:650 .92rem var(--sans);cursor:pointer}
+.pf-cursos button:hover{border-color:var(--c)}
+.pf-cursos button[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:var(--on-color)}
+.pf-q{display:flex;align-items:center;gap:8px;flex:1 1 220px;max-width:360px;padding:8px 10px;border:1px solid var(--rule);border-radius:8px;background:var(--tint);color:var(--muted)}
+.pf-q:focus-within{outline:2px solid var(--ink);outline-offset:1px}
+.pf-q input{width:100%;border:0;background:none;outline:none;font:500 .95rem var(--sans);color:var(--ink)}
+.pf-res{flex-basis:100%;margin:0;font:.86rem var(--sans);color:var(--muted)}
+.pf-res:empty{display:none}
+[data-cursos][hidden]{display:none}
+.pf-vacio{margin:6px 0 0}

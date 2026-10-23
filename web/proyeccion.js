@@ -206,6 +206,16 @@
     var z = slide(4, 'close');
     head(z, Q ? 'Guardar' : 'Cierre', '¿Qué hemos aprendido hoy?');
     if (d.key) z.el.appendChild(el('blockquote', 'pz-key pz-key-sm', d.key));
+    if (d.salida && d.salida.length) {  // las preguntas de salida, antes de recoger
+      var sb = el('div', 'pz-tools pz-salida');
+      d.salida.forEach(function (t) {
+        var b = el('button', 'pz-tool', 'Preguntas de salida: ' + t[0]);
+        b.type = 'button';
+        b.addEventListener('click', function () { go('#p-' + t[1]); });
+        sb.appendChild(b);
+      });
+      z.el.appendChild(sb);
+    }
     var ck = el('ul', 'pz-check');
     (Q ? ['Guardamos el archivo con el nombre del equipo', 'Kit completo en su caja', 'Rellenamos la tarjeta «Dónde lo dejamos»']
        : (d.close || ['Sello en el pasaporte', 'Guardamos el trabajo', 'Recogemos el material'])).forEach(function (t) { ck.appendChild(el('li', null, t)); });
@@ -345,7 +355,8 @@
     top.appendChild(bar);
     // Recursos de la sesión siempre a mano: vídeos y herramientas
     var res = (data.videos || []).map(function (v) { return ['▶ ' + v[0], '#v-' + v[1]]; })
-      .concat(data.tools.filter(function (t) { return t[1].indexOf('temporizador') !== 0; }).map(function (t) { return [t[0], '#p-' + t[1]]; }));
+      .concat(data.tools.filter(function (t) { return t[1].indexOf('temporizador') !== 0; }).map(function (t) { return [t[0], '#p-' + t[1]]; }))
+      .concat((data.salida || []).map(function (t) { return ['Preguntas de salida: ' + t[0], '#p-' + t[1]]; }));
     if (res.length) {
       var rw = el('div', 'pz-res'), rb = el('button', 'pz-resbtn', 'Recursos'), rl = el('div', 'pz-reslist');
       rb.type = 'button'; rb.setAttribute('aria-expanded', 'false'); rl.hidden = true;

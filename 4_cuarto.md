@@ -111,6 +111,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 
 - **Qué aprenden:** usar repetir para dibujar polígonos, y un repetir dentro de otro para hacer rosetones.
 - **Para proyectar:** [[P:poligonos|Polígonos]] y [[P:poligonos.roseton|Rosetón]] · [[P:laberinto.4|Laberinto · bucles]]
+- **Preguntas de salida:** [[P:salida.bucle|Bucles]]
 - **En tablets o portátiles:** [[T:poligonos|La tortuga y los polígonos]] (nivel 1: cuánto girar en cada esquina) · [[T:robot|Programa al robot]] (niveles 6 a 10: escaleras y vueltas con repetir)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Lápiz»)
 - **Para repasar:** ángulos
@@ -172,6 +173,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 
 - **Qué aprenden:** crear variables, darles un valor, sumarles y mostrarlas.
 - **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] · [[P:variables.traza|Variables · ¿cuánto vale al final?]]
+- **Preguntas de salida:** [[P:salida.variable|Variables]]
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 1 a 3: predecir el valor final de una variable)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
 - **Para repasar:** evento
@@ -342,6 +344,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Qué aprenden:** mover un personaje con las flechas y hacer que no se salga (varios eventos a la vez).
 - **Para proyectar:** [[P:eventos.reto|Eventos · ¿cuáles empiezan?]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:coordenadas.donde|Coordenadas · ¿dónde está?]] · [[P:flota.xy|Hundir la flota · plano de 0 a 7]] · [[P:flota.xyneg|Hundir la flota · con negativos]]
+- **Preguntas de salida:** [[P:salida.evento|Eventos]]
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 2 y 5: leer puntos y el escenario de Scratch)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S10-videojuego-plantilla.sb3|Plantilla de inicio: dibujos y fondos, sin programar]] · [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
@@ -371,6 +374,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S11 · Cosas que atrapar y cosas que esquivar `PC`
 
 - **Qué aprenden:** usar **si ¿tocando…? entonces** para que los objetos interactúen.
+- **Preguntas de salida:** [[P:salida.condicion|Si… entonces]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Para repasar:** condición · para siempre · azar

@@ -1,6 +1,6 @@
 # Guía Código Escuela 4.0 · Primaria · 2026-2027 — documento del proyecto
 
-Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 9 de octubre de 2026 (**versión 1.0**).
+Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 23 de octubre de 2026 (**versión 1.8**).
 
 ---
 
@@ -10,7 +10,7 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
-- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **34 herramientas interactivas** para la pizarra digital (proyectables, con 123 modos o retos), **21 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
+- **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **35 herramientas interactivas** para la pizarra digital (proyectables, con 131 modos o retos), **21 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
 - Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
 
 **Dónde está cada cosa para el profesorado:**
@@ -85,13 +85,15 @@ Programación Mate 4.0 26-27/
 | `proyeccion.js`, `proyeccion.css` | Modo proyección de cada sesión. Los datos van en un `<script type="application/json" class="pz-data">` dentro de cada ficha (función `projection_data` de `build_web.py`) |
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
-| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables7.js`, `proyectables*.css` | Las 34 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes; en `proyectables7.js` (con `proyectables7.css`), eventos |
+| `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables7.js`, `proyectables8.js`, `proyectables*.css` | Las 35 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes; en `proyectables7.js` (con `proyectables7.css`), eventos; en `proyectables8.js` (con `proyectables8.css`), las preguntas de salida |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
 | `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js` con el núcleo y los cinco primeros retos, `retos2.js` con los ocho siguientes, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
 | `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y de su diapositiva en la proyección |
 | `videos/` | Los 21 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
+| `repaso.py` | **Fuente única** de los conceptos: sus recursos por curso, las sesiones donde se aprenden, su frase y su grupo. De aquí salen «Para repasar» de cada sesión y el «Mapa de conceptos» (`#conceptos`) |
+| `imprimibles.py` | «Material listo para imprimir» con miniaturas: lee la cabecera de cada página de los PDF y elige la que usa cada sesión (y `A_MANO` para los casos que no se deducen). Crea las miniaturas en `materiales/min/` |
 | `recursos_oficiales.py` | Biblioteca de enlaces oficiales (EducaMadrid, Tale-Bot, True True, ART2BIT, Nezha, ALBOR, ARASAAC…) |
 | `datos_etapa.py` | Datos del «Mapa de la etapa»: herramientas por trimestre, progresión por bloques y productos |
 | `materiales.py` | Genera los 25 PDF (HTML → PDF con Edge sin interfaz) |
@@ -140,6 +142,7 @@ Texto o pasos.
   - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en el código; hoy se usan 89 y todas existen.
   - `[[M:M07|texto]]` enlaza un PDF.
   - `[[S:archivo.sb3|texto]]` enlaza un proyecto de Scratch.
+  - `- **Preguntas de salida:** [[P:salida.bucle|Bucles]]` enlaza las tres preguntas para el final de la sesión (sale en «Para usar en esta sesión» y en la diapositiva de cierre del modo proyección).
   - `- **Para repasar:** variable · evento · azar` pone los conceptos de antes que la sesión da por sabidos, con sus recursos (los nombres están en `web/repaso.py`; si uno no existe, `build_web.py` se para y lo dice).
   - `[[T:robot|texto]]` enlaza un reto para tablets o portátiles (va en la línea `- **En tablets o portátiles:** …`, con para qué niveles). Sale en la tarjeta de la sesión y como diapositiva con el QR en la práctica del modo proyección.
 - **En la web:** «Si va rápido» y «Si cuesta» aparecen como «Para ampliar» y «Para simplificar» en el bloque «Atención a la diversidad». El resto de viñetas con etiqueta van a «A tener en cuenta».
@@ -240,12 +243,12 @@ Detalle en `08_Plantillas_y_material.md`.
 - **Plantillas** (dibujos y notas, sin programar o con los textos por cambiar): 4º S10 videojuego (Robi, manzana, meteorito y dos fondos) · 3º S20-S21 pieza del museo (4 botones con las teclas del Makey Makey, contador *toques* y final a los 10).
 - **Personajes propios:** Robi (robot), Tina (robot naranja), manzana y meteorito. Se abren con *Archivo › Load from your computer*: esa opción del menú no está traducida en el Scratch en español (las demás sí).
 
-**Proyectables (33):**
+**Proyectables (35):**
 - **Robot y secuencias:** robot en la cuadrícula · ordena la secuencia · patrones · bucles · semáforo de peatones · clasificador · ¿qué animal soy? · votaciones y gráfico · diagramas de flujo · adivina el número
-- **Scratch y matemáticas:** polígonos · variables · coordenadas · cubos y vistas · circuito
+- **Scratch y matemáticas:** polígonos · eventos · variables · coordenadas · cubos y vistas · circuito
 - **micro:bit y Nezha:** LED de la micro:bit · sensor y umbral · mensajes (Scratch y radio) · velocidad × tiempo
 - **IA y seguridad:** entrena a la máquina (solo 5º-6º) · verdad/bulo · contraseñas
-- **Utilidades:** temporizador · código secreto
+- **Utilidades:** temporizador · código secreto · preguntas de salida (para el final de la sesión)
 - **Juegos para la pizarra:** Bee-Bot (funciona como Tale-Bot) · hundir la flota · píxel art · laberinto de bloques · cartas binarias · Simón · balanza · magia de la paridad · ¿quién sale?
 
 **Vídeos de conceptos (19, en `web/videos/`):**
@@ -419,6 +422,18 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Enlazada** en 3º S10, 4º S10, 5º S2 y 6º S2, y en «Para repasar» (evento).
     - **Guía para el docente** en `guias_proyectables.py`.
 
+46. **Versión 1.8 (23 de octubre de 2026): cuatro ideas de las webs de referencia** (Teach Computing, CS Unplugged, micro:bit y Raspberry Pi Projects).
+    - **Mapa de conceptos** (`#conceptos`, en el menú bajo «Mapa de la etapa»): los 24 conceptos de `repaso.py` en tres grupos (Programar, Matemáticas en el código, y Robots, dispositivos e IA), con su frase y una columna por curso. En cada casilla, las sesiones donde se aprende (rellenas), las que lo dan por sabido (las de «Para repasar», con borde) y los iconos de los recursos de ese curso (vídeo, herramienta, reto de tablet, póster y ficha). Una línea une el primer curso en que aparece con el último. En «Para repasar», el nombre de cada concepto lleva a su fila del mapa.
+      - `repaso.py` tiene ahora el concepto **patrón** y los recursos de 1º y 2º (vídeos, herramientas y pósteres), que en «Para repasar» no se usan porque esa línea solo está de 3º a 6º.
+    - **Material para imprimir con miniatura:** en «Para usar en esta sesión», cada ficha sale con la imagen de la página que se usa y el PDF se abre en esa página (`#page=`). La página se elige con la cabecera del PDF (`imprimibles.py`): la «hoja» o el «nivel» que dice la sesión, el póster del concepto, la página que cita la sesión en «Se usa en» o la del curso; las soluciones nunca salen solas. Revisadas una a una las 194 fichas enlazadas en 122 sesiones; tres se eligen a mano. En la ficha impresa salen sin miniatura. La página «Material imprimible» también enseña la primera página de cada PDF.
+    - **Filtro en «Para proyectar»:** botones de curso (1º a 6º) y un buscador que mira el nombre, la descripción y los conceptos que trabaja cada recurso (el de «variable» encuentra la herramienta, el vídeo y los retos). Filtra a la vez herramientas, vídeos, retos de tablet y aplicaciones, y dice cuántas quedan. El curso se recuerda en el navegador (`localStorage`, clave `ce40-proyectar-curso`).
+    - **Preguntas de salida** (como el cuestionario corto del final de los proyectos de Raspberry Pi y las evaluaciones con soluciones de Teach Computing): herramienta nueva para la pizarra.
+      - **Qué es** (`web/proyectables8.js` y `proyectables8.css`): tres preguntas para los últimos minutos de la sesión. Cada una enseña un programa con los bloques de Scratch (3º y 4º) o de MakeCode (5º y 6º) y tres respuestas. La clase vota con los dedos (uno para la A, dos para la B, tres para la C), se toca la que dice la mayoría y «Ver la respuesta» enseña la buena, en verde, y por qué. Al final dice cuántas ha acertado la clase. Con teclado: 1, 2, 3 (o A, B, C), Enter y las flechas.
+      - **Ocho juegos (24 preguntas):** eventos, bucles, variables y si… entonces en Scratch; eventos, para siempre, variables y si… si no en MakeCode. Los errores de las respuestas malas son los frecuentes: creer que un bloque suelto se ejecuta, que «dar el valor» suma, que sin «por siempre» el «si» mira todo el rato, que 50 es menor que 50… La buena está repartida entre la A, la B y la C.
+      - **Dónde sale:** la línea `- **Preguntas de salida:** [[P:salida.bucle|Bucles]]` en las 13 sesiones donde se aprende cada concepto con el editor (3º S10, S11, S13 y S14; 4º S2, S4, S10 y S11; 5º S2, S4 y S5; 6º S1 y S2). En la ficha va en «Para usar en esta sesión» y, en el modo proyección, como botón en la diapositiva de cierre y en «Recursos». También son recurso de «Para repasar» y del Mapa de conceptos (evento, bucle, para siempre, variable y condición).
+      - **Guía para el docente** en `guias_proyectables.py`.
+    - **Corrección:** Teachable Machine figuraba como 3º-6º en las aplicaciones recomendadas; pasa a 5º-6º (la IA es solo de 5º y 6º).
+
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
 ## 11. Pendiente e ideas
@@ -448,6 +463,9 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 - **Motores del Nezha (4):** vídeo de los dos motores y el signo de la velocidad (5º S11 y S14, 6º S4 y S5).
 - **Funciones (2):** herramienta o reto de tablet para dar nombre a un trozo de programa y llamarlo (6º S7 y S11).
 - **Datos (1):** vídeo de preguntar, contar, ordenar en una tabla y dibujar el gráfico (6º S3).
+
+**Del estudio de referentes (octubre de 2026), pendiente:**
+- **Vídeo de una clase real** (como los de CS Unplugged): una sesión grabada en el aula, sin caras (manos, mesas, la pizarra), para que quien no la ha dado vea cómo funciona. Solo puede grabarlo el centro.
 
 **Otros pendientes**
 

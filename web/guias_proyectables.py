@@ -287,6 +287,24 @@ GUIAS = {
         ],
         "mates": "Relaciones de causa y efecto, simultaneidad (dos cosas a la vez) y predicción antes de comprobar.",
     },
+    "salida": {
+        "idea": "Tres preguntas para **los últimos minutos** de la sesión, para saber si la idea ha llegado. Cada una enseña un programa con los bloques del editor (Scratch en 3º y 4º, MakeCode en 5º y 6º) y tres respuestas, A, B y C. Hay ocho juegos: eventos, bucles, variables y si… entonces en Scratch; eventos, para siempre, variables y si… si no en MakeCode. Cada sesión donde se aprende uno de esos conceptos lo enlaza, y la diapositiva de cierre del modo proyección tiene su botón.",
+        "contar": [
+            "Se lee la pregunta y se deja pensar un momento. Después votan todos a la vez con los dedos: uno para la A, dos para la B y tres para la C.",
+            "Se toca la respuesta que ha dicho la mayoría (o se pulsa 1, 2 o 3 en el teclado) y después «Ver la respuesta». Sale la buena, en verde, y por qué.",
+            "Si la clase falla, es la mejor pregunta del día: se pregunta a alguien que votó la buena cómo lo pensó. Las respuestas que están mal son los errores más frecuentes (por ejemplo, creer que un bloque suelto se ejecuta o que «dar el valor» suma).",
+            "Al final dice cuántas ha acertado la clase. Si han fallado dos o tres, la próxima sesión empieza repasando ese concepto (la línea «Para repasar» de la sesión siguiente y el Mapa de conceptos dicen con qué).",
+        ],
+        "preguntas": [
+            ("En «Bucles», pregunta 1: ¿qué hay que cambiar para que el gato dibuje un triángulo?",
+             ["¿Cuántos lados tiene? ¿Cuánto tiene que girar en total para dar una vuelta?"],
+             "**repetir 3** y **girar ↻ 120 grados**: 3 × 120 = 360. El giro no es el ángulo de dentro del triángulo (60°), sino lo que le falta para seguir por el lado siguiente."),
+            ("En «Si… si no» de MakeCode: ¿qué número tendría que marcar el sensor para que la placa borre la pantalla?",
+             ["¿Cuándo se hace lo de «si no»?"],
+             "Cualquiera de **50 o más**: la condición es «nivel de luz < 50» y, si no se cumple, se hace el «si no»."),
+        ],
+        "mates": "Razonar y comprobar: cada pregunta tiene una sola respuesta buena, que se justifica con el programa (5 × 10 = 50 pasos, 5 − 1 − 1 + 1 = 4, 50 no es menor que 50…).",
+    },
     "variables": {
         "idea": "Una variable es una **caja con nombre**: el nombre no cambia; lo que guarda, sí. Cuatro modos, con los bloques escritos como en **Scratch** o en **MakeCode** (botón de arriba): **La caja** (dar el valor frente a sumar), **Juego de cálculo** (puntos y vidas en un juego de verdad, con el programa iluminado), **¿Cuánto vale al final?** (programas cortos paso a paso, con su tabla) y **La mascota** (la variable hambre de 6º S2).",
         "contar": [
