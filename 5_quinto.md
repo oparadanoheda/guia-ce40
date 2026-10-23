@@ -94,6 +94,7 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 - **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M18|Tarjeta «Dónde lo dejamos»]] · [[M:M20|Chuleta de Scratch]]
 - **Minuto de uso responsable (7 minutos):** normas del aula maker: los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo; tarjeta «Dónde lo dejamos».
 - **Archivo de Scratch:** [[S:5-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
+- **Para repasar:** variable · condición · bucle · evento
 
 **Opción A · Reto relámpago (recomendada)**
 Tres niveles en la pizarra. Cada pareja llega hasta donde pueda:
@@ -128,6 +129,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **En tablets o portátiles:** [[T:binario|Cartas binarias]] (niveles 1 a 3: así cuenta la micro:bit, con unos y ceros)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M26|Póster «Entrada y salida»]]
 - **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
+- **Para repasar:** evento
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
@@ -161,6 +163,7 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Para proyectar:** [[P:votaciones.clase|Dado de la clase]] · [[P:quiensale|¿Quién sale?]]
 - **Material listo:** [[M:M25|Frecuencias del dado]] (hoja 2) · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S3-dado.mkcd|El dado · solución]] · [[S:5-S3-contador-de-pasos.mkcd|Contador de pasos · solución]]
+- **Para repasar:** azar · evento · micro:bit
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · El dado (recomendada)**
@@ -206,6 +209,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 a 3, con bloques de MakeCode y el sensor de temperatura)
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S4-lamparita.mkcd|Lamparita de noche · solución]]
+- **Para repasar:** condición · para siempre · micro:bit
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Opción A · La lamparita de noche**
@@ -238,6 +242,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S5-alarma-del-estuche.mkcd|Alarma del estuche · solución]]
+- **Para repasar:** condición
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
@@ -267,6 +272,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** nada. Los tres programas con bicho están en los archivos de MakeCode (o se construyen en directo en la pizarra).
 - **Material listo:** [[M:M16|Plan de mi invento]] · [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S6-bicho-1-lamparita.mkcd|Bicho 1: la lamparita]] · [[S:5-S6-bicho-2-contador.mkcd|Bicho 2: el contador]] · [[S:5-S6-bicho-3-dado.mkcd|Bicho 3: el dado]]
+- **Para repasar:** sensores
 - **Minuto de uso responsable:** si buscan ideas en internet, solo en las webs que indica el docente (makecode.microbit.org, microbit.org/es-es/projects).
 
 **Pasos:**
@@ -298,6 +304,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** construir y probar un invento propio.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Detector de ruido · solución (V2)]]
+- **Para repasar:** sensores · condición · para siempre
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 - **Pasos:**
   1. Leer la tarjeta y el plan (3 minutos).
@@ -334,6 +341,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **En tablets o portátiles:** [[T:velocidad|Aparca el coche Nezha]] (niveles 1 y 2, antes de medir con el coche)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:5-S8-nezha-avanza.mkcd|El Nezha avanza 1 segundo · solución]]
+- **Para repasar:** evento · micro:bit
 - **Minuto de uso responsable:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.
 
 **Pasos:**
@@ -405,6 +413,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Prepara antes:** hoja de proyecto en equipo (M16), el material del curso, cartón y cinta.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · [[M:M18|Dónde lo dejamos]]
 - **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Biblioteca silenciosa · solución (V2)]]
+- **Para repasar:** descomponer · sensores · motores
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Retos propuestos (muy acotados: un sensor y una acción):**
@@ -440,6 +449,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Qué aprenden:** optimizar el programa y presentar el proyecto.
 - **Para proyectar:** [[P:votaciones.mis|Votaciones]] (opcional, para votar el proyecto favorito de la feria)
 - **Material listo:** [[M:M19|Rúbrica y autoevaluación]] · [[M:M15|Pasaporte]]
+- **Para repasar:** optimizar
 - **Minuto de uso responsable:** «Un seudónimo me protege. Mi foto es mía.» ¿Qué seudónimo usarías en un juego en línea?
 - **Pasos:**
   1. **Optimizar (10 minutos):** cada equipo revisa su programa con tres preguntas: ¿hay bloques repetidos que pueden ir en un bucle? ¿hay bloques que no hacen nada? ¿los nombres de las variables se entienden?
@@ -459,6 +469,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 
 - **Qué aprenden:** terminar el proyecto en equipo, probarlo con otro equipo y arreglar lo que falle antes de presentarlo.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M18|Dónde lo dejamos]]
+- **Para repasar:** depurar
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
 **Pasos:**
@@ -478,6 +489,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S14-nezha-para-ante-obstaculo.mkcd|El Nezha para ante un obstáculo · solución]]
+- **Para repasar:** motores · sensores · condición
 - **Minuto de uso responsable:** «El robot se prueba en el suelo y se apaga antes de tocar la placa.» ¿Por qué en el suelo y no en la mesa?
 
 **Pasos:**
@@ -505,6 +517,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:vistas.cual|Cubos y vistas · ¿qué vista es?]] (calentamiento: reconocer cada vista antes de dibujar el objeto)
 - **En tablets o portátiles:** [[T:cubos|Cubos y vistas]] (nivel 3: reconocer las vistas antes de dibujar el objeto)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el objeto con sus medidas)
+- **Para repasar:** 3d
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Pasos:**
@@ -523,6 +536,7 @@ Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar númer
 - **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
 - **En tablets o portátiles:** [[T:cifrado|Mensajes secretos]] (opción A: cifrar es otra forma de que nadie más entienda tus mensajes) · [[T:cubos|Cubos y vistas]] (opción B, nivel 3: las vistas de la funda)
 - **Archivo de MakeCode:** [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
+- **Para repasar:** mensajes · 3d
 - **Minuto de uso responsable:** «Las redes sociales tienen edad mínima por algo.» ¿Por qué creéis que existe una edad mínima?
 
 **Opción A · Radio entre dos placas**

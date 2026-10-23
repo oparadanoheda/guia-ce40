@@ -17,6 +17,7 @@ import materiales as MAT  # noqa: E402
 import makecode_gen as MK  # noqa: E402
 from vocabulario import VOCAB  # noqa: E402
 from videos import VIDEOS, BY_SESSION, VERSIONES  # noqa: E402
+from repaso import CONCEPTOS, clave as clave_repaso, antes as antes_repaso  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
 from mision_clase import MISION  # noqa: E402
 from pictos_mision import pictos_paso  # noqa: E402
@@ -26,7 +27,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.5", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.6", "octubre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -164,7 +165,7 @@ def inline(text):
 # ---------------------------------------------------------------- parsing
 
 
-META = ("Para proyectar", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
+META = ("Para proyectar", "Para repasar", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
         "Opción más sencilla", "Mates", "Producto", "Autoevaluación", "Pasos", "Opción ", "Cierre",
         "Para ti", "Aviso", "Sin caras", "Si hay", "Si coincide", "Si el grupo", "Si algún", "Solo sonidos",
         "Minuto")
@@ -231,6 +232,8 @@ def parse_session(chunk):
             s["math"] = text
         elif L.startswith("Para proyectar"):
             s["proj"] = text
+        elif L.startswith("Para repasar"):
+            s["repaso"] = [x.strip() for x in text.split("·") if x.strip()]
         elif L.startswith("En las tablets") or L.startswith("En tablets o portátiles"):
             s["tablet"] = text
         elif L.startswith("Material listo"):
@@ -565,7 +568,7 @@ def render_session(c, s, prev, nxt, idx):
 
     side = []
     vids = BY_SESSION.get(s["id"], [])
-    if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids:
+    if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids or s.get("repaso"):
         use = ""
         if vids:
             use += f'<h4>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h4><p>' + "".join(
@@ -581,6 +584,8 @@ def render_session(c, s, prev, nxt, idx):
         if s.get("mkcd"):
             use += (f'<h4>Archivos de MakeCode</h4><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
                     f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
+        if s.get("repaso"):
+            use += repaso_html(s, c)
         use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
         side.append(f'<div class="card use"><h3>{ICON["prep"]} Para usar en esta sesión</h3>{use}</div>')
     if s.get("prep"):
@@ -1123,6 +1128,40 @@ def tool_guide(pid):
     if g.get("saber"):
         body += '<h2 class="g-h">Para saber más</h2><ul>' + "".join(f'<li><a href="{u}" target="_blank" rel="noopener">{E(t)}</a></li>' for t, u in g["saber"]) + '</ul>'
     return more("Guía para el docente: qué contar, preguntas y soluciones", body, did=f"guia-{pid}")
+
+
+def repaso_html(s, c):
+    """«Para repasar»: cada concepto de antes con los recursos de este curso y dónde se vio por última vez."""
+    curso, sid, items = c["num"][0], f'{c["id"]}-s{s["num"]}', []
+    vt = {v[0]: v[2] for v in VIDEOS}
+    for txt in s["repaso"]:
+        k = clave_repaso(txt)
+        if not k:
+            raise SystemExit(f"{sid}: «Para repasar» no conoce el concepto «{txt}» (está en web/repaso.py)")
+        nombre, recursos, sesiones = CONCEPTOS[k]
+        links = []
+        for cursos, tipo, ref, texto in recursos:
+            if curso not in cursos:
+                continue
+            if tipo == "video":
+                links.append(f'<a class="vlink" href="#v-{ref}">{PLAY_ICON}{E(vt[ref])}</a>')
+            elif tipo == "pizarra":
+                links.append(inline(f"[[P:{ref}|{texto}]]"))
+            elif tipo == "tablet":
+                links.append(inline(f"[[T:{ref}|{texto}]]"))
+            elif tipo == "poster":
+                links.append(f'<a class="mlink" href="materiales/{MAT_INDEX["M26"][2]}.pdf#page={ref}" target="_blank" rel="noopener"><b>M26</b>Póster</a>')
+            elif tipo == "material":
+                links.append(inline(f"[[M:{ref}|{texto}]]"))
+            elif tipo == "bloque":
+                links.append(f'<span class="rep-bloque">{inline(texto)}</span>')
+        prev = antes_repaso(sid, sesiones)
+        visto = ""
+        if prev:
+            pc, pn = prev[1:].split("-s")
+            visto = f' <span class="rep-visto">Se vio en <a href="#{prev}">{pc}º S{pn}</a></span>'
+        items.append(f'<li><p class="rep-nom"><b>{E(nombre)}</b>{visto}</p>{" ".join(links)}</li>')
+    return '<h4>Para repasar (de antes)</h4><ul class="rep-lista">' + "".join(items) + "</ul>"
 
 
 def tablet_tiles():

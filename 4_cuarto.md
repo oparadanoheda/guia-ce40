@@ -84,6 +84,7 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 - **Material listo:** [[M:M20|Chuleta de bloques de Scratch]]
 - **Minuto de uso responsable (5 minutos):** con el proyectable, el juego «¿cuál es más segura?». Trabajamos sin cuenta y guardamos en el ordenador.
 - **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
+- **Para repasar:** evento · bucle · variable · depurar
 
 **Opción A · Arregla el juego**
 1. Enseña a abrir el archivo (*Archivo > Load from your computer* (esa opción sale en inglés en Scratch)).
@@ -112,6 +113,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 - **Para proyectar:** [[P:poligonos|Polígonos]] y [[P:poligonos.roseton|Rosetón]] · [[P:laberinto.4|Laberinto · bucles]]
 - **En tablets o portátiles:** [[T:poligonos|La tortuga y los polígonos]] (nivel 1: cuánto girar en cada esquina) · [[T:robot|Programa al robot]] (niveles 6 a 10: escaleras y vueltas con repetir)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Lápiz»)
+- **Para repasar:** ángulos
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos:**
@@ -145,6 +147,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 - **Para proyectar:** [[P:diagrama.par|Diagrama · par o impar]] y [[P:diagrama.adivina|adivina el número]] · [[P:laberinto.6|Laberinto · si… si no]] (las dos ramas de la condición, en pantalla)
 - **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 y 2, con bloques de Scratch)
 - **Material listo:** [[M:M12|Diagramas de flujo]]
+- **Para repasar:** algoritmo
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
 **Opción A · Recorremos diagramas en la pizarra**
@@ -171,6 +174,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 - **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] · [[P:variables.traza|Variables · ¿cuánto vale al final?]]
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 1 a 3: predecir el valor final de una variable)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] · [[M:M26|Póster «Variable»]]
+- **Para repasar:** evento
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
 
 **Pasos:**
@@ -198,6 +202,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 - **En tablets o portátiles:** [[T:adivina|Adivina el número]] (nivel 1: el mismo juego que programáis, del 1 al 20)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S5-adivina-el-numero-solucion.sb3|Adivina el número · solución (con pistas y repetir hasta acertar)]]
+- **Para repasar:** variable · condición · azar
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
 **Calentamiento en la pizarra (5 minutos):** jugad a [[P:adivina|Adivina el número]] del 1 al 100. ¿Qué número conviene decir primero? Pulsad «Pista: la mitad» y mirad cuánto descarta cada pregunta. Es el juego que vais a programar.
@@ -234,6 +239,7 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 - **En tablets o portátiles:** [[T:regla|La regla secreta]] (nivel 2: ¿en qué tabla están los números que dicen «sí»?)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S6-juego-de-las-tablas-solucion.sb3|Juego de las tablas · solución]]
+- **Para repasar:** variable · azar · condición
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
@@ -339,6 +345,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 2 y 5: leer puntos y el escenario de Scratch)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S10-videojuego-plantilla.sb3|Plantilla de inicio: dibujos y fondos, sin programar]] · [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+- **Para repasar:** evento · para siempre
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos:**
@@ -366,6 +373,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Qué aprenden:** usar **si ¿tocando…? entonces** para que los objetos interactúen.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+- **Para repasar:** condición · para siempre · azar
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
 
 **Pasos:**
@@ -392,6 +400,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] (puntos, vidas y el final)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+- **Para repasar:** condición
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
 **Pasos:**
@@ -420,6 +429,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Para proyectar:** [[P:mensajes|Mensajes · en Scratch]] (antes de programar: a quién llega un mensaje y quién reacciona)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Eventos»)
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+- **Para repasar:** variable
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
 
 **Pasos:**
@@ -448,6 +458,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Qué aprenden:** probar juegos de otros y recibir comentarios para mejorar.
 - **Material listo:** [[M:M17|Ficha de playtesting]]
+- **Para repasar:** depurar
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
 **Pasos:**
@@ -465,6 +476,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Qué aprenden:** usar lo que dijeron otros en el playtesting para arreglar bichos y mejorar el juego; tres normas para navegar seguros.
 - **Prepara antes:** las fichas de playtesting (M17) de la S14, devueltas a cada pareja.
 - **Material listo:** [[M:M17|Fichas de playtesting]] · [[M:M20|Chuleta de bloques de Scratch]]
+- **Para repasar:** depurar
 - **Minuto de uso responsable (ampliado, en el paso 4):** «No todo lo que sale en internet es verdad: antes de creerlo, lo busco en otra fuente.» ¿Cómo comprobamos si un dato es cierto?
 
 **Pasos:**
@@ -519,6 +531,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Qué aprenden:** repasar cómo funciona un circuito y cómo Makey Makey hace de teclado.
 - **Para proyectar:** [[P:circuito|¿Conduce la electricidad?]]
 - **Material listo:** [[M:M22|Registro «¿qué conduce?»]]
+- **Para repasar:** circuitos
 - **Minuto de uso responsable:** nada se enchufa a la corriente, agua lejos, pinzas con cuidado.
 
 **Pasos:**
@@ -535,6 +548,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Qué aprenden:** planificar en equipo un juego educativo pensando en quien lo va a usar.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · situaciones oficiales de Clic and Play (Recursos oficiales)
+- **Para repasar:** descomponer
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
 **Pasos:**
@@ -552,6 +566,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Qué aprenden:** fabricar un mando con cartón y aluminio que funcione como teclado.
 - **Prepara antes:** M22 hoja 1 por grupo, cartón, papel de aluminio y celo.
 - **Material listo:** [[M:M22|Plantilla de mando Makey Makey]]
+- **Para repasar:** circuitos
 - **Minuto de uso responsable:** «Los cables se sacan desde el enchufe, no tirando del cable.» ¿Qué le puede pasar al cable si tiramos de él?
 
 **Pasos:**
@@ -568,6 +583,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 
 - **Qué aprenden:** programar un evento por botón y usar una variable y una condición en el juego.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
+- **Para repasar:** evento · variable · condición
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
 **Pasos:**
@@ -595,6 +611,7 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]]
 - **En tablets o portátiles:** [[T:balanza|Ordenar con la balanza]] (niveles 1 y 2: optimizar es hacerlo con menos pesadas)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Control»)
+- **Para repasar:** bucle
 - **Minuto de uso responsable:** «Guardo mi proyecto con un nombre que sepa encontrar.» ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
 **Pasos:**

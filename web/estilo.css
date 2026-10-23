@@ -375,3 +375,9 @@ details.rdev[open]{border-left:5px solid var(--c)}
 .sc-eve{background:#c88b00}.sc-mov{background:#3d7fe0}.sc-apa{background:#8a5ce6}.sc-son{background:#b54fb5}.sc-con{background:#d98500}
 .sc-sen{background:#3a9bc4}.sc-ope{background:#3f9f3f}.sc-var{background:#e06b00}.sc-pen{background:#0c9e75}
 .mk-fun{background:#3455db}.sc-myb{background:#e0506e}
+/* «Para repasar»: conceptos de antes que usa la sesión */
+.card.use .rep-lista li{padding:6px 0 8px}
+.card.use .rep-nom{margin:0;line-height:1.4}
+.rep-visto{color:var(--muted);font-size:.88em;margin-left:4px}
+.card.use .rep-visto a{display:inline;padding:0;font:inherit;color:inherit;text-decoration:underline}
+.rep-bloque{display:block;color:var(--ink2);font-size:.88em;line-height:1.45;margin-top:2px}

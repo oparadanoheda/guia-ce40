@@ -140,6 +140,7 @@ Texto o pasos.
   - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en el código; hoy se usan 89 y todas existen.
   - `[[M:M07|texto]]` enlaza un PDF.
   - `[[S:archivo.sb3|texto]]` enlaza un proyecto de Scratch.
+  - `- **Para repasar:** variable · evento · azar` pone los conceptos de antes que la sesión da por sabidos, con sus recursos (los nombres están en `web/repaso.py`; si uno no existe, `build_web.py` se para y lo dice).
   - `[[T:robot|texto]]` enlaza un reto para tablets o portátiles (va en la línea `- **En tablets o portátiles:** …`, con para qué niveles). Sale en la tarjeta de la sesión y como diapositiva con el QR en la práctica del modo proyección.
 - **En la web:** «Si va rápido» y «Si cuesta» aparecen como «Para ampliar» y «Para simplificar» en el bloque «Atención a la diversidad». El resto de viñetas con etiqueta van a «A tener en cuenta».
 - **Sesiones opcionales (5º y 6º, S13-S16):** son párrafos breves. Hay que dejar una **línea en blanco** entre las viñetas de cabecera y el párrafo; si no, el texto aparece en la columna lateral.
@@ -405,6 +406,10 @@ Detalle en `08_Plantillas_y_material.md`.
     - **`anim-variable-makecode.html`** (5º y 6º; enlazado en 5º S2 y 6º S2): la misma idea, capítulos, pausas para pensar y frase clave que «Variable», pero con la micro:bit y los bloques de MakeCode con sus colores (al iniciar, fijar, cambiar … por, mostrar número, al presionarse el botón). El botón A suma un punto y la pantalla de 5 × 5 luces lo enseña con las cifras de la micro:bit; el botón B quita una vida. Las cajas, el registro y la iluminación del bloque que se ejecuta son como en la versión de Scratch.
     - **En la guía**, la página de cada uno de los dos vídeos tiene un botón para pasar a la otra versión (`VERSIONES` en `web/videos.py`).
     - Está hecho sobre `anim-variable.html`: mismo reproductor, sonido, subtítulos y textos finales.
+44. **Versión 1.6 (23 de octubre de 2026): «Para repasar» en las sesiones de 3º a 6º.**
+    - **Qué es:** en la tarjeta «Para usar en esta sesión», los conceptos de cursos o sesiones anteriores que la sesión da por sabidos (por ejemplo, en 6º S1: evento, variable, sensores y números al azar), cada uno con los recursos de ese curso para repasarlo: el vídeo (en 5º y 6º, el de MakeCode si lo hay), la herramienta para la pizarra en su modo de repaso, el póster de M26 (abre su página), el reto de tablet y «Se vio en 5º S2», enlazado a la última sesión en que se trabajó. Si un concepto no tiene recurso propio, salen sus bloques en Scratch o en MakeCode.
+    - **Dónde está:** la línea `- **Para repasar:** …` de cada sesión (63 sesiones de 3º a 6º, elegidas a mano) y `web/repaso.py` (los 23 conceptos, sus recursos por curso, las sesiones donde se trabaja cada uno y la lista de recursos que faltan). No se repite un concepto que ya es el vídeo de la sesión.
+    - **Lo que falta** está en el apartado 11 («Recursos para repasar que faltan»).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 
@@ -426,6 +431,16 @@ Las copias de seguridad de cada paso están en `_version_anterior/`.
 - Las aclaraciones pequeñas de algunas tarjetas de las herramientas (por ejemplo, «Las siguientes tarjetas van dentro»).
 
 **Si 5º y 6º dejan de ser quincenales:** hay un plan acordado (7 de octubre de 2026) en `Propuesta 5º y 6º semanal.md`: 24 sesiones con imprescindibles y recomendadas, para unas 3 de cada 4 semanas. En 2026-27 siguen quincenales.
+
+**Recursos para repasar que faltan** (`FALTAN` en `web/repaso.py`; hoy salen solo los bloques). Por orden de cuántas sesiones los piden en «Para repasar»:
+- **Evento (18 sesiones de 3º a 6º):** una herramienta para la pizarra con varios eventos y qué programa empieza con cada uno. El vídeo «Evento» ya da la idea.
+- **Para siempre (6):** vídeo o herramienta sobre el bucle que no para frente a «repetir N veces», y para qué sirve mirar un sensor todo el rato (3º S14, 4º S10 y S11, 5º S4 y S7, 6º S3).
+- **Números al azar (5):** vídeo o herramienta sobre el dado electrónico y la posición aleatoria, y por qué cada vez sale distinto (4º S5, S6 y S11, 5º S3, 6º S1).
+- **Descomponer en 3º-6º (5):** herramienta para partir un proyecto en partes; solo hay vídeo de 1º-4º y póster (3º S19, 4º S18, 5º S11, 6º S6 y S10).
+- **Diseño en 3D (5):** vídeo de Tinkercad y de las vistas (5º S15 y S16, 6º S9, S15 y S16).
+- **Motores del Nezha (4):** vídeo de los dos motores y el signo de la velocidad (5º S11 y S14, 6º S4 y S5).
+- **Funciones (2):** herramienta o reto de tablet para dar nombre a un trozo de programa y llamarlo (6º S7 y S11).
+- **Datos (1):** vídeo de preguntar, contar, ordenar en una tabla y dibujar el gráfico (6º S3).
 
 **Otros pendientes**
 

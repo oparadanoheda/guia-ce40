@@ -90,6 +90,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M18|Tarjeta «Dónde lo dejamos»]]
 - **Archivo de MakeCode:** [[S:6-S1-contador.mkcd|Reto 2: contador]] · [[S:6-S1-juego-de-reflejos.mkcd|Reto 4: juego de reflejos]]
+- **Para repasar:** evento · variable · sensores · azar
 - **Minuto de uso responsable (5 minutos):** normas de baterías, cables y recogida. Tarjeta «Dónde lo dejamos».
 
 **Retos (cada pareja llega hasta donde pueda, en el simulador):**
@@ -141,6 +142,7 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 3 y 4, con bloques de MakeCode)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:6-S2-mascota-virtual.mkcd|La mascota virtual · solución]]
+- **Para repasar:** condición
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
 **Opción A · Mascota virtual (recomendada)**
@@ -179,6 +181,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Para proyectar:** [[P:umbral.temp|Sensor y umbral]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:6-S3-medimos-el-colegio.mkcd|Medidor de temperatura y luz]]
+- **Para repasar:** sensores · datos · para siempre
 - **Minuto de uso responsable:** «Antes de creer algo, lo contrasto en otra fuente.» ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
@@ -220,6 +223,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **En tablets o portátiles:** [[T:velocidad|Aparca el coche Nezha]] (niveles 3 y 4: tiempo y velocidad, dividiendo)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
 - **Archivo de MakeCode:** [[S:6-S4-nezha-cuadrado.mkcd|El cuadrado · solución]]
+- **Para repasar:** motores · bucle · ángulos
 - **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
 
 **Pasos:**
@@ -251,6 +255,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** situaciones oficiales de Nezha con manual de montaje y programa .hex (Recursos oficiales)
 - **Archivo de MakeCode:** [[S:6-S5-nezha-para-ante-obstaculo.mkcd|Parar ante un obstáculo]] · [[S:6-S5-tres-eventos.mkcd|Tres eventos]]
+- **Para repasar:** motores · condición
 - **Minuto de uso responsable:** «El robot se prueba en el suelo y se apaga antes de tocar la placa.» ¿Por qué en el suelo y no en la mesa?
 
 **Opción A · Situación oficial con mecanismos**
@@ -285,6 +290,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **En tablets o portátiles:** [[T:balanza|Ordenar con la balanza]] (nivel 3: 5 cajas; 3 estrellas con 8 pesadas y el reto extra con 7) · [[T:adivina|Adivina el número]] (nivel 3: del 1 al 1000 en 10 preguntas o menos)
 - **Material listo:** [[M:M16|Plan de mi invento]]
 - **Archivo de MakeCode:** [[S:6-S6-cuadrado-con-funciones.mkcd|El cuadrado con funciones · solución]]
+- **Para repasar:** bucle · descomponer
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Pasos:**
@@ -320,6 +326,7 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 
 - **Qué aprenden:** construir y probar un proyecto propio con al menos un sensor y dos eventos.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
+- **Para repasar:** sensores · evento · variable · funciones
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 - **Pasos:**
   1. Tarjeta y plan (3 minutos).
@@ -373,6 +380,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **Para proyectar:** [[P:vistas.cuantos|Cubos y vistas · ¿cuántos cubos?]] (calentamiento: volumen contando cubos, también los que no se ven)
 - **En tablets o portátiles:** [[T:cubos|Cubos y vistas]] (nivel 2: contar cubos, también los que no se ven)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño con medidas)
+- **Para repasar:** 3d
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
 **Pasos:**
@@ -393,6 +401,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **Prepara antes:** hoja de proyecto en equipo (M16): problema, a quién ayuda, idea, materiales, tareas, quién hace qué.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
 - **Archivo de MakeCode:** [[S:6-S10-semaforo-de-ruido.mkcd|Semáforo de ruido (V2)]]
+- **Para repasar:** descomponer
 - **Minuto de uso responsable:** «Antes de creer algo, lo contrasto en otra fuente.» ¿Qué fuentes fiables conocemos?
 
 **Pasos:**
@@ -419,6 +428,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 
 - **Qué aprenden:** construir y programar en equipo el prototipo del proyecto de servicio.
 - **Material listo:** [[M:M18|Dónde lo dejamos]] · [[M:M19|Rúbrica]]
+- **Para repasar:** sensores · funciones
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 - **Pasos:**
   1. Tarjeta y plan (3 minutos).
@@ -458,6 +468,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 
 - **Qué aprenden:** programar el prototipo, probarlo con usuarios reales y mejorarlo con lo que digan.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M18|Dónde lo dejamos]]
+- **Para repasar:** depurar
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Pasos:**
@@ -478,6 +489,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **En tablets o portátiles:** [[T:cifrado|Mensajes secretos]] (niveles 3 y 4: el cifrado de César, para hablar de privacidad)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
 - **Archivo de MakeCode:** [[S:6-S14-timbre-a-distancia.mkcd|Timbre a distancia]] · [[S:6-S14-mando-por-radio.mkcd|Mando por radio]] · [[S:6-S14-robot-por-radio.mkcd|Robot que obedece al mando]]
+- **Para repasar:** evento
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
 **Pasos:**
@@ -506,6 +518,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **Para proyectar:** [[P:vistas|Cubos y vistas]] (para dibujar la pieza en la hoja: de frente, desde arriba y de lado)
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 3 a 5: con negativos, para colocar piezas en Codeblocks)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
+- **Para repasar:** 3d · coordenadas · bucle
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
 **Pasos:**
@@ -523,6 +536,7 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **Qué aprenden:** diseñar en 3D un soporte a la medida del cartel con el código QR de la feria, o resolver retos de lógica en la pizarra.
 - **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] (juegos de lógica para una sesión a elegir)
 - **En tablets o portátiles:** [[T:regla|La regla secreta]] (nivel 3: con «y», «o» y «no»)
+- **Para repasar:** 3d
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
 **Opción A · Tinkercad: el soporte del cartel de la feria**
