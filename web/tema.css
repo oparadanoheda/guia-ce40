@@ -1,0 +1,147 @@
+/* Estética de la guía (versión 1.9): «Pizarra y cuaderno» con títulos en Bricolage Grotesque (la opción A1).
+   Va encima de estilo.css y de las hojas de las herramientas (antes de imprimir.css):
+   - el marco (barra lateral y fondo) en verde pizarra muy claro; la página es una hoja blanca con 16 px de radio, sin sombra;
+   - nada de cajas con sombra ni líneas: paneles un tono por debajo del blanco, con 22 px de radio;
+   - títulos y números grandes en Bricolage Grotesque; todo lo demás en Instrument Sans, también el texto;
+   - cada curso, en un tinte pálido de su color; el color entero solo en su número;
+   - sin etiquetas en mayúsculas espaciadas: frases normales en gris. */
+:root{
+  --desk:#edf1ec; --sheet:#ffffff; --ink:#1f201d; --ink2:#3b3e39; --muted:#5c6059; --rule:#e5e8e3; --tint:#f5f6f3; --tint2:#ebeee9;
+  --panel:#f5f6f3; --edge:#e0e5df; --accent:#1b6e66;
+  --shadow:none;
+  --sans:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --serif:"Instrument Sans",system-ui,sans-serif;
+  --titulo:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --desk:#121513; --sheet:#1a1d1b; --ink:#e8ebe7; --ink2:#c4c9c2; --muted:#9ea49b; --rule:#2a2f2b; --tint:#212522; --tint2:#2a2f2b;
+  --panel:#212522; --edge:#2a2f2b; --accent:#5fc2b6}}
+:root[data-theme="dark"]{--desk:#121513; --sheet:#1a1d1b; --ink:#e8ebe7; --ink2:#c4c9c2; --muted:#9ea49b; --rule:#2a2f2b; --tint:#212522; --tint2:#2a2f2b;
+  --panel:#212522; --edge:#2a2f2b; --accent:#5fc2b6}
+
+body{font:16px/1.6 var(--sans);background:var(--desk)}
+/* el marco: barra lateral sobre el verde; la página, una hoja blanca */
+.side{background:var(--desk);border-right:0}
+main{background:var(--sheet);margin:8px 8px 8px 0;border-radius:16px;border:1px solid var(--edge);min-height:calc(100vh - 16px);padding:32px clamp(16px,3vw,48px) 72px}
+.sheet{background:transparent;box-shadow:none;border-radius:0;padding:8px 0 24px}
+.doc{max-width:860px}
+.search{background:var(--sheet);border:0;border-radius:999px;padding:8px 14px}
+.side nav>a,.cnav a{border-radius:10px;color:var(--ink2)}
+.side nav>a:hover,.cnav a:hover{background:color-mix(in srgb,var(--ink) 5%,transparent)}
+.side nav a.active{background:var(--sheet);font-weight:600}
+.ng{font:500 .82rem/1 var(--sans);letter-spacing:0;text-transform:none;color:var(--muted);margin:18px 10px 6px}
+.cnav a i{width:22px;height:22px;border-radius:7px;background:color-mix(in srgb,var(--c) 16%,var(--sheet));position:relative}
+.cnav a i::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--c)}
+.colophon{border-top:0}
+
+/* títulos */
+h1,.h-sec,.tlabel{font-family:var(--titulo);font-weight:650;letter-spacing:-.025em}
+h1{font-size:clamp(2rem,3.4vw,2.7rem);line-height:1.05}
+.h-sec{font-size:1.85rem;border-top:0;padding-top:0;margin:1.8em 0 .5em}
+.h-sec.big{font-size:2.1rem}
+h3{font-weight:600}
+.eyebrow,.hero .eyebrow,.cover-band .eyebrow{font:500 .95rem/1.3 var(--sans);letter-spacing:0;text-transform:none;color:var(--muted)}
+.lede,.hero-lead,.f-obj{color:var(--ink2)}
+a.xref,a.sa,.sheet a[target=_blank]:not(.rl):not(.book){color:var(--accent)}
+.tag{font-family:var(--sans);letter-spacing:0;border:0;background:var(--panel);border-radius:999px;padding:5px 9px}
+thead th{border-bottom:1px solid var(--ink)}
+code{font-family:var(--sans);font-weight:600;background:var(--panel)}
+
+/* portada: el saludo y los seis cursos en tinte pálido */
+.hero{align-items:start;padding-top:8px}
+.hero h1{font-size:clamp(2.6rem,4vw,3.25rem);line-height:.98;letter-spacing:-.03em}
+.hero h1 br{display:none}
+.hero h1 span{display:block;font:500 .5em/1.3 var(--titulo);letter-spacing:-.01em;color:var(--muted);margin-top:.35em}
+.hero-facts{gap:24px}
+.hero-facts b{font:650 1.75rem var(--titulo);letter-spacing:-.02em}
+.shelf{gap:10px}
+.book{background:color-mix(in srgb,var(--c) 11%,var(--sheet));color:var(--ink);box-shadow:none;border-radius:22px;min-height:168px;padding:16px 16px 14px}
+.book:hover{transform:none;background:color-mix(in srgb,var(--c) 18%,var(--sheet))}
+.b-num{font:650 2.7rem/1 var(--titulo);color:var(--c);letter-spacing:-.02em}
+.b-meta{color:var(--muted)}
+.b-tools{border-top:0;padding-top:0;color:var(--ink2)}
+.contents{gap:10px;background:none;border:0;border-radius:0;overflow:visible}
+.contents a{background:var(--panel);border-radius:22px;padding:18px 20px}
+.contents a:hover{background:var(--tint2)}
+.contents small{font-weight:500;font-size:.88rem;letter-spacing:0;text-transform:none;color:var(--muted)}
+.ucards div{background:var(--panel);border-top:0;border-radius:22px;padding:18px}
+.anatomy div{border-top:0;background:var(--panel);border-radius:22px;padding:16px}
+.anatomy b{font:650 2rem var(--titulo)}
+.ph,.ecards div,.role,details.more{background:var(--panel);border:0;border-radius:22px}
+details.more .more-body{border-top:0}
+.qs blockquote{border-left:0;border-radius:22px;font:500 1.3rem/1.35 var(--titulo);font-style:normal;letter-spacing:-.01em}
+.ctools li{border-left:0;border-radius:16px;background:color-mix(in srgb,var(--c) 10%,var(--sheet))}
+
+/* curso: la portada del curso en tinte pálido, el número en su color */
+.cover-band{background:color-mix(in srgb,var(--c) 12%,var(--sheet));color:var(--ink);border-radius:22px;box-shadow:none}
+.cover-band + .sheet{border-radius:0}
+.cb-num{font-family:var(--titulo);font-weight:650;color:var(--c);letter-spacing:-.03em}
+.cover-band h1{color:var(--ink)}
+.cb-sub{color:var(--ink2)}
+.facts{border-block:0;background:var(--panel);border-radius:22px;padding:4px 20px}
+.facts dt,.keys dt,.cont h4,.rgroup h4,.rcourse{letter-spacing:0;text-transform:none;font-size:.85rem;font-weight:500}
+.krow{border-bottom:0}
+.term{border-top:0;padding:30px 0 18px}
+.tlabel{font-size:1.75rem;color:var(--ink)}
+.tlabel::before{content:"";display:inline-block;width:12px;height:12px;border-radius:50%;background:var(--c);margin-right:12px;vertical-align:.15em}
+.cont{background:var(--panel);border-radius:16px}
+.slist li{border-bottom-color:var(--rule)}
+.slist a{border-radius:12px}
+.slist .n{font:600 .95rem/1.5 var(--sans);color:var(--c)}
+.slist .t small{font-family:var(--sans)}
+.pflag{letter-spacing:0;text-transform:none;border-radius:999px;font-size:.75rem;background:color-mix(in srgb,var(--c) 14%,var(--sheet));color:var(--ink)}
+.rdev{border-top:0}
+
+/* sesión */
+.ficha .sheet{padding-top:8px;overflow:visible}
+.f-head{border-top:0;margin:0;padding:0 0 22px}
+.f-num{background:color-mix(in srgb,var(--c) 12%,var(--sheet));color:var(--ink);border-radius:22px;padding:14px 18px 16px}
+.f-num small{letter-spacing:0;text-transform:none;font-size:.82rem;font-weight:500}
+.f-num b{font:650 3.4rem/1 var(--titulo);color:var(--c);letter-spacing:-.03em}
+.f-titles{padding-top:6px}
+.crumbs a{color:var(--accent)}
+.sb-seg{background:var(--panel);border-radius:999px;padding:7px 14px}
+.sb-seg.sb-2{background:color-mix(in srgb,var(--c) 16%,var(--sheet))}
+.p-h,.mini,.p-tl small,.keyq figcaption,.pg small,.vid-tile small,.pj-tile small{letter-spacing:0;text-transform:none;font-size:.85rem;font-weight:500}
+.p-tabs{gap:8px;margin-bottom:10px}
+.p-tabs button{background:var(--panel);border:0;border-radius:999px;top:0;padding:8px 16px 8px 10px}
+.p-tabs button[aria-selected="true"]{background:var(--ink);color:var(--sheet);box-shadow:none}
+.p-tabs button[aria-selected="true"] .p-letter,.p-tabs button[aria-selected="true"] .p-tl small{color:var(--sheet)}
+.p-body{border:0;background:var(--panel);border-radius:22px;padding:20px 24px}
+.props.single .p-body{border-left:0}
+.keyq{background:color-mix(in srgb,var(--c) 10%,var(--sheet));border-radius:22px}
+.keyq::before{font-family:var(--titulo);font-weight:600}
+.keyq blockquote{font:500 1.6rem/1.25 var(--titulo);font-style:normal;letter-spacing:-.015em}
+.div-box{border:0;background:var(--panel);border-radius:22px}
+.eval{background:color-mix(in srgb,var(--c) 12%,var(--sheet));color:var(--ink);border-radius:22px}
+.notes{background:var(--panel);border-radius:22px}
+.card{border-top:0;background:var(--panel);border-radius:22px;padding:16px 18px}
+.card.res li{border-bottom-color:var(--rule)}
+.card.use h4{font:500 .85rem var(--sans);letter-spacing:0;text-transform:none;color:var(--muted)}
+.pager{border-top:0}
+.pg{border:0;background:var(--panel);border-radius:999px;padding:12px 20px}
+.pg:hover{background:var(--tint2);color:var(--ink)}
+.pz-open{background:var(--ink);color:var(--sheet);border-radius:999px;font-family:var(--sans)}
+.pr-open{border-radius:999px;color:var(--ink);border:2px solid var(--rule);font-family:var(--sans)}
+
+/* herramientas, galerías y botones */
+.pj-btn{border-radius:999px;border:0;background:var(--panel)}
+.pj-btn:hover{background:var(--tint2)}
+.pj-btn.go{background:var(--ink);color:var(--sheet)}
+.pj-tile,.mat-tile,.vid-tile{border:0;background:var(--panel);border-radius:22px}
+.pj-tile:hover,.mat-tile:hover,.vid-tile:hover{background:var(--tint2)}
+.pj-tile span{font-family:var(--sans)}
+.vid-tile img{border-bottom:0}
+.rindex a{border:0;background:var(--panel)}
+.pj-mode>h2{letter-spacing:0;text-transform:none;font-size:.9rem}
+
+@media (max-width:900px){
+  main{margin:0;border-radius:0;border:0;min-height:0;padding:20px 16px 60px}
+  .topbar{background:var(--desk);border-bottom:0}
+  .menu-btn{background:var(--sheet);border:0;border-radius:999px}
+  .side{background:var(--desk)}
+}
+.pj-hint{font-style:normal}
+/* etiquetas de las herramientas: frases normales en gris, sin mayúsculas espaciadas */
+.pj-col h2,.pj-stage-root>h2,.rp-think h2,.rp-tag,.ev-obj h2,.ev-carta-pre,.ev-de{letter-spacing:0;text-transform:none;font-size:.92rem}
+.ext-app small,.pj-kind small,.pj-mlab,.rp-bin h2,.ad-cmp small,.vi-vista figcaption{letter-spacing:0;text-transform:none;font-size:.88rem}

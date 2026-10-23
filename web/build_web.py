@@ -28,7 +28,7 @@ PJ_INDEX = {p[0]: p for p in PROYECTABLES}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.8", "octubre de 2026"
+VERSION, VERSION_FECHA = "1.9", "octubre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -1090,11 +1090,11 @@ def build():
                'Los dibujos de las herramientas, los vídeos y los proyectos de Scratch y MakeCode son propios de la guía.</p></footer>')
     page = f'''<title>Guía didáctica Código Escuela 4.0</title>
 <meta name="description" content="{DESCRIPCION}">
-<meta name="theme-color" content="#e9ebef" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0d0f13" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#edf1ec" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#121513" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website"><meta property="og:locale" content="es_ES"><meta property="og:title" content="Guía didáctica Código Escuela 4.0 · Primaria 2026-2027"><meta property="og:description" content="{DESCRIPCION}">
 <link rel="icon" href="{FAVICON}">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,500;0,7..72,600;1,7..72,400&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>{CSS}</style>
 <div class="topbar"><button type="button" class="menu-btn" aria-controls="side" aria-expanded="false">{ICON["menu"]}<span>Índice</span></button><a href="#inicio" class="tb-title">Código Escuela 4.0 · Guía didáctica</a></div>
 <div class="shell">{side}<main id="main">{"".join(pages).replace("🏴", FLAG)}{colofon}</main></div>
@@ -1380,7 +1380,7 @@ def video_pages(courses):
 
 
 HERE = Path(__file__).resolve().parent
-CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyectables8.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
+CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyectables8.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "tema.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
 JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8")
 PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables5.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables6.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables7.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables8.js").read_text(encoding="utf-8")
 

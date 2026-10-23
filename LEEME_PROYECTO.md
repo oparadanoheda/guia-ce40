@@ -1,6 +1,6 @@
 # Guía Código Escuela 4.0 · Primaria · 2026-2027 — documento del proyecto
 
-Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 23 de octubre de 2026 (**versión 1.8**).
+Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 23 de octubre de 2026 (**versión 1.9**).
 
 ---
 
@@ -81,6 +81,7 @@ Programación Mate 4.0 26-27/
 |---|---|
 | `build_web.py` | Genera `programacion_CE40.html` (la web, un solo archivo) y `_preview.html` a partir de los .md |
 | `app.js`, `estilo.css` | Navegación (rutas `#c1-s7`, `#p-herramienta.variante`, búsqueda, pestañas) y estilos. Tema claro y oscuro, un color por curso (`--c1` a `--c6`) |
+| `tema.css` | La estética de la versión 1.9 («Pizarra y cuaderno»), encima de `estilo.css` y de las hojas de las herramientas y antes de `imprimir.css`: colores del marco, paneles en tono, letras (títulos en Bricolage Grotesque y texto en Instrument Sans) y tinte de cada curso. Para cambiar el aspecto, se toca aquí |
 | `app.js` · «Volver a la sesión» | Al salir de una ficha hacia un recurso (herramienta, guía, rúbrica, material…) se guarda en `sessionStorage` (`ce40-origen`) la sesión, la posición, la propuesta abierta y, si se venía del modo proyección, la diapositiva. En el recurso aparece un botón fijo abajo a la izquierda y otro en la cabecera de las herramientas. Al volver (con el botón o con el «atrás» del navegador) se restaura todo; la proyección solo se reabre con el botón. Ir a otra sesión, a un curso o al inicio borra el origen |
 | `proyeccion.js`, `proyeccion.css` | Modo proyección de cada sesión. Los datos van en un `<script type="application/json" class="pz-data">` dentro de cada ficha (función `projection_data` de `build_web.py`) |
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
@@ -433,6 +434,13 @@ Detalle en `08_Plantillas_y_material.md`.
       - **Dónde sale:** la línea `- **Preguntas de salida:** [[P:salida.bucle|Bucles]]` en las 13 sesiones donde se aprende cada concepto con el editor (3º S10, S11, S13 y S14; 4º S2, S4, S10 y S11; 5º S2, S4 y S5; 6º S1 y S2). En la ficha va en «Para usar en esta sesión» y, en el modo proyección, como botón en la diapositiva de cierre y en «Recursos». También son recurso de «Para repasar» y del Mapa de conceptos (evento, bucle, para siempre, variable y condición).
       - **Guía para el docente** en `guias_proyectables.py`.
     - **Corrección:** Teachable Machine figuraba como 3º-6º en las aplicaciones recomendadas; pasa a 5º-6º (la IA es solo de 5º y 6º).
+
+47. **Versión 1.9 (23 de octubre de 2026): estética nueva, «Pizarra y cuaderno».** Se propusieron dos opciones hechas con las skills de diseño (tasteskill): la A «Pizarra y cuaderno» y la B «Libro de registro»; se eligió la A, pero con otra letra para los títulos (de cuatro probadas, Bricolage Grotesque).
+    - **Cómo es** (`web/tema.css`): el marco y la barra lateral en verde pizarra muy claro y la página como una hoja blanca con las esquinas redondeadas; sin sombras ni líneas, paneles un tono por debajo del blanco con 22 px de radio; botones y pestañas en forma de píldora; cada curso, en un tinte pálido de su color, con su número en el color entero; sin etiquetas en mayúsculas espaciadas.
+    - **Letras:** títulos y números grandes en **Bricolage Grotesque** (seminegrita); todo lo demás en **Instrument Sans**, también el texto, que antes iba en Literata. Ahora se carga la cursiva de verdad. El modo proyección usa las mismas: títulos en Bricolage y el texto grande en Instrument Sans.
+    - **Tema oscuro** con los mismos tonos. La ficha impresa sale sin fondos (los paneles, con una línea fina) y más compacta: 6º S1 pasa de tres páginas a dos.
+    - **Arreglado de paso:** en «Recursos oficiales», el «+» de cada desplegable quedaba pegado al nombre en lugar de ir a la derecha; y en el móvil, el nombre de la última fase del temporizador quincenal se salía de su caja.
+    - Las propuestas, las variantes de letra y las capturas comparadas están en `.taste-skill/opciones/` (fuera del repositorio).
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

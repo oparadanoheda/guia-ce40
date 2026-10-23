@@ -149,6 +149,9 @@
 .pj-phases div{padding:10px;border-radius:6px;background:var(--tint2);display:flex;flex-direction:column;min-width:0}
 .pj-phases div.now{background:var(--ink);color:var(--sheet)}.pj-phases div.done{opacity:.45}
 .pj-phases small{opacity:.8}
+/* en el móvil las cajas de las fases cortas son estrechas: el nombre no se sale de su caja */
+.pj-phases div{overflow:hidden}
+.pj-phases b,.pj-phases small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .pj-cipher{display:flex;flex-wrap:wrap;gap:10px}
 .pj-cipher span{display:flex;flex-direction:column;align-items:center;min-width:54px;padding:10px;border:2px solid var(--rule);border-radius:10px}
 .pj-cipher b{font:700 2.2rem var(--sans)}

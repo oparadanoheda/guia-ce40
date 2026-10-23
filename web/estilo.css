@@ -352,6 +352,8 @@ details.more details.more{margin:8px 0;background:var(--tint)}
 details.rdev summary span{font-weight:500;color:var(--muted)}
 details.rdev summary span b{color:var(--ink);font-size:1.1rem}
 details.rdev[open]{border-left:5px solid var(--c)}
+/* los desplegables de la biblioteca no usan la rejilla de .rdev: el «+» va a la derecha */
+details.rdev{display:block;margin-top:10px;padding-top:0}
 
 /* Pistas y soluciones · guías de las herramientas */
 .mkb{display:inline-block;padding:1px 8px;border-radius:5px;color:#fff;font:600 .86em/1.5 var(--sans);margin:1px 0;white-space:nowrap}
