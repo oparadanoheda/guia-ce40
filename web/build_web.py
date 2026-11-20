@@ -21,14 +21,16 @@ from videos import VIDEOS, BY_SESSION, VERSIONES  # noqa: E402
 from repaso import CONCEPTOS, GRUPOS, DEFINICION, clave as clave_repaso, antes as antes_repaso, ancla as ancla_repaso  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
 from mision_clase import MISION  # noqa: E402
+from tablero_clase import TABLERO  # noqa: E402
 from pictos_mision import pictos_paso  # noqa: E402
 import json  # noqa: E402
 MAT_INDEX = {code: (title, courses, MAT.slug(code, title)) for code, title, courses, _ in MAT.MATERIALS}
 PJ_INDEX = {p[0]: p for p in PROYECTABLES}
+VIDEO_IDS = {v[0] for v in VIDEOS}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "1.9", "octubre de 2026"
+VERSION, VERSION_FECHA = "2.0", "noviembre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -123,9 +125,14 @@ def links(h):
         if code not in MAT_INDEX:
             return label
         return f'<a class="mlink" href="materiales/{MAT_INDEX[code][2]}.pdf" target="_blank" rel="noopener"><b>{code}</b>{label}</a>'
+    def vd(m):
+        if m.group(1) not in VIDEO_IDS:
+            raise SystemExit(f"[[V:{m.group(1)}|…]]: no hay ningún vídeo con ese nombre (están en web/videos.py)")
+        return f'<a class="vlink" href="#v-{m.group(1)}">{PLAY_ICON}{m.group(2)}</a>'
     h = re.sub(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", pj, h)
     h = re.sub(r"\[\[T:(\w+)\|([^\]]+)\]\]", lambda m: f'<a class="plink tlink" href="#t-{m.group(1)}">{TAB_ICON}{m.group(2)}</a>', h)
     h = re.sub(r"\[\[M:(M\d\d)\|([^\]]+)\]\]", mt, h)
+    h = re.sub(r"\[\[V:([\w-]+)\|([^\]]+)\]\]", vd, h)
     h = re.sub(r"\[\[S:([\w.-]+\.sb3)\|([^\]]+)\]\]",
                lambda m: f'<a class="mlink" href="materiales/scratch/{m.group(1)}" download><b>SB3</b>{m.group(2)}</a>', h)
     h = re.sub(r"\[\[S:([\w.-]+\.mkcd)\|([^\]]+)\]\]",
@@ -168,10 +175,14 @@ def inline(text):
 # ---------------------------------------------------------------- parsing
 
 
-META = ("Para proyectar", "Para repasar", "Preguntas de salida", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
+META = ("Hoy", "Necesitas", "Lo han conseguido", "Para proyectar", "Para repasar", "Preguntas de salida", "En tablets o portátiles", "En las tablets", "Material listo", "Archivo de Scratch", "Archivo de MakeCode", "Qué aprenden", "Prepara antes", "Minuto de uso responsable", "Minuto SEG", "Frase clave", "Si va rápido", "Si cuesta",
         "Opción más sencilla", "Mates", "Producto", "Autoevaluación", "Pasos", "Opción ", "Cierre",
         "Para ti", "Aviso", "Sin caras", "Si hay", "Si coincide", "Si el grupo", "Si algún", "Solo sonidos",
         "Minuto")
+
+
+FASES = ("Empezamos", "A trabajar", "Cerramos")
+FASE_RE = re.compile(r"\*\*(%s)\s*\((\d+) min\):?\*\*:?\s*(.*)" % "|".join(FASES), re.S)
 
 
 def split_items(block):
@@ -206,18 +217,27 @@ def parse_session(chunk):
     title = re.sub(r"\s*`[^`]+`", "", rest).strip()
     body = re.sub(r"\n-{3,}\s*$", "", body.strip())
     s = {"num": num, "title": title, "tags": tags, "raw": title + "\n" + body, "intro": [], "sections": [],
-         "notes": [], "hard": []}
+         "notes": [], "hard": [], "fases": []}
     cur = None
+    fase = None     # la fase del guion que se está leyendo (sesiones con «Empezamos», «A trabajar» y «Cerramos»)
+    comun = False   # tras «En todas las propuestas», las fases valen para todas
 
     def new_sec(kind, label, name, first):
-        nonlocal cur
-        cur = {"kind": kind, "label": label, "name": name, "md": [first] if first else []}
+        nonlocal cur, fase
+        fase = None
+        cur = {"kind": kind, "label": label, "name": name, "md": [first] if first else [], "fases": []}
         s["sections"].append(cur)
 
     def route(label, text):
         L = label
         if L.startswith("Qué aprenden"):
             s["obj"] = text
+        elif L == "Hoy":
+            s["hoy"] = text
+        elif L.startswith("Necesitas"):
+            s["necesitas"] = text
+        elif L.startswith("Lo han conseguido"):
+            s["logro"] = text
         elif L.startswith("Prepara antes"):
             s["prep"] = text
         elif L.startswith("Minuto de uso responsable") or L.startswith("Minuto SEG"):
@@ -265,16 +285,26 @@ def parse_session(chunk):
         if bs.startswith("- "):
             items = split_items(bs)
             if any(lbl and lbl.startswith(META) for lbl, _ in items):
+                fase = None
                 for lbl, txt in items:
                     if lbl:
                         route(lbl, txt)
                     else:
                         (cur["md"] if cur else s["intro"]).append(txt)
                 continue
-            (cur["md"] if cur else s["intro"]).append(bs)
+            (fase["md"] if fase else cur["md"] if cur else s["intro"]).append(bs)
+        elif bs.startswith("**Antes de la clase"):
+            s["antes"] = re.sub(r"^\*\*Antes de la clase:?\*\*:?\s*", "", bs)
+            fase = None
+        elif bs.startswith("**En todas las propuestas"):
+            cur, fase, comun = None, None, True
+        elif FASE_RE.match(bs):
+            m = FASE_RE.match(bs)
+            fase = {"name": m.group(1), "min": int(m.group(2)), "md": [m.group(3).strip()] if m.group(3).strip() else []}
+            (cur["fases"] if cur and cur["kind"] == "opt" and not comun else s["fases"]).append(fase)
         elif bs.startswith("**Pistas y soluciones"):
             s["sol"] = re.sub(r"^\*\*Pistas y soluciones[^*]*\*\*:?\s*", "", bs)
-            cur = None
+            cur, fase = None, None
         elif bs.startswith("**Opción más sencilla"):
             s["hard"].append(re.sub(r"^\*\*Opción más sencilla:?\*\*:?\s*", "", bs))
         elif bs.startswith("**Opción"):
@@ -290,7 +320,8 @@ def parse_session(chunk):
         elif (bs.startswith("Si ") or bs.startswith("**Si ")) and cur is not None:
             s["notes"].append(("", bs))
         else:
-            (cur["md"] if cur else s["intro"]).append(bs)
+            (fase["md"] if fase else cur["md"] if cur else s["intro"]).append(bs)
+    s["guion"] = bool(s["fases"] or any(sec["fases"] for sec in s["sections"]))
     return s
 
 
@@ -419,14 +450,14 @@ def render_sections(s):
 
 def plain(text):
     """Texto sin marcas: para la vista de proyección."""
-    text = re.sub(r"\[\[[PMS]:[^|\]]+\|([^\]]+)\]\]", r"\1", text or "")
+    text = re.sub(r"\[\[[PMSTV]:[^|\]]+\|([^\]]+)\]\]", r"\1", text or "")
     text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
     return re.sub(r"[*`]", "", text).strip()
 
 
 def pz_text(text):
     """Markdown de la ficha → HTML corto para proyectar: sin enlaces (los botones de herramientas van aparte)."""
-    t = re.sub(r"\[\[[PMS]:[^|\]]+\|([^\]]+)\]\]", r"**\1**", text or "")
+    t = re.sub(r"\[\[[PMSTV]:[^|\]]+\|([^\]]+)\]\]", r"**\1**", text or "")
     t = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", t)
     t = E(t)
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", t)
@@ -474,7 +505,8 @@ def pz_icons():
     tarjeta = arrow_svg("F", 100, "#2c5bbf").replace("<svg ", '<svg xmlns="http://www.w3.org/2000/svg" ', 1)
     repite = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="2" y="2" width="96" height="96" rx="14" fill="%s"/>'
               '<text x="50" y="40" font-family="Arial,sans-serif" font-size="19" font-weight="700" fill="#fff" text-anchor="middle">REPITE</text>'
-              '<text x="50" y="80" font-family="Arial,sans-serif" font-size="38" font-weight="700" fill="#fff" text-anchor="middle">×3</text></svg>') % SJ["ctrl"]
+              '<path d="M33 60a18 16 0 1 0 8-12" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>'
+              '<path d="M30 40l12 9-14 6z" fill="#fff" stroke="#fff" stroke-width="3" stroke-linejoin="round"/></svg>') % SJ["ctrl"]
     bloque = ('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100"><path d="M10 14 Q10 8 16 8 L98 8 Q104 8 104 14 L104 38 '
               'Q114 38 114 50 Q114 62 104 62 L104 86 Q104 92 98 92 L16 92 Q10 92 10 86 L10 62 Q20 62 20 50 Q20 38 10 38 Z" '
               'fill="%s" stroke="rgba(0,0,0,.25)" stroke-width="3"/><path d="M57 74V30M42 45L57 28L72 45" stroke="#fff" '
@@ -536,14 +568,56 @@ def projection_data(c, s, quin, prev=None):
     return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
 
 
-def render_session(c, s, prev, nxt, idx):
-    t = s["term"]
-    quin = c["id"] in ("c5", "c6")
-    crumbs = f'<a href="#{c["id"]}">{c["num"]} · {E(c["name"])}</a><span>/</span>{E(t["label"])}'
-    obj = f'<p class="f-obj">{inline(cap(s["obj"]))}</p>' if s.get("obj") else ""
-    tags = "".join(tag(x) for x in s["tags"])
-    tag_legend = "".join(f'<li>{tag(x)} {TAG_NAMES[x]}</li>' for x in s["tags"])
+def uso_html(c, s, repaso=True):
+    """Lo que se usa en la sesión, por tipos: vídeos, herramientas, tablets, material, archivos, preguntas de salida y repaso."""
+    vids = BY_SESSION.get(s["id"], [])
+    use = ""
+    if vids:
+        use += f'<h4>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h4><p>' + "".join(
+            f'<a class="vlink" href="#v-{v[0]}">{PLAY_ICON}{E(v[2])}</a> ' for v in vids).strip() + '</p>'
+    if s.get("proj"):
+        use += f'<h4>Para proyectar</h4><p>{inline(s["proj"])}</p>'
+    if s.get("tablet"):
+        use += f'<h4>En tablets o portátiles</h4><p>{inline(s["tablet"])}</p>'
+    if s.get("mat"):
+        use += imprimir_html(c, s)
+    if s.get("sb3"):
+        use += f'<h4>Archivos de Scratch</h4><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Load from your computer (esa opción sale en inglés).</p>'
+    if s.get("mkcd"):
+        use += (f'<h4>Archivos de MakeCode</h4><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
+                f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
+    if s.get("salida"):
+        use += f'<h4>Preguntas de salida (al final)</h4><p>{inline(s["salida"])}</p>'
+    if repaso and s.get("repaso"):
+        use += repaso_html(s, c)
+    use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
+    return use
 
+
+def evaluacion_html(s):
+    """La caja «Evaluación del trimestre» de la sesión que cierra el trimestre."""
+    if not (s.get("product") or s.get("self")):
+        return ""
+    body = ""
+    if s.get("product"):
+        body += f'<p><strong>{E(s["product"][0])}:</strong> {inline(s["product"][1])}</p>'
+    if s.get("self"):
+        body += f'<p>{inline(s["self"])}</p>'
+    m28 = f' · <a href="materiales/{MAT_INDEX["M28"][2]}.pdf" target="_blank" rel="noopener">Retos del trimestre (M28)</a>' if "M28" in MAT_INDEX else ""
+    body += f'<p class="small"><a href="#{RUBRIC}">Ver la rúbrica y los niveles de logro</a>{m28}</p>'
+    return (f'<div class="eval">{ICON["flag"]}<div><h3>Evaluación del trimestre</h3>{body}</div></div>')
+
+
+def notas_html(s):
+    """«A tener en cuenta»: las viñetas con etiqueta que no tienen sitio propio."""
+    if not (s["notes"]):
+        return ""
+    items = "".join(f'<li>{"<strong>" + E(l) + ":</strong> " if l else ""}{inline(cap(tx))}</li>' for l, tx in s["notes"])
+    return (f'<div class="notes">{ICON["note"]}<div><h3>A tener en cuenta</h3><ul>{items}</ul></div></div>')
+
+
+def ficha_clasica(c, s):
+    """La ficha de las sesiones sin guion: la actividad a la izquierda y las tarjetas a la derecha."""
     main = []
     if s["intro"]:
         main.append(f'<div class="f-intro">{md(chr(10) + chr(10).join(s["intro"]))}</div>')
@@ -559,42 +633,13 @@ def render_session(c, s, prev, nxt, idx):
         if s["hard"]:
             cols += f'<div class="div-box down"><h3>{ICON["down"]} Para simplificar</h3>{md(chr(10) + chr(10).join(cap(h) for h in s["hard"]))}</div>'
         main.append(f'<section class="diversity" aria-label="Atención a la diversidad"><h2 class="mini">Atención a la diversidad</h2><div class="div-grid">{cols}</div></section>')
-    if s.get("product") or s.get("self"):
-        body = ""
-        if s.get("product"):
-            body += f'<p><strong>{E(s["product"][0])}:</strong> {inline(s["product"][1])}</p>'
-        if s.get("self"):
-            body += f'<p>{inline(s["self"])}</p>'
-        m28 = f' · <a href="materiales/{MAT_INDEX["M28"][2]}.pdf" target="_blank" rel="noopener">Retos del trimestre (M28)</a>' if "M28" in MAT_INDEX else ""
-        body += f'<p class="small"><a href="#{RUBRIC}">Ver la rúbrica y los niveles de logro</a>{m28}</p>'
-        main.append(f'<div class="eval">{ICON["flag"]}<div><h3>Evaluación del trimestre</h3>{body}</div></div>')
-    if s["notes"]:
-        items = "".join(f'<li>{"<strong>" + E(l) + ":</strong> " if l else ""}{inline(cap(tx))}</li>' for l, tx in s["notes"])
-        main.append(f'<div class="notes">{ICON["note"]}<div><h3>A tener en cuenta</h3><ul>{items}</ul></div></div>')
+    main.append(evaluacion_html(s))
+    main.append(notas_html(s))
 
     side = []
     vids = BY_SESSION.get(s["id"], [])
     if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids or s.get("repaso") or s.get("salida"):
-        use = ""
-        if vids:
-            use += f'<h4>{"Vídeo del concepto" if len(vids) == 1 else "Vídeos de los conceptos"}</h4><p>' + "".join(
-                f'<a class="vlink" href="#v-{v[0]}">{PLAY_ICON}{E(v[2])}</a> ' for v in vids).strip() + '</p>'
-        if s.get("proj"):
-            use += f'<h4>Para proyectar</h4><p>{inline(s["proj"])}</p>'
-        if s.get("tablet"):
-            use += f'<h4>En tablets o portátiles</h4><p>{inline(s["tablet"])}</p>'
-        if s.get("mat"):
-            use += imprimir_html(c, s)
-        if s.get("sb3"):
-            use += f'<h4>Archivos de Scratch</h4><p>{inline(s["sb3"])}</p><p class="small">Se abren en Scratch con Archivo › Load from your computer (esa opción sale en inglés).</p>'
-        if s.get("mkcd"):
-            use += (f'<h4>Archivos de MakeCode</h4><p>{inline(s["mkcd"])}</p><p class="small">Se abren en makecode.microbit.org con '
-                    f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
-        if s.get("salida"):
-            use += f'<h4>Preguntas de salida (al final)</h4><p>{inline(s["salida"])}</p>'
-        if s.get("repaso"):
-            use += repaso_html(s, c)
-        use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
+        use = uso_html(c, s)
         side.append(f'<div class="card use"><h3>{ICON["prep"]} Para usar en esta sesión</h3>{use}</div>')
     if s.get("prep"):
         side.append(f'<div class="card"><h3>{ICON["note"]} Antes de la sesión</h3>{md(cap(s["prep"]))}</div>')
@@ -607,8 +652,216 @@ def render_session(c, s, prev, nxt, idx):
     if res:
         lis = "".join(f'<li><a href="{u}"{" target=_blank rel=noopener" if ext else ""}>{E(tl)}{ICON["ext"] if ext else ""}</a></li>' for tl, u, ext in res)
         side.append(f'<div class="card res"><h3>{ICON["link"]} Recursos</h3><ul>{lis}</ul></div>')
-    if tag_legend:
-        pass  # la leyenda de bloques repetía las etiquetas de la cabecera
+    return f'<div class="f-grid"><div class="f-main">{"".join(main)}</div><div class="f-side">{"".join(side)}</div></div>'
+
+
+# ---------------------------------------------------------------- render: sesiones con guion
+# La ficha nueva: de un vistazo, antes de la clase, la sesión en tres bloques con sus minutos (cada recurso, en el
+# paso donde se usa), lo opcional (roles y minuto de uso responsable) y lo de consulta, plegado.
+# La proyección de estas sesiones es el tablero de la misión (tablero_clase.py, tablero.js).
+
+ENLACE = r"\[\[[PMSTV]:[^\]]+\]\]"
+COLA = re.compile(r"((?:\s*(?:[·,y]\s*)?" + ENLACE + r")+)\s*$")
+ROLES = [("Piloto", "Maneja el dispositivo, el robot o las tarjetas.", "rol_piloto"),
+         ("Copiloto", "Lee el reto, comprueba y avisa de los errores.", "rol_copiloto"),
+         ("Material", "Recoge, cuenta y devuelve el material.", "rol_material"),
+         ("Portavoz", "Explica lo que ha hecho el grupo.", "rol_portavoz")]
+
+
+def sabor(c, s):
+    """Con qué colores se pintan los bloques de la sesión: Scratch de 1º a 4º y MakeCode en 5º y 6º, salvo que el título diga Scratch."""
+    return "scratch" if "scratch" in s["title"].lower() or c["id"] in ("c1", "c2", "c3", "c4") else "makecode"
+
+
+def guion_md(text, flavor):
+    """Markdown del guion: los enlaces a recursos del final de un paso salen debajo, como botones («se abre aquí»)."""
+    colas = []
+
+    def linea(l):
+        m = COLA.search(l)
+        if not m or not re.sub(r"^\s*(?:\d+\.|-)\s*", "", l[:m.start()]).strip():
+            return l
+        colas.append("".join(inline(x) for x in re.findall(ENLACE, m.group(1))))
+        return f"{l[:m.start()]} @@COLA{len(colas) - 1}@@"
+    h = blocks(md("\n" + "\n".join(linea(l) for l in text.split("\n"))), flavor)
+    return re.sub(r"\s*@@COLA(\d+)@@", lambda m: f'<span class="gq-abre">{colas[int(m.group(1))]}</span>', h)
+
+
+def antes_html(c, s, flavor):
+    """«Antes de la clase»: una lista para ir marcando; el material para imprimir sale con su miniatura."""
+    items, cur = [], None
+    for line in s.get("antes", "").split("\n"):
+        if line.startswith("- "):
+            cur = [line[2:]]
+            items.append(cur)
+        elif cur is not None and line.strip():
+            cur.append(line.strip())
+    out = ""
+    for it in items:
+        minis = []
+
+        def mini(m):
+            for code, lab, pista in IMP.piezas(m.group(0)):
+                if code not in MAT_INDEX:
+                    continue
+                pag, n = IMP.pagina(code, lab, pista, int(c["id"][1]), s["num"]), len(IMP.paginas(code))
+                nota = pista if re.search(r"\b(hojas?|nivel) \d", pista) or code == "M26" or n == 1 else f"hoja {pag} de {n}" + (f" · {pista}" if pista else "")
+                href = f'materiales/{MAT_INDEX[code][2]}.pdf' + (f"#page={pag}" if n > 1 else "")
+                minis.append(f'<a class="imp" href="{href}" target="_blank" rel="noopener"><img src="{IMP.miniatura(code, pag)}" alt="" width="64" height="90" loading="lazy">'
+                             f'<span><b>{code}</b>{E(lab)}{f"<small>{E(cap(nota))}</small>" if nota else ""}</span></a>')
+            return ""
+        txt = re.sub(r"\s*\[\[M:M\d\d\|[^\]]+\]\](?:\s*\((?:hojas?|nivel)[^)]*\))?", mini, " ".join(it))
+        m = COLA.search(txt)
+        cola = ""
+        if m:
+            cola = f'<span class="gq-abre">{"".join(inline(x) for x in re.findall(ENLACE, m.group(1)))}</span>'
+            txt = txt[:m.start()]
+        out += (f'<li><label><input type="checkbox"><span>{blocks(inline(txt.strip()), flavor)}</span></label>{cola}'
+                f'{"<span class=gq-imps>" + "".join(minis) + "</span>" if minis else ""}</li>')
+    return f'<section class="gq-antes"><h2 class="gq-h">Antes de la clase</h2><ul class="gq-check">{out}</ul></section>' if out else ""
+
+
+def guion_opciones(s):
+    """Las propuestas con sus tres fases, en orden: las propias y las comunes a todas."""
+    opts = [sec for sec in s["sections"] if sec["kind"] == "opt"] or [{"label": "", "name": "", "md": [], "fases": []}]
+    out = []
+    for o in opts:
+        donde = s["id"] + (" " + o["label"] if o["label"] else "")
+        fs = sorted(o["fases"] + s["fases"], key=lambda f: FASES.index(f["name"]))
+        if [f["name"] for f in fs] != list(FASES):
+            raise SystemExit(f'{donde}: el guion necesita «Empezamos», «A trabajar» y «Cerramos», una vez cada una '
+                             f'(tiene: {", ".join(f["name"] for f in fs) or "ninguna"})')
+        if sum(f["min"] for f in fs) != 45:
+            raise SystemExit(f'{donde}: las tres fases suman {sum(f["min"] for f in fs)} minutos y la sesión es de 45')
+        out.append((o, fs))
+    return out
+
+
+def guion_html(c, s):
+    flavor = sabor(c, s)
+    if s["id"] not in TABLERO:
+        raise SystemExit(f'{s["id"]}: la sesión tiene guion pero le falta su tablero de la misión en web/tablero_clase.py')
+    vz = "".join(f'<div class="gq-vz"><h2>{E(tit)}</h2><p>{blocks(inline(cap(s[k])), flavor)}</p></div>'
+                 for k, tit in (("hoy", "Hoy"), ("necesitas", "Necesitas"), ("logro", "Lo han conseguido si…")) if s.get(k))
+    opciones = guion_opciones(s)
+    varias = len(opciones) > 1
+    tabs, panels = "", ""
+    for i, (o, fases) in enumerate(opciones):
+        pid = f'{s["id"]}-p{i}'
+        letra = o["label"].replace("Opción ", "")
+        if varias:
+            tabs += (f'<button type="button" role="tab" id="{pid}-t" aria-controls="{pid}" aria-selected="{str(i == 0).lower()}" tabindex="{0 if i == 0 else -1}">'
+                     f'<span class="p-letter">{E(letra)}</span><span class="p-tl"><small>Propuesta {E(letra)}</small>{E(o["name"])}</span></button>')
+        lis = ""
+        for f in fases:
+            mas = ""
+            if f["name"] == "A trabajar":
+                niveles = ""
+                if s["hard"]:
+                    niveles += f'<div class="down"><h4>Si cuesta</h4>{blocks(md(chr(10) + chr(10).join(cap(h) for h in s["hard"])), flavor)}</div>'
+                if s.get("fast"):
+                    niveles += f'<div class="up"><h4>Si va rápido</h4>{blocks(md(cap(s["fast"])), flavor)}</div>'
+                tablet = f'<p class="gq-tab"><b>Quien termine, en tablets o portátiles:</b> {inline(s["tablet"])}</p>' if s.get("tablet") else ""
+                mas = (f'<div class="gq-pizarra"><div><h4>En la pizarra, mientras trabajan</h4>'
+                       f'<p>El tablero de la misión: los pasos, lo que necesitan y cómo saber si lo han conseguido.</p></div>'
+                       f'<button type="button" class="pz-open" data-pz="1">Proyectar el tablero</button></div>'
+                       f'{"<div class=gq-niveles>" + niveles + "</div>" if niveles else ""}{tablet}')
+            lis += (f'<li class="gq-fase{" nucleo" if f["name"] == "A trabajar" else ""}"><header><h3>{f["name"]}</h3><small>{f["min"]} min</small></header>'
+                    f'<div>{guion_md(chr(10).join(f["md"]), flavor)}{mas}</div></li>')
+        entrada = f'<div class="gq-entrada">{guion_md(chr(10).join(o["md"]), flavor)}</div>' if o["md"] else ""
+        cab = f'<h3 class="p-print">Propuesta {E(letra)} · {E(o["name"])}</h3>' if varias else ""
+        attrs = f' role="tabpanel" id="{pid}" aria-labelledby="{pid}-t"{"" if i == 0 else " hidden"}' if varias else ""
+        panels += f'<div{attrs}>{cab}{entrada}<ol class="gq-fases">{lis}</ol></div>'
+    if tabs:
+        tabs = f'<div class="p-tabs" role="tablist" aria-label="Propuestas de actividad">{tabs}</div>'
+    intro = f'<div class="f-intro">{guion_md(chr(10) + chr(10).join(s["intro"]), flavor)}</div>' if s["intro"] else ""
+
+    m05 = f'<span class="gq-abre">{inline("[[M:M05|Tarjetas de rol]]")}</span>' if "M05" in MAT_INDEX else ""
+    opc = (f'<div class="gq-op"><h3>Roles</h3><p>Piloto y copiloto; en grupos de 3 o 4, también material y portavoz. '
+           f'Se cambian a mitad de la práctica.</p>{m05}</div>')
+    if s.get("seg"):
+        extra = f' <small>({E(s["seg_extra"])})</small>' if s.get("seg_extra") else ""
+        opc += f'<div class="gq-op"><h3>Minuto de uso responsable{extra}</h3>{md(cap(s["seg"]))}</div>'
+
+    consulta = ""
+    if s.get("sol"):
+        consulta += more("Pistas y soluciones de los retos", '<p class="small">Para el docente: primero la pregunta, después la pista y solo al final la solución.</p>'
+                         + blocks(md(chr(10) + s["sol"]), flavor), did=s["id"] + "-sol")
+    if s.get("repaso"):
+        consulta += more("Para repasar (de antes)", '<div class="card use gq-plano">' + re.sub(r"^<h4>.*?</h4>", "", repaso_html(s, c)) + "</div>")
+    uso = uso_html(c, s, repaso=False)
+    if uso:
+        consulta += more("Todos los recursos de la sesión", f'<div class="card use gq-plano">{uso}</div>')
+    if s.get("math"):
+        consulta += more("Matemáticas", md(cap(s["math"])))
+    res = session_resources(s)
+    if res:
+        lis = "".join(f'<li><a href="{u}"{" target=_blank rel=noopener" if ext else ""}>{E(tl)}{ICON["ext"] if ext else ""}</a></li>' for tl, u, ext in res)
+        consulta += more("Recursos oficiales y guías paso a paso", f'<div class="card res gq-plano"><ul>{lis}</ul></div>')
+    return (f'<div class="gq">\n<section class="gq-vistazo" aria-label="De un vistazo">{vz}</section>\n{antes_html(c, s, flavor)}\n'
+            f'<section class="gq-guion"><h2 class="gq-h">La sesión, paso a paso</h2>{intro}{tabs}{panels}</section>\n'
+            f'{evaluacion_html(s)}{notas_html(s)}\n'
+            f'<section class="gq-opc"><h2 class="gq-h">Si quieres añadirlo <span>· también está en «Recursos», dentro de la proyección</span></h2>'
+            f'<div class="gq-ops">{opc}</div></section>\n'
+            f'<section class="gq-cons"><h2 class="gq-h">Para consultar</h2><div class="gq-consulta">{consulta}</div></section>\n</div>')
+
+
+def tablero_data(c, s, quin):
+    """Los datos de la proyección nueva: la portada, el tablero de la misión de cada propuesta y el cierre."""
+    flavor = sabor(c, s)
+    visual = c["id"] in ("c1", "c2")
+    opciones = guion_opciones(s)
+    T = TABLERO[s["id"]]
+    claves = [o["label"].replace("Opción ", "") or "D" for o, _ in opciones]
+    if set(claves) != set(T):
+        raise SystemExit(f'{s["id"]}: los tableros de web/tablero_clase.py ({", ".join(sorted(T))}) no coinciden con las propuestas de la sesión ({", ".join(claves)})')
+    tableros, nombres = [], []
+    for key, (o, _) in zip(claves, opciones):
+        b = dict(T[key])
+        pasos = []
+        for P in b["pasos"]:
+            q = {"t": pz_text(P["t"])}
+            if P.get("bloques"):
+                q["bloques"] = [[block_cat(x, flavor), x.replace("🏴", "{bandera}")] for x in P["bloques"]]
+            if P.get("pista"):
+                q["pista"] = P["pista"]
+            if visual:
+                q["pics"] = P.get("pics") or pictos_paso(plain(P["t"]))
+            pasos.append(q)
+        b["pasos"] = pasos
+        tableros.append(b)
+        nombres.append((key + " · " + o["name"].replace(" (recomendada)", "")) if o["name"] else "")
+    seg = s.get("seg", "")
+    quotes = re.findall(r"[\"“«]([^\"”»]{8,})[\"”»]", seg)
+
+    def refs(k):
+        return [(label, ref) for ref, label in re.findall(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", s.get(k, ""))]
+    d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
+         "key": plain(s.get("key", "")), "visual": visual,
+         "words": [(w, df) for w, df, sn in VOCAB.get(int(c["id"][1]), []) if sn == f'S{s["num"]}'],
+         "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "tools": refs("proj"), "salida": refs("salida"),
+         "tablet": [(TABLET_INDEX[t][1], t, qr_svg(t, "pz-qrsvg")) for t in re.findall(r"\[\[T:(\w+)\|", s.get("tablet", "")) if t in TABLET_INDEX],
+         "seg": cap(" ".join(q.strip() for q in quotes) if quotes and len(plain(seg)) > 140 else plain(seg)),
+         "roles": ROLES, "tableros": tableros, "opciones": nombres,
+         "recoger": (["Guardamos el archivo con el nombre del equipo", "Kit completo en su caja", "Rellenamos la tarjeta «Dónde lo dejamos»"]
+                     if quin else close_list(c, s))}
+    return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
+
+
+def render_session(c, s, prev, nxt, idx):
+    t = s["term"]
+    quin = c["id"] in ("c5", "c6")
+    crumbs = f'<a href="#{c["id"]}">{c["num"]} · {E(c["name"])}</a><span>/</span>{E(t["label"])}'
+    obj = f'<p class="f-obj">{inline(cap(s["obj"]))}</p>' if s.get("obj") else ""
+    tags = "".join(tag(x) for x in s["tags"])
+    tag_legend = "".join(f'<li>{tag(x)} {TAG_NAMES[x]}</li>' for x in s["tags"])
+
+    if s["guion"]:
+        cuerpo = guion_html(c, s)
+        datos = f'<script type="application/json" class="pz2-data">{tablero_data(c, s, quin)}</script>'
+    else:
+        cuerpo = ficha_clasica(c, s)
+        datos = f'<script type="application/json" class="pz-data">{projection_data(c, s, quin, prev)}</script>'
 
     pager = '<nav class="pager" aria-label="Sesiones">'
     pager += (f'<a class="pg prev" href="#{prev["id"]}">{ICON["left"]}<span><small>Anterior · S{prev["num"]}</small>{E(prev["title"])}</span></a>' if prev else '<span></span>')
@@ -624,9 +877,9 @@ def render_session(c, s, prev, nxt, idx):
   <h1>{E(s["title"])}</h1>{obj}<div class="tags">{tags}</div>
   <div class="f-actions"><button type="button" class="pz-open"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4M10 7l5 3-5 3z"/></svg>Proyectar la sesión</button><button type="button" class="pr-open" title="Imprime la ficha con la propuesta que tengas elegida y las pistas y soluciones"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></svg>Imprimir</button></div></div>
 </header>
-<script type="application/json" class="pz-data">{projection_data(c, s, quin, prev)}</script>
+{datos}
 
-<div class="f-grid"><div class="f-main">{"".join(main)}</div><div class="f-side">{"".join(side)}</div></div>
+{cuerpo}
 {pager}
 </div></section>'''
 
@@ -776,17 +1029,17 @@ SCRATCH_CATS = [("sc-eve", ("al hacer clic", "al presionar tecla", "al presionar
                 ("sc-pen", ("bajar lápiz", "subir lápiz", "borrar todo", "fijar color de lápiz", "sellar"))]
 
 
+def block_cat(text, flavor="makecode"):
+    """La clase de color de un bloque por su nombre: MakeCode (micro:bit) o Scratch."""
+    low = html.unescape(text).lower()
+    if flavor == "scratch":
+        return "sc-con" if low == "si" else next((c for c, keys in SCRATCH_CATS if low.startswith(keys)), "sc-var" if " " not in low else "mk-gen")
+    return "mk-" + ("log" if low in ("si", "y", "o", "no") else next((c for c, keys in BLOCK_CATS if low.startswith(keys)), "var" if " " not in low else "gen"))
+
+
 def blocks(h, flavor="makecode"):
     """`texto` → bloque con el color de su categoría: MakeCode (micro:bit) o Scratch."""
-    def rep(m):
-        t = m.group(1)
-        low = html.unescape(t).lower()
-        if flavor == "scratch":
-            cat = "sc-con" if low == "si" else next((c for c, keys in SCRATCH_CATS if low.startswith(keys)), "sc-var" if " " not in low else "mk-gen")
-            return f'<span class="mkb {cat}">{t}</span>'
-        cat = "log" if low in ("si", "y", "o", "no") else next((c for c, keys in BLOCK_CATS if low.startswith(keys)), "var" if " " not in low else "gen")
-        return f'<span class="mkb mk-{cat}">{t}</span>'
-    return re.sub(r"<code>([^<]+)</code>", rep, h)
+    return re.sub(r"<code>([^<]+)</code>", lambda m: f'<span class="mkb {block_cat(m.group(1), flavor)}">{m.group(1)}</span>', h)
 
 
 def more(title, body_html, did=None):
@@ -1380,8 +1633,8 @@ def video_pages(courses):
 
 
 HERE = Path(__file__).resolve().parent
-CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyectables8.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "tema.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
-JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8")
+CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyectables8.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "tema.css").read_text(encoding="utf-8") + (HERE / "guion.css").read_text(encoding="utf-8") + (HERE / "tablero.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
+JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8") + ";\n" + (HERE / "tablero.js").read_text(encoding="utf-8")
 PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables5.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables6.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables7.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables8.js").read_text(encoding="utf-8")
 
 if __name__ == "__main__":

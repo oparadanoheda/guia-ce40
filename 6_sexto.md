@@ -86,19 +86,40 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 ### S1 · Reto relámpago MakeCode `PC` `SEG`
 
 - **Qué aprenden:** recordar MakeCode y las normas del aula maker.
-- **Prepara antes:** makecode.microbit.org en los portátiles, placas con cable. Los retos escritos en la pizarra.
+- **Hoy:** recuerdan MakeCode con cuatro retos cortos, cada pareja hasta donde llegue, y repasan las normas del aula maker.
+- **Necesitas:** portátiles con makecode.microbit.org abierto y una micro:bit con su cable por pareja.
+- **Lo han conseguido si:** cada pareja ha resuelto al menos los retos 1 y 2 en el simulador y ha pasado uno a la placa.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]]
 - **Preguntas de salida:** [[P:salida.siempre_mk|Para siempre]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] · [[M:M18|Tarjeta «Dónde lo dejamos»]]
 - **Archivo de MakeCode:** [[S:6-S1-contador.mkcd|Reto 2: contador]] · [[S:6-S1-juego-de-reflejos.mkcd|Reto 4: juego de reflejos]]
 - **Para repasar:** evento · variable · sensores · azar
-- **Minuto de uso responsable (5 minutos):** normas de baterías, cables y recogida. Tarjeta «Dónde lo dejamos».
 
-**Retos (cada pareja llega hasta donde pueda, en el simulador):**
-1. Un mensaje con el botón A (**al presionarse el botón A** → **mostrar cadena "Hola 6º"**).
-2. Contador: A suma, B resta, A+B pone a 0.
-3. Nivel de luz: **para siempre** → **mostrar número nivel de luz**. ¿Cuánto marca a oscuras?
-4. **Reto final:** juego de reflejos: **pausa** un tiempo al azar (**escoger al azar de 1000 a 5000**) → **mostrar ícono** → el primero que pulsa su botón (A o B) gana.
+**Antes de la clase:**
+- Abre makecode.microbit.org en los portátiles y comprueba que hay una micro:bit con su cable por pareja.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
+- Imprime la tarjeta «Dónde lo dejamos», media hoja por equipo. [[M:M18|Tarjeta «Dónde lo dejamos»]]
+- Si quieres ver antes las soluciones, ábrelas en MakeCode. [[S:6-S1-contador.mkcd|Reto 2: contador]] · [[S:6-S1-juego-de-reflejos.mkcd|Reto 4: juego de reflejos]]
+
+**Empezamos (10 min):**
+1. Normas del aula maker (5 minutos): baterías, cables y recogida. Enseña la tarjeta «Dónde lo dejamos» que cada equipo rellenará al final.
+2. Abre MakeCode en la pizarra y recuerda dónde está cada cosa: la caja de bloques, el simulador y el botón Descargar.
+3. Presenta los cuatro retos del tablero. Cada pareja llega hasta donde pueda: primero en el simulador y, lo que funcione, a la placa.
+
+**A trabajar (25 min):**
+1. Las parejas resuelven los retos en orden:
+    - Reto 1: un mensaje con el botón A (`al presionarse el botón A` → `mostrar cadena "Hola 6º"`).
+    - Reto 2: un contador: A suma, B resta y A+B pone a 0.
+    - Reto 3: el nivel de luz: `para siempre` → `mostrar número nivel de luz`. ¿Cuánto marca a oscuras?
+    - Reto 4, el reto final: un juego de reflejos. Una `pausa (ms)` de un tiempo al azar (`escoger al azar de 1000 a 5000`) → `mostrar ícono` → gana quien pulse antes su botón (A o B).
+2. Si una pareja se atasca, primero la pregunta y después la pista: están abajo, en «Pistas y soluciones».
+3. Apunta quién llega al reto 4: serán los «expertos» de apoyo de las próximas sesiones.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su contador o su juego de reflejos. Pregunta a la clase: «¿Qué pasa si cambio la variable y no la vuelvo a mostrar?»
+2. Frase clave: **«Primero en el simulador, después en la placa.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.siempre_mk|Para siempre]]
+4. Se guarda el archivo con el nombre del equipo, las placas y los cables vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Mensaje con el botón A**
@@ -132,13 +153,14 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Frase clave:** «Primero en el simulador, después en la placa.»
 - **Si va rápido:** el reto 4 con marcador de victorias.
 - **Si cuesta:** los retos 1 y 2.
-- **Para ti:** apunta quién llega al reto 4: serán los «expertos» de apoyo.
 - **Mates:** variables, tiempo en milisegundos (1000 ms = 1 s).
 
 ### S2 · La mascota virtual (eventos múltiples) `PC` `ROB`
 
 - **Qué aprenden:** que un programa puede responder a muchos eventos distintos a la vez, y usar variables para guardar el «estado».
-- **Prepara antes:** tu ejemplo hecho.
+- **Hoy:** programan en MakeCode una mascota virtual: come, juega, le entra hambre con el tiempo y se pone triste.
+- **Necesitas:** portátiles con MakeCode y una micro:bit con su cable por pareja. Tu mascota ya hecha en una placa, para enseñarla.
+- **Lo han conseguido si:** la mascota responde a los botones A y B y a agitar, y el hambre sube sola con el tiempo.
 - **Para proyectar:** [[P:eventos.microbit|Eventos en la micro:bit]] · [[P:variables.mascota|Variables · la mascota]] y [[P:leds.sonrisa|Matriz de LED]]
 - **Preguntas de salida:** [[P:salida.evento_mk|Eventos]] · [[P:salida.variable_mk|Variables]]
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 3 y 4, con bloques de MakeCode)
@@ -147,18 +169,47 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Para repasar:** condición
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
+**Antes de la clase:**
+- Abre la solución en MakeCode y pásala a una placa: es tu ejemplo para la demostración. [[S:6-S2-mascota-virtual.mkcd|La mascota virtual · solución]]
+- Comprueba que hay una micro:bit con su cable por pareja.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
+
 **Opción A · Mascota virtual (recomendada)**
-1. Variable *hambre* (empieza en 5).
-2. Eventos:
-   - **al presionarse el botón A** (comer) → **si (hambre > 0) entonces** → **cambiar hambre por -1** → **mostrar ícono** (cara contenta)
-   - **al presionarse el botón B** (preguntar cómo está) → **mostrar número hambre**
-   - **si agitar** (jugar) → **mostrar ícono** (gracioso) → **cambiar hambre por 1**
-   - **al pulsar el logotipo** (solo micro:bit V2) o **al presionarse el botón A+B** → **reproduce secuencia melodía**
-3. **para siempre** → **pausa (ms) 10000** → **cambiar hambre por 1** (el tiempo le da hambre).
-4. **si (hambre > 8) entonces** → **mostrar ícono** (cara triste).
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Enseña tu mascota ya hecha en una placa: pulsa A, pulsa B, agítala. Pregunta: «¿Cuántas cosas distintas la ponen en marcha?» Cada una es un **evento**, y cada evento pone en marcha su trozo de programa. [[P:eventos.microbit|Eventos en la micro:bit]] · [[V:evento-superior|Evento]]
+3. El hambre es un número que cambia: una **variable**. Se ve en la herramienta, que es este mismo programa. [[P:variables.mascota|Variables · la mascota]] · [[V:variable-makecode|Variable (MakeCode)]]
+
+**A trabajar (25 min):**
+1. Por parejas programan la mascota por partes, probando cada una en el simulador antes de seguir:
+    - `al iniciar` → `fijar hambre a 5`.
+    - `al presionarse el botón A` (comer) → `si hambre > 0 entonces` → `cambiar hambre por -1` → `mostrar ícono` (cara contenta).
+    - `al presionarse el botón B` (preguntar cómo está) → `mostrar número hambre`.
+    - `si agitar` (jugar) → `mostrar ícono` (gracioso) → `cambiar hambre por 1`.
+    - `al pulsar el logotipo` (solo micro:bit V2) o `al presionarse el botón A+B` → `reproduce secuencia melodía`.
+    - `para siempre` → `pausa (ms) 10000` → `cambiar hambre por 1` (el tiempo le da hambre) → `si hambre > 8 entonces` → `mostrar ícono` (cara triste).
+2. Lo que más cuesta es dónde va el `si hambre > 8 entonces`. No lo cuentes: pregunta «¿cuándo hay que mirarlo?». Una y otra vez, así que va dentro del `para siempre`.
+3. Cuando funcione en el simulador, lo pasan a la placa.
 
 **Opción B · Mando multifunción**
-Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra una flecha o un icono distinto. Después juegan en parejas a «Simón dice» con la placa.
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Enseña con la herramienta que cada evento pone en marcha su propio trozo de programa: botón A, botón B, A+B y agitar. [[P:eventos.microbit|Eventos en la micro:bit]] · [[V:evento-superior|Evento]]
+
+**A trabajar (25 min):**
+1. Por parejas: cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra una flecha o un icono distinto. Los dibujos se pueden probar antes en la pizarra. [[P:leds.sonrisa|Matriz de LED]]
+2. Inclinar no tiene un bloque propio: está en el desplegable de `si agitar`.
+3. Después juegan a «Simón dice» con la placa: uno dice el evento y el otro lo hace.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un equipo enseña su programa o su error más interesante. Pregunta: «¿En qué paso exacto empezaba a fallar?»
+2. Frase clave: **«Muchos eventos, un solo programa.»**
+3. Preguntas de salida (tres de cada tema): la clase vota con los dedos. [[P:salida.evento_mk|Eventos]] · [[P:salida.variable_mk|Variables]]
+4. Se guarda el archivo con el nombre del equipo, el kit vuelve completo a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **La mascota virtual**
@@ -173,27 +224,44 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 
 - **Frase clave:** «Muchos eventos, un solo programa.»
 - **Si va rápido:** que la mascota tenga dos estados (hambre y sueño).
-- **Si cuesta:** la opción B.
+- **Si cuesta:** la propuesta B, que no necesita variable.
 - **Mates:** variables, comparaciones, tiempo.
 
 ### S3 · Medimos el colegio: sensores y datos `ROB` `IA` `PC`
 
 - **Qué aprenden:** recoger datos con un sensor, organizarlos en una tabla u hoja de cálculo y sacar conclusiones.
-- **Prepara antes:** portapilas con pilas para las placas. Un programa sencillo de medida. Hoja de registro. Para la opción A, una hoja de cálculo (LibreOffice Calc o la hoja de cálculo de EducaMadrid) abierta en el display.
+- **Hoy:** miden la temperatura y la luz en tres sitios del colegio con la micro:bit, juntan los datos en una tabla y sacan conclusiones con la media y un gráfico.
+- **Necesitas:** una micro:bit con portapilas por equipo y la hoja de registro. Para juntar los datos, una hoja de cálculo en el display o papel cuadriculado.
+- **Lo han conseguido si:** cada equipo ha anotado sus medidas y la clase tiene un gráfico y una conclusión que se explica con los datos.
 - **Para proyectar:** [[P:umbral.temp|Sensor y umbral]]
 - **Material listo:** [[M:M25|Medimos el colegio]] (hoja 3) · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:6-S3-medimos-el-colegio.mkcd|Medidor de temperatura y luz]]
 - **Para repasar:** sensores · datos · para siempre
 - **Minuto de uso responsable:** «Antes de creer algo, lo contrasto en otra fuente.» ¿Qué fuentes fiables conocemos?
 
-**Pasos:**
-1. Programa: **al presionarse el botón A** → **mostrar número temperatura (°C)**; **al presionarse el botón B** → **mostrar número nivel de luz**.
-2. Cada equipo mide en 3 lugares asignados del colegio (aula, pasillo, ventana, patio si es posible). Anotan temperatura y luz.
-3. **Opción A · Hoja de cálculo:** de vuelta al aula, cada equipo dicta sus datos y tú los metes en la hoja de cálculo del display. Calculáis la **media** (función PROMEDIO) y hacéis un gráfico de barras.
-   **Opción B · A mano:** tabla y gráfico de barras en papel cuadriculado; la media se calcula con calculadora.
-4. Conclusiones: ¿dónde hace más calor? ¿dónde hay más luz? ¿por qué?
+**Antes de la clase:**
+- Pon pilas en los portapilas y comprueba que cada placa enciende sin el cable.
+- Ten preparado el programa de medida, por si algún equipo no lo termina a tiempo. [[S:6-S3-medimos-el-colegio.mkcd|Medidor de temperatura y luz]]
+- Imprime la hoja de registro, una por equipo. [[M:M25|Medimos el colegio]] (hoja 3)
+- Reparte los lugares: tres por equipo, entre aula, pasillo, ventana y, si es posible, patio.
+- Si vais a juntar los datos en una hoja de cálculo, ábrela en el display (LibreOffice Calc o la hoja de cálculo de EducaMadrid).
 
-- **Aviso:** la temperatura es la del chip de la placa: sirve para comparar sitios, no como valor exacto.
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Enseña el programa de medida, que es de dos eventos: `al presionarse el botón A` → `mostrar número temperatura (°C)`; `al presionarse el botón B` → `mostrar número nivel de luz`. La placa mide con sus **sensores**. [[P:umbral.temp|Sensor y umbral]]
+3. Aviso para la clase: la temperatura es la del chip de la placa. Sirve para comparar sitios, no como valor exacto.
+
+**A trabajar (25 min):**
+1. Cada equipo programa su placa, mide en sus tres lugares y anota la temperatura y la luz en la hoja de registro.
+2. De vuelta al aula se juntan los datos de todos:
+    - **Con hoja de cálculo:** cada equipo dicta sus datos y tú los metes en la hoja del display. Calculáis la **media** (función PROMEDIO) y hacéis un gráfico de barras.
+    - **A mano:** tabla y gráfico de barras en papel cuadriculado; la media se calcula con calculadora.
+3. Conclusiones: ¿dónde hace más calor?, ¿dónde hay más luz?, ¿por qué?
+
+**Cerramos (10 min):**
+1. Un equipo explica una conclusión enseñando los datos que la apoyan. Pregunta: «Si un sitio da 3 grados más, ¿hace más calor allí o puede ser otra cosa?»
+2. Frase clave: **«Los datos responden preguntas.»**
+3. Se recogen las placas y los portapilas en su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Conclusiones con los datos**
@@ -205,7 +273,7 @@ Cada evento (A, B, A+B, agitar, inclinar a la izquierda o a la derecha) muestra 
 
 - **Frase clave:** «Los datos responden preguntas.»
 - **Si va rápido:** comparar la media con el valor máximo y el mínimo.
-- **Si cuesta:** la opción B, con la media calculada entre todos.
+- **Si cuesta:** juntar los datos a mano, con la media calculada entre todos.
 - **Producto de T1:** gráfico con conclusiones (o la mascota virtual de la S2, a elegir). **Rúbrica del trimestre.**
 - **Mates:** medida, media, gráficos, hoja de cálculo.
 

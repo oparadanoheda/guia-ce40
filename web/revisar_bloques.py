@@ -162,6 +162,16 @@ def contexto_guias(s, pos):
     return "scratch" if "scratch 3" in titulo else None
 
 
+def editor_sesion(sid):
+    """El editor de una sesión («c5-s1»), con la misma regla que las fichas: Scratch hasta 4º y en las sesiones que lo dicen en el título."""
+    curso, num = int(sid[1]), sid.split("-s")[1]
+    if curso <= 4:
+        return "scratch"
+    md = (ROOT / dict((c, f) for f, c in FUENTES_MD)[curso]).read_text(encoding="utf-8")
+    m = re.search(rf"^### S{num} · (.*)$", md, re.M)
+    return "scratch" if m and "scratch" in m.group(1).lower() else "makecode"
+
+
 def literales(src):
     return [m.group(2) for m in re.finditer(r"""(f?)"((?:[^"\\\n]|\\.)*)\"""", src)]
 
@@ -181,6 +191,12 @@ def candidatos_py():
     retos = (HERE / "retos_trimestre.py").read_text(encoding="utf-8")
     for m in re.finditer(r"\b(sb|sc|mk|mkc)\(\s*\"[a-z]+\"\s*,\s*f?\"((?:[^\"\\\n]|\\.)*)\"", retos):
         yield m.group(2), "retos_trimestre.py · M28", "scratch" if m.group(1).startswith("s") else "makecode"
+    from tablero_clase import TABLERO  # los bloques sueltos del tablero de la misión (proyección de las sesiones con guion)
+    for sid, tableros in TABLERO.items():
+        for clave, T in tableros.items():
+            for paso in T["pasos"]:
+                for b in paso.get("bloques", []):
+                    yield b, f"tablero_clase.py · {sid} {clave}", editor_sesion(sid)
     gen = (HERE / "scratch_gen.py").read_text(encoding="utf-8")
     for m in re.finditer(r"«([^»]+)»", gen):
         yield m.group(1), "scratch_gen.py · notas de los .sb3", "scratch"

@@ -89,3 +89,38 @@
   .div-box{background:none;border:.3mm solid var(--rule);border-radius:2mm}
   .card{padding:0;border-radius:0}
 }
+/* la ficha de las sesiones con guion: la propuesta elegida, con sus tres bloques; lo de consulta, abierto */
+@media print{
+  .gq{gap:4mm;max-width:none}
+  .gq-h{font-size:11pt;margin:0 0 1.5mm}
+  .gq-h span,.gq-pizarra,.gq-check .gq-abre a[download]{display:none}
+  .gq-vistazo{gap:2mm}
+  .gq-vz,.gq-vz:first-child{background:none;border:.3mm solid var(--rule);border-radius:2mm;padding:2mm 3mm}
+  .gq-vz h2{font-size:7.5pt;margin:0 0 .5mm}
+  .gq-vz p,.gq-vz:first-child p{font:9.5pt/1.4 var(--sans)}
+  .gq-check{background:none;padding:0}
+  .gq-check li{padding:1.2mm 0;gap:1mm 4mm;break-inside:avoid}
+  .gq-check input{width:3.2mm;height:3.2mm}
+  .gq-imps a.imp{font-size:8.6pt;gap:1.5mm}
+  .gq-fases{gap:2.5mm}
+  .gq-fase{grid-template-columns:27mm minmax(0,1fr);background:none;border:.3mm solid var(--rule);border-radius:2mm}
+  .gq-fase > header,.gq-fase.nucleo > header{background:none;border-right:.3mm solid var(--rule);padding:2.5mm 3mm}
+  .gq-fase > header h3,.gq-fase.nucleo > header h3{font-size:10.5pt;color:var(--c)}
+  .gq-fase.nucleo > header small{color:var(--muted)}
+  .gq-fase > div{padding:1.5mm 4mm 2.5mm}
+  .gq-fase li{margin:.8mm 0;break-inside:avoid}
+  .gq-abre{display:inline;margin:0}
+  .gq .gq-abre a.plink,.gq .gq-abre a.vlink,.gq .gq-abre a.mlink{padding:.2mm 1.6mm .2mm 1mm;margin:0 .8mm 0 0;border:.25mm solid var(--rule);border-radius:1mm;font:600 8.6pt/1.3 var(--sans);background:none}
+  .gq-abre a svg,.gq-abre a .i{width:9pt;height:9pt}
+  .gq-niveles{margin-top:2mm;gap:2.5mm;grid-template-columns:1fr 1fr}
+  .gq-niveles > div{background:none;border:.3mm solid var(--rule);border-radius:2mm;padding:1.5mm 3mm;break-inside:avoid}
+  .gq-niveles h4{font-size:8pt}
+  .gq-niveles p,.gq-tab{font-size:9pt}
+  .gq-ops{gap:2.5mm}
+  .gq-op{padding:1.5mm 3mm;border-radius:2mm;break-inside:avoid}
+  .gq-op h3{font-size:9pt}.gq-op p{font-size:9pt;margin:0}
+  .gq-consulta{gap:0}
+  .gq-consulta details.more{margin:3mm 0 0}
+  .gq .p-print{margin:0 0 2mm}
+}
+@media print{.gq-vistazo{grid-template-columns:1.25fr 1fr 1fr}.gq-fase > header{display:block}.gq-fase > header small{display:block}}

@@ -325,6 +325,8 @@
   }
 
   function open(section, start) {
+    // las sesiones con guion se proyectan con el tablero de la misión (tablero.js)
+    if (window.TableroSesion && window.TableroSesion.tiene(section)) { window.TableroSesion.open(section, start); return; }
     var raw = section.querySelector('script.pz-data');
     if (!raw) return;
     data = JSON.parse(raw.textContent);
@@ -399,10 +401,15 @@
 
   document.addEventListener('click', function (e) {
     var b = e.target.closest('.pz-open');
-    if (b) open(b.closest('section.ficha'));
+    if (b) open(b.closest('section.ficha'), +(b.getAttribute('data-pz') || 0));
   });
   window.ProyectarSesion = {
-    open: open, close: close,
-    takeSlide: function () { var s = lastSlide; lastSlide = null; return s; }
+    open: open,
+    close: function () { close(); if (window.TableroSesion) window.TableroSesion.close(); },
+    takeSlide: function () {
+      var t = window.TableroSesion ? window.TableroSesion.take() : null;
+      if (t != null) return t;
+      var s = lastSlide; lastSlide = null; return s;
+    }
   };
 })();

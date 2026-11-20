@@ -89,21 +89,49 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S1 · Normas del aula maker y repaso de Scratch `PC` `SEG`
 
 - **Qué aprenden:** las normas de uso de los kits y recordar variables, condicionales y bucles.
-- **Prepara antes:** portátiles con Scratch. Retos escritos en la pizarra.
+- **Hoy:** repasan las normas del aula maker y recuerdan Scratch con un reto de tres niveles: bucle, variable y condición.
+- **Necesitas:** portátiles con Scratch, uno por pareja.
+- **Lo han conseguido si:** cada pareja ha terminado al menos el nivel 1, y tú sabes qué parejas llegan al nivel 3.
 - **Para proyectar:** [[P:temporizador.quincenal|Temporizador de sesión quincenal]] · [[P:laberinto.6|Laberinto de bloques]]
 - **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M18|Tarjeta «Dónde lo dejamos»]] · [[M:M20|Chuleta de Scratch]]
-- **Minuto de uso responsable (7 minutos):** normas del aula maker: los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo; tarjeta «Dónde lo dejamos».
 - **Archivo de Scratch:** [[S:5-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
 - **Para repasar:** variable · condición · bucle · evento
 
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Imprime la tarjeta «Dónde lo dejamos», media hoja por equipo. [[M:M18|Tarjeta «Dónde lo dejamos»]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Para la propuesta B, deja el archivo en los portátiles: se abre en Scratch con Archivo › Load from your computer. [[S:5-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
+
 **Opción A · Reto relámpago (recomendada)**
-Tres niveles en la pizarra. Cada pareja llega hasta donde pueda:
-1. **Bucle:** un personaje que da vueltas por siempre y cambia de disfraz.
-2. **Variable:** que cuente puntos cada vez que haces clic en él.
-3. **Condición:** si llega a 10 puntos, dice «¡Has ganado!»; si no, sigue.
+
+**Empezamos (10 min):**
+1. Normas del aula maker (7 minutos): los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo. Enseña la tarjeta «Dónde lo dejamos» que cada equipo rellenará al final.
+2. Presenta el reto del tablero: tres niveles, y cada pareja llega hasta donde pueda.
+
+**A trabajar (25 min):**
+1. Las parejas hacen los niveles en orden:
+    - Nivel 1, **bucle:** un personaje que da vueltas por siempre y cambia de disfraz.
+    - Nivel 2, **variable:** que cuente puntos cada vez que se hace clic en él.
+    - Nivel 3, **condición:** si llega a 10 puntos, dice «¡Has ganado!»; si no, sigue.
+2. Apunta qué parejas llegan al nivel 3: te servirá para hacer grupos equilibrados.
 
 **Opción B · Arregla el juego**
-El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pone a 0 al pulsar la bandera; **si puntos < 10 entonces** dice «¡Has ganado!» (está al revés: debería ser **puntos = 10**); y la animación usa **repetir 2** en lugar de **por siempre**.
+
+**Empezamos (10 min):**
+1. Normas del aula maker (7 minutos): los kits se abren y se cierran contando las piezas; las pilas y baterías no se mojan ni se tocan con metal; los cables se sacan por el conector; el proyecto se guarda con el nombre del equipo. Enseña la tarjeta «Dónde lo dejamos» que cada equipo rellenará al final.
+2. Presenta el juego: tiene 3 bichos. Antes de tocar nada hay que probarlo: la bandera dos veces seguidas y jugar hasta el final.
+
+**A trabajar (25 min):**
+1. Las parejas buscan y arreglan los tres bichos: *puntos* no se pone a 0 al pulsar la bandera; `si puntos < 10 entonces` dice «¡Has ganado!» (está al revés: debería ser `puntos = 10`); y la animación usa `repetir 2` en lugar de `por siempre`.
+2. Apunta qué parejas encuentran los tres: te servirá para hacer grupos equilibrados.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Una pareja enseña su programa. Pregunta a la clase: «¿Qué bloque repite, cuál guarda un número y cuál decide?»
+2. Frase clave: **«Bucle, variable y condición: las tres herramientas del programador.»**
+3. Se guarda el proyecto con el nombre del equipo y cada equipo rellena su primera tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Reto relámpago (en Scratch)**
@@ -118,13 +146,14 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Frase clave:** «Bucle, variable y condición: las tres herramientas del programador.»
 - **Si va rápido:** el nivel 3 con un si… si no.
 - **Si cuesta:** solo el nivel 1, copiado de la pizarra.
-- **Para ti:** apunta qué parejas llegan al nivel 3; te servirá para hacer grupos equilibrados.
 - **Mates:** variables y lógica.
 
 ### S2 · Conocemos micro:bit `ROB` `PC`
 
 - **Qué aprenden:** qué es una placa programable, sus partes (pantalla de 25 luces, botones A y B, sensores) y cómo se programa con bloques.
-- **Prepara antes:** makecode.microbit.org abierto en los portátiles (no necesita cuenta). Una placa con su cable por equipo. Idioma en español (rueda dentada → Idioma).
+- **Hoy:** conocen la micro:bit y la programan por primera vez: un icono, los dos botones, un corazón que late y un contador. Al final lo pasan a la placa de verdad.
+- **Necesitas:** portátiles con makecode.microbit.org (no necesita cuenta) y una placa con su cable por equipo.
+- **Lo han conseguido si:** cada equipo ha visto un programa suyo funcionar en la placa de verdad, aunque sea solo el de los botones A y B.
 - **Para proyectar:** [[P:eventos.microbit|Eventos en la micro:bit]] · [[P:leds.corazon|Matriz de LED de la micro:bit]] · [[P:flota.xy|Hundir la flota · coordenadas]] · [[P:binario.5|Cartas binarias]] (si sobra tiempo: la placa guarda los números con unos y ceros, como sus luces encendidas o apagadas)
 - **Preguntas de salida:** [[P:salida.evento_mk|Eventos]] · [[P:salida.siempre_mk|Para siempre]]
 - **En tablets o portátiles:** [[T:binario|Cartas binarias]] (niveles 1 a 3: así cuenta la micro:bit, con unos y ceros)
@@ -132,14 +161,30 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 - **Archivo de MakeCode:** [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
-**Pasos:**
-1. Enseña una placa de verdad: «Es un ordenador diminuto. Tiene 25 luces, 2 botones, y sensores: sabe si se mueve, cuánta luz hay y qué temperatura hace».
-2. En el display: **Nuevo proyecto**. Explica: los bloques son como los de Scratch; la placa de la izquierda es un **simulador**.
-3. **al iniciar** → **mostrar ícono** (corazón). Se ve en el simulador.
-4. **al presionarse el botón A** → **mostrar número 1**; **al presionarse el botón B** → **mostrar número 2**. Se prueba pulsando A y B en el simulador.
-5. Reto: un corazón que late (**para siempre** → **mostrar ícono** (corazón grande) → **mostrar ícono** (corazón pequeño)).
-6. Reto con variable: un contador. Crear variable *contador*; **al presionarse el botón A** → **cambiar contador por 1** → **mostrar número contador**.
-7. **Últimos 10 minutos, a la placa de verdad:** conectar con el cable, pulsar **Descargar** y copiar el archivo `.hex` a la unidad **MICROBIT** (o emparejar la placa si el navegador lo permite). Ver la guía.
+**Antes de la clase:**
+- Abre makecode.microbit.org en los portátiles (no necesita cuenta) y ponlo en español: rueda dentada → Idioma.
+- Prepara una placa con su cable por equipo.
+- Si nunca has pasado un programa a la placa, pruébalo una vez antes con la solución del contador: los pasos están en la guía paso a paso de micro:bit. [[S:5-S2-contador.mkcd|Contador con los botones · solución]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
+- Cuelga el póster. [[M:M26|Póster «Entrada y salida»]]
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Enseña una placa de verdad: «Es un ordenador diminuto. Tiene 25 luces, 2 botones, y sensores: sabe si se mueve, cuánta luz hay y qué temperatura hace». [[V:entrada-salida-superior|Entrada y salida]]
+3. En el display: **Nuevo proyecto**. Los bloques son como los de Scratch, y la placa de la izquierda es un **simulador**.
+4. Haz delante de la clase el primer programa: `al iniciar` → `mostrar ícono` (corazón). Se ve en el simulador. [[P:leds.corazon|Matriz de LED de la micro:bit]]
+
+**A trabajar (25 min):**
+1. Los botones: `al presionarse el botón A` → `mostrar número 1`; `al presionarse el botón B` → `mostrar número 2`. Se prueba pulsando A y B en el simulador. [[P:eventos.microbit|Eventos en la micro:bit]]
+2. Reto: un corazón que late: `para siempre` → `mostrar ícono` (corazón grande) → `mostrar ícono` (corazón pequeño).
+3. Reto con variable: un contador. Se crea la variable *contador*; `al presionarse el botón A` → `cambiar contador por 1` → `mostrar número contador`. [[V:variable-makecode|Variable (MakeCode)]]
+4. **Los últimos 10 minutos, a la placa de verdad:** conectar con el cable, pulsar **Descargar** y copiar el archivo .hex a la unidad **MICROBIT** (o emparejar la placa si el navegador lo permite).
+
+**Cerramos (10 min):**
+1. Un equipo enseña su placa. Pregunta: «En vuestro programa, ¿qué es la entrada y qué es la salida?»
+2. Frase clave: **«Primero en el simulador, después en la placa.»**
+3. Preguntas de salida (tres de cada tema): la clase vota con los dedos. [[P:salida.evento_mk|Eventos]] · [[P:salida.siempre_mk|Para siempre]]
+4. Se guarda el archivo con el nombre del equipo, la placa y el cable vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **El corazón que late**
@@ -153,28 +198,60 @@ El archivo «Arregla el juego» (en la ficha) tiene 3 bichos: *puntos* no se pon
 
 - **Frase clave:** «Primero en el simulador, después en la placa.»
 - **Si va rápido:** que el contador baje con el botón B y no pase de 0.
-- **Si cuesta:** llegar hasta el paso 4 (botones A y B) y pasar eso a la placa.
+- **Si cuesta:** llegar hasta los botones A y B y pasar eso a la placa.
 - **Mates:** conteo, la pantalla como cuadrícula de 5 x 5 (coordenadas).
 
 ### S3 · El dado electrónico (primer sensor) `ROB` `PC`
 
 - **Qué aprenden:** usar el sensor de movimiento (acelerómetro) y los números al azar.
-- **Prepara antes:** el ejemplo hecho en tu ordenador.
+- **Hoy:** programan un dado electrónico: al agitar la placa sale un número del 1 al 6. Después investigan si su dado es justo.
+- **Necesitas:** portátiles con MakeCode, una placa con su cable por pareja y la hoja de frecuencias. Para la propuesta B, portapilas.
+- **Lo han conseguido si:** el dado funciona en la placa y la pareja ha apuntado sus 30 tiradas.
 - **Para proyectar:** [[P:votaciones.clase|Dado de la clase]] · [[P:quiensale|¿Quién sale?]]
 - **Material listo:** [[M:M25|Frecuencias del dado]] (hoja 2) · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S3-dado.mkcd|El dado · solución]] · [[S:5-S3-contador-de-pasos.mkcd|Contador de pasos · solución]]
 - **Para repasar:** azar · evento · micro:bit
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
+**Antes de la clase:**
+- Haz el ejemplo una vez en tu ordenador. [[S:5-S3-dado.mkcd|El dado · solución]] · [[S:5-S3-contador-de-pasos.mkcd|Contador de pasos · solución]]
+- Imprime la hoja de frecuencias, una por pareja. [[M:M25|Frecuencias del dado]] (hoja 2)
+- Para la propuesta B: pilas en los portapilas y cinta para sujetar la placa al tobillo.
+
 **Opción A · El dado (recomendada)**
-1. **si agitar** → **mostrar número (escoger al azar de 1 a 6)**.
-2. En el simulador se agita con el botón «SHAKE» (o moviendo el ratón rápido sobre la placa).
-3. Mejora: que antes de enseñar el número salga una animación (dos o tres iconos seguidos).
-4. Pásalo a la placa y a jugar.
-5. **Mini investigación:** tirad vuestro dado 30 veces y apuntadlo en M25. Cada pareja dicta sus resultados en el proyectable «Dado de la clase» y se comparan con 1000 tiradas del ordenador: ¿vuestros dados son justos? ¿Sale todo más o menos igual?
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Pregunta: «¿Cómo sabe la placa que la agitamos?» Tiene un **sensor** de movimiento, el acelerómetro.
+3. Haz el dado delante de la clase: `si agitar` → `mostrar número (escoger al azar de 1 a 6)`. En el simulador se agita con el botón «SHAKE» (o moviendo el ratón rápido sobre la placa).
+
+**A trabajar (25 min):**
+1. Cada pareja programa su dado y lo prueba en el simulador.
+2. Mejora: que antes de enseñar el número salga una animación (dos o tres iconos seguidos).
+3. Lo pasan a la placa y juegan.
+4. **Mini investigación:** tiran su dado 30 veces y lo apuntan en la hoja. Cada pareja dicta sus resultados en «Dado de la clase» y se comparan con 1000 tiradas del ordenador: ¿vuestros dados son justos?, ¿sale todo más o menos igual? [[P:votaciones.clase|Dado de la clase]]
+
+**Cerramos (10 min):**
+1. Mirad juntos el «Dado de la clase»: con 30 tiradas es normal que haya diferencias grandes; con las de toda la clase se igualan más, y con las 1000 del ordenador, mucho más.
+2. Frase clave: **«Un sensor es el sentido de la máquina.»**
+3. Se guarda el archivo con el nombre del equipo, la placa y el cable vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Opción B · El contador de pasos**
-Variable *pasos*; **si agitar** → **cambiar pasos por 1** → **mostrar número pasos**. **al presionarse el botón A** → **fijar pasos a 0**. Se pega la placa (con su portapilas) al tobillo y se camina 20 pasos: ¿cuenta bien?
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Pregunta: «¿Cómo sabe la placa que la agitamos?» Tiene un **sensor** de movimiento, el acelerómetro.
+3. Enseña el programa: una variable *pasos*; `si agitar` → `cambiar pasos por 1` → `mostrar número pasos`; `al presionarse el botón A` → `fijar pasos a 0`.
+
+**A trabajar (25 min):**
+1. Cada pareja lo programa y lo prueba en el simulador.
+2. Lo pasan a la placa, se la pegan al tobillo con su portapilas y caminan 20 pasos: ¿cuenta bien?
+3. Lo repiten caminando de otra forma y comparan: ¿por qué a veces cuenta de más o de menos?
+
+**Cerramos (10 min):**
+1. Un equipo cuenta qué marcó su placa al caminar 20 pasos. `si agitar` detecta sacudidas, no pasos exactos: un sensor mide, pero no siempre lo que queremos.
+2. Frase clave: **«Un sensor es el sentido de la máquina.»**
+3. Se guarda el archivo con el nombre del equipo, la placa y el portapilas vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **El dado con animación**

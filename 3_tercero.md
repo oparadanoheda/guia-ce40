@@ -79,19 +79,47 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S1 · Reto de entrada `PC` `SEG`
 
 - **Qué aprenden:** recordar lo que saben y conocer las normas del curso. Para ti: ver el nivel del grupo.
+- **Hoy:** conocen las normas del aula de código y resuelven retos de repaso: un mapa, un patrón con bicho y un cazabichos.
+- **Necesitas:** la pizarra digital para la propuesta A; las dos fichas impresas para la propuesta B.
+- **Lo han conseguido si:** la clase ha resuelto los retos y tú has apuntado quién participa con soltura y quién se atasca.
 - **Para proyectar:** [[P:cuadricula.mapa5|Mapa 5]], [[P:patrones.bicho|patrón con bicho]] y [[P:cuadricula.bicho3|cazabichos 3]] · [[P:flota|Hundir la flota]] (si sobra tiempo: coordenadas jugando, toda la clase)
 - **Material listo:** [[M:M08|Cazabichos]] (nivel 2) · [[M:M09|Patrones]] (hoja 2) · [[M:M05|Tarjetas de rol]]
 - **Para repasar:** algoritmo · bucle · depurar
-- **Minuto de uso responsable:** normas del aula de código y presentación de los roles.
+
+**Antes de la clase:**
+- Para la propuesta A no hay que imprimir nada: los tres retos están en la pizarra.
+- Para la propuesta B, imprime el cazabichos, una hoja por pareja, y dobla o recorta la mitad de abajo, que son las soluciones. [[M:M08|Cazabichos]] (nivel 2)
+- Para la propuesta B, imprime también los patrones, una hoja por pareja; las soluciones están al pie: dóblalas. [[M:M09|Patrones]] (hoja 2)
 
 **Opción A · Tres retos en la pizarra (toda la clase)**
-1. Mapa 5: la clase escribe el programa antes de ejecutar.
-2. Patrón con bicho: ¿qué figura rompe el patrón?
-3. Cazabichos 3: ¿dónde están los dos bichos?
-Apunta quién participa con soltura y quién se atasca.
+
+**Empezamos (10 min):**
+1. Presenta las normas del aula de código.
+2. Explica la misión: tres retos en la pizarra, entre toda la clase, para recordar lo que ya saben.
+
+**A trabajar (25 min):**
+1. Mapa 5: la clase escribe el programa antes de ejecutar. [[P:cuadricula.mapa5|Mapa 5]]
+2. Patrón con bicho: ¿qué figura rompe el patrón? [[P:patrones.bicho|patrón con bicho]]
+3. Cazabichos 3: ¿dónde están los dos bichos? [[P:cuadricula.bicho3|cazabichos 3]]
+4. Mientras, apunta quién participa con soltura y quién se atasca.
+5. Si sobra tiempo, coordenadas jugando, con toda la clase. [[P:flota|Hundir la flota]]
 
 **Opción B · Dos fichas en parejas**
-Cada pareja hace una hoja de M08 nivel 2 y la hoja 2 de M09. Mientras, tú pasas por las mesas y observas.
+
+**Empezamos (10 min):**
+1. Presenta las normas del aula de código.
+2. Explica la misión y reparte las dos fichas: un cazabichos y una hoja de patrones con bicho.
+
+**A trabajar (25 min):**
+1. Cada pareja hace una hoja del cazabichos de nivel 2 y la hoja 2 de patrones.
+2. Mientras, pasa por las mesas y observa: apunta quién trabaja con soltura y quién se atasca.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un voluntario explica cómo ha encontrado un bicho. Pregunta a la clase: «¿En qué paso exacto estaba el error?»
+2. Frase clave: **«Programar es dar instrucciones exactas en orden.»**
+3. Se recogen las fichas.
 
 - **Frase clave:** «Programar es dar instrucciones exactas en orden.»
 - **Si va rápido:** que cada pareja invente un mapa con dos rocas para otra pareja.
@@ -101,21 +129,45 @@ Cada pareja hace una hoja de M08 nivel 2 y la hoja 2 de M09. Mientras, tú pasas
 ### S2 · Diagramas de flujo sencillos `PC`
 
 - **Qué aprenden:** un diagrama de flujo es un dibujo de un algoritmo: óvalos para empezar y terminar, rectángulos para las acciones y rombos para las preguntas.
-- **Prepara antes:** M12 hojas 1 y 3 (una por grupo).
-- **Para proyectar:** [[P:diagrama.calle|Diagrama de flujo · cruzar la calle]]
+- **Hoy:** recorren paso a paso el diagrama de «cruzar la calle» y recorren o completan el de «regar una planta».
+- **Necesitas:** la pizarra digital; para la propuesta B, la hoja del diagrama para completar.
+- **Lo han conseguido si:** saben decir para qué sirve cada forma y, al llegar al rombo, deciden SÍ o NO y siguen el camino correcto.
+- **Para proyectar:** [[P:diagrama.calle|Diagrama de flujo · cruzar la calle]] y [[P:diagrama.planta|regar una planta]]
 - **Material listo:** [[M:M12|Diagramas de flujo]]
 - **Para repasar:** algoritmo · condición
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
+**Antes de la clase:**
+- Para la propuesta B, imprime el diagrama para completar, uno por grupo. [[M:M12|Diagramas de flujo]] (hoja 3)
+- Para el reto de «Si va rápido», imprime las formas recortables, una hoja por grupo. [[M:M12|Diagramas de flujo]] (hoja 1)
+- Si en la propuesta B no vas a proyectar el ejemplo de cruzar la calle, imprime también la hoja 2.
+
 **Opción A · Recorremos el diagrama en la pizarra**
-1. Proyecta «cruzar la calle». Explica las tres formas.
-2. Pulsa «Siguiente paso» y, en el rombo, que la clase decida SÍ o NO. Si es NO, se vuelve a la pregunta.
-3. Proyecta «regar una planta» y recorredlo igual.
+
+**Empezamos (10 min):**
+1. Proyecta «cruzar la calle». Explica las tres formas: óvalos para empezar y terminar, rectángulos para las acciones y rombos para las preguntas. [[P:diagrama.calle|Diagrama de flujo · cruzar la calle]]
+2. Explica la misión: recorrer dos diagramas paso a paso, decidiendo entre todos en cada pregunta.
+
+**A trabajar (25 min):**
+1. Pulsa «Siguiente paso» y, en el rombo, que la clase decida SÍ o NO. Si es NO, se vuelve a la pregunta.
+2. Proyecta «regar una planta» y recorredlo igual. [[P:diagrama.planta|regar una planta]]
 
 **Opción B · Completa el diagrama**
-1. Proyecta el ejemplo de cruzar la calle (o reparte la hoja 2 de M12).
-2. Por grupos, completan la hoja 3 (regar una planta) escribiendo en las cajas vacías.
-3. Corregid recorriendo el diagrama en la pizarra. Solución: «Miro la maceta» · «Cojo la regadera» · «Riego la planta». Si la tierra no está seca, se termina sin regar.
+
+**Empezamos (10 min):**
+1. Proyecta el ejemplo de cruzar la calle (o reparte la hoja 2 de M12). Explica las tres formas: óvalos para empezar y terminar, rectángulos para las acciones y rombos para las preguntas. [[P:diagrama.calle|Diagrama de flujo · cruzar la calle]]
+2. Explica la misión: completar el diagrama de «regar una planta».
+
+**A trabajar (25 min):**
+1. Por grupos, completan la hoja 3 (regar una planta) escribiendo en las cajas vacías.
+2. Corregid recorriendo el diagrama en la pizarra. Solución: «Miro la maceta» · «Cojo la regadera» · «Riego la planta». Si la tierra no está seca, se termina sin regar. [[P:diagrama.planta|regar una planta]]
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un voluntario señala en el diagrama un óvalo, un rectángulo y un rombo. Pregunta a la clase: «¿Para qué sirve cada forma?»
+2. Frase clave: **«Un diagrama es un algoritmo dibujado.»**
+3. Se recogen las hojas.
 
 - **Frase clave:** «Un diagrama es un algoritmo dibujado.»
 - **Si va rápido:** construir con las formas de la hoja 1 el diagrama de «preparar la mochila».
@@ -125,18 +177,45 @@ Cada pareja hace una hoja de M08 nivel 2 y la hoja 2 de M09. Mientras, tú pasas
 ### S3 · Bucles y figuras `PC`
 
 - **Qué aprenden:** con «repite N veces: avanza, gira» se dibujan figuras.
+- **Hoy:** dibujan figuras con un bucle: el cuadrado y otros polígonos en la pizarra, o dictados sobre la cuadrícula.
+- **Necesitas:** la pizarra digital; para la propuesta B, una cuadrícula por pareja.
+- **Lo han conseguido si:** dibujan el cuadrado con un REPITE y saben decir qué se repite y cuántas veces.
 - **Para proyectar:** [[P:cuadricula.cuadrado|Reto: el cuadrado]] y [[P:poligonos|Polígonos]] · [[P:laberinto.3|Laberinto · repetir]] (si sobra tiempo: «repetir» en pantalla, toda la clase)
 - **Material listo:** [[M:M06|Tablero de cuadrícula]] (hoja 1, como papel cuadriculado)
 - **Para repasar:** algoritmo
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
+**Antes de la clase:**
+- Para la propuesta B, imprime la cuadrícula, una por pareja. [[M:M06|Tablero de cuadrícula]] (hoja 1, como papel cuadriculado)
+
 **Opción A · Del cuadrado al polígono**
-1. En el reto del cuadrado, programad «REPITE ×4: avanza, avanza, avanza, gira» con el rastro activado.
-2. Abre «Polígonos»: mueve la barra de lados (3, 4, 6). Fijaos en el giro: 360 ÷ lados.
+
+**Empezamos (10 min):**
+1. Recuerda qué es un bucle: repite varias veces lo mismo. [[V:bucle|Bucle]]
+2. Explica la misión: dibujar figuras con «repite N veces: avanza, gira».
+
+**A trabajar (25 min):**
+1. En el reto del cuadrado, programad «REPITE ×4: avanza, avanza, avanza, gira» con el rastro activado. [[P:cuadricula.cuadrado|Reto: el cuadrado]]
+2. Abre «Polígonos»: mueve la barra de lados (3, 4, 6). Fijaos en el giro: 360 ÷ lados. [[P:poligonos|Polígonos]]
 3. Pregunta: «¿Y un triángulo? ¿Cuánto hay que girar?».
+4. Si sobra tiempo, «repetir» en pantalla, con toda la clase. [[P:laberinto.3|Laberinto · repetir]]
 
 **Opción B · Dictado en cuadrícula**
-En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadrícula de M06: escalera, cuadrado, almena.
+
+**Empezamos (10 min):**
+1. Recuerda qué es un bucle: repite varias veces lo mismo. [[V:bucle|Bucle]]
+2. Explica la misión y reparte la cuadrícula: uno dicta un programa con REPITE y el otro lo dibuja.
+
+**A trabajar (25 min):**
+1. En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadrícula de M06.
+2. Las figuras, por este orden: escalera, cuadrado, almena.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un voluntario dice en voz alta su programa del cuadrado. Pregunta a la clase: «¿Qué se repite y cuántas veces?»
+2. Frase clave: **«Si se repite, uso un bucle.»**
+3. Se recogen las cuadrículas.
 
 - **Frase clave:** «Si se repite, uso un bucle.»
 - **Si va rápido:** el pentágono: ¿cuánto hay que girar? (360 ÷ 5 = 72).
@@ -146,19 +225,46 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 ### S4 · True True: recorridos con bucles `ROB` `PC`
 
 - **Qué aprenden:** programar recorridos más largos con el robot usando repeticiones.
-- **Prepara antes:** robots cargados, tarjetas y tapete. Si no conocen el robot, dedica los 10 primeros minutos a normas y partes.
+- **Hoy:** programan con el True True un recorrido largo usando repeticiones y buscan el programa más corto.
+- **Necesitas:** robots True True cargados, tarjetas y tapete; para la propuesta B, las fichas del tablero.
+- **Lo han conseguido si:** el robot de cada grupo completa el recorrido y el grupo sabe decir cuántas tarjetas ha usado.
 - **Para proyectar:** [[P:cuadricula.grande|Tablero grande 7×7]] (para ensayar el recorrido)
 - **Material listo:** [[M:M06|Fichas del tablero]]
 - **Para repasar:** bucle · ángulos
 - **Minuto de uso responsable:** «Los cables se sacan desde el enchufe, no tirando del cable.» ¿Qué le puede pasar al cable si tiramos de él?
 
+**Antes de la clase:**
+- Carga los robots y prepara las tarjetas y el tapete.
+- Para la propuesta A, ten a mano la situación oficial *Operaciones y polígonos con True True*.
+- Para la propuesta B, imprime las fichas (casa, cole y correos). [[M:M06|Fichas del tablero]]
+
 **Opción A · Situación oficial**
-*Operaciones y polígonos con True True*: el robot recorre polígonos y resuelve operaciones.
+
+**Empezamos (10 min):**
+1. Si no conocen el robot, dedica estos 10 minutos a normas y partes.
+2. Presenta la situación oficial *Operaciones y polígonos con True True*: el robot recorre polígonos y resuelve operaciones. Podéis ensayar el recorrido en la pizarra. [[P:cuadricula.grande|Tablero grande 7×7]]
+
+**A trabajar (25 min):**
+1. Por grupos, hacen la situación oficial: el robot recorre polígonos y resuelve operaciones.
+2. Las tarjetas se colocan en fila en la mesa antes de cargarlas: así se ve el programa entero y se depura mejor.
 
 **Opción B · Recorrido con paradas**
-1. Coloca en el tapete tres fichas de M06 (casa, cole, correos) y una meta.
-2. Cada grupo programa el recorrido completo con el menor número de tarjetas.
+
+**Empezamos (10 min):**
+1. Si no conocen el robot, dedica estos 10 minutos a normas y partes.
+2. Coloca en el tapete tres fichas de M06 (casa, cole, correos) y una meta. Podéis ensayar el recorrido en la pizarra. [[P:cuadricula.grande|Tablero grande 7×7]]
+
+**A trabajar (25 min):**
+1. Cada grupo programa el recorrido completo con el menor número de tarjetas.
+2. Las tarjetas se colocan en fila en la mesa antes de cargarlas: así se ve el programa entero y se depura mejor.
 3. Tabla en la pizarra: grupo y número de tarjetas.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su programa con el robot. Pregunta a la clase: «¿Qué parte se repite? ¿Se podría hacer con menos tarjetas?»
+2. Frase clave: **«El mejor programa es el que funciona y es corto.»**
+3. Se recogen los robots, las tarjetas y el tapete.
 
 - **Frase clave:** «El mejor programa es el que funciona y es corto.»
 - **Si va rápido:** el recorrido con paradas y la vuelta a casa.
@@ -168,18 +274,47 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 ### S5 · Si… si no… `PC`
 
 - **Qué aprenden:** una condición tiene dos caminos: si se cumple, hago una cosa; si no, hago otra.
-- **Prepara antes:** M13 hoja 1 (una por grupo), un dado y una ficha por alumno (valen tapones).
+- **Hoy:** juegan a la oca de las condiciones, o deciden en la pizarra con el semáforo y el diagrama «par o impar».
+- **Necesitas:** para la propuesta A, el tablero de la oca, un dado por grupo y una ficha por alumno; para la B, la pizarra digital.
+- **Lo han conseguido si:** ante una regla SI… SI NO, saben decir qué pasa si se cumple y qué pasa si no.
 - **Para proyectar:** [[P:semaforo.sino|Semáforo · SI… SI NO]] y [[P:diagrama.par|Diagrama · par o impar]] · [[P:laberinto.5|Laberinto · si hay camino]] (el programa decide solo: si hay camino, avanza; si no, gira)
 - **Material listo:** [[M:M13|La oca de las condiciones]] · [[M:M04|Tarjetas SI · ENTONCES · SI NO]] · [[M:M26|Póster «Condición»]]
 - **Minuto de uso responsable:** «Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube.» ¿Por qué hay que pedir permiso antes de hacer una foto?
 
+**Antes de la clase:**
+- Para la propuesta A, imprime el tablero de la oca, uno por grupo. [[M:M13|La oca de las condiciones]] (hoja 1)
+- Para la propuesta A, prepara un dado por grupo y una ficha por alumno (valen tapones).
+- Si quieres más ejemplos de reglas con dos caminos, imprime las tarjetas: cada fila es una regla completa. [[M:M04|Tarjetas SI · ENTONCES · SI NO]]
+- Cuelga el póster. [[M:M26|Póster «Condición»]]
+
 **Opción A · La oca de las condiciones**
-1. Juega un turno en la pizarra con la regla de la casilla 3: «SI sacas par, avanza 2. SI NO, quédate».
-2. Por grupos, juegan al tablero de M13 leyendo las reglas en voz alta.
+
+**Empezamos (10 min):**
+1. Presenta la idea: una condición tiene dos caminos; si se cumple, hago una cosa, y si no, hago otra. [[V:condicion|Condición]]
+2. Juega un turno en la pizarra con la regla de la casilla 3: «SI sacas par, avanza 2. SI NO, quédate».
+
+**A trabajar (25 min):**
+1. Por grupos, juegan al tablero de M13 leyendo las reglas en voz alta.
+    - Se tira el dado y se avanza. Si se cae en una casilla naranja, se lee su regla y se hace lo que diga con el número que se acaba de sacar.
+    - Gana quien llegue primero a la 20 (no hace falta número exacto).
 
 **Opción B · En la pizarra**
-1. Semáforo en modo SI… SI NO: la clase decide con cada luz.
-2. Diagrama «par o impar»: un alumno dice un número y se recorre el diagrama.
+
+**Empezamos (10 min):**
+1. Presenta la idea: una condición tiene dos caminos; si se cumple, hago una cosa, y si no, hago otra. [[V:condicion|Condición]]
+2. Explica la misión: decidir entre todos con el semáforo y con el diagrama.
+
+**A trabajar (25 min):**
+1. Semáforo en modo SI… SI NO: la clase decide con cada luz. [[P:semaforo.sino|Semáforo · SI… SI NO]]
+2. Diagrama «par o impar»: un alumno dice un número y se recorre el diagrama. [[P:diagrama.par|Diagrama · par o impar]]
+3. Si sobra tiempo, el laberinto: el programa decide solo: si hay camino, avanza; si no, gira. [[P:laberinto.5|Laberinto · si hay camino]]
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un voluntario lee en voz alta una regla con SI… SI NO. Pregunta a la clase: «¿Qué pasa SI se cumple? ¿Y SI NO?»
+2. Frase clave: **«SI se cumple, un camino. SI NO, el otro.»**
+3. Si habéis jugado a la oca, se recogen los tableros, los dados y las fichas.
 
 - **Frase clave:** «SI se cumple, un camino. SI NO, el otro.»
 - **Si va rápido:** inventar una casilla nueva para la oca con SI… SI NO.
@@ -189,19 +324,45 @@ En parejas, uno dicta un programa con REPITE y el otro lo dibuja sobre la cuadr�
 ### S6 · Cazabichos `PC`
 
 - **Qué aprenden:** encontrar y arreglar tres errores en un programa.
-- **Prepara antes:** M08 nivel 3 (una por pareja, soluciones dobladas).
+- **Hoy:** cazan los tres bichos de un programa con un método: paso a paso y parar en el primer error.
+- **Necesitas:** para la propuesta A, la pizarra digital y la ficha de cazabichos de nivel 3, una por pareja; para la B, una hoja de mapas del tesoro por pareja.
+- **Lo han conseguido si:** cada pareja señala el paso exacto donde empieza cada error y lo arregla.
 - **Para proyectar:** [[P:cuadricula.bicho4|Cazabichos 4]] · [[P:laberinto.6|Laberinto · nivel 6]]
-- **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 3)
+- **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 3) · [[M:M07|Mapas del tesoro]] (propuesta B)
 - **Para repasar:** algoritmo
 - **Minuto de uso responsable:** «Cuento el material antes de guardarlo.» ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
+**Antes de la clase:**
+- Para la propuesta A, imprime la ficha de nivel 3, una por pareja, con las soluciones dobladas. [[M:M08|Cazabichos por niveles]] (nivel 3)
+- Para la propuesta B, imprime los mapas, una hoja por pareja. [[M:M07|Mapas del tesoro]]
+
 **Opción A · Ficha por parejas**
-1. Enseña el método en la pizarra con el cazabichos 4: «Paso a paso» y parar en el primer error.
-2. Las parejas hacen la ficha de nivel 3 con el mismo método.
-3. Corrección con las soluciones.
+
+**Empezamos (10 min):**
+1. Recuerda qué es depurar: encontrar el error y arreglarlo. [[V:depurar|Depurar]]
+2. Enseña el método en la pizarra con el cazabichos 4: «Paso a paso» y parar en el primer error. [[P:cuadricula.bicho4|Cazabichos 4]]
+
+**A trabajar (25 min):**
+1. Las parejas hacen la ficha de nivel 3 con el mismo método.
+2. Corrección con las soluciones.
 
 **Opción B · Fabrica un bicho**
-Cada pareja resuelve un mapa de M07, le mete 2 bichos y se lo pasa a otra pareja.
+
+**Empezamos (10 min):**
+1. Recuerda qué es depurar: encontrar el error y arreglarlo. [[V:depurar|Depurar]]
+2. Explica la misión: resolver un mapa, meterle 2 bichos y pasárselo a otra pareja.
+
+**A trabajar (25 min):**
+1. Cada pareja resuelve un mapa de M07.
+2. Le mete 2 bichos al programa.
+3. Se lo pasa a otra pareja, que busca los bichos.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Una pareja enseña un bicho que ha cazado. Pregunta a la clase: «¿En qué paso exacto empezaba el error?»
+2. Frase clave: **«Busco el paso exacto donde empieza el error.»**
+3. Se recogen las hojas.
 
 - **Frase clave:** «Busco el paso exacto donde empieza el error.»
 - **Si va rápido:** que la pareja meta 3 bichos en su mapa para otra pareja.
@@ -211,23 +372,52 @@ Cada pareja resuelve un mapa de M07, le mete 2 bichos y se lo pasa a otra pareja
 ### S7 · Datos: preguntamos, contamos y dibujamos `PC`
 
 - **Qué aprenden:** los datos se recogen, se ordenan en una tabla y se representan en un gráfico para contestar una pregunta.
-- **Prepara antes:** M25 hoja 1 (una por pareja). Un dado por pareja si haces la opción B.
+- **Hoy:** recogen datos (una encuesta o las tiradas de un dado), los ordenan en una tabla y los representan en un gráfico.
+- **Necesitas:** la pizarra digital y la hoja de registro, una por pareja; para la propuesta B, un dado por pareja.
+- **Lo han conseguido si:** cada pareja tiene su tabla de recuento completa y contesta con ella a la pregunta.
 - **Para proyectar:** [[P:votaciones.mascotas|Votaciones y gráfico]] · [[P:votaciones.clase|Dado de la clase]]
 - **Material listo:** [[M:M25|Registro de una encuesta]] (hoja 1) · [[M:M25|Frecuencias del dado]] (hoja 2)
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
+**Antes de la clase:**
+- Para las propuestas A y C, imprime la hoja de la encuesta, una por pareja. [[M:M25|Registro de una encuesta]] (hoja 1)
+- Para la propuesta B, imprime la hoja del dado, una por pareja, y prepara un dado por pareja. [[M:M25|Frecuencias del dado]] (hoja 2)
+
 **Opción A · Encuesta y gráfico**
-1. Proyecta las votaciones con «Mascotas» (o escribe las vuestras en «Mis opciones»: juego del recreo, fruta favorita).
+
+**Empezamos (10 min):**
+1. Proyecta las votaciones con «Mascotas» (o escribe las vuestras en «Mis opciones»: juego del recreo, fruta favorita). [[P:votaciones.mascotas|Votaciones y gráfico]]
 2. Cada alumno vota; un voluntario pulsa +1. El gráfico crece solo.
-3. En M25, copian la tabla de recuento y dibujan el gráfico de barras. ¿Qué es lo más votado (la moda)? ¿Cuántos votos hay en total?
+
+**A trabajar (25 min):**
+1. En M25, copian la tabla de recuento y dibujan el gráfico de barras.
+2. Contestan con sus datos: ¿qué es lo más votado (la moda)? ¿Cuántos votos hay en total?
 
 **Opción B · ¿Sale más el 6?**
+
+**Empezamos (10 min):**
 1. Pregunta: «Si tiramos un dado muchas veces, ¿sale más algún número?». Cada pareja apunta su predicción.
-2. Cada pareja tira 20 veces y anota en M25 hoja 2. Después se suman los resultados de toda la clase en una tabla en la pizarra.
-3. Escribid los totales en el proyectable «Dado de la clase» y comparadlos con la predicción. Después pulsad «Comparar con 1000 tiradas del ordenador»: con muchas tiradas, todos los números salen más o menos igual.
+
+**A trabajar (25 min):**
+1. Cada pareja tira 20 veces y anota en M25 hoja 2. Después se suman los resultados de toda la clase en una tabla en la pizarra.
+2. Escribid los totales en el proyectable «Dado de la clase» y comparadlos con la predicción. Después pulsad «Comparar con 1000 tiradas del ordenador»: con muchas tiradas, todos los números salen más o menos igual. [[P:votaciones.clase|Dado de la clase]]
 
 **Opción C · Los datos deciden**
-Usad la encuesta para decidir algo real de la clase (el tema de la misión final de la S8). Así se ve para qué sirven los datos.
+
+**Empezamos (10 min):**
+1. Usad la encuesta para decidir algo real de la clase (el tema de la misión final de la S8): escribe las opciones en «Mis opciones». Así se ve para qué sirven los datos. [[P:votaciones.mascotas|Votaciones y gráfico]]
+2. Cada alumno vota; un voluntario pulsa +1. El gráfico crece solo.
+
+**A trabajar (25 min):**
+1. En M25, copian la tabla de recuento y dibujan el gráfico de barras.
+2. Deciden con sus datos: ¿qué es lo más votado (la moda)? ¿Cuántos votos hay en total?
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Una pareja enseña su tabla y su gráfico. Pregunta a la clase: «¿Qué pregunta contestan estos datos?»
+2. Frase clave: **«Los datos contestan preguntas.»**
+3. Se recogen las hojas (y los dados).
 
 - **Frase clave:** «Los datos contestan preguntas.»
 - **Si va rápido:** hacer dos preguntas y comparar los dos gráficos.
@@ -237,15 +427,44 @@ Usad la encuesta para decidir algo real de la clase (el tema de la misión final
 ### S8 · Misión final del trimestre `PC`
 
 - **Qué aprenden:** aplicar todo el trimestre en equipo.
+- **Hoy:** superan en equipo la misión final: cuatro pruebas de diagrama, bucle, condición y bicho.
+- **Necesitas:** para la propuesta A, la ficha de misión de 3º, una por grupo; para la B, la pizarra digital. La rúbrica y las autoevaluaciones.
+- **Lo han conseguido si:** cada equipo ha resuelto las cuatro pruebas (en la ficha, tiene su código secreto) y ha hecho su autoevaluación.
 - **Material listo:** [[M:M14|Misión final del trimestre]] (ficha de 3º) · [[M:M19|Rúbrica]]
 - **Para repasar:** bucle · condición · depurar
-- **Minuto de uso responsable:** «Los cables se sacan desde el enchufe, no tirando del cable.» ¿Qué le puede pasar al cable si tiramos de él?
+- **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
+
+**Antes de la clase:**
+- Para la propuesta A, imprime la ficha de misión, una por grupo; las soluciones están en la última hoja. [[M:M14|Misión final del trimestre]] (ficha de 3º)
+- Imprime el registro de la rúbrica (hoja 1) y las autoevaluaciones (hoja 3: hay cuatro en cada hoja). [[M:M19|Rúbrica]]
 
 **Opción A · Ficha de misión (grupos)**
-Cuatro pruebas (diagrama, bucle, condición y bicho) que dan un código secreto. Soluciones en la última hoja.
+
+**Empezamos (10 min):**
+1. Presenta la misión y reparte la ficha: cuatro pruebas (diagrama, bucle, condición y bicho) que dan un código secreto.
+
+**A trabajar (25 min):**
+1. Por grupos, resuelven las cuatro pruebas: cada una da un número, y con los cuatro forman el código secreto.
+2. Cada grupo te dice su código. Soluciones en la última hoja.
 
 **Opción B · Misión en la pizarra**
-Por equipos que se turnan: [[P:diagrama.par|diagrama]], [[P:bucles.cuadrado|bucle]], [[P:semaforo.sino|condición]] y [[P:cuadricula.bicho4|bicho]].
+
+**Empezamos (10 min):**
+1. Presenta la misión: cuatro pruebas en la pizarra (diagrama, bucle, condición y bicho), por equipos que se turnan.
+
+**A trabajar (25 min):**
+1. Primera prueba, el diagrama. [[P:diagrama.par|diagrama]]
+2. Segunda prueba, el bucle. [[P:bucles.cuadrado|bucle]]
+3. Tercera prueba, la condición. [[P:semaforo.sino|condición]]
+4. Cuarta prueba, el bicho. [[P:cuadricula.bicho4|bicho]]
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un equipo cuenta cómo ha resuelto una prueba. Pregunta a la clase: «¿Qué prueba os ha costado más y cómo la habéis resuelto?»
+2. Frase clave: **«En equipo, cada prueba es un paso hacia la meta.»**
+3. Autoevaluación: «Aprendí… / Me costó…». [[M:M19|Rúbrica]]
+4. Se recogen las fichas y las autoevaluaciones.
 
 - **Frase clave:** «En equipo, cada prueba es un paso hacia la meta.»
 - **Si va rápido:** inventar una quinta prueba para otro grupo.

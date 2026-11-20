@@ -78,19 +78,45 @@ Vocabulario de programación nuevo en 2º (las palabras de cursos anteriores se 
 ### S1 · El robot humano 2.0 (repaso) `PC` `SEG`
 
 - **Qué aprenden:** recordar qué es una secuencia. Para ti: ver el nivel del grupo.
-- **Prepara antes:** tablero M06 y tarjetas M01 por grupo.
+- **Hoy:** repasan las normas del aula de código y vuelven a programar el robot de la cuadrícula: escriben el programa entero con tarjetas y después lo ejecutan.
+- **Necesitas:** la pizarra digital (propuesta A) o, por grupo, un tablero con sus fichas y un juego de tarjetas de flechas (propuesta B).
+- **Lo han conseguido si:** escriben el camino entero antes de mover el robot, y el robot llega sin chocar con las rocas.
 - **Para proyectar:** [[P:cuadricula.mapa4|Robot en la cuadrícula · mapa 4]] · [[P:beebot.numeros|Bee-Bot · camino numérico]]
 - **Material listo:** [[M:M06|Tablero y fichas]] · [[M:M01|Tarjetas de flechas]] · [[M:M05|Tarjetas de rol]]
-- **Minuto de uso responsable:** normas del aula de código (cuidar el material, esperar turno, ayudar sin quitar).
+
+**Antes de la clase:**
+- Para la propuesta B, imprime un tablero con sus fichas por grupo. [[M:M06|Tablero y fichas]]
+- Para la propuesta B, prepara un juego de tarjetas por grupo. [[M:M01|Tarjetas de flechas]]
 
 **Opción A · Reto en la pizarra**
-1. Proyecta el mapa 4 (con rocas). Pregunta: «¿Qué órdenes entiende el robot?».
-2. Regla nueva: primero se escribe **todo** el programa y después se ejecuta.
-3. Salen alumnos a tocar las tarjetas; la clase revisa antes de pulsar «Ejecutar».
+
+**Empezamos (10 min):**
+1. Normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
+2. Proyecta el mapa 4 (con rocas). Pregunta: «¿Qué órdenes entiende el robot?». [[P:cuadricula.mapa4|Robot en la cuadrícula · mapa 4]]
+3. Regla nueva: primero se escribe **todo** el programa y después se ejecuta.
+
+**A trabajar (25 min):**
+1. Salen alumnos a tocar las tarjetas hasta escribir el programa entero.
+2. La clase revisa el programa antes de pulsar «Ejecutar».
 
 **Opción B · Reto en la mesa**
+
+**Empezamos (10 min):**
+1. Normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
+2. Enseña las tarjetas de flechas. Pregunta: «¿Qué órdenes entiende el robot?».
+3. Regla nueva: primero se escribe **todo** el programa y después se ejecuta.
+
+**A trabajar (25 min):**
 1. Cada grupo coloca en su tablero M06 el robot, el tesoro y tres rocas.
-2. Escriben el camino con tarjetas M01 en fila y otro grupo lo comprueba moviendo la ficha.
+2. Escriben el camino con tarjetas M01 en fila.
+3. Otro grupo lo comprueba moviendo la ficha.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su programa. Pregunta a la clase: «¿Qué hemos hecho primero y qué hemos hecho después?»
+2. Frase clave: **«Primero escribo el programa, después lo ejecuto.»**
+3. Sello en el pasaporte, y las tarjetas y las fichas vuelven a su caja.
 
 - **Frase clave:** «Primero escribo el programa, después lo ejecuto.»
 - **Si va rápido:** el camino con menos tarjetas.
@@ -100,19 +126,44 @@ Vocabulario de programación nuevo en 2º (las palabras de cursos anteriores se 
 ### S2 · Algoritmos de cada día `PC`
 
 - **Qué aprenden:** un algoritmo es una lista de pasos ordenados para conseguir algo; hay que ser precisos.
-- **Prepara antes:** M10 recortado (opción B).
+- **Hoy:** ordenan los pasos de una rutina de cada día y descubren que, si un paso falta o cambia de sitio, no sale.
+- **Necesitas:** la pizarra digital (propuesta A) o dos rutinas recortadas por grupo y papel (propuesta B).
+- **Lo han conseguido si:** ordenan los pasos y saben explicar por qué un paso no puede ir antes que otro.
 - **Para proyectar:** [[P:secuencias.manos6|Ordena la secuencia · lavarse las manos en 6 pasos]] · [[P:simon|Simón: secuencias]]
 - **Material listo:** [[M:M10|Secuencias para ordenar]] · [[M:M26|Póster «Algoritmo»]]
 - **Minuto de uso responsable:** «Espero mi turno y ayudo sin quitar.» ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
+**Antes de la clase:**
+- Para la propuesta B, imprime y recorta las rutinas: dos por grupo. [[M:M10|Secuencias para ordenar]]
+- Cuelga el póster. [[M:M26|Póster «Algoritmo»]]
+
 **Opción A · Seis pasos en la pizarra**
-1. Proyecta «lavarse las manos (6 pasos)». Entre todos, ordenad los pasos.
+
+**Empezamos (10 min):**
+1. Presenta la palabra nueva: un algoritmo es una lista de pasos ordenados para conseguir algo. [[V:algoritmo|Algoritmo]]
+2. Proyecta «lavarse las manos (6 pasos)» y explica la misión: ordenar los pasos entre todos. [[P:secuencias.manos6|Ordena la secuencia · lavarse las manos en 6 pasos]]
+
+**A trabajar (25 min):**
+1. Entre todos, ordenad los pasos.
 2. En cada paso, pregunta: «¿Por qué no puede ir antes?» (no puedo frotarme con jabón si no me he puesto jabón).
 3. Tapa un paso con la mano: ¿qué pasa si falta?
 
 **Opción B · Ordena y completa**
-1. Cada grupo recibe dos rutinas de M10 mezcladas.
-2. Las ordenan y añaden en un papel un paso que falte (por ejemplo, «cierro el grifo»).
+
+**Empezamos (10 min):**
+1. Presenta la palabra nueva: un algoritmo es una lista de pasos ordenados para conseguir algo. [[V:algoritmo|Algoritmo]]
+2. Reparte a cada grupo dos rutinas de M10 mezcladas y explica la misión: ordenarlas y descubrir un paso que falte.
+
+**A trabajar (25 min):**
+1. Cada grupo ordena sus dos rutinas.
+2. Añaden en un papel un paso que falte (por ejemplo, «cierro el grifo»).
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo dice en voz alta los pasos de una rutina, en orden. Pregunta a la clase: «¿Qué pasaría si cambiamos dos pasos de sitio?»
+2. Frase clave: **«Un algoritmo es una receta exacta.»**
+3. Sello en el pasaporte. Si se han usado, las rutinas recortadas vuelven a su caja.
 
 - **Frase clave:** «Un algoritmo es una receta exacta.»
 - **Si va rápido:** escribir entre todos el algoritmo de «preparar la mochila».
@@ -122,16 +173,43 @@ Vocabulario de programación nuevo en 2º (las palabras de cursos anteriores se 
 ### S3 · Patrones que se repiten y que crecen `PC`
 
 - **Qué aprenden:** continuar y crear patrones de tres o cuatro elementos y descubrir patrones que crecen.
-- **Para proyectar:** [[P:patrones.abc|Patrones · ABC]] y [[P:patrones.crece|patrón que crece]]
+- **Hoy:** continúan patrones que se repiten y descubren uno que crece: en cada figura hay más que en la anterior.
+- **Necesitas:** la pizarra digital (propuesta A) o una ficha de patrones por alumno (propuesta B).
+- **Lo han conseguido si:** dicen qué viene después en un patrón y explican la regla; en el que crece, saben cómo será la figura 4.
+- **Para proyectar:** [[P:patrones.abc|Patrones · ABC]], [[P:patrones.aabb|AABB]] y [[P:patrones.crece|patrón que crece]]
 - **Material listo:** [[M:M09|Patrones]] · [[M:M26|Póster «Patrón»]]
 - **Minuto de uso responsable:** «Las tarjetas no se doblan ni se pintan.» ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
+**Antes de la clase:**
+- Para la propuesta B, imprime la ficha, una por alumno. [[M:M09|Patrones]] (hoja 1; la hoja 2, para quien termine)
+- Cuelga el póster. [[M:M26|Póster «Patrón»]]
+
 **Opción A · De repetir a crecer, en la pizarra**
-1. Patrones ABC y AABB en el proyectable: la clase dice qué va en cada «?».
-2. Patrón que crece: figura 1, 2 y 3. ¿Cómo será la 4? ¿Y la 10? Toca para comprobar.
+
+**Empezamos (10 min):**
+1. Presenta el patrón: algo que se repite siguiendo una regla. [[V:patron|Patrón]]
+2. Explica la misión: descubrir la regla de cada patrón para saber qué viene después.
+
+**A trabajar (25 min):**
+1. Patrones ABC y AABB en el proyectable: la clase dice qué va en cada «?». [[P:patrones.abc|Patrones · ABC]] · [[P:patrones.aabb|AABB]]
+2. Patrón que crece: figura 1, 2 y 3. ¿Cómo será la 4? ¿Y la 10? Toca para comprobar. [[P:patrones.crece|patrón que crece]]
 
 **Opción B · Ficha de patrones**
-Cada alumno hace la hoja 1 de M09 (incluido el patrón que crece). Se corrige proyectando.
+
+**Empezamos (10 min):**
+1. Presenta el patrón: algo que se repite siguiendo una regla. [[V:patron|Patrón]]
+2. Reparte la hoja 1 de M09 y explica la misión: continuar cada patrón, incluido el patrón que crece.
+
+**A trabajar (25 min):**
+1. Cada alumno hace la hoja 1 de M09 (incluido el patrón que crece).
+2. Se corrige proyectando. [[P:patrones.abc|Patrones · ABC]] · [[P:patrones.crece|patrón que crece]]
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un alumno enseña un patrón de los de hoy. Pregunta a la clase: «¿Cuál es la regla? ¿Qué viene después?»
+2. Frase clave: **«Si descubro la regla, sé lo que viene después.»**
+3. Sello en el pasaporte, y las fichas se guardan.
 
 - **Frase clave:** «Si descubro la regla, sé lo que viene después.»
 - **Si va rápido:** hoja 2 de M09 (buscar el bicho).
@@ -141,16 +219,45 @@ Cada alumno hace la hoja 1 de M09 (incluido el patrón que crece). Se corrige pr
 ### S4 · Bucles sin pantalla `PC`
 
 - **Qué aprenden:** usar «repite» para escribir programas más cortos.
+- **Hoy:** comparan un programa largo con el mismo programa con REPITE y programan un cuadrado con REPITE.
+- **Necesitas:** la pizarra digital (propuesta A) o, por grupo, un tablero y un juego de tarjetas de flechas con REPITE (propuesta B).
+- **Lo han conseguido si:** su programa del cuadrado usa REPITE y, al comprobarlo, el robot vuelve al inicio.
 - **Para proyectar:** [[P:bucles.escalera|Bucles: la escalera]] y [[P:cuadricula.cuadrado|Reto: el cuadrado]] · [[P:laberinto.3|Laberinto · nivel 3]] (el mismo «repetir», ahora en pantalla y con toda la clase)
 - **Material listo:** [[M:M01|Tarjetas de flechas y REPITE]] · [[M:M06|Tablero]] · [[M:M26|Póster «Bucle»]]
 - **Minuto de uso responsable:** «Si veo algo que no me gusta, aviso a un adulto.» ¿A qué adultos puedo avisar en el cole y en casa?
 
+**Antes de la clase:**
+- Para la propuesta B, prepara un juego de tarjetas por grupo, con las de REPITE. [[M:M01|Tarjetas de flechas y REPITE]]
+- Para la propuesta B, imprime un tablero por grupo. [[M:M06|Tablero]]
+- Cuelga el póster. [[M:M26|Póster «Bucle»]]
+
 **Opción A · Largo contra corto, en la pizarra**
-1. Proyecta «la escalera»: programa largo y programa con REPITE. ¿Hacen lo mismo?
-2. Abre el reto del cuadrado. Programadlo con REPITE ×4 y activad el rastro.
+
+**Empezamos (10 min):**
+1. Presenta el bucle: repetir varias veces lo mismo. [[V:bucle|Bucle]]
+2. Explica la misión: escribir programas más cortos con REPITE.
+
+**A trabajar (25 min):**
+1. Proyecta «la escalera»: programa largo y programa con REPITE. ¿Hacen lo mismo? [[P:bucles.escalera|Bucles: la escalera]]
+2. Abre el reto del cuadrado. Programadlo con REPITE ×4 y activad el rastro. [[P:cuadricula.cuadrado|Reto: el cuadrado]]
+3. Si sobra tiempo, el mismo «repetir», ahora en pantalla y con toda la clase. [[P:laberinto.3|Laberinto · nivel 3]]
 
 **Opción B · El cuadrado en el tablero**
-Cada grupo escribe con tarjetas M01 un cuadrado usando la tarjeta REPITE y otro grupo lo comprueba en su tablero M06.
+
+**Empezamos (10 min):**
+1. Presenta el bucle: repetir varias veces lo mismo. [[V:bucle|Bucle]]
+2. Enseña la tarjeta REPITE y explica la misión: escribir un cuadrado con ella.
+
+**A trabajar (25 min):**
+1. Cada grupo escribe con tarjetas M01 un cuadrado usando la tarjeta REPITE.
+2. Otro grupo lo comprueba en su tablero M06.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su cuadrado con REPITE. Pregunta a la clase: «¿Qué trozo se repite? ¿Cuántas veces?»
+2. Frase clave: **«REPITE ahorra tarjetas.»**
+3. Sello en el pasaporte, y las tarjetas y los tableros vuelven a su caja.
 
 - **Frase clave:** «REPITE ahorra tarjetas.»
 - **Si va rápido:** un rectángulo de 2 × 3 con REPITE: ¿qué cambia respecto al cuadrado?
@@ -160,16 +267,44 @@ Cada grupo escribe con tarjetas M01 un cuadrado usando la tarjeta REPITE y otro 
 ### S5 · Cazabichos `PC`
 
 - **Qué aprenden:** encontrar y arreglar dos errores en una secuencia.
-- **Prepara antes:** M08 nivel 2, una hoja por pareja, con las soluciones dobladas.
+- **Hoy:** buscan los bichos de un programa siguiéndolo paso a paso, y los arreglan.
+- **Necesitas:** la pizarra digital (propuesta A) o una hoja de cazabichos de nivel 2 por pareja (propuesta B).
+- **Lo han conseguido si:** señalan el paso exacto donde el robot se equivoca y lo cambian por la flecha correcta.
 - **Para proyectar:** [[P:cuadricula.bicho3|Cazabichos 3]] y [[P:cuadricula.bicho4|Cazabichos 4]]
 - **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 2)
 - **Minuto de uso responsable:** «Mi contraseña es como mi cepillo de dientes: no se presta.» ¿Qué otras cosas son solo mías y no se prestan?
 
+**Antes de la clase:**
+- Para la propuesta B, imprime una hoja por pareja y dobla las soluciones. [[M:M08|Cazabichos por niveles]] (nivel 2)
+
 **Opción A · Bichos en la pizarra**
-Proyecta el cazabichos 3. Pulsad «Paso a paso» y parad cuando el robot se equivoque. Un alumno toca la tarjeta mala para cambiarla. Después, el 4.
+
+**Empezamos (10 min):**
+1. Presenta la misión: cazar bichos, que es encontrar el error y arreglarlo. [[V:depurar|Depurar]]
+2. Proyecta el cazabichos 3: el programa tiene dos bichos. [[P:cuadricula.bicho3|Cazabichos 3]]
+
+**A trabajar (25 min):**
+1. Pulsad «Paso a paso» y parad cuando el robot se equivoque.
+2. Un alumno toca la tarjeta mala para cambiarla.
+3. Después, el cazabichos 4, que también tiene dos. [[P:cuadricula.bicho4|Cazabichos 4]]
 
 **Opción B · Ficha por parejas**
-Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flecha correcta. Se corrige en la pizarra.
+
+**Empezamos (10 min):**
+1. Presenta la misión: cazar bichos, que es encontrar el error y arreglarlo. [[V:depurar|Depurar]]
+2. Reparte una hoja de nivel 2 por pareja, con las soluciones dobladas: cada programa tiene dos bichos.
+
+**A trabajar (25 min):**
+1. Siguen el programa con el dedo.
+2. Rodean los dos bichos y escriben debajo la flecha correcta.
+3. Se corrige en la pizarra.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Una pareja enseña un bicho que ha cazado. Pregunta a la clase: «¿En qué paso exacto empezó el error?»
+2. Frase clave: **«Busco el paso exacto donde empieza el error.»**
+3. Sello en el pasaporte, y las hojas se guardan.
 
 - **Frase clave:** «Busco el paso exacto donde empieza el error.»
 - **Si va rápido:** que cada pareja meta dos bichos en un mapa de M07 para otra pareja.
@@ -179,18 +314,45 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 ### S6 · Volvemos a True True `ROB` `SEG`
 
 - **Qué aprenden:** repasar el manejo del robot y sus partes (batería, interruptor, luces y lector de tarjetas).
-- **Prepara antes:** robots cargados, tarjetas y tapete. Tarjetas de roles oficiales.
+- **Hoy:** repasan las normas y las partes del robot True True y lo programan con tarjetas en recorridos cortos.
+- **Necesitas:** robots True True cargados, sus tarjetas y el tapete, por grupos.
+- **Lo han conseguido si:** cada grupo ha hecho llegar el robot al final de, al menos, la recta de 3 casillas, y lo ha manejado cumpliendo las normas.
 - **Para proyectar:** [[P:cuadricula.mapa5|Robot en la cuadrícula · mapa 5]] (para ensayar antes del robot)
 - **Material listo:** [[M:M01|Tarjetas de flechas]] · [[M:M06|Fichas del tablero]] · normas de uso y tarjetas de roles oficiales (ver Recursos oficiales)
-- **Minuto de uso responsable:** normas del robot.
+
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Ten a mano las normas de uso oficiales (ver Recursos oficiales).
+- Ten a mano las fichas del tablero, para montar los recorridos sobre el tapete. [[M:M06|Fichas del tablero]]
+- Para la propuesta B, ten a mano la situación de aprendizaje oficial *Recicla con True True* (ver Recursos oficiales).
 
 **Opción A · Retos de calentamiento**
-1. Repaso de normas y partes. «¿Qué entra y qué sale?».
-2. Retos por grupos: recta de 3 casillas, camino en L, camino en U.
-3. Anotad en la pizarra cuántas tarjetas usó cada grupo.
+
+**Empezamos (10 min):**
+1. Repaso de las normas del robot y de sus partes: batería, interruptor, luces y lector de tarjetas.
+2. Pregunta: «¿Qué entra y qué sale?». [[V:entrada-salida|Entrada y salida]]
+3. Ensayad un recorrido en la pizarra antes de coger el robot. [[P:cuadricula.mapa5|Robot en la cuadrícula · mapa 5]]
+
+**A trabajar (25 min):**
+1. Retos por grupos: recta de 3 casillas, camino en L, camino en U.
+2. Anotad en la pizarra cuántas tarjetas usó cada grupo.
 
 **Opción B · Situación de aprendizaje oficial**
-*Recicla con True True*: el robot lleva residuos al contenedor correcto.
+
+**Empezamos (10 min):**
+1. Repaso de las normas del robot y de sus partes: batería, interruptor, luces y lector de tarjetas.
+2. Pregunta: «¿Qué entra y qué sale?». [[V:entrada-salida|Entrada y salida]]
+3. Presenta la situación oficial *Recicla con True True*: el robot lleva residuos al contenedor correcto.
+
+**A trabajar (25 min):**
+1. Los grupos programan el robot para llevar cada residuo al contenedor correcto, siguiendo la situación oficial.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña uno de sus recorridos con el robot. Pregunta a la clase: «¿Cuántas tarjetas ha usado? ¿Se puede hacer con menos?»
+2. Frase clave: **«Cuido el robot porque es de todos.»**
+3. Sello en el pasaporte. Los robots, a cargar, y las tarjetas, a su caja.
 
 - **Frase clave:** «Cuido el robot porque es de todos.»
 - **Si va rápido:** el camino en U con el menor número de tarjetas.
@@ -200,16 +362,41 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 ### S7 · Formas y bucles con True True `ROB` `PC`
 
 - **Qué aprenden:** usar la repetición con el robot para recorrer figuras.
+- **Hoy:** programan el robot True True para que recorra un cuadrado y buscan cómo acortar el programa con la repetición.
+- **Necesitas:** robots True True cargados, sus tarjetas y el tapete, por grupos.
+- **Lo han conseguido si:** el robot recorre el cuadrado y vuelve al inicio, y el grupo sabe decir qué trozo del programa se repite.
 - **Para proyectar:** [[P:cuadricula.cuadrado|Reto: el cuadrado]] (ensayo) · [[P:beebot.cuadricula|Bee-Bot]]
 - **Minuto de uso responsable:** «El robot se coge con dos manos.» ¿Por qué con dos manos y no con una?
 
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Para la propuesta B, ten a mano la situación de aprendizaje oficial *Explorando figuras geométricas con True True* (ver Recursos oficiales).
+
 **Opción A · Recorre la figura**
-1. Ensayad el cuadrado en la pizarra.
-2. Los grupos programan el robot para recorrer un cuadrado de 2 casillas de lado. Primero sin repetir; luego intentan acortarlo.
+
+**Empezamos (10 min):**
+1. Ensayad el cuadrado en la pizarra. [[P:cuadricula.cuadrado|Reto: el cuadrado]]
+2. Explica la misión: que el robot recorra un cuadrado de 2 casillas de lado y, después, acortar el programa.
+
+**A trabajar (25 min):**
+1. Los grupos programan el robot para recorrer un cuadrado de 2 casillas de lado, primero sin repetir.
+2. Luego intentan acortarlo.
 3. Reto: un rectángulo de 2 × 3.
 
 **Opción B · Situación oficial**
-*Explorando figuras geométricas con True True*.
+
+**Empezamos (10 min):**
+1. Presenta la situación oficial *Explorando figuras geométricas con True True*.
+
+**A trabajar (25 min):**
+1. Los grupos programan el robot siguiendo la situación oficial.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña cómo recorre su robot la figura. Pregunta a la clase: «¿Qué trozo del programa se repite? ¿Cuántas veces?»
+2. Frase clave: **«Una figura es un camino que vuelve al inicio.»**
+3. Sello en el pasaporte. Los robots, a cargar, y las tarjetas, a su caja.
 
 **Pistas y soluciones:**
 1. **El cuadrado de 2 casillas de lado**
@@ -230,16 +417,46 @@ Siguen el programa con el dedo, rodean los dos bichos y escriben debajo la flech
 ### S8 · Misión final del trimestre `PC`
 
 - **Qué aprenden:** aplicar todo el trimestre para superar un reto en equipo.
-- **Prepara antes:** M14 (ficha de 2º), una por grupo.
+- **Hoy:** superan en equipo una misión de cuatro pruebas con todo lo del trimestre: un patrón, un camino, un bucle y un bicho.
+- **Necesitas:** una ficha de misión por grupo (propuesta A) o la pizarra digital (propuesta B), y la rúbrica.
+- **Lo han conseguido si:** el grupo resuelve las cuatro pruebas y te dice el código secreto (propuesta A), o cada equipo ha resuelto su parte de los cuatro retos (propuesta B).
 - **Material listo:** [[M:M14|Misión final del trimestre]] · [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** «Cada cosa a su caja y a cargar.» ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
+**Antes de la clase:**
+- Para la propuesta A, imprime la ficha de 2º, una por grupo, y guarda la última hoja, que trae las soluciones. [[M:M14|Misión final del trimestre]]
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
 **Opción A · Ficha de misión (grupos)**
+
+**Empezamos (10 min):**
+1. Presenta la misión: 4 pruebas (patrón, camino, bucle y bicho). Cada prueba da un número y con los 4 números se forma el código secreto.
+2. Reparte una ficha por grupo.
+
+**A trabajar (25 min):**
 1. Cada grupo resuelve las 4 pruebas de la ficha (patrón, camino, bucle y bicho). Cada prueba da un número.
 2. Con los 4 números forman el código secreto y te lo dicen. Soluciones en la última hoja de M14.
+3. Mientras trabajan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
 
 **Opción B · Misión en la pizarra (toda la clase)**
-Cuatro retos seguidos en la pizarra, por equipos que se turnan: [[P:patrones.aabb|un patrón]], [[P:cuadricula.mapa5|un mapa]], [[P:bucles.palmadas|un bucle]] y [[P:cuadricula.bicho2|un bicho]].
+
+**Empezamos (10 min):**
+1. Presenta la misión: cuatro retos seguidos en la pizarra, por equipos que se turnan.
+
+**A trabajar (25 min):**
+1. Primer reto: un patrón. [[P:patrones.aabb|Un patrón]]
+2. Segundo reto: un mapa. [[P:cuadricula.mapa5|Un mapa]]
+3. Tercer reto: un bucle. [[P:bucles.palmadas|Un bucle]]
+4. Cuarto reto: un bicho. [[P:cuadricula.bicho2|Un bicho]]
+5. Mientras trabajan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo cuenta cómo ha resuelto una de las pruebas. Pregunta a la clase: «¿Qué prueba os ha costado más? ¿Cómo la habéis resuelto?»
+2. Frase clave: **«En equipo, cada prueba es un paso hacia la meta.»**
+3. Autoevaluación: las caritas del pasaporte.
+4. Sello en el pasaporte, y las fichas se guardan.
 
 - **Frase clave:** «En equipo, cada prueba es un paso hacia la meta.»
 - **Si va rápido:** inventar una quinta prueba para otro grupo.

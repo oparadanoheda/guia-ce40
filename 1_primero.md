@@ -88,21 +88,46 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S1 · El robot humano `PC` `SEG`
 
 - **Qué aprenden:** un robot solo hace exactamente lo que le decimos, en el orden en que se lo decimos.
-- **Prepara antes:** un objeto cualquiera como «tesoro» (un estuche, un peluche) y las tarjetas de flechas.
+- **Hoy:** la clase lleva a un «robot» (tú, o el de la pizarra) hasta el tesoro dando las órdenes de una en una.
+- **Necesitas:** un objeto como «tesoro» y las tarjetas de flechas (propuesta A) o la pizarra digital (propuesta B).
+- **Lo han conseguido si:** dan las órdenes de una en una, con las palabras que entiende el robot (avanza, gira a la derecha, gira a la izquierda), y el robot llega al tesoro.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula · tablero libre]] · [[P:beebot.cuadricula|Bee-Bot interactivo]]
 - **Material listo:** [[M:M01|Tarjetas de flechas]] (un juego para el docente) · [[M:M05|Tarjetas de rol]]
-- **Minuto de uso responsable:** las 3 normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
+
+**Antes de la clase:**
+- Busca un objeto cualquiera como «tesoro» (un estuche, un peluche).
+- Ten a mano las tarjetas de flechas, un juego para ti. [[M:M01|Tarjetas de flechas]]
 
 **Opción A · El profe es el robot (toda la clase)**
-1. Di con voz de robot: «Soy un robot. Solo entiendo tres órdenes: avanza, gira a la derecha y gira a la izquierda». Enseña las tres tarjetas de M01.
-2. La clase te lleva hasta el tesoro dando una orden cada vez. Cúmplelas al pie de la letra. Si alguien dice «ve para allá», responde «no entiendo».
-3. Al llegar, contad juntos cuántas órdenes han hecho falta.
-4. Repite con el tesoro en otro sitio.
+
+**Empezamos (10 min):**
+1. Presenta las tres normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
+2. Di con voz de robot: «Soy un robot. Solo entiendo tres órdenes: avanza, gira a la derecha y gira a la izquierda». Enseña las tres tarjetas de flechas. [[V:algoritmo|Algoritmo]]
+3. Deja el tesoro a la vista y explica la misión: llevarte hasta él dando una orden cada vez.
+
+**A trabajar (25 min):**
+1. La clase te lleva hasta el tesoro dando una orden cada vez. Cúmplelas al pie de la letra. Si alguien dice «ve para allá», responde «no entiendo».
+2. Al llegar, contad juntos cuántas órdenes han hecho falta.
+3. Repite con el tesoro en otro sitio.
 
 **Opción B · El robot de la pizarra**
-1. Abre el proyectable del tablero libre. Explica que el robot mira hacia donde apunta su «nariz».
-2. Un alumno sale y toca una tarjeta (avanza o gira). La clase dice antes qué va a pasar.
-3. Pulsa «Ejecutar» y comprobad. Salen varios alumnos, una tarjeta cada uno, hasta llegar al tesoro.
+
+**Empezamos (10 min):**
+1. Presenta las tres normas del aula de código: cuidar el material, esperar turno y ayudar sin quitar.
+2. Abre el proyectable del tablero libre. Explica que el robot mira hacia donde apunta su «nariz». [[P:cuadricula.libre|Robot en la cuadrícula · tablero libre]] · [[V:algoritmo|Algoritmo]]
+3. Explica la misión: llevar al robot hasta el tesoro, con una tarjeta cada vez.
+
+**A trabajar (25 min):**
+1. Un alumno sale y toca una tarjeta (avanza o gira). La clase dice antes qué va a pasar.
+2. Pulsa «Ejecutar» y comprobad.
+3. Salen varios alumnos, una tarjeta cada uno, hasta llegar al tesoro.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Qué habría hecho el robot si le hubiéramos dado las mismas órdenes en otro orden?»
+2. Frase clave: **«Un robot no adivina: hace lo que le dices.»**
+3. Se guardan las tarjetas de flechas y el tesoro vuelve a su sitio.
 
 - **Frase clave:** «Un robot no adivina: hace lo que le dices.»
 - **Si va rápido:** el grupo escribe todas las tarjetas antes de mover al robot: eso es un programa.
@@ -112,21 +137,44 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S2 · Rutinas en orden `PC`
 
 - **Qué aprenden:** lo que hacemos cada día son secuencias: si cambias el orden, sale mal.
-- **Prepara antes:** nada (opción A) o la ficha M10 recortada (opción B).
+- **Hoy:** ordenan las viñetas de rutinas de cada día (lavarse las manos y otras), en la pizarra o en la mesa.
+- **Necesitas:** la pizarra digital (propuesta A) o las viñetas recortadas, una fila por grupo (propuesta B).
+- **Lo han conseguido si:** dejan la rutina en orden y saben decir por qué un paso no puede ir antes que otro.
 - **Para proyectar:** [[P:secuencias.manos|Ordena la secuencia · lavarse las manos]] · [[P:simon|Simón: secuencias]]
 - **Material listo:** [[M:M10|Secuencias para ordenar]] (una hoja para dos grupos) · [[M:M26|Póster «Algoritmo»]]
 - **Minuto de uso responsable:** «Las tarjetas no se doblan ni se pintan.» ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
+**Antes de la clase:**
+- Para la propuesta A no hay que preparar nada.
+- Para la propuesta B, imprime las viñetas (una hoja para dos grupos) y recórtalas en filas. [[M:M10|Secuencias para ordenar]]
+- Cuelga el póster. [[M:M26|Póster «Algoritmo»]]
+
 **Opción A · Ordenamos en la pizarra**
-1. Abre el proyectable. Las viñetas salen desordenadas.
+
+**Empezamos (10 min):**
+1. Abre el proyectable. Las viñetas salen desordenadas. [[P:secuencias.manos|Ordena la secuencia · lavarse las manos]]
 2. Pregunta: «¿Podemos secarnos antes de lavarnos?». Que lo razonen.
-3. Un alumno toca dos viñetas para cambiarlas de sitio. La clase ayuda. Al final, «Comprobar».
-4. Repite con otra rutina de los botones de arriba (ponerse los zapatos, plantar una semilla).
+
+**A trabajar (25 min):**
+1. Un alumno toca dos viñetas para cambiarlas de sitio. La clase ayuda. Al final, «Comprobar».
+2. Repite con otra rutina de los botones de arriba (ponerse los zapatos, plantar una semilla).
 
 **Opción B · Ordenamos en la mesa**
-1. Cada grupo recibe una fila de viñetas de M10 recortada y mezclada.
-2. La ordenan de izquierda a derecha y la leen en voz alta con «primero, después, luego, por último».
-3. Comprueban con el número pequeño de la esquina.
+
+**Empezamos (10 min):**
+1. Cada grupo recibe una fila de viñetas recortada y mezclada.
+2. Explica la misión: ponerla en orden y comprobarlo después con el número pequeño de la esquina.
+
+**A trabajar (25 min):**
+1. La ordenan de izquierda a derecha y la leen en voz alta con «primero, después, luego, por último».
+2. Comprueban con el número pequeño de la esquina.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un alumno o un grupo cuenta una rutina ya ordenada. Pregunta a la clase: «¿Qué pasaría si cambiáramos dos pasos de sitio?»
+2. Frase clave: **«El orden importa.»**
+3. Si habéis usado las viñetas, se recogen sin doblar, cada fila junta.
 
 - **Frase clave:** «El orden importa.»
 - **Si va rápido:** tapar una viñeta: ¿cuál falta?
@@ -136,21 +184,46 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S3 · Paso a paso: descomponer una tarea `PC`
 
 - **Qué aprenden:** una tarea grande es más fácil si se divide en pasos pequeños.
-- **Prepara antes:** nada (opción A) o la hoja 2 de M10 recortada (opción B).
+- **Hoy:** parten una tarea de cada día (hacer una tostada) en pasos pequeños y los ponen en orden.
+- **Necesitas:** la pizarra digital (propuesta A) o las viñetas de la hoja 2 recortadas, un juego por grupo (propuesta B).
+- **Lo han conseguido si:** dicen los pasos de una tarea de uno en uno y en orden, y explican por qué cada paso va en su sitio.
 - **Para proyectar:** [[P:secuencias.tostada|Ordena la secuencia · hacer una tostada]]
 - **Material listo:** [[M:M10|Secuencias para ordenar]] (hoja 2) · [[M:M26|Póster «Descomponer»]]
 - **Minuto de uso responsable:** «Espero mi turno y ayudo sin quitar.» ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
+**Antes de la clase:**
+- Para la propuesta A no hay que preparar nada.
+- Para la propuesta B, imprime la hoja 2 y recorta las viñetas. [[M:M10|Secuencias para ordenar]] (hoja 2)
+- Cuelga el póster. [[M:M26|Póster «Descomponer»]]
+
 **Opción A · La tostada de la pizarra**
+
+**Empezamos (10 min):**
 1. Pregunta: «¿Cómo se hace una tostada?». Apunta en la pizarra lo que digan, tal cual.
-2. Hazte el «robot»: si alguien dice «úntala», responde «¿El qué? Todavía no tengo pan». Así descubren que hay que decir cada paso y en su orden.
-3. Abre el proyectable y ordenad los 4 pasos entre todos. Pregunta en cada paso: «¿Se puede hacer esto antes que lo anterior?».
-4. Cierra con: «Una tarea grande son pasos pequeños en orden».
+2. Hazte el «robot»: si alguien dice «úntala», responde «¿El qué? Todavía no tengo pan». Así descubren que hay que decir cada paso y en su orden. [[V:descomponer|Descomponer]]
+
+**A trabajar (25 min):**
+1. Abre el proyectable y ordenad los 4 pasos entre todos. [[P:secuencias.tostada|Ordena la secuencia · hacer una tostada]]
+2. Pregunta en cada paso: «¿Se puede hacer esto antes que lo anterior?».
+
+**Cerramos (10 min):**
+1. Cierra con: «Una tarea grande son pasos pequeños en orden». Pregunta a la clase: «¿Cuántos pasos pequeños tiene nuestra tostada?»
+2. Frase clave: **«Algo grande se hace con pasos pequeños.»**
 
 **Opción B · Tres tareas en la mesa**
+
+**Empezamos (10 min):**
 1. Cada grupo recibe las viñetas de «hacer una tostada», «lavarse los dientes» y «cruzar la calle» (hoja 2 de M10), mezcladas.
-2. Separan las tres tareas y ordenan los pasos de cada una.
-3. Cada grupo cuenta una tarea a la clase y explica por qué va cada paso en su sitio.
+2. Explica la misión: separar las tres tareas y ordenar los pasos de cada una. [[V:descomponer|Descomponer]]
+
+**A trabajar (25 min):**
+1. Separan las tres tareas.
+2. Ordenan los pasos de cada una.
+
+**Cerramos (10 min):**
+1. Cada grupo cuenta una tarea a la clase y explica por qué va cada paso en su sitio.
+2. Frase clave: **«Algo grande se hace con pasos pequeños.»**
+3. Se recogen las viñetas, cada tarea junta.
 
 - **Frase clave:** «Algo grande se hace con pasos pequeños.»
 - **Si va rápido:** inventar un paso que falte (por ejemplo, «lavarse las manos antes»).
@@ -160,21 +233,46 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S4 · El mapa del tesoro `PC`
 
 - **Qué aprenden:** seguir y escribir un camino en una cuadrícula con flechas.
-- **Prepara antes:** imprimir M07 (una hoja por pareja).
+- **Hoy:** escriben con flechas el camino del robot hasta el tesoro: en la pizarra y en papel, o en el tablero de mesa.
+- **Necesitas:** la pizarra digital y una hoja de mapas por pareja (propuesta A), o un tablero con sus fichas y un juego de tarjetas de flechas por grupo (propuesta B).
+- **Lo han conseguido si:** las flechas que han puesto llevan al robot, casilla a casilla, hasta el tesoro.
 - **Para proyectar:** [[P:cuadricula.mapa1|Robot en la cuadrícula · mapa 1]] y [[P:cuadricula.mapa2|mapa 2]] · [[P:beebot.numeros|Bee-Bot · camino numérico]]
 - **Material listo:** [[M:M07|Mapas del tesoro]] · [[M:M06|Tablero de cuadrícula y fichas]] (opcional)
 - **Minuto de uso responsable:** «Las tarjetas no se doblan ni se pintan.» ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
+**Antes de la clase:**
+- Imprime los mapas, una hoja por pareja. [[M:M07|Mapas del tesoro]]
+- Para la propuesta B, prepara un tablero por grupo con la ficha del robot, el tesoro y dos rocas. [[M:M06|Tablero de cuadrícula y fichas]]
+- Para la propuesta B, ten a mano un juego de tarjetas de flechas por grupo. [[M:M01|Tarjetas de flechas]]
+
 **Opción A · Primero en la pizarra, después en papel**
-1. Proyecta el mapa 1. Entre todos, escribid el programa tocando las tarjetas y ejecutadlo.
-2. Haced el mapa 2 igual.
-3. En parejas, resuelven los mapas 1 a 4 de M07 dibujando las flechas en las casillas.
-4. Corregid en la pizarra: cargad el mapa y probad el programa de una pareja.
+
+**Empezamos (10 min):**
+1. Proyecta el mapa 1. Entre todos, escribid el programa tocando las tarjetas y ejecutadlo. [[P:cuadricula.mapa1|Robot en la cuadrícula · mapa 1]]
+2. Haced el mapa 2 igual. [[P:cuadricula.mapa2|mapa 2]]
+
+**A trabajar (25 min):**
+1. En parejas, resuelven los mapas 1 a 4 de M07 dibujando las flechas en las casillas.
+
+**Cerramos (10 min):**
+1. Corregid en la pizarra: cargad el mapa y probad el programa de una pareja. Pregunta a la clase: «¿Cuántas flechas ha necesitado?»
+2. Frase clave: **«Cada flecha, un paso.»**
+3. Cada pareja guarda su hoja de mapas: es parte del producto del trimestre.
 
 **Opción B · Tablero de mesa**
-1. Cada grupo tiene el tablero M06 con la ficha del robot, el tesoro y dos rocas.
-2. Uno coloca las tarjetas de flechas M01 en fila; otro mueve la ficha del robot siguiéndolas.
-3. Cambian la posición del tesoro y repiten.
+
+**Empezamos (10 min):**
+1. Cada grupo tiene el tablero M06 con la ficha del robot, el tesoro y dos rocas, y sus tarjetas de flechas M01.
+2. Explica la misión: uno coloca las tarjetas de flechas en fila y otro mueve la ficha del robot siguiéndolas, hasta el tesoro.
+
+**A trabajar (25 min):**
+1. Uno coloca las tarjetas de flechas M01 en fila; otro mueve la ficha del robot siguiéndolas.
+2. Cambian la posición del tesoro y repiten.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su fila de tarjetas y mueve la ficha delante de la clase. Pregunta: «¿Cuántas flechas ha necesitado?»
+2. Frase clave: **«Cada flecha, un paso.»**
+3. Se recogen el tablero, las fichas y las tarjetas de cada grupo.
 
 - **Frase clave:** «Cada flecha, un paso.»
 - **Si va rápido:** mapas 5 y 6 y buscar el camino más corto.
@@ -184,20 +282,43 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S5 · Patrones que se repiten `PC`
 
 - **Qué aprenden:** un patrón es algo que se repite siempre igual; por eso se puede adivinar lo que viene después.
-- **Prepara antes:** imprimir M09 hoja 1 (una por alumno).
-- **Para proyectar:** [[P:patrones.ab|Patrones · AB]] y [[P:patrones.aab|AAB]]
+- **Hoy:** descubren patrones con el cuerpo y en la pizarra, o en una ficha, y adivinan lo que viene después.
+- **Necesitas:** la pizarra digital (propuesta A) o la hoja 1 de patrones, una por alumno, y colores (propuesta B).
+- **Lo han conseguido si:** dicen qué viene después en un patrón y lo explican («porque se repite»).
+- **Para proyectar:** [[P:patrones.ab|Patrones · AB]], [[P:patrones.aab|AAB]] y [[P:patrones.abc|ABC]]
 - **Material listo:** [[M:M09|Patrones]] (hoja 1) · [[M:M26|Póster «Patrón»]]
 - **Minuto de uso responsable:** «Si veo algo que no me gusta, aviso a un adulto.» ¿A qué adultos puedo avisar en el cole y en casa?
 
+**Antes de la clase:**
+- Imprime la hoja 1, una por alumno. [[M:M09|Patrones]] (hoja 1)
+- Cuelga el póster. [[M:M26|Póster «Patrón»]]
+
 **Opción A · Patrones con el cuerpo y en la pizarra**
-1. De pie: «palmada, palmada, pie» tres veces. ¿Qué viene ahora? Inventan otro.
-2. Proyecta el patrón AB. Un alumno dice qué va en la casilla «?» y la toca para comprobar.
-3. Seguid con AAB y ABC.
+
+**Empezamos (10 min):**
+1. De pie: «palmada, palmada, pie» tres veces. ¿Qué viene ahora? [[V:patron|Patrón]]
+
+**A trabajar (25 min):**
+1. Inventan otro patrón con el cuerpo.
+2. Proyecta el patrón AB. Un alumno dice qué va en la casilla «?» y la toca para comprobar. [[P:patrones.ab|Patrones · AB]]
+3. Seguid con AAB y ABC. [[P:patrones.aab|AAB]] · [[P:patrones.abc|ABC]]
+
+**Cerramos (10 min):**
+1. Un alumno hace su patrón con el cuerpo y la clase lo continúa. Pregunta: «¿Cómo sabíais lo que venía después?»
+2. Frase clave: **«Si se repite, es un patrón.»**
 
 **Opción B · Ficha de patrones**
-1. Haz el primer patrón de M09 juntos en la pizarra.
-2. Cada alumno completa la hoja coloreando las casillas vacías.
-3. Corregid proyectando cada patrón.
+
+**Empezamos (10 min):**
+1. Haz el primer patrón de la hoja (M09) juntos en la pizarra. [[V:patron|Patrón]]
+
+**A trabajar (25 min):**
+1. Cada alumno completa la hoja coloreando las casillas vacías.
+
+**Cerramos (10 min):**
+1. Corregid proyectando cada patrón. Pregunta: «¿Cómo sabíais lo que venía después?» [[P:patrones.ab|Patrones · AB]]
+2. Frase clave: **«Si se repite, es un patrón.»**
+3. Cada alumno guarda su hoja.
 
 - **Frase clave:** «Si se repite, es un patrón.»
 - **Si va rápido:** el patrón que crece (al final de la hoja o en el proyectable).
@@ -207,21 +328,43 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S6 · Cazabichos `PC`
 
 - **Qué aprenden:** los errores se llaman «bichos»; encontrarlos y arreglarlos es parte de programar.
-- **Prepara antes:** imprimir M08 nivel 1 (una hoja por pareja, con las soluciones dobladas hacia atrás).
+- **Hoy:** buscan el «bicho» (el error) de un programa de flechas y lo arreglan, en la pizarra o en una ficha.
+- **Necesitas:** la pizarra digital (propuesta A) o la hoja de cazabichos de nivel 1, una por pareja (propuesta B).
+- **Lo han conseguido si:** señalan la flecha donde el programa empieza a fallar y la cambian por la correcta.
 - **Para proyectar:** [[P:cuadricula.bicho1|Cazabichos en la cuadrícula]] y [[P:patrones.bicho|Patrón con bicho]]
 - **Material listo:** [[M:M08|Cazabichos por niveles]] (nivel 1) · [[M:M26|Póster «Depurar»]]
 - **Minuto de uso responsable:** «Espero mi turno y ayudo sin quitar.» ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
+**Antes de la clase:**
+- Imprime el nivel 1, una hoja por pareja, con las soluciones dobladas hacia atrás. [[M:M08|Cazabichos por niveles]] (nivel 1)
+- Cuelga el póster. [[M:M26|Póster «Depurar»]]
+
 **Opción A · Bichos en la pizarra**
-1. Proyecta el cazabichos 1 y pulsa «Ejecutar»: el robot no llega.
-2. «¿En qué tarjeta empieza a fallar?». Pulsad «Paso a paso» para verlo despacio.
-3. Un alumno toca la tarjeta equivocada (al tocarla, cambia de flecha) hasta arreglarla.
-4. Haced lo mismo con el patrón con bicho.
+
+**Empezamos (10 min):**
+1. Proyecta el cazabichos 1 y pulsa «Ejecutar»: el robot no llega. [[P:cuadricula.bicho1|Cazabichos en la cuadrícula]] · [[V:depurar|Depurar]]
+
+**A trabajar (25 min):**
+1. «¿En qué tarjeta empieza a fallar?». Pulsad «Paso a paso» para verlo despacio.
+2. Un alumno toca la tarjeta equivocada (al tocarla, cambia de flecha) hasta arreglarla.
+3. Haced lo mismo con el patrón con bicho. [[P:patrones.bicho|Patrón con bicho]]
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Cómo hemos sabido en qué tarjeta estaba el bicho?»
+2. Frase clave: **«Equivocarse es normal. Encontrar el bicho es de expertos.»**
 
 **Opción B · Ficha de cazabichos**
-1. Explica: «Este programa tiene un bicho. Seguid las flechas con el dedo».
-2. En parejas, rodean la flecha que falla y dibujan debajo la correcta.
-3. Corregid en la pizarra.
+
+**Empezamos (10 min):**
+1. Explica: «Este programa tiene un bicho. Seguid las flechas con el dedo». [[V:depurar|Depurar]]
+
+**A trabajar (25 min):**
+1. En parejas, rodean la flecha que falla y dibujan debajo la correcta.
+
+**Cerramos (10 min):**
+1. Corregid en la pizarra. Pregunta a una pareja: «¿Cómo habéis sabido en qué flecha estaba el bicho?»
+2. Frase clave: **«Equivocarse es normal. Encontrar el bicho es de expertos.»**
+3. Cada pareja guarda su hoja.
 
 - **Frase clave:** «Equivocarse es normal. Encontrar el bicho es de expertos.»
 - **Si va rápido:** que cada pareja meta un bicho en uno de sus mapas de M07 para otra pareja.
@@ -231,28 +374,58 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S7 · Conocemos a Tale-Bot `ROB` `SEG`
 
 - **Qué aprenden:** cómo se cuida un robot, qué partes tiene y que necesita energía (batería) e instrucciones (los botones que pulsamos).
-- **Prepara antes:** los Tale-Bot prestados por Infantil, cargados, y su tapete. Imprime en A3 las normas de uso para Primaria (web oficial, apartado Infantil). Si puedes, mira el vídeo *Primeros pasos con Tale-Bot*.
+- **Hoy:** conocen a Tale-Bot: sus normas de uso, sus partes y cómo se le programa un camino corto con los botones.
+- **Necesitas:** los Tale-Bot de Infantil, cargados, con su tapete, y las normas de uso impresas en A3.
+- **Lo han conseguido si:** cada alumno ha programado un camino corto y los grupos borran antes de cada camino nuevo.
 - **Para proyectar:** [[P:beebot.cuadricula|Bee-Bot interactivo]] (funciona igual que Tale-Bot: flechas, memoria y GO)
 - **Material listo:** normas de uso y tarjetas de roles oficiales (ver Recursos oficiales) · [[M:M05|Tarjetas de rol]] · [[M:M01|Tarjetas de flechas]] · [[M:M26|Póster «Entrada y salida»]]
-- **Minuto de uso responsable:** leer juntos las normas: dos manos, el robot va en el suelo o en el tapete, nunca se lanza y se apaga al terminar.
+
+**Antes de la clase:**
+- Pide a Infantil los Tale-Bot, cárgalos y ten listo su tapete.
+- Imprime en A3 las normas de uso para Primaria (web oficial, apartado Infantil).
+- Si puedes, mira el vídeo *Primeros pasos con Tale-Bot*.
+- Para la propuesta C, elige la sesión de *Formas con Tale-Bot* o de *Explorando el espacio con Tale-Bot* que vas a hacer (apartado Infantil de la web oficial).
+- Cuelga el póster. [[M:M26|Póster «Entrada y salida»]]
 
 **Opción A · Presentación guiada (recomendada)**
-1. Pregunta quién conoce a Tale-Bot de Infantil. Deja que lo cuenten.
-2. Enseña sus partes: interruptor, botones de flechas, botón GO y botón de borrar, y dónde se carga.
-3. Demostración: pulsa «avanza» dos veces y después GO. Pregunta: «¿Qué necesita para moverse?» (energía e instrucciones). Lo que pulsamos es la entrada; el movimiento es la salida.
-4. **Lo más importante:** antes de un camino nuevo, se pulsa borrar. Si no, el robot guarda los pasos viejos y les suma los nuevos. Enséñalo con un ejemplo que «falle».
-5. Por grupos, con roles, cada alumno programa por turnos un camino de 1 a 3 pasos. El Piloto pulsa; el Copiloto comprueba que se ha borrado antes.
+
+**Empezamos (10 min):**
+1. Leed juntos las normas de uso: dos manos, el robot va en el suelo o en el tapete, nunca se lanza y se apaga al terminar.
+2. Pregunta quién conoce a Tale-Bot de Infantil. Deja que lo cuenten.
+3. Enseña sus partes: interruptor, botones de flechas, botón GO y botón de borrar, y dónde se carga.
+4. Demostración: pulsa «avanza» dos veces y después GO. Pregunta: «¿Qué necesita para moverse?» (energía e instrucciones). Lo que pulsamos es la entrada; el movimiento es la salida. [[V:entrada-salida|Entrada y salida]]
+5. **Lo más importante:** antes de un camino nuevo, se pulsa borrar. Si no, el robot guarda los pasos viejos y les suma los nuevos. Enséñalo con un ejemplo que «falle».
+
+**A trabajar (25 min):**
+1. Por grupos, cada alumno programa por turnos un camino de 1 a 3 pasos. Uno pulsa y otro comprueba que se ha borrado antes.
 
 **Opción B · En la pizarra y después en el suelo**
-1. Abre el Bee-Bot interactivo. Salen varios alumnos: uno pulsa flechas, la clase predice dónde acabará y se pulsa GO.
-2. Pulsa GO otra vez sin borrar: la abeja repite todo. Así se ve qué es la memoria.
-3. Después, cada grupo lo prueba con Tale-Bot en el tapete.
+
+**Empezamos (10 min):**
+1. Leed juntos las normas de uso: dos manos, el robot va en el suelo o en el tapete, nunca se lanza y se apaga al terminar.
+2. Abre el Bee-Bot interactivo. Salen varios alumnos: uno pulsa flechas, la clase predice dónde acabará y se pulsa GO. [[P:beebot.cuadricula|Bee-Bot interactivo]]
+3. Pulsa GO otra vez sin borrar: la abeja repite todo. Así se ve qué es la memoria. [[V:entrada-salida|Entrada y salida]]
+
+**A trabajar (25 min):**
+1. Cada grupo lo prueba con Tale-Bot en el tapete.
 
 **Opción C · Situación de aprendizaje oficial**
-Una sesión de *Formas con Tale-Bot* o de *Explorando el espacio con Tale-Bot* (apartado Infantil de la web oficial), con los retos más difíciles.
 
-**Si el grupo ya maneja Tale-Bot con soltura** (lo ha usado mucho en Infantil): haz esta sesión en 20 minutos y dedica el resto a un camino con giro (S8). También se puede adelantar True True (ver S11).
+**Empezamos (10 min):**
+1. Leed juntos las normas de uso: dos manos, el robot va en el suelo o en el tapete, nunca se lanza y se apaga al terminar.
+2. Presenta la sesión elegida de *Formas con Tale-Bot* o de *Explorando el espacio con Tale-Bot* (apartado Infantil de la web oficial). [[V:entrada-salida|Entrada y salida]]
 
+**A trabajar (25 min):**
+1. Los grupos hacen los retos de esa sesión; elige los más difíciles.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo programa un camino delante de la clase. Pregunta: «¿Qué necesita el robot para moverse?» (energía e instrucciones).
+2. Frase clave: **«El robot necesita energía e instrucciones.»**
+3. Se apagan los robots y se llevan a su sitio con las dos manos.
+
+- **Si el grupo ya maneja Tale-Bot con soltura (lo ha usado mucho en Infantil):** haz esta sesión en 20 minutos y dedica el resto a un camino con giro (S8). También se puede adelantar True True (ver S11).
 - **Frase clave:** «El robot necesita energía e instrucciones.»
 - **Si va rápido:** caminos de 4 o 5 pasos con un giro; predecir en qué casilla acabará antes de pulsar GO.
 - **Si cuesta:** un solo botón y GO cada vez; borrar siempre antes del siguiente.
@@ -261,22 +434,51 @@ Una sesión de *Formas con Tale-Bot* o de *Explorando el espacio con Tale-Bot* (
 ### S8 · Primer camino con Tale-Bot `ROB` `PC`
 
 - **Qué aprenden:** planificar un camino corto con tarjetas de flechas, programarlo en el robot y comprobar si funciona.
-- **Prepara antes:** Tale-Bot cargados y su tapete (el lado de cuadrícula en blanco). Tarjetas de flechas M01 por grupo y fichas de M06 (tesoro y rocas).
+- **Hoy:** piensan un camino corto con las tarjetas de flechas, lo programan en Tale-Bot y comprueban si llega.
+- **Necesitas:** los Tale-Bot cargados y su tapete, un juego de tarjetas de flechas por grupo y las fichas del tesoro y las rocas.
+- **Lo han conseguido si:** el robot llega al tesoro, a la primera o después de buscar y cambiar la tarjeta que fallaba.
 - **Para proyectar:** [[P:cuadricula.mapa1|Robot en la cuadrícula · mapa 1]] (para ensayar antes) · [[P:beebot.numeros|Bee-Bot · camino numérico]]
 - **Material listo:** [[M:M01|Tarjetas de flechas]] · [[M:M06|Fichas del tablero]] · [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** «El robot se coge con dos manos.» ¿Por qué con dos manos y no con una?
 
+**Antes de la clase:**
+- Carga los Tale-Bot y prepara su tapete por el lado de cuadrícula en blanco.
+- Ten a mano un juego de tarjetas de flechas por grupo. [[M:M01|Tarjetas de flechas]]
+- Prepara las fichas del tesoro y de las rocas. [[M:M06|Fichas del tablero]]
+- Ten a mano la rúbrica del trimestre. [[M:M19|Rúbrica]]
+- Ten a mano los pasaportes (M15) para la autoevaluación.
+
 **Opción A · Primero las tarjetas, después los botones**
-1. Coloca la ficha del tesoro en el tapete a 2 casillas del robot. El grupo pone en la mesa las tarjetas de flechas del camino (una tarjeta = un botón).
-2. El Piloto borra la memoria, pulsa los botones en el orden de las tarjetas y pulsa GO. El Copiloto va señalando cada tarjeta.
+
+**Empezamos (10 min):**
+1. Ensayad antes en la pizarra: un camino entre todos. [[P:cuadricula.mapa1|Robot en la cuadrícula · mapa 1]]
+2. Coloca la ficha del tesoro en el tapete a 2 casillas del robot y explica la misión: primero las tarjetas en la mesa, después los botones (una tarjeta = un botón).
+
+**A trabajar (25 min):**
+1. El grupo pone en la mesa las tarjetas de flechas del camino (una tarjeta = un botón).
+2. Uno borra la memoria, pulsa los botones en el orden de las tarjetas y pulsa GO. Otro va señalando cada tarjeta.
 3. Si no llega, buscan qué tarjeta está mal, la cambian, borran y prueban otra vez.
 4. Después, tesoro a 3 casillas con un giro (camino en L) y una roca en medio.
 
 **Opción B · Carrera de metas**
-Pon en el tapete tres fichas numeradas (1, 2 y 3) de dificultad creciente. Cada grupo va superando metas y lo apunta en la pizarra.
 
-**Sin Tale-Bot:** haz lo mismo con el Bee-Bot de la pizarra o con True True (tarjetas).
+**Empezamos (10 min):**
+1. Pon en el tapete tres fichas como metas 1, 2 y 3, de dificultad creciente. Las fichas de M06 no llevan número: di a la clase cuál es cada meta.
+2. Explica la misión: cada grupo va superando metas y lo apunta en la pizarra.
 
+**A trabajar (25 min):**
+1. Cada grupo programa el camino hasta la meta 1; después, hasta la 2 y la 3.
+2. Cada meta superada se apunta en la pizarra.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su último camino. Antes de que pulse GO, pregunta a la clase: «¿Llegará? ¿Por qué?»
+2. Frase clave: **«Primero pienso el camino, después lo pruebo.»**
+3. Autoevaluación con las caritas del pasaporte (M15).
+4. Se apagan los robots y se recogen las tarjetas y las fichas.
+
+- **Sin Tale-Bot:** haz lo mismo con el Bee-Bot de la pizarra o con True True (tarjetas).
 - **Frase clave:** «Primero pienso el camino, después lo pruebo.»
 - **Si va rápido:** el camino más corto para esquivar dos rocas.
 - **Si cuesta:** caminos rectos; pulsar GO después de cada botón.

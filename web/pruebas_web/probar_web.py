@@ -207,7 +207,11 @@ PZ = r"""(async ()=>{ const out=[];
       window.ProyectarSesion.open(f); let n=0, g=0; const mal=[];
       const chk=()=>{ const st=document.querySelector('.pz-stage'); const W=window.innerWidth;
         if ([...st.querySelectorAll('*')].some(e=>{const r=e.getBoundingClientRect(); return r.width>0 && r.right>W+1})) mal.push(n+': se sale por la derecha');
-        const now=st.querySelector('.pz-steps li.now'); if(now){ const r=now.getBoundingClientRect(), s=st.getBoundingClientRect(); if(r.bottom>s.bottom+2||r.top<s.top-2) mal.push(n+': el paso actual no se ve'); } };
+        const now=st.querySelector('.pz-steps li.now'); if(now){ const r=now.getBoundingClientRect(), s=st.getBoundingClientRect(); if(r.bottom>s.bottom+2||r.top<s.top-2) mal.push(n+': el paso actual no se ve'); } 
+        // sesiones con guion: el tablero de la misión de cada propuesta tiene que caber entero, sin desplazar
+        if (st.querySelector('.pz2-board')) { const k=document.querySelectorAll('.pz2-opt').length||1;
+          for (let i=0;i<k;i++){ const o=document.querySelectorAll('.pz2-opt')[i]; if(o) o.click(); const s2=document.querySelector('.pz-stage');
+            if (s2.scrollHeight>s2.clientHeight+2) mal.push('el tablero de la propuesta '+(i+1)+' no cabe: sobran '+(s2.scrollHeight-s2.clientHeight)+' px'); } } };
       chk();
       while(!document.querySelector('.pz-next').disabled && g++<120){ document.querySelector('.pz-next').click(); n++; await new Promise(r=>setTimeout(r,0)); chk(); }
       if (mal.length) out.push(f.id+' '+mal.slice(0,3).join(' · ')); window.ProyectarSesion.close();
@@ -233,7 +237,7 @@ AX = r"""(async (id)=>{ location.hash='#'+id; await new Promise(r=>setTimeout(r,
   return r.violations.flatMap(v=>v.nodes.map(n=>[v.id, n.target.join(' '), (n.any[0]||n.all[0]||n.none[0]||{message:''}).message.slice(0,120)]));
 })"""
 # Excepción a propósito: los bloques dibujados copian los colores de Scratch y MakeCode con letra blanca, como el editor.
-BLOQUES = re.compile(r"\.(blk|rp-b|rp-r|rp-ch|mov|ctl|pen|loo|log|bas|pj-sblk)\b")
+BLOQUES = re.compile(r"\.(blk|rp-b|rp-r|rp-ch|mov|ctl|pen|loo|log|bas|pj-sblk|mkb)\b")
 
 
 async def accesibilidad(b):

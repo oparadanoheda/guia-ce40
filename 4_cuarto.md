@@ -79,20 +79,55 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S1 · Repaso de Scratch con bichos `PC` `SEG`
 
 - **Qué aprenden:** recordar Scratch y el trabajo en parejas. Para ti: ver el nivel.
-- **Prepara antes:** copia en la carpeta de la clase el archivo «Arregla el juego» (enlazado en la ficha). Tiene 3 bichos: (1) con la flecha derecha, Robi va a la izquierda (**mover -10 pasos**; debería ser 10); (2) un bloque de sonido suelto, sin evento encima, que nunca suena; (3) un **repetir 3** donde debería ir **por siempre**: la animación se para enseguida.
+- **Hoy:** juegan a «¿cuál es más segura?» con las contraseñas y recuerdan Scratch por parejas: arreglan un juego que tiene 3 bichos o resuelven tres retos cortos.
+- **Necesitas:** portátiles con Scratch, uno por pareja. Para la propuesta A, el archivo «Arregla el juego» copiado en la carpeta de la clase.
+- **Lo han conseguido si:** cada pareja ha arreglado al menos un bicho (o ha resuelto el primer reto), y tú sabes qué nivel tiene el grupo.
 - **Para proyectar:** [[P:contrasenas|Contraseñas seguras]] (para el minuto de uso responsable)
 - **Material listo:** [[M:M20|Chuleta de bloques de Scratch]]
-- **Minuto de uso responsable (5 minutos):** con el proyectable, el juego «¿cuál es más segura?». Trabajamos sin cuenta y guardamos en el ordenador.
 - **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
 - **Para repasar:** evento · bucle · variable · depurar
 
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Para la propuesta A, copia el archivo en la carpeta de la clase. [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de bloques de Scratch]]
+
 **Opción A · Arregla el juego**
-1. Enseña a abrir el archivo (*Archivo > Load from your computer* (esa opción sale en inglés en Scratch)).
-2. Las parejas lo prueban, encuentran los bichos y los arreglan.
-3. Puesta en común: «¿Cómo lo encontrasteis?».
+
+**Empezamos (10 min):**
+1. Uso responsable (5 minutos): jugad con toda la clase a «¿cuál es más segura?». Después, explica que en Scratch trabajamos sin cuenta y guardamos en el ordenador. [[P:contrasenas|Contraseñas seguras]]
+2. Enseña a abrir el archivo: *Archivo > Load from your computer* (esa opción sale en inglés en Scratch).
+3. Presenta la misión: el juego tiene 3 bichos. Antes de tocar ningún bloque hay que probarlo entero y apuntar qué falla.
+
+**A trabajar (25 min):**
+1. Las parejas prueban el juego, encuentran los bichos y los arreglan. Son tres:
+    - Con la flecha derecha, Robi va a la izquierda: el bloque dice `mover -10 pasos` y debería ser `mover 10 pasos`.
+    - Un bloque de sonido está suelto, sin evento encima, y nunca suena.
+    - Hay un `repetir 3` donde debería ir `por siempre`: la animación se para enseguida.
+2. Si una pareja se atasca, primero la pregunta y después la pista: están abajo, en «Pistas y soluciones».
+
+**Cerramos (10 min):**
+1. Una pareja enseña en la pizarra un bicho que ha arreglado. Pregunta a la clase: «¿Cómo lo encontrasteis?»
+2. Frase clave: **«Un bicho encontrado es un bicho aprendido.»**
+3. Se guarda el juego arreglado en el ordenador, con el nombre de la pareja.
 
 **Opción B · Reto relámpago (sin preparar archivo)**
-Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con las flechas; (3) cuenta puntos al hacer clic en él.
+
+**Empezamos (10 min):**
+1. Uso responsable (5 minutos): jugad con toda la clase a «¿cuál es más segura?». Después, explica que en Scratch trabajamos sin cuenta y guardamos en el ordenador. [[P:contrasenas|Contraseñas seguras]]
+2. Presenta los tres retos del tablero. Se hacen en orden y cada pareja llega hasta donde pueda.
+
+**A trabajar (25 min):**
+1. Las parejas resuelven los retos en orden:
+    - Reto 1: el gato dice hola con la bandera.
+    - Reto 2: se mueve con las flechas.
+    - Reto 3: cuenta puntos al hacer clic en él.
+2. Apunta hasta qué reto llega cada pareja: así ves el nivel del grupo.
+
+**Cerramos (10 min):**
+1. Una pareja enseña en la pizarra su reto 3. Pregunta a la clase: «¿Qué bloque hace que los puntos empiecen en 0?». Y después: «¿Qué fallo os ha salido por el camino y cómo lo encontrasteis?»
+2. Frase clave: **«Un bicho encontrado es un bicho aprendido.»**
+3. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **Arregla el juego: los 3 bichos del archivo**
@@ -110,6 +145,9 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 ### S2 · Bucles complejos: polígonos y rosetones `PC`
 
 - **Qué aprenden:** usar repetir para dibujar polígonos, y un repetir dentro de otro para hacer rosetones.
+- **Hoy:** descubren cuánto hay que girar en cada esquina de un polígono y dibujan en Scratch, por parejas, un cuadrado, un triángulo, un hexágono y un rosetón.
+- **Necesitas:** portátiles con Scratch, uno por pareja, y la pizarra digital.
+- **Lo han conseguido si:** cada pareja ha dibujado al menos dos polígonos cerrados y sabe decir cuánto gira en cada esquina.
 - **Para proyectar:** [[P:poligonos|Polígonos]] y [[P:poligonos.roseton|Rosetón]] · [[P:laberinto.4|Laberinto · bucles]]
 - **Preguntas de salida:** [[P:salida.bucle|Bucles]]
 - **En tablets o portátiles:** [[T:poligonos|La tortuga y los polígonos]] (nivel 1: cuánto girar en cada esquina) · [[T:robot|Programa al robot]] (niveles 6 a 10: escaleras y vueltas con repetir)
@@ -117,15 +155,26 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 - **Para repasar:** ángulos
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
-**Pasos:**
-1. Proyecta «Polígonos». Mueve la barra de lados y completad en la pizarra la tabla: lados → giro. Que descubran que **giro = 360 ÷ lados**.
-2. En Scratch: extensión **Lápiz** → **borrar todo** → **bajar lápiz** → **repetir 4** [**mover 80 pasos**, **girar ↻ 90 grados**].
-3. Cambian a triángulo y hexágono con la tabla.
-4. Proyecta «Rosetón»: el cuadrado dentro de un **repetir 12** con **girar ↻ 30 grados**. Lo copian en Scratch.
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]] (fila «Lápiz»)
+
+**Empezamos (10 min):**
+1. Proyecta «Polígonos». Mueve la barra de lados y completad en la pizarra la tabla: lados → giro. Que descubran que **giro = 360 ÷ lados**. [[P:poligonos|Polígonos]] · [[V:bucle|Bucle]]
+2. Haz el cuadrado en Scratch delante de la clase, despacio y en voz alta: extensión **Lápiz** → `borrar todo` → `bajar lápiz` → `repetir 4` con dentro `mover 80 pasos` y `girar ↻ 90 grados`.
+
+**A trabajar (25 min):**
+1. Las parejas dibujan el cuadrado en Scratch.
+2. Lo cambian a triángulo y a hexágono con la tabla de giros.
+3. Cuando la mayoría tenga sus polígonos, proyecta «Rosetón»: el cuadrado dentro de un `repetir 12` con `girar ↻ 30 grados`. Lo copian en Scratch. [[P:poligonos.roseton|Rosetón]]
+
+**Cerramos (10 min):**
+1. Una pareja enseña su rosetón. Pregunta a la clase: «¿Cuántos cuadrados tiene y cuánto gira entre uno y otro?»
+2. Frase clave: **«Un bucle dentro de otro multiplica.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.bucle|Bucles]]
+4. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
 
 **Opción más sencilla:** solo polígonos, cambiando el color del lápiz.
-
-- **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
 
 **Pistas y soluciones:**
 1. **Tabla de giros**
@@ -138,6 +187,7 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
     - *Error frecuente:* poner el `girar ↻ 30 grados` dentro del repetir de dentro: sale un polígono torcido en lugar de un rosetón.
 
 - **Frase clave:** «Un bucle dentro de otro multiplica.»
+- **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
 - **Si va rápido:** un rosetón con hexágonos: ¿cuántas veces hay que repetir y cuánto girar?
 - **Si cuesta:** la opción más sencilla: solo polígonos, con la tabla de giros en la pizarra.
 - **Mates:** polígonos, ángulos, división (360 entre el número de lados).
@@ -145,18 +195,49 @@ Tres retos en la pizarra: (1) el gato dice hola con la bandera; (2) se mueve con
 ### S3 · Si… entonces… si no: diagramas de decisión `PC`
 
 - **Qué aprenden:** las condiciones de dos caminos y cómo se dibujan en un diagrama de flujo.
+- **Hoy:** recorren con números de verdad los diagramas «par o impar» y «adivina el número», o construyen uno por grupos con formas recortables.
+- **Necesitas:** la pizarra digital. Para la propuesta B, las formas recortables y tijeras.
+- **Lo han conseguido si:** la clase recorre un diagrama sin tu ayuda y explica a dónde lleva el SÍ y a dónde el NO.
 - **Para proyectar:** [[P:diagrama.par|Diagrama · par o impar]] y [[P:diagrama.adivina|adivina el número]] · [[P:laberinto.6|Laberinto · si… si no]] (las dos ramas de la condición, en pantalla)
 - **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 y 2, con bloques de Scratch)
 - **Material listo:** [[M:M12|Diagramas de flujo]]
 - **Para repasar:** algoritmo
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
+**Antes de la clase:**
+- Abre en la pizarra el diagrama «par o impar».
+- Para la propuesta B, imprime las formas recortables, una hoja por grupo, y ten tijeras. [[M:M12|Diagramas de flujo]] (hoja 1)
+
 **Opción A · Recorremos diagramas en la pizarra**
-1. Proyecta «par o impar». Un alumno dice un número; la clase recorre el diagrama y decide en el rombo.
-2. Proyecta «adivina el número»: fijaos en que el NO vuelve atrás (es un bucle).
+
+**Empezamos (10 min):**
+1. Presenta la condición de dos caminos: una pregunta que decide qué hacer. Si la respuesta es SÍ se va por un camino; si es NO, por el otro. [[V:condicion|Condición]]
+2. Proyecta «par o impar». Un alumno dice un número; la clase recorre el diagrama y decide en el rombo. [[P:diagrama.par|Diagrama · par o impar]]
+
+**A trabajar (25 min):**
+1. Por turnos, más alumnos dicen un número. Cada pareja decide en voz baja qué camino toca en el rombo y después la clase recorre el diagrama entero.
+2. Proyecta «adivina el número». Un alumno piensa un número y la clase lo recorre igual: fijaos en que el NO vuelve atrás (es un bucle). [[P:diagrama.adivina|adivina el número]]
+3. Si sobra tiempo, las dos ramas de la condición, en pantalla. [[P:laberinto.6|Laberinto · si… si no]]
+
+**Cerramos (10 min):**
+1. Con «adivina el número» en la pizarra, pregunta a la clase: «¿A dónde lleva la flecha del NO, y por qué?»
+2. Frase clave: **«Si… entonces… si no: siempre hay un camino.»**
 
 **Opción B · Construimos un diagrama**
-Por grupos, con las formas recortables de M12, construyen el diagrama de «adivina el número» y otro grupo lo juega siguiéndolo.
+
+**Empezamos (10 min):**
+1. Presenta la condición de dos caminos: una pregunta que decide qué hacer. Si la respuesta es SÍ se va por un camino; si es NO, por el otro. [[V:condicion|Condición]]
+2. Proyecta «par o impar». Un alumno dice un número; la clase recorre el diagrama y decide en el rombo. [[P:diagrama.par|Diagrama · par o impar]]
+3. Reparte las formas y presenta la misión: construir el diagrama de «adivina el número».
+
+**A trabajar (25 min):**
+1. Por grupos, con las formas recortables de M12, construyen el diagrama de «adivina el número».
+2. Otro grupo lo juega siguiéndolo: uno piensa un número y los demás recorren el diagrama paso a paso.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su diagrama. Proyecta «adivina el número» para compararlo y pregunta a la clase: «¿A dónde lleva la flecha del NO, y por qué?» [[P:diagrama.adivina|adivina el número]]
+2. Frase clave: **«Si… entonces… si no: siempre hay un camino.»**
+3. Se recogen las formas de cada grupo.
 
 **Pistas y soluciones:**
 1. **Diagrama «¿es múltiplo de 5?»** (si va rápido)
@@ -172,6 +253,9 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 ### S4 · Variables: cajas que cambian `PC`
 
 - **Qué aprenden:** crear variables, darles un valor, sumarles y mostrarlas.
+- **Hoy:** crean en Scratch, por parejas, dos variables, *puntos* y *vidas*, y programan cuándo cambia cada una.
+- **Necesitas:** portátiles con Scratch, uno por pareja, y la pizarra digital.
+- **Lo han conseguido si:** en el programa de cada pareja los puntos suben con cada clic y vuelven a 0 al pulsar la bandera.
 - **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] · [[P:variables.traza|Variables · ¿cuánto vale al final?]]
 - **Preguntas de salida:** [[P:salida.variable|Variables]]
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (niveles 1 a 3: predecir el valor final de una variable)
@@ -179,11 +263,27 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 - **Para repasar:** evento
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
 
-**Pasos:**
-1. Proyecta «Variables · juego de cálculo»: un acierto suma 1 punto y un fallo quita 1 vida. Mirad qué bloque del programa se ilumina en cada respuesta.
-2. En Scratch, crear *puntos* y *vidas*.
-3. **al hacer clic en 🏴** → **dar a puntos el valor 0** → **dar a vidas el valor 3**; **al hacer clic en este objeto** → **sumar a puntos 1** → **ir a posición aleatoria**; **al presionar tecla espacio** → **sumar a vidas -1**.
-4. Pregunta: «¿Qué pasa si no pongo *dar a puntos el valor 0* al principio?». Que lo prueben.
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Cuelga el póster. [[M:M26|Póster «Variable»]]
+
+**Empezamos (10 min):**
+1. Proyecta «Variables · juego de cálculo»: un acierto suma 1 punto y un fallo quita 1 vida. Mirad qué bloque del programa se ilumina en cada respuesta. [[P:variables.juego|Variables · juego de cálculo]] · [[V:variable|Variable]]
+2. En Scratch, delante de la clase, enseña a crear las variables *puntos* y *vidas*.
+
+**A trabajar (25 min):**
+1. Las parejas crean *puntos* y *vidas* y programan el juego por partes, probando cada una:
+    - `al hacer clic en 🏴` → `dar a puntos el valor 0` → `dar a vidas el valor 3`.
+    - `al hacer clic en este objeto` → `sumar a puntos 1` → `ir a posición aleatoria`.
+    - `al presionar tecla espacio` → `sumar a vidas -1`.
+2. Pregunta: «¿Qué pasa si no pongo `dar a puntos el valor 0` al principio?». Que lo prueben.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su programa y cuenta qué pasó al quitar `dar a puntos el valor 0`. Pregunta a la clase: «¿Por qué las variables se ponen a su valor de salida con la bandera?»
+2. Frase clave: **«Una variable guarda un dato que cambia.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.variable|Variables]]
+4. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **¿Qué pasa si no pongo «dar a puntos el valor 0»?**
@@ -200,6 +300,9 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 ### S5 · Adivina el número `PC`
 
 - **Qué aprenden:** usar **número aleatorio**, **preguntar** y **si… entonces… si no** para dar pistas.
+- **Hoy:** juegan en la pizarra a adivinar un número y después programan ese juego en Scratch, por parejas: el ordenador piensa un número del 1 al 20 y da pistas.
+- **Necesitas:** portátiles con Scratch, uno por pareja, y la pizarra digital.
+- **Lo han conseguido si:** el juego de cada pareja dice si se ha acertado o no; y, en la mayoría, da la pista «más grande» o «más pequeño».
 - **Para proyectar:** [[P:adivina|Adivina el número · el ordenador piensa]] (calentamiento) · [[P:diagrama.adivina|Diagrama · adivina el número]]
 - **En tablets o portátiles:** [[T:adivina|Adivina el número]] (nivel 1: el mismo juego que programáis, del 1 al 20)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
@@ -207,16 +310,29 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 - **Para repasar:** variable · condición · azar
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
-**Calentamiento en la pizarra (5 minutos):** jugad a [[P:adivina|Adivina el número]] del 1 al 100. ¿Qué número conviene decir primero? Pulsad «Pista: la mitad» y mirad cuánto descarta cada pregunta. Es el juego que vais a programar.
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Abre una vez el archivo de solución para ver el juego terminado. [[S:4-S5-adivina-el-numero-solucion.sb3|Adivina el número · solución (con pistas y repetir hasta acertar)]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
 
-**Pasos (siguiendo el diagrama):**
-1. Crear la variable *secreto*.
-2. **al hacer clic en 🏴** → **dar a secreto el valor (número aleatorio entre 1 y 20)** → **preguntar ¿Qué número he pensado? y esperar**.
-3. **si (respuesta = secreto) entonces** → **decir ¡Acertaste!** / **si no** → **decir Prueba otra vez**.
-4. Mejora: dentro del **si no**, otro **si (respuesta > secreto) entonces decir Es más pequeño / si no decir Es más grande**.
-5. Mejora final: repetirlo **hasta que respuesta = secreto**.
+**Empezamos (10 min):**
+1. Calentamiento en la pizarra (5 minutos): jugad a «Adivina el número» del 1 al 100. ¿Qué número conviene decir primero? Pulsad «Pista: la mitad» y mirad cuánto descarta cada pregunta. Es el juego que vais a programar. [[P:adivina|Adivina el número · el ordenador piensa]] · [[V:mitad|Buscar por la mitad]]
+2. Proyecta el diagrama del juego y recorredlo una vez: es el plan del programa, y las parejas lo van a seguir paso a paso. [[P:diagrama.adivina|Diagrama · adivina el número]]
 
-**Opción más sencilla:** «par o impar»: el ordenador pregunta un número y responde con **si ((respuesta módulo 2) = 0) entonces decir Par / si no decir Impar**. *Módulo* es el resto de dividir.
+**A trabajar (25 min):**
+1. Las parejas programan el juego siguiendo el diagrama:
+    - Crear la variable *secreto*.
+    - `al hacer clic en 🏴` → `dar a secreto el valor (número aleatorio entre 1 y 20)` → `preguntar ¿Qué número he pensado? y esperar`.
+    - `si respuesta = secreto entonces` → `decir ¡Acertaste!`; `si no` → `decir Prueba otra vez`.
+2. Mejora: dentro del `si no`, otro `si respuesta > secreto entonces` → `decir Es más pequeño`; `si no` → `decir Es más grande`.
+3. Mejora final: repetirlo hasta acertar, con `repetir hasta que respuesta = secreto`.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su juego y la clase juega una partida. Pregunta: «Si el número es 13 y digo 8, ¿qué pista me tiene que dar?»
+2. Frase clave: **«El ordenador decide con condiciones.»**
+3. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
+
+**Opción más sencilla:** «par o impar»: el ordenador pregunta un número y responde con `si (respuesta módulo 2) = 0 entonces` → `decir Par`; `si no` → `decir Impar`. *Módulo* es el resto de dividir.
 
 **Pistas y soluciones:**
 1. **Adivina el número con pistas**
@@ -238,21 +354,38 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 ### S6 · El juego de las tablas `PC`
 
 - **Qué aprenden:** combinar variables, azar, preguntar y condiciones en un juego útil para la clase.
+- **Hoy:** programan en Scratch, por parejas, un juego que pregunta 10 multiplicaciones al azar y cuenta los aciertos.
+- **Necesitas:** portátiles con Scratch, uno por pareja.
+- **Lo han conseguido si:** el juego de cada pareja pregunta una multiplicación y dice si la respuesta está bien; y, en la mayoría, cuenta los puntos de las 10 preguntas.
 - **En tablets o portátiles:** [[T:regla|La regla secreta]] (nivel 2: ¿en qué tabla están los números que dicen «sí»?)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S6-juego-de-las-tablas-solucion.sb3|Juego de las tablas · solución]]
 - **Para repasar:** variable · azar · condición
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
 
-**Pasos:**
-1. Variables: *a*, *b* y *puntos*.
-2. **al hacer clic en 🏴** → **dar a puntos el valor 0** → **repetir 10**:
-   - **dar a a el valor (número aleatorio entre 1 y 10)** y lo mismo con *b*
-   - **preguntar (unir a (unir " x " b)) y esperar**
-   - **si (respuesta = a * b) entonces** → **sumar a puntos 1** → **decir ¡Bien!** / **si no** → **decir (unir "Era " (a * b))**
-3. Al final: **decir (unir "Puntos: " puntos)**.
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Abre una vez el archivo de solución para ver el juego terminado. [[S:4-S6-juego-de-las-tablas-solucion.sb3|Juego de las tablas · solución]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
 
-**Opción más sencilla:** siempre la misma tabla (**dar a a el valor 7**) y sin el bloque **unir**.
+**Empezamos (10 min):**
+1. Presenta la misión: un juego que pregunta 10 multiplicaciones al azar y cuenta los puntos. Es el producto del trimestre: lo probarán otras parejas y se enseñará en la muestra.
+2. En Scratch, delante de la clase, crea las variables *a*, *b* y *puntos* y pregunta: «¿Qué va a guardar cada una?»
+
+**A trabajar (25 min):**
+1. Las parejas crean las variables *a*, *b* y *puntos*.
+2. Programan el juego: `al hacer clic en 🏴` → `dar a puntos el valor 0` → `repetir 10`, con dentro:
+    - `dar a a el valor (número aleatorio entre 1 y 10)` y lo mismo con *b*.
+    - `preguntar (unir a (unir " x " b)) y esperar`.
+    - `si respuesta = a * b entonces` → `sumar a puntos 1` → `decir ¡Bien!`; `si no` → `decir (unir "Era " (a * b))`.
+3. Al final, fuera del `repetir 10`: `decir (unir "Puntos: " puntos)`.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su juego y la clase responde dos o tres preguntas. Pregunta: «¿Por qué hacen falta dos variables, *a* y *b*, y no basta con una?»
+2. Frase clave: **«Mi juego me ayuda a aprender.»**
+3. Se guarda el juego en el ordenador, con el nombre de la pareja: hará falta en las dos sesiones siguientes.
+
+**Opción más sencilla:** siempre la misma tabla (`dar a a el valor 7`) y sin el bloque `unir`.
 
 **Pistas y soluciones:**
 1. **El juego de las tablas**
@@ -271,17 +404,49 @@ Por grupos, con las formas recortables de M12, construyen el diagrama de «adivi
 ### S7 · Cazabichos y mejoras `PC`
 
 - **Qué aprenden:** probar juegos de otros y depurar con método.
-- **Material listo:** [[M:M17|Ficha de prueba y playtesting]]
+- **Hoy:** prueban el juego de las tablas de otra pareja y arreglan el suyo con lo que les apuntan, o compiten en un torneo arreglando tres juegos con un bicho cada uno.
+- **Necesitas:** portátiles con Scratch, uno por pareja. Para la propuesta A, los juegos de la sesión anterior y la ficha de prueba; para la B, los tres archivos del torneo.
+- **Lo han conseguido si:** cada pareja ha encontrado al menos un error y sabe explicarlo diciendo qué quería que pasara y qué pasaba.
+- **Material listo:** [[M:M17|Ficha de prueba y playtesting]] · [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S7-torneo-bicho-1-la-variable.sb3|Bicho 1: la variable no vuelve a 0]] · [[S:4-S7-torneo-bicho-2-la-condicion.sb3|Bicho 2: condición al revés (suma puntos al fallar)]] · [[S:4-S7-torneo-bicho-3-el-repetir.sb3|Bicho 3: repetir 3 en un cuadrado (queda abierto)]]
 - **Minuto de uso responsable:** «Guardo mi proyecto con un nombre que sepa encontrar.» ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
+**Antes de la clase:**
+- Para la propuesta A, comprueba que cada pareja tiene guardado su juego de las tablas de la sesión anterior.
+- Para la propuesta A, imprime la ficha de prueba, una por pareja (hay cuatro en cada hoja). [[M:M17|Ficha de prueba y playtesting]] (hoja 2)
+- Para la propuesta B, copia en los portátiles los tres archivos del torneo. [[S:4-S7-torneo-bicho-1-la-variable.sb3|Bicho 1: la variable no vuelve a 0]] · [[S:4-S7-torneo-bicho-2-la-condicion.sb3|Bicho 2: condición al revés (suma puntos al fallar)]] · [[S:4-S7-torneo-bicho-3-el-repetir.sb3|Bicho 3: repetir 3 en un cuadrado (queda abierto)]]
+- Ten a mano la chuleta de bloques, para quien la necesite. [[M:M20|Chuleta de Scratch]]
+
 **Opción A · Probamos el juego de otra pareja**
+
+**Empezamos (10 min):**
+1. Presenta el método para cazar bichos: antes de cambiar nada, se juega y se dice en voz alta «quería que pasara… y pasa…». [[V:depurar-superior|Depurar]]
+2. Cada pareja abre su juego de las tablas. Enseña la ficha de prueba y explica la misión: probar el juego de otra pareja y apuntar lo que encuentren.
+
+**A trabajar (25 min):**
 1. Las parejas se cambian de ordenador y juegan al juego de las tablas de otra pareja.
 2. Rellenan la ficha de prueba.
-3. Vuelven y arreglan.
+3. Vuelven a su ordenador, leen la ficha que les han dejado y arreglan su juego.
 
 **Opción B · Torneo de bichos**
-Los tres archivos del torneo (en la ficha), cada uno con un error típico: la variable no vuelve a 0, la condición está al revés y el cuadrado no se cierra por un número mal en el **repetir**. Gana la pareja que los arregla antes.
+
+**Empezamos (10 min):**
+1. Presenta el método para cazar bichos: antes de cambiar nada, se juega y se dice en voz alta «quería que pasara… y pasa…». [[V:depurar-superior|Depurar]]
+2. Explica el torneo: tres archivos, cada uno con un bicho. Gana la pareja que los arregla antes. Recuerda cómo se abre un archivo: *Archivo > Load from your computer*.
+
+**A trabajar (25 min):**
+1. Las parejas abren los tres archivos del torneo, uno detrás de otro, y arreglan el bicho de cada uno. Son tres errores típicos:
+    - La variable no vuelve a 0.
+    - La condición está al revés.
+    - El cuadrado no se cierra por un número mal en el `repetir`.
+2. Si una pareja se atasca, primero la pregunta: «¿Qué querías que pasara y qué pasa?». La solución de cada bicho está abajo, en «Pistas y soluciones».
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Una pareja enseña un bicho que ha arreglado. Pregunta a la clase: «¿Qué queríais que pasara y qué pasaba?»
+2. Frase clave: **«¿Qué quería que pasara y qué pasa?»**
+3. Se guarda el juego arreglado en el ordenador, con un nombre que sepan encontrar la próxima vez.
 
 **Pistas y soluciones:**
 1. **Torneo de bichos**
@@ -298,14 +463,31 @@ Los tres archivos del torneo (en la ficha), cada uno con un error típico: la va
 ### S8 · Muestra de juegos de mates `PC`
 
 - **Qué aprenden:** terminar el juego de las tablas, jugar con los de otras parejas y votar.
+- **Hoy:** terminan su juego de las tablas, juegan a los de otras parejas en dos turnos y votan con un gráfico.
+- **Necesitas:** portátiles con Scratch y el juego de cada pareja, la pizarra digital y la hoja de encuesta.
+- **Lo han conseguido si:** cada pareja ha enseñado un juego que funciona y la clase ha leído el gráfico de la votación.
 - **Para proyectar:** [[P:votaciones.mis|Votaciones y gráfico]] (con «Mis opciones»: los nombres de los juegos)
 - **Material listo:** [[M:M19|Rúbrica]] · [[M:M25|Registro de encuesta]]
 - **Minuto de uso responsable:** «Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube.» ¿Por qué hay que pedir permiso antes de hacer una foto?
 
-**Pasos:**
-1. 15 minutos: terminar y guardar.
-2. 20 minutos: media clase deja el juego abierto y la otra mitad juega; después se cambia.
-3. Votación en el proyectable (escribe los nombres de los juegos como opciones) y lectura del gráfico.
+**Antes de la clase:**
+- Comprueba que cada pareja tiene guardado su juego de las tablas.
+- Imprime el registro de la rúbrica para la clase (hoja 1). Si quieres la autoevaluación por escrito, imprime también la hoja 3: hay cuatro en cada hoja. [[M:M19|Rúbrica]]
+- Imprime la hoja de la encuesta, una por pareja. [[M:M25|Registro de encuesta]] (hoja 1)
+
+**Empezamos (10 min):**
+1. Explica cómo va a ser la muestra: primero se termina el juego, después se juega en dos turnos y al final se vota.
+2. Las parejas abren su juego de las tablas y lo terminan. Mientras, escribe los nombres de los juegos como opciones en la herramienta de votaciones. [[P:votaciones.mis|Votaciones y gráfico]]
+
+**A trabajar (25 min):**
+1. Los primeros 5 minutos: quien no haya acabado, termina y guarda (en total, 15 minutos para terminar).
+2. 20 minutos de muestra: media clase deja el juego abierto y la otra mitad juega; después se cambia.
+
+**Cerramos (10 min):**
+1. Votación en el proyectable y lectura del gráfico: cada pareja apunta el recuento en su hoja de encuesta. Pregunta a la clase: «¿Qué juego es el más votado (la moda)?» [[P:votaciones.mis|Votaciones y gráfico]]
+2. Frase clave: **«Un buen juego hace que aprender sea divertido.»**
+3. Autoevaluación: cada uno completa «Aprendí… / Me costó…», de palabra o en la autoevaluación recortable de M19.
+4. Se guarda el juego terminado en el ordenador, con el nombre de la pareja.
 
 - **Frase clave:** «Un buen juego hace que aprender sea divertido.»
 - **Si va rápido:** calcular la diferencia de votos entre el primero y el segundo.

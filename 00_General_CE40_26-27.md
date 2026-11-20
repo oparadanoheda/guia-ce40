@@ -26,6 +26,7 @@
    - **Frase clave:** la idea que el alumnado debe llevarse. Dila al principio y al final.
    - **Si va rápido / si cuesta:** para ampliar o simplificar sin improvisar.
    - **Mates:** el vínculo con el área, para justificar la sesión en la programación.
+   - **En las sesiones del primer trimestre** (formato nuevo, que se irá extendiendo a las demás) la ficha está ordenada para dar la clase: **Hoy**, **Necesitas** y **Lo han conseguido si**; **Antes de la clase**, lo que hay que preparar; y la sesión en tres partes con sus minutos, **Empezamos** (10), **A trabajar** (25) y **Cerramos** (10), con cada recurso en el paso donde se usa. Los roles y el minuto de uso responsable quedan aparte, en «Si quieres añadirlo».
 5. **No se trata de terminar la ficha.** Si una sesión se alarga, se acaba en la siguiente o en una sesión de reserva. Es mejor hacer poco y bien.
 6. **Si algo técnico falla**, mira el apartado «Si algo falla» de la herramienta en `07_Guias_rapidas_herramientas.md`. Si no se arregla en 3 minutos, pasa a la opción con fichas: la sesión nunca se pierde.
 7. **Todo es orientativo.** El orden de las sesiones y el reparto de robots y herramientas por curso son una propuesta. Según el progreso del grupo, un recurso se puede adelantar, alargar o recuperar (por ejemplo, seguir con Tale-Bot en 1º más tiempo del previsto, o volver a él en 2º con quien lo necesite).
@@ -120,6 +121,8 @@ La estructura es siempre la misma. Al alumnado le da seguridad y al docente le q
 | 12-35 | **Práctica** | El alumnado trabaja en parejas o grupos. Tú circulas y preguntas; no resuelves. A mitad (min. 23 aprox.) se cambian los roles. |
 | 35-40 | **Compartir** | Un grupo enseña su solución o **su error más interesante**. |
 | 40-45 | **Cierre y recogida** | Repetir la frase clave. Sello en el pasaporte. Guardar proyectos, recoger y poner a cargar. |
+
+**En las sesiones con el formato nuevo** (el primer trimestre de cada curso) estas cinco fases se agrupan en tres: **Empezamos** (arranque y misión, 10 minutos), **A trabajar** (práctica, 25) y **Cerramos** (compartir, cierre y recogida, 10). «Proyectar la sesión» tiene ahí tres pantallas: Hoy, La misión (un tablero que se queda en la pizarra mientras trabajan) y Cierre. Los roles y el minuto de uso responsable son opcionales en esas sesiones.
 
 **En 5º y 6º (quincenal)** la recogida empieza 5 minutos antes: todo proyecto guardado y todo kit en su caja. Cada equipo rellena una **tarjeta «Dónde lo dejamos»** (material M18), porque en quince días se olvida casi todo.
 
