@@ -288,7 +288,7 @@ GUIAS = {
         "mates": "Relaciones de causa y efecto, simultaneidad (dos cosas a la vez) y predicción antes de comprobar.",
     },
     "salida": {
-        "idea": "Tres preguntas para **los últimos minutos** de la sesión, para saber si la idea ha llegado. Cada una enseña un programa con los bloques del editor (Scratch en 3º y 4º, MakeCode en 5º y 6º) y tres respuestas, A, B y C. Hay ocho juegos: eventos, bucles, variables y si… entonces en Scratch; eventos, para siempre, variables y si… si no en MakeCode. Cada sesión donde se aprende uno de esos conceptos lo enlaza, y la diapositiva de cierre del modo proyección tiene su botón.",
+        "idea": "Tres preguntas para **los últimos minutos** de la sesión, para saber si la idea ha llegado. Cada una enseña un programa con los bloques del editor (Scratch en 3º y 4º, MakeCode en 5º y 6º) y tres respuestas, A, B y C. Hay ocho juegos: eventos, bucles, variables y si… entonces en Scratch; eventos, para siempre, variables y si… si no en MakeCode. Cada sesión donde se aprende uno de esos conceptos lo enlaza, y la pantalla «Cierre» de la proyección tiene su botón.",
         "contar": [
             "Se lee la pregunta y se deja pensar un momento. Después votan todos a la vez con los dedos: uno para la A, dos para la B y tres para la C.",
             "Se toca la respuesta que ha dicho la mayoría (o se pulsa 1, 2 o 3 en el teclado) y después «Ver la respuesta». Sale la buena, en verde, y por qué.",

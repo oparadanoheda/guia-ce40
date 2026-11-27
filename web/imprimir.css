@@ -32,13 +32,7 @@
   .f-obj{font-size:11pt;margin:0 0 2mm}
   .tag{font-size:7pt;padding:2px 5px}
 
-  /* lo que hay que preparar, arriba y en dos columnas */
-  .f-grid{display:flex;flex-direction:column;gap:0}
-  .f-side{order:-1;position:static;display:block;columns:2;column-gap:8mm;column-rule:.25mm solid var(--rule);
-    margin:0 0 4.5mm;padding:0 0 3mm;border-bottom:.3mm solid var(--rule)}
   .card{break-inside:avoid;border-top:0;padding:0;margin:0 0 2.5mm;font-size:8.8pt;line-height:1.4}
-  .card h3{font-size:8.5pt;margin:0 0 1mm;color:var(--c)}
-  .card h3 svg.i{width:11pt;height:11pt}
   .card.use h4{font-size:7pt;margin:1.5mm 0 .5mm}
   .card.use h4:first-of-type{margin-top:0}
   .card.use a.plink,.card.use a.mlink,.card.use a.vlink{display:inline-flex;gap:1.2mm;padding:.2mm 1.6mm .2mm 1mm;margin:0 .8mm .8mm 0;
@@ -47,26 +41,13 @@
   .card.use a.mlink b{font-size:6.8pt;padding:0 1mm}
 
   /* la actividad */
-  .f-main>*+*{margin-top:4.5mm}
   .f-intro{font-size:10pt}
-  .props:not(.single)>.p-h{display:none}
-  .p-h{font-size:8pt;margin:0 0 1.5mm}
   .p-print{display:block;font:650 12pt/1.25 var(--sans);margin:0 0 .6mm;color:var(--ink)}
-  .p-print-o{font:8.5pt/1.35 var(--sans);color:var(--muted);margin:0 0 2.5mm}
-  .p-body,.props.single .p-body{border:0;border-left:1mm solid var(--c);border-radius:0;padding:.5mm 0 .5mm 4.5mm}
-  .p-body li{break-inside:avoid}
   details.more{border:0;border-radius:0;margin:5mm 0 0}
   details.more summary{padding:0;margin:0 0 1mm;font:650 11pt var(--sans)}
   details.more summary::after{display:none}
   details.more .more-body{padding:0;border:0}
   details.more .more-body>.small:first-child{margin-top:0}
-  .keyq{break-inside:avoid;background:none;border-left:1mm solid var(--c);border-radius:0;padding:1mm 0 1mm 11mm}
-  .keyq::before{font-size:30pt;left:2mm;top:-1mm}
-  .keyq blockquote{font-size:13pt}
-  .keyq figcaption{font-size:7pt;margin-top:1mm}
-  .mini{font-size:8pt;margin:0 0 1.5mm}
-  .div-grid{grid-template-columns:1fr 1fr;gap:4mm}
-  .div-box{break-inside:avoid;padding:2.5mm 3.5mm;font-size:9.2pt}
   .eval,.notes{break-inside:avoid;padding:2.5mm 4mm;font-size:9.2pt;border-radius:1.5mm}
   .eval{background:none;color:var(--ink);border:.35mm solid var(--c);border-left-width:1.2mm}
   .eval h3{color:var(--c)}
@@ -85,8 +66,7 @@
 /* con la estética de paneles en tono (tema.css): en papel, sin fondos; los recuadros, con una línea fina */
 @media print{
   main{margin:0;border:0;border-radius:0;padding:0;min-height:0;background:#fff}
-  .card,.p-body,.props.single .p-body,details.more,.keyq{background:none}
-  .div-box{background:none;border:.3mm solid var(--rule);border-radius:2mm}
+  .card,details.more{background:none}
   .card{padding:0;border-radius:0}
 }
 /* la ficha de las sesiones con guion: la propuesta elegida, con sus tres bloques; lo de consulta, abierto */

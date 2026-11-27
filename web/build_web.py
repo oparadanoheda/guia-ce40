@@ -20,7 +20,6 @@ from vocabulario import VOCAB  # noqa: E402
 from videos import VIDEOS, BY_SESSION, VERSIONES  # noqa: E402
 from repaso import CONCEPTOS, GRUPOS, DEFINICION, clave as clave_repaso, antes as antes_repaso, ancla as ancla_repaso  # noqa: E402
 from guias_proyectables import GUIAS  # noqa: E402
-from mision_clase import MISION  # noqa: E402
 from tablero_clase import TABLERO  # noqa: E402
 from pictos_mision import pictos_paso  # noqa: E402
 import json  # noqa: E402
@@ -30,7 +29,7 @@ VIDEO_IDS = {v[0] for v in VIDEOS}
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = Path(__file__).resolve().parent / "programacion_CE40.html"
-VERSION, VERSION_FECHA = "2.0", "noviembre de 2026"
+VERSION, VERSION_FECHA = "2.1", "noviembre de 2026"
 # Dirección pública de la guía: los QR de las tablets apuntan aquí (también desde el zip del aula virtual).
 SITIO = "https://oparadanoheda.github.io/guia-ce40/"
 CORTA = "oparadanoheda.github.io/guia-ce40/retos"  # para escribirla en los portátiles
@@ -80,13 +79,6 @@ TOOL_GUIDES = [
 TAG_NAMES = {"PC": "Pensamiento computacional", "ROB": "Robótica", "IA": "IA y datos", "SEG": "Uso responsable y seguridad", "RA": "RA, QR y 3D"}
 
 ICON = {
-    "target": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>',
-    "prep": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4h6v3H9zM8.5 12l2 2 4-4M8.5 17h7"/></svg>',
-    "shield": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>',
-    "ruler": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 16L16 3l5 5L8 21z"/><path d="M7 12l2 2M10 9l2 2M13 6l2 2"/></svg>',
-    "link": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 005.7 0l3-3a4 4 0 00-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 00-5.7 0l-3 3a4 4 0 005.7 5.7l1-1"/></svg>',
-    "up": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
-    "down": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>',
     "flag": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>',
     "note": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></svg>',
     "left": '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>',
@@ -209,10 +201,14 @@ def split_items(block):
     return out
 
 
-def parse_session(chunk):
+def parse_session(chunk, cid):
     header, _, body = chunk.partition("\n")
     m = re.match(r"S(\d+) · (.*)", header.strip())
     num, rest = int(m.group(1)), m.group(2)
+
+    def antiguo(que, ahora):
+        """Las etiquetas del formato antiguo ya no se leen: mejor pararse que perder ese texto sin avisar."""
+        raise SystemExit(f"{cid}-s{num}: «{que}» es del formato antiguo, que ya no se lee: {ahora} (LEEME_PROYECTO.md, apartado 4)")
     tags = re.findall(r"`(PC|ROB|IA|SEG|RA)`", rest)
     title = re.sub(r"\s*`[^`]+`", "", rest).strip()
     body = re.sub(r"\n-{3,}\s*$", "", body.strip())
@@ -239,7 +235,7 @@ def parse_session(chunk):
         elif L.startswith("Lo han conseguido"):
             s["logro"] = text
         elif L.startswith("Prepara antes"):
-            s["prep"] = text
+            antiguo("Prepara antes", "ahora es la lista «**Antes de la clase:**»")
         elif L.startswith("Minuto de uso responsable") or L.startswith("Minuto SEG"):
             s["seg"] = text
             extra = L[len("Minuto de uso responsable" if L.startswith("Minuto de uso") else "Minuto SEG"):].strip()
@@ -272,7 +268,7 @@ def parse_session(chunk):
         elif L.startswith("Autoevaluación"):
             s["self"] = ("Autoevaluación " + text).strip()
         elif L.startswith("Pasos"):
-            new_sec("dev", "Desarrollo", L[5:].strip(" ()").capitalize(), text)
+            antiguo("Pasos", "el desarrollo va en «Empezamos», «A trabajar» y «Cerramos»")
         elif re.match(r"Opción [A-D]", L):
             new_sec("opt", L[:8], L[8:].strip(" ·()"), text)
         else:
@@ -314,21 +310,17 @@ def parse_session(chunk):
                 name = name[1:-1]
             new_sec("opt", m.group(1), name[:1].upper() + name[1:], m.group(3).strip())
         elif bs.startswith("**Pasos"):
-            m = re.match(r"\*\*Pasos\s*([^*]*?):?\*\*:?\s*(.*)", bs, re.S)
-            name = m.group(1).strip().strip("()")
-            new_sec("dev", "Desarrollo", name[:1].upper() + name[1:], m.group(2).strip())
-        elif (bs.startswith("Si ") or bs.startswith("**Si ")) and cur is not None:
-            s["notes"].append(("", bs))
+            antiguo("Pasos", "el desarrollo va en «Empezamos», «A trabajar» y «Cerramos»")
         else:
             (fase["md"] if fase else cur["md"] if cur else s["intro"]).append(bs)
     s["guion"] = bool(s["fases"] or any(sec["fases"] for sec in s["sections"]))
     return s
 
 
-def parse_term(title, body):
+def parse_term(title, body, cid):
     parts = re.split(r"^### ", body, flags=re.M)
     pre = re.sub(r"^-{3,}\s*$", "", parts[0], flags=re.M).strip()
-    t = {"sessions": [parse_session(p) for p in parts[1:]], "contenidos": "", "pre": ""}
+    t = {"sessions": [parse_session(p, cid) for p in parts[1:]], "contenidos": "", "pre": ""}
     if title.startswith("Sesiones opcionales"):
         t.update(label="Sesiones opcionales", sub=title.split("(", 1)[1].rstrip(")") if "(" in title else "", optional=True)
     else:
@@ -374,7 +366,7 @@ def parse_course(cid, fname, cycle):
         body = re.sub(r"^-{3,}\s*$", "", body, flags=re.M).strip()
         if "TRIMESTRE" in title or title.startswith("Sesiones opcionales"):
             seen = True
-            c["terms"].append(parse_term(title, body))
+            c["terms"].append(parse_term(title, body, cid))
         elif not seen:
             c["intro"].append((title, body))
         else:
@@ -389,13 +381,6 @@ def parse_course(cid, fname, cycle):
     return c
 
 # ---------------------------------------------------------------- render: session
-
-
-def structure_bar(quincenal):
-    parts = ([("Tarjeta", 3), ("Misión", 7), ("Práctica", 25), ("Compartir", 5), ("Guardar", 5)] if quincenal else
-             [("Arranque", 5), ("Misión", 7), ("Práctica", 23), ("Compartir", 5), ("Cierre", 5)])
-    segs = "".join(f'<span class="sb-seg sb-{i}" style="flex:{m}"><b>{E(n)}</b><small>{m} min</small></span>' for i, (n, m) in enumerate(parts))
-    return f'<div class="sbar" role="img" aria-label="Estructura de la sesión de 45 minutos">{segs}</div>'
 
 
 def session_resources(s):
@@ -419,35 +404,6 @@ def session_resources(s):
     return out[:6] + guides[:2]
 
 
-def render_sections(s):
-    secs = s["sections"]
-    if not secs:
-        return ""
-    if len(secs) == 1:
-        sec = secs[0]
-        head = "Desarrollo de la sesión" if sec["kind"] == "dev" else f'{sec["label"].replace("Opción", "Propuesta")}'
-        name = f' <span>· {E(sec["name"])}</span>' if sec["name"] else ""
-        return (f'<div class="props single"><h2 class="p-h">{head}{name}</h2>'
-                f'<div class="p-body">{md(chr(10).join(p for p in sec["md"]))}</div></div>')
-    def short(sec):
-        return ("la principal" if sec["kind"] == "dev" else sec["label"].replace("Opción ", "")) + (f' «{sec["name"]}»' if sec["name"] else "")
-    tabs, panels = [], []
-    for i, sec in enumerate(secs):
-        letter = sec["label"].replace("Opción ", "") if sec["kind"] == "opt" else "★"
-        label = "Propuesta principal" if sec["kind"] == "dev" else sec["label"].replace("Opción", "Propuesta")
-        pid = f'{s["id"]}-p{i}'
-        tabs.append(f'<button type="button" role="tab" id="{pid}-t" aria-controls="{pid}" aria-selected="{str(i == 0).lower()}" tabindex="{0 if i == 0 else -1}">'
-                    f'<span class="p-letter">{E(letter)}</span><span class="p-tl"><small>{E(label)}</small>{E(sec["name"] or "")}</span></button>')
-        others = [short(x) for j, x in enumerate(secs) if j != i]
-        others = ", ".join(others[:-1]) + " y " + others[-1] if len(others) > 1 else others[0]
-        printed = (f'<h2 class="p-print">{E(label)}{" · " + E(sec["name"]) if sec["name"] else ""}</h2>'
-                   f'<p class="p-print p-print-o">Otras propuestas en la guía: {E(others)}.</p>')
-        panels.append(f'<div class="p-body" role="tabpanel" id="{pid}" aria-labelledby="{pid}-t"{"" if i == 0 else " hidden"}>'
-                      f'{printed}{md(chr(10) + chr(10).join(sec["md"]))}</div>')
-    return (f'<div class="props"><h2 class="p-h">Propuestas de actividad <span>· elige una</span></h2>'
-            f'<div class="p-tabs" role="tablist" aria-label="Propuestas de actividad">{"".join(tabs)}</div>{"".join(panels)}</div>')
-
-
 def plain(text):
     """Texto sin marcas: para la vista de proyección."""
     text = re.sub(r"\[\[[PMSTV]:[^|\]]+\|([^\]]+)\]\]", r"\1", text or "")
@@ -464,22 +420,6 @@ def pz_text(text):
     t = re.sub(r"\*([^*\n]+)\*", r"<i>\1</i>", t)
     t = re.sub(r"`([^`]+)`", r"<b>\1</b>", t)
     return t.strip()
-
-
-def pz_steps(text):
-    """Pasos de una propuesta: cada elemento de la lista (o cada párrafo) es un paso; las sublistas se unen a su paso."""
-    steps = []
-    for chunk in re.split(r"\n\s*\n", (text or "").strip()):
-        lines = chunk.split("\n")
-        if not any(re.match(r"(\d+\.|-)\s", l) for l in lines):
-            steps.append(" ".join(l.strip() for l in lines))
-            continue
-        for l in lines:
-            if re.match(r"(\d+\.|-)\s", l):
-                steps.append(re.sub(r"^(\d+\.|-)\s+", "", l).strip())
-            elif steps and l.strip():
-                steps[-1] += " · " + re.sub(r"^(\d+\.|-)\s+", "", l.strip())
-    return [pz_text(x) for x in steps if x.strip()]
 
 
 # Qué se usa en cada sesión semanal (1º a 4º), para el cierre de la proyección. Lo que no aparece es de papel.
@@ -521,55 +461,8 @@ def close_list(c, s):
     return CIERRE[uso]
 
 
-def projection_data(c, s, quin, prev=None):
-    seg = s.get("seg", "")
-    quotes = re.findall(r"[\"“«]([^\"”»]{8,})[\"”»]", seg)
-    # la frase y su pregunta; si el texto es largo (minutos ampliados), solo las frases entre comillas
-    seg_txt = cap(" ".join(q.strip() for q in quotes) if quotes and len(plain(seg)) > 140 else plain(seg))
-    tools = [(label, ref) for ref, label in re.findall(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", s.get("proj", ""))]
-    words = [(w, d) for w, d, sn in VOCAB.get(int(c["id"][1]), []) if sn == f'S{s["num"]}']
-    phases = ([("Tarjeta", 3), ("Misión", 7), ("Práctica", 25), ("Compartir", 5), ("Guardar", 5)] if quin else
-              [("Arranque", 5), ("Misión", 7), ("Práctica", 23), ("Compartir", 5), ("Cierre", 5)])
-    # la misión: los retos (si la sesión los trae fuera de las propuestas) y los pasos de cada propuesta
-    retos, intro = [], []
-    for chunk in s["intro"]:
-        m = re.match(r"\*\*(Retos[^*]*?):?\*\*:?\s*(.*)", chunk, re.S)
-        if m:
-            retos.append({"label": "Retos", "name": cap(m.group(1).replace("Retos", "").strip(" ()")), "steps": pz_steps(m.group(2))})
-        else:
-            intro.append(chunk)
-    props = [{"label": "Desarrollo" if sec["kind"] == "dev" else sec["label"].replace("Opción", "Propuesta"), "name": sec["name"] or "",
-              "steps": pz_steps("\n\n".join(sec["md"]))} for sec in s["sections"]]
-    if not props and intro and not retos:
-        props = [{"label": "Desarrollo", "name": "", "steps": pz_steps("\n\n".join(intro))}]
-    # en la pizarra, la misión contada para la clase (mision_clase.py); la ficha queda para el docente
-    mc = MISION.get(s["id"], {})
-    if mc.get("retos"):
-        retos = [{"label": "Retos", "name": "", "steps": [pz_text(x) for x in mc["retos"]]}]
-    retos = [r for r in retos if r["steps"]]
-    for pr in props:
-        key = "D" if pr["label"] == "Desarrollo" else pr["label"][-1]
-        if key in mc:
-            pr["steps"] = [pz_text(x) for x in mc[key]]
-    fast = pz_text(mc["extra"] if "extra" in mc else cap(s.get("fast", "")))
-    visual = c["id"] in ("c1", "c2")
-    if visual:
-        for m in retos + props:
-            m["pics"] = [pictos_paso(plain(re.sub(r"<[^>]+>", "", x))) for x in m["steps"]]
-    d = {"course": f'{c["num"]} · {c["name"]}', "num": s["num"], "title": s["title"], "obj": cap(plain(s.get("obj", ""))),
-         "seg": seg_txt, "key": plain(s.get("key", "")), "words": words, "tools": tools,
-         "videos": [(v[2], v[0]) for v in BY_SESSION.get(s["id"], [])], "quincenal": quin, "phases": phases,
-         "tablet": [(TABLET_INDEX[t][1], t, qr_svg(t, "pz-qrsvg")) for t in re.findall(r"\[\[T:(\w+)\|", s.get("tablet", "")) if t in TABLET_INDEX],
-         "missions": retos + props, "fast": fast,
-         "salida": [(label, ref) for ref, label in re.findall(r"\[\[P:([\w.]+)\|([^\]]+)\]\]", s.get("salida", ""))],
-         "visual": visual, "fastPics": pictos_paso(plain(re.sub(r"<[^>]+>", "", fast))) if visual else [],
-         "close": None if quin else close_list(c, s),
-         "prev": {"title": prev["title"], "key": plain(prev.get("key", "")), "num": prev["num"]} if prev else None}
-    return json.dumps(d, ensure_ascii=False).replace("</", "<\\/")
-
-
-def uso_html(c, s, repaso=True):
-    """Lo que se usa en la sesión, por tipos: vídeos, herramientas, tablets, material, archivos, preguntas de salida y repaso."""
+def uso_html(c, s):
+    """Lo que se usa en la sesión, por tipos: vídeos, herramientas, tablets, material, archivos y preguntas de salida."""
     vids = BY_SESSION.get(s["id"], [])
     use = ""
     if vids:
@@ -588,8 +481,6 @@ def uso_html(c, s, repaso=True):
                 f'Importar › Importar archivo (o arrastrándolos al editor). Desde ahí, Descargar para pasarlos a la placa.</p>')
     if s.get("salida"):
         use += f'<h4>Preguntas de salida (al final)</h4><p>{inline(s["salida"])}</p>'
-    if repaso and s.get("repaso"):
-        use += repaso_html(s, c)
     use = re.sub(r'</a>\s*·\s*(?=<a class="[mp]link")', '</a>', use)
     return use
 
@@ -616,49 +507,10 @@ def notas_html(s):
     return (f'<div class="notes">{ICON["note"]}<div><h3>A tener en cuenta</h3><ul>{items}</ul></div></div>')
 
 
-def ficha_clasica(c, s):
-    """La ficha de las sesiones sin guion: la actividad a la izquierda y las tarjetas a la derecha."""
-    main = []
-    if s["intro"]:
-        main.append(f'<div class="f-intro">{md(chr(10) + chr(10).join(s["intro"]))}</div>')
-    main.append(render_sections(s))
-    if s.get("sol"):
-        main.append(more("Pistas y soluciones de los retos", '<p class="small">Para el docente: primero la pregunta, después la pista y solo al final la solución.</p>' + blocks(md(chr(10) + s["sol"]), "scratch" if "scratch" in s["title"].lower() or c["id"] in ("c1", "c2", "c3", "c4") else "makecode"), did=s["id"] + "-sol"))
-    if s.get("key"):
-        main.append(f'<figure class="keyq"><blockquote>{inline(s["key"])}</blockquote><figcaption>Frase clave</figcaption></figure>')
-    if s.get("fast") or s["hard"]:
-        cols = ""
-        if s.get("fast"):
-            cols += f'<div class="div-box up"><h3>{ICON["up"]} Para ampliar</h3>{md(cap(s["fast"]))}</div>'
-        if s["hard"]:
-            cols += f'<div class="div-box down"><h3>{ICON["down"]} Para simplificar</h3>{md(chr(10) + chr(10).join(cap(h) for h in s["hard"]))}</div>'
-        main.append(f'<section class="diversity" aria-label="Atención a la diversidad"><h2 class="mini">Atención a la diversidad</h2><div class="div-grid">{cols}</div></section>')
-    main.append(evaluacion_html(s))
-    main.append(notas_html(s))
-
-    side = []
-    vids = BY_SESSION.get(s["id"], [])
-    if s.get("proj") or s.get("tablet") or s.get("mat") or s.get("sb3") or s.get("mkcd") or vids or s.get("repaso") or s.get("salida"):
-        use = uso_html(c, s)
-        side.append(f'<div class="card use"><h3>{ICON["prep"]} Para usar en esta sesión</h3>{use}</div>')
-    if s.get("prep"):
-        side.append(f'<div class="card"><h3>{ICON["note"]} Antes de la sesión</h3>{md(cap(s["prep"]))}</div>')
-    if s.get("seg"):
-        extra = f' <small>({E(s["seg_extra"])})</small>' if s.get("seg_extra") else ""
-        side.append(f'<div class="card"><h3>{ICON["shield"]} Minuto de uso responsable{extra}</h3>{md(cap(s["seg"]))}</div>')
-    if s.get("math"):
-        side.append(f'<div class="card"><h3>{ICON["ruler"]} Matemáticas</h3>{md(cap(s["math"]))}</div>')
-    res = session_resources(s)
-    if res:
-        lis = "".join(f'<li><a href="{u}"{" target=_blank rel=noopener" if ext else ""}>{E(tl)}{ICON["ext"] if ext else ""}</a></li>' for tl, u, ext in res)
-        side.append(f'<div class="card res"><h3>{ICON["link"]} Recursos</h3><ul>{lis}</ul></div>')
-    return f'<div class="f-grid"><div class="f-main">{"".join(main)}</div><div class="f-side">{"".join(side)}</div></div>'
-
-
-# ---------------------------------------------------------------- render: sesiones con guion
-# La ficha nueva: de un vistazo, antes de la clase, la sesión en tres bloques con sus minutos (cada recurso, en el
+# ---------------------------------------------------------------- render: la sesión con guion
+# La ficha: de un vistazo, antes de la clase, la sesión en tres bloques con sus minutos (cada recurso, en el
 # paso donde se usa), lo opcional (roles y minuto de uso responsable) y lo de consulta, plegado.
-# La proyección de estas sesiones es el tablero de la misión (tablero_clase.py, tablero.js).
+# La proyección es el tablero de la misión (tablero_clase.py, tablero.js).
 
 ENLACE = r"\[\[[PMSTV]:[^\]]+\]\]"
 COLA = re.compile(r"((?:\s*(?:[·,y]\s*)?" + ENLACE + r")+)\s*$")
@@ -789,7 +641,7 @@ def guion_html(c, s):
                          + blocks(md(chr(10) + s["sol"]), flavor), did=s["id"] + "-sol")
     if s.get("repaso"):
         consulta += more("Para repasar (de antes)", '<div class="card use gq-plano">' + re.sub(r"^<h4>.*?</h4>", "", repaso_html(s, c)) + "</div>")
-    uso = uso_html(c, s, repaso=False)
+    uso = uso_html(c, s)
     if uso:
         consulta += more("Todos los recursos de la sesión", f'<div class="card use gq-plano">{uso}</div>')
     if s.get("math"):
@@ -854,14 +706,11 @@ def render_session(c, s, prev, nxt, idx):
     crumbs = f'<a href="#{c["id"]}">{c["num"]} · {E(c["name"])}</a><span>/</span>{E(t["label"])}'
     obj = f'<p class="f-obj">{inline(cap(s["obj"]))}</p>' if s.get("obj") else ""
     tags = "".join(tag(x) for x in s["tags"])
-    tag_legend = "".join(f'<li>{tag(x)} {TAG_NAMES[x]}</li>' for x in s["tags"])
 
-    if s["guion"]:
-        cuerpo = guion_html(c, s)
-        datos = f'<script type="application/json" class="pz2-data">{tablero_data(c, s, quin)}</script>'
-    else:
-        cuerpo = ficha_clasica(c, s)
-        datos = f'<script type="application/json" class="pz-data">{projection_data(c, s, quin, prev)}</script>'
+    if not s["guion"]:
+        raise SystemExit(f'{s["id"]}: la sesión no tiene guion: le faltan «Empezamos», «A trabajar» y «Cerramos» (LEEME_PROYECTO.md, apartado 4)')
+    cuerpo = guion_html(c, s)
+    datos = f'<script type="application/json" class="pz2-data">{tablero_data(c, s, quin)}</script>'
 
     pager = '<nav class="pager" aria-label="Sesiones">'
     pager += (f'<a class="pg prev" href="#{prev["id"]}">{ICON["left"]}<span><small>Anterior · S{prev["num"]}</small>{E(prev["title"])}</span></a>' if prev else '<span></span>')
@@ -959,6 +808,21 @@ def gsec(secs, n, extra_before=""):
     return f'<h2 class="h-sec" id="{sid}">{E(clean)}</h2>{extra_before}{md(body)}'
 
 
+# Las cinco partes de la ficha de una sesión con guion: salen en la portada («Así es una ficha de sesión») y en «El método»
+FICHA_PARTES = [
+    ("De un vistazo", "«Hoy», «Necesitas» y «Lo han conseguido si…»: qué hace la clase, qué te hace falta y cómo sabrás que ha salido."),
+    ("Antes de la clase", "Lo que hay que preparar, en una lista para ir marcando. El material para imprimir sale con su miniatura."),
+    ("La sesión, paso a paso", "Cada propuesta, en las tres partes con sus minutos. Cada recurso está en el paso donde se usa, y «Si cuesta» y «Si va rápido», en «A trabajar»."),
+    ("Si quieres añadirlo", "Los roles y el minuto de uso responsable de la sesión."),
+    ("Para consultar", "Plegado: pistas y soluciones, lo que hay que repasar de antes, todos los recursos, Matemáticas y recursos oficiales."),
+]
+
+
+def ficha_partes():
+    return '<div class="anatomy">' + "".join(
+        f'<div><b>{i}</b><p><strong>{E(t)}.</strong> {E(x)}</p></div>' for i, (t, x) in enumerate(FICHA_PARTES, 1)) + "</div>"
+
+
 def home(courses, secs):
     books = "".join(
         f'''<a class="book" href="#{c["id"]}" style="--c:var(--{c["id"]})"><span class="b-num">{c["num"]}</span>
@@ -988,17 +852,11 @@ def home(courses, secs):
 <div class="ucards">
 <div><b>Elige una propuesta</b><p>Cada sesión tiene un objetivo y 2 o 3 formas de trabajarlo. Con una basta.</p></div>
 <div><b>El material está hecho</b><p>Fichas en PDF, herramientas para la pizarra, <a href="#tablets">retos para las tablets</a> y archivos de Scratch y MakeCode. No hay que fabricar nada.</p></div>
-<div><b>Proyecta o imprime</b><p>«Proyectar la sesión» muestra a la clase el reto, las palabras nuevas y la herramienta. «Imprimir» saca la ficha en un A4 con la propuesta elegida.</p></div>
+<div><b>Proyecta o imprime</b><p>«Proyectar la sesión» abre tres pantallas para la clase: «Hoy», el tablero de «La misión» y el «Cierre». «Imprimir» saca la ficha en un A4 con la propuesta elegida.</p></div>
 <div><b>Es orientativo</b><p>Si algo falla o el grupo va a otro ritmo, pasa a la opción con fichas o usa una sesión de reserva.</p></div>
 </div>
 <h2 class="h-sec">Así es una ficha de sesión</h2>
-<div class="anatomy">
-<div><b>1</b><p><strong>Objetivo y bloques.</strong> Lo que hay que trabajar sí o sí, sacado de la secuenciación oficial.</p></div>
-<div><b>2</b><p><strong>Propuestas A, B, C.</strong> Caminos distintos para el mismo objetivo. La A se prepara casi sin material.</p></div>
-<div><b>3</b><p><strong>Antes de la sesión.</strong> Todo lo que hay que tener listo, en menos de 10 minutos.</p></div>
-<div><b>4</b><p><strong>Frase clave y diversidad.</strong> La idea que se llevan y cómo ampliar o simplificar.</p></div>
-<div><b>5</b><p><strong>Recursos.</strong> Enlaces directos a los materiales oficiales de Código Escuela 4.0.</p></div>
-</div>
+{ficha_partes()}
 </div></section>'''
 
 
@@ -1049,12 +907,17 @@ def more(title, body_html, did=None):
 
 def method_page(secs):
     s5 = secs[5][1]
-    phases = [("Arranque", "5", "Una pregunta para recordar, el minuto de uso responsable y los roles."),
-              ("Misión", "7", "El reto, con una demostración y la frase clave."),
-              ("Práctica", "23", "En parejas o grupos. A mitad se cambian los roles."),
-              ("Compartir", "5", "Un grupo enseña su solución o su mejor error."),
-              ("Cierre", "5", "Frase clave, sello en el pasaporte y a recoger.")]
-    ph = "".join(f'<div class="ph ph-{i}"><i style="width:{int(m) * 100 // 23}%"></i><span>{m} min</span><b>{n}</b><p>{t}</p></div>' for i, (n, m, t) in enumerate(phases))
+    # las tres partes del guion, con sus minutos; la barra va en proporción a la más larga
+    phases = [("Empezamos", "10", "La misión del día, con una pregunta para arrancar, la palabra nueva o una demostración."),
+              ("A trabajar", "25", "En parejas o grupos, con el tablero de la misión en la pizarra. Tú circulas y preguntas; no resuelves."),
+              ("Cerramos", "10", "Un grupo enseña su solución o su mejor error y la clase responde a una pregunta. Frase clave, sello en el pasaporte y a recoger.")]
+    top = max(int(m) for _, m, _ in phases)
+    ph = "".join(f'<div class="ph ph-{i}"><i style="width:{int(m) * 100 // top}%"></i><span>{m} min</span><b>{n}</b><p>{t}</p></div>' for i, (n, m, t) in enumerate(phases))
+    # las tres pantallas de «Proyectar la sesión» (tablero.js)
+    screens = [("Hoy", "El título y lo que aprenden hoy, las palabras nuevas y el vídeo del concepto, si lo hay."),
+               ("La misión", "El tablero, que se queda puesto mientras trabajan: los pasos, los bloques que hacen falta, pistas, una referencia visual, «Lo hemos conseguido si…» y un reto para quien termine."),
+               ("Cierre", "La frase clave, las preguntas de salida (si las hay) y lo que se guarda y se recoge.")]
+    sc = "".join(f'<div><b>{E(n)}</b><p>{E(t)}</p></div>' for n, t in screens)
     roles = [("rol_piloto", "Piloto", "Maneja el robot, el dispositivo o las tarjetas."), ("rol_copiloto", "Copiloto", "Lee el reto y comprueba. No toca."),
              ("rol_material", "Material", "Recoge, cuenta y pone a cargar."), ("rol_portavoz", "Portavoz", "Explica lo que ha hecho el grupo.")]
     rl = "".join(f'<div class="role"><img data-picto="{p}" alt=""><b>{n}</b><p>{t}</p></div>' for p, n, t in roles)
@@ -1075,13 +938,19 @@ def method_page(secs):
     ])
     return f'''<section class="page" id="metodo" hidden><div class="sheet doc">
 <p class="eyebrow">El método</p><h1>Cómo funciona</h1>
-<p class="lede">Todas las sesiones siguen la misma estructura. Al alumnado le da seguridad y a ti te ahorra trabajo.</p>
+<p class="lede">Todas las sesiones siguen el mismo guion de tres partes. Al alumnado le da seguridad y a ti te ahorra trabajo: solo cambia el contenido.</p>
 <h2 class="h-sec">La sesión de 45 minutos</h2>
 <div class="phases">{ph}</div>
-<p class="small">En 5º y 6º (quincenal) se recoge 5 minutos antes y cada equipo rellena la tarjeta «Dónde lo dejamos» (M18).</p>
+<p class="small">En 5º y 6º (quincenal), «Empezamos» abre con la tarjeta «Dónde lo dejamos» (M18) de la sesión anterior y «Cerramos» acaba rellenándola, con el archivo guardado y el kit en su caja.</p>
+<h2 class="h-sec">La ficha de cada sesión</h2>
+{ficha_partes()}
+<p class="small">Arriba están los botones «Proyectar la sesión» e «Imprimir», que saca la ficha en A4 con la propuesta elegida.</p>
+<h2 class="h-sec">Proyectar la sesión</h2>
+<div class="ecards">{sc}</div>
+<p class="small">Se proyecta la propuesta que esté abierta en la ficha, y los pasos se tocan para marcarlos. «Proyectar el tablero», en «A trabajar», abre directamente la misión. En 1º y 2º cada paso lleva pictogramas, y el botón «Leer» (tecla L) lo lee en voz alta.</p>
 <h2 class="h-sec">Roles en cada grupo</h2>
 <div class="roles">{rl}</div>
-<p class="small">En parejas, piloto y copiloto, y se cambian a mitad. En grupos, el rol cambia cada sesión. Tarjetas de rol: M05.</p>
+<p class="small">Son opcionales, como el minuto de uso responsable: los dos están en «Si quieres añadirlo» de cada ficha y en «Recursos» de la proyección. En parejas, piloto y copiloto, y se cambian a mitad de la práctica; en grupos, el rol cambia cada sesión. Tarjetas de rol: M05.</p>
 <h2 class="h-sec">Tres preguntas para cualquier sesión</h2>
 <div class="qs">{qh}</div>
 <h2 class="h-sec">Evaluación</h2>
@@ -1634,7 +1503,7 @@ def video_pages(courses):
 
 HERE = Path(__file__).resolve().parent
 CSS = (HERE / "estilo.css").read_text(encoding="utf-8") + (HERE / "tablet_guia.css").read_text(encoding="utf-8") + (HERE / "proyectables.css").read_text(encoding="utf-8") + (HERE / "proyectables2.css").read_text(encoding="utf-8") + (HERE / "proyectables3.css").read_text(encoding="utf-8") + (HERE / "proyectables4.css").read_text(encoding="utf-8") + (HERE / "proyectables5.css").read_text(encoding="utf-8") + (HERE / "proyectables7.css").read_text(encoding="utf-8") + (HERE / "proyectables8.css").read_text(encoding="utf-8") + (HERE / "proyeccion.css").read_text(encoding="utf-8") + (HERE / "videos.css").read_text(encoding="utf-8") + (HERE / "tema.css").read_text(encoding="utf-8") + (HERE / "guion.css").read_text(encoding="utf-8") + (HERE / "tablero.css").read_text(encoding="utf-8") + (HERE / "imprimir.css").read_text(encoding="utf-8")
-JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyeccion.js").read_text(encoding="utf-8") + ";\n" + (HERE / "tablero.js").read_text(encoding="utf-8")
+JS = (HERE / "app.js").read_text(encoding="utf-8") + ";\n" + (HERE / "tablero.js").read_text(encoding="utf-8")
 PJS = (HERE / "pictos_data.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables2.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables5.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables6.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables7.js").read_text(encoding="utf-8") + ";\n" + (HERE / "proyectables8.js").read_text(encoding="utf-8")
 
 if __name__ == "__main__":

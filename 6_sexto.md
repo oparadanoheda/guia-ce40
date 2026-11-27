@@ -288,7 +288,9 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 ### S4 · Nezha: motores y giros `ROB` `PC`
 
 - **Qué aprenden:** programar los motores con velocidad y tiempo, y entender que el sentido de giro depende del signo (cambio de polaridad).
-- **Prepara antes:** robots, cinta métrica, una línea de salida y una meta en el suelo (vale una regla o una tira de cinta).
+- **Hoy:** programan los motores del coche Nezha con velocidad y tiempo, miden cuánto avanza y descubren que, con velocidad negativa, el motor gira al revés.
+- **Necesitas:** los coches Nezha montados y cargados, portátiles con MakeCode y la extensión Nezha, una cinta métrica y una línea de salida y una meta en el suelo.
+- **Lo han conseguido si:** han medido cuánto avanza el coche en 1 s y en 2 s, y saben explicar por qué M2 va en negativo para ir recto.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **En tablets o portátiles:** [[T:velocidad|Aparca el coche Nezha]] (niveles 3 y 4: tiempo y velocidad, dividiendo)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
@@ -296,11 +298,25 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 - **Para repasar:** motores · bucle · ángulos
 - **Minuto de uso responsable:** el robot se prueba en el suelo; se apaga antes de tocar la placa.
 
-**Pasos:**
-1. Programa básico: **al presionarse el botón A** → M1 a velocidad 50 y M2 a velocidad −50 → **pausa (ms) 1000** → parar. Los bloques de la extensión salen en inglés (**Set motor M1 speed to 50 %**, **Stop all motors**).
-2. Miden cuánto avanza en 1 s. Pregunta: «¿Y en 2 s? ¿Y a velocidad 100?». Lo comprueban.
-3. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad). Por eso, para ir recto, M2 va en negativo: está montado en espejo respecto a M1.
-4. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con **repetir 4 veces**).
+**Antes de la clase:**
+- Prepara los robots, una cinta métrica y una línea de salida y una meta en el suelo (vale una regla o una tira de cinta).
+- Comprueba que MakeCode tiene la extensión Nezha (Extensiones → buscar «nezha»).
+- Haz una vez el ejemplo del cuadrado en tu ordenador. [[S:6-S4-nezha-cuadrado.mkcd|El cuadrado · solución]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]] (Nezha)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Programa básico: `al presionarse el botón A` → M1 a velocidad 50 y M2 a velocidad −50 → `pausa (ms) 1000` → parar. Los bloques de la extensión salen en inglés (`Set motor M1 speed to 50 %`, `Stop all motors`).
+
+**A trabajar (25 min):**
+1. Miden cuánto avanza en 1 s. Pregunta: «¿Y en 2 s? ¿Y a velocidad 100?». Lo comprueban.
+2. Velocidad negativa: el motor gira al revés. Es como cambiar los cables de una pila (polaridad). Por eso, para ir recto, M2 va en negativo: está montado en espejo respecto a M1.
+3. Reto: recorrer un cuadrado de 50 cm de lado (avanzar y girar 90º, cuatro veces, con `repetir 4 veces`).
+
+**Cerramos (10 min):**
+1. Un equipo enseña su coche. Pregunta: «¿Qué pasa si cambio el signo de la velocidad de un motor?»
+2. Frase clave: **«Si cambio el signo, cambio el sentido.»**
+3. Se guarda el archivo con el nombre del equipo, el robot se apaga y vuelve a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **¿Y en 2 s? ¿Y a velocidad 100?**
@@ -321,21 +337,55 @@ Vocabulario de programación nuevo en 6º (las palabras de cursos anteriores se 
 ### S5 · Nezha: mecanismos o sensor `ROB` `PC`
 
 - **Qué aprenden:** construir un montaje con mecanismos o hacer que el robot reaccione a un sensor.
-- **Prepara antes:** según la opción. Comprueba antes qué sensores y piezas trae el kit.
+- **Hoy:** según el kit que tengáis, montan un mecanismo con engranajes (propuesta A), hacen que el robot reaccione a un sensor (propuesta B) o le dan tres comportamientos con los botones (propuesta C).
+- **Necesitas:** los coches Nezha cargados, portátiles con MakeCode y las piezas y los sensores del kit (según la propuesta).
+- **Lo han conseguido si:** el montaje o el robot funciona, y saben decir qué decide el sensor (o el botón) y qué hace el motor.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** situaciones oficiales de Nezha con manual de montaje y programa .hex (Recursos oficiales)
 - **Archivo de MakeCode:** [[S:6-S5-nezha-para-ante-obstaculo.mkcd|Parar ante un obstáculo]] · [[S:6-S5-tres-eventos.mkcd|Tres eventos]]
 - **Para repasar:** motores · condición
 - **Minuto de uso responsable:** «El robot se prueba en el suelo y se apaga antes de tocar la placa.» ¿Por qué en el suelo y no en la mesa?
 
+**Antes de la clase:**
+- Comprueba qué sensores y piezas trae el kit y elige la propuesta según lo que tengas.
+- Para la propuesta A, ten a mano la situación oficial elegida, con su manual de montaje y su programa .hex (ver Recursos oficiales).
+- Para la propuesta B, abre una vez la solución. [[S:6-S5-nezha-para-ante-obstaculo.mkcd|Parar ante un obstáculo]]
+- Para la propuesta C, abre una vez la solución. [[S:6-S5-tres-eventos.mkcd|Tres eventos]]
+
 **Opción A · Situación oficial con mecanismos**
-*Molinos de viento* o *Vehículos y aceleración* con Kit Nezha Inventor (4º a 6º). Construyen el montaje con las instrucciones y programan el motor. Pregunta: «¿Qué pasa con la velocidad si cambio el tamaño del engranaje?».
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Presenta la situación oficial: *Molinos de viento* o *Vehículos y aceleración* con Kit Nezha Inventor (4º a 6º).
+
+**A trabajar (25 min):**
+1. Construyen el montaje con las instrucciones y programan el motor.
+2. Pregunta: «¿Qué pasa con la velocidad si cambio el tamaño del engranaje?».
 
 **Opción B · Robot con sensor**
-Según el kit: parar ante un obstáculo (sensor de ultrasonidos: **si distancia < 10 cm entonces parar, si no avanzar**) o seguir una línea (seguidor de línea con cinta aislante negra en el suelo).
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión según el kit: el robot para ante un obstáculo o sigue una línea. [[V:sensor-umbral|Sensor y umbral]]
+
+**A trabajar (25 min):**
+1. Según el kit: parar ante un obstáculo (sensor de ultrasonidos: **si distancia < 10 cm entonces parar, si no avanzar**) o seguir una línea (seguidor de línea con cinta aislante negra en el suelo).
 
 **Opción C · Sin sensores disponibles**
-El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportamientos.
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión: tres botones, tres comportamientos.
+
+**A trabajar (25 min):**
+1. El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportamientos.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un equipo enseña su robot o su montaje. Pregunta: «¿Qué decide el sensor (o el botón) y qué hace el motor?»
+2. Frase clave: **«El sensor decide, el motor actúa.»**
+3. Se guarda el archivo con el nombre del equipo, el kit vuelve completo a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Engranajes** (opción A)
@@ -355,7 +405,9 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 ### S6 · Optimizar y planificar mi proyecto `PC`
 
 - **Qué aprenden:** mejorar un programa con bucles, funciones y nombres claros, y planificar un proyecto individual.
-- **Prepara antes:** un programa largo y desordenado en el display (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos). Hoja de plan.
+- **Hoy:** entre todos, mejoran un programa largo y desordenado con un repetir y una función; después cada pareja planifica su proyecto con al menos un sensor y dos eventos.
+- **Necesitas:** la pizarra digital con MakeCode y la hoja «Plan de mi invento» (una por pareja).
+- **Lo han conseguido si:** saben decir cuántos bloques tenía el programa antes y después de mejorarlo, y su plan tiene al menos un sensor y dos eventos.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]] (optimizar un algoritmo: ¿con cuántas comparaciones se ordena?) · [[P:adivina.cuantas|Adivina el número · ¿cuántas preguntas?]] (otro algoritmo optimizado: buscar por la mitad)
 - **En tablets o portátiles:** [[T:balanza|Ordenar con la balanza]] (nivel 3: 5 cajas; 3 estrellas con 8 pesadas y el reto extra con 7) · [[T:adivina|Adivina el número]] (nivel 3: del 1 al 1000 en 10 preguntas o menos)
 - **Material listo:** [[M:M16|Plan de mi invento]]
@@ -363,18 +415,31 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Para repasar:** bucle · descomponer
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-**Pasos:**
-1. **Optimizar (15 minutos):** entre todos, el programa largo se mejora:
-   - Lo repetido, en un **repetir**.
-   - Un trozo que se usa varias veces, en una **función** (categoría Funciones, dentro de Avanzado → Crear una función, por ejemplo *girar_derecha*). Una función es como un bloque propio.
-   - Borrar lo que sobra y dar nombres claros.
-   - Contar bloques antes y después.
-2. **Plan del proyecto individual (20 minutos):** cada pareja elige un proyecto con **al menos un sensor y dos eventos**:
-   - Mascota virtual mejorada (de la S2).
-   - Alarma de puerta o cajón con código secreto (A, A, B para desactivar).
-   - Coche Nezha teledirigido con los botones o inclinando otra placa (si se hizo la S14 de radio).
-   - Contador de personas que entran en clase.
-   - Recordatorio para ventilar o beber agua.
+**Antes de la clase:**
+- Prepara en el display un programa largo y desordenado (por ejemplo, el cuadrado del Nezha escrito sin bucle, con 8 bloques repetidos).
+- Abre una vez la solución con funciones. [[S:6-S6-cuadrado-con-funciones.mkcd|El cuadrado con funciones · solución]]
+- Imprime la hoja de plan, una por pareja. [[M:M16|Plan de mi invento]] (hoja 5)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. **Optimizar:** entre todos, el programa largo se mejora: [[V:optimizar-superior|Optimizar]] · [[V:funcion|Funciones]]
+    - Lo repetido, en un **repetir**.
+    - Un trozo que se usa varias veces, en una **función** (categoría Funciones, dentro de Avanzado → Crear una función, por ejemplo *girar_derecha*). Una función es como un bloque propio.
+    - Borrar lo que sobra y dar nombres claros.
+    - Contar bloques antes y después.
+
+**A trabajar (25 min):**
+1. **Plan del proyecto individual (20 minutos):** cada pareja elige un proyecto con **al menos un sensor y dos eventos**: [[M:M16|Plan de mi invento]]
+    - Mascota virtual mejorada (de la S2).
+    - Alarma de puerta o cajón con código secreto (A, A, B para desactivar).
+    - Coche Nezha teledirigido con los botones o inclinando otra placa (si se hizo la S14 de radio).
+    - Contador de personas que entran en clase.
+    - Recordatorio para ventilar o beber agua.
+
+**Cerramos (10 min):**
+1. Una pareja cuenta su proyecto. Pregunta a la clase: «¿Qué sensor usa y cuáles son sus dos eventos?»
+2. Frase clave: **«Un buen programa es corto, claro y fácil de cambiar.»**
+3. Se guardan los planes y cada equipo rellena la tarjeta «Dónde lo dejamos»: en la S7 se construye el proyecto.
 
 **Pistas y soluciones:**
 1. **Optimizar con una función**
@@ -395,16 +460,31 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 ### S7 · Mi proyecto `ROB` `PC`
 
 - **Qué aprenden:** construir y probar un proyecto propio con al menos un sensor y dos eventos.
+- **Hoy:** programan el proyecto que planificaron en la S6, lo pasan a la placa o al robot, lo revisan con las tres preguntas de optimización y lo enseñan a otra pareja.
+- **Necesitas:** portátiles con MakeCode, las placas o los robots, los planes de la S6, la ficha de prueba y la rúbrica del trimestre.
+- **Lo han conseguido si:** el proyecto funciona en la placa o en el robot con un sensor y dos eventos, y otra pareja lo ha probado.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
 - **Para repasar:** sensores · evento · variable · funciones
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
-- **Pasos:**
-  1. Tarjeta y plan (3 minutos).
-  2. Programar en el simulador (15 minutos).
-  3. Pasar a la placa o al robot y probar (10 minutos).
-  4. Revisión de optimización rápida con las tres preguntas (¿repetido?, ¿sobra algo?, ¿nombres claros?) y enseñar a otra pareja.
-- **Producto de T2:** proyecto individual. **Rúbrica del trimestre.**
-- **Mates:** verificación, medida.
+
+**Antes de la clase:**
+- Prepara las placas o los robots que necesite cada pareja y ten a mano los planes de la S6.
+- Imprime la ficha de prueba, una por pareja (vienen cuatro por hoja). [[M:M17|Ficha de prueba]] (hoja 2)
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. Tarjeta y plan (3 minutos).
+2. Explica la misión: hoy cada pareja construye su proyecto, lo prueba y lo revisa con las tres preguntas de optimización.
+
+**A trabajar (25 min):**
+1. Programar en el simulador (15 minutos).
+2. Pasar a la placa o al robot y probar (10 minutos).
+3. Mientras trabajan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Revisión de optimización rápida con las tres preguntas (¿repetido?, ¿sobra algo?, ¿nombres claros?) y enseñar a otra pareja, que lo prueba con la ficha de prueba. [[M:M17|Ficha de prueba]]
+2. Frase clave: **«Si funciona en la mesa, pruébalo en la realidad.»**
+3. Se guarda el archivo con el nombre del equipo, el kit vuelve completo a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Antes de pasar a la placa**
@@ -414,6 +494,8 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 - **Frase clave:** «Si funciona en la mesa, pruébalo en la realidad.»
 - **Si va rápido:** añadir un tercer evento.
 - **Si cuesta:** un sensor y un evento.
+- **Producto de T2:** proyecto individual. **Rúbrica del trimestre.**
+- **Mates:** verificación, medida.
 
 ---
 
@@ -424,21 +506,50 @@ El robot arranca con A, para con B y gira con A+B: tres eventos, tres comportami
 ### S8 · IA, redes sociales y huella digital `IA` `SEG`
 
 - **Qué aprenden:** cómo funciona la IA que usan cada día, qué problemas puede causar y cómo protegerse en las redes.
-- **Prepara antes:** imprimir M24 (los 4 casos ya escritos, uno por equipo).
+- **Hoy:** descubren dónde hay IA en su vida y qué es la IA generativa, debaten casos reales por equipos y escriben un manifiesto para usar la IA y las redes con responsabilidad (o dibujan su huella digital).
+- **Necesitas:** los casos para debatir, uno por equipo (propuesta A), o papel para dibujar la huella (propuesta B).
+- **Lo han conseguido si:** cada equipo ha respondido a las preguntas de su caso y la clase tiene un manifiesto con 3 normas (propuesta A), o cada alumno sabe decir quién puede ver su huella y cómo protegerse (propuesta B).
 - **Para proyectar:** [[P:sesgo|Entrena a la máquina]] y [[P:verdad.bulos|¿Verdad, bulo o IA?]]
 - **Material listo:** [[M:M24|Casos para debatir]] · [[M:M23|¿Verdad, bulo o IA?]]
 - **Minuto de uso responsable:** «Las redes sociales tienen edad mínima por algo.» ¿Por qué creéis que existe una edad mínima?
 
+**Antes de la clase:**
+- Para la propuesta A, imprime los 4 casos ya escritos, uno por equipo. [[M:M24|Casos para debatir]]
+- Ten a mano las tarjetas «¿Verdad, bulo o IA?», por si el debate da para más. [[M:M23|¿Verdad, bulo o IA?]]
+- Para la propuesta B, comprueba la edad mínima legal vigente de las redes sociales en España.
+
 **Opción A · Debate por casos (recomendada)**
-1. 7 minutos: ¿dónde hay IA en vuestra vida? (recomendaciones, asistentes de voz, filtros de fotos, traductores). ¿Qué es la IA generativa? (la que crea textos o imágenes nuevas a partir de muchos ejemplos).
-2. 20 minutos: cada equipo recibe un caso de M24 y responde a sus preguntas. Lo exponen en 1 minuto.
-3. 8 minutos: manifiesto de la clase con 3 normas para usar la IA y las redes con responsabilidad.
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. 7 minutos: ¿dónde hay IA en vuestra vida? (recomendaciones, asistentes de voz, filtros de fotos, traductores). ¿Qué es la IA generativa? (la que crea textos o imágenes nuevas a partir de muchos ejemplos). [[V:aprende-maquina|Cómo aprende una máquina]]
+
+**A trabajar (25 min):**
+1. 20 minutos: cada equipo recibe un caso de M24 y responde a sus preguntas. Lo exponen en 1 minuto. [[M:M24|Casos para debatir]]
+
+**Cerramos (10 min):**
+1. 8 minutos: manifiesto de la clase con 3 normas para usar la IA y las redes con responsabilidad.
+2. Frase clave: **«Lo que subo a internet se queda.»**
+3. Se cuelga el manifiesto en la clase y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Opción B · Huella digital**
-Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fotos, comentarios, ubicación). Debate: ¿quién lo puede ver? ¿se puede borrar? Edad mínima legal de las redes en España (comprobad la vigente) y por qué existe. Configuración de privacidad: perfil privado, sin ubicación, seudónimo.
 
-- **Otra opción en la pizarra:** [AI for Oceans](https://code.org/oceans) (Code.org, en español): la clase entrena en la pizarra una IA que separa peces de basura y ve cómo influyen los datos.
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión: cada alumno va a dibujar la huella que dejaría en internet. [[V:aprende-maquina|Cómo aprende una máquina]]
+
+**A trabajar (25 min):**
+1. Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fotos, comentarios, ubicación).
+2. Debate: ¿quién lo puede ver? ¿se puede borrar?
+
+**Cerramos (10 min):**
+1. Edad mínima legal de las redes en España (comprobad la vigente) y por qué existe.
+2. Configuración de privacidad: perfil privado, sin ubicación, seudónimo.
+3. Frase clave: **«Lo que subo a internet se queda.»**
+4. Cada equipo rellena la tarjeta «Dónde lo dejamos».
+
 - **Frase clave:** «Lo que subo a internet se queda.»
+- **Otra opción en la pizarra:** [AI for Oceans](https://code.org/oceans) (Code.org, en español): la clase entrena en la pizarra una IA que separa peces de basura y ve cómo influyen los datos.
 - **Si va rápido:** redactar entre todos una norma nueva para la IA generativa.
 - **Si cuesta:** un solo caso de M24, trabajado en gran grupo.
 - **Mates:** datos, muestras, sesgo.
@@ -446,21 +557,37 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S9 · Tinkercad: un objeto útil `RA`
 
 - **Qué aprenden:** diseñar en 3D un objeto que resuelva un problema, con medidas reales.
-- **Prepara antes:** como en 5º, decide el modo de trabajo (cuentas de clase con alias autorizadas, o el docente diseña en el display y los equipos dictan). Reglas y objetos del aula para medir. Guía en `07`.
+- **Hoy:** repasan Tinkercad y cada pareja diseña un objeto útil con las medidas reales que toma con la regla.
+- **Necesitas:** la pizarra digital, Tinkercad (con cuentas de clase con alias autorizadas o solo en el display), reglas, objetos del aula para medir y la hoja para dibujar el diseño.
+- **Lo han conseguido si:** el diseño tiene las medidas en milímetros del objeto real y hay una captura de pantalla.
 - **Para proyectar:** [[P:vistas.cuantos|Cubos y vistas · ¿cuántos cubos?]] (calentamiento: volumen contando cubos, también los que no se ven)
 - **En tablets o portátiles:** [[T:cubos|Cubos y vistas]] (nivel 2: contar cubos, también los que no se ven)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño con medidas)
 - **Para repasar:** 3d
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
-**Pasos:**
-1. Repaso en el display (5 minutos): mover, medir, levantar, girar, hueco y agrupar.
-2. Cada pareja elige: soporte para bolígrafos, portanombres para la mesa, soporte para la tablet, pieza para su proyecto de servicio.
-3. Miden el objeto real con regla y lo diseñan con esas medidas (en milímetros).
-4. Captura de pantalla del diseño.
+**Antes de la clase:**
+- Como en 5º, decide el modo de trabajo (cuentas de clase con alias autorizadas, o el docente diseña en el display y los equipos dictan). Guía en `07`.
+- Reúne reglas y objetos del aula para medir.
+- Imprime la hoja para dibujar el diseño. [[M:M16|Hoja de proyecto]] (para dibujar el diseño con medidas)
 
-- **Si hay impresora 3D en el centro:** se imprime el mejor de cada grupo; si no, el diseño es el producto.
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Calentamiento: volumen contando cubos, también los que no se ven. [[P:vistas.cuantos|Cubos y vistas · ¿cuántos cubos?]]
+3. Repaso en el display (5 minutos): mover, medir, levantar, girar, hueco y agrupar.
+
+**A trabajar (25 min):**
+1. Cada pareja elige: soporte para bolígrafos, portanombres para la mesa, soporte para la tablet, pieza para su proyecto de servicio.
+2. Miden el objeto real con regla y lo diseñan con esas medidas (en milímetros). [[M:M16|Hoja de proyecto]]
+3. Captura de pantalla del diseño.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su diseño. Pregunta a la clase: «¿Qué medidas habéis tomado del objeto real?»
+2. Frase clave: **«Mido en la realidad, diseño en la pantalla.»**
+3. Se guarda el diseño y cada equipo rellena la tarjeta «Dónde lo dejamos».
+
 - **Frase clave:** «Mido en la realidad, diseño en la pantalla.»
+- **Si hay impresora 3D en el centro:** se imprime el mejor de cada grupo; si no, el diseño es el producto.
 - **Si va rápido:** un objeto con una pieza que encaje en otra.
 - **Si cuesta:** copiar el diseño de un soporte sencillo en el display.
 - **Mates:** medidas, escala, cuerpos geométricos, vistas.
@@ -468,16 +595,30 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S10 · Proyecto de servicio: definir y planificar `PC`
 
 - **Qué aprenden:** detectar una necesidad real del colegio y planificar una solución en equipo.
-- **Prepara antes:** hoja de proyecto en equipo (M16): problema, a quién ayuda, idea, materiales, tareas, quién hace qué.
+- **Hoy:** a partir de ejemplos de necesidades reales del colegio, cada equipo elige una y planifica su solución en la hoja de proyecto.
+- **Necesitas:** la hoja de proyecto en equipo, una por equipo.
+- **Lo han conseguido si:** la hoja de cada equipo dice qué problema resuelve, a quién ayuda, la idea, el material y quién hace qué, y el plan está aprobado.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
 - **Archivo de MakeCode:** [[S:6-S10-semaforo-de-ruido.mkcd|Semáforo de ruido (V2)]]
 - **Para repasar:** descomponer
 - **Minuto de uso responsable:** «Antes de creer algo, lo contrasto en otra fuente.» ¿Qué fuentes fiables conocemos?
 
-**Pasos:**
-1. 7 minutos: ejemplos de necesidades del colegio: accesibilidad (un timbre para una persona que no oye bien que se ilumine), ahorro (aviso de luces encendidas en un aula vacía), convivencia (semáforo de ruido en el comedor), medio ambiente (contador de botellas recicladas), orden (robot Nezha que reparte material en el aula de infantil).
-2. 25 minutos: cada equipo elige y rellena la hoja. **Regla de oro:** un sensor, una acción, y que se pueda construir en una o dos sesiones.
-3. 5 minutos: el docente aprueba el plan (o lo simplifica).
+**Antes de la clase:**
+- Imprime la hoja de proyecto en equipo, una por equipo: problema, a quién ayuda, idea, materiales, tareas, quién hace qué. [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] (hoja 3)
+- Abre una vez el ejemplo del semáforo de ruido. [[S:6-S10-semaforo-de-ruido.mkcd|Semáforo de ruido (V2)]]
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. 7 minutos: ejemplos de necesidades del colegio: accesibilidad (un timbre para una persona que no oye bien que se ilumine), ahorro (aviso de luces encendidas en un aula vacía), convivencia (semáforo de ruido en el comedor), medio ambiente (contador de botellas recicladas), orden (robot Nezha que reparte material en el aula de infantil).
+
+**A trabajar (25 min):**
+1. 25 minutos: cada equipo elige y rellena la hoja. **Regla de oro:** un sensor, una acción, y que se pueda construir en una o dos sesiones. [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
+
+**Cerramos (10 min):**
+1. 5 minutos: el docente aprueba el plan (o lo simplifica).
+2. Un equipo cuenta su plan. Pregunta a la clase: «¿A quién ayuda y qué sensor usa?»
+3. Frase clave: **«La tecnología sirve para ayudar a las personas.»**
+4. Se guardan los planes y cada equipo rellena la tarjeta «Dónde lo dejamos»: en la S11 se construye el prototipo.
 
 **Pistas y soluciones:**
 1. **Pistas para programar cada idea**
@@ -497,38 +638,68 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S11 · Prototipo `PC` `ROB` `RA`
 
 - **Qué aprenden:** construir y programar en equipo el prototipo del proyecto de servicio.
+- **Hoy:** cada equipo construye y programa el prototipo de su proyecto de servicio y lo revisa con las tres preguntas de optimización.
+- **Necesitas:** los planes de la S10, el kit y el material de cada equipo, las tarjetas «Dónde lo dejamos» y la rúbrica del trimestre.
+- **Lo han conseguido si:** el prototipo funciona (al menos su parte mínima), el programa ha pasado las tres preguntas y la tarjeta está rellena.
 - **Material listo:** [[M:M18|Dónde lo dejamos]] · [[M:M19|Rúbrica]]
 - **Para repasar:** sensores · funciones
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
-- **Pasos:**
-  1. Tarjeta y plan (3 minutos).
-  2. Construir y programar (30 minutos). Cada miembro con su tarea.
-  3. Revisión de optimización con las tres preguntas (5 minutos).
-  4. Foto y tarjeta «Dónde lo dejamos».
-- **Si hay sesiones opcionales:** esta sesión se dedica a construir y la **S13** a programar, probar con usuarios reales y mejorar.
-- **Producto de T3:** prototipo funcional. **Rúbrica del trimestre.**
-- **Mates:** medidas, verificación de resultados.
+
+**Antes de la clase:**
+- Prepara el kit y el material de cada equipo, y sus planes de la S10.
+- Ten a mano las tarjetas «Dónde lo dejamos». [[M:M18|Dónde lo dejamos]]
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. Tarjeta y plan (3 minutos).
+2. Cada equipo reparte el trabajo de hoy: cada miembro con su tarea.
+
+**A trabajar (25 min):**
+1. Construir y programar. Cada miembro con su tarea.
+2. Mientras trabajan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Revisión de optimización con las tres preguntas (5 minutos).
+2. Frase clave: **«Un prototipo no es perfecto: es el primer paso.»**
+3. Foto y tarjeta «Dónde lo dejamos». Se guarda el archivo con el nombre del equipo y el kit vuelve completo a su caja.
+
 - **Frase clave:** «Un prototipo no es perfecto: es el primer paso.»
+- **Si hay sesiones opcionales:** esta sesión se dedica a construir y la **S13** a programar, probar con usuarios reales y mejorar.
 - **Si va rápido:** probar el prototipo con un usuario y anotar los datos.
 - **Si cuesta:** construir la parte mínima que funcione.
+- **Producto de T3:** prototipo funcional. **Rúbrica del trimestre.**
+- **Mates:** medidas, verificación de resultados.
 
 ### S12 · Feria y legado `RA` `PC`
 
 - **Qué aprenden:** presentar el proyecto a la comunidad, crear sus propios códigos QR y dejar su experiencia por escrito.
-- **Prepara antes:** fotos o vídeos (sin caras) de cada proyecto ya subidos al espacio del centro en EducaMadrid. Guía de QR en `07`.
+- **Hoy:** cada equipo genera el QR de su proyecto, lo presenta en la feria a otros cursos y familias, y cierran la etapa con el pasaporte y una carta a su «yo de 5º».
+- **Necesitas:** los prototipos, las fotos o vídeos (sin caras) ya subidos al espacio del centro, una tablet para probar los QR, los pasaportes y la autoevaluación.
+- **Lo han conseguido si:** cada equipo ha probado su QR con la tablet, ha presentado su proyecto en la feria, y cada alumno ha escrito su carta.
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
 - **Minuto de uso responsable:** «Un seudónimo me protege. Mi foto es mía.» ¿Qué seudónimo usarías en un juego en línea?
 
-**Pasos:**
-1. **QR (10 minutos):** cada equipo genera **su propio QR** con el enlace a su vídeo, en un generador de QR sin registro (o con la opción de QR del propio espacio de EducaMadrid), lo prueba con la tablet y lo imprime.
-2. **Feria (25 minutos):** con otros cursos y familias. Problema, solución, cómo funciona y qué mejorarían.
-3. **Guía de legado (en casa o en una reserva):** una página por equipo para los de 5º del curso que viene: qué hicimos, cómo funciona, tres consejos.
-4. **Cierre de etapa:** pasaporte completo y una carta al «yo de 5º»: qué aprendí y qué consejo daría.
+**Antes de la clase:**
+- Sube las fotos o vídeos (sin caras) de cada proyecto al espacio del centro en EducaMadrid. Guía de QR en `07`.
+- Ten a mano los pasaportes, uno por alumno. [[M:M15|Pasaporte]]
+- Imprime la autoevaluación. [[M:M19|Autoevaluación]] (hoja 3)
 
-- **Mates:** presentar con datos y medidas: qué se midió, qué umbral se eligió, resultados de las pruebas.
+**Empezamos (10 min):**
+1. **QR (10 minutos):** cada equipo genera **su propio QR** con el enlace a su vídeo, en un generador de QR sin registro (o con la opción de QR del propio espacio de EducaMadrid), lo prueba con la tablet y lo imprime.
+
+**A trabajar (25 min):**
+1. **Feria (25 minutos):** con otros cursos y familias. Problema, solución, cómo funciona y qué mejorarían.
+
+**Cerramos (10 min):**
+1. **Cierre de etapa:** pasaporte completo y una carta al «yo de 5º»: qué aprendí y qué consejo daría.
+2. Frase clave: **«Lo que hemos aprendido queda para los que vienen.»**
+3. **Guía de legado (en casa o en una reserva):** una página por equipo para los de 5º del curso que viene: qué hicimos, cómo funciona, tres consejos.
+4. Cada kit vuelve completo a su caja.
+
 - **Frase clave:** «Lo que hemos aprendido queda para los que vienen.»
 - **Si va rápido:** incluir en la presentación un gráfico con datos de las pruebas.
 - **Si cuesta:** presentar enseñando el prototipo en funcionamiento.
+- **Mates:** presentar con datos y medidas: qué se midió, qué umbral se eligió, resultados de las pruebas.
 
 ---
 
@@ -537,17 +708,33 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S13 · Proyecto de servicio: sesión extra (la primera que se debe usar) `PC` `ROB`
 
 - **Qué aprenden:** programar el prototipo, probarlo con usuarios reales y mejorarlo con lo que digan.
+- **Hoy:** cada equipo termina de programar su prototipo, lo prueba con usuarios reales del colegio y lo mejora con lo que le dicen.
+- **Necesitas:** los prototipos de la S11 con su kit, la ficha de prueba (una por equipo) y las tarjetas «Dónde lo dejamos».
+- **Lo han conseguido si:** el prototipo funciona, lo han probado usuarios reales y han hecho al menos una mejora con lo que dijeron.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M18|Dónde lo dejamos]]
 - **Para repasar:** depurar
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-**Pasos:**
-1. Se coloca entre la S11 y la S12. Cada equipo lee su tarjeta «Dónde lo dejamos» (3 minutos).
-2. Terminar de programar el prototipo (15 minutos).
-3. Probarlo con usuarios reales (otra clase, conserjería, comedor) y apuntar en la ficha de prueba lo que dicen (15 minutos).
-4. Mejorarlo con lo que han dicho, guardar y recoger (7 minutos).
+**Antes de la clase:**
+- Avisa a quienes van a probar los prototipos (otra clase, conserjería, comedor).
+- Imprime la ficha de prueba, una por equipo (vienen cuatro por hoja). [[M:M17|Ficha de prueba]] (hoja 2)
+- Ten a mano las tarjetas «Dónde lo dejamos». [[M:M18|Dónde lo dejamos]]
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» (3 minutos).
+2. Cada equipo decide qué le falta por programar para que el prototipo funcione.
+
+**A trabajar (25 min):**
+1. Terminar de programar el prototipo.
+2. Probarlo con usuarios reales (otra clase, conserjería, comedor) y apuntar en la ficha de prueba lo que dicen (15 minutos). [[M:M17|Ficha de prueba]]
+
+**Cerramos (10 min):**
+1. Un equipo cuenta qué le han dicho los usuarios. Pregunta a la clase: «¿Qué vais a cambiar con lo que os han dicho?»
+2. Frase clave: **«Quien lo usa nos dice cómo mejorarlo.»**
+3. Mejorarlo con lo que han dicho, guardar y recoger (7 minutos).
 
 - **Frase clave:** «Quien lo usa nos dice cómo mejorarlo.»
+- **Cuándo:** se coloca entre la S11 y la S12.
 - **Si va rápido:** una mejora propuesta por los usuarios.
 - **Si cuesta:** terminar lo imprescindible para que funcione.
 - **Mates:** recoger datos de las pruebas con usuarios en una tabla.
@@ -555,6 +742,9 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S14 · Red de micro:bits `ROB` `PC`
 
 - **Qué aprenden:** comunicar dos placas por radio y entender por qué cada equipo necesita su propio grupo.
+- **Hoy:** hacen que dos placas se comuniquen por radio, resuelven un reto (timbre a distancia, termómetro remoto o mando para el Nezha) y hablan de privacidad.
+- **Necesitas:** dos placas por equipo con su portapilas, portátiles con MakeCode, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** al pulsar A en una placa, la otra reacciona, y saben explicar por qué cada equipo usa un grupo distinto.
 - **Para proyectar:** [[P:mensajes.radio|Mensajes · radio de la micro:bit]] (antes de programar: quién recibe según el grupo, con tres retos) · [[P:cifrado|Código secreto]] (para hablar de privacidad) · [[P:paridad|Magia de la paridad]] (así se detectan los errores al enviar datos por radio)
 - **En tablets o portátiles:** [[T:cifrado|Mensajes secretos]] (niveles 3 y 4: el cifrado de César, para hablar de privacidad)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (fila Radio)
@@ -562,10 +752,23 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 - **Para repasar:** evento
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
-**Pasos:**
-1. Dos placas se comunican por radio: **radio establecer grupo** (cada equipo un número distinto, del 1 al 255) → **al presionarse el botón A** → **radio enviar número 1**; en la otra: **al recibir radio receivedNumber** → **mostrar ícono**.
+**Antes de la clase:**
+- Prepara dos placas con su portapilas por equipo.
+- Abre una vez las soluciones de los retos. [[S:6-S14-timbre-a-distancia.mkcd|Timbre a distancia]] · [[S:6-S14-mando-por-radio.mkcd|Mando por radio]] · [[S:6-S14-robot-por-radio.mkcd|Robot que obedece al mando]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]] (fila Radio)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Antes de programar: quién recibe según el grupo, con tres retos. [[P:mensajes.radio|Mensajes · radio de la micro:bit]] · [[V:mensaje|Mensajes]]
+
+**A trabajar (25 min):**
+1. Dos placas se comunican por radio: `radio establecer grupo` (cada equipo un número distinto, del 1 al 255) → `al presionarse el botón A` → `radio enviar número 1`; en la otra: `al recibir radio receivedNumber` → `mostrar ícono`.
 2. Retos: timbre a distancia, termómetro remoto, o mando por radio para el Nezha (inclinar la placa mando).
-3. Privacidad: si otro equipo usa tu grupo, recibe tus mensajes.
+
+**Cerramos (10 min):**
+1. Privacidad: si otro equipo usa tu grupo, recibe tus mensajes. Pregunta a la clase: «¿Cómo podríamos conseguir que nadie más entienda nuestros mensajes?» [[P:cifrado|Código secreto]]
+2. Frase clave: **«Si compartes grupo, compartes mensajes.»**
+3. Se guarda el archivo con el nombre del equipo, las placas vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Timbre a distancia**
@@ -585,16 +788,33 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S15 · Tinkercad II `RA`
 
 - **Qué aprenden:** diseñar en 3D con bloques de código (Codeblocks) o una pieza que encaje en el prototipo.
+- **Hoy:** cada pareja diseña en 3D con bloques de código (Codeblocks, repitiendo una forma con un bucle) o una pieza a la medida de su prototipo.
+- **Necesitas:** la pizarra digital, Tinkercad (en el mismo modo que en la S9), reglas y la hoja para dibujar la pieza.
+- **Lo han conseguido si:** hay una captura del diseño: una forma repetida con un bucle (Codeblocks) o una pieza con las medidas del prototipo.
 - **Para proyectar:** [[P:vistas|Cubos y vistas]] (para dibujar la pieza en la hoja: de frente, desde arriba y de lado)
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 3 a 5: con negativos, para colocar piezas en Codeblocks)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
 - **Para repasar:** 3d · coordenadas · bucle
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
-**Pasos:**
+**Antes de la clase:**
+- Prepara Tinkercad en el mismo modo que en la S9 (cuentas de clase con alias o solo en el display).
+- Reúne reglas.
+- Imprime la hoja para dibujar la pieza. [[M:M16|Hoja de proyecto]] (para dibujar la pieza con sus medidas)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Repasa las vistas para dibujar la pieza en la hoja: de frente, desde arriba y de lado. [[P:vistas|Cubos y vistas]]
+
+**A trabajar (25 min):**
 1. Cada pareja elige: **Codeblocks** (formas creadas con bloques de código, en la propia web de Tinkercad) o una pieza que encaje en el prototipo del proyecto de servicio.
-2. Con Codeblocks: una forma, moverla y repetirla con un bucle. Con la pieza: medir el prototipo con regla y diseñarla con esas medidas en milímetros.
+2. Con Codeblocks: una forma, moverla y repetirla con un bucle. Con la pieza: medir el prototipo con regla y diseñarla con esas medidas en milímetros. [[M:M16|Hoja de proyecto]]
 3. Captura de pantalla del diseño.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su diseño. Pregunta a la clase: «¿Qué se repite en vuestro diseño? ¿Y qué medidas habéis tomado del prototipo?»
+2. Frase clave: **«Un bucle también construye formas.»**
+3. Se guarda el diseño y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 - **Frase clave:** «Un bucle también construye formas.»
 - **Si va rápido:** una pieza con Codeblocks usando un bucle (fila de cilindros).
@@ -604,19 +824,48 @@ Cada alumno dibuja su «huella»: qué dejaría en internet si tuviera redes (fo
 ### S16 · A elegir
 
 - **Qué aprenden:** diseñar en 3D un soporte a la medida del cartel con el código QR de la feria, o resolver retos de lógica en la pizarra.
+- **Hoy:** diseñan en Tinkercad un soporte para el cartel con el QR de la feria (propuesta A) o resuelven en la pizarra retos de lógica con las cartas binarias y la balanza (propuesta B).
+- **Necesitas:** para la propuesta A, reglas, los carteles con el QR y Tinkercad; para la B, la pizarra digital.
+- **Lo han conseguido si:** el cartel cabe en la ranura del soporte y la base es más ancha que el cartel (propuesta A), o la clase ha resuelto los retos y sabe explicar cómo (propuesta B).
 - **Para proyectar:** [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]] (juegos de lógica para una sesión a elegir)
 - **En tablets o portátiles:** [[T:regla|La regla secreta]] (nivel 3: con «y», «o» y «no»)
 - **Para repasar:** 3d
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
+**Antes de la clase:**
+- Para la propuesta A, reúne reglas y los carteles con el QR de la feria, y prepara Tinkercad como en la S9.
+- Para la propuesta B, nada: los retos están en el proyectable.
+
 **Opción A · Tinkercad: el soporte del cartel de la feria**
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión: un soporte a la medida del cartel con el QR de la feria.
+
+**A trabajar (25 min):**
 1. Cada equipo mide con la regla el cartel o la tarjeta con su código QR (ancho y grosor, en milímetros).
 2. Diseñan una base (un prisma de unos 80 × 30 × 15 mm, o lo que pida el ancho del cartel) con una **ranura Hueca** de 3 mm de ancho y 10 mm de hondo, un poco más larga que el ancho del cartel.
 3. Comprueban las cuentas antes de agrupar: ¿cabe el cartel en la ranura? ¿La base es más ancha que el cartel para que no se caiga?
 4. Captura de pantalla del diseño, con las medidas a la vista. Si el centro puede imprimir en 3D, es el soporte de la feria.
 
+**Cerramos (10 min):**
+1. Un equipo enseña su soporte. Pregunta a la clase: «¿Cabe el cartel en la ranura? ¿Cómo lo habéis comprobado?»
+2. Frase clave: **«Lo que aprendo lo uso para algo nuevo.»**
+3. Se guarda el diseño y cada equipo rellena la tarjeta «Dónde lo dejamos».
+
 **Opción B · Retos de lógica en la pizarra**
-Toda la clase con las cartas binarias y la balanza: ¿qué número forman estas cartas? ¿Con cuántas comparaciones se ordenan 8 cajas?
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión: retos de lógica con toda la clase.
+
+**A trabajar (25 min):**
+1. Toda la clase con las cartas binarias y la balanza: ¿qué número forman estas cartas? ¿Con cuántas comparaciones se ordenan 8 cajas? [[P:binario.5|Cartas binarias]] · [[P:balanza.8|Ordenar con la balanza]]
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Cuál ha sido la forma más rápida de ordenar las cajas?»
+2. Frase clave: **«Lo que aprendo lo uso para algo nuevo.»**
+3. Cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 - **Frase clave:** «Lo que aprendo lo uso para algo nuevo.»
 - **Si va rápido:** que el soporte sujete el cartel inclinado, o una ranura para dos carteles.

@@ -507,17 +507,31 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S9 · Diseño en papel `PC`
 
 - **Qué aprenden:** planificar un juego antes de programarlo.
+- **Hoy:** cada pareja diseña en papel su videojuego (personaje, objetivo, obstáculo, puntos y final) y lo cuenta a otra pareja.
+- **Necesitas:** la hoja de diseño de juego, una por pareja.
+- **Lo han conseguido si:** la hoja de cada pareja tiene personaje, objetivo, obstáculo, puntos y final, y la pantalla dibujada.
 - **Material listo:** [[M:M16|Hoja de diseño de juego]] · [[M:M26|Póster «Descomponer»]]
 - **Minuto de uso responsable:** «Cuento el material antes de guardarlo.» ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
-**Pasos:**
-1. Pregunta: «¿Qué tiene todo juego?». Apunta: personaje, objetivo, obstáculo, puntos y final.
-2. Cada pareja rellena la hoja de diseño y dibuja la pantalla.
-3. Dos parejas se cuentan su diseño y se dan una idea.
+**Antes de la clase:**
+- Imprime la hoja de diseño, una por pareja. [[M:M16|Hoja de diseño de juego]] (hoja 4)
+- Cuelga el póster. [[M:M26|Póster «Descomponer»]]
 
-**Ideas para quien no sepa qué hacer:** el robot que recoge manzanas y esquiva meteoritos (tiene plantilla de Scratch para la S10) · el astronauta que recoge estrellas y esquiva meteoritos · el gato que come peces y esquiva perros · el reciclaje: recoger botellas y evitar la basura.
+**Empezamos (10 min):**
+1. Explica el proyecto del trimestre: cada pareja crea un videojuego sencillo, y cada sesión añade una pieza.
+2. Pregunta: «¿Qué tiene todo juego?». Apunta: personaje, objetivo, obstáculo, puntos y final. [[V:descomponer|Descomponer]]
+
+**A trabajar (25 min):**
+1. Cada pareja rellena la hoja de diseño y dibuja la pantalla. [[M:M16|Hoja de diseño de juego]]
+2. Dos parejas se cuentan su diseño y se dan una idea.
+
+**Cerramos (10 min):**
+1. Una pareja cuenta su diseño. Pregunta a la clase: «¿Cuál es el objetivo de su juego y cuál es el obstáculo?»
+2. Frase clave: **«Un juego se diseña antes de programarse.»**
+3. Se guardan las hojas de diseño: en la S10 se empieza a programar.
 
 - **Frase clave:** «Un juego se diseña antes de programarse.»
+- **Ideas para quien no sepa qué hacer:** el robot que recoge manzanas y esquiva meteoritos (tiene plantilla de Scratch para la S10) · el astronauta que recoge estrellas y esquiva meteoritos · el gato que come peces y esquiva perros · el reciclaje: recoger botellas y evitar la basura.
 - **Si va rápido:** añadir un segundo nivel al diseño.
 - **Si cuesta:** elegir una de las ideas propuestas y completar solo personaje, objetivo y obstáculo.
 - **Mates:** descomponer un problema en partes.
@@ -525,6 +539,9 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S10 · Personaje y escenario `PC`
 
 - **Qué aprenden:** mover un personaje con las flechas y hacer que no se salga (varios eventos a la vez).
+- **Hoy:** empiezan a programar su videojuego: eligen fondo y personaje, lo mueven con las cuatro flechas y hacen que no se salga del escenario.
+- **Necesitas:** portátiles con Scratch, uno por pareja, las hojas de diseño de la S9 y la chuleta de bloques.
+- **Lo han conseguido si:** el personaje se mueve con las cuatro flechas, empieza en el centro al pulsar la bandera y rebota en los bordes.
 - **Para proyectar:** [[P:eventos.reto|Eventos · ¿cuáles empiezan?]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:coordenadas.donde|Coordenadas · ¿dónde está?]] · [[P:flota.xy|Hundir la flota · plano de 0 a 7]] · [[P:flota.xyneg|Hundir la flota · con negativos]]
 - **Preguntas de salida:** [[P:salida.evento|Eventos]]
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 2 y 5: leer puntos y el escenario de Scratch)
@@ -533,11 +550,27 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 - **Para repasar:** para siempre
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
-**Pasos:**
+**Antes de la clase:**
+- Abre Scratch en los portátiles y ten a mano las hojas de diseño de la S9.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Copia la plantilla de inicio en la carpeta de la clase, para quien quiera partir de ella. [[S:4-S10-videojuego-plantilla.sb3|Plantilla de inicio: dibujos y fondos, sin programar]]
+- Abre una vez la solución de referencia para ver el juego terminado. [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+
+**Empezamos (10 min):**
+1. Explica la pieza de hoy: el personaje se mueve con las flechas y no se sale del escenario.
+2. Haz delante de la clase el primer evento: `al presionar tecla flecha derecha` → `sumar a x 10`. [[V:coordenadas|Coordenadas (x, y)]]
+
+**A trabajar (25 min):**
 1. Elegir fondo y personaje según el diseño.
-2. Cuatro eventos: **al presionar tecla flecha derecha** → **sumar a x 10** (izquierda −10; arriba y abajo con **sumar a y 10** y −10).
-3. **al hacer clic en 🏴** → **ir a x: 0 y: 0** → **fijar tamaño al 50 %**.
-4. Que no se salga: **por siempre** [**si toca un borde, rebotar**].
+2. Cuatro eventos: `al presionar tecla flecha derecha` → `sumar a x 10` (izquierda −10; arriba y abajo con `sumar a y 10` y −10).
+3. `al hacer clic en 🏴` → `ir a x: 0 y: 0` → `fijar tamaño al 50 %`.
+4. Que no se salga: `por siempre` [`si toca un borde, rebotar`].
+
+**Cerramos (10 min):**
+1. Una pareja enseña su personaje. Pregunta a la clase: «¿Cuántos programas funcionan a la vez en su juego?»
+2. Frase clave: **«Varios eventos pueden funcionar a la vez.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.evento|Eventos]]
+4. Se guarda el juego en el ordenador, con el nombre de la pareja: en la S11 se sigue.
 
 **Opción más sencilla:** solo derecha e izquierda (juego de atrapar cosas que caen).
 
@@ -556,16 +589,34 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S11 · Cosas que atrapar y cosas que esquivar `PC`
 
 - **Qué aprenden:** usar **si ¿tocando…? entonces** para que los objetos interactúen.
+- **Hoy:** añaden a su videojuego un premio que atrapar y un enemigo que se mueve solo y hay que esquivar.
+- **Necesitas:** portátiles con los juegos de la S10, uno por pareja, y la chuleta de bloques.
+- **Lo han conseguido si:** al tocar el premio suena y el premio cambia de sitio, y el enemigo se mueve solo y dice «¡Ay!» al tocar al personaje.
 - **Preguntas de salida:** [[P:salida.condicion|Si… entonces]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Para repasar:** condición · para siempre · azar
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
 
-**Pasos:**
-1. Objeto «premio»: **al hacer clic en 🏴** → **por siempre** [**si ¿tocando [personaje]? entonces** → **iniciar sonido** → **ir a posición aleatoria**].
-2. Objeto «enemigo» que se mueve solo: **por siempre** [**mover 5 pasos**, **si toca un borde, rebotar**].
-3. Si el enemigo toca al personaje: **si ¿tocando [personaje]? entonces** → **decir ¡Ay!** → **esperar 1 segundos**.
+**Antes de la clase:**
+- Abre Scratch en los portátiles, con los juegos guardados de la S10.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Ten abierta la solución de referencia, por si hay que enseñar una parte. [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+
+**Empezamos (10 min):**
+1. Explica la pieza de hoy: un premio que atrapar y un enemigo que esquivar, los dos con `si ¿tocando…? entonces`.
+2. Pregunta: «¿Quién comprueba si se tocan, el personaje o el premio? ¿Importa?»
+
+**A trabajar (25 min):**
+1. Objeto «premio»: `al hacer clic en 🏴` → `por siempre` [`si ¿tocando [personaje]? entonces` → `iniciar sonido` → `ir a posición aleatoria`].
+2. Objeto «enemigo» que se mueve solo: `por siempre` [`mover 5 pasos`, `si toca un borde, rebotar`].
+3. Si el enemigo toca al personaje: `si ¿tocando [personaje]? entonces` → `decir ¡Ay!` → `esperar 1 segundos`.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su premio y su enemigo. Pregunta a la clase: «¿Por qué el `si` tiene que ir dentro de un `por siempre`?»
+2. Frase clave: **«SI toca, ENTONCES pasa algo.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.condicion|Si… entonces]]
+4. Se guarda el juego en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **Premio y enemigo**
@@ -583,17 +634,35 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S12 · Puntos, vidas y final `PC`
 
 - **Qué aprenden:** usar variables y condiciones para ganar y perder.
+- **Hoy:** añaden a su videojuego puntos, vidas y un final: se gana al llegar a 10 puntos y se pierde al quedarse sin vidas.
+- **Necesitas:** portátiles con los juegos de la S11, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** el premio suma puntos, el enemigo quita vidas, y el juego termina con «¡Has ganado!» o «Has perdido».
 - **Para proyectar:** [[P:variables.juego|Variables · juego de cálculo]] (puntos, vidas y el final)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Para repasar:** condición
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
-**Pasos:**
-1. Variables *puntos* y *vidas*. Al empezar: **dar a puntos el valor 0** y **dar a vidas el valor 3**.
-2. En el premio, dentro del **si**: **sumar a puntos 1**.
-3. En el enemigo, dentro del **si**: **sumar a vidas -1**.
-4. Final: **por siempre** [**si (vidas = 0) entonces** → **decir Has perdido** → **detener todos**] y otro **si (puntos = 10) entonces** → **decir ¡Has ganado!** → **detener todos**.
+**Antes de la clase:**
+- Abre Scratch en los portátiles, con los juegos guardados de la S11.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Ten abierta la solución de referencia, por si hay que enseñar una parte. [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+
+**Empezamos (10 min):**
+1. Proyecta «Variables · juego de cálculo»: puntos, vidas y el final. [[P:variables.juego|Variables · juego de cálculo]] · [[V:variable|Variable]]
+2. Explica la pieza de hoy: el juego cuenta puntos y vidas, y termina al ganar o al perder.
+
+**A trabajar (25 min):**
+1. Variables *puntos* y *vidas*. Al empezar: `dar a puntos el valor 0` y `dar a vidas el valor 3`.
+2. En el premio, dentro del `si`: `sumar a puntos 1`.
+3. En el enemigo, dentro del `si`: `sumar a vidas -1`.
+4. Final: `por siempre` [`si (vidas = 0) entonces` → `decir Has perdido` → `detener todos`] y otro `si (puntos = 10) entonces` → `decir ¡Has ganado!` → `detener todos`.
+5. Pregunta: «Si el enemigo sigue tocando al personaje, ¿cuántas vidas se pierden?». Que lo prueben.
+
+**Cerramos (10 min):**
+1. Una pareja enseña cómo se gana y cómo se pierde en su juego. Pregunta a la clase: «¿Qué variable decide cuándo se gana y cuál cuándo se pierde?»
+2. Frase clave: **«Las variables cuentan; las condiciones deciden.»**
+3. Se guarda el juego en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **Puntos, vidas y final**
@@ -612,17 +681,32 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S13 · Eventos múltiples: mensajes y niveles `PC`
 
 - **Qué aprenden:** que un objeto avise a los demás con un mensaje (un evento que se envía).
+- **Hoy:** añaden un segundo nivel a su videojuego: al llegar a 5 puntos se envía un mensaje, cambia el fondo y el enemigo va más rápido.
+- **Necesitas:** portátiles con los juegos de la S12, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** al llegar a 5 puntos cambia el fondo y el enemigo va más rápido, y saben decir quién envía el mensaje y quién reacciona.
 - **Para proyectar:** [[P:mensajes|Mensajes · en Scratch]] (antes de programar: a quién llega un mensaje y quién reacciona)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Eventos»)
 - **Archivo de Scratch:** [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
 - **Para repasar:** variable
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
 
-**Pasos:**
-1. En la pizarra, con [[P:mensajes|Mensajes]]: antes de pulsar «Robi llega a 5 puntos», la clase marca qué objetos reaccionarán. El mensaje llega a todos; reacciona quien tiene «al recibir nivel 2».
-2. Al llegar a 5 puntos: **enviar nivel 2** (en el desplegable del bloque, «Nuevo mensaje» y se llama *nivel 2*).
-3. En el escenario: **al recibir nivel 2** → **cambiar fondo a…**.
-4. En el enemigo: **al recibir nivel 2** → más rápido (**mover 10 pasos** en vez de 5).
+**Antes de la clase:**
+- Abre Scratch en los portátiles, con los juegos guardados de la S12.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]] (fila «Eventos»)
+- Abre una vez la solución de referencia para ver los dos niveles. [[S:4-S13-videojuego-completo-solucion.sb3|Videojuego completo · solución de referencia]]
+
+**Empezamos (10 min):**
+1. En la pizarra, con «Mensajes»: antes de pulsar «Robi llega a 5 puntos», la clase marca qué objetos reaccionarán. El mensaje llega a todos; reacciona quien tiene «al recibir nivel 2». [[P:mensajes|Mensajes · en Scratch]] · [[V:mensaje|Mensajes]] · [[V:evento-superior|Evento]]
+
+**A trabajar (25 min):**
+1. Al llegar a 5 puntos: `enviar nivel 2` (en el desplegable del bloque, «Nuevo mensaje» y se llama *nivel 2*).
+2. En el escenario: `al recibir nivel 2` → `cambiar fondo a…`.
+3. En el enemigo: `al recibir nivel 2` → más rápido (`mover 10 pasos` en vez de 5).
+
+**Cerramos (10 min):**
+1. Una pareja enseña su cambio de nivel. Pregunta a la clase: «¿Quién envía el mensaje y quién reacciona?»
+2. Frase clave: **«Un mensaje es un evento que se envía.»**
+3. Se guarda el juego en el ordenador, con el nombre de la pareja: en la S14 lo prueban otras parejas.
 
 **Opción más sencilla:** solo cambiar de fondo al llegar a 5 puntos, sin mensajes.
 
@@ -643,14 +727,29 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S14 · Playtesting: probamos los juegos `PC`
 
 - **Qué aprenden:** probar juegos de otros y recibir comentarios para mejorar.
+- **Hoy:** cada pareja prueba los videojuegos de otras dos parejas con la ficha de playtesting y elige qué arreglar del suyo.
+- **Necesitas:** portátiles con los juegos de cada pareja abiertos y la ficha de playtesting (dos por pareja).
+- **Lo han conseguido si:** cada pareja ha probado dos juegos con la ficha, y ha elegido y empezado a arreglar un bicho y una mejora del suyo.
 - **Material listo:** [[M:M17|Ficha de playtesting]]
 - **Para repasar:** depurar
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
-**Pasos:**
+**Antes de la clase:**
+- Abre Scratch en los portátiles, con el juego de cada pareja.
+- Imprime la ficha de playtesting, dos por pareja (vienen cuatro por hoja). [[M:M17|Ficha de playtesting]] (hoja 2)
+
+**Empezamos (10 min):**
+1. Explica cómo será la prueba: cada pareja juega a 2 juegos de otras parejas, 8 minutos cada uno, y rellena una ficha por juego. [[M:M17|Ficha de playtesting]]
+
+**A trabajar (25 min):**
 1. Cada pareja prueba 2 juegos de otras parejas (8 minutos cada uno) y rellena la ficha.
 2. Vuelven, leen sus fichas y eligen una mejora y un bicho para arreglar.
-3. Últimos 10 minutos: lo arreglan.
+
+**Cerramos (10 min):**
+1. Últimos 10 minutos: lo arreglan.
+2. Antes de guardar, pregunta a la clase: «¿Qué bicho os han encontrado que vosotros no habíais visto?»
+3. Frase clave: **«Otros ojos encuentran otros bichos.»**
+4. Se guarda el juego con el nombre de la pareja, y las fichas también: en la S15 se usan para arreglar.
 
 - **Frase clave:** «Otros ojos encuentran otros bichos.»
 - **Si va rápido:** probar un tercer juego.
@@ -660,16 +759,32 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S15 · Arreglamos y mejoramos · Navegamos seguros `PC` `SEG`
 
 - **Qué aprenden:** usar lo que dijeron otros en el playtesting para arreglar bichos y mejorar el juego; tres normas para navegar seguros.
-- **Prepara antes:** las fichas de playtesting (M17) de la S14, devueltas a cada pareja.
+- **Hoy:** aprenden tres normas para navegar seguros y comprueban un dato en dos webs; después arreglan un bicho y hacen una mejora en su videojuego con lo que les dijeron en el playtesting.
+- **Necesitas:** la pizarra digital, portátiles con los juegos de cada pareja y las fichas de playtesting de la S14.
+- **Lo han conseguido si:** saben decir las tres normas para navegar seguros, y otra pareja ha comprobado que su bicho está arreglado.
 - **Material listo:** [[M:M17|Fichas de playtesting]] · [[M:M20|Chuleta de bloques de Scratch]]
 - **Para repasar:** depurar
-- **Minuto de uso responsable (ampliado, en el paso 4):** «No todo lo que sale en internet es verdad: antes de creerlo, lo busco en otra fuente.» ¿Cómo comprobamos si un dato es cierto?
 
-**Pasos:**
+**Antes de la clase:**
+- Devuelve a cada pareja sus fichas de playtesting de la S14. [[M:M17|Fichas de playtesting]]
+- Prepara una tira de papel por pareja.
+- Abre Scratch en los portátiles, con los juegos guardados.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de bloques de Scratch]]
+
+**Empezamos (10 min):**
+1. «No todo lo que sale en internet es verdad: antes de creerlo, lo busco en otra fuente.» ¿Cómo comprobamos si un dato es cierto?
+2. **Navegación segura:** Tres normas: no todo lo que sale en internet es verdad; antes de creerlo, lo busco en otra fuente fiable; si algo me incomoda, cierro y aviso a un adulto.
+3. Ejemplo: buscar juntos en el display un dato de mates (la altura de la torre más alta de Madrid) en dos webs y comprobar si coincide.
+
+**A trabajar (25 min):**
 1. **Plan de arreglo (5 minutos):** cada pareja lee sus fichas y escribe en una tira de papel: 1 bicho que arreglar y 1 mejora. Primero el bicho.
 2. **Arreglar (20 minutos):** programan. Si no encuentran el bicho, usan las tres preguntas: «¿Qué quería que pasara? ¿Qué pasa? ¿En qué bloque empieza a fallar?».
-3. **Comprobar (5 minutos):** otra pareja prueba solo el arreglo y dice si funciona.
-4. **Navegación segura (minuto ampliado, 10 minutos):** Tres normas: no todo lo que sale en internet es verdad; antes de creerlo, lo busco en otra fuente fiable; si algo me incomoda, cierro y aviso a un adulto. Ejemplo: buscar juntos en el display un dato de mates (la altura de la torre más alta de Madrid) en dos webs y comprobar si coincide.
+
+**Cerramos (10 min):**
+1. **Comprobar (5 minutos):** otra pareja prueba solo el arreglo y dice si funciona.
+2. Pregunta a la clase: «¿En qué bloque empezaba a fallar vuestro juego?»
+3. Frase clave: **«Primero arreglo, después mejoro.»**
+4. Se guarda el juego en el ordenador, con el nombre de la pareja: en la S16 es la feria.
 
 **Pistas y soluciones:**
 1. **Pantalla de instrucciones** (si va rápido)
@@ -685,14 +800,28 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S16 · Feria de videojuegos `PC`
 
 - **Qué aprenden:** presentar el videojuego, jugar a los de otros y recibir su opinión.
+- **Hoy:** dan los últimos retoques a su videojuego, lo presentan en la feria, juegan a los de los demás y votan el favorito.
+- **Necesitas:** portátiles con los juegos de cada pareja, la pizarra digital para la votación y la rúbrica del trimestre.
+- **Lo han conseguido si:** cada pareja ha presentado su juego y ha jugado a los de otras, y han votado el favorito.
 - **Para proyectar:** [[P:votaciones.mis|Votaciones y gráfico]] (con «Mis opciones», para votar el videojuego favorito)
 - **Material listo:** [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** «Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube.» ¿Por qué hay que pedir permiso antes de hacer una foto?
 
-**Pasos:**
+**Antes de la clase:**
+- Abre Scratch en los portátiles, con los juegos guardados.
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
 1. 10 minutos: últimos retoques y guardar.
-2. 25 minutos: media clase presenta y la otra juega; después se cambia.
-3. 10 minutos: votación en la pizarra y autoevaluación.
+
+**A trabajar (25 min):**
+1. 25 minutos: media clase presenta y la otra juega; después se cambia.
+2. Mientras juegan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. 10 minutos: votación en la pizarra y autoevaluación. [[P:votaciones.mis|Votaciones y gráfico]]
+2. Pregunta a la clase: «¿Qué juego ha ganado? ¿Qué es lo que más os ha gustado de él?»
+3. Frase clave: **«Un juego está terminado cuando otros pueden jugarlo.»**
 
 - **Frase clave:** «Un juego está terminado cuando otros pueden jugarlo.»
 - **Si va rápido:** añadir una pantalla de instrucciones al juego.
@@ -715,15 +844,30 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S17 · Makey Makey: circuitos y teclas `ROB` `SEG`
 
 - **Qué aprenden:** repasar cómo funciona un circuito y cómo Makey Makey hace de teclado.
+- **Hoy:** repasan las normas del kit y el circuito, convierten trozos de aluminio y plastilina en teclas para Scratch y mueven su personaje del segundo trimestre con plastilina.
+- **Necesitas:** la pizarra digital, un kit Makey Makey y un portátil con Scratch por grupo, papel de aluminio y plastilina.
+- **Lo han conseguido si:** al tocar cada trozo suena su sonido, y el personaje del grupo se mueve con las bolas de plastilina.
 - **Para proyectar:** [[P:circuito|¿Conduce la electricidad?]]
 - **Material listo:** [[M:M22|Registro «¿qué conduce?»]]
 - **Para repasar:** circuitos
-- **Minuto de uso responsable:** nada se enchufa a la corriente, agua lejos, pinzas con cuidado.
 
-**Pasos:**
-1. Repaso con el proyectable del circuito (5 minutos).
-2. Conectan a Scratch: **al presionar tecla espacio** → sonido; **al presionar tecla flecha arriba** → otro sonido. Cada tecla, a un trozo de aluminio o de plastilina.
-3. Reto: mover su personaje del T2 con 4 bolas de plastilina.
+**Antes de la clase:**
+- Prepara un kit (placa, cable USB y pinzas) y un portátil con Scratch por grupo, con el videojuego del segundo trimestre guardado.
+- Reúne papel de aluminio y plastilina.
+- Si quieres repasar también qué conduce, imprime el registro. [[M:M22|Registro «¿qué conduce?»]] (hoja 2)
+
+**Empezamos (10 min):**
+1. Normas del kit: nada se enchufa a la corriente, agua lejos, pinzas con cuidado.
+2. Repaso con el proyectable del circuito (5 minutos). [[P:circuito|¿Conduce la electricidad?]] · [[V:entrada-salida-superior|Entrada y salida]]
+
+**A trabajar (25 min):**
+1. Conectan a Scratch: `al presionar tecla espacio` → sonido; `al presionar tecla flecha arriba` → otro sonido. Cada tecla, a un trozo de aluminio o de plastilina.
+2. Reto: mover su personaje del T2 con 4 bolas de plastilina.
+
+**Cerramos (10 min):**
+1. Un grupo mueve su personaje con la plastilina. Pregunta a la clase: «¿Qué tecla "pulsa" cada bola de plastilina?»
+2. Frase clave: **«El mando es un teclado inventado.»**
+3. Se guarda el proyecto con el nombre del grupo, y el kit vuelve completo a su caja.
 
 - **Frase clave:** «El mando es un teclado inventado.»
 - **Si va rápido:** 4 teclas con 4 sonidos distintos y un personaje que se mueve.
@@ -733,14 +877,28 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S18 · Planificamos el juego en equipo `PC`
 
 - **Qué aprenden:** planificar en equipo un juego educativo pensando en quien lo va a usar.
+- **Hoy:** cada grupo recibe un encargo, un juego para enseñar algo a los de 2º, elige camino y lo planifica en la hoja de proyecto.
+- **Necesitas:** la hoja de proyecto (una por grupo) y las situaciones oficiales de Clic and Play.
+- **Lo han conseguido si:** la hoja de cada grupo dice qué enseña el juego, cómo se juega, sus botones y quién hace qué, y cumple los requisitos.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · situaciones oficiales de Clic and Play (Recursos oficiales)
 - **Para repasar:** descomponer
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
-**Pasos:**
+**Antes de la clase:**
+- Imprime la hoja de proyecto, una por grupo. [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] (hoja 3)
+- Ten a mano las situaciones oficiales de Clic and Play (ver Recursos oficiales).
+
+**Empezamos (10 min):**
 1. Presenta el encargo: «Un juego para enseñar algo a los de 2º».
-2. Cada grupo elige camino (fácil o propio) y rellena la hoja: qué enseña, cómo se juega, botones, reparto de tareas.
-3. Requisitos: al menos **4 botones**, **una variable** y **un si… si no…**.
+2. Requisitos: al menos **4 botones**, **una variable** y **un si… si no…**.
+
+**A trabajar (25 min):**
+1. Cada grupo elige camino (fácil o propio) y rellena la hoja: qué enseña, cómo se juega, botones, reparto de tareas. [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
+
+**Cerramos (10 min):**
+1. Un grupo cuenta su juego. Pregunta a la clase: «¿Qué aprendería un niño de 2º con este juego?»
+2. Frase clave: **«Pensamos en quien va a jugar.»**
+3. Se guardan las hojas: en la S19 se construye el mando.
 
 - **Frase clave:** «Pensamos en quien va a jugar.»
 - **Si va rápido:** un modo difícil además del modo fácil.
@@ -750,15 +908,29 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S19 · Construimos el mando `ROB`
 
 - **Qué aprenden:** fabricar un mando con cartón y aluminio que funcione como teclado.
-- **Prepara antes:** M22 hoja 1 por grupo, cartón, papel de aluminio y celo.
+- **Hoy:** cada grupo fabrica el mando de su juego con la plantilla, cartón y aluminio, empieza el programa y prueba la conexión.
+- **Necesitas:** la plantilla de mando (una por grupo), cartón, papel de aluminio, celo, un kit Makey Makey y un portátil por grupo.
+- **Lo han conseguido si:** los botones del mando no se tocan entre sí y la prueba de conexión funciona.
 - **Material listo:** [[M:M22|Plantilla de mando Makey Makey]]
 - **Para repasar:** circuitos
 - **Minuto de uso responsable:** «Los cables se sacan desde el enchufe, no tirando del cable.» ¿Qué le puede pasar al cable si tiramos de él?
 
-**Pasos:**
+**Antes de la clase:**
+- Imprime la plantilla de mando, una por grupo. [[M:M22|Plantilla de mando Makey Makey]] (hoja 1)
+- Reúne cartón, papel de aluminio y celo.
+- Prepara un kit y un portátil por grupo.
+
+**Empezamos (10 min):**
+1. Enseña la plantilla de mando y reparte el material: cartón, papel de aluminio y celo. [[M:M22|Plantilla de mando Makey Makey]]
+
+**A trabajar (25 min):**
 1. Pegan la plantilla en un cartón y cubren cada botón con aluminio, con una tira hasta el borde para la pinza. Los botones no se tocan entre sí.
-2. Mientras, los programadores empiezan en Scratch.
-3. Prueba de conexión al final.
+2. Mientras, otra parte del grupo empieza en Scratch.
+
+**Cerramos (10 min):**
+1. Prueba de conexión al final.
+2. Frase clave: **«Cada botón necesita su camino y su tierra.»**
+3. Se guarda el programa con el nombre del grupo, y el mando y el kit, completos, en su caja.
 
 - **Frase clave:** «Cada botón necesita su camino y su tierra.»
 - **Si va rápido:** un botón extra con forma de figura geométrica (triángulo, círculo).
@@ -768,14 +940,30 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S20 · Programamos y conectamos `PC` `ROB`
 
 - **Qué aprenden:** programar un evento por botón y usar una variable y una condición en el juego.
+- **Hoy:** programan un evento para cada botón del mando, con una variable de puntos y una condición, y prueban el juego por partes.
+- **Necesitas:** los mandos de la S19, un kit Makey Makey y un portátil con Scratch por grupo, y la chuleta de bloques.
+- **Lo han conseguido si:** cada botón funciona con el mando, el marcador suma cuando se acierta, y el juego entero funciona.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Para repasar:** evento · variable · condición
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
-**Pasos:**
+**Antes de la clase:**
+- Prepara los mandos de la S19, un kit y un portátil por grupo.
+- Ten a mano la chuleta de bloques, una por grupo. [[M:M20|Chuleta de Scratch]]
+
+**Empezamos (10 min):**
+1. Explica la misión: cada botón, un evento, y una variable y una condición para saber si se acierta.
+2. Pregunta: «El mando solo pulsa teclas. ¿Cómo sabe el juego qué botón es la respuesta buena?»
+
+**A trabajar (25 min):**
 1. Cada botón, un evento.
 2. La variable y la condición: en un quiz, **si (respuesta correcta) entonces sumar a puntos 1 / si no decir Inténtalo otra vez**.
 3. Probar cada botón por separado y después el juego entero.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su juego. Pregunta a la clase: «¿En qué orden lo habéis probado? ¿Por qué no todo a la vez?»
+2. Frase clave: **«Pruebo cada parte y luego el todo.»**
+3. Se guarda el programa con el nombre del grupo, y el mando y el kit, completos, en su caja.
 
 **Pistas y soluciones:**
 1. **Botones y quiz**
@@ -794,16 +982,31 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S21 · Optimizamos `PC`
 
 - **Qué aprenden:** mejorar el programa para que sea más corto, más claro y fácil de cambiar.
+- **Hoy:** mejoran entre todos un programa con un trozo repetido y después cada grupo hace lo mismo con su juego: menos bloques y nombres claros.
+- **Necesitas:** la pizarra digital, los juegos de cada grupo en los portátiles y la chuleta de bloques.
+- **Lo han conseguido si:** cada grupo sabe cuántos bloques tenía antes y cuántos después, y su juego funciona igual.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:balanza.8|Ordenar con la balanza]]
 - **En tablets o portátiles:** [[T:balanza|Ordenar con la balanza]] (niveles 1 y 2: optimizar es hacerlo con menos pesadas)
 - **Material listo:** [[M:M20|Chuleta de Scratch]] (fila «Control»)
 - **Para repasar:** bucle
 - **Minuto de uso responsable:** «Guardo mi proyecto con un nombre que sepa encontrar.» ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
-**Pasos:**
-1. En la pizarra, un programa con el mismo trozo copiado 4 veces. Entre todos lo mejoran con un **repetir**, o con un **bloque propio** (Mis bloques → Crear un bloque).
+**Antes de la clase:**
+- Prepara en la pizarra un programa con el mismo trozo copiado 4 veces.
+- Ten a mano la chuleta de bloques, una por grupo. [[M:M20|Chuleta de Scratch]] (fila «Control»)
+
+**Empezamos (10 min):**
+1. En la pizarra, un programa con el mismo trozo copiado 4 veces. Entre todos lo mejoran con un `repetir`, o con un **bloque propio** (Mis bloques → Crear un bloque). [[V:optimizar-superior|Optimizar]]
+
+**A trabajar (25 min):**
+1. Cada grupo hace lo mismo con su juego.
 2. Borrar bloques sueltos, ordenar (clic derecho → Ordenar bloques), poner nombres claros a variables y mensajes.
 3. Cada grupo cuenta sus bloques antes y después.
+
+**Cerramos (10 min):**
+1. Un grupo cuenta cuántos bloques tenía antes y cuántos tiene ahora. Pregunta a la clase: «Si hay que cambiar el trozo repetido, ¿cuántos sitios hay que tocar ahora?»
+2. Frase clave: **«Un buen programa lo entiende cualquiera.»**
+3. Se guarda el juego con el nombre del grupo.
 
 **Opción más sencilla:** solo repetir, borrar lo que sobra y ordenar (sin bloques propios).
 
@@ -823,12 +1026,27 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S22 · Probamos con «usuarios» `PC`
 
 - **Qué aprenden:** probar el juego como lo haría un usuario real y mejorarlo con lo que observan.
+- **Hoy:** cada grupo prueba el juego de otro como si fuera un niño de 2º, rellena la ficha y después arregla el suyo.
+- **Necesitas:** los juegos con sus mandos y kits, y la ficha de playtesting (una por grupo).
+- **Lo han conseguido si:** cada grupo ha probado otro juego con la ficha y ha arreglado algo del suyo con lo que le han dicho.
 - **Material listo:** [[M:M17|Ficha de playtesting]]
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
-**Pasos:**
+**Antes de la clase:**
+- Prepara los juegos de cada grupo con su mando y su kit.
+- Imprime la ficha de playtesting, una por grupo (vienen cuatro por hoja). [[M:M17|Ficha de playtesting]] (hoja 2)
+
+**Empezamos (10 min):**
+1. Explica la prueba: cada grupo juega al juego de otro como si fuera de 2º y apunta en la ficha lo que le cuesta. [[M:M17|Ficha de playtesting]]
+
+**A trabajar (25 min):**
 1. Cada grupo prueba el juego de otro «como si fuera de 2º» y rellena la ficha.
 2. Arreglos.
+
+**Cerramos (10 min):**
+1. Un grupo cuenta qué ha cambiado tras la prueba. Pregunta a la clase: «¿Qué le costaría a un niño de 2º de vuestro juego?»
+2. Frase clave: **«Diseñamos para quien va a jugar.»**
+3. Se guarda el juego con el nombre del grupo, y el mando y el kit, completos, en su caja.
 
 - **Frase clave:** «Diseñamos para quien va a jugar.»
 - **Si va rápido:** una segunda ronda de pruebas tras los arreglos.
@@ -838,12 +1056,26 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S23 · Presentamos y pensamos en nuestra huella digital `PC` `SEG`
 
 - **Qué aprenden:** presentar el proyecto y reflexionar sobre por qué cuidamos lo que se publica.
+- **Hoy:** hablan de la huella digital (por qué no hacemos fotos de caras) y cada grupo presenta su juego: qué enseña, cómo funciona, un bicho que arreglaron y qué optimizaron.
+- **Necesitas:** los juegos con sus mandos y kits, y la rúbrica del trimestre.
+- **Lo han conseguido si:** saben decir por qué no se suben fotos de caras, y cada grupo ha presentado su juego funcionando.
 - **Material listo:** [[M:M19|Rúbrica]]
-- **Minuto de uso responsable (ampliado, en el paso 2):** «Lo que subo a internet se queda.» ¿Por qué no hacemos fotos de caras?
 
-**Pasos:**
+**Antes de la clase:**
+- Prepara los juegos de cada grupo con su mando y su kit.
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. **Huella digital:** «¿Por qué no hacemos fotos de caras?». Lo que se sube a internet se queda y lo pueden ver personas que no conocemos. Las redes sociales tienen una edad mínima legal por algo.
+
+**A trabajar (25 min):**
 1. Presentación de cada grupo (3 minutos): qué enseña el juego, cómo funciona, un bicho que arreglaron y qué optimizaron.
-2. **Huella digital (minuto ampliado):** «¿Por qué no hacemos fotos de caras?». Lo que se sube a internet se queda y lo pueden ver personas que no conocemos. Las redes sociales tienen una edad mínima legal por algo.
+2. Mientras presentan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Qué juego enseñaría mejor a los de 2º? ¿Por qué?»
+2. Frase clave: **«Lo que subo a internet se queda.»**
+3. Los juegos se guardan para la S24, y cada kit vuelve completo a su caja.
 
 - **Frase clave:** «Lo que subo a internet se queda.»
 - **Si va rápido:** explicar con datos: cuántos bloques antes y después de optimizar.
@@ -854,12 +1086,41 @@ Vocabulario de programación nuevo en 4º (las palabras de cursos anteriores se 
 ### S24 · Muestra final y cierre del curso `PC`
 
 - **Qué aprenden:** compartir el juego y valorar lo aprendido en el curso.
+- **Hoy:** juegan a los juegos de los demás (propuesta A) o reciben a parejas de 2º (propuesta B), y cierran el curso con la autoevaluación.
+- **Necesitas:** los juegos con sus mandos y kits, los pasaportes y la autoevaluación.
+- **Lo han conseguido si:** cada grupo ha enseñado su juego a otros y cada alumno completa «Esta vez aprendí… y el curso que viene quiero…».
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
 - **Minuto de uso responsable:** «Cuento el material antes de guardarlo.» ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
-**Opción A · En el aula:** los grupos juegan a los juegos de los demás.
+**Antes de la clase:**
+- Prepara los juegos de cada grupo con su mando y su kit.
+- Ten a mano los pasaportes, uno por alumno. [[M:M15|Pasaporte]]
+- Imprime la autoevaluación. [[M:M19|Autoevaluación]] (hoja 3)
+- Para la propuesta B, acuerda la visita con la tutora o el tutor de 2º.
 
-**Opción B · Con 2º:** una pareja de 2º visita a cada grupo y juega.
+**Opción A · En el aula**
+
+**Empezamos (10 min):**
+1. Explica la muestra: cada grupo deja su juego listo y los grupos juegan a los de los demás.
+
+**A trabajar (25 min):**
+1. Los grupos juegan a los juegos de los demás.
+
+**Opción B · Con 2º**
+
+**Empezamos (10 min):**
+1. Explica la visita: una pareja de 2º va a visitar a cada grupo.
+
+**A trabajar (25 min):**
+1. Una pareja de 2º visita a cada grupo y juega.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Qué juego os ha gustado más? ¿Por qué?»
+2. Autoevaluación: «Esta vez aprendí… y el curso que viene quiero…».
+3. Frase clave: **«Lo que aprendo, lo puedo enseñar.»**
+4. Cada kit vuelve completo a su caja.
 
 - **Frase clave:** «Lo que aprendo, lo puedo enseñar.»
 - **Si va rápido:** hacer el gráfico de votos y leerlo en voz alta.

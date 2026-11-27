@@ -489,16 +489,31 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S9 · Seguridad digital y primer contacto con Scratch `SEG` `PC`
 
 - **Qué aprenden:** cuidar su privacidad en internet y conocer las partes de Scratch.
+- **Hoy:** hablan de contraseñas y de los datos que no se escriben en internet, y hacen su primer programa en Scratch: el gato habla al pulsar la bandera.
+- **Necesitas:** la pizarra digital y portátiles con Scratch, uno por pareja, con la chuleta de bloques.
+- **Lo han conseguido si:** saben decir qué datos no escriben nunca en internet, y al pulsar la bandera su gato dice la frase que han escrito.
 - **Para proyectar:** [[P:contrasenas|Contraseñas seguras]]
 - **Material listo:** [[M:M20|Chuleta de bloques de Scratch]] · [[M:M26|Póster «Evento»]]
 - **Para repasar:** evento
-- **Minuto de uso responsable (10 minutos, con el proyectable):** «¿Para qué sirve una contraseña?». Proyecta el juego «¿cuál es más segura?» y comentad los pares. Datos que nunca escribimos en internet: nombre completo, dirección, teléfono, colegio, fotos. Hoy trabajamos sin cuenta y sin publicar.
 
-**Pasos en Scratch:**
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de bloques de Scratch]]
+- Cuelga el póster. [[M:M26|Póster «Evento»]]
+
+**Empezamos (10 min):**
+1. «¿Para qué sirve una contraseña?». Proyecta el juego «¿cuál es más segura?» y comentad los pares. [[P:contrasenas|Contraseñas seguras]]
+2. Datos que nunca escribimos en internet: nombre completo, dirección, teléfono, colegio, fotos. Hoy trabajamos sin cuenta y sin publicar.
+
+**A trabajar (25 min):**
 1. En la pizarra, enseña las 4 zonas: escenario, objetos, bloques (por colores) y zona de programar.
-2. Arrastra **al hacer clic en 🏴** (Eventos) y engancha **decir ¡Hola! durante 2 segundos** (Apariencia). Pulsa la bandera.
+2. Arrastra `al hacer clic en 🏴` (Eventos) y engancha `decir ¡Hola! durante 2 segundos` (Apariencia). Pulsa la bandera.
 3. Las parejas lo copian y cambian el texto.
-4. Guardar: *Archivo > Guardar en tu ordenador*, con el nombre de la pareja.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su gato. Pregunta a la clase: «¿Qué bloque hace que empiece el programa?»
+2. Frase clave: **«Mi contraseña y mis datos son míos.»**
+3. Guardar: *Archivo > Guardar en tu ordenador*, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **Dos frases y cambio de disfraz** (si va rápido)
@@ -514,17 +529,34 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S10 · Moverse con la bandera y con las teclas `PC`
 
 - **Qué aprenden:** mover un personaje con bloques y con el teclado (eventos).
+- **Hoy:** mueven el gato con la bandera y con las flechas del teclado, y descubren qué son la x y la y del escenario.
+- **Necesitas:** portátiles con Scratch, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** el gato de cada pareja se mueve con las flechas, y saben decir qué número cambia al ir a los lados (la x) y al subir o bajar (la y).
 - **Para proyectar:** [[P:eventos|Eventos: ¿qué programa empieza?]] · [[P:coordenadas|Coordenadas del escenario]] · [[P:coordenadas.bloques|Coordenadas · con bloques]] · [[P:flota|Hundir la flota]]
 - **Preguntas de salida:** [[P:salida.evento|Eventos]]
 - **En tablets o portátiles:** [[T:coordenadas|Coordenadas]] (niveles 1 y 2, para quien termine: tocar y leer puntos del 0 al 6)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
-**Pasos (ejemplo en la pizarra):**
-1. **al hacer clic en 🏴** → **mover 10 pasos**. Pulsa varias veces. Cambia 10 por 50.
-2. Con teclas: **al presionar tecla flecha derecha** → **mover 10 pasos**; flecha izquierda → **mover -10 pasos**.
-3. Proyecta «Coordenadas del escenario»: al pasar el dedo hacia los lados cambia la x; hacia arriba y abajo, la y. Después, en «Con bloques», ejecutad «sumar a x» y «sumar a y» y predecid dónde acaba el gato.
-4. Reto: que el gato se mueva también arriba y abajo con **sumar a y 10** y **sumar a y -10**.
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+
+**Empezamos (10 min):**
+1. Ejemplo en la pizarra: `al hacer clic en 🏴` → `mover 10 pasos`. Pulsa varias veces. Cambia 10 por 50. [[V:evento-superior|Evento]]
+2. Con teclas: `al presionar tecla flecha derecha` → `mover 10 pasos`; flecha izquierda → `mover -10 pasos`.
+
+**A trabajar (25 min):**
+1. Las parejas copian los dos ejemplos y los prueban.
+2. Proyecta «Coordenadas del escenario»: al pasar el dedo hacia los lados cambia la x; hacia arriba y abajo, la y. [[P:coordenadas|Coordenadas del escenario]] · [[V:coordenadas|Coordenadas (x, y)]]
+3. Después, en «Con bloques», ejecutad «sumar a x» y «sumar a y» y predecid dónde acaba el gato. [[P:coordenadas.bloques|Coordenadas · con bloques]]
+4. Reto: que el gato se mueva también arriba y abajo con `sumar a y 10` y `sumar a y -10`.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su gato moviéndose con las flechas. Pregunta a la clase: «¿Por qué cada tecla necesita su propio programa?»
+2. Frase clave: **«Cada evento empieza su propio programa.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.evento|Eventos]]
+4. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **Arriba y abajo**
@@ -543,6 +575,9 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S11 · Repetir: bailes y figuras `PC`
 
 - **Qué aprenden:** el bloque **repetir** hace varias veces lo que tiene dentro; **por siempre** no para nunca.
+- **Hoy:** usan el bloque repetir para que el gato baile (propuesta A) o para dibujar figuras con el lápiz (propuesta B).
+- **Necesitas:** portátiles con Scratch, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** el gato baila con un repetir (propuesta A) o el cuadrado se cierra (propuesta B), y saben decir qué bloques van dentro del repetir.
 - **Para proyectar:** [[P:poligonos|Polígonos]] (para la opción B) · [[P:laberinto.4|Laberinto · escalera]]
 - **Preguntas de salida:** [[P:salida.bucle|Bucles]]
 - **En tablets o portátiles:** [[T:robot|Programa al robot]] (niveles 4 a 6, para quien termine: repetir)
@@ -551,17 +586,39 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 - **Para repasar:** evento
 - **Minuto de uso responsable:** «Al ordenador, manos limpias y nada de comida ni bebida cerca.» ¿Qué podría pasar si se derrama agua sobre el teclado?
 
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Abre una vez el archivo de solución de la propuesta que vayas a hacer, para verla terminada. [[S:3-S11-baile-solucion.sb3|El baile · solución]] · [[S:3-S11-figuras-solucion.sb3|Figuras con el lápiz · solución (teclas 3, 4 y 6)]]
+
 **Opción A · El gato baila**
-1. **al hacer clic en 🏴** → **repetir 10** → dentro: **siguiente disfraz** y **esperar 0.2 segundos**. ¡El gato camina!
-2. Añadid **mover 10 pasos** dentro del repetir.
-3. Reto: que baile con **girar ↻ 15 grados** y **iniciar sonido Miau**.
+
+**Empezamos (10 min):**
+1. Presenta el bloque `repetir`: hace varias veces lo que tiene dentro; `por siempre` no para nunca. [[V:bucle|Bucle]]
+2. Ejemplo en la pizarra: `al hacer clic en 🏴` → `repetir 10` → dentro: `siguiente disfraz` y `esperar 0.2 segundos`. ¡El gato camina!
+
+**A trabajar (25 min):**
+1. Las parejas copian el ejemplo y lo prueban.
+2. Añadid `mover 10 pasos` dentro del repetir.
+3. Reto: que baile con `girar ↻ 15 grados` y `iniciar sonido Miau`.
 
 **Opción B · Figuras con el lápiz**
-1. Proyecta «Polígonos»: se ve el programa exacto que dibuja cada figura.
-2. En Scratch: extensión **Lápiz** → **borrar todo** → **bajar lápiz** → **repetir 4** [**mover 100 pasos**, **girar ↻ 90 grados**].
-3. Reto: triángulo (giro 120) o hexágono (6 veces, giro 60).
 
-- **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
+**Empezamos (10 min):**
+1. Presenta el bloque `repetir`: hace varias veces lo que tiene dentro; `por siempre` no para nunca. [[V:bucle|Bucle]]
+2. Proyecta «Polígonos»: se ve el programa exacto que dibuja cada figura. [[P:poligonos|Polígonos]]
+
+**A trabajar (25 min):**
+1. En Scratch: extensión **Lápiz** → `borrar todo` → `bajar lápiz` → `repetir 4` [`mover 100 pasos`, `girar ↻ 90 grados`].
+2. Reto: triángulo (giro 120) o hexágono (6 veces, giro 60).
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Una pareja enseña su programa. Pregunta a la clase: «¿Qué bloques van dentro del repetir y cuáles fuera?»
+2. Frase clave: **«Repetir hace el programa más corto.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.bucle|Bucles]]
+4. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **El baile con giro y sonido** (opción A)
@@ -576,6 +633,7 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
     - *Error frecuente:* girar 60 en el triángulo. 60° es el ángulo de dentro del triángulo; el gato tiene que girar 120°.
 
 - **Frase clave:** «Repetir hace el programa más corto.»
+- **Otra opción en la pizarra:** [Blockly Games · Laberinto](https://blockly.games/maze?lang=es) en la pizarra, con la clase decidiendo cada bloque.
 - **Si va rápido:** el hexágono (6 veces, giro 60) o una escalera con el lápiz.
 - **Si cuesta:** solo el cuadrado con el lápiz, con la tabla de giros en la pizarra.
 - **Mates:** multiplicación, polígonos y giros.
@@ -583,6 +641,9 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S12 · Apariencia y sonido: una pequeña animación `PC`
 
 - **Qué aprenden:** dar vida a una escena con disfraces, diálogos, sonidos y dos personajes.
+- **Hoy:** programan un diálogo entre dos personajes, con fondo y sonido, y usan esperar para que no hablen a la vez.
+- **Necesitas:** portátiles con Scratch, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** los dos personajes hablan por turnos sin pisarse, y el diálogo tiene 4 frases, un fondo y un sonido.
 - **Para proyectar:** [[P:pixelart.robot|Píxel art: los disfraces son dibujos hechos de píxeles]]
 - **En tablets o portátiles:** [[T:pixel|Píxel art]] (dibujos 1 a 3: cada cuadrado es un píxel, como en los disfraces)
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
@@ -590,12 +651,24 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 - **Para repasar:** evento · bucle
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
-**Pasos:**
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Abre una vez el archivo de solución para ver el diálogo terminado. [[S:3-S12-dialogo-solucion.sb3|Diálogo de dos personajes · solución]]
+
+**Empezamos (10 min):**
 1. Añadir un segundo objeto (botón del gato con +, «Elige un objeto»).
-2. Objeto 1: **al hacer clic en 🏴** → **decir ¡Hola! durante 2 segundos**.
-3. Objeto 2: **al hacer clic en 🏴** → **esperar 2 segundos** → **decir ¡Hola! ¿Qué tal? durante 2 segundos**.
-4. Explica que el **esperar** sirve para que no hablen a la vez.
-5. Las parejas hacen un diálogo de 4 frases, con fondo y un sonido de la biblioteca.
+2. Objeto 1: `al hacer clic en 🏴` → `decir ¡Hola! durante 2 segundos`.
+3. Objeto 2: `al hacer clic en 🏴` → `esperar 2 segundos` → `decir ¡Hola! ¿Qué tal? durante 2 segundos`.
+4. Explica que el `esperar` sirve para que no hablen a la vez.
+
+**A trabajar (25 min):**
+1. Las parejas hacen un diálogo de 4 frases, con fondo y un sonido de la biblioteca.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su diálogo. Pregunta a la clase: «¿Cuánto espera el segundo personaje? ¿Por qué ese tiempo?»
+2. Frase clave: **«El orden y el tiempo cuentan la historia.»**
+3. Se guarda el proyecto en el ordenador, con el nombre de la pareja.
 
 **Pistas y soluciones:**
 1. **Diálogo sin que hablen a la vez**
@@ -614,6 +687,9 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S13 · Variables: cajas que guardan números `PC`
 
 - **Qué aprenden:** una variable es una caja con nombre que guarda un número que puede cambiar.
+- **Hoy:** descubren qué es una variable con la caja de la pizarra y programan en Scratch un marcador que suma un punto con cada clic en el gato.
+- **Necesitas:** portátiles con Scratch, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** cada clic en el gato suma un punto, el marcador vuelve a 0 con la bandera, y saben decir qué bloque lo pone a 0.
 - **Para proyectar:** [[P:variables|Variables · la caja]]
 - **Preguntas de salida:** [[P:salida.variable|Variables]]
 - **En tablets o portátiles:** [[T:variables|¿Cuánto vale?]] (nivel 1, con bloques de Scratch: dar el valor y sumar)
@@ -622,11 +698,25 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 - **Para repasar:** evento
 - **Minuto de uso responsable:** «Espalda recta y pies en el suelo cuando uso el ordenador.» ¿Cómo estás sentado ahora mismo?
 
-**Pasos:**
-1. Proyecta «Variables · la caja». Antes de cada bloque, la clase dice cuánto valdrá *puntos*: «dar el valor» borra lo que había; «sumar» parte de lo que había. «La caja se llama siempre igual; lo que tiene dentro cambia».
-2. En Scratch: Variables → **Crear una variable** → *puntos*.
-3. **al hacer clic en 🏴** → **dar a puntos el valor 0**; **al hacer clic en este objeto** → **sumar a puntos 1** → **iniciar sonido Miau**.
-4. Prueban: cada clic en el gato, un punto. ¿Qué pasa al pulsar la bandera?
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Cuelga el póster. [[M:M26|Póster «Variable»]]
+- Abre una vez el archivo de solución para ver el programa terminado. [[S:3-S13-variables-solucion.sb3|Puntos con cada clic · solución]]
+
+**Empezamos (10 min):**
+1. Proyecta «Variables · la caja». Antes de cada bloque, la clase dice cuánto valdrá *puntos*: «dar el valor» borra lo que había; «sumar» parte de lo que había. «La caja se llama siempre igual; lo que tiene dentro cambia». [[P:variables|Variables · la caja]] · [[V:variable|Variable]]
+
+**A trabajar (25 min):**
+1. En Scratch: Variables → **Crear una variable** → *puntos*.
+2. `al hacer clic en 🏴` → `dar a puntos el valor 0`; `al hacer clic en este objeto` → `sumar a puntos 1` → `iniciar sonido Miau`.
+3. Prueban: cada clic en el gato, un punto. ¿Qué pasa al pulsar la bandera?
+
+**Cerramos (10 min):**
+1. Una pareja enseña su marcador. Pregunta a la clase: «¿Por qué `dar a puntos el valor 0` va con la bandera y no con el clic en el gato?»
+2. Frase clave: **«Una variable es una caja con nombre.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.variable|Variables]]
+4. Se guarda el proyecto en el ordenador, con el nombre de la pareja: se vuelve a usar en la S14 y la S15.
 
 **Pistas y soluciones:**
 1. **¿Qué pasa al pulsar la bandera?**
@@ -644,18 +734,36 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S14 · El juego de atrapar: puntos y «si… entonces» `PC`
 
 - **Qué aprenden:** usar una condición para sumar puntos: «si toca la manzana, entonces suma un punto».
+- **Hoy:** programan un juego de atrapar: el personaje se mueve con las flechas y, si toca la manzana, suma un punto.
+- **Necesitas:** portátiles con Scratch, uno por pareja, la chuleta de bloques y la pizarra digital.
+- **Lo han conseguido si:** cada vez que el personaje toca la manzana suma un punto y la manzana cambia de sitio, y los puntos vuelven a 0 con la bandera.
 - **Preguntas de salida:** [[P:salida.condicion|Si… entonces]]
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:3-S14-juego-de-atrapar-solucion.sb3|Juego de atrapar · solución]]
 - **Para repasar:** variable · condición · para siempre
 - **Minuto de uso responsable:** «Guardo mi proyecto con un nombre que sepa encontrar.» ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
-**Pasos:**
-1. Un personaje con flechas (lo de la S10) y un objeto «Apple» (manzana).
-2. En la manzana: **al hacer clic en 🏴** → **dar a puntos el valor 0** → **por siempre** → **si ¿tocando [personaje]? entonces** → **sumar a puntos 1** → **ir a posición aleatoria**.
-3. El bloque **si… entonces** es el rombo del diagrama de flujo de la S2.
+**Antes de la clase:**
+- Abre Scratch en los portátiles.
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
+- Abre una vez el archivo de solución para ver el juego terminado. [[S:3-S14-juego-de-atrapar-solucion.sb3|Juego de atrapar · solución]]
 
-**Opción más sencilla:** el juego de clics de la S13 con **si puntos = 10 entonces decir ¡Has ganado!**.
+**Empezamos (10 min):**
+1. El bloque `si… entonces` es el rombo del diagrama de flujo de la S2.
+2. Explica la misión: un personaje que se mueve con las flechas tiene que atrapar una manzana; cada vez que la toca, suma un punto.
+
+**A trabajar (25 min):**
+1. Un personaje con flechas (lo de la S10) y un objeto «Apple» (manzana).
+2. En la manzana: `al hacer clic en 🏴` → `dar a puntos el valor 0` → `por siempre` → `si ¿tocando [personaje]? entonces` → `sumar a puntos 1` → `ir a posición aleatoria`.
+3. Mientras prueban, pregunta: «¿Cuántas veces tiene que mirar la manzana si la está tocando el personaje? ¿Una o todo el rato?»
+
+**Cerramos (10 min):**
+1. Una pareja enseña su juego. Pregunta a la clase: «¿Por qué el `si` va dentro del `por siempre`?»
+2. Frase clave: **«SI toca, ENTONCES suma.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.condicion|Si… entonces]]
+4. Se guarda el juego en el ordenador, con el nombre de la pareja: en la S15 se puede ampliar.
+
+**Opción más sencilla:** el juego de clics de la S13 con `si puntos = 10 entonces` → `decir ¡Has ganado!`.
 
 **Pistas y soluciones:**
 1. **El juego de atrapar**
@@ -677,19 +785,32 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S15 · Mi proyecto: plan y programación `PC`
 
 - **Qué aprenden:** planificar y crear un proyecto propio con lo aprendido.
+- **Hoy:** cada pareja elige su proyecto (juego de atrapar, preguntas de tablas o animación con marcador), lo planifica en la hoja de diseño y empieza a programarlo.
+- **Necesitas:** portátiles con Scratch, uno por pareja, la hoja de diseño (una por pareja) y la chuleta de bloques.
+- **Lo han conseguido si:** la hoja de diseño está rellena y una primera parte del proyecto ya funciona y está guardada.
 - **Material listo:** [[M:M16|Hoja de diseño de juego]] · [[M:M20|Chuleta de Scratch]]
 - **Para repasar:** evento · variable · condición
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
-**Elige el tipo de proyecto (o que elija cada pareja):**
-- **Juego de atrapar** (ampliando la S14): otros personajes, otro fondo y un final.
-- **Preguntas de tablas:** un personaje pregunta «¿Cuánto es 3 × 4?» y suma un punto si aciertas (**preguntar… y esperar** y **si respuesta = 12 entonces**).
-- **Animación con marcador:** un personaje que cuenta cuántas veces lo tocas y reacciona.
+**Antes de la clase:**
+- Abre Scratch en los portátiles y ten a mano los proyectos guardados de la S13 y la S14.
+- Imprime la hoja de diseño, una por pareja. [[M:M16|Hoja de diseño de juego]] (hoja 4)
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M20|Chuleta de Scratch]]
 
-**Pasos:**
-1. 10 minutos: rellenan la hoja de diseño (M16).
-2. 25 minutos: programan. Tú circulas con las tres preguntas.
-3. Guardar.
+**Empezamos (10 min):**
+1. Elige el tipo de proyecto (o que elija cada pareja):
+    - **Juego de atrapar** (ampliando la S14): otros personajes, otro fondo y un final.
+    - **Preguntas de tablas:** un personaje pregunta «¿Cuánto es 3 × 4?» y suma un punto si aciertas (`preguntar ¿Cuánto es 3 × 4? y esperar` y `si respuesta = 12 entonces`).
+    - **Animación con marcador:** un personaje que cuenta cuántas veces lo tocas y reacciona.
+2. 10 minutos: rellenan la hoja de diseño (M16). [[M:M16|Hoja de diseño de juego]] · [[V:descomponer|Descomponer]]
+
+**A trabajar (25 min):**
+1. 25 minutos: programan. Tú circulas con las tres preguntas.
+
+**Cerramos (10 min):**
+1. Una pareja enseña cómo va su proyecto. Pregunta a la clase: «¿Qué parte de su plan ya funciona y cuál falta?»
+2. Frase clave: **«Primero el plan, después los bloques.»**
+3. Guardar, con el nombre de la pareja: en la S16 se termina.
 
 **Pistas y soluciones:**
 1. **Preguntas de tablas**
@@ -708,15 +829,32 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S16 · Terminamos, depuramos y mostramos `PC`
 
 - **Qué aprenden:** terminar, probar el proyecto de otra pareja y mejorar el propio.
+- **Hoy:** terminan su proyecto, prueban el de otra pareja con la ficha de prueba y arreglan el suyo con lo que les han dicho.
+- **Necesitas:** portátiles con los proyectos de la S15, la ficha de prueba (una por pareja) y la rúbrica del trimestre.
+- **Lo han conseguido si:** otra pareja ha probado cada proyecto con la ficha y sus autores han arreglado al menos una cosa.
 - **Para proyectar:** [[P:votaciones.mis|Votaciones]] (opcional, para votar el proyecto favorito)
 - **Material listo:** [[M:M17|Ficha de prueba y playtesting]] · [[M:M19|Rúbrica]]
 - **Para repasar:** depurar
 - **Minuto de uso responsable:** «Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube.» ¿Por qué hay que pedir permiso antes de hacer una foto?
 
-**Pasos:**
-1. 15 minutos: terminar el proyecto.
-2. 15 minutos: cada pareja prueba el de otra y rellena la ficha de prueba.
-3. 10 minutos: arreglar y guardar.
+**Antes de la clase:**
+- Abre Scratch en los portátiles, con los proyectos guardados de la S15.
+- Imprime la ficha de prueba, una por pareja (vienen cuatro por hoja). [[M:M17|Ficha de prueba y playtesting]] (hoja 2)
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. Terminar el proyecto.
+
+**A trabajar (25 min):**
+1. 15 minutos: cada pareja prueba el de otra y rellena la ficha de prueba. [[M:M17|Ficha de prueba y playtesting]]
+2. 10 minutos: arreglar y guardar.
+3. Mientras trabajan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Una pareja enseña su proyecto. Pregunta a la clase: «¿Qué han arreglado después de la prueba?»
+2. Si queréis, votad el proyecto favorito. [[P:votaciones.mis|Votaciones]]
+3. Frase clave: **«Un proyecto mejora cuando otros lo prueban.»**
+4. Autoevaluación: «Aprendí… / Me costó…».
 
 - **Frase clave:** «Un proyecto mejora cuando otros lo prueban.»
 - **Si va rápido:** que la pareja que prueba proponga una mejora concreta.
@@ -740,18 +878,44 @@ Vocabulario de programación nuevo en 3º (las palabras de cursos anteriores se 
 ### S17 · ¿Qué conduce la electricidad? `ROB` `SEG`
 
 - **Qué aprenden:** un circuito es un camino cerrado por el que pasa la electricidad; hay materiales que conducen y otros que no.
-- **Prepara antes:** un kit por grupo, un portátil por grupo, M22 hoja 2 (registro) y los objetos de la lista.
+- **Hoy:** con el Makey Makey (o en la pizarra), predicen y comprueban qué objetos dejan pasar la electricidad y lo apuntan en una hoja de registro.
+- **Necesitas:** la pizarra digital; un kit Makey Makey y un portátil por grupo, los objetos de la lista y la hoja de registro (una por grupo).
+- **Lo han conseguido si:** el grupo ha comprobado todos los objetos de la hoja y sabe decir cuáles conducen y cuáles no.
 - **Para proyectar:** [[P:circuito|¿Conduce la electricidad?]]
 - **Material listo:** [[M:M22|Registro «¿qué conduce?»]] (hoja 2) · [[M:M26|Póster «Entrada y salida»]]
-- **Minuto de uso responsable:** nunca se enchufa nada a la corriente de la pared, el agua lejos del ordenador, las pinzas se abren con cuidado.
+
+**Antes de la clase:**
+- Prepara un kit por grupo (comprueba que tiene la placa, el cable USB y las pinzas) y un portátil por grupo.
+- Reúne los objetos de la lista: papel de aluminio, plastilina, un lápiz de grafito blando y una cuchara (el plátano es opcional).
+- Imprime el registro, uno por grupo. [[M:M22|Registro «¿qué conduce?»]] (hoja 2)
+- Cuelga el póster. [[M:M26|Póster «Entrada y salida»]]
 
 **Opción A · Primero en la pizarra, después con el kit**
-1. Proyecta el circuito. Elige un objeto, la clase vota si encenderá la bombilla y pulsa «Probar».
-2. Con el kit: conecta el Makey Makey al portátil y abre makeymakey.com/apps (piano). Pinza en ESPACIO a un trozo de aluminio y otra pinza en EARTH que sujeta un alumno.
-3. Los grupos predicen y comprueban los objetos de la hoja de registro.
+
+**Empezamos (10 min):**
+1. Normas del kit: nunca se enchufa nada a la corriente de la pared, el agua lejos del ordenador, las pinzas se abren con cuidado.
+2. Proyecta el circuito. Elige un objeto, la clase vota si encenderá la bombilla y pulsa «Probar». [[P:circuito|¿Conduce la electricidad?]]
+
+**A trabajar (25 min):**
+1. Con el kit: conecta el Makey Makey al portátil y abre makeymakey.com/apps (piano). Pinza en ESPACIO a un trozo de aluminio y otra pinza en EARTH que sujeta un alumno.
+2. Los grupos predicen y comprueban los objetos de la hoja de registro. [[M:M22|Registro «¿qué conduce?»]]
 
 **Opción B · Solo en la pizarra**
-Si no hay kits suficientes ese día, toda la sesión con el proyectable y el registro M22.
+
+**Empezamos (10 min):**
+1. Normas del kit: nunca se enchufa nada a la corriente de la pared, el agua lejos del ordenador, las pinzas se abren con cuidado.
+2. Si no hay kits suficientes ese día, toda la sesión con el proyectable y el registro M22.
+
+**A trabajar (25 min):**
+1. Con cada objeto de la hoja de registro, la clase vota si encenderá la bombilla y se pulsa «Probar». [[P:circuito|¿Conduce la electricidad?]]
+2. Cada grupo apunta en su registro lo que ha pasado. [[M:M22|Registro «¿qué conduce?»]]
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo lee su registro. Pregunta a la clase: «¿Qué objetos conducen? ¿Qué tienen en común?»
+2. Frase clave: **«Si el camino está cerrado, pasa la electricidad.»**
+3. Se guardan los registros, y cada kit vuelve completo a su caja.
 
 - **Frase clave:** «Si el camino está cerrado, pasa la electricidad.»
 - **Si va rápido:** clasificar los conductores en «muy buenos» y «regulares» (el agua, la piel).
@@ -761,15 +925,31 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S18 · Makey Makey + Scratch `ROB` `PC`
 
 - **Qué aprenden:** el Makey Makey funciona como un teclado: cada toque es una tecla que Scratch detecta.
+- **Hoy:** conectan el Makey Makey a Scratch: al tocar un objeto conductor, el gato maúlla; después, un piano de 4 notas.
+- **Necesitas:** un kit Makey Makey y un portátil con Scratch por grupo, objetos conductores y la chuleta de bloques.
+- **Lo han conseguido si:** al tocar el objeto conectado a ESPACIO suena el sonido, y saben decir qué tecla «pulsa» cada objeto.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Para repasar:** evento · circuitos
 - **Minuto de uso responsable:** «Los cables se sacan desde el enchufe, no tirando del cable.» ¿Qué le puede pasar al cable si tiramos de él?
 
-**Pasos:**
-1. En Scratch: **al presionar tecla espacio** → **iniciar sonido Miau**.
+**Antes de la clase:**
+- Prepara un kit y un portátil con Scratch por grupo, y los objetos conductores de la S17.
+- Ten a mano la chuleta de bloques, una por grupo. [[M:M20|Chuleta de Scratch]]
+
+**Empezamos (10 min):**
+1. Presenta la idea: el Makey Makey funciona como un teclado; cada toque es una tecla que Scratch detecta. [[V:entrada-salida-superior|Entrada y salida]]
+2. En Scratch: `al presionar tecla espacio` → `iniciar sonido Miau`.
+
+**A trabajar (25 min):**
+1. Cada grupo hace el mismo programa en su portátil.
 2. Conectan un objeto conductor a ESPACIO. ¡Maúlla!
-3. Añaden **al presionar tecla flecha arriba** → otro sonido, conectado a otro objeto.
+3. Añaden `al presionar tecla flecha arriba` → otro sonido, conectado a otro objeto.
 4. Reto: un piano de 4 notas (flechas y espacio) con la extensión **Música**.
+
+**Cerramos (10 min):**
+1. Un grupo toca su piano. Pregunta a la clase: «¿Cuántos eventos hacen falta para 4 notas?»
+2. Frase clave: **«Para el ordenador, el aluminio es una tecla.»**
+3. Se guarda el proyecto con el nombre del grupo, y el kit vuelve completo a su caja.
 
 **Pistas y soluciones:**
 1. **Piano de 4 notas**
@@ -788,14 +968,28 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S19 · Planificamos la pieza del museo `PC`
 
 - **Qué aprenden:** planificar un proyecto en equipo: idea, material, programa y reparto de tareas.
+- **Hoy:** cada grupo elige cómo será su pieza del museo interactivo (una situación oficial o una pieza propia) y la planifica en la hoja de proyecto.
+- **Necesitas:** la hoja de proyecto (una por grupo) y las situaciones oficiales de Clic and Play.
+- **Lo han conseguido si:** la hoja de cada grupo dice qué se toca, qué pasa al tocarlo, el material y quién hace qué, con al menos 3 botones y un contador.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · situaciones oficiales de Clic and Play (Recursos oficiales)
 - **Para repasar:** descomponer
 - **Minuto de uso responsable:** «No todo lo que sale en una pantalla es verdad.» ¿Cómo podemos comprobar si algo es verdad?
 
-**Pasos:**
+**Antes de la clase:**
+- Imprime la hoja de proyecto, una por grupo. [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] (hoja 3)
+- Ten a mano las situaciones oficiales de Clic and Play (ver Recursos oficiales).
+
+**Empezamos (10 min):**
 1. Enseña 2 ideas: una situación oficial (con su programa ya hecho) y una pieza propia.
-2. Cada grupo elige camino y rellena la hoja: qué se toca, qué pasa al tocarlo, material y roles (construcción, programación, portavoz).
-3. Requisitos: al menos **3 botones** y **un contador** (cuántas veces se ha tocado o cuántos aciertos).
+2. Requisitos: al menos **3 botones** y **un contador** (cuántas veces se ha tocado o cuántos aciertos).
+
+**A trabajar (25 min):**
+1. Cada grupo elige camino y rellena la hoja: qué se toca, qué pasa al tocarlo, material y roles (construcción, programación, portavoz). [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
+
+**Cerramos (10 min):**
+1. Un grupo cuenta su plan. Pregunta a la clase: «¿Qué tecla corresponde a cada botón? ¿Cuánto suma el contador?»
+2. Frase clave: **«Cada uno tiene una tarea; todos tenemos el proyecto.»**
+3. Se guardan las hojas: en la S20 se construye el mando.
 
 - **Frase clave:** «Cada uno tiene una tarea; todos tenemos el proyecto.»
 - **Si va rápido:** un contador y un final (al llegar a 10 toques, dice algo).
@@ -805,16 +999,31 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S20 · Construimos el mando `ROB` `PC`
 
 - **Qué aprenden:** fabricar el mando con la plantilla y materiales conductores.
-- **Prepara antes:** M22 hoja 1 (una por grupo), cartón, papel de aluminio y celo.
+- **Hoy:** cada grupo fabrica el mando de su pieza con la plantilla, cartón y aluminio, empieza el programa y hace la primera prueba de conexión.
+- **Necesitas:** la plantilla de mando (una por grupo), cartón, papel de aluminio, celo, un kit Makey Makey y un portátil por grupo.
+- **Lo han conseguido si:** los botones del mando no se tocan entre sí y al menos uno funciona al conectarlo.
 - **Material listo:** [[M:M22|Plantilla de mando Makey Makey]]
 - **Archivo de Scratch:** [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
 - **Para repasar:** circuitos
 - **Minuto de uso responsable:** «Cuento el material antes de guardarlo.» ¿Qué pasa si falta una pieza y no nos damos cuenta?
 
-**Pasos:**
+**Antes de la clase:**
+- Imprime la plantilla de mando, una por grupo. [[M:M22|Plantilla de mando Makey Makey]] (hoja 1)
+- Reúne cartón, papel de aluminio y celo.
+- Copia la plantilla del museo en los portátiles. [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
+- Prepara un kit y un portátil por grupo.
+
+**Empezamos (10 min):**
+1. Enseña la plantilla de mando y reparte el material: cartón, papel de aluminio y celo. [[M:M22|Plantilla de mando Makey Makey]]
+
+**A trabajar (25 min):**
 1. Pegan la plantilla en un cartón y cubren cada botón con aluminio, dejando una tira hasta el borde para la pinza. Los botones no se tocan entre sí.
-2. Mientras, los programadores empiezan el programa: abren la plantilla del museo (camino propio) o el programa de la situación oficial.
-3. Últimos 10 minutos: primera prueba de conexión.
+2. Mientras, otra parte del grupo empieza el programa: abren la plantilla del museo (camino propio) o el programa de la situación oficial. [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
+
+**Cerramos (10 min):**
+1. Últimos 10 minutos: primera prueba de conexión.
+2. Frase clave: **«Cada botón necesita su camino y su tierra.»**
+3. Se guarda el programa con el nombre del grupo, y el mando y el kit, completos, en su caja.
 
 - **Frase clave:** «Cada botón necesita su camino y su tierra.»
 - **Si va rápido:** un botón extra con otra forma geométrica.
@@ -824,15 +1033,32 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S21 · Programamos y probamos `PC` `ROB`
 
 - **Qué aprenden:** programar cada botón de la pieza, añadir un contador y probarla con otro grupo.
+- **Hoy:** programan un evento para cada botón de su pieza, le añaden un contador y la prueban con otro grupo.
+- **Necesitas:** los mandos de la S20, un kit Makey Makey y un portátil con Scratch por grupo, y la chuleta de bloques.
+- **Lo han conseguido si:** cada botón hace lo que tiene que hacer, el contador suma, y otro grupo la ha probado.
 - **Material listo:** [[M:M20|Chuleta de Scratch]]
 - **Archivo de Scratch:** [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
 - **Para repasar:** evento · variable · condición
 - **Minuto de uso responsable:** «Cada 20 minutos miro algo lejano 20 segundos.» ¿Qué podemos mirar lejos desde nuestro sitio?
 
-**Pasos:**
-1. Cada botón, un evento: **al presionar tecla…** → lo que tenga que pasar (decir, sonido, cambiar fondo).
-2. El contador: variable *toques* o *aciertos* con **sumar a … 1**.
+**Antes de la clase:**
+- Prepara los mandos de la S20, un kit y un portátil por grupo.
+- Ten a mano la chuleta de bloques, una por grupo. [[M:M20|Chuleta de Scratch]]
+- Ten la plantilla del museo en los portátiles, para quien la necesite. [[S:3-S21-museo-plantilla.sb3|Plantilla del museo: 4 botones y un contador]]
+
+**Empezamos (10 min):**
+1. Explica la misión: cada botón, un evento, y un contador que suma.
+2. Consejo: probad primero cada botón con el teclado del ordenador; si funciona con la tecla y no con el mando, el bicho está en el mando (pinza suelta, aluminio roto, sin tierra).
+
+**A trabajar (25 min):**
+1. Cada botón, un evento: `al presionar tecla…` → lo que tenga que pasar (decir, sonido, cambiar fondo).
+2. El contador: variable *toques* o *aciertos* con `sumar a … 1`.
 3. Probar con otro grupo y apuntar los bichos.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su pieza. Pregunta a la clase: «Si un botón no funciona, ¿cómo sabéis si el bicho está en el programa o en el mando?»
+2. Frase clave: **«Pruebo cada botón por separado.»**
+3. Se guarda el programa con el nombre del grupo, y el mando y el kit, completos, en su caja.
 
 **Pistas y soluciones:**
 1. **Cada botón, un evento**
@@ -851,14 +1077,29 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S22 · Optimizamos y cazabichos cruzado `PC`
 
 - **Qué aprenden:** mejorar el programa para que sea más corto y más claro, sin errores.
+- **Hoy:** mejoran entre todos un programa con bloques repetidos, hacen lo mismo con el suyo y otro grupo prueba su pieza con la ficha.
+- **Necesitas:** la pizarra digital, las piezas y los programas de cada grupo, y la ficha de prueba (una por grupo).
+- **Lo han conseguido si:** cada grupo sabe cuántos bloques tenía antes y cuántos después, su pieza hace lo mismo que antes y otro grupo la ha probado.
 - **Material listo:** [[M:M17|Ficha de prueba y playtesting]] · [[M:M26|Póster «Optimizar»]]
 - **Para repasar:** bucle · depurar
 - **Minuto de uso responsable:** «Guardo mi proyecto con un nombre que sepa encontrar.» ¿Qué nombre le ponemos para encontrarlo la próxima vez?
 
-**Pasos:**
-1. En la pizarra, un programa con bloques repetidos. Entre todos lo mejoran: juntar lo repetido en un **repetir**, borrar bloques sueltos, ordenar (clic derecho → **Ordenar bloques**).
-2. Cada grupo hace lo mismo con el suyo: ¿cuántos bloques antes? ¿Y después?
-3. Cazabichos cruzado: otro grupo prueba la pieza y rellena la ficha.
+**Antes de la clase:**
+- Prepara en la pizarra un programa con bloques repetidos (por ejemplo, `mover 10 pasos` y `esperar 0.5 segundos` copiados 4 veces).
+- Imprime la ficha de prueba, una por grupo (vienen cuatro por hoja). [[M:M17|Ficha de prueba y playtesting]] (hoja 2)
+- Cuelga el póster. [[M:M26|Póster «Optimizar»]]
+
+**Empezamos (10 min):**
+1. En la pizarra, un programa con bloques repetidos. Entre todos lo mejoran: juntar lo repetido en un `repetir`, borrar bloques sueltos, ordenar (clic derecho → **Ordenar bloques**). [[V:optimizar-superior|Optimizar]]
+
+**A trabajar (25 min):**
+1. Cada grupo hace lo mismo con el suyo: ¿cuántos bloques antes? ¿Y después?
+2. Cazabichos cruzado: otro grupo prueba la pieza y rellena la ficha. [[M:M17|Ficha de prueba y playtesting]]
+
+**Cerramos (10 min):**
+1. Un grupo cuenta cuántos bloques tenía antes y cuántos tiene ahora. Pregunta a la clase: «¿Cómo sabemos que hace lo mismo que antes?»
+2. Frase clave: **«Un buen programa lo entiende cualquiera.»**
+3. Se guarda el programa con el nombre del grupo, y el mando y el kit, completos, en su caja.
 
 **Pistas y soluciones:**
 1. **Optimizar el programa**
@@ -874,12 +1115,28 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S23 · Presentamos `PC` `RA`
 
 - **Qué aprenden:** presentar la pieza del museo y explicar un error que arreglaron.
+- **Hoy:** cada grupo presenta su pieza del museo: qué es, cómo funciona y qué bicho encontraron y cómo lo arreglaron.
+- **Necesitas:** las piezas con sus kits y portátiles, y la rúbrica del trimestre.
+- **Lo han conseguido si:** cada grupo ha presentado su pieza funcionando y ha explicado un bicho que arregló.
 - **Material listo:** [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** «Una foto de un compañero solo se hace si él o ella quiere, y nunca se sube.» ¿Por qué hay que pedir permiso antes de hacer una foto?
 
-**Pasos:**
+**Antes de la clase:**
+- Prepara las piezas de cada grupo con su kit y su portátil.
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. Explica cómo será: cada grupo presenta 3 minutos su pieza y la clase la prueba.
+
+**A trabajar (25 min):**
 1. Cada grupo presenta su pieza (3 minutos): qué es, cómo funciona, qué bicho encontraron y cómo lo arreglaron.
 2. Opcional: el docente hace una foto de la pieza (sin caras) para un código QR (ver Herramientas paso a paso).
+3. Mientras presentan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Qué bicho de los que han contado os ha parecido más difícil de encontrar?»
+2. Frase clave: **«Explicar lo que hemos hecho también es aprender.»**
+3. Las piezas se guardan para la S24, y cada kit vuelve completo a su caja.
 
 - **Frase clave:** «Explicar lo que hemos hecho también es aprender.»
 - **Si va rápido:** explicar con números: cuántos bloques antes y después de optimizar.
@@ -890,12 +1147,42 @@ Si no hay kits suficientes ese día, toda la sesión con el proyectable y el reg
 ### S24 · El museo abre sus puertas `RA` `PC`
 
 - **Qué aprenden:** compartir el museo con otros y valorar lo aprendido en el curso.
+- **Hoy:** el museo interactivo abre: media clase presenta y la otra visita (propuesta A), o reciben a parejas de 2º (propuesta B); al final, la autoevaluación del curso.
+- **Necesitas:** las piezas con sus kits y portátiles, los pasaportes y la autoevaluación.
+- **Lo han conseguido si:** cada grupo ha enseñado su pieza a otros y cada alumno completa «Lo que más me ha gustado de este curso…».
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
 - **Minuto de uso responsable:** «No escribo mi nombre completo ni mi dirección en internet.» ¿Qué datos míos no escribo nunca en internet?
 
-**Opción A · Museo en el aula:** media clase presenta y la otra visita; después se cambia.
+**Antes de la clase:**
+- Prepara las piezas de cada grupo con su kit y su portátil.
+- Ten a mano los pasaportes, uno por alumno. [[M:M15|Pasaporte]]
+- Imprime la autoevaluación. [[M:M19|Autoevaluación]] (hoja 3)
+- Para la propuesta B, acuerda la visita con la tutora o el tutor de 2º.
 
-**Opción B · Enseñamos a 2º:** cada grupo recibe a una pareja de 2º y le deja tocar su pieza.
+**Opción A · Museo en el aula**
+
+**Empezamos (10 min):**
+1. Explica cómo será el museo: media clase presenta y la otra visita; después se cambia.
+
+**A trabajar (25 min):**
+1. Media clase presenta y la otra visita.
+2. Después se cambia.
+
+**Opción B · Enseñamos a 2º**
+
+**Empezamos (10 min):**
+1. Explica la visita: cada grupo va a recibir a una pareja de 2º.
+
+**A trabajar (25 min):**
+1. Cada grupo recibe a una pareja de 2º y le deja tocar su pieza.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Qué ha sido lo más difícil de explicar a los visitantes?»
+2. Autoevaluación: «Lo que más me ha gustado de este curso…».
+3. Frase clave: **«Lo que aprendo, lo puedo enseñar.»**
+4. Cada kit vuelve completo a su caja.
 
 - **Frase clave:** «Lo que aprendo, lo puedo enseñar.»
 - **Si va rápido:** registrar en una tabla cuántas visitas tiene cada pieza y hacer un gráfico.

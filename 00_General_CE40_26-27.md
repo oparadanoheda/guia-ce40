@@ -20,13 +20,13 @@
 3. **Todo el material está hecho.** No hay que dibujar tarjetas ni fabricar nada: las tarjetas de flechas, los bloques de papel, los mapas, las fichas de cazabichos (con soluciones), el pasaporte, las chuletas de bloques y las plantillas están en PDF, listos para fotocopiar (M01 a M27). En 3º, 4º y 5º, los archivos de Scratch con bichos y las soluciones también están hechos.
 4. **Cada ficha de sesión trae lo mismo, siempre en el mismo orden:**
    - **Qué aprenden:** el objetivo en una frase.
-   - **Prepara antes:** lo que tienes que tener listo (normalmente, imprimir una ficha).
-   - **Para proyectar** y **Material listo:** los enlaces directos al proyectable y a los PDF.
-   - **Opciones de actividad:** con los pasos numerados.
-   - **Frase clave:** la idea que el alumnado debe llevarse. Dila al principio y al final.
+   - **Hoy, Necesitas y Lo han conseguido si:** qué hace la clase, qué te hace falta y cómo sabrás que ha salido.
+   - **Antes de la clase:** lo que tienes que tener listo (normalmente, imprimir una ficha), con los enlaces directos al material y a los archivos.
+   - **La sesión, paso a paso:** cada opción de actividad en tres partes con sus minutos, **Empezamos** (10), **A trabajar** (25) y **Cerramos** (10), con cada recurso en el paso donde se usa (ver el apartado 5).
+   - **Frase clave:** la idea que el alumnado debe llevarse. Se dice en el cierre.
    - **Si va rápido / si cuesta:** para ampliar o simplificar sin improvisar.
+   - **Si quieres añadirlo:** los roles y el minuto de uso responsable, que son opcionales.
    - **Mates:** el vínculo con el área, para justificar la sesión en la programación.
-   - **En las sesiones del primer trimestre** (formato nuevo, que se irá extendiendo a las demás) la ficha está ordenada para dar la clase: **Hoy**, **Necesitas** y **Lo han conseguido si**; **Antes de la clase**, lo que hay que preparar; y la sesión en tres partes con sus minutos, **Empezamos** (10), **A trabajar** (25) y **Cerramos** (10), con cada recurso en el paso donde se usa. Los roles y el minuto de uso responsable quedan aparte, en «Si quieres añadirlo».
 5. **No se trata de terminar la ficha.** Si una sesión se alarga, se acaba en la siguiente o en una sesión de reserva. Es mejor hacer poco y bien.
 6. **Si algo técnico falla**, mira el apartado «Si algo falla» de la herramienta en `07_Guias_rapidas_herramientas.md`. Si no se arregla en 3 minutos, pasa a la opción con fichas: la sesión nunca se pierde.
 7. **Todo es orientativo.** El orden de las sesiones y el reparto de robots y herramientas por curso son una propuesta. Según el progreso del grupo, un recurso se puede adelantar, alargar o recuperar (por ejemplo, seguir con Tale-Bot en 1º más tiempo del previsto, o volver a él en 2º con quien lo necesite).
@@ -55,7 +55,7 @@ Cada sesión lleva etiquetas: **PC** pensamiento computacional · **ROB** robót
 - **Primer ciclo (1º y 2º) sin pantallas:** todo se trabaja desenchufado y con robots de suelo: **Tale-Bot**, que se programa con botones (el alumnado lo conoce de Infantil), y **True True**, que se programa con tarjetas. La «programación por bloques» se hace con **bloques de papel** idénticos a los de ScratchJr. La tablet solo aparece en las tres últimas sesiones de 2º (S22 a S24) como iniciación a ScratchJr.
 - **ROB**: Tale-Bot (1º, primer trimestre, orientativo; después, como apoyo en 1º y 2º), True True (1º a 3º), Makey Makey (3º y 4º), micro:bit y Nezha (5º y 6º).
 - **IA**: **solo en 5º y 6º** (decisión del centro), con el proyectable «Entrena a la máquina», Teachable Machine en demostración del docente y los casos para debatir (M24). De 1º a 4º no hay sesiones de inteligencia artificial; sí se trabaja lo que la prepara (clasificar, árboles de preguntas, recoger y organizar datos) como pensamiento computacional y estadística.
-- **SEG**: no es un bloque aparte. Es un **«Minuto de uso responsable»** al principio de cada sesión (ver apartado 5) y alguna sesión específica.
+- **SEG**: no es un bloque aparte. Cada sesión trae su **«Minuto de uso responsable»**, para añadirlo si se quiere (ver apartado 5), y hay alguna sesión específica.
 - **RA**: códigos QR en todos los cursos (feria de fin de curso) y diseño 3D con Tinkercad en 5º y 6º.
 
 ---
@@ -112,19 +112,21 @@ Se alternan **semana A** (la del 28 de septiembre) y **semana B** (la siguiente)
 
 ## 5. Cómo es una sesión de 45 minutos
 
-La estructura es siempre la misma. Al alumnado le da seguridad y al docente le quita trabajo: solo cambia el contenido.
+La estructura es siempre la misma, en tres partes. Al alumnado le da seguridad y al docente le quita trabajo: solo cambia el contenido.
 
-| Min | Fase | Qué hace el docente |
+| Min | Parte | Qué hace el docente |
 |---|---|---|
-| 0-5 | **Arranque** | Recordar la sesión anterior con una pregunta («¿Qué era un bucle?»). **Minuto de uso responsable** (ver abajo). Repartir roles. |
-| 5-12 | **Misión** | Contar el reto con una historia corta y hacer una demostración (en el display, en el suelo o con el robot). Decir la **frase clave**. |
-| 12-35 | **Práctica** | El alumnado trabaja en parejas o grupos. Tú circulas y preguntas; no resuelves. A mitad (min. 23 aprox.) se cambian los roles. |
-| 35-40 | **Compartir** | Un grupo enseña su solución o **su error más interesante**. |
-| 40-45 | **Cierre y recogida** | Repetir la frase clave. Sello en el pasaporte. Guardar proyectos, recoger y poner a cargar. |
+| 0-10 | **Empezamos** | Presentar la misión del día: una pregunta para arrancar («¿Cómo se hace una tostada?»), la palabra nueva o una demostración (en el display, en el suelo o con el robot). |
+| 10-35 | **A trabajar** | En parejas o grupos, con el tablero de la misión en la pizarra. Tú circulas y preguntas; no resuelves. |
+| 35-45 | **Cerramos** | Un grupo enseña su solución o **su error más interesante** y la clase responde a una pregunta. Repetir la **frase clave**. Sello en el pasaporte. Guardar, recoger y poner a cargar. |
 
-**En las sesiones con el formato nuevo** (el primer trimestre de cada curso) estas cinco fases se agrupan en tres: **Empezamos** (arranque y misión, 10 minutos), **A trabajar** (práctica, 25) y **Cerramos** (compartir, cierre y recogida, 10). «Proyectar la sesión» tiene ahí tres pantallas: Hoy, La misión (un tablero que se queda en la pizarra mientras trabajan) y Cierre. Los roles y el minuto de uso responsable son opcionales en esas sesiones.
+Son las cinco fases de antes agrupadas en tres: arranque y misión, práctica, y compartir y cierre.
 
-**En 5º y 6º (quincenal)** la recogida empieza 5 minutos antes: todo proyecto guardado y todo kit en su caja. Cada equipo rellena una **tarjeta «Dónde lo dejamos»** (material M18), porque en quince días se olvida casi todo.
+**«Proyectar la sesión»** tiene tres pantallas: **Hoy** (lo que aprenden, las palabras nuevas y el vídeo del concepto), **La misión** (un tablero que se queda en la pizarra mientras trabajan: los pasos, los bloques que hacen falta, pistas, una referencia visual, «Lo hemos conseguido si…» y un reto para quien termine) y **Cierre** (la frase clave, las preguntas de salida y lo que se guarda y se recoge).
+
+**Los roles y el minuto de uso responsable son opcionales:** cada ficha los trae en «Si quieres añadirlo» y la proyección, en «Recursos».
+
+**En 5º y 6º (quincenal)** «Empezamos» abre con la **tarjeta «Dónde lo dejamos»** (material M18) de la sesión anterior y «Cerramos» acaba rellenándola, con todo proyecto guardado y todo kit en su caja, porque en quince días se olvida casi todo.
 
 ### Tres preguntas que sirven para cualquier sesión (cuando no sepas qué decir)
 
@@ -145,7 +147,7 @@ Las parejas se cambian el rol a mitad de práctica. En grupos, el rol cambia cad
 
 ### Minuto de uso responsable
 
-Un minuto al principio de cada sesión para una norma de uso responsable y seguridad: se dice la frase y se comenta con su pregunta. **Cada sesión trae ya la suya**, elegida según lo que se hace ese día (cuidado del material con los robots, pantallas con el ordenador, privacidad e información con internet o IA, huella digital en las presentaciones, recogida al construir). Las frases se repiten a propósito: poco a poco el alumnado las dice solo. Este es el banco completo, por si se quiere cambiar alguna.
+Un minuto, si se quiere añadir, al principio de la sesión para una norma de uso responsable y seguridad: se dice la frase y se comenta con su pregunta. **Cada sesión trae ya la suya** en «Si quieres añadirlo», elegida según lo que se hace ese día (cuidado del material con los robots, pantallas con el ordenador, privacidad e información con internet o IA, huella digital en las presentaciones, recogida al construir). Cuando las normas de uso son el contenido de la sesión, no hay minuto aparte: van como primer paso de «Empezamos». Las frases se repiten a propósito: poco a poco el alumnado las dice solo. Este es el banco completo, por si se quiere cambiar alguna.
 
 | Tema | 1º y 2º | 3º y 4º | 5º y 6º |
 |---|---|---|---|

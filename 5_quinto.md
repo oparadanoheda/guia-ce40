@@ -281,7 +281,9 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S4 · Sensores de luz y temperatura `ROB` `PC`
 
 - **Qué aprenden:** leer valores de los sensores y decidir con **si… entonces… si no**.
-- **Prepara antes:** ejemplo en el display. Hoja de registro de datos.
+- **Hoy:** programan la placa para que lea un sensor: una lamparita que se enciende cuando hay poca luz (propuesta A) o un termómetro con el que miden la temperatura de tres sitios del colegio (propuesta B).
+- **Necesitas:** portátiles con MakeCode, una placa con su cable por equipo y la chuleta de bloques; para la propuesta B, la hoja de registro de datos.
+- **Lo han conseguido si:** la lamparita se enciende al tapar la placa y se apaga al destaparla, con el umbral ajustado a su mesa (propuesta A), o han anotado la temperatura de tres sitios y saben decir dónde hace más calor (propuesta B).
 - **Para proyectar:** [[P:umbral|Sensor y umbral]] y [[P:umbral.temp|temperatura]]
 - **Preguntas de salida:** [[P:salida.condicion_mk|Si… si no]]
 - **En tablets o portátiles:** [[T:condiciones|¿Qué hace el programa?]] (niveles 1 a 3, con bloques de MakeCode y el sensor de temperatura)
@@ -290,15 +292,41 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 - **Para repasar:** condición · para siempre · micro:bit
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
+**Antes de la clase:**
+- Haz el ejemplo una vez en tu ordenador, para enseñarlo en el display. [[S:5-S4-lamparita.mkcd|Lamparita de noche · solución]]
+- Prepara una placa con su cable por equipo.
+- Para la propuesta B, imprime la hoja de registro de datos, una por equipo. [[M:M25|Medimos el colegio]] (hoja 3)
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
+
 **Opción A · La lamparita de noche**
-1. **para siempre** → **si (nivel de luz < 50) entonces** → **mostrar LEDs** (se dibuja una luna o se encienden las 25 luces) / **si no** → **borrar la pantalla**.
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Haz el ejemplo en el display: `para siempre` → `si (nivel de luz < 50) entonces` → `mostrar LEDs` (se dibuja una luna o se encienden las 25 luces) / `si no` → `borrar la pantalla`. [[V:sensor-umbral|Sensor y umbral]]
+
+**A trabajar (25 min):**
+1. Cada pareja programa la lamparita.
 2. En el simulador, se cambia la luz con el círculo amarillo de la placa. Después, en la placa real, se tapa con la mano.
-3. Ajustan el número 50 hasta que funcione bien en su mesa. Explica que ese número es un **umbral**.
+3. Ajustan el número 50 hasta que funcione bien en su mesa. Explica que ese número es un **umbral**. [[P:umbral|Sensor y umbral]]
 
 **Opción B · El termómetro de la escuela**
-1. **al presionarse el botón A** → **mostrar número temperatura (°C)**.
-2. Miden en el aula, en la ventana y en el pasillo. Anotan en la hoja.
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Haz el ejemplo en el display: `al presionarse el botón A` → `mostrar número temperatura (°C)`. [[V:sensor-umbral|Sensor y umbral]]
+
+**A trabajar (25 min):**
+1. Cada pareja programa el termómetro y lo pasa a la placa.
+2. Miden en el aula, en la ventana y en el pasillo. Anotan en la hoja. [[M:M25|Medimos el colegio]]
 3. Gráfico de barras en la pizarra. Aviso: la placa mide la temperatura de su chip; sirve para comparar sitios, no como termómetro exacto.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un equipo enseña su placa. Pregunta: «¿Qué mide el sensor y qué decide el programa?»
+2. Frase clave: **«El sensor mide; el programa decide.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.condicion_mk|Si… si no]]
+4. Se guarda el archivo con el nombre del equipo, la placa y el cable vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **La lamparita de noche**
@@ -316,7 +344,9 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S5 · La alarma del estuche `ROB` `PC`
 
 - **Qué aprenden:** usar un sensor para que un objeto reaccione al mundo físico (interacción física).
-- **Prepara antes:** estuches o cajitas, portapilas. La micro:bit V2 tiene altavoz; si no, se usa solo la pantalla.
+- **Hoy:** convierten la placa en una alarma para el estuche: si alguien lo mueve, suena y sale una equis; con los botones se activa y se desactiva.
+- **Necesitas:** portátiles con MakeCode, una placa con su cable y su portapilas por equipo, la chuleta de bloques y un estuche o una cajita.
+- **Lo han conseguido si:** con la placa dentro del estuche, la alarma suena al moverlo solo cuando está activada.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Preguntas de salida:** [[P:salida.variable_mk|Variables]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
@@ -324,13 +354,27 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 - **Para repasar:** condición
 - **Minuto de uso responsable:** «Las pilas y baterías no se tocan con metal ni se mojan.» ¿Qué puede pasar si una pila toca un objeto de metal?
 
-**Pasos:**
-1. Pregunta: «¿Cómo sabría la placa que alguien ha cogido tu estuche?». Porque se mueve.
-2. **si agitar** → **mostrar ícono** (la equis) → **reproduce secuencia tono Do medio durante 1 pulso** (o una melodía de la categoría Música).
-3. Activar y desactivar: variable *activada*. **al presionarse el botón A** → **fijar activada a 1** → **mostrar ícono** (el sí). **al presionarse el botón B** → **fijar activada a 0**. Y en la alarma: **si (activada = 1) entonces** sonar.
-4. Meten la placa con su portapilas en el estuche y lo prueban.
+**Antes de la clase:**
+- Reúne estuches o cajitas y prepara una placa con su cable y su portapilas por equipo. La micro:bit V2 tiene altavoz; si no, se usa solo la pantalla.
+- Haz el ejemplo una vez en tu ordenador. [[S:5-S5-alarma-del-estuche.mkcd|Alarma del estuche · solución]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
 
-**Opción B (más sencilla):** solo el paso 2, sin activar y desactivar.
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Pregunta: «¿Cómo sabría la placa que alguien ha cogido tu estuche?». Porque se mueve. [[V:sensor-umbral|Sensor y umbral]]
+
+**A trabajar (25 min):**
+1. `si agitar` → `mostrar ícono` (la equis) → `reproduce secuencia tono Do medio durante 1 pulso` (o una melodía de la categoría Música).
+2. Activar y desactivar: variable *activada*. `al presionarse el botón A` → `fijar activada a 1` → `mostrar ícono` (el sí). `al presionarse el botón B` → `fijar activada a 0`. Y en la alarma: `si (activada = 1) entonces` sonar.
+3. Meten la placa con su portapilas en el estuche y lo prueban.
+
+**Cerramos (10 min):**
+1. Un equipo enseña su alarma. Pregunta: «Si la alarma suena siempre que se mueve, ¿cómo la llevamos sin que suene?»
+2. Frase clave: **«Un invento útil escucha al mundo y responde.»**
+3. Tres preguntas de salida: la clase vota con los dedos. [[P:salida.variable_mk|Variables]]
+4. Se guarda el archivo con el nombre del equipo, la placa y el portapilas vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
+
+**Opción más sencilla:** solo el paso 1 de «A trabajar» (la alarma), sin activar y desactivar.
 
 **Pistas y soluciones:**
 1. **Alarma que se activa y se desactiva**
@@ -342,31 +386,46 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 
 - **Frase clave:** «Un invento útil escucha al mundo y responde.»
 - **Si va rápido:** que la alarma se desactive con un código (A, A, B).
-- **Si cuesta:** la opción B, más sencilla.
+- **Si cuesta:** la opción más sencilla.
 - **Mates:** condiciones, lógica (activado o desactivado).
 
 ### S6 · Cazabichos y plan de mi invento `PC` `SEG`
 
 - **Qué aprenden:** depurar programas con sensores y planificar un invento propio.
-- **Prepara antes:** nada. Los tres programas con bicho están en los archivos de MakeCode (o se construyen en directo en la pizarra).
+- **Hoy:** arreglan tres programas con un bicho cada uno y planifican su invento: un sensor y una respuesta.
+- **Necesitas:** la pizarra digital, portátiles con MakeCode, la chuleta de bloques y la hoja «Plan de mi invento» (una por pareja).
+- **Lo han conseguido si:** han arreglado al menos dos de los tres programas, y su plan dice qué problema resuelve el invento, qué sensor usa y qué hace.
 - **Material listo:** [[M:M16|Plan de mi invento]] · [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S6-bicho-1-lamparita.mkcd|Bicho 1: la lamparita]] · [[S:5-S6-bicho-2-contador.mkcd|Bicho 2: el contador]] · [[S:5-S6-bicho-3-dado.mkcd|Bicho 3: el dado]]
 - **Para repasar:** sensores
 - **Minuto de uso responsable:** si buscan ideas en internet, solo en las webs que indica el docente (makecode.microbit.org, microbit.org/es-es/projects).
 
-**Pasos:**
-1. **Cazabichos (15 minutos):** abre en la pizarra, uno a uno, estos programas con un bicho cada uno (o constrúyelos en directo). Las parejas los copian en su simulador y los arreglan:
-   - La lamparita de la S4 con **nivel de luz > 50** en vez de **< 50** (se enciende de día).
-   - El contador de la S2 sin **mostrar número contador** después de sumar (el número cambia, pero la pantalla no).
-   - El dado de la S3 con **escoger al azar de 0 a 6** (a veces sale 0).
-   Puesta en común: ¿cómo los encontrasteis? (probar, leer el programa en voz alta, cambiar una cosa cada vez).
-2. **Plan del invento (20 minutos):** cada pareja elige un invento con **un sensor y una respuesta**:
-   - Detector de ruido para la biblioteca (micrófono: **nivel de sonido**).
-   - Recordatorio de beber agua (cada cierto tiempo suena).
-   - Termómetro que avisa si hace frío.
-   - Juego de reflejos (aparece una flecha y hay que pulsar el botón rápido).
-   - Brújula que señala el norte.
-   Rellenan: qué problema resuelve, qué sensor usa, qué hace, dibujo del programa.
+**Antes de la clase:**
+- Ten a mano los tres programas con bicho para abrirlos en la pizarra (o constrúyelos en directo). [[S:5-S6-bicho-1-lamparita.mkcd|Bicho 1: la lamparita]] · [[S:5-S6-bicho-2-contador.mkcd|Bicho 2: el contador]] · [[S:5-S6-bicho-3-dado.mkcd|Bicho 3: el dado]]
+- Imprime la hoja del plan, una por pareja. [[M:M16|Plan de mi invento]] (hoja 5)
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. **Cazabichos:** abre en la pizarra, uno a uno, estos programas con un bicho cada uno (o constrúyelos en directo). Las parejas los copian en su simulador y los arreglan: [[V:depurar-superior|Depurar]]
+    - La lamparita de la S4 con `nivel de luz > 50` en vez de `< 50` (se enciende de día).
+    - El contador de la S2 sin `mostrar número contador` después de sumar (el número cambia, pero la pantalla no).
+    - El dado de la S3 con `escoger al azar de 0 a 6` (a veces sale 0).
+
+**A trabajar (25 min):**
+1. Puesta en común: ¿cómo los encontrasteis? (probar, leer el programa en voz alta, cambiar una cosa cada vez).
+2. **Plan del invento (20 minutos):** cada pareja elige un invento con **un sensor y una respuesta**: [[M:M16|Plan de mi invento]]
+    - Detector de ruido para la biblioteca (micrófono: `nivel de sonido`).
+    - Recordatorio de beber agua (cada cierto tiempo suena).
+    - Termómetro que avisa si hace frío.
+    - Juego de reflejos (aparece una flecha y hay que pulsar el botón rápido).
+    - Brújula que señala el norte.
+3. Rellenan: qué problema resuelve, qué sensor usa, qué hace, dibujo del programa.
+
+**Cerramos (10 min):**
+1. Una pareja cuenta su invento. Pregunta a la clase: «¿Qué sensor usa y qué hace cuando el sensor detecta algo?»
+2. Frase clave: **«Un invento empieza con un problema bien elegido.»**
+3. Se guardan los planes y cada equipo rellena la tarjeta «Dónde lo dejamos»: en la S7 se construye el invento.
 
 **Pistas y soluciones:**
 1. **Cazabichos**
@@ -381,19 +440,33 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S7 · Mi invento `ROB` `PC`
 
 - **Qué aprenden:** construir y probar un invento propio.
+- **Hoy:** programan el invento que planificaron en la S6, lo pasan a la placa, lo prueban en la situación real y lo enseñan a otra pareja.
+- **Necesitas:** portátiles con MakeCode, una placa con su cable por pareja, los planes de la S6, la ficha de prueba y la rúbrica del trimestre.
+- **Lo han conseguido si:** el invento funciona en la placa en la situación real (con el umbral ajustado si hace falta) y otra pareja lo ha probado.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M19|Rúbrica]]
 - **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Detector de ruido · solución (V2)]]
 - **Para repasar:** sensores · condición · para siempre
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
-- **Pasos:**
-  1. Leer la tarjeta y el plan (3 minutos).
-  2. Programar en el simulador (15 minutos).
-  3. Pasar a la placa y probar en situación real (10 minutos): ¿funciona? ¿hay que ajustar el umbral?
-  4. Mostrar a otra pareja (5 minutos).
-- **Si va rápido:** una caja o carcasa de cartón para el invento.
-- **Si cuesta:** un invento con un sensor y un solo icono de respuesta.
-- **Producto de T2:** invento individual con un sensor. **Rúbrica del trimestre.**
-- **Mates:** medida y verificación.
+
+**Antes de la clase:**
+- Prepara una placa con su cable por pareja y ten a mano los planes del invento de la S6.
+- Abre una vez la solución del detector de ruido, que es uno de los inventos posibles. [[S:5-S11-biblioteca-silenciosa.mkcd|Detector de ruido · solución (V2)]]
+- Imprime la ficha de prueba, una por pareja (vienen cuatro por hoja). [[M:M17|Ficha de prueba]] (hoja 2)
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. Leer la tarjeta y el plan (3 minutos).
+2. Explica la misión: hoy cada pareja programa su invento, lo pasa a la placa y lo prueba donde se va a usar.
+
+**A trabajar (25 min):**
+1. Programar en el simulador (15 minutos).
+2. Pasar a la placa y probar en situación real (10 minutos): ¿funciona? ¿hay que ajustar el umbral?
+3. Mientras trabajan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Mostrar a otra pareja (5 minutos), que lo prueba con la ficha de prueba. [[M:M17|Ficha de prueba]]
+2. Frase clave: **«Si funciona en la mesa, pruébalo en la realidad.»**
+3. Se guarda el archivo con el nombre del equipo, la placa y el cable vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Pistas para cada invento**
@@ -405,6 +478,10 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
     - *Error frecuente al pasar a la placa:* el umbral que iba bien en el simulador no sirve en la clase: hay que medir y ajustarlo.
 
 - **Frase clave:** «Si funciona en la mesa, pruébalo en la realidad.»
+- **Si va rápido:** una caja o carcasa de cartón para el invento.
+- **Si cuesta:** un invento con un sensor y un solo icono de respuesta.
+- **Producto de T2:** invento individual con un sensor. **Rúbrica del trimestre.**
+- **Mates:** medida y verificación.
 
 ---
 
@@ -415,7 +492,9 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S8 · Nezha: el robot se mueve `ROB` `PC`
 
 - **Qué aprenden:** conectar la micro:bit al robot Nezha y programar sus motores.
-- **Prepara antes:** coches Nezha montados, baterías cargadas, cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta). En MakeCode, añadir la **extensión Nezha** (Extensiones → buscar «nezha»). Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
+- **Hoy:** encajan la micro:bit en el robot Nezha, programan sus motores con velocidad y tiempo, miden cuánto avanza y ajustan el tiempo para llegar a 1 metro.
+- **Necesitas:** los coches Nezha montados y cargados, portátiles con MakeCode y la extensión Nezha, una cinta métrica y una línea de salida en el suelo.
+- **Lo han conseguido si:** han medido cuánto avanza su robot en 1 segundo y lo han hecho parar cerca de la línea de 1 metro ajustando el tiempo.
 - **Para proyectar:** [[P:velocidad|Velocidad × tiempo]]
 - **En tablets o portátiles:** [[T:velocidad|Aparca el coche Nezha]] (niveles 1 y 2, antes de medir con el coche)
 - **Material listo:** [[M:M21|Chuleta de MakeCode]] (Nezha)
@@ -423,12 +502,28 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 - **Para repasar:** evento · micro:bit
 - **Minuto de uso responsable:** el robot se prueba en el suelo, nunca en la mesa; se apaga antes de coger la placa.
 
-**Pasos:**
-1. Enseña cómo se encaja la micro:bit en la placa de expansión y a qué conectores van los motores (M1, M2…).
-2. Programa: **al presionarse el botón A** → motor M1 a velocidad 50 y motor M2 a velocidad −50 → **pausa (ms) 1000** → parar motores. En el coche del kit los dos motores van en espejo: para ir recto, uno en positivo y el otro en negativo. Los bloques de la extensión salen en inglés (**Set motor M1 speed to 50 %**, **Stop all motors**).
-3. Prueban: ¿cuánto avanza en 1 segundo? Lo miden con la cinta métrica.
-4. Reto: llegar exactamente a una línea a 1 metro. Tienen que ajustar el tiempo.
-5. Reto extra: un giro (los dos motores con el mismo signo, o uno parado).
+**Antes de la clase:**
+- Prepara los coches Nezha montados y las baterías cargadas, una cinta métrica y una línea de salida en el suelo (vale una regla o una tira de cinta).
+- En MakeCode, añade la **extensión Nezha** (Extensiones → buscar «nezha»).
+- Mira antes el vídeo de presentación del kit en la Mediateca de EducaMadrid.
+- Haz una vez el ejemplo en tu ordenador. [[S:5-S8-nezha-avanza.mkcd|El Nezha avanza 1 segundo · solución]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]] (Nezha)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Enseña cómo se encaja la micro:bit en la placa de expansión y a qué conectores van los motores (M1, M2…).
+3. Programa: `al presionarse el botón A` → motor M1 a velocidad 50 y motor M2 a velocidad −50 → `pausa (ms) 1000` → parar motores. En el coche del kit los dos motores van en espejo: para ir recto, uno en positivo y el otro en negativo. Los bloques de la extensión salen en inglés (`Set motor M1 speed to 50 %`, `Stop all motors`).
+
+**A trabajar (25 min):**
+1. Cada equipo hace el programa y lo pasa a su robot.
+2. Prueban: ¿cuánto avanza en 1 segundo? Lo miden con la cinta métrica.
+3. Reto: llegar exactamente a una línea a 1 metro. Tienen que ajustar el tiempo.
+4. Reto extra: un giro (los dos motores con el mismo signo, o uno parado).
+
+**Cerramos (10 min):**
+1. Un equipo cuenta cuánto avanza su robot en 1 segundo. Pregunta: «¿Cuánto tiempo hace falta para llegar a 1 metro? ¿Cómo lo habéis calculado?»
+2. Frase clave: **«Velocidad por tiempo: así sé cuánto avanza.»**
+3. Se guarda el archivo con el nombre del equipo, el robot se apaga y vuelve a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **¿Cuánto avanza en 1 segundo?**
@@ -450,19 +545,34 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S9 · IA, sesgos y bulos `IA` `SEG`
 
 - **Qué aprenden:** cómo aprende una IA, por qué puede tener sesgos y cómo detectar información falsa.
-- **Prepara antes:** nada: el juego y los ejemplos ya están preparados en el proyectable y en M23.
+- **Hoy:** ven cómo una máquina aprende de los datos que le damos (y se equivoca si los datos están sesgados), juegan a distinguir verdades, bulos e imágenes hechas con IA y escriben un decálogo contra los bulos.
+- **Necesitas:** la pizarra digital; si quieres repartirlas, las tarjetas «¿Verdad, bulo o IA?».
+- **Lo han conseguido si:** saben explicar por qué la máquina falla con la manzana verde, y el decálogo de la clase tiene 5 normas para no creerse bulos.
 - **Para proyectar:** [[P:sesgo|Entrena a la máquina]] y [[P:verdad.bulos|¿Verdad, bulo o IA?]]
 - **Material listo:** [[M:M23|¿Verdad, bulo o IA?]] (hojas 2 y 3) · [[M:M24|Casos para debatir]]
 - **Minuto de uso responsable:** «Antes de creer algo, lo contrasto en otra fuente.» ¿Qué fuentes fiables conocemos?
 
-**Pasos:**
-1. **Demostración (12 minutos):** proyecta «Entrena a la máquina», entrenada solo con manzanas rojas. Probad la manzana verde y la fresa: ¿acierta? Debate: «¿De quién es la culpa, de la máquina o de los datos?». Si te animas, se puede hacer también con Teachable Machine y la cámara (ver Herramientas paso a paso).
-2. **Juego «¿Verdad, bulo o IA?» (15 minutos):** proyecta las tarjetas una a una (o reparte M23). Los equipos votan y después se lee la pista de cada una.
-3. **Decálogo (8 minutos):** la clase escribe 5 normas para no creerse bulos.
+**Antes de la clase:**
+- Nada más: el juego y los ejemplos ya están preparados en el proyectable.
+- Si prefieres repartir las tarjetas en papel, imprímelas. [[M:M23|¿Verdad, bulo o IA?]] (hojas 2 y 3)
+- Ten a mano los casos para debatir, por si el debate da para más. [[M:M24|Casos para debatir]]
 
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. **Demostración:** proyecta «Entrena a la máquina», entrenada solo con manzanas rojas. Probad la manzana verde y la fresa: ¿acierta? Debate: «¿De quién es la culpa, de la máquina o de los datos?». Si te animas, se puede hacer también con Teachable Machine y la cámara (ver Herramientas paso a paso). [[P:sesgo|Entrena a la máquina]] · [[V:aprende-maquina|Cómo aprende una máquina]]
+
+**A trabajar (25 min):**
+1. **Juego «¿Verdad, bulo o IA?» (15 minutos):** proyecta las tarjetas una a una (o reparte M23). Los equipos votan y después se lee la pista de cada una. [[P:verdad.bulos|¿Verdad, bulo o IA?]]
+2. **Decálogo (8 minutos):** la clase escribe 5 normas para no creerse bulos.
+
+**Cerramos (10 min):**
+1. Un equipo lee sus normas. Pregunta a la clase: «¿Qué tarjeta os ha engañado más? ¿Cómo lo habéis descubierto?»
+2. Frase clave: **«Antes de creer, compruebo.»**
+3. Se cuelga el decálogo en la clase y cada equipo rellena la tarjeta «Dónde lo dejamos».
+
+- **Frase clave:** «Antes de creer, compruebo.»
 - **Es la primera sesión de IA de la etapa** (hasta 4º no se trabaja). Si el grupo no sabe qué es, empieza con [Quick, Draw!](https://quickdraw.withgoogle.com/) en la pizarra: una IA intenta adivinar lo que dibuja un alumno. «¿Cómo sabe que es un gato? Porque ha visto miles de dibujos de gatos.»
 - **Otra opción en la pizarra:** [AI for Oceans](https://code.org/oceans) (Code.org, en español): la clase entrena en la pizarra una IA que separa peces de basura y ve cómo influyen los datos.
-- **Frase clave:** «Antes de creer, compruebo.»
 - **Si va rápido:** clasificar los bulos por tipos (foto trucada, titular falso, imagen hecha con IA).
 - **Si cuesta:** solo la demostración y 4 tarjetas del juego.
 - **Mates:** muestras, sesgo, aciertos y errores.
@@ -470,16 +580,30 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S10 · Tinkercad: diseño en 3D `RA`
 
 - **Qué aprenden:** moverse en un programa de diseño 3D, combinar formas y usar medidas.
-- **Prepara antes:** decide el modo de trabajo según lo que permita el centro (guía de Tinkercad en `07_Guias_rapidas_herramientas.md`). **Con clase de Tinkercad:** cuentas de clase con alias creadas por el docente, si el equipo directivo y el delegado de protección de datos lo autorizan; cada pareja entra con su alias. **Sin cuentas:** el docente diseña en el display y los equipos dictan por turnos; cada equipo dibuja antes su diseño en papel isométrico o cuadriculado con medidas.
+- **Hoy:** aprenden a mover, medir y combinar formas en Tinkercad, hacen agujeros y diseñan un llavero con su nombre de equipo.
+- **Necesitas:** la pizarra digital, Tinkercad (con cuentas de clase con alias, si el centro lo autoriza, o solo en el display) y la hoja para dibujar el diseño antes.
+- **Lo han conseguido si:** el llavero mide 40 × 20 × 4 mm, tiene el nombre del equipo en relieve y un agujero para la anilla.
 - **Para proyectar:** [[P:vistas|Cubos y vistas]] (las vistas de frente, desde arriba y de lado que da el cubo de vistas de Tinkercad)
 - **En tablets o portátiles:** [[T:cubos|Cubos y vistas]] (niveles 1 y 3, antes de abrir Tinkercad)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el diseño antes)
 - **Minuto de uso responsable:** «Si me duelen los ojos o la cabeza, lo digo.» ¿Qué podemos hacer para que no nos pase?
 
-**Pasos:**
-1. Demostración: arrastrar una caja, cambiar sus medidas (cuadraditos blancos), levantarla (flecha negra de arriba), girarla (flechas curvas), ver desde otro lado (cubo de vistas y rueda del ratón).
-2. Agujeros: una forma en modo **Hueco** + otra forma sólida → seleccionar las dos → **Agrupar**.
-3. Reto: un llavero de 40 × 20 × 4 mm con su nombre de equipo en relieve y un agujero para la anilla.
+**Antes de la clase:**
+- Decide el modo de trabajo según lo que permita el centro (guía de Tinkercad en `07_Guias_rapidas_herramientas.md`). **Con clase de Tinkercad:** cuentas de clase con alias creadas por el docente, si el equipo directivo y el delegado de protección de datos lo autorizan; cada pareja entra con su alias. **Sin cuentas:** el docente diseña en el display y los equipos dictan por turnos; cada equipo dibuja antes su diseño en papel isométrico o cuadriculado con medidas.
+- Imprime la hoja para dibujar el diseño. [[M:M16|Hoja de proyecto]] (para dibujar el diseño antes)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Demostración: arrastrar una caja, cambiar sus medidas (cuadraditos blancos), levantarla (flecha negra de arriba), girarla (flechas curvas), ver desde otro lado (cubo de vistas y rueda del ratón). [[P:vistas|Cubos y vistas]]
+
+**A trabajar (25 min):**
+1. Agujeros: una forma en modo **Hueco** + otra forma sólida → seleccionar las dos → **Agrupar**.
+2. Reto: un llavero de 40 × 20 × 4 mm con su nombre de equipo en relieve y un agujero para la anilla.
+
+**Cerramos (10 min):**
+1. Un equipo enseña su llavero. Pregunta a la clase: «¿Qué medidas tiene? ¿Cómo se hace el agujero?»
+2. Frase clave: **«Diseñar en 3D es construir con formas.»**
+3. Se guarda el diseño y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 - **Frase clave:** «Diseñar en 3D es construir con formas.»
 - **Si va rápido:** un llavero con su nombre en relieve y un borde redondeado.
@@ -489,26 +613,37 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S11 · Proyecto en equipo: un invento para el colegio `PC` `ROB` `RA`
 
 - **Qué aprenden:** trabajar en equipo para resolver un problema real con lo aprendido.
-- **Prepara antes:** hoja de proyecto en equipo (M16), el material del curso, cartón y cinta.
+- **Hoy:** cada equipo elige un reto del colegio (un sensor y una acción), reparte las tareas y empieza a construir y programar su invento.
+- **Necesitas:** la hoja de proyecto en equipo, el material del curso, cartón, cinta y las tarjetas «Dónde lo dejamos».
+- **Lo han conseguido si:** cada equipo tiene reto y tareas repartidas, una primera parte del invento hecha y la tarjeta «Dónde lo dejamos» muy detallada.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] · [[M:M18|Dónde lo dejamos]]
 - **Archivo de MakeCode:** [[S:5-S11-biblioteca-silenciosa.mkcd|Biblioteca silenciosa · solución (V2)]]
 - **Para repasar:** descomponer · sensores · motores
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-**Retos propuestos (muy acotados: un sensor y una acción):**
-1. **Biblioteca silenciosa:** una placa que muestra una cara triste si hay mucho ruido.
-2. **Semáforo de la fuente o del baño:** libre u ocupado con un botón o un sensor de luz.
-3. **Robot de reparto:** el Nezha lleva una nota de una mesa a otra (distancia medida).
-4. **Aviso de ventilación:** si la temperatura sube, la placa avisa de abrir la ventana.
-5. **Situación oficial:** *Semáforo inteligente* o *Detector de temperatura y humedad* con Kit Nezha Inventor.
+**Antes de la clase:**
+- Imprime la hoja de proyecto en equipo, una por equipo. [[M:M16|Hoja de proyecto en equipo · 3º a 6º]] (hoja 3)
+- Prepara el material del curso, cartón y cinta.
+- Ten a mano las tarjetas «Dónde lo dejamos». [[M:M18|Dónde lo dejamos]]
+- Abre una vez la solución de la biblioteca silenciosa. [[S:5-S11-biblioteca-silenciosa.mkcd|Biblioteca silenciosa · solución (V2)]]
 
-**Pasos:**
-1. 7 minutos: cada equipo elige reto y reparte tareas (programación, construcción, pruebas, portavoz).
-2. 25 minutos: construir y programar.
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. 7 minutos: cada equipo elige reto y reparte tareas (programación, construcción, pruebas, portavoz). Retos propuestos (muy acotados: un sensor y una acción): [[M:M16|Hoja de proyecto en equipo · 3º a 6º]]
+    - **Biblioteca silenciosa:** una placa que muestra una cara triste si hay mucho ruido.
+    - **Semáforo de la fuente o del baño:** libre u ocupado con un botón o un sensor de luz.
+    - **Robot de reparto:** el Nezha lleva una nota de una mesa a otra (distancia medida).
+    - **Aviso de ventilación:** si la temperatura sube, la placa avisa de abrir la ventana.
+    - **Situación oficial:** *Semáforo inteligente* o *Detector de temperatura y humedad* con Kit Nezha Inventor.
+
+**A trabajar (25 min):**
+1. 25 minutos: construir y programar.
+
+**Cerramos (10 min):**
+1. Un equipo cuenta su reto. Pregunta a la clase: «¿Qué sensor usa y qué acción hace?»
+2. Frase clave: **«Un sensor, una acción, un problema resuelto.»**
 3. 5 minutos: foto del montaje y tarjeta «Dónde lo dejamos» muy detallada.
-
-- **Si hay sesiones opcionales:** esta sesión se dedica al plan y la construcción, y la **S13** a programar y probar.
-- **Mates:** resolución de problemas, medida.
+4. Se guarda el archivo con el nombre del equipo y el kit vuelve completo a su caja.
 
 **Pistas y soluciones:**
 1. **Pistas para cada reto**
@@ -520,25 +655,46 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
     - *Solución:* lo más sencillo es apuntar a mano la medida cada 5 minutos en la hoja M25 y hacer un gráfico. Con placas V2 también se puede usar la extensión de registro de datos de MakeCode.
 
 - **Frase clave:** «Un sensor, una acción, un problema resuelto.»
+- **Si hay sesiones opcionales:** esta sesión se dedica al plan y la construcción, y la **S13** a programar y probar.
 - **Si va rápido:** añadir un segundo sensor o un registro de datos.
 - **Si cuesta:** el reto de la biblioteca silenciosa con un solo icono.
+- **Mates:** resolución de problemas, medida.
 
 ### S12 · Mejoramos y presentamos (Feria del Código) `PC` `RA`
 
 - **Qué aprenden:** optimizar el programa y presentar el proyecto.
+- **Hoy:** cada equipo revisa su programa con tres preguntas y presenta su invento en la Feria del Código; al final, la autoevaluación.
+- **Necesitas:** los inventos de cada equipo con su kit y su portátil, la rúbrica del trimestre, la autoevaluación y los pasaportes.
+- **Lo han conseguido si:** cada equipo ha revisado su programa con las tres preguntas y ha presentado el problema, la solución, cómo funciona y qué mejoraría.
 - **Para proyectar:** [[P:votaciones.mis|Votaciones]] (opcional, para votar el proyecto favorito de la feria)
 - **Material listo:** [[M:M19|Rúbrica y autoevaluación]] · [[M:M15|Pasaporte]]
 - **Para repasar:** optimizar
 - **Minuto de uso responsable:** «Un seudónimo me protege. Mi foto es mía.» ¿Qué seudónimo usarías en un juego en línea?
-- **Pasos:**
-  1. **Optimizar (10 minutos):** cada equipo revisa su programa con tres preguntas: ¿hay bloques repetidos que pueden ir en un bucle? ¿hay bloques que no hacen nada? ¿los nombres de las variables se entienden?
-  2. **Presentar (25 minutos):** feria en el aula o con otros cursos. Cada equipo: problema, solución, cómo funciona, qué mejorarían. QR en la mesa con un vídeo o fotos (sin caras), preparado por el docente o por los propios alumnos si hay tiempo (ver guía de QR).
-  3. **Cierre (5 minutos):** autoevaluación.
-- **Producto de T3:** proyecto en equipo. **Rúbrica del trimestre.**
-- **Mates:** presentar con datos y medidas: cuánto mide, qué umbral se eligió y por qué.
+
+**Antes de la clase:**
+- Prepara los inventos de cada equipo con su kit y su portátil.
+- Si vais a poner un QR en cada mesa, prepáralo antes (ver guía de QR).
+- Imprime el registro de la rúbrica y la autoevaluación. [[M:M19|Rúbrica y autoevaluación]]
+- Ten a mano los pasaportes, uno por alumno. [[M:M15|Pasaporte]]
+
+**Empezamos (10 min):**
+1. **Optimizar (10 minutos):** cada equipo revisa su programa con tres preguntas: ¿hay bloques repetidos que pueden ir en un bucle? ¿hay bloques que no hacen nada? ¿los nombres de las variables se entienden?
+
+**A trabajar (25 min):**
+1. **Presentar (25 minutos):** feria en el aula o con otros cursos. Cada equipo: problema, solución, cómo funciona, qué mejorarían. QR en la mesa con un vídeo o fotos (sin caras), preparado por el docente o por los propios alumnos si hay tiempo (ver guía de QR).
+2. Mientras presentan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica y autoevaluación]]
+
+**Cerramos (10 min):**
+1. Si queréis, votad el proyecto favorito de la feria. [[P:votaciones.mis|Votaciones]]
+2. **Cierre (5 minutos):** autoevaluación.
+3. Frase clave: **«Un buen proyecto se explica con datos.»**
+4. Se guardan los archivos con el nombre del equipo y cada kit vuelve completo a su caja.
+
 - **Frase clave:** «Un buen proyecto se explica con datos.»
 - **Si va rápido:** presentar con un dato medido (distancia, temperatura, nivel de ruido).
 - **Si cuesta:** presentar enseñando el invento en funcionamiento.
+- **Producto de T3:** proyecto en equipo. **Rúbrica del trimestre.**
+- **Mates:** presentar con datos y medidas: cuánto mide, qué umbral se eligió y por qué.
 
 ---
 
@@ -547,17 +703,33 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S13 · Proyecto: sesión extra (la primera que se debe usar) `PC` `ROB`
 
 - **Qué aprenden:** terminar el proyecto en equipo, probarlo con otro equipo y arreglar lo que falle antes de presentarlo.
+- **Hoy:** cada equipo termina de programar y probar su invento, otro equipo lo prueba con la ficha y apuntan lo que queda por arreglar.
+- **Necesitas:** los inventos de la S11 con su kit y su portátil, la ficha de prueba (una por equipo) y las tarjetas «Dónde lo dejamos».
+- **Lo han conseguido si:** el invento funciona, otro equipo lo ha probado con la ficha y la tarjeta dice qué queda por arreglar.
 - **Material listo:** [[M:M17|Ficha de prueba]] · [[M:M18|Dónde lo dejamos]]
 - **Para repasar:** depurar
 - **Minuto de uso responsable:** «Pantalla a la altura de los ojos y a un brazo de distancia.» ¿Está bien colocada tu pantalla ahora?
 
-**Pasos:**
-1. Se coloca entre la S11 y la S12. Cada equipo lee su tarjeta «Dónde lo dejamos» (3 minutos).
-2. Programar y probar el invento (25 minutos).
-3. Cazabichos cruzado: otro equipo lo prueba y rellena la ficha de prueba (10 minutos).
-4. Apuntar en la tarjeta lo que queda por arreglar, guardar y recoger (5 minutos).
+**Antes de la clase:**
+- Prepara los inventos de cada equipo con su kit y su portátil.
+- Imprime la ficha de prueba, una por equipo (vienen cuatro por hoja). [[M:M17|Ficha de prueba]] (hoja 2)
+- Ten a mano las tarjetas «Dónde lo dejamos». [[M:M18|Dónde lo dejamos]]
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» (3 minutos).
+2. Cada equipo decide qué tiene que terminar hoy para que su invento funcione.
+
+**A trabajar (25 min):**
+1. Programar y probar el invento.
+2. Cazabichos cruzado: otro equipo lo prueba y rellena la ficha de prueba (10 minutos). [[M:M17|Ficha de prueba]]
+
+**Cerramos (10 min):**
+1. Un equipo cuenta qué bicho le han encontrado. Pregunta a la clase: «¿Lo habríais encontrado sin que lo probara otro equipo?»
+2. Frase clave: **«Otros ojos encuentran otros bichos.»**
+3. Apuntar en la tarjeta lo que queda por arreglar, guardar y recoger (5 minutos).
 
 - **Frase clave:** «Otros ojos encuentran otros bichos.»
+- **Cuándo:** se coloca entre la S11 y la S12.
 - **Si va rápido:** una mejora propia del equipo.
 - **Si cuesta:** terminar solo lo imprescindible para que funcione.
 - **Mates:** comprobar el funcionamiento con medidas: umbrales, distancias, tiempos.
@@ -565,16 +737,33 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S14 · Nezha con sensor `ROB` `PC`
 
 - **Qué aprenden:** hacer que el robot reaccione a lo que mide un sensor: parar ante un obstáculo o seguir una línea.
+- **Hoy:** según los sensores del kit, el robot para ante un obstáculo, sigue una línea o, sin sensor, arranca y para con los botones o con una palmada.
+- **Necesitas:** los coches Nezha cargados, sus sensores (si los hay), portátiles con MakeCode y la chuleta de bloques.
+- **Lo han conseguido si:** el robot reacciona al sensor (o a los botones o la palmada), y saben decir qué decide el sensor y qué hace el motor.
 - **Para proyectar:** [[P:umbral|Sensor y umbral]]
 - **Material listo:** [[M:M21|Chuleta de MakeCode]]
 - **Archivo de MakeCode:** [[S:5-S14-nezha-para-ante-obstaculo.mkcd|El Nezha para ante un obstáculo · solución]]
 - **Para repasar:** motores · sensores · condición
 - **Minuto de uso responsable:** «El robot se prueba en el suelo y se apaga antes de tocar la placa.» ¿Por qué en el suelo y no en la mesa?
 
-**Pasos:**
-1. Se hace después de la S8. Antes, comprobad qué sensores trae el kit.
-2. Con sensor de distancia: que el robot pare ante un obstáculo (**si distancia < 10 cm entonces parar**). Con sensor de línea: que siga una línea negra de cinta aislante.
-3. **Sin sensor:** que arranque y pare con los botones A y B, o con una palmada (micrófono de la V2: **al detectar el sonido alto**).
+**Antes de la clase:**
+- Comprueba qué sensores trae el kit.
+- Prepara los coches Nezha con las baterías cargadas y los portátiles con MakeCode.
+- Abre una vez la solución. [[S:5-S14-nezha-para-ante-obstaculo.mkcd|El Nezha para ante un obstáculo · solución]]
+- Ten a mano la chuleta de bloques, una por pareja. [[M:M21|Chuleta de MakeCode]]
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión según los sensores que haya y pregunta: «¿Cada cuánto hay que mirar la distancia?»
+
+**A trabajar (25 min):**
+1. Con sensor de distancia: que el robot pare ante un obstáculo (**si distancia < 10 cm entonces parar**). Con sensor de línea: que siga una línea negra de cinta aislante.
+2. **Sin sensor:** que arranque y pare con los botones A y B, o con una palmada (micrófono de la V2: `al detectar el sonido alto`).
+
+**Cerramos (10 min):**
+1. Un equipo enseña su robot. Pregunta a la clase: «¿Qué decide el sensor y qué hace el motor?»
+2. Frase clave: **«El sensor decide, el motor actúa.»**
+3. Se guarda el archivo con el nombre del equipo, el robot se apaga y vuelve a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Parar ante un obstáculo**
@@ -586,6 +775,7 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
     - *Solución:* `al presionarse el botón A` → motores en marcha; `al presionarse el botón B` → parar. Con una placa V2, también `al detectar el sonido alto` → parar.
 
 - **Frase clave:** «El sensor decide, el motor actúa.»
+- **Cuándo:** se hace después de la S8.
 - **Si va rápido:** que el robot esquive el obstáculo en lugar de pararse.
 - **Si cuesta:** la versión sin sensor, con los botones A y B.
 - **Mates:** distancias en centímetros, comparación con un umbral («distancia < 10»).
@@ -593,18 +783,36 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S15 · Tinkercad II: un objeto útil `RA`
 
 - **Qué aprenden:** diseñar en 3D un objeto útil con las medidas de un objeto real.
+- **Hoy:** cada pareja elige un objeto útil, mide con regla el objeto real y lo diseña en Tinkercad con esas medidas.
+- **Necesitas:** la pizarra digital, Tinkercad (en el mismo modo que en la S10), reglas y la hoja para apuntar las medidas.
+- **Lo han conseguido si:** la hoja tiene las medidas en milímetros y el diseño en Tinkercad las respeta.
 - **Para proyectar:** [[P:vistas.cual|Cubos y vistas · ¿qué vista es?]] (calentamiento: reconocer cada vista antes de dibujar el objeto)
 - **En tablets o portátiles:** [[T:cubos|Cubos y vistas]] (nivel 3: reconocer las vistas antes de dibujar el objeto)
 - **Material listo:** [[M:M16|Hoja de proyecto]] (para dibujar el objeto con sus medidas)
 - **Para repasar:** 3d
 - **Minuto de uso responsable:** «Guardo el archivo con el nombre del equipo antes de cerrar.» ¿Cómo lo encontraremos la próxima sesión si no tiene nombre?
 
-**Pasos:**
-1. Se hace después de la S10. Cada pareja elige: soporte para lápices, portanombres o una pieza para el proyecto en equipo.
-2. Miden con regla el objeto real y apuntan en la hoja las medidas en milímetros.
+**Antes de la clase:**
+- Prepara Tinkercad en el mismo modo que en la S10 (cuentas de clase con alias o solo en el display).
+- Reúne reglas y los objetos que se van a medir.
+- Imprime la hoja para apuntar las medidas. [[M:M16|Hoja de proyecto]] (para dibujar el objeto con sus medidas)
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Calentamiento: reconocer cada vista antes de dibujar el objeto. [[P:vistas.cual|Cubos y vistas · ¿qué vista es?]]
+
+**A trabajar (25 min):**
+1. Cada pareja elige: soporte para lápices, portanombres o una pieza para el proyecto en equipo.
+2. Miden con regla el objeto real y apuntan en la hoja las medidas en milímetros. [[M:M16|Hoja de proyecto]]
 3. Lo diseñan en Tinkercad con esas medidas y hacen una captura del diseño.
 
+**Cerramos (10 min):**
+1. Una pareja enseña su diseño. Pregunta a la clase: «¿Qué medidas habéis tomado del objeto real?»
+2. Frase clave: **«Mido en la realidad, diseño en la pantalla.»**
+3. Se guarda el diseño y cada equipo rellena la tarjeta «Dónde lo dejamos».
+
 - **Frase clave:** «Mido en la realidad, diseño en la pantalla.»
+- **Cuándo:** se hace después de la S10.
 - **Si va rápido:** un objeto con dos piezas que encajan.
 - **Si cuesta:** copiar el diseño de un soporte sencillo en el display.
 - **Mates:** medir con regla en milímetros, prismas y cilindros, vistas de un cuerpo.
@@ -612,20 +820,50 @@ Vocabulario de programación nuevo en 5º (las palabras de cursos anteriores se 
 ### S16 · A elegir
 
 - **Qué aprenden:** comunicar dos placas por radio, o diseñar en 3D una funda a la medida de la micro:bit.
+- **Hoy:** dos placas se mandan mensajes por radio (propuesta A) o diseñan en Tinkercad una funda a la medida de la micro:bit (propuesta B).
+- **Necesitas:** para la propuesta A, dos placas por equipo y portátiles con MakeCode; para la B, reglas y Tinkercad.
+- **Lo han conseguido si:** una placa enseña el número que le manda la otra (propuesta A), o la funda tiene las medidas calculadas con la holgura y la pared (propuesta B).
 - **Para proyectar:** [[P:paridad|Magia de la paridad]] (un truco de magia que explica cómo se detectan los errores en los datos)
 - **En tablets o portátiles:** [[T:cifrado|Mensajes secretos]] (opción A: cifrar es otra forma de que nadie más entienda tus mensajes) · [[T:cubos|Cubos y vistas]] (opción B, nivel 3: las vistas de la funda)
 - **Archivo de MakeCode:** [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
 - **Para repasar:** mensajes · 3d
 - **Minuto de uso responsable:** «Las redes sociales tienen edad mínima por algo.» ¿Por qué creéis que existe una edad mínima?
 
+**Antes de la clase:**
+- Para la propuesta A, prepara dos placas por equipo y abre una vez la solución. [[S:5-S16-radio.mkcd|Radio entre dos placas · solución]]
+- Para la propuesta B, reúne reglas y prepara Tinkercad como en la S10.
+
 **Opción A · Radio entre dos placas**
-Dos placas se mandan mensajes (**radio establecer grupo 7**, **radio enviar número**, **al recibir radio**). Cada equipo, un número de grupo distinto. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión: dos placas se mandan mensajes por radio.
+
+**A trabajar (25 min):**
+1. Dos placas se mandan mensajes (`radio establecer grupo 7`, `radio enviar número`, `al recibir radio`). Cada equipo, un número de grupo distinto.
+2. Relación con la privacidad: si otro usa tu grupo, lee tus mensajes.
+
+**Cerramos (10 min):**
+1. Un equipo enseña sus dos placas. Pregunta a la clase: «Si otro equipo usa vuestro grupo de radio, ¿qué pasa?»
+2. Frase clave: **«Lo que aprendo lo uso para algo nuevo.»**
+3. Se guarda el archivo con el nombre del equipo, las placas vuelven a su caja y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Opción B · Tinkercad: una funda para la micro:bit**
+
+**Empezamos (10 min):**
+1. Cada equipo lee su tarjeta «Dónde lo dejamos» de la sesión anterior.
+2. Explica la misión: una funda a la medida de la micro:bit.
+
+**A trabajar (25 min):**
 1. Cada pareja mide la micro:bit con la regla, en milímetros (unos 52 × 42 mm), y lo apunta.
 2. Calculan la caja: el hueco de dentro es la placa más 1 mm de holgura por cada lado (54 × 44 mm) y la caja de fuera suma 2 mm de pared por cada lado (58 × 48 mm). Alto: 12 mm por fuera y 10 mm de hueco.
 3. En Tinkercad: una caja **Sólida** de 58 × 48 × 12 mm y otra **Hueca** de 54 × 44 × 10 mm, centradas con **Alinear** y unidas con **Agrupar**. Un hueco más en el lado corto para el cable USB.
 4. Captura de pantalla del diseño, con las medidas a la vista.
+
+**Cerramos (10 min):**
+1. Una pareja enseña su funda. Pregunta a la clase: «¿Por qué la caja de fuera mide 58 × 48 mm?»
+2. Frase clave: **«Lo que aprendo lo uso para algo nuevo.»**
+3. Se guarda el diseño y cada equipo rellena la tarjeta «Dónde lo dejamos».
 
 **Pistas y soluciones:**
 1. **Radio entre dos placas**

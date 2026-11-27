@@ -1,4 +1,4 @@
-// Proyección de las sesiones con guion: tres pantallas (Hoy, La misión y Cierre).
+// Modo proyección de la sesión («Proyectar la sesión»): tres pantallas (Hoy, La misión y Cierre).
 // La de la misión es un tablero que se queda puesto durante la práctica: los pasos, los bloques que hacen falta,
 // una referencia visual, «Lo hemos conseguido si…» y el reto para quien termine.
 // Los roles y el minuto de uso responsable no son pantallas: se abren desde «Recursos» si se quieren usar.
@@ -321,9 +321,14 @@
     render();
   }
 
-  window.TableroSesion = {
+  // «Proyectar la sesión» de la ficha (y «Proyectar el tablero», que abre directamente La misión: data-pz="1")
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.pz-open');
+    if (b) open(b.closest('section.ficha'), +(b.getAttribute('data-pz') || 0));
+  });
+  // la usan app.js («Volver a la sesión» reabre la pantalla que estaba puesta), probar_web.py y capturas_guion.py
+  window.ProyectarSesion = {
     open: open, close: close,
-    tiene: function (section) { return !!(section && section.querySelector('script.pz2-data')); },
-    take: function () { var s = last; last = null; return s; }
+    takeSlide: function () { var s = last; last = null; return s; }
   };
 })();

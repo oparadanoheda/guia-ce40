@@ -495,21 +495,48 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S9 · ¡Repite! Bucles sin pantalla `PC`
 
 - **Qué aprenden:** cuando algo se repite, se puede decir una sola vez con «repite».
-- **Prepara antes:** tarjetas M02 y las tarjetas REPITE de M01.
+- **Hoy:** comparan un programa largo con su versión con REPITE y hacen bailes con tarjetas que se repiten.
+- **Necesitas:** la pizarra digital (propuesta A) o, por grupo, las tarjetas de movimientos y una tarjeta REPITE (propuesta B).
+- **Lo han conseguido si:** dicen cuántas veces se hace un movimiento con REPITE y cuál de los dos programas es más corto.
 - **Para proyectar:** [[P:bucles.palmadas|Bucles: programa largo o corto · palmadas]] y [[P:bucles.baile|el baile]]
 - **Material listo:** [[M:M02|Tarjetas de movimientos]] · [[M:M01|Tarjetas REPITE]] (hoja 3) · [[M:M26|Póster «Bucle»]]
 - **Minuto de uso responsable:** «Mi contraseña es como mi cepillo de dientes: no se presta.» ¿Qué otras cosas son solo mías y no se prestan?
 
+**Antes de la clase:**
+- Para la propuesta B, imprime las tarjetas de movimientos, una hoja por grupo. [[M:M02|Tarjetas de movimientos]]
+- Para la propuesta B, imprime las tarjetas REPITE, un juego por grupo. [[M:M01|Tarjetas REPITE]] (hoja 3)
+- Cuelga el póster. [[M:M26|Póster «Bucle»]]
+
 **Opción A · Largo o corto, en la pizarra**
-1. Proyecta «palmadas»: a la izquierda, 4 tarjetas de palmada; a la derecha, «REPITE ×4» con una sola palmada.
-2. La clase hace los dos programas: ¿hacen lo mismo? ¿Cuál es más corto?
-3. Mueve la barra de repeticiones y que la clase adivine cuántas palmadas son.
-4. Proyecta «el baile» y bailadlo.
+
+**Empezamos (10 min):**
+1. Proyecta «palmadas»: a la izquierda, 4 tarjetas de palmada; a la derecha, «REPITE ×4» con una sola palmada. [[P:bucles.palmadas|Bucles: programa largo o corto · palmadas]] · [[V:bucle|Bucle]]
+2. Explica la misión: hacer los dos programas y descubrir si hacen lo mismo.
+
+**A trabajar (25 min):**
+1. La clase hace los dos programas: ¿hacen lo mismo? ¿Cuál es más corto?
+2. Mueve la barra de repeticiones y que la clase adivine cuántas palmadas son.
+3. Proyecta «el baile» y bailadlo. [[P:bucles.baile|el baile]]
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «Con REPITE ×4, ¿cuántas tarjetas de palmada hacen falta? ¿Y cuántas palmadas damos?»
+2. Frase clave: **«Si se repite, uso REPITE.»**
 
 **Opción B · Bailes con tarjetas**
-1. Cada grupo coloca en fila 2 tarjetas de M02 y delante una tarjeta REPITE.
+
+**Empezamos (10 min):**
+1. Enseña las tarjetas de movimientos y la tarjeta REPITE: la tarjeta REPITE va delante de las tarjetas que se repiten. [[V:bucle|Bucle]]
+2. Explica la misión: cada grupo escribe un baile y otro grupo lo baila leyendo las tarjetas.
+
+**A trabajar (25 min):**
+1. Cada grupo coloca en fila 2 tarjetas de movimientos y delante una tarjeta REPITE.
 2. Otro grupo lo baila leyendo las tarjetas.
 3. Se cambian los programas.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su baile y la clase lo hace. Pregunta: «¿Cuántas veces habéis hecho cada movimiento?»
+2. Frase clave: **«Si se repite, uso REPITE.»**
+3. Se recogen las tarjetas.
 
 - **Frase clave:** «Si se repite, uso REPITE.»
 - **Si va rápido:** ¿cuántas palmadas hay en REPITE 3: palmada, palmada? (6).
@@ -519,19 +546,46 @@ Imprímelo una vez al principio del curso (todo está en la sección Material im
 ### S10 · Bloques de papel: programar como un puzle `PC`
 
 - **Qué aprenden:** un programa es una fila de bloques que encajan; empieza con la bandera y se lee de izquierda a derecha.
-- **Prepara antes:** un juego de M03 por grupo y otro para la pizarra (con imanes o celo).
+- **Hoy:** montan programas con bloques de papel que encajan como un tren y comprueban qué hace el robot.
+- **Necesitas:** un juego de bloques de papel por grupo y otro para la pizarra; el tablero y las fichas (propuesta A) o las tarjetas de flechas (propuesta B).
+- **Lo han conseguido si:** el programa empieza con la bandera, se lee de izquierda a derecha y otro grupo lo ejecuta y el robot hace lo que querían.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (para ejecutar los programas de papel)
-- **Material listo:** [[M:M03|Bloques de papel]] (hoja 1) · [[M:M06|Tablero y fichas]]
+- **Material listo:** [[M:M03|Bloques de papel]] (hoja 1) · [[M:M06|Tablero y fichas]] · [[M:M01|Tarjetas de flechas]]
 - **Minuto de uso responsable:** «Las tarjetas no se doblan ni se pintan.» ¿Qué pasa si una tarjeta se estropea y no se entiende?
 
+**Antes de la clase:**
+- Imprime y recorta los bloques de papel: un juego por grupo y otro para la pizarra, con imanes o celo. [[M:M03|Bloques de papel]] (hoja 1)
+- Para la propuesta A, un tablero con sus fichas por grupo. [[M:M06|Tablero y fichas]]
+- Para la propuesta B, un juego de tarjetas de flechas por grupo. [[M:M01|Tarjetas de flechas]]
+
 **Opción A · El tren de bloques**
+
+**Empezamos (10 min):**
 1. En la pizarra, monta: EMPIEZA → avanza → avanza → gira derecha → avanza → FIN. «Los bloques van enganchados, como los vagones de un tren».
-2. Pasad ese programa al proyectable y ejecutadlo: ¿hace el robot lo mismo?
-3. Por grupos, montan un programa en la mesa y otro grupo lo ejecuta moviendo la ficha del robot en su tablero M06.
-4. Pregunta trampa: quita la bandera. ¿Empieza el programa? No: sin «empieza» no pasa nada.
+2. Pasad ese programa al proyectable y ejecutadlo: ¿hace el robot lo mismo? [[P:cuadricula.libre|Robot en la cuadrícula]]
+
+**A trabajar (25 min):**
+1. Por grupos, montan un programa en la mesa y otro grupo lo ejecuta moviendo la ficha del robot en su tablero M06.
+2. Se cambian los papeles: el grupo que ejecutaba monta ahora su programa.
+
+**Cerramos (10 min):**
+1. Pregunta trampa: quita la bandera del programa de la pizarra. ¿Empieza el programa? No: sin «empieza» no pasa nada.
+2. Frase clave: **«Los bloques encajan en orden, como un tren.»**
+3. Se recogen los bloques y las fichas.
 
 **Opción B · Tarjetas y bloques**
-Los grupos emparejan las tarjetas de flechas M01 con los bloques M03 que hacen lo mismo y traducen un camino de un «idioma» a otro.
+
+**Empezamos (10 min):**
+1. Explica la misión: cada tarjeta de flechas tiene un bloque de papel que hace lo mismo. Hay que emparejarlos y traducir un camino de un «idioma» a otro.
+
+**A trabajar (25 min):**
+1. Los grupos emparejan las tarjetas de flechas con los bloques de papel que hacen lo mismo.
+2. Traducen un camino de un «idioma» a otro.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su camino en los dos «idiomas». Pregunta a la clase: «¿Qué bloque hace lo mismo que esta tarjeta?»
+2. Frase clave: **«Los bloques encajan en orden, como un tren.»**
+3. Se recogen las tarjetas y los bloques.
 
 - **Frase clave:** «Los bloques encajan en orden, como un tren.»
 - **Si va rápido:** programas con 6 bloques o más.
@@ -541,22 +595,44 @@ Los grupos emparejan las tarjetas de flechas M01 con los bloques M03 que hacen l
 ### S11 · Del papel al robot: llega True True `ROB` `PC`
 
 - **Qué aprenden:** True True se programa con tarjetas en lugar de botones; el mismo programa se puede escribir con bloques de papel o con tarjetas del robot.
-- **Prepara antes:** True True cargados, sus tarjetas y el tapete. M03. Normas de uso de True True en A3.
+- **Hoy:** conocen a True True, que se programa con tarjetas, y le pasan un camino escrito antes con bloques de papel.
+- **Necesitas:** los True True cargados, con sus tarjetas y el tapete; las normas de uso de True True en A3; un juego de bloques de papel por grupo y las fichas del tablero.
+- **Lo han conseguido si:** cada grupo pone las tarjetas del robot en el mismo orden que su programa de papel y el robot llega a la ficha.
 - **Para proyectar:** [[P:cuadricula.mapa3|Robot en la cuadrícula · mapa 3]] · [[P:beebot.letras|Bee-Bot · abecedario]]
 - **Material listo:** [[M:M03|Bloques de papel]] · [[M:M06|Fichas del tablero]]
-- **Minuto de uso responsable:** normas de True True: dos manos, nunca en el borde de la mesa, se apaga al terminar.
+
+**Antes de la clase:**
+- Carga los True True y prepara sus tarjetas y el tapete.
+- Imprime en A3 las normas de uso de True True.
+- Ten a mano un juego de bloques de papel por grupo. [[M:M03|Bloques de papel]]
+- Prepara la ficha del tesoro y, para la propuesta B, tres fichas más que harán de metas. [[M:M06|Fichas del tablero]]
+
+**Empezamos (10 min):**
+1. Leed juntos las normas de uso de True True: dos manos, nunca en el borde de la mesa, se apaga al terminar.
+2. Presenta a True True: «Es otro robot. No tiene botones: lee tarjetas». Enseña las partes, dónde se meten las tarjetas y dónde se carga.
+3. Compáralo con Tale-Bot: «¿Qué es igual? ¿Qué cambia?».
 
 **Opción A · Presentación y primer programa**
-1. (10 minutos) Presenta a True True: «Es otro robot. No tiene botones: lee tarjetas». Enseña las partes, dónde se meten las tarjetas y dónde se carga. Compáralo con Tale-Bot: «¿Qué es igual? ¿Qué cambia?».
-2. Coloca la ficha del tesoro en el tapete. Cada grupo monta primero el camino con bloques de papel.
-3. Después pone las tarjetas del robot en el mismo orden, las carga y prueba.
-4. Si falla, busca el bloque que falla en el papel y lo cambia también en las tarjetas.
+
+**A trabajar (25 min):**
+1. Coloca la ficha del tesoro en el tapete. Cada grupo monta primero el camino con bloques de papel.
+2. Después pone las tarjetas del robot en el mismo orden, las carga y prueba.
+3. Si falla, busca el bloque que falla en el papel y lo cambia también en las tarjetas.
 
 **Opción B · Retos de meta**
-Tras la presentación, tres fichas numeradas en el tapete (recta, L y U). Cada grupo va superando metas.
 
-**Orientativo:** si el grupo ya conoció True True en el primer trimestre, empieza directamente por el paso 2. Si Tale-Bot todavía les cuesta, se puede hacer esta sesión con Tale-Bot y presentar True True en la S12.
+**A trabajar (25 min):**
+1. Pon en el tapete tres fichas como metas 1, 2 y 3: un camino recto, otro en L y otro en U. Las fichas de M06 no llevan número: di a la clase cuál es cada meta.
+2. Cada grupo va superando metas.
 
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su programa en papel y en tarjetas. Pregunta a la clase: «¿Es el mismo programa? ¿Qué cambia?»
+2. Frase clave: **«Mismo programa, distinto idioma.»**
+3. Se apagan los robots y se recogen las tarjetas, los bloques y las fichas.
+
+- **Orientativo:** si el grupo ya conoció True True en el primer trimestre, sáltate la presentación y empieza por el camino con bloques de papel. Si Tale-Bot todavía les cuesta, se puede hacer esta sesión con Tale-Bot y presentar True True en la S12.
 - **Frase clave:** «Mismo programa, distinto idioma.»
 - **Si va rápido:** el camino en U de la opción B con el menor número de tarjetas.
 - **Si cuesta:** solo caminos rectos; el grupo pone las tarjetas y tú compruebas el orden antes de cargar.
@@ -565,20 +641,40 @@ Tras la presentación, tres fichas numeradas en el tapete (recta, L y U). Cada g
 ### S12 · El robot repite `ROB` `PC`
 
 - **Qué aprenden:** usar la repetición con el robot para hacer caminos con menos tarjetas.
-- **Prepara antes:** robots, tarjetas (comprueba en el manual si hay tarjeta de repetir) y tapete.
+- **Hoy:** hacen un camino con REPITE, primero en la pizarra y después con el robot, y cuentan cuántas tarjetas se ahorran.
+- **Necesitas:** los robots cargados con sus tarjetas y el tapete, y el bloque REPITE de papel.
+- **Lo han conseguido si:** dicen cuántas tarjetas tiene el camino sin REPITE y cuántas con REPITE, y el robot hace el camino.
 - **Para proyectar:** [[P:cuadricula.escalera|Reto: la escalera]] y [[P:bucles.escalera|Bucles: la escalera]]
 - **Material listo:** [[M:M03|Bloques de papel]] (bloque REPITE)
 - **Minuto de uso responsable:** «El robot se coge con dos manos.» ¿Por qué con dos manos y no con una?
 
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete. Comprueba en el manual si hay tarjeta de repetir.
+- Imprime y recorta el bloque REPITE, uno por grupo. [[M:M03|Bloques de papel]] (bloque REPITE)
+
 **Opción A · La escalera en la pizarra y en el robot**
-1. Proyecta el reto de la escalera. Programadlo primero sin REPITE y contad las tarjetas.
+
+**Empezamos (10 min):**
+1. Proyecta el reto de la escalera. Programadlo primero sin REPITE y contad las tarjetas. [[P:cuadricula.escalera|Reto: la escalera]]
 2. Borrad y hacedlo con REPITE (botón «REPITE ×3» y después las tarjetas de dentro). ¿Cuántas tarjetas ahora?
-3. Por grupos, hacen la escalera con el robot en el tapete.
+
+**A trabajar (25 min):**
+1. Por grupos, hacen la escalera con el robot en el tapete.
 
 **Opción B · El cuadrado**
-El robot recorre un cuadrado de 2 casillas de lado. ¿Cuántas veces se repite «avanza, avanza, gira»?
 
-**Si vuestro True True no tiene tarjeta de repetir:** se escribe el programa con REPITE en papel y, al pasarlo al robot, se ponen las tarjetas repetidas. Así se ve cuánto ahorra repetir.
+**Empezamos (10 min):**
+1. Explica la misión: el robot recorre un cuadrado de 2 casillas de lado. Pregunta: «¿Cuántas veces se repite “avanza, avanza, gira”?»
+
+**A trabajar (25 min):**
+1. Por grupos, buscan cuántas veces se repite y lo prueban con el robot en el tapete.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su camino con REPITE. Pregunta a la clase: «¿Cuántas tarjetas nos hemos ahorrado?»
+2. Frase clave: **«Menos tarjetas, mismo camino.»**
+3. Se apagan los robots y se recogen las tarjetas.
 
 **Pistas y soluciones:**
 1. **El cuadrado de 2 casillas de lado**
@@ -591,6 +687,7 @@ El robot recorre un cuadrado de 2 casillas de lado. ¿Cuántas veces se repite �
     - *Pista:* un lado corto y uno largo forman la mitad del camino.
     - *Solución:* **REPITE ×2** (avanza, avanza, gira a la derecha, avanza, avanza, avanza, gira a la derecha): 8 tarjetas en lugar de 14.
 
+- **Si vuestro True True no tiene tarjeta de repetir:** se escribe el programa con REPITE en papel y, al pasarlo al robot, se ponen las tarjetas repetidas. Así se ve cuánto ahorra repetir.
 - **Frase clave:** «Menos tarjetas, mismo camino.»
 - **Si va rápido:** un rectángulo de 2 × 3 casillas: ¿qué se repite y cuántas veces?
 - **Si cuesta:** la escalera solo en la pizarra, con toda la clase contando en voz alta cada vez que se repite.
@@ -599,18 +696,43 @@ El robot recorre un cuadrado de 2 casillas de lado. ¿Cuántas veces se repite �
 ### S13 · Pequeñas animaciones: el robot cuenta una historia `PC`
 
 - **Qué aprenden:** una animación es una secuencia de movimientos que, seguidos, cuentan algo.
-- **Prepara antes:** fichas M06 (casa, árbol y cole) recortadas.
+- **Hoy:** programan con bloques el paseo del robot en una pequeña historia, en la pizarra o en el tablero.
+- **Necesitas:** la pizarra digital (propuesta A) o, por grupo, un tablero, las fichas de la casa, el árbol y el cole y los bloques de papel (propuesta B).
+- **Lo han conseguido si:** el programa cuenta la historia en orden y, al ejecutarlo, el robot hace el paseo que querían.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (con «Dibujar el rastro» activado)
 - **Material listo:** [[M:M03|Bloques de papel]] · [[M:M06|Fichas del tablero]]
 - **Minuto de uso responsable:** «Espero mi turno y ayudo sin quitar.» ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
+**Antes de la clase:**
+- Recorta las fichas de la casa, el árbol y el cole; para la propuesta B, una de cada y un tablero por grupo. [[M:M06|Fichas del tablero]]
+- Para la propuesta B, ten a mano un juego de bloques de papel por grupo. [[M:M03|Bloques de papel]]
+
 **Opción A · Historia en la pizarra**
-1. Cuenta: «El robot sale de casa, va al árbol, da una vuelta y vuelve». En el proyectable, coloca una roca como «árbol» (menú «Tocar casilla»).
-2. La clase programa la historia paso a paso; ejecutad con el rastro activado para ver el recorrido completo.
-3. Cambiad un bloque y mirad cómo cambia la historia.
+
+**Empezamos (10 min):**
+1. Cuenta: «El robot sale de casa, va al árbol, da una vuelta y vuelve». En el proyectable, coloca una roca como «árbol» (menú «Tocar casilla»). [[P:cuadricula.libre|Robot en la cuadrícula]]
+
+**A trabajar (25 min):**
+1. La clase programa la historia paso a paso; ejecutad con el rastro activado para ver el recorrido completo.
+2. Cambiad un bloque y mirad cómo cambia la historia.
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «Si cambiamos el orden de los bloques, ¿el robot cuenta la misma historia?»
+2. Frase clave: **«Una animación es una secuencia.»**
 
 **Opción B · Historia en el tablero**
-Cada grupo coloca la casa, el árbol y el cole en su tablero M06, escribe con bloques de papel el paseo del robot y otro grupo lo representa con la ficha.
+
+**Empezamos (10 min):**
+1. Explica la misión: cada grupo coloca en su tablero la casa, el árbol y el cole, y escribe con bloques de papel el paseo del robot; otro grupo lo representa con la ficha.
+
+**A trabajar (25 min):**
+1. Cada grupo coloca la casa, el árbol y el cole en su tablero y escribe con bloques de papel el paseo del robot.
+2. Otro grupo lo representa moviendo la ficha del robot.
+
+**Cerramos (10 min):**
+1. Un grupo cuenta su historia y otro la representa delante de la clase. Pregunta: «¿Ha hecho el robot el paseo que queríais?»
+2. Frase clave: **«Una animación es una secuencia.»**
+3. Se recogen los tableros, las fichas y los bloques.
 
 - **Frase clave:** «Una animación es una secuencia.»
 - **Si va rápido:** que la historia incluya un REPITE (dar dos vueltas al árbol).
@@ -620,20 +742,47 @@ Cada grupo coloca la casa, el árbol y el cole en su tablero M06, escribe con bl
 ### S14 · Un programa, dos robots `PC` `ROB`
 
 - **Qué aprenden:** el mismo programa sirve para robots distintos; solo cambia cómo se lo damos (pulsando botones o poniendo tarjetas).
-- **Prepara antes:** dos o tres Tale-Bot y los True True, cada uno en su zona con su tapete. Tarjetas de flechas M01 y fichas de M06.
+- **Hoy:** escriben un programa con tarjetas de flechas y lo prueban en dos robots: Tale-Bot, con botones, y True True, con sus tarjetas.
+- **Necesitas:** dos o tres Tale-Bot y los True True, cada uno en su zona con su tapete; las tarjetas de flechas y las fichas del tablero.
+- **Lo han conseguido si:** el mismo programa lleva a los dos robots (o a la abeja de la pizarra y al robot del aula) a la misma ficha.
 - **Para proyectar:** [[P:beebot.granja|Bee-Bot · la granja]] · [[P:cuadricula.mapa3|Robot en la cuadrícula · mapa 3]]
 - **Material listo:** [[M:M01|Tarjetas de flechas]] · [[M:M06|Fichas del tablero]]
 - **Minuto de uso responsable:** «Cada cosa a su caja y a cargar.» ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
+**Antes de la clase:**
+- Prepara dos o tres Tale-Bot y los True True, cargados, cada uno en su zona con su tapete.
+- Ten a mano un juego de tarjetas de flechas por grupo. [[M:M01|Tarjetas de flechas]]
+- Prepara las fichas del tesoro. [[M:M06|Fichas del tablero]]
+
 **Opción A · Dos estaciones**
-1. Cada grupo escribe su programa con tarjetas de flechas M01 para llegar a un tesoro a 3 casillas con un giro.
+
+**Empezamos (10 min):**
+1. Explica la misión: cada grupo escribe un programa con tarjetas de flechas para llegar a un tesoro a 3 casillas con un giro, y lo prueba en los dos robots.
+2. Recuerda cómo se da el programa a cada robot: a Tale-Bot, pulsando los botones en el orden de las tarjetas; a True True, poniendo sus tarjetas.
+
+**A trabajar (25 min):**
+1. Cada grupo escribe su programa con tarjetas de flechas para llegar a un tesoro a 3 casillas con un giro.
 2. Lo prueban en la estación de Tale-Bot (pulsando los botones en el orden de las tarjetas).
 3. A mitad de sesión cambian de estación y prueban el mismo programa en True True (con sus tarjetas).
-4. Puesta en común: «¿Ha llegado igual? ¿Qué ha sido más fácil? ¿Qué pasa si en Tale-Bot no borramos?».
+
+**Cerramos (10 min):**
+1. Puesta en común: «¿Ha llegado igual? ¿Qué ha sido más fácil? ¿Qué pasa si en Tale-Bot no borramos?».
+2. Frase clave: **«Mismo programa, distinto robot.»**
+3. Se apagan los robots y se recogen las tarjetas y las fichas.
 
 **Opción B · En la pizarra**
-1. Proyecta el Bee-Bot en la granja. La clase dicta un camino y lo apunta con tarjetas M01 en la pizarra.
-2. Se pulsa y se comprueba. Después, un grupo hace ese mismo programa con el robot del aula.
+
+**Empezamos (10 min):**
+1. Proyecta el Bee-Bot en la granja. La clase dicta un camino y lo apunta con tarjetas de flechas en la pizarra. [[P:beebot.granja|Bee-Bot · la granja]]
+
+**A trabajar (25 min):**
+1. Se pulsa y se comprueba.
+2. Después, un grupo hace ese mismo programa con el robot del aula y la clase mira si llega igual.
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Ha hecho el robot del aula el mismo camino que la abeja? ¿Qué ha cambiado?»
+2. Frase clave: **«Mismo programa, distinto robot.»**
+3. Se apaga el robot y se recogen las tarjetas.
 
 - **Frase clave:** «Mismo programa, distinto robot.»
 - **Si va rápido:** que otro grupo adivine a qué ficha llega vuestro programa antes de ejecutarlo.
@@ -643,20 +792,52 @@ Cada grupo coloca la casa, el árbol y el cole en su tablero M06, escribe con bl
 ### S15 · Mi pequeño espectáculo programado `PC` `ROB`
 
 - **Qué aprenden:** planificar y crear una animación corta con movimiento y repetición.
-- **Prepara antes:** robots, M03 y la hoja de plan M16 (hoja 1).
+- **Hoy:** por grupos, planifican y programan un pequeño espectáculo para el robot, con movimientos y un REPITE.
+- **Necesitas:** los robots, la hoja de plan (una por grupo), los bloques de papel y la rúbrica del trimestre.
+- **Lo han conseguido si:** el programa tiene empieza, al menos un movimiento, un REPITE y fin, y el robot (o el de la pizarra) hace el espectáculo.
 - **Material listo:** [[M:M16|Hoja de plan en 3 cuadros]] · [[M:M03|Bloques de papel]] · [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** «El robot se coge con dos manos.» ¿Por qué con dos manos y no con una?
 
+**Antes de la clase:**
+- Carga los robots.
+- Imprime la hoja de plan, una por grupo. [[M:M16|Hoja de plan en 3 cuadros]]
+- Ten a mano un juego de bloques de papel por grupo. [[M:M03|Bloques de papel]]
+- Ten a mano la rúbrica del trimestre. [[M:M19|Rúbrica]]
+- Para la propuesta C, prepara la situación oficial *Bailando al ritmo con True True*.
+
 **Opción A · Espectáculo del robot**
-1. 10 minutos: por grupos, dibujan en la hoja de plan qué hará el robot (empieza, pasa, termina).
-2. 15 minutos: escriben el programa con bloques de papel. Requisito: empieza, al menos un movimiento, un REPITE y fin.
-3. 10 minutos: lo pasan a tarjetas del robot y lo prueban.
+
+**Empezamos (10 min):**
+1. Explica la misión: cada grupo prepara un espectáculo para el robot. Requisito: empieza, al menos un movimiento, un REPITE y fin.
+2. Por grupos, dibujan en la hoja de plan qué hará el robot (empieza, pasa, termina). [[M:M16|Hoja de plan en 3 cuadros]]
+
+**A trabajar (25 min):**
+1. 15 minutos: escriben el programa con bloques de papel. Requisito: empieza, al menos un movimiento, un REPITE y fin.
+2. 10 minutos: lo pasan a tarjetas del robot y lo prueban.
 
 **Opción B · Espectáculo en la pizarra**
-Si no hay robots suficientes, cada grupo escribe su programa con bloques de papel y lo ejecuta en el proyectable [[P:cuadricula.libre|Robot en la cuadrícula]].
+
+**Empezamos (10 min):**
+1. Si no hay robots suficientes, explica la misión: cada grupo escribe su espectáculo con bloques de papel y lo ejecuta en el proyectable.
+
+**A trabajar (25 min):**
+1. Cada grupo escribe su programa con bloques de papel: empieza, al menos un movimiento, un REPITE y fin.
+2. Por turnos, cada grupo lo ejecuta en el proyectable. [[P:cuadricula.libre|Robot en la cuadrícula]]
 
 **Opción C · Situación oficial**
-*Bailando al ritmo con True True*.
+
+**Empezamos (10 min):**
+1. Presenta la situación oficial *Bailando al ritmo con True True*.
+
+**A trabajar (25 min):**
+1. Los grupos hacen las actividades de la situación oficial.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su espectáculo. Pregunta a la clase: «¿Dónde está el REPITE? ¿Qué se repite?»
+2. Frase clave: **«Primero pienso, luego programo.»**
+3. Se apagan los robots. Se guardan las hojas de plan y los programas de papel: en la S16 se enseñan.
 
 - **Frase clave:** «Primero pienso, luego programo.»
 - **Si va rápido:** que el espectáculo tenga dos REPITE distintos o un REPITE dentro de la historia.
@@ -667,16 +848,46 @@ Si no hay robots suficientes, cada grupo escribe su programa con bloques de pape
 ### S16 · Muestra y cazabichos `PC`
 
 - **Qué aprenden:** enseñar lo que han hecho y arreglar errores en programas de bloques.
+- **Hoy:** cada grupo enseña su espectáculo de la S15 y buscan bichos en programas, en la pizarra o en los programas de papel de otros grupos.
+- **Necesitas:** los espectáculos de la S15 (robots y programas de papel) y la pizarra digital; si no se usó en la S6, la hoja de cazabichos de nivel 1.
+- **Lo han conseguido si:** cada grupo ha enseñado su espectáculo y la clase encuentra dónde empieza a fallar un programa con bicho.
 - **Para proyectar:** [[P:cuadricula.bicho2|Cazabichos 2]]
 - **Material listo:** [[M:M08|Cazabichos]] (nivel 1, si no se usó)
 - **Minuto de uso responsable:** «Lo que subo a internet se queda.» Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
+**Antes de la clase:**
+- Prepara los robots y los programas de papel de la S15.
+- Si no se usó en la S6, imprime la hoja de cazabichos, una por pareja. [[M:M08|Cazabichos]] (nivel 1, si no se usó)
+- Ten a mano los pasaportes (M15) para la autoevaluación.
+
 **Opción A · Muestra de espectáculos**
+
+**Empezamos (10 min):**
+1. Explica cómo será la muestra: cada grupo presenta su espectáculo en 2 minutos y la clase dice una cosa que le ha gustado.
+
+**A trabajar (25 min):**
 1. Cada grupo presenta su espectáculo (2 minutos). La clase dice una cosa que le ha gustado.
-2. Últimos 10 minutos: cazabichos en la pizarra.
+
+**Cerramos (10 min):**
+1. Últimos 10 minutos: cazabichos en la pizarra. Pregunta: «¿En qué tarjeta empieza a fallar?» [[P:cuadricula.bicho2|Cazabichos 2]]
+2. Frase clave: **«Enseñar lo que hago también es programar.»**
+3. Autoevaluación con las caritas del pasaporte (M15).
+4. Se apagan los robots y se recogen los programas.
 
 **Opción B · Intercambio de programas**
-Cada grupo ejecuta el programa de papel de otro grupo. Si sale distinto de lo que querían los autores, hay un bicho.
+
+**Empezamos (10 min):**
+1. Explica la misión: cada grupo ejecuta el programa de papel de otro grupo. Si sale distinto de lo que querían los autores, hay un bicho.
+
+**A trabajar (25 min):**
+1. Cada grupo ejecuta el programa de papel de otro grupo.
+2. Si sale distinto de lo que querían los autores, hay un bicho: buscan dónde empieza a fallar.
+
+**Cerramos (10 min):**
+1. Un grupo cuenta el bicho que ha encontrado. Pregunta a la clase: «¿Cómo sabíais que había un bicho?»
+2. Frase clave: **«Enseñar lo que hago también es programar.»**
+3. Autoevaluación con las caritas del pasaporte (M15).
+4. Se recogen los programas.
 
 - **Frase clave:** «Enseñar lo que hago también es programar.»
 - **Si va rápido:** meter un bicho a propósito en el programa de otro grupo para que lo encuentre.
@@ -695,14 +906,28 @@ Cada grupo ejecuta el programa de papel de otro grupo. Si sale distinto de lo qu
 ### S17 · Elegimos la misión `PC` `ROB` `SEG`
 
 - **Qué aprenden:** planificar un proyecto en equipo: qué queremos hacer y quién hace qué.
-- **Prepara antes:** hoja de proyecto M16 (hoja 2) por grupo y fichas M06 recortadas.
+- **Hoy:** repasan las normas del robot y cada grupo elige su misión (salida, parada y meta), la dibuja en la hoja de proyecto y reparte quién hace qué.
+- **Necesitas:** la hoja de proyecto (una por grupo) y las fichas del tablero recortadas.
+- **Lo han conseguido si:** la hoja de cada grupo tiene la misión dibujada, con salida, parada y meta, y apuntado quién hace qué.
 - **Material listo:** [[M:M16|Hoja de proyecto en equipo · 1º y 2º]] · [[M:M06|Fichas del tablero]]
-- **Minuto de uso responsable:** repaso de las normas del robot.
 
-**Pasos:**
-1. Cuenta dos misiones de ejemplo: «El robot lleva la carta a correos», «El robot lleva la basura al contenedor».
-2. Cada grupo elige misión y fichas (salida, una parada y meta) y las dibuja en la hoja.
-3. Reparten los roles y los apuntan en la hoja.
+**Antes de la clase:**
+- Imprime la hoja de proyecto, una por grupo. [[M:M16|Hoja de proyecto en equipo · 1º y 2º]] (hoja 2)
+- Recorta las fichas del tablero. [[M:M06|Fichas del tablero]]
+- Ten a mano las normas de uso oficiales del robot (ver Recursos oficiales).
+
+**Empezamos (10 min):**
+1. Repaso de las normas del robot.
+2. Cuenta dos misiones de ejemplo: «El robot lleva la carta a correos», «El robot lleva la basura al contenedor».
+
+**A trabajar (25 min):**
+1. Cada grupo elige misión y fichas (salida, una parada y meta) y las dibuja en la hoja. [[M:M16|Hoja de proyecto en equipo · 1º y 2º]]
+2. Reparten los roles y los apuntan en la hoja.
+
+**Cerramos (10 min):**
+1. Un grupo cuenta su misión. Pregunta a la clase: «¿Dónde sale el robot, dónde para y dónde termina?»
+2. Frase clave: **«Un buen equipo planifica antes de empezar.»**
+3. Cada grupo guarda su hoja con sus fichas: en la S18 se monta el escenario.
 
 - **Frase clave:** «Un buen equipo planifica antes de empezar.»
 - **Si va rápido:** añadir una segunda parada a la misión.
@@ -712,15 +937,41 @@ Cada grupo ejecuta el programa de papel de otro grupo. Si sale distinto de lo qu
 ### S18 · Montamos el escenario `ROB` `PC`
 
 - **Qué aprenden:** colocar el escenario del proyecto y probar una primera ruta.
+- **Hoy:** cada grupo monta su escenario en el tapete con las fichas y prueba una primera ruta corta con el robot.
+- **Necesitas:** los robots con sus tarjetas y el tapete, y la hoja de proyecto y las fichas de cada grupo.
+- **Lo han conseguido si:** las fichas están en las casillas que dice la hoja y el robot ha llegado a la parada.
 - **Material listo:** [[M:M06|Fichas del tablero]]
 - **Minuto de uso responsable:** «El robot se coge con dos manos.» ¿Por qué con dos manos y no con una?
 
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Ten a mano la hoja de proyecto y las fichas de cada grupo. [[M:M06|Fichas del tablero]]
+- Para la propuesta B, ten a mano la situación de aprendizaje oficial *Educación vial con True True* (ver Recursos oficiales).
+
 **Opción A · En el tapete del robot**
+
+**Empezamos (10 min):**
+1. Cada grupo recupera su hoja de proyecto y sus fichas.
+2. Explica la misión de hoy: colocar las fichas en el tapete según la hoja y probar una primera ruta.
+
+**A trabajar (25 min):**
 1. Cada grupo coloca sus fichas en las casillas del tapete según su hoja.
 2. Prueban una primera ruta corta con el robot hasta la parada.
 
 **Opción B · Educación vial (situación oficial)**
-Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe parar en el semáforo (ficha de M06).
+
+**Empezamos (10 min):**
+1. Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe parar en el semáforo (ficha de M06).
+
+**A trabajar (25 min):**
+1. Los grupos montan la ciudad en el tapete y programan el robot siguiendo la situación oficial.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su escenario. Pregunta a la clase: «¿En qué casilla está la parada? ¿Cuántas casillas hay desde la salida?»
+2. Frase clave: **«Un buen escenario ayuda a que el robot cumpla su misión.»**
+3. Los robots, a cargar, y cada grupo guarda sus fichas con su hoja: en la S19 se programa la misión.
 
 - **Frase clave:** «Un buen escenario ayuda a que el robot cumpla su misión.»
 - **Si va rápido:** colocar una roca en el camino directo para obligar a rodearla.
@@ -730,14 +981,31 @@ Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe
 ### S19 · Programamos la misión `ROB` `PC`
 
 - **Qué aprenden:** programar la misión completa y probarla.
+- **Hoy:** cada grupo escribe la ruta de su misión con bloques de papel, la pasa a las tarjetas del robot y la prueba.
+- **Necesitas:** los robots con sus tarjetas y el tapete, un juego de bloques de papel por grupo y el escenario de cada grupo.
+- **Lo han conseguido si:** el robot hace la misión entera, y si ha fallado, el grupo ha buscado la tarjeta que fallaba sin empezar de cero.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (para ensayar la ruta) · [[P:beebot.granja|Bee-Bot · granja]]
 - **Material listo:** [[M:M03|Bloques de papel]]
 - **Minuto de uso responsable:** «Espero mi turno y ayudo sin quitar.» ¿Cómo puedo ayudar a un compañero sin quitarle el material?
 
-**Pasos:**
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Ten a mano un juego de bloques de papel por grupo. [[M:M03|Bloques de papel]]
+- Ten a mano la hoja de proyecto y las fichas de cada grupo.
+
+**Empezamos (10 min):**
+1. Explica la misión de hoy: programar la misión entera y probarla.
+2. Si un grupo quiere, ensaya su ruta en la pizarra antes de coger el robot. [[P:cuadricula.libre|Robot en la cuadrícula]]
+
+**A trabajar (25 min):**
 1. Escriben la ruta con bloques de papel y la revisan con el dedo sobre el tapete.
 2. Ponen las tarjetas del robot en el mismo orden, cargan y prueban.
 3. Si falla, buscan la tarjeta que falla, sin empezar de cero.
+
+**Cerramos (10 min):**
+1. Un grupo enseña su misión con el robot. Pregunta a la clase: «¿Ha llegado? Si ha fallado, ¿en qué tarjeta?»
+2. Frase clave: **«Si falla, busco el bicho; no empiezo de cero.»**
+3. Los robots, a cargar, y cada grupo guarda su programa de papel con su hoja.
 
 - **Frase clave:** «Si falla, busco el bicho; no empiezo de cero.»
 - **Si va rápido:** hacer la misión de vuelta (de la meta a la salida).
@@ -747,16 +1015,43 @@ Si todos quieren una ciudad, usad *Educación vial con True True*: el robot debe
 ### S20 · Menos tarjetas, mismo camino (optimizar) `PC` `ROB`
 
 - **Qué aprenden:** optimizar: conseguir lo mismo con menos instrucciones, usando repetir.
+- **Hoy:** buscan cómo hacer su misión con menos tarjetas, juntando con REPITE lo que se repite.
+- **Necesitas:** los robots con sus tarjetas y el tapete, los programas de la S19 y la pizarra digital.
+- **Lo han conseguido si:** el grupo dice cuántas tarjetas tenía antes y cuántas ahora, y el robot llega igual.
 - **Para proyectar:** [[P:bucles.cuadrado|Bucles: largo o corto]] y [[P:cuadricula.escalera|la escalera]] (programarla con REPITE y contar las tarjetas que se ahorran)
 - **Material listo:** [[M:M26|Póster «Optimizar»]]
 - **Minuto de uso responsable:** «Cada cosa a su caja y a cargar.» ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Ten a mano los programas de la S19 de cada grupo.
+- Cuelga el póster. [[M:M26|Póster «Optimizar»]]
+
 **Opción A · Reto del programa más corto**
-1. Proyecta un programa largo y su versión con REPITE. ¿Cuántas tarjetas se ahorran?
-2. Cada grupo cuenta las tarjetas de su misión e intenta hacerla con menos. En la pizarra: «antes 12, ahora 8».
+
+**Empezamos (10 min):**
+1. Presenta la idea: optimizar es conseguir lo mismo con menos instrucciones, usando repetir. [[V:optimizar|Optimizar]]
+2. Proyecta un programa largo y su versión con REPITE. ¿Cuántas tarjetas se ahorran? [[P:bucles.cuadrado|Bucles: largo o corto]] · [[P:cuadricula.escalera|la escalera]]
+
+**A trabajar (25 min):**
+1. Cada grupo cuenta las tarjetas de su misión e intenta hacerla con menos.
+2. En la pizarra: «antes 12, ahora 8».
 
 **Opción B · Detectives de tarjetas que sobran**
-Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden juntar con REPITE.
+
+**Empezamos (10 min):**
+1. Presenta la idea: optimizar es conseguir lo mismo con menos instrucciones, usando repetir. [[V:optimizar|Optimizar]]
+2. Explica la misión: hoy cada grupo es detective del programa de otro grupo.
+
+**A trabajar (25 min):**
+1. Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden juntar con REPITE.
+
+**En todas las propuestas:**
+
+**Cerramos (10 min):**
+1. Un grupo enseña su programa más corto. Pregunta a la clase: «¿Cuántas tarjetas tenía antes y cuántas tiene ahora? ¿Cuántas menos?»
+2. Frase clave: **«Un buen programa es corto y claro.»**
+3. Los robots, a cargar, y las tarjetas, a su caja.
 
 - **Frase clave:** «Un buen programa es corto y claro.»
 - **Si va rápido:** ¿cuál es el programa más corto de toda la clase? Comprobad que llega igual.
@@ -766,13 +1061,28 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 ### S21 · Cazabichos cruzado `PC` `ROB`
 
 - **Qué aprenden:** probar el proyecto de otro equipo y ayudar a mejorarlo.
+- **Hoy:** cada grupo prueba la misión de otro, rellena la ficha de caritas y después arregla la suya con lo que le han dicho.
+- **Necesitas:** los robots con sus tarjetas, las misiones montadas en el tapete y la ficha de prueba (una por grupo).
+- **Lo han conseguido si:** cada grupo ha probado la misión de otro con la ficha y ha arreglado la suya.
 - **Material listo:** [[M:M17|Ficha de prueba · 1º y 2º]]
 - **Minuto de uso responsable:** «Si veo algo que no me gusta, aviso a un adulto.» ¿A qué adultos puedo avisar en el cole y en casa?
 
-**Pasos:**
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Imprime la ficha de prueba, una por grupo (vienen cuatro por hoja). [[M:M17|Ficha de prueba · 1º y 2º]] (hoja 1)
+
+**Empezamos (10 min):**
 1. Cada grupo deja su misión montada y su programa al lado.
-2. Los grupos rotan, prueban la misión de otro y rellenan la ficha de caritas.
-3. Vuelven a su sitio, leen la ficha y arreglan.
+2. Enseña la ficha de caritas: ¿funciona?, ¿dónde falla? y lo que más me gusta. [[M:M17|Ficha de prueba · 1º y 2º]]
+
+**A trabajar (25 min):**
+1. Los grupos rotan, prueban la misión de otro y rellenan la ficha de caritas.
+2. Vuelven a su sitio, leen la ficha y arreglan.
+
+**Cerramos (10 min):**
+1. Un grupo cuenta qué le han encontrado y cómo lo ha arreglado. Pregunta a la clase: «¿Quién encontró el bicho: el grupo o los que probaron su misión?»
+2. Frase clave: **«Otros ojos encuentran otros bichos.»**
+3. Los robots, a cargar, y las tarjetas, a su caja.
 
 - **Frase clave:** «Otros ojos encuentran otros bichos.»
 - **Si va rápido:** proponer al otro grupo una mejora además del bicho.
@@ -782,13 +1092,28 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 ### S22 · Ensayamos la presentación `PC` `RA` `SEG`
 
 - **Qué aprenden:** preparar la explicación de su misión. Una foto o un vídeo es una representación, no la realidad.
+- **Hoy:** cada grupo ensaya cómo explicará su misión mientras el robot la hace; descubren que una foto es una representación, no el robot de verdad.
+- **Necesitas:** los robots con sus tarjetas, las misiones montadas en el tapete y la pizarra digital.
+- **Lo han conseguido si:** cada grupo dice su frase entera («Nuestra misión es… El robot sale de… Usamos … tarjetas») mientras el robot hace la misión.
 - **Para proyectar:** [[P:cuadricula.libre|Robot en la cuadrícula]] (para reconstruir en grande el recorrido de cada grupo)
 - **Minuto de uso responsable:** «Una foto de un compañero solo se hace si quiere, y nunca se sube sin permiso».
 
-**Pasos:**
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+
+**Empezamos (10 min):**
+1. Reconstruye en grande en la pizarra el recorrido de un grupo. [[P:cuadricula.libre|Robot en la cuadrícula]]
+2. Explica que lo de la pizarra, una foto o un vídeo son una representación del robot, no la realidad.
+
+**A trabajar (25 min):**
 1. Cada grupo ensaya con la frase: «Nuestra misión es… El robot sale de… Usamos … tarjetas».
-2. El portavoz lo dice; los demás mueven el robot.
+2. Uno lo dice; los demás mueven el robot.
 3. Opcional: el docente hace una foto del tapete (sin caras) para un código QR en la muestra final. Si no hay tiempo, no hace falta.
+
+**Cerramos (10 min):**
+1. Un grupo dice su frase entera. Pregunta a la clase: «La foto del tapete, ¿es el robot de verdad?»
+2. Frase clave: **«La foto no es el robot: es una representación del robot.»**
+3. Los robots, a cargar, y las tarjetas, a su caja.
 
 - **Frase clave:** «La foto no es el robot: es una representación del robot.»
 - **Si va rápido:** explicar el recorrido con vocabulario de posición: «delante de la casa, a la derecha del árbol».
@@ -798,13 +1123,29 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 ### S23 · Presentamos los proyectos `PC`
 
 - **Qué aprenden:** explicar a la clase lo que ha hecho el equipo.
+- **Hoy:** cada grupo presenta su misión a la clase: qué hace, cómo la programaron y un bicho que encontraron, y el robot la hace en directo.
+- **Necesitas:** los robots con sus tarjetas, las misiones montadas y la rúbrica del trimestre.
+- **Lo han conseguido si:** cada grupo ha presentado su misión, el robot la ha hecho en directo y la clase ha dicho algo que le ha gustado.
 - **Material listo:** [[M:M19|Rúbrica]]
 - **Minuto de uso responsable:** «Lo que subo a internet se queda.» Si una foto ya la ha visto mucha gente, ¿se puede borrar del todo?
 
-**Pasos:**
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Imprime el registro de la rúbrica. [[M:M19|Rúbrica]]
+
+**Empezamos (10 min):**
+1. Explica cómo será: cada grupo presenta 3 minutos y, al acabar, la clase dice una cosa que le ha gustado.
+
+**A trabajar (25 min):**
 1. Cada grupo presenta (3 minutos): la misión, cómo la programaron y un bicho que encontraron.
 2. El robot hace la misión en directo.
 3. La clase dice una cosa que le ha gustado.
+4. Mientras presentan, puedes ir rellenando el registro de la rúbrica del trimestre. [[M:M19|Rúbrica]]
+
+**Cerramos (10 min):**
+1. Pregunta a la clase: «¿Qué bicho de los que han contado os ha parecido más difícil de encontrar?»
+2. Frase clave: **«Explicar lo que hemos hecho también es aprender.»**
+3. Los robots, a cargar, y las tarjetas, a su caja.
 
 - **Frase clave:** «Explicar lo que hemos hecho también es aprender.»
 - **Si va rápido:** la clase adivina cuántas tarjetas usó el grupo antes de que lo diga.
@@ -815,14 +1156,45 @@ Cada grupo mira el programa de otro y busca tarjetas que sobran o que se pueden 
 ### S24 · Cierre del curso y pasaporte `PC`
 
 - **Qué aprenden:** valorar lo aprendido durante el curso.
+- **Hoy:** repiten sus misiones favoritas y reciben el pasaporte completo (propuesta A), o enseñan a la clase de Infantil a mover el robot (propuesta B).
+- **Necesitas:** los robots con sus tarjetas y el tapete, los pasaportes y la autoevaluación.
+- **Lo han conseguido si:** cada alumno dice lo que más le ha gustado del curso con las caritas del pasaporte.
 - **Material listo:** [[M:M15|Pasaporte]] · [[M:M19|Autoevaluación]]
 - **Minuto de uso responsable:** «Cada cosa a su caja y a cargar.» ¿Qué pasa si el próximo día el robot no tiene batería o falta una tarjeta?
 
+**Antes de la clase:**
+- Carga los robots y prepara sus tarjetas y el tapete.
+- Ten a mano los pasaportes, uno por alumno. [[M:M15|Pasaporte]]
+- Imprime la autoevaluación. [[M:M19|Autoevaluación]] (hoja 3)
+- Para la propuesta B, acuerda la visita con la tutora o el tutor de Infantil de 5 años.
+
 **Opción A · En clase**
-Se repiten las misiones favoritas y se entrega el pasaporte completo.
+
+**Empezamos (10 min):**
+1. Elegid entre todos las misiones favoritas.
+
+**A trabajar (25 min):**
+1. Se repiten las misiones favoritas.
+
+**Cerramos (10 min):**
+1. Se entrega el pasaporte completo.
+2. Autoevaluación: caritas del pasaporte: «Lo que más me ha gustado…».
+3. Frase clave: **«Lo que aprendo, lo puedo enseñar.»**
+4. Los robots, a cargar, y las tarjetas, a su caja.
 
 **Opción B · Con otra clase**
-Por parejas, enseñan a Infantil de 5 años a meter una tarjeta y mover el robot.
+
+**Empezamos (10 min):**
+1. Explica la misión: por parejas, vais a enseñar a los niños de Infantil a meter una tarjeta y mover el robot.
+
+**A trabajar (25 min):**
+1. Por parejas, enseñan a Infantil de 5 años a meter una tarjeta y mover el robot.
+
+**Cerramos (10 min):**
+1. De vuelta en clase, pregunta: «¿Qué ha sido lo más difícil de enseñar?»
+2. Autoevaluación: caritas del pasaporte: «Lo que más me ha gustado…».
+3. Frase clave: **«Lo que aprendo, lo puedo enseñar.»**
+4. Los robots, a cargar, y las tarjetas, a su caja.
 
 - **Frase clave:** «Lo que aprendo, lo puedo enseñar.»
 - **Si va rápido:** las parejas inventan un reto nuevo para el curso que viene.

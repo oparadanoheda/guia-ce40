@@ -19,18 +19,16 @@ Se trabaja y se responde en español de España.
 
 - **Sesiones:** `1_primero.md` … `6_sexto.md`. El formato es estricto; `build_web.py` se para si algo no cuadra.
 - **Fuentes únicas** (no editar a mano lo que generan): `web/vocabulario.py` → «Palabras del curso» de los `.md` (con `vocab_md.py`), M26 y M27; `web/videos.py` → vídeos y sus sesiones; `web/repaso.py` → «Para repasar» y mapa de conceptos; `web/catalogo.py` → herramientas y sus variantes (`[[P:herramienta.variante|…]]`).
-- **Lo que ve la clase al proyectar** está aparte del `.md` y hay que mantenerlo a la par cuando se cambia una propuesta:
-  - sesiones con guion (formato nuevo): `web/tablero_cN.py`, formato en la cabecera de `web/tablero_clase.py`;
-  - sesiones con el formato antiguo: `web/mision_clase.py`.
+- **Lo que ve la clase al proyectar** (el tablero de la misión) está aparte del `.md`, en `web/tablero_cN.py` (formato en la cabecera de `web/tablero_clase.py`), y hay que mantenerlo a la par cuando se cambia una propuesta.
 - **Generado, no tocar a mano:** `docs/`, `web/programacion_CE40.html`, `web/_*.html`, `web/pictos_data.js`, `web/materiales/`, el zip.
 - **Fuera de git** (`.gitignore`): los documentos de partida del centro, `_version_anterior/`, `Material imprimible/`, `.claude/`. `.taste-skill/` son maquetas de diseño sin seguimiento.
 
-## Dos formatos de sesión conviven
+## Formato de las sesiones (con guion)
 
-Una sesión es «con guion» en cuanto tiene las fases `**Empezamos (10 min):**`, `**A trabajar (25 min):**`, `**Cerramos (10 min):**` (deben sumar 45). Las demás siguen el formato antiguo (`**Prepara antes:**`, `**Opción A · …**` / `**Pasos:**`).
+Todas las sesiones tienen las fases `**Empezamos (10 min):**`, `**A trabajar (25 min):**`, `**Cerramos (10 min):**` (deben sumar 45). El formato antiguo ya no se lee: si una sesión no tiene las tres fases, o le queda `**Prepara antes:**` o `**Pasos:**`, `build_web.py` se para.
 
-- Para pasar una sesión al formato nuevo: `web/INSTRUCCIONES_GUION.md`. Para revisarla: `web/REVISION_GUION.md`.
-- En el formato nuevo, roles y minuto de uso responsable no son pasos; si las normas de uso son el contenido de la sesión, van como primer paso de «Empezamos» y se quita la línea del minuto.
+- Criterios para escribir o cambiar una sesión: `web/INSTRUCCIONES_GUION.md` (con ellas se pasaron todas al guion). Para revisarla: `web/REVISION_GUION.md`.
+- Roles y minuto de uso responsable no son pasos; si las normas de uso son el contenido de la sesión, van como primer paso de «Empezamos» y se quita la línea del minuto.
 - El tablero da los bloques sueltos de cada paso y pistas, nunca la solución ni cuáles son los bichos de un archivo.
 - Sublistas con 4 espacios; sin líneas en blanco dentro de una lista; línea en blanco entre bloques.
 
@@ -55,7 +53,7 @@ $env:PYTHONIOENCODING="utf-8"            # sin esto la consola de Windows falla 
 python probar_web.py estatico            # segundos
 python probar_web.py proyeccion          # minutos; incluye que cada tablero cabe a 1024×768 y 1366×768
 python probar_web.py accesibilidad       # larga: lanzarla en segundo plano
-python probar_web.py                     # todo, unos 25 minutos (también paginas, herramientas, tablet)
+python probar_web.py                     # todo, unos 50 minutos (también paginas, herramientas, tablet)
 ```
 
 Debe terminar en «RESULTADO: todo bien». Otros: `python revisar_pdfs.py` (PDF sin desbordes), `npm test` en `web/pruebas_scratch/` (los `.sb3`).

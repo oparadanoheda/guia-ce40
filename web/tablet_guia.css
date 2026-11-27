@@ -14,7 +14,6 @@
 .tqr.tqr-max .qr{max-width:none;width:auto;height:70vh}
 .tab-info ul,.tab-info ol{padding-left:1.2em}
 .tab-tile small{color:var(--c3)}
-.pz-qrs{display:flex;flex-wrap:wrap;gap:3vw;justify-content:center;align-items:flex-start}
 .pz-qr{background:#fff;border-radius:1rem;padding:1.4vh 1.4vw;display:flex;flex-direction:column;align-items:center;gap:.6vh;border:2px solid #e3e6ec}
 .pz-qr b{font:800 clamp(1.2rem,2.2vw,2.2rem)/1.1 'Instrument Sans',sans-serif;color:#1a1d24}
 .pz-qrsvg{display:block;width:auto;height:min(36vh,30vw)}

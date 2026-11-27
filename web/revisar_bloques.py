@@ -301,7 +301,8 @@ def main():
     rev = Revisor(datos)
     malos, buenos = {}, {}
     for t, donde, ctx in citas():
-        if ctx is None or t.rstrip().endswith(":"):
+        # las etiquetas («**Opción B · Con 2º:**») y los títulos de las propuestas del guion («**Opción B · Con 2º**») no son bloques
+        if ctx is None or t.rstrip().endswith(":") or t.startswith("Opción "):
             continue
         r = rev.revisa(t, ctx)
         if r is None:

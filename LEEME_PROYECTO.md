@@ -1,6 +1,6 @@
 # Guía Código Escuela 4.0 · Primaria · 2026-2027 — documento del proyecto
 
-Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 20 de noviembre de 2026 (**versión 2.0**).
+Documento de referencia para quien mantenga la guía (personas o asistentes de IA): qué es, qué se decidió y por qué, cómo está organizada, cómo se regenera y se comprueba, cómo se publica y qué queda pendiente. Última actualización: 27 de noviembre de 2026 (**versión 2.1**).
 
 ---
 
@@ -11,7 +11,12 @@ Programación completa de **Código Escuela 4.0** para **1º a 6º de Primaria**
 - **128 sesiones:** 24 por curso de 1º a 4º (semanales) y 16 en 5º y 6º (12 núcleo + 4 opcionales, quincenales).
 - Cada sesión tiene un objetivo fijo, **varias opciones de actividad**, frase clave, «Si cuesta», «Si va rápido» y vínculo con Matemáticas.
 - **29 materiales imprimibles** en PDF (M01-M29, incluidos 10 pósteres de conceptos y el vocabulario por curso), **35 herramientas interactivas** para la pizarra digital (proyectables, con 131 modos o retos), **21 vídeos de conceptos**, **13 retos para las tablets y los portátiles** del alumnado (con QR o con icono), **15 proyectos de Scratch** (.sb3), **24 de MakeCode** (.mkcd) y una web que lo reúne todo.
-- Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que guía la sesión de principio a fin, a pantalla completa. Arriba, la **barra de fases** (Arranque, Misión, Práctica, Compartir y Cierre; en 5º-6º, Tarjeta, Misión, Práctica, Compartir y Guardar), sin cronómetro, con la fase actual resaltada; se toca una fase para saltar a ella. Diapositivas: portada, «Recordamos» (frase clave de la sesión anterior) o la tarjeta «Dónde lo dejamos», minuto de uso responsable, roles, vídeo, palabras nuevas, **la misión** (la propuesta abierta en la ficha, paso a paso; o los retos de la sesión), frase clave, manos a la obra (herramientas y reto extra), cambio de roles, compartir (con las tres preguntas) y cierre o guardar.
+- Cada ficha de sesión tiene un botón **«Proyectar la sesión»** que abre, a pantalla completa, tres pantallas para la clase:
+  - **Hoy:** el título, qué aprendemos, las palabras nuevas y el vídeo.
+  - **La misión:** el tablero que se queda puesto mientras trabajan, uno por propuesta. Lleva los pasos, los bloques que hacen falta, pistas, una referencia visual, «Lo hemos conseguido si…» y el reto para quien termine.
+  - **Cierre:** la frase clave, las preguntas de salida y qué se recoge.
+
+  En «Recursos» están los vídeos y las herramientas de la sesión, el QR de las tablets, los roles y el minuto de uso responsable.
 
 **Dónde está cada cosa para el profesorado:**
 
@@ -82,15 +87,15 @@ Programación Mate 4.0 26-27/
 | `build_web.py` | Genera `programacion_CE40.html` (la web, un solo archivo) y `_preview.html` a partir de los .md |
 | `app.js`, `estilo.css` | Navegación (rutas `#c1-s7`, `#p-herramienta.variante`, búsqueda, pestañas) y estilos. Tema claro y oscuro, un color por curso (`--c1` a `--c6`) |
 | `tema.css` | La estética de la versión 1.9 («Pizarra y cuaderno»), encima de `estilo.css` y de las hojas de las herramientas y antes de `imprimir.css`: colores del marco, paneles en tono, letras (títulos en Bricolage Grotesque y texto en Instrument Sans) y tinte de cada curso. Para cambiar el aspecto, se toca aquí |
-| `app.js` · «Volver a la sesión» | Al salir de una ficha hacia un recurso (herramienta, guía, rúbrica, material…) se guarda en `sessionStorage` (`ce40-origen`) la sesión, la posición, la propuesta abierta y, si se venía del modo proyección, la diapositiva. En el recurso aparece un botón fijo abajo a la izquierda y otro en la cabecera de las herramientas. Al volver (con el botón o con el «atrás» del navegador) se restaura todo; la proyección solo se reabre con el botón. Ir a otra sesión, a un curso o al inicio borra el origen |
-| `proyeccion.js`, `proyeccion.css` | Modo proyección de cada sesión. Los datos van en un `<script type="application/json" class="pz-data">` dentro de cada ficha (función `projection_data` de `build_web.py`) |
-| `guion.css`, `tablero.js`, `tablero.css`, `tablero_clase.py`, `tablero_c1.py` … `tablero_c6.py`, `valida_guion.py` | Las **sesiones con guion** (ver el apartado 4): `guion.css` es la ficha nueva; `tablero.js` y `tablero.css`, su proyección (tres pantallas: Hoy, La misión y Cierre); `tablero_clase.py` explica el formato de lo que ve la clase en el tablero de la misión y junta los seis `tablero_cN.py`, uno por curso (`tablero_leds.py` guarda los dibujos de la pantalla de la micro:bit); `valida_guion.py c3` comprueba las sesiones con guion de un curso en segundos, sin generar la web. `proyeccion.js` las reconoce por el `<script class="pz2-data">` y las abre con `tablero.js` |
+| `app.js` · «Volver a la sesión» | Al salir de una ficha hacia un recurso (herramienta, guía, rúbrica, material…) se guarda en `sessionStorage` (`ce40-origen`) la sesión, la posición, la propuesta abierta y, si se venía del modo proyección, la pantalla que estaba puesta. En el recurso aparece un botón fijo abajo a la izquierda y otro en la cabecera de las herramientas. Al volver (con el botón o con el «atrás» del navegador) se restaura todo; la proyección solo se reabre con el botón. Ir a otra sesión, a un curso o al inicio borra el origen |
+| `proyeccion.css` | La base del modo proyección que usa el tablero (la capa a pantalla completa, la barra de arriba, la navegación, «Recursos» y los roles), los botones «Proyectar la sesión» e «Imprimir» de la ficha y el botón «Volver a la sesión» |
+| `guion.css`, `tablero.js`, `tablero.css`, `tablero_clase.py`, `tablero_c1.py` … `tablero_c6.py`, `valida_guion.py` | La ficha y la proyección de cada sesión (ver el apartado 4): `guion.css` es la ficha; `tablero.js` y `tablero.css`, la proyección (tres pantallas: Hoy, La misión y Cierre). Los datos van en un `<script type="application/json" class="pz2-data">` dentro de cada ficha (función `tablero_data` de `build_web.py`). `tablero.js` atiende también el botón «Proyectar la sesión» y ofrece `window.ProyectarSesion`, que usan `app.js` («Volver a la sesión»), `probar_web.py` y `capturas_guion.py`. `tablero_clase.py` explica el formato de lo que ve la clase en el tablero de la misión y junta los seis `tablero_cN.py`, uno por curso (`tablero_leds.py` guarda los dibujos de la pantalla de la micro:bit); `valida_guion.py c3` comprueba las sesiones de un curso en segundos, sin generar la web |
 | `vocabulario.py` | **Fuente única** del vocabulario por curso y de los 10 pósteres. De aquí salen M26, M27, el apartado «Palabras del curso» de cada .md y las palabras nuevas del modo proyección |
 | `vocab_md.py` | Reescribe el apartado «Palabras del curso» de los seis .md a partir de `vocabulario.py` |
 | `proyectables.js`, `proyectables2.js`, `proyectables5.js`, `proyectables6.js`, `proyectables7.js`, `proyectables8.js`, `proyectables*.css` | Las 35 herramientas de la pizarra. En `proyectables5.js` están las rehechas (variables, coordenadas) y los repasos 4º-6º; en `proyectables6.js` (con `proyectables5.css`), las de la versión 1.1: adivina el número, cubos y vistas, y mensajes; en `proyectables7.js` (con `proyectables7.css`), eventos; en `proyectables8.js` (con `proyectables8.css`), las preguntas de salida |
 | `videos.py` | **Fuente única** de los vídeos de conceptos: archivo, cursos, frase, segundo de la miniatura y sesiones donde se enlazan |
 | `tablet/` | «Retos de Código Escuela 4.0»: la página del alumnado para tablets y portátiles (`index.html`, `tablet.css`, `tablet.js` con el núcleo y los cinco primeros retos, `retos2.js` con los ocho siguientes, `sw.js` para usarla sin conexión, manifiesto, iconos y accesos directos). `retos/` es la dirección corta, que redirige aquí. Se publica en `docs/tablet/` y los QR apuntan a `oparadanoheda.github.io/guia-ce40/tablet/#<reto>`. Sin cuentas: las estrellas se guardan solo en la tablet (`localStorage`, clave `ce40-tablet-v1`) |
-| `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y de su diapositiva en la proyección |
+| `tablet_guia.css` | Estilos de las páginas «En las tablets» de la guía (el QR para proyectar) y del QR que se abre desde «Recursos» en la proyección |
 | `videos/` | Los 21 vídeos (`anim-*.html`, autónomos) y `img/` con sus miniaturas. `videos.css` les da estilo en la web |
 | `videos_miniaturas.py` | Crea las miniaturas de `videos/img/` con Edge sin interfaz (necesita `websockets` y `Pillow`) |
 | `catalogo.py` | Lista de proyectables (nombre, cursos, descripción, variantes) y aplicaciones externas recomendadas |
@@ -115,56 +120,20 @@ Programación Mate 4.0 26-27/
 
 ## 4. Formato de las sesiones en los .md (lo lee `build_web.py`)
 
-```markdown
-### S7 · Título de la sesión `ROB` `SEG`
-
-- **Qué aprenden:** objetivo en una frase.
-- **Prepara antes:** lo que hay que tener listo.
-- **Para proyectar:** [[P:beebot.cuadricula|Bee-Bot interactivo]]
-- **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M01|Tarjetas de flechas]]
-- **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
-- **Minuto de uso responsable:** "frase del banco" y su pregunta (todas las sesiones lo llevan).
-
-**Opción A · Nombre de la opción**
-1. Paso…
-
-**Opción B · Otra opción**
-Texto o pasos.
-
-- **Frase clave:** "…"
-- **Si va rápido:** ampliación concreta.
-- **Si cuesta:** simplificación concreta.
-- **Producto de T1:** … (en la sesión de cierre de trimestre)
-- **Mates:** vínculo matemático concreto.
-```
-
-- **Etiquetas:** `PC` pensamiento computacional · `ROB` robótica · `IA` (solo 5º-6º) · `SEG` uso responsable · `RA` realidad aumentada, QR y 3D.
-- **Opciones:** `**Opción A · …**` se convierte en pestañas. `**Pasos:**` crea un único bloque de desarrollo. `**Opción más sencilla:**` cuenta como «Si cuesta».
-- **Enlaces especiales:**
-  - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en el código; hoy se usan 89 y todas existen.
-  - `[[M:M07|texto]]` enlaza un PDF.
-  - `[[S:archivo.sb3|texto]]` enlaza un proyecto de Scratch.
-  - `- **Preguntas de salida:** [[P:salida.bucle|Bucles]]` enlaza las tres preguntas para el final de la sesión (sale en «Para usar en esta sesión» y en la diapositiva de cierre del modo proyección).
-  - `- **Para repasar:** variable · evento · azar` pone los conceptos de antes que la sesión da por sabidos, con sus recursos (los nombres están en `web/repaso.py`; si uno no existe, `build_web.py` se para y lo dice).
-  - `[[T:robot|texto]]` enlaza un reto para tablets o portátiles (va en la línea `- **En tablets o portátiles:** …`, con para qué niveles). Sale en la tarjeta de la sesión y como diapositiva con el QR en la práctica del modo proyección.
-- **En la web:** «Si va rápido» y «Si cuesta» aparecen como «Para ampliar» y «Para simplificar» en el bloque «Atención a la diversidad». El resto de viñetas con etiqueta van a «A tener en cuenta».
-- **Sesiones opcionales (5º y 6º, S13-S16):** son párrafos breves. Hay que dejar una **línea en blanco** entre las viñetas de cabecera y el párrafo; si no, el texto aparece en la columna lateral.
-- **Cada curso tiene además:**
-  - «Qué tienen que conseguir», «Vínculo con Matemáticas» y «Currículo de Matemáticas (Decreto 61/2022)»;
-  - resumen, material, las sesiones por trimestre, «Atención a la diversidad en Xº», evaluación y sesiones de reserva.
-
-### Sesiones con guion (formato nuevo, desde noviembre de 2026)
-
-Se están pasando las sesiones a una ficha más fácil de preparar y a una proyección más útil para la clase. Hechas: **el primer trimestre de los seis cursos** (S1 a S8 de 1º a 4º y S1 a S3 de 5º y 6º: 38 sesiones). Las demás siguen con el formato de arriba y las dos conviven: una sesión es «con guion» en cuanto tiene las tres fases.
+Todas las sesiones (las 128) tienen **guion**: una ficha fácil de preparar y una proyección útil para la clase. El primer trimestre lo tiene desde la versión 2.0, y las otras 90 sesiones, desde la versión 2.1. El formato anterior ya no se lee: si una sesión no tiene las tres fases, o le queda `**Prepara antes:**` o `**Pasos:**`, `build_web.py` se para y dice qué falta.
 
 ```markdown
 ### S2 · Título `PC` `ROB`
 
-- **Qué aprenden:** …
+- **Qué aprenden:** objetivo en una frase.
 - **Hoy:** qué hace la clase, en una frase.
 - **Necesitas:** lo imprescindible.
 - **Lo han conseguido si:** cómo sabe el docente que ha salido.
-- **Para proyectar:** … (y el resto de líneas de siempre: preguntas de salida, tablets, material, archivos, para repasar, minuto)
+- **Para proyectar:** [[P:beebot.cuadricula|Bee-Bot interactivo]]
+- **Material listo:** [[M:M05|Tarjetas de rol]] · [[M:M01|Tarjetas de flechas]]
+- **Archivo de Scratch:** [[S:4-S1-arregla-el-juego-3-bichos.sb3|Arregla el juego · 3 bichos]]
+- **Minuto de uso responsable:** "frase del banco" y su pregunta.
+- (y, si los hay: preguntas de salida, en tablets o portátiles, archivo de MakeCode, para repasar)
 
 **Antes de la clase:**
 - Una cosa que preparar. [[S:archivo.mkcd|Solución]]
@@ -187,19 +156,32 @@ Se están pasando las sesiones a una ficha más fácil de preparar y a una proye
 **Cerramos (10 min):**
 1. …
 
-**Pistas y soluciones:** (como siempre)
+**Pistas y soluciones:** (para el docente)
 
-- **Frase clave:** … · **Si va rápido:** … · **Si cuesta:** … · **Mates:** …
+- **Frase clave:** … · **Si va rápido:** … · **Si cuesta:** … · **Producto de T1:** … (en la sesión de cierre de trimestre) · **Mates:** …
 ```
 
-- **Las tres fases** son «Empezamos», «A trabajar» y «Cerramos», con sus minutos; tienen que sumar 45 (si no, `build_web.py` se para). Agrupan las cinco del método: tarjeta o arranque y misión; práctica; compartir y cierre o guardar.
+- **Etiquetas:** `PC` pensamiento computacional · `ROB` robótica · `IA` (solo 5º-6º) · `SEG` uso responsable · `RA` realidad aumentada, QR y 3D.
+- **Las tres fases** son «Empezamos», «A trabajar» y «Cerramos», con sus minutos; tienen que sumar 45 (si no, `build_web.py` se para). Agrupan las cinco fases que tenía antes el método: tarjeta o arranque y misión; práctica; compartir y cierre o guardar.
+- **Propuestas:** `**Opción A · …**` se convierte en pestañas, cada una con sus fases. `**Opción más sencilla:**` cuenta como «Si cuesta».
 - **Fases comunes:** las que van antes de la primera `**Opción**` o después de `**En todas las propuestas:**` valen para todas las propuestas. Sin propuestas, las tres fases van seguidas.
-- **Los enlaces del final de un paso** salen debajo, como botones: es lo que se abre en ese momento. `[[V:id|texto]]` enlaza un vídeo (los ids están en `web/videos.py`).
+- **Los enlaces del final de un paso** salen debajo, como botones: es lo que se abre en ese momento.
+- **Enlaces especiales:**
+  - `[[P:herramienta.variante|texto]]` abre un proyectable. Las variantes están en `web/catalogo.py`; hoy se usan 108 y todas existen.
+  - `[[M:M07|texto]]` enlaza un PDF.
+  - `[[S:archivo.sb3|texto]]` y `[[S:archivo.mkcd|texto]]` enlazan un proyecto de Scratch o de MakeCode.
+  - `[[V:id|texto]]` enlaza un vídeo (los ids están en `web/videos.py`).
+  - `- **Preguntas de salida:** [[P:salida.bucle|Bucles]]` enlaza las tres preguntas para el final de la sesión (en la proyección, sale en «Cierre» y en «Recursos»).
+  - `- **Para repasar:** variable · evento · azar` pone los conceptos de antes que la sesión da por sabidos, con sus recursos (los nombres están en `web/repaso.py`; si uno no existe, `build_web.py` se para y lo dice).
+  - `[[T:robot|texto]]` enlaza un reto para tablets o portátiles (va en la línea `- **En tablets o portátiles:** …`, con para qué niveles). Sale en «A trabajar» («Quien termine, en tablets o portátiles») y, en la proyección, desde «Recursos», con el QR.
 - **En «Antes de la clase»**, cada `[[M:…]]` sale con la miniatura de su página.
-- **Se ponen solos** en «A trabajar»: el botón «Proyectar el tablero», «Si cuesta», «Si va rápido» y la línea de tablets. Los **roles** y el **minuto de uso responsable** quedan en «Si quieres añadirlo» (y en «Recursos», dentro de la proyección): ya no son pasos ni diapositivas. Lo demás (pistas y soluciones, para repasar, todos los recursos, Matemáticas, recursos oficiales) va plegado en «Para consultar».
-- **El tablero de la misión** de cada propuesta se escribe en `web/tablero_cN.py`, el del curso (clave: id de la sesión; dentro, «A», «B»… o «D» si no hay propuestas): pasos en frases cortas para la clase, los bloques que necesitan (sueltos, no el programa montado), pista en los pasos difíciles, una referencia visual (pantalla de la micro:bit, tabla, lista, pictogramas o botones del robot), «Lo hemos conseguido si…», notas y el reto para quien termine. Si la sesión tiene guion y falta su tablero, o no coincide con sus propuestas, `build_web.py` se para. `revisar_bloques.py` comprueba también estos bloques.
+- **Se ponen solos** en «A trabajar»: el botón «Proyectar el tablero», «Si cuesta», «Si va rápido» y la línea de tablets. Los **roles** y el **minuto de uso responsable** quedan en «Si quieres añadirlo» (y en «Recursos», dentro de la proyección): no son pasos. Lo demás (pistas y soluciones, para repasar, todos los recursos, Matemáticas, recursos oficiales) va plegado en «Para consultar». El resto de viñetas con etiqueta van a «A tener en cuenta».
+- **El tablero de la misión** de cada propuesta se escribe en `web/tablero_cN.py`, el del curso (clave: id de la sesión; dentro, «A», «B»… o «D» si no hay propuestas): pasos en frases cortas para la clase, los bloques que necesitan (sueltos, no el programa montado), pista en los pasos difíciles, una referencia visual (pantalla de la micro:bit, tabla, lista, pictogramas o botones del robot), «Lo hemos conseguido si…», notas y el reto para quien termine. Si falta el tablero de una sesión, o no coincide con sus propuestas, `build_web.py` se para. `revisar_bloques.py` comprueba también estos bloques.
 - **En 1º y 2º** cada paso del tablero lleva uno o dos pictogramas (`pics`) y hay botón «Leer» (tecla L), que lee el paso actual.
-- **Para pasar más sesiones:** las instrucciones completas, con los criterios, están en `web/INSTRUCCIONES_GUION.md` (se usaron para encargar cada curso a un asistente), y la lista para revisarlas después, en `web/REVISION_GUION.md`.
+- **Cada curso tiene además:**
+  - «Qué tienen que conseguir», «Vínculo con Matemáticas» y «Currículo de Matemáticas (Decreto 61/2022)»;
+  - resumen, material, las sesiones por trimestre, «Atención a la diversidad en Xº», evaluación y sesiones de reserva.
+- **Para escribir o cambiar una sesión:** los criterios están en `web/INSTRUCCIONES_GUION.md` (con esas instrucciones se pasó cada curso al guion), y la lista para revisarla después, en `web/REVISION_GUION.md`.
 - **Para ver cómo queda:** desde `web/`, `python capturas_guion.py c6-s2` (capturas de la ficha y de las tres pantallas, en `picto/_hojas/g_*.png`).
 
 ---
@@ -232,7 +214,7 @@ python empaquetar.py           # copia la web a ../docs/ (GitHub Pages) y crea e
 
 | Qué | Cómo |
 |---|---|
-| **La web funciona** | `python probar_web.py` (desde `web/pruebas_web/`, tras `build_web.py` y `empaquetar.py`; unos 25 minutos). Prueba `docs/index.html`: HTML sin ids repetidos ni enlaces rotos ni emojis; las ~190 páginas a 1366, 1024 y 375 px y en oscuro, sin errores ni desbordes; cada modo de cada herramienta con miles de pulsaciones al azar; la proyección de las 128 sesiones a 1024×768 y 1366×768; y accesibilidad WCAG 2.1 AA con axe-core en claro y en oscuro. Debe terminar en «RESULTADO: todo bien». Se puede pasar por partes: `python probar_web.py estatico` (segundos), `paginas`, `herramientas`, `proyeccion`, `accesibilidad`, `tablet` (resuelve todos los niveles de los retos de la tablet en tres tamaños de pantalla y pasa axe-core). Con `enlaces` comprueba los enlaces externos (necesita internet) |
+| **La web funciona** | `python probar_web.py` (desde `web/pruebas_web/`, tras `build_web.py` y `empaquetar.py`; unos 50 minutos). Prueba `docs/index.html`: HTML sin ids repetidos ni enlaces rotos ni emojis; las ~190 páginas a 1366, 1024 y 375 px y en oscuro, sin errores ni desbordes; cada modo de cada herramienta con miles de pulsaciones al azar; la proyección de las 128 sesiones a 1024×768 y 1366×768; y accesibilidad WCAG 2.1 AA con axe-core en claro y en oscuro. Debe terminar en «RESULTADO: todo bien». Se puede pasar por partes: `python probar_web.py estatico` (segundos), `paginas`, `herramientas`, `proyeccion`, `accesibilidad`, `tablet` (resuelve todos los niveles de los retos de la tablet en tres tamaños de pantalla y pasa axe-core). Con `enlaces` comprueba los enlaces externos (necesita internet) |
 | Ningún PDF se sale de la página | `python revisar_pdfs.py` (desde `web/`). Debe decir `OV ok` en todos |
 | Los bloques se llaman como en el editor | `python revisar_bloques.py` (desde `web/`). Compara cada bloque de Scratch y MakeCode citado en las sesiones, en la guía de herramientas, en las chuletas M20 y M21, en los retos M28 y en las notas de los .sb3 con los nombres oficiales en español (Scratch «es», MakeCode «es-ES», y el Nezha y PlanetX en inglés). Debe decir «Todos los bloques citados existen con ese nombre»; si no, lista cada uno con su archivo y línea. Con `--actualizar` vuelve a descargar los nombres oficiales (hacerlo de vez en cuando: Scratch y MakeCode cambian alguna traducción). No ve una errata en la primera palabra de un bloque ni revisa los números de dentro |
 | Aspecto de los PDF | Abrir las páginas cambiadas y mirarlas (la herramienta Read del asistente muestra cada página como imagen) |
@@ -308,7 +290,7 @@ Detalle en `08_Plantillas_y_material.md`.
 - De 45 a 76 s, con subtítulos. Reproductor propio: capítulos, velocidad 0,75×, pantalla completa, «Pausas para pensar» (dos preguntas por vídeo) y «Sonido», los dos apagados por defecto.
 - **Sonido:** efectos sintetizados con Web Audio (sin archivos, sin voz y sin música): pasos y giros del robot, aparecer, acierto, error, duda, éxito, la frase clave y efectos propios (timbre, nota do de 0,5 s, aplauso, luces, pitido del semáforo de peatones, coches). Cada vídeo tiene su lista `SONIDOS` junto a `SUBS` (`[segundo, tipo]`); solo suenan durante la reproducción normal (no al saltar, al arrastrar ni con `?export=1`) y se callan al pausar. La elección se guarda en `localStorage` (`ce40-videos-sonido`). Los pasos y giros del robot se sacaron recorriendo cada vídeo con `seek` y detectando cuándo empieza a moverse.
 - Cada vídeo es un HTML autónomo (sin nada externo) que se dibuja con `render(t)`. Expone `window.ANIM` (`duration`, `seek`, `play`, `pause`, `chapters`, `pausas`); con `?export=1` oculta los controles, por si un día se quieren grabar en MP4 (fotograma a fotograma con `seek` y ffmpeg; se probó con el del bucle: 2,7 MB).
-- En la web: una página por vídeo (`#v-<id>`) dentro de «Para proyectar», con «Volver a la sesión»; enlace en la tarjeta «Para usar en esta sesión» de 48 sesiones, y una diapositiva «Vídeo» en el modo proyección. El reproductor se carga al entrar en la página y se descarga al salir.
+- En la web: una página por vídeo (`#v-<id>`) dentro de «Para proyectar», con «Volver a la sesión»; enlace en las 48 sesiones que lo usan y un botón en la pantalla «Hoy» de la proyección. El reproductor se carga al entrar en la página y se descarga al salir.
 - Los dos últimos (buscar por la mitad y mensajes, versión 1.1) se hicieron con el mismo reproductor: el guion de cada uno sustituye la escena de `anim-optimizar-superior.html` (de «Guion: tiempos» a «Escalado 16:9»).
 - Los hizo otra instancia de Claude con el encargo `Animaciones/Prompts animaciones.md`; el informe de entrega está en `Animaciones/ENTREGA para Claude.md`. Para uno nuevo: pedirlo con ese encargo, dejarlo en `Animaciones/animaciones_nuevas/`, revisarlo, copiarlo a `web/videos/` y añadirlo a `videos.py`.
 
@@ -501,6 +483,52 @@ Detalle en `08_Plantillas_y_material.md`.
     - **Revisión de las 38 sesiones (20 de noviembre):** cada una comparada con su original y con el material que cita (`materiales.py`, `catalogo.py`, guías de las herramientas). Corregido: las normas de 1º S1 pasan a «Empezamos»; 1º S8 B ya no pide «fichas numeradas» (M06 no las tiene); herramientas que la sesión nombraba sin enlazar (patrones ABC y AABB, diagrama «regar una planta»); herramientas de la cabecera con su «para qué» colocadas como paso de «si sobra tiempo» (laberintos de 2º S4, 3º S5 y 4º S3); material que se usaba sin estar en «Material listo» (M07 en 3º S6, M20 en 4º S7); material que estaba «a mano» sin uso, quitado de «Antes de la clase» (M01 en 1º S7 y 2º S6); hojas concretas de M12 y M19; el minuto de 3º S8 (hablaba de cables en una sesión sin dispositivos); en 6º S2 la melodía vuelve a ser un paso; y el icono REPITE de los tableros, que decía «×3», es ahora una flecha que da la vuelta.
     - **Revisión antes de publicar:** el tablero conserva lo marcado al abrir un recurso y volver (se guarda por sesión hasta que se recarga la página); los pasos y «Lo hemos conseguido si» se marcan también con el teclado (tabulador, y Intro o espacio); la pantalla «Hoy» cabe a 1366×768 aunque haya dos palabras nuevas y dos vídeos (6º S2); y en 5º S2 y 6º S2 el cierre dice «Preguntas de salida (tres de cada tema)», porque enlaza dos juegos. `probar_web.py` entero, en verde.
     - **Falta:** las otras 90 sesiones (segundo y tercer trimestre, y las opcionales de 5º y 6º); el dibujo real de los botones de Tale-Bot para el tablero de 1º; la página «El método» solo tiene una nota sobre el formato nuevo (sigue explicando las cinco fases, que valen para las 90 sesiones restantes); y probar a mano la proyección nueva en una pizarra. Idea: lo marcado en el tablero se recuerda hasta recargar la página, así que si se da la misma sesión a dos grupos seguidos el segundo lo encuentra marcado (se desmarca tocándolo); se podría añadir un botón «Empezar de cero».
+
+49. **Versión 2.1 (27 de noviembre de 2026): ficha con guion y tablero de la misión en todas las sesiones.** Reúne este punto y los dos siguientes, hechos entre el 24 y el 25 de noviembre. Las 90 sesiones que faltaban (segundo y tercer trimestre de los seis cursos y las opcionales de 5º y 6º) pasan al formato con guion, cada una con su tablero en `tablero_cN.py`. `mision_clase.py` se queda vacío.
+    - **Cómo:** cada sesión, comparada frase a frase con la del último commit (no se pierde nada del original) y con el material que cita. Lo nuevo es «Hoy», «Necesitas», «Lo han conseguido si», la pregunta del cierre, algunos pasos de presentar la misión y las frases del tablero.
+    - **Criterios:** las normas o el minuto de uso responsable pasan a «Empezamos» solo cuando son el contenido de la sesión (1º S11 y S17, 2º S17 y S22, 3º S9 y S17, 4º S15, S17 y S23). En 2º, «Sello en el pasaporte» en todos los cierres, como en su primer trimestre. Una herramienta de la cabecera se coloca en un paso cuando la sesión (o su nota) dice para qué es; si no, se queda en la cabecera. Las notas de organización («Se coloca entre la S11 y la S12») pasan a una viñeta «Cuándo». Los roles no se nombran en los pasos («el portavoz lo dice» pasa a «uno lo dice»), salvo cuando se apuntan en la hoja del proyecto.
+    - **Tiempos que no cabían en 10, 25 y 10:** se quita el número de minutos que chocaba: 3º S16 (terminar, de 15 a 10), 2º S24 (visita, de 10 a unos 5), 5º S6 y 6º S6 (cazabichos y optimizar, 15), 5º S9 (demostración, 12), 5º S13 y 6º S13 (programar) y 6º S11 (construir, 30).
+    - **Otros cambios:** en 5º S5, «Opción B (más sencilla)» pasa a «Opción más sencilla», como en 4º. `revisar_bloques.py` ya no lee como bloque un título de propuesta («**Opción B · Con 2º**»).
+    - **Dudas que quedan para el centro:** 2º S13 (las tarjetas M04 no traen reglas para clasificar objetos) y 2º S16 («¿Quién sale?» para el orden de presentación, en una feria en la que presenta media clase a la vez).
+    - **Pruebas:** `valida_guion.py` de los seis cursos, `revisar_bloques.py` (301 bloques, todos con su nombre oficial) y `probar_web.py` entero, en verde. Ojo: entero tarda ya más de 45 minutos; se pasó en dos tandas (estático, páginas, herramientas y proyección; después, accesibilidad y tablet).
+    - **Falta:** la página «El método» sigue explicando las cinco fases; el código del formato antiguo (`ficha_clasica`, `projection_data` y `mision_clase.py`) ya no se usa; y probar a mano la proyección en una pizarra. (Las dos primeras, hechas en los puntos 50 y 51.)
+
+50. **Fuera el formato antiguo (25 de noviembre de 2026; versión 2.1).** Con las 128 sesiones con guion, el código que solo servía para el formato anterior ya no se usaba.
+    - **Quitado:**
+      - en `build_web.py`, la ficha antigua: `ficha_clasica`, `render_sections` y `structure_bar`, la barra de cinco fases, que nadie llamaba desde la revisión 13;
+      - también en `build_web.py`, los datos de las diapositivas: `projection_data`, `pz_steps` y la importación de `MISION`;
+      - `mision_clase.py`;
+      - `proyeccion.js` entero (las diapositivas). El botón «Proyectar la sesión» y `window.ProyectarSesion`, que usan `app.js`, las pruebas y `capturas_guion.py`, pasan a `tablero.js`;
+      - el CSS que ya no encontraba nada en la web: las diapositivas en `proyeccion.css` (barra de fases, pasos, retos, palabras, vídeos, propuestas y reto extra) y la ficha antigua en `estilo.css`, `tema.css`, `imprimir.css` y `tablet_guia.css`.
+
+      La web pesa 29 KB menos.
+    - **`build_web.py` se para** si una sesión no tiene las tres fases o si le queda «Prepara antes» o «Pasos». Antes los leía, y con guion el texto de «Pasos» se habría perdido sin avisar.
+    - **Un párrafo suelto que empieza por «Si…»** se queda en su fase; antes iba a «A tener en cuenta».
+    - **Comprobaciones:** `valida_guion.py` ya no mira «Prepara antes», porque lo hace `build_web.py`. `probar_web.py` ya no mira «el paso actual no se ve», que era de las diapositivas.
+    - **Documentos:** al día este LEEME (apartados 1, 3, 4 y 8) y `AGENTS.md`.
+    - **Comprobado:**
+      - `valida_guion.py` (los seis cursos), `revisar_bloques.py` (301 bloques, todos con su nombre oficial), `build_web.py` y `empaquetar.py`, sin errores;
+      - el HTML que sale es el mismo que antes, quitando el código CSS y JavaScript que sobraba;
+      - capturas de antes y de ahora: las 128 fichas (en claro, en oscuro, en el móvil y al imprimir) y todas las pantallas de la proyección, 1985 en total. Salen idénticas 1973. En las otras 12 solo cambian unos pocos píxeles de una esquina redondeada, y esa esquina cambia igual entre dos capturas de la misma versión: es el suavizado al dibujar, no el cambio;
+      - `build_web.py` se para con su mensaje si se le pone a una sesión «Prepara antes» o «Pasos», o si se le quitan las fases;
+      - `probar_web.py` entero, de una vez y en verde, en 49 minutos (con Edge en otro puerto, porque a la vez se estaban pasando las pruebas en otra copia del proyecto).
+    - **Falta:** poner al día los textos que aún describen la ficha antigua:
+      - en la portada, «Así es una ficha de sesión» y «Proyecta o imprime»;
+      - en «El método», las cinco fases;
+      - en `00_General_CE40_26-27.md`, el punto 4 de «Cómo usar esta programación» («Prepara antes»).
+
+51. **«El método» con el guion de tres partes (25 de noviembre de 2026; versión 2.1).** La página seguía explicando las cinco fases antiguas (arranque, misión, práctica, compartir y cierre), que ya no usa ninguna sesión. Queda hecho lo que dejaba pendiente el punto 50, y tres textos más del formato antiguo.
+    - **«El método»** (`method_page` en `build_web.py`): la sesión en tres partes, Empezamos (10 min), A trabajar (25) y Cerramos (10), con la nota de 5º y 6º (la tarjeta «Dónde lo dejamos» se lee al empezar y se rellena al cerrar); dos bloques nuevos, «La ficha de cada sesión» (sus cinco partes) y «Proyectar la sesión» (Hoy, La misión y Cierre); y los roles, opcionales como el minuto de uso responsable. Todo sale de lo que ya hacen la ficha (`guion_html`), la proyección (`tablero.js`) y las 128 sesiones en sus tres fases: no hay contenido nuevo.
+    - **Portada:** «Así es una ficha de sesión» describía la ficha antigua; ahora enseña las mismas cinco partes, que salen de una sola lista (`FICHA_PARTES` en `build_web.py`).
+    - **Estilos** (`estilo.css`): `.phases` a tres columnas y el resaltado en «A trabajar» (`.ph-1`). En «El método» las cinco partes de la ficha van en filas (`.doc .anatomy`): la hoja es estrecha para cinco columnas.
+    - **`00_General_CE40_26-27.md`:** el apartado 5, con la tabla de las tres partes, las tres pantallas de la proyección, roles y minuto opcionales y la nota de 5º y 6º; el texto del minuto de uso responsable (cuando las normas son el contenido de la sesión, no hay minuto aparte); el punto 4 del apartado 1 (qué trae cada ficha, ya sin «Prepara antes»); y la línea SEG del apartado 2.
+    - **Tres textos más del formato antiguo** (la lista la pasó la sesión del punto 50): la tarjeta «Proyecta o imprime» de la portada ahora dice que la proyección abre tres pantallas («Hoy», el tablero de «La misión» y el «Cierre»); en la guía de las preguntas de salida (`guias_proyectables.py`), el botón ya no está en «la diapositiva de cierre», sino en la pantalla «Cierre»; y en el apartado 4 de este LEEME, las tres fases agrupan «las cinco fases que tenía antes el método».
+    - **Criterio:** la frase clave se dice en el cierre (antes, «al principio y al final»), como en el guion de las 128 sesiones.
+    - **Junto al punto 50:** se hizo a la vez, en otra copia del proyecto (un worktree), y se llevó a la carpeta principal encima del punto 50 con una fusión a tres bandas (`git merge-file`), sin conflictos: los dos cambios tocan partes distintas de `build_web.py` y `estilo.css`. Para juntar trabajo hecho en paralelo, mejor así que copiando archivos enteros, que pisarían lo del otro.
+    - **Ojo, en un worktree:** `web/materiales/` está fuera de git, así que en un worktree nuevo no existe; hay que copiarlo de la carpeta principal antes de `build_web.py`, porque `empaquetar.py` borra `docs/` y lo rehace con lo que haya, y sin él se queda sin los PDF, los .sb3, los .mkcd y las miniaturas.
+    - **Pruebas:** en el worktree, `probar_web.py estatico paginas accesibilidad` en verde (214 páginas a 1366, 1024 y 375 px y en oscuro) y capturas de «El método» y de la portada. En la carpeta principal, ya con el punto 50: `build_web.py` y `empaquetar.py` sin errores; «El método» y la portada, idénticas a las del worktree en el HTML y en las capturas (píxel a píxel); y `probar_web.py estatico paginas accesibilidad`, en verde (antes de cambiar los tres textos de arriba, que son solo texto). No se pasaron herramientas, proyección ni tablet: el cambio no las toca.
+    - **Los puntos 49, 50 y 51 juntos** (25 de noviembre, en la carpeta principal): `valida_guion.py`, `revisar_bloques.py`, `build_web.py` y `empaquetar.py` sin errores, y `probar_web.py` entero, de una vez y en verde.
+    - **Falta:** El proyectable «Temporizador de sesión» sigue con las cinco fases, y lo citan el apartado 5 de `00_General` y las cabeceras de 5º y 6º («Estructura de 45 minutos: 3' tarjeta · 7' misión…»). El quincenal (3, 7, 25, 5 y 5) cuadra con 10, 25 y 10; el semanal (5, 7, 23, 5 y 5) no, porque da 12, 23 y 10. Cambiarlo cambia cómo funciona la herramienta, así que queda por decidir.
 
 Las copias de seguridad de cada paso están en `_version_anterior/`.
 

@@ -207,8 +207,7 @@ PZ = r"""(async ()=>{ const out=[];
       window.ProyectarSesion.open(f); let n=0, g=0; const mal=[];
       const chk=()=>{ const st=document.querySelector('.pz-stage'); const W=window.innerWidth;
         if ([...st.querySelectorAll('*')].some(e=>{const r=e.getBoundingClientRect(); return r.width>0 && r.right>W+1})) mal.push(n+': se sale por la derecha');
-        const now=st.querySelector('.pz-steps li.now'); if(now){ const r=now.getBoundingClientRect(), s=st.getBoundingClientRect(); if(r.bottom>s.bottom+2||r.top<s.top-2) mal.push(n+': el paso actual no se ve'); } 
-        // sesiones con guion: el tablero de la misión de cada propuesta tiene que caber entero, sin desplazar
+        // el tablero de la misión de cada propuesta tiene que caber entero, sin desplazar
         if (st.querySelector('.pz2-board')) { const k=document.querySelectorAll('.pz2-opt').length||1;
           for (let i=0;i<k;i++){ const o=document.querySelectorAll('.pz2-opt')[i]; if(o) o.click(); const s2=document.querySelector('.pz-stage');
             if (s2.scrollHeight>s2.clientHeight+2) mal.push('el tablero de la propuesta '+(i+1)+' no cabe: sobran '+(s2.scrollHeight-s2.clientHeight)+' px'); } } };
